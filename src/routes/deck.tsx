@@ -63,7 +63,7 @@ export const Route = createFileRoute("/deck")({
       canonical: CANONICAL,
     }),
     scripts: [
-      serviceJsonLd("Deck Construction & Installation", PAGE_DESC),
+      serviceJsonLd("Deck Construction & Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Deck Construction & Installation" }),
       faqJsonLd(FAQS),
     ],
   }),
