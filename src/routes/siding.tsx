@@ -192,7 +192,7 @@ function SidingTypesSection() {
 
       {/* Detail dialog — compact 2-column card (image left, copy right on ≥sm) */}
       <Dialog open={!!active} onOpenChange={(o) => !o && setActiveId(null)}>
-        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white sm:rounded-xl">
+        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white sm:rounded-xl !duration-0 !animate-none data-[state=open]:!slide-in-from-left-0 data-[state=open]:!slide-in-from-top-0 data-[state=closed]:!slide-out-to-left-0 data-[state=closed]:!slide-out-to-top-0 data-[state=open]:!zoom-in-100 data-[state=closed]:!zoom-out-100">
           {active && (
             <div className="grid sm:grid-cols-2">
               {/* Image */}
