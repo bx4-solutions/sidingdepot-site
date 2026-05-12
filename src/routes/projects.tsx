@@ -230,9 +230,6 @@ function ProjectsPage() {
         hasPrev={modalIdx != null && modalIdx > 0}
         hasNext={modalIdx != null && modalIdx < filtered.length - 1}
       />
-
-      {/* Suppress unused-var warning while keeping navigate available for future inline filter changes */}
-      <noscript style={{ display: "none" }}>{String(Boolean(navigate))}</noscript>
     </section>
   );
 }
