@@ -18,8 +18,19 @@ const schema = z.object({
     .regex(/^[+\d\s().-]+$/, { message: "Telefone inválido" }),
   email: z.string().trim().email({ message: "E-mail inválido" }).max(255),
   city: z.string().trim().min(2, { message: "Informe sua cidade" }).max(80),
+  services: z.array(z.string()).min(1, { message: "Select at least one service" }),
   message: z.string().trim().max(1000).optional().or(z.literal("")),
 });
+
+const SERVICE_OPTIONS = [
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
+] as const;
 
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
@@ -35,11 +46,21 @@ export function HeroQuoteForm() {
     phone: "",
     email: "",
     city: "",
+    services: [],
     message: "",
   });
 
-  function update<K extends keyof FormState>(key: K, value: string) {
+  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
+  }
+
+  function toggleService(name: string) {
+    setValues((v) => ({
+      ...v,
+      services: v.services.includes(name)
+        ? v.services.filter((s) => s !== name)
+        : [...v.services, name],
+    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -149,6 +170,35 @@ export function HeroQuoteForm() {
             error={errors.email}
             autoComplete="email"
           />
+          <div className="grid gap-1.5">
+            <Label className="text-xs font-semibold text-sd-black">
+              Services <span className="text-sd-gray-text font-normal">(select all that apply)</span>
+            </Label>
+            <div className="grid grid-cols-2 gap-1.5 rounded-md border border-input p-2">
+              {SERVICE_OPTIONS.map((name) => {
+                const checked = values.services.includes(name);
+                return (
+                  <label
+                    key={name}
+                    className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
+                      checked ? "bg-sd-navy/5 text-sd-black" : "hover:bg-muted"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleService(name)}
+                      className="h-4 w-4 accent-sd-navy"
+                    />
+                    <span>{name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            {errors.services && (
+              <p className="text-[11px] text-destructive">{errors.services}</p>
+            )}
+          </div>
           <div className="grid gap-1.5">
             <Label htmlFor="hero-msg" className="text-xs font-semibold text-sd-black">
               Project details <span className="text-sd-gray-text font-normal">(optional)</span>
