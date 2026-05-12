@@ -34,7 +34,7 @@ export const Route = createFileRoute("/painting")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: PROJECT_HERO },
-      { rel: "canonical", href: "https://sidingdepot.com/services/painting" },
+      { rel: "canonical", href: "https://sidingdepot.com/painting" },
     ],
     scripts: [
       {
