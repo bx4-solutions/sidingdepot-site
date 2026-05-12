@@ -46,7 +46,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
-      <div className="mx-auto flex h-20 sm:h-24 lg:h-20 max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
+      <div className="mx-auto flex h-[91px] sm:h-[110px] lg:h-[91px] max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex flex-col items-start leading-none min-w-0">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
             <img
