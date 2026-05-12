@@ -46,11 +46,21 @@ export function HeroQuoteForm() {
     phone: "",
     email: "",
     city: "",
+    services: [],
     message: "",
   });
 
-  function update<K extends keyof FormState>(key: K, value: string) {
+  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
+  }
+
+  function toggleService(name: string) {
+    setValues((v) => ({
+      ...v,
+      services: v.services.includes(name)
+        ? v.services.filter((s) => s !== name)
+        : [...v.services, name],
+    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
