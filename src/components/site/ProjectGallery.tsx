@@ -1,15 +1,7 @@
 import { useMemo, useState } from "react";
-import { PROJECTS, type ProjectTag } from "@/data/site";
+import { PROJECTS, SERVICE_OPTIONS, type ProjectTag } from "@/data/site";
 
-const FILTERS: ReadonlyArray<"All" | ProjectTag> = [
-  "All",
-  "Siding",
-  "Painting",
-  "Roof",
-  "Windows",
-  "Decks",
-  "Gutters",
-];
+const FILTERS: ReadonlyArray<"All" | ProjectTag> = ["All", ...SERVICE_OPTIONS];
 
 export function ProjectGallery() {
   const [active, setActive] = useState<(typeof FILTERS)[number]>("All");
