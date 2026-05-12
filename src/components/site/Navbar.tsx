@@ -3,6 +3,7 @@ import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
+import { track } from "@/lib/track";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
 
 const NAV_LINKS = [
@@ -34,12 +35,20 @@ export function Navbar() {
               decoding="async"
             />
           </Link>
-          <div className="mt-1 hidden sm:flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">
-            <Link to="/siding" className="hover:text-sd-green transition-colors">Siding</Link>
-            <span aria-hidden className="text-sd-green">–</span>
-            <Link to="/painting" className="hover:text-sd-green transition-colors">Painting</Link>
-            <span aria-hidden className="text-sd-green">–</span>
-            <Link to="/windows" className="hover:text-sd-green transition-colors">Windows</Link>
+          <div className="mt-1.5 hidden sm:flex items-center gap-1 text-[9px] sm:text-[10px] leading-none font-semibold uppercase tracking-[0.14em] text-white/70">
+            {(["siding", "painting", "windows"] as const).map((slug, i) => (
+              <span key={slug} className="flex items-center gap-1">
+                {i > 0 && <span aria-hidden className="text-sd-green">–</span>}
+                <Link
+                  to="/"
+                  hash={`services-${slug}`}
+                  onClick={() => track("service_strip_click", { service: slug })}
+                  className="hover:text-sd-green transition-colors"
+                >
+                  {slug.charAt(0).toUpperCase() + slug.slice(1)}
+                </Link>
+              </span>
+            ))}
           </div>
         </div>
 
