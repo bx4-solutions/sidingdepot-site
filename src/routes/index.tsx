@@ -2,17 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
-import { StatCard } from "@/components/site/StatCard";
+
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { AwardsStrip } from "@/components/site/AwardsStrip";
 import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
-import { SERVICES, CITIES, STATS, SITE } from "@/data/site";
+import { SERVICES, CITIES, SITE } from "@/data/site";
 
 
 export const Route = createFileRoute("/")({
@@ -47,19 +48,14 @@ function HomePage() {
         badge="James Hardie Elite Preferred"
         title={
           <>
-            Georgia's Most Trusted{" "}
-            <span className="text-sd-green">Siding Experts</span>
+            Elevate Your Home's Exterior with{" "}
+            <span className="text-sd-green">Precision &amp; Craftsmanship</span>
           </>
         }
-        subtitle="Premium James Hardie installation, exterior painting, windows, decks and roofing across Marietta, Alpharetta, Milton, Canton and all of North Atlanta."
-        
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
-          {STATS.map((s) => (
-            <StatCard key={s.label} value={s.value} label={s.label} />
-          ))}
-        </div>
-      </HeroSection>
+        subtitle="Certified James Hardie installers serving Marietta, Alpharetta, Milton & all of North Atlanta — backed by 1,500+ transformations and a written 24-hour quote guarantee."
+        primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
+        formSlot={<HeroQuoteForm />}
+      />
 
       <ProofBar />
 
