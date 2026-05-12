@@ -52,6 +52,11 @@
   --color-sd-gray-bg: var(--sd-gray-bg);
   --color-sd-gray-border: var(--sd-gray-border);
   --color-sd-gray-text: var(--sd-gray-text);
+
+  /* Layout — sticky navbar height (single source of truth) */
+  --spacing-nav-mobile: 91px;
+  --spacing-nav-tablet: 110px;
+  --spacing-nav-desktop: 91px;
 }
 
 :root {
@@ -121,6 +126,15 @@
 
   html {
     scroll-behavior: smooth;
+    /* Offset in-page anchor jumps so sticky navbar doesn't cover the target.
+       Mirrors --spacing-nav-* tokens; bumped at sm where the bar is tallest. */
+    scroll-padding-top: calc(var(--spacing-nav-mobile) + 8px);
+  }
+  @media (min-width: 640px) {
+    html { scroll-padding-top: calc(var(--spacing-nav-tablet) + 8px); }
+  }
+  @media (min-width: 1024px) {
+    html { scroll-padding-top: calc(var(--spacing-nav-desktop) + 8px); }
   }
 
   body {
