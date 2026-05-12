@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { PROJECTS_SORTED, formatProjectDate, type ProjectTag, type Project } from "@/data/site";
 import { ProjectModal } from "@/components/site/ProjectModal";
