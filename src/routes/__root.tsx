@@ -17,18 +17,14 @@ import { SITE } from "@/data/site";
 const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 
-const SITE_URL = "https://sidingdepot.com";
-
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": `${SITE_URL}#localbusiness`,
   name: SITE.legalName,
-  image: `${SITE_URL}/og-default.jpg`,
-  logo: `${SITE_URL}/og-default.jpg`,
+  image: "https://sidingdepot.com/og-default.jpg",
   telephone: SITE.phone,
   email: SITE.email,
-  url: SITE_URL,
+  url: "https://sidingdepot.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.address.street,
@@ -37,31 +33,13 @@ const ORG_JSONLD = {
     postalCode: SITE.address.zip,
     addressCountry: "US",
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 33.9526,
-    longitude: -84.5499,
-  },
   areaServed: ["Marietta GA", "Alpharetta GA", "Milton GA", "Canton GA", "Woodstock GA", "Roswell GA", "Kennesaw GA", "Johns Creek GA", "Sandy Springs GA", "Acworth GA"],
   priceRange: "$$",
-  openingHours: "Mo-Sa 08:00-18:00",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",
     reviewCount: "60",
   },
-};
-
-const ORGANIZATION_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${SITE_URL}#organization`,
-  name: SITE.legalName,
-  url: SITE_URL,
-  logo: `${SITE_URL}/og-default.jpg`,
-  email: SITE.email,
-  telephone: SITE.phone,
-  sameAs: [],
 };
 
 function NotFoundComponent() {
@@ -119,9 +97,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#1E2A38" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Siding Depot" },
-      { property: "og:title", content: "Siding Depot — North Atlanta's Trusted Siding Experts" },
-      { property: "og:description", content: "James Hardie Elite Preferred. 1,500+ homes transformed. Free estimates across North Atlanta." },
+      { property: "og:title", content: "Siding Depot — James Hardie Elite Preferred Contractor in North Atlanta GA" },
+      { property: "og:description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta, Alpharetta, Milton, Canton & North Atlanta." },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Siding Depot — James Hardie Elite Preferred Contractor in North Atlanta GA" },
+      { name: "twitter:description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta, Alpharetta, Milton, Canton & North Atlanta." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -148,7 +130,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         : []),
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_JSONLD) },
-      { type: "application/ld+json", children: JSON.stringify(ORGANIZATION_JSONLD) },
     ],
   }),
   shellComponent: RootShell,
