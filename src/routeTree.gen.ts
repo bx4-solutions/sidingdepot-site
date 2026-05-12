@@ -14,6 +14,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSidingRouteImport } from './routes/services.siding'
+import { Route as ServicesPaintingRouteImport } from './routes/services.painting'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
@@ -43,6 +44,11 @@ const ServicesSidingRoute = ServicesSidingRouteImport.update({
   path: '/services/siding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesPaintingRoute = ServicesPaintingRouteImport.update({
+  id: '/services/painting',
+  path: '/services/painting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/painting': typeof ServicesPaintingRoute
   '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/painting': typeof ServicesPaintingRoute
   '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/services/painting': typeof ServicesPaintingRoute
   '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/services/painting'
     | '/services/siding'
     | '/locations/$city/$service'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/services/painting'
     | '/services/siding'
     | '/locations/$city/$service'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/services/painting'
     | '/services/siding'
     | '/locations/$city/$service'
   fileRoutesById: FileRoutesById
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  ServicesPaintingRoute: typeof ServicesPaintingRoute
   ServicesSidingRoute: typeof ServicesSidingRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/services/siding'
       fullPath: '/services/siding'
       preLoaderRoute: typeof ServicesSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/painting': {
+      id: '/services/painting'
+      path: '/services/painting'
+      fullPath: '/services/painting'
+      preLoaderRoute: typeof ServicesPaintingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -212,9 +232,20 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  ServicesPaintingRoute: ServicesPaintingRoute,
   ServicesSidingRoute: ServicesSidingRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
