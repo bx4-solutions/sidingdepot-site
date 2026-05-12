@@ -148,6 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         : []),
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_JSONLD) },
+      { type: "application/ld+json", children: JSON.stringify(ORGANIZATION_JSONLD) },
     ],
   }),
   shellComponent: RootShell,
