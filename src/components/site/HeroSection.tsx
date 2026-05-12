@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Phone } from "lucide-react";
+import { Phone, ShieldCheck, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, HERO } from "@/data/site";
 
@@ -13,9 +13,18 @@ type HeroProps = {
   bgAlt?: string;
   primaryCta?: { label: string; to?: string; href?: string };
   showCallCta?: boolean;
-  align?: "left" | "center";
+  /** Right-column slot (typically a quote form). When provided, layout becomes 2-col on lg+. */
+  formSlot?: ReactNode;
+  /** Trust bullets shown under the subtitle. */
+  trustItems?: ReadonlyArray<string>;
   children?: ReactNode;
 };
+
+const DEFAULT_TRUST = [
+  "James Hardie Elite Preferred",
+  "1,500+ homes transformed",
+  "Written 24h quote · No pressure",
+] as const;
 
 export function HeroSection({
   badge,
@@ -24,11 +33,15 @@ export function HeroSection({
   bgImage = HERO.bgImage,
   bgImageMobile = HERO.bgImageMobile,
   bgAlt = HERO.bgAlt,
-  primaryCta = { label: "Get Free Quote", to: "/contact" },
+  primaryCta = { label: "Schedule FREE Quote", to: "/contact" },
   showCallCta = true,
-  align = "left",
+  formSlot,
+  trustItems = DEFAULT_TRUST,
   children,
 }: HeroProps) {
+  const hasForm = Boolean(formSlot);
+  const trustIcons = [Award, ShieldCheck, Clock];
+
   return (
     <section className="relative isolate overflow-hidden bg-sd-dark">
       <picture>
@@ -43,60 +56,68 @@ export function HeroSection({
       </picture>
       <div
         aria-hidden
-        className="absolute inset-0 bg-[#0D1B2A]"
-        style={{ opacity: 0.65 }}
+        className="absolute inset-0 bg-gradient-to-r from-sd-dark/90 via-sd-dark/75 to-sd-dark/60"
       />
+
       <div
-        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-20 lg:py-28 ${
-          align === "center" ? "text-center flex flex-col items-center" : ""
+        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-16 lg:py-24 grid gap-10 ${
+          hasForm ? "lg:grid-cols-[1.2fr_minmax(360px,440px)] lg:gap-12 items-center" : ""
         }`}
       >
-        {badge && (
-          <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green">
-            <span aria-hidden>★</span> {badge}
-          </span>
-        )}
-        <h1
-          className={`font-display text-white leading-[0.95] mt-5 text-5xl sm:text-6xl lg:text-7xl ${
-            align === "center" ? "max-w-4xl" : "max-w-3xl"
-          }`}
-        >
-          {title}
-        </h1>
-        {subtitle && (
-          <p
-            className={`mt-5 text-base sm:text-lg text-white/80 ${
-              align === "center" ? "max-w-2xl" : "max-w-2xl"
-            }`}
-          >
-            {subtitle}
-          </p>
-        )}
-
-        {children && <div className="mt-8">{children}</div>}
-
-        <div
-          className={`mt-9 flex flex-wrap gap-3 ${
-            align === "center" ? "justify-center" : ""
-          }`}
-        >
-          {primaryCta.to ? (
-            <Button asChild size="lg">
-              <Link to={primaryCta.to}>{primaryCta.label}</Link>
-            </Button>
-          ) : (
-            <Button asChild size="lg">
-              <a href={primaryCta.href}>{primaryCta.label}</a>
-            </Button>
+        {/* Left column */}
+        <div>
+          {badge && (
+            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green">
+              <span aria-hidden>★</span> {badge}
+            </span>
           )}
-          {showCallCta && (
-            <Button asChild size="lg" variant="outlineWhite">
-              <a href={SITE.phoneHref}>
-                <Phone /> Call {SITE.phone}
-              </a>
-            </Button>
+          <h1 className="font-display text-white leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-5 text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed">
+              {subtitle}
+            </p>
           )}
+
+          {trustItems.length > 0 && (
+            <ul className="mt-7 grid gap-2.5 sm:grid-cols-3 max-w-2xl">
+              {trustItems.map((t, i) => {
+                const Icon = trustIcons[i % trustIcons.length];
+                return (
+                  <li key={t} className="flex items-center gap-2 text-sm text-white/85">
+                    <Icon className="h-4 w-4 text-sd-green shrink-0" />
+                    <span>{t}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          {children && <div className="mt-8">{children}</div>}
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            {primaryCta.to ? (
+              <Button asChild size="lg">
+                <Link to={primaryCta.to}>{primaryCta.label}</Link>
+              </Button>
+            ) : (
+              <Button asChild size="lg">
+                <a href={primaryCta.href}>{primaryCta.label}</a>
+              </Button>
+            )}
+            {showCallCta && (
+              <Button asChild size="lg" variant="outlineWhite">
+                <a href={SITE.phoneHref}>
+                  <Phone /> Call {SITE.phone}
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
+
+        {/* Right column — form */}
+        {hasForm && <div className="lg:pl-4">{formSlot}</div>}
       </div>
     </section>
   );
