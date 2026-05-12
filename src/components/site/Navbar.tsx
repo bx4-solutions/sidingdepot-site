@@ -54,7 +54,7 @@ export function Navbar() {
               alt="Siding Depot"
               width={224}
               height={68}
-              className="h-11 w-auto sm:h-13 lg:h-14"
+              className="h-11 w-auto sm:h-12 lg:h-14"
               loading="eager"
               decoding="async"
             />
