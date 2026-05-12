@@ -11,33 +11,30 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 
 /**
- * /services/siding — flagship service landing page.
- *
- * Sections (after hero):
- *  - "Siding types" interactive house: clickable hotspots open a dialog with
- *     a zoomed reference photo + description for each siding profile.
- *  - "Real projects" before/after carousel: navigate through the studio's
- *     own BEFORE_AFTER_PAIRS using the existing BeforeAfterSlider component.
- *
- * This static route file takes precedence over the dynamic services.$slug.tsx.
+ * /services/painting — flagship-style service landing page.
+ * Mirrors the architecture of /services/siding for SEO + UX consistency.
  */
 
-const PAGE_TITLE = "James Hardie Siding Installation in Marietta, GA — Siding Depot";
+const PAGE_TITLE = "Exterior Painting in Marietta, GA — Sherwin-Williams Premium · Siding Depot";
 const PAGE_DESC =
-  "Elite Preferred James Hardie siding contractor in Marietta and North Atlanta. Board & Batten, HardiePlank, Cedarmill and Shingle — installed by W-2 crews with a 30-year material warranty.";
+  "Long-lasting exterior repaints with Sherwin-Williams Emerald & Duration systems. Power-wash, prime, caulk and finish by W-2 crews — backed by a 5-year workmanship warranty.";
 
-export const Route = createFileRoute("/services/siding")({
+const PROJECT_HERO = "/projects/project-5.webp";
+const PROJECT_HERO_ALT =
+  "Two-story Kennesaw home freshly repainted in deep navy blue with crisp white trim";
+
+export const Route = createFileRoute("/services/painting")({
   head: () => ({
     meta: [
       { title: PAGE_TITLE },
       { name: "description", content: PAGE_DESC },
       { property: "og:title", content: PAGE_TITLE },
       { property: "og:description", content: PAGE_DESC },
-      { property: "og:image", content: "/projects/project-1.webp" },
+      { property: "og:image", content: PROJECT_HERO },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/projects/project-1.webp" },
-      { rel: "canonical", href: "https://sidingdepot.com/services/siding" },
+      { name: "twitter:image", content: PROJECT_HERO },
+      { rel: "canonical", href: "https://sidingdepot.com/services/painting" },
     ],
     scripts: [
       {
@@ -45,7 +42,7 @@ export const Route = createFileRoute("/services/siding")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "James Hardie Siding Installation",
+          name: "Exterior Painting",
           provider: {
             "@type": "LocalBusiness",
             name: SITE.legalName,
@@ -76,125 +73,117 @@ export const Route = createFileRoute("/services/siding")({
       },
     ],
   }),
-  component: SidingPage,
+  component: PaintingPage,
 });
 
 /* ---------------------------------------------------------------- */
-/* Siding-type hotspots (Section 2)                                  */
+/* Section 2 — Paint system spotlights                              */
 /* ---------------------------------------------------------------- */
 
-type SidingType = {
+type PaintSpot = {
   id: string;
-  /** Position on the showcase image, percentage of width/height. */
   x: number;
   y: number;
   title: string;
-  /** Detail photo opened in the dialog. */
   image: string;
   imageAlt: string;
   description: string;
 };
 
-const SHOWCASE_IMAGE = "/projects/project-1.webp";
-const SHOWCASE_ALT =
-  "Two-story Marietta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
-
-const SIDING_TYPES: ReadonlyArray<SidingType> = [
+const PAINT_SPOTS: ReadonlyArray<PaintSpot> = [
   {
-    id: "board-batten",
-    x: 38,
-    y: 42,
-    title: "Board & Batten Siding",
-    image: "/projects/project-1.webp",
-    imageAlt: "James Hardie Board & Batten siding installed on a Marietta home",
+    id: "body",
+    x: 50,
+    y: 55,
+    title: "Body Coat — Sherwin-Williams Emerald",
+    image: "/projects/project-5.webp",
+    imageAlt: "Two-story home in deep navy with new exterior paint",
     description:
-      "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
-  },
-  {
-    id: "plank",
-    x: 60,
-    y: 58,
-    title: "HardiePlank Lap Siding",
-    image: "/projects/project-3.webp",
-    imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
-    description:
-      "Long, narrow horizontal planks — the classic American siding look. Durable, low-maintenance and weather-resistant, making it our most popular choice across North Atlanta.",
-  },
-  {
-    id: "shingle",
-    x: 26,
-    y: 22,
-    title: "Shingle / Shake Siding",
-    image: "/projects/project-4.webp",
-    imageAlt: "Cedar-style shingle siding accenting a gable",
-    description:
-      "Overlapping rectangular shingles inspired by cedar shake roofing. Adds warmth and craftsman character — perfect for gables, dormers and entryways.",
+      "Two coats of Sherwin-Williams Emerald applied over a fully prepped substrate. Self-priming, mildew-resistant and engineered to hold its color through Georgia summers.",
   },
   {
     id: "trim",
-    x: 78,
-    y: 30,
-    title: "Soffit, Trim & Fascia",
+    x: 22,
+    y: 32,
+    title: "Trim & Fascia",
     image: "/projects/project-2.webp",
-    imageAlt: "Crisp white soffit, fascia and trim detailing on a Cape Cod home",
+    imageAlt: "Crisp white trim and fascia detailing on a Cape Cod home",
     description:
-      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace and repaint to match your siding system.",
+      "Crisp, hand-cut trim lines using Emerald Urethane Trim Enamel. Bonds tighter, resists yellowing, and gives the project the magazine-cover finish that separates a real repaint from a quick spray-and-go.",
+  },
+  {
+    id: "shake",
+    x: 78,
+    y: 25,
+    title: "Shake & Gable Accents",
+    image: "/projects/project-4.webp",
+    imageAlt: "Refreshed shake-style gable detailing on a Roswell home",
+    description:
+      "Detail brushwork on shake gables, dormers and architectural accents. Proper back-brushing pushes paint into every shadow line for full coverage with zero lap marks.",
+  },
+  {
+    id: "doors",
+    x: 60,
+    y: 78,
+    title: "Doors & Garage",
+    image: "/projects/project-7.webp",
+    imageAlt: "Refreshed garage doors on a Craftsman-style Roswell home",
+    description:
+      "High-traffic surfaces get factory-grade enamel. Smoother flow, harder cure, and a finish that resists scuffs from daily use.",
   },
 ];
 
-function SidingTypesSection() {
+function PaintSystemSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const active = SIDING_TYPES.find((t) => t.id === activeId) ?? null;
+  const active = PAINT_SPOTS.find((s) => s.id === activeId) ?? null;
 
   return (
     <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Copy */}
           <div>
             <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-              Siding Types
+              Paint System
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              One home,{" "}
-              <span className="text-sd-green">every James Hardie profile.</span>
+              The same coat,{" "}
+              <span className="text-sd-green">on every surface that matters.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              Tap a hotspot on the home to see exactly where each siding style
-              lives — and how Board &amp; Batten, HardiePlank, Shingle and Trim
-              work together to create a finished exterior.
+              Tap each hotspot to see exactly which Sherwin-Williams system we
+              use on body, trim, shake and high-traffic surfaces — and why it
+              outlasts a generic repaint.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {SIDING_TYPES.map((t) => (
+              {PAINT_SPOTS.map((s) => (
                 <button
-                  key={t.id}
+                  key={s.id}
                   type="button"
-                  onClick={() => setActiveId(t.id)}
+                  onClick={() => setActiveId(s.id)}
                   className="rounded-pill border border-sd-gray-border bg-white px-4 py-2 text-sm font-semibold text-sd-navy hover:border-sd-green hover:text-sd-green transition-colors"
                 >
-                  {t.title}
+                  {s.title}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Interactive house */}
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-2xl bg-sd-gray-bg">
             <img
-              src={SHOWCASE_IMAGE}
-              alt={SHOWCASE_ALT}
+              src={PROJECT_HERO}
+              alt={PROJECT_HERO_ALT}
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
               decoding="async"
             />
-            {SIDING_TYPES.map((t) => (
+            {PAINT_SPOTS.map((s) => (
               <button
-                key={t.id}
+                key={s.id}
                 type="button"
-                onClick={() => setActiveId(t.id)}
-                aria-label={`View details: ${t.title}`}
+                onClick={() => setActiveId(s.id)}
+                aria-label={`View details: ${s.title}`}
                 className="group absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${t.x}%`, top: `${t.y}%` }}
+                style={{ left: `${s.x}%`, top: `${s.y}%` }}
               >
                 <span className="relative flex h-7 w-7 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sd-green opacity-60" />
@@ -206,7 +195,6 @@ function SidingTypesSection() {
         </div>
       </div>
 
-      {/* Detail dialog — large zoomed photo on top, copy below */}
       <Dialog open={!!active} onOpenChange={(o) => !o && setActiveId(null)}>
         <DialogContent className="max-w-5xl p-0 overflow-hidden bg-white">
           {active && (
@@ -218,7 +206,7 @@ function SidingTypesSection() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <span className="absolute left-4 top-4 rounded-pill bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-navy shadow-sm">
-                  Siding type
+                  Paint detail
                 </span>
               </div>
               <div className="p-6 sm:p-8 lg:p-10">
@@ -232,7 +220,7 @@ function SidingTypesSection() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Button asChild>
                     <Link to="/contact">
-                      Get a quote for {active.title} <ArrowRight />
+                      Get a painting quote <ArrowRight />
                     </Link>
                   </Button>
                   <Button asChild variant="outline">
@@ -249,29 +237,17 @@ function SidingTypesSection() {
 }
 
 /* ---------------------------------------------------------------- */
-/* Before / After carousel (Section 3)                               */
+/* Section 3 — Before/After carousel (shared pairs)                 */
 /* ---------------------------------------------------------------- */
 
-type ShowcasePair = {
-  before: string;
-  after: string;
-  beforeAlt: string;
-  afterAlt: string;
-  title: string;
-  description: string;
-};
-
-const SHOWCASE_PAIRS: ReadonlyArray<ShowcasePair> = BEFORE_AFTER_PAIRS.map((p, i) => {
-  // Pair each before/after with its matching project entry to surface a
-  // real headline + description, falling back gracefully if the slug isn't
-  // found (e.g. asset added without a project record).
+const SHOWCASE_PAIRS = BEFORE_AFTER_PAIRS.map((p, i) => {
   const project = PROJECTS_SORTED.find((proj) => proj.src === p.after);
   return {
     ...p,
     title: project?.title ?? `Real Project #${i + 1}`,
     description:
       project?.description ??
-      "Full exterior transformation by Siding Depot — James Hardie siding, paint and trim.",
+      "Full exterior transformation by Siding Depot — paint, trim and finish.",
   };
 });
 
@@ -279,7 +255,6 @@ function BeforeAfterCarousel() {
   const [index, setIndex] = useState(0);
   const total = SHOWCASE_PAIRS.length;
   const current = SHOWCASE_PAIRS[index];
-
   const next = useCallback(() => setIndex((i) => (i + 1) % total), [total]);
   const prev = useCallback(() => setIndex((i) => (i - 1 + total) % total), [total]);
 
@@ -302,17 +277,16 @@ function BeforeAfterCarousel() {
             Before / After
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            Real projects.{" "}
+            Real repaints.{" "}
             <span className="text-sd-green">Real transformations.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-sd-gray-text">
-            Drag the slider on each project to see exactly how new James Hardie
-            siding, paint and trim transform a North Atlanta home.
+            Drag the slider on each project to see how a full Sherwin-Williams
+            repaint changes a North Atlanta home.
           </p>
         </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12 items-center">
-          {/* Slider */}
           <div className="relative">
             <BeforeAfterSlider
               key={index}
@@ -327,9 +301,7 @@ function BeforeAfterCarousel() {
             </div>
           </div>
 
-          {/* Description + nav */}
           <div className="flex flex-col">
-            {/* Dots */}
             <div className="flex items-center gap-2">
               {SHOWCASE_PAIRS.map((_, i) => {
                 const active = i === index;
@@ -353,9 +325,7 @@ function BeforeAfterCarousel() {
             <h3 className="mt-6 text-2xl sm:text-3xl font-extrabold uppercase text-sd-navy leading-tight">
               {current.title}
             </h3>
-            <p className="mt-4 text-sd-gray-text leading-relaxed">
-              {current.description}
-            </p>
+            <p className="mt-4 text-sd-gray-text leading-relaxed">{current.description}</p>
 
             <div className="mt-8 flex items-center gap-3">
               <button
@@ -388,43 +358,39 @@ function BeforeAfterCarousel() {
 }
 
 /* ---------------------------------------------------------------- */
-/* Page                                                              */
-/* ---------------------------------------------------------------- */
-
-/* ---------------------------------------------------------------- */
-/* What to consider when hiring (Section 4)                          */
+/* Section 4 — What to consider                                      */
 /* ---------------------------------------------------------------- */
 
 const HIRING_CHECKLIST = [
   {
     Icon: Award,
-    title: "Manufacturer credentials",
-    desc: "Demand James Hardie Elite Preferred status — only the top 2% of US installers qualify, with installer training and warranty backing.",
+    title: "Premium paint system",
+    desc: "Insist on Sherwin-Williams Emerald or Duration grade — not contractor-grade builder paint that fades inside 3 summers.",
   },
   {
     Icon: ShieldCheck,
     title: "License & insurance",
-    desc: "Verify a current Georgia GC license and proof of general liability + workers' comp before any contract is signed.",
+    desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit changes hands.",
   },
   {
     Icon: FileText,
-    title: "Written, itemized estimate",
-    desc: "Insist on a written quote that breaks out tear-off, weather barrier, profile, ColorPlus® finish, trim and clean-up — not a single lump sum.",
+    title: "Itemized scope of work",
+    desc: "Demand a written scope: power-wash, scrape, sand, prime, caulk, two finish coats. A vague single price hides corner-cutting.",
   },
   {
     Icon: Wrench,
-    title: "W-2 crews, not subcontractors",
-    desc: "Ask who actually installs the siding. W-2 employees mean accountability, training and a single point of contact for warranty issues.",
+    title: "W-2 crews, not day labor",
+    desc: "Ask who actually paints. W-2 employees are trained, insured, and accountable for the warranty.",
   },
   {
     Icon: Search,
-    title: "Verifiable local reviews",
-    desc: "Look for 50+ recent Google reviews from your county. Drive by completed jobs nearby — quality holds up after a few summers.",
+    title: "Recent local reviews",
+    desc: "50+ recent Google reviews from your county, with photos. Drive past completed jobs after 2 summers — that is the real test.",
   },
   {
     Icon: Clock,
-    title: "Realistic timeline",
-    desc: "Average tear-off + reinstall on a single-family home is 5–10 working days. Anyone promising 2 days is cutting corners.",
+    title: "Honest timeline",
+    desc: "A typical full exterior repaint runs 4–8 working days depending on prep. Anything faster is skipping prep — the step that actually makes paint last.",
   },
 ] as const;
 
@@ -437,12 +403,12 @@ function WhatToConsiderSection() {
             Hire smart
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            What to consider when hiring a{" "}
-            <span className="text-sd-green">siding contractor.</span>
+            What to consider when hiring an{" "}
+            <span className="text-sd-green">exterior painter.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            Siding is a 20–30 year decision. Use this checklist before you sign
-            with anyone — including us.
+            A repaint should last 8–12 years. Use this checklist before you
+            sign with anyone — including us.
           </p>
         </div>
 
@@ -466,37 +432,37 @@ function WhatToConsiderSection() {
 }
 
 /* ---------------------------------------------------------------- */
-/* FAQ (Section 5)                                                   */
+/* Section 5 — FAQ                                                   */
 /* ---------------------------------------------------------------- */
 
 const FAQ_ITEMS = [
   {
-    q: "How much does new James Hardie siding cost in North Atlanta?",
-    a: "For a typical single-family home in Marietta and the surrounding counties, full James Hardie replacement runs roughly $18,000–$45,000 depending on square footage, profile (HardiePlank vs Board & Batten vs Shingle), trim package and existing wall condition. Every estimate we send is itemized and free.",
+    q: "How much does an exterior repaint cost in North Atlanta?",
+    a: "For a typical single-family home in Marietta, a full exterior repaint with Sherwin-Williams premium paint runs roughly $5,500–$12,000 depending on square footage, prep condition, trim complexity and accent details. Every estimate we send is itemized and free.",
   },
   {
-    q: "How long does a siding replacement take?",
-    a: "Most homes take 5–10 working days from tear-off to clean-up. Larger homes or complex elevations with extensive trim or shake accents can extend to 2–3 weeks. We assign a project manager who gives you a written schedule before day one.",
+    q: "How long does a full exterior repaint take?",
+    a: "Most homes take 4–8 working days from power-wash to clean-up. Larger homes or jobs with extensive prep (peeling paint, rotted trim) extend to 2 weeks. We give you a written schedule before day one.",
   },
   {
-    q: "What warranty do you provide?",
-    a: "James Hardie's 30-year limited material warranty plus 15 years on the ColorPlus® finish, backed by our own multi-year workmanship warranty. As Elite Preferred installers, our work qualifies for the strongest warranty tier Hardie offers.",
+    q: "What paint do you use?",
+    a: "Sherwin-Williams Emerald and Duration product lines for body coats, plus Emerald Urethane Trim Enamel for trim and doors. These are the longest-lasting consumer-available systems on the market.",
   },
   {
-    q: "Will I have to repaint my siding?",
-    a: "Not for a long time. James Hardie ColorPlus® Technology bakes the finish on at the factory and is engineered to resist UV fading. Most homeowners go 15+ years before any repaint is even considered.",
+    q: "What warranty do you offer on painting?",
+    a: "5-year workmanship warranty on top of the manufacturer's product warranty. If a finish fails from defects in our prep or application, we come back and fix it — no fine print.",
+  },
+  {
+    q: "How long will the paint last?",
+    a: "With proper prep and Emerald-grade paint, expect 8–12 years on the body coat in our climate before any meaningful fade. South-facing walls and high-UV elevations age faster than the rest.",
   },
   {
     q: "Do you offer financing?",
-    a: "Yes — we partner with GreenSky to offer 0% APR plans and longer-term financing that fits most budgets. You can pre-qualify in minutes from our financing page without affecting your credit score.",
-  },
-  {
-    q: "Are you licensed and insured in Georgia?",
-    a: "Yes. We hold a Georgia General Contractor license (GC #RBQA006789) and carry full general liability plus workers' compensation insurance. Certificates are provided on request before any project starts.",
+    a: "Yes — we partner with GreenSky for 0% APR plans and longer-term financing. Pre-qualify in minutes without affecting your credit score.",
   },
 ] as const;
 
-function SidingFaqSection() {
+function PaintingFaqSection() {
   return (
     <section className="bg-sd-gray-bg py-20 lg:py-28">
       <div className="mx-auto max-w-4xl px-4 lg:px-8">
@@ -505,7 +471,7 @@ function SidingFaqSection() {
             FAQ
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            Siding questions,{" "}
+            Painting questions,{" "}
             <span className="text-sd-green">answered.</span>
           </h2>
         </div>
@@ -539,43 +505,38 @@ function SidingFaqSection() {
 }
 
 /* ---------------------------------------------------------------- */
-/* Page constants                                                    */
+/* Page                                                              */
 /* ---------------------------------------------------------------- */
 
 const BENEFITS = [
-  "Top 2% Elite Preferred James Hardie contractor",
-  "Engineered for HardieZone HZ10 — Georgia humidity, storms & UV",
-  "30-year limited warranty on materials and ColorPlus® finish",
+  "Sherwin-Williams Emerald & Duration premium systems",
+  "Power-wash, scrape, sand, prime — every job, every time",
+  "5-year workmanship warranty",
   "W-2 crews — never subcontracted",
 ] as const;
 
-function SidingPage() {
+function PaintingPage() {
   return (
     <main>
       {/* HERO */}
       <section className="relative bg-sd-navy text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
-          <img
-            src="/projects/project-1.webp"
-            alt=""
-            aria-hidden
-            className="h-full w-full object-cover"
-          />
+          <img src={PROJECT_HERO} alt="" aria-hidden className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-20 lg:py-28">
           <div className="max-w-2xl">
             <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              Elite Preferred · Top 2% in the US
+              Sherwin-Williams · PRO Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie siding,{" "}
-              <span className="text-sd-green">built for Georgia.</span>
+              Exterior painting,{" "}
+              <span className="text-sd-green">built to outlast Georgia summers.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              Marietta&apos;s trusted siding contractor. Board &amp; Batten,
-              HardiePlank, Cedarmill and Shingle — installed by W-2 crews and
-              backed by a 30-year material warranty.
+              Marietta&apos;s trusted exterior painters. Sherwin-Williams Emerald
+              &amp; Duration systems, applied by W-2 crews after a full
+              power-wash, prime and caulk — backed by a 5-year warranty.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -601,25 +562,18 @@ function SidingPage() {
         </div>
       </section>
 
-      {/* SECTION 2 — interactive siding types */}
-      <SidingTypesSection />
-
-      {/* SECTION 3 — before/after carousel */}
+      <PaintSystemSection />
       <BeforeAfterCarousel />
-
-      {/* SECTION 4 — What to consider when hiring */}
       <WhatToConsiderSection />
-
-      {/* SECTION 5 — FAQ */}
-      <SidingFaqSection />
+      <PaintingFaqSection />
 
       {/* TRUST + CTA */}
       <section className="bg-sd-navy py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
           <div className="lg:col-span-2">
             <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
-              Ready for siding that lasts{" "}
-              <span className="text-sd-green">decades, not seasons?</span>
+              Ready for paint that lasts{" "}
+              <span className="text-sd-green">a decade, not a season?</span>
             </h2>
             <p className="mt-4 text-white/75 max-w-2xl">
               Free on-site consultation, written estimate the same day, and a
@@ -638,8 +592,8 @@ function SidingPage() {
             <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
               <Award className="h-6 w-6 text-sd-green" />
               <div>
-                <p className="font-semibold">Elite Preferred</p>
-                <p className="text-xs text-white/60">Top 2% of US installers</p>
+                <p className="font-semibold">Sherwin-Williams PRO Preferred</p>
+                <p className="text-xs text-white/60">Premium systems, contractor pricing passed on</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
