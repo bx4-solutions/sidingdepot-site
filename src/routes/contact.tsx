@@ -1,0 +1,219 @@
+import { useEffect, useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { SITE } from "@/data/site";
+import { track } from "@/lib/track";
+
+const searchSchema = z.object({
+  source: z.string().max(80).optional(),
+});
+
+export const Route = createFileRoute("/contact")({
+  validateSearch: (s) => searchSchema.parse(s),
+  head: () => ({
+    meta: [
+      { title: "Solicitar Orçamento — Siding Depot" },
+      {
+        name: "description",
+        content:
+          "Peça seu orçamento gratuito de siding, pintura, janelas, decks ou roofing em North Atlanta. Resposta em 24h.",
+      },
+    ],
+  }),
+  component: ContactPage,
+});
+
+const formSchema = z.object({
+  name: z.string().trim().min(2, "Informe seu nome").max(100),
+  email: z.string().trim().email("Email inválido").max(255),
+  phone: z
+    .string()
+    .trim()
+    .min(7, "Telefone inválido")
+    .max(30)
+    .regex(/^[+\d\s().-]+$/, "Telefone inválido"),
+  source: z.string().trim().max(80),
+  message: z.string().trim().max(1000).optional().or(z.literal("")),
+});
+
+type FormState = z.infer<typeof formSchema>;
+type FieldErrors = Partial<Record<keyof FormState, string>>;
+
+function ContactPage() {
+  const search = Route.useSearch();
+  const [values, setValues] = useState<FormState>({
+    name: "",
+    email: "",
+    phone: "",
+    source: search.source ?? "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  // Keep "origem" in sync if the user lands with ?source=...
+  useEffect(() => {
+    if (search.source) {
+      setValues((v) => ({ ...v, source: search.source ?? "" }));
+    }
+  }, [search.source]);
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const parsed = formSchema.safeParse(values);
+    if (!parsed.success) {
+      const fe: FieldErrors = {};
+      for (const issue of parsed.error.issues) {
+        const k = issue.path[0] as keyof FormState;
+        if (!fe[k]) fe[k] = issue.message;
+      }
+      setErrors(fe);
+      return;
+    }
+    setErrors({});
+    setSubmitting(true);
+    try {
+      if (SITE.ghlWebhookUrl) {
+        await fetch(SITE.ghlWebhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(parsed.data),
+        });
+      }
+      track("quote_form_submit", { source: parsed.data.source || "contact_page" });
+      setDone(true);
+    } catch {
+      track("quote_form_error", { source: parsed.data.source || "contact_page" });
+      setErrors({ message: "Falha ao enviar. Tente novamente." });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <section className="py-20 lg:py-24 bg-sd-gray-bg min-h-[70vh]">
+      <div className="mx-auto max-w-2xl px-4 lg:px-8">
+        <div className="text-center">
+          <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
+            Free Quote · 24h Response
+          </span>
+          <h1 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
+            Solicitar Orçamento
+          </h1>
+          <p className="mt-3 text-sd-gray-text">
+            Conte sobre seu projeto e respondemos em até 24h com uma estimativa por escrito.
+          </p>
+        </div>
+
+        <div className="mt-10 rounded-2xl bg-white p-6 sm:p-8 shadow-lg ring-1 ring-black/5">
+          {done ? (
+            <div className="py-8 text-center">
+              <CheckCircle2 className="mx-auto h-14 w-14 text-sd-green" />
+              <h2 className="mt-4 font-display text-2xl text-sd-black">Pedido recebido!</h2>
+              <p className="mt-2 text-sd-gray-text">
+                Entramos em contato em até 24h pelo telefone informado.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="grid gap-4" noValidate>
+              <div className="grid gap-1.5">
+                <Label htmlFor="c-name">Nome</Label>
+                <Input
+                  id="c-name"
+                  name="name"
+                  autoComplete="name"
+                  value={values.name}
+                  maxLength={100}
+                  onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
+                  aria-invalid={Boolean(errors.name)}
+                />
+                {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid gap-1.5">
+                  <Label htmlFor="c-email">Email</Label>
+                  <Input
+                    id="c-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    value={values.email}
+                    maxLength={255}
+                    onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
+                    aria-invalid={Boolean(errors.email)}
+                  />
+                  {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
+                </div>
+                <div className="grid gap-1.5">
+                  <Label htmlFor="c-phone">Telefone</Label>
+                  <Input
+                    id="c-phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={values.phone}
+                    maxLength={30}
+                    onChange={(e) => setValues((v) => ({ ...v, phone: e.target.value }))}
+                    aria-invalid={Boolean(errors.phone)}
+                  />
+                  {errors.phone && <p className="text-xs text-red-600">{errors.phone}</p>}
+                </div>
+              </div>
+
+              <div className="grid gap-1.5">
+                <Label htmlFor="c-source">Origem</Label>
+                <Input
+                  id="c-source"
+                  name="source"
+                  value={values.source}
+                  maxLength={80}
+                  onChange={(e) => setValues((v) => ({ ...v, source: e.target.value }))}
+                  aria-invalid={Boolean(errors.source)}
+                  placeholder="Ex.: Slider antes/depois"
+                  readOnly={Boolean(search.source)}
+                  className={search.source ? "bg-sd-gray-bg" : undefined}
+                />
+                {search.source && (
+                  <p className="text-[11px] text-sd-gray-text">
+                    Preenchido automaticamente pelo link.
+                  </p>
+                )}
+              </div>
+
+              <div className="grid gap-1.5">
+                <Label htmlFor="c-msg">Mensagem (opcional)</Label>
+                <Textarea
+                  id="c-msg"
+                  name="message"
+                  rows={5}
+                  value={values.message ?? ""}
+                  maxLength={1000}
+                  onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
+                />
+                {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
+              </div>
+
+              <Button type="submit" size="lg" disabled={submitting}>
+                {submitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Enviando…
+                  </>
+                ) : (
+                  "Enviar pedido"
+                )}
+              </Button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
