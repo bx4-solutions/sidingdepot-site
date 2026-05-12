@@ -1,0 +1,478 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useCallback, useEffect } from "react";
+import { ArrowRight, ArrowLeft, X, Phone, ShieldCheck, Award, CheckCircle2 } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
+import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
+
+/**
+ * /services/siding — flagship service landing page.
+ *
+ * Sections (after hero):
+ *  - "Siding types" interactive house: clickable hotspots open a dialog with
+ *     a zoomed reference photo + description for each siding profile.
+ *  - "Real projects" before/after carousel: navigate through the studio's
+ *     own BEFORE_AFTER_PAIRS using the existing BeforeAfterSlider component.
+ *
+ * This static route file takes precedence over the dynamic services.$slug.tsx.
+ */
+
+const PAGE_TITLE = "James Hardie Siding Installation in Marietta, GA — Siding Depot";
+const PAGE_DESC =
+  "Elite Preferred James Hardie siding contractor in Marietta and North Atlanta. Board & Batten, HardiePlank, Cedarmill and Shingle — installed by W-2 crews with a 30-year material warranty.";
+
+export const Route = createFileRoute("/services/siding")({
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: "description", content: PAGE_DESC },
+      { property: "og:title", content: PAGE_TITLE },
+      { property: "og:description", content: PAGE_DESC },
+      { property: "og:image", content: "/projects/project-1.webp" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/projects/project-1.webp" },
+      { rel: "canonical", href: "https://sidingdepot.com/services/siding" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "James Hardie Siding Installation",
+          provider: {
+            "@type": "LocalBusiness",
+            name: SITE.legalName,
+            telephone: SITE.phone,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: SITE.address.street,
+              addressLocality: SITE.address.city,
+              addressRegion: SITE.address.state,
+              postalCode: SITE.address.zip,
+            },
+          },
+          areaServed: "North Atlanta, GA",
+          description: PAGE_DESC,
+        }),
+      },
+    ],
+  }),
+  component: SidingPage,
+});
+
+/* ---------------------------------------------------------------- */
+/* Siding-type hotspots (Section 2)                                  */
+/* ---------------------------------------------------------------- */
+
+type SidingType = {
+  id: string;
+  /** Position on the showcase image, percentage of width/height. */
+  x: number;
+  y: number;
+  title: string;
+  /** Detail photo opened in the dialog. */
+  image: string;
+  imageAlt: string;
+  description: string;
+};
+
+const SHOWCASE_IMAGE = "/projects/project-1.webp";
+const SHOWCASE_ALT =
+  "Two-story Marietta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
+
+const SIDING_TYPES: ReadonlyArray<SidingType> = [
+  {
+    id: "board-batten",
+    x: 38,
+    y: 42,
+    title: "Board & Batten Siding",
+    image: "/projects/project-1.webp",
+    imageAlt: "James Hardie Board & Batten siding installed on a Marietta home",
+    description:
+      "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
+  },
+  {
+    id: "plank",
+    x: 60,
+    y: 58,
+    title: "HardiePlank Lap Siding",
+    image: "/projects/project-3.webp",
+    imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
+    description:
+      "Long, narrow horizontal planks — the classic American siding look. Durable, low-maintenance and weather-resistant, making it our most popular choice across North Atlanta.",
+  },
+  {
+    id: "shingle",
+    x: 26,
+    y: 22,
+    title: "Shingle / Shake Siding",
+    image: "/projects/project-4.webp",
+    imageAlt: "Cedar-style shingle siding accenting a gable",
+    description:
+      "Overlapping rectangular shingles inspired by cedar shake roofing. Adds warmth and craftsman character — perfect for gables, dormers and entryways.",
+  },
+  {
+    id: "trim",
+    x: 78,
+    y: 30,
+    title: "Soffit, Trim & Fascia",
+    image: "/projects/project-2.webp",
+    imageAlt: "Crisp white soffit, fascia and trim detailing on a Cape Cod home",
+    description:
+      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace and repaint to match your siding system.",
+  },
+];
+
+function SidingTypesSection() {
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const active = SIDING_TYPES.find((t) => t.id === activeId) ?? null;
+
+  return (
+    <section className="bg-white py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Copy */}
+          <div>
+            <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+              Siding Types
+            </span>
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+              One home,{" "}
+              <span className="text-sd-green">every James Hardie profile.</span>
+            </h2>
+            <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
+              Tap a hotspot on the home to see exactly where each siding style
+              lives — and how Board &amp; Batten, HardiePlank, Shingle and Trim
+              work together to create a finished exterior.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {SIDING_TYPES.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveId(t.id)}
+                  className="rounded-pill border border-sd-gray-border bg-white px-4 py-2 text-sm font-semibold text-sd-navy hover:border-sd-green hover:text-sd-green transition-colors"
+                >
+                  {t.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive house */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-2xl bg-sd-gray-bg">
+            <img
+              src={SHOWCASE_IMAGE}
+              alt={SHOWCASE_ALT}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            {SIDING_TYPES.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setActiveId(t.id)}
+                aria-label={`View details: ${t.title}`}
+                className="group absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${t.x}%`, top: `${t.y}%` }}
+              >
+                <span className="relative flex h-7 w-7 items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sd-green opacity-60" />
+                  <span className="relative inline-flex h-5 w-5 rounded-full bg-sd-green ring-4 ring-white shadow-lg transition-transform group-hover:scale-110" />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Detail dialog */}
+      <Dialog open={!!active} onOpenChange={(o) => !o && setActiveId(null)}>
+        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white">
+          {active && (
+            <div className="grid md:grid-cols-2">
+              <div className="relative aspect-[4/3] md:aspect-auto md:h-full bg-sd-gray-bg">
+                <img
+                  src={active.image}
+                  alt={active.imageAlt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <div className="p-6 sm:p-8 flex flex-col">
+                <DialogTitle className="text-2xl font-extrabold text-sd-navy">
+                  {active.title}
+                </DialogTitle>
+                <span className="mt-2 block h-0.5 w-12 bg-sd-green" />
+                <DialogDescription className="mt-4 text-sd-gray-text leading-relaxed">
+                  {active.description}
+                </DialogDescription>
+                <div className="mt-auto pt-6">
+                  <Button asChild size="sm">
+                    <Link to="/contact">
+                      Get a quote <ArrowRight />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------- */
+/* Before / After carousel (Section 3)                               */
+/* ---------------------------------------------------------------- */
+
+type ShowcasePair = {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  title: string;
+  description: string;
+};
+
+const SHOWCASE_PAIRS: ReadonlyArray<ShowcasePair> = BEFORE_AFTER_PAIRS.map((p, i) => {
+  // Pair each before/after with its matching project entry to surface a
+  // real headline + description, falling back gracefully if the slug isn't
+  // found (e.g. asset added without a project record).
+  const project = PROJECTS_SORTED.find((proj) => proj.src === p.after);
+  return {
+    ...p,
+    title: project?.title ?? `Real Project #${i + 1}`,
+    description:
+      project?.description ??
+      "Full exterior transformation by Siding Depot — James Hardie siding, paint and trim.",
+  };
+});
+
+function BeforeAfterCarousel() {
+  const [index, setIndex] = useState(0);
+  const total = SHOWCASE_PAIRS.length;
+  const current = SHOWCASE_PAIRS[index];
+
+  const next = useCallback(() => setIndex((i) => (i + 1) % total), [total]);
+  const prev = useCallback(() => setIndex((i) => (i - 1 + total) % total), [total]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [next, prev]);
+
+  if (!current) return null;
+
+  return (
+    <section className="bg-sd-gray-bg py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto">
+          <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+            Before / After
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+            Real projects.{" "}
+            <span className="text-sd-green">Real transformations.</span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-sd-gray-text">
+            Drag the slider on each project to see exactly how new James Hardie
+            siding, paint and trim transform a North Atlanta home.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12 items-center">
+          {/* Slider */}
+          <div className="relative">
+            <BeforeAfterSlider
+              key={index}
+              before={current.before}
+              after={current.after}
+              beforeAlt={current.beforeAlt}
+              afterAlt={current.afterAlt}
+            />
+            <div className="mt-3 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-sd-navy">
+              <span>Before</span>
+              <span>After</span>
+            </div>
+          </div>
+
+          {/* Description + nav */}
+          <div className="flex flex-col">
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {SHOWCASE_PAIRS.map((_, i) => {
+                const active = i === index;
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Show project ${i + 1}`}
+                    aria-current={active ? "true" : undefined}
+                    onClick={() => setIndex(i)}
+                    className={`h-3 w-3 rounded-full border transition-colors ${
+                      active
+                        ? "bg-sd-green border-sd-green"
+                        : "bg-transparent border-sd-navy/40 hover:border-sd-navy"
+                    }`}
+                  />
+                );
+              })}
+            </div>
+
+            <h3 className="mt-6 text-2xl sm:text-3xl font-extrabold uppercase text-sd-navy leading-tight">
+              {current.title}
+            </h3>
+            <p className="mt-4 text-sd-gray-text leading-relaxed">
+              {current.description}
+            </p>
+
+            <div className="mt-8 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous project"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next project"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-colors"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <Button asChild variant="outline" className="ml-2">
+                <Link to="/projects">
+                  See our work <ArrowRight />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------- */
+/* Page                                                              */
+/* ---------------------------------------------------------------- */
+
+const BENEFITS = [
+  "Top 2% Elite Preferred James Hardie contractor",
+  "Engineered for HardieZone HZ10 — Georgia humidity, storms & UV",
+  "30-year limited warranty on materials and ColorPlus® finish",
+  "W-2 crews — never subcontracted",
+] as const;
+
+function SidingPage() {
+  return (
+    <main>
+      {/* HERO */}
+      <section className="relative bg-sd-navy text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
+          <img
+            src="/projects/project-1.webp"
+            alt=""
+            aria-hidden
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-20 lg:py-28">
+          <div className="max-w-2xl">
+            <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
+              Elite Preferred · Top 2% in the US
+            </span>
+            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+              James Hardie siding,{" "}
+              <span className="text-sd-green">built for Georgia.</span>
+            </h1>
+            <p className="mt-6 text-lg text-white/80 leading-relaxed">
+              Marietta&apos;s trusted siding contractor. Board &amp; Batten,
+              HardiePlank, Cedarmill and Shingle — installed by W-2 crews and
+              backed by a 30-year material warranty.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/contact">
+                  Get a free estimate <ArrowRight />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outlineWhite">
+                <a href={SITE.phoneHref}>
+                  <Phone /> Call {SITE.phone}
+                </a>
+              </Button>
+            </div>
+            <ul className="mt-10 grid gap-3 sm:grid-cols-2 text-sm text-white/85">
+              {BENEFITS.map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-sd-green shrink-0" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2 — interactive siding types */}
+      <SidingTypesSection />
+
+      {/* SECTION 3 — before/after carousel */}
+      <BeforeAfterCarousel />
+
+      {/* TRUST + CTA */}
+      <section className="bg-sd-navy py-20 text-white">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+              Ready for siding that lasts{" "}
+              <span className="text-sd-green">decades, not seasons?</span>
+            </h2>
+            <p className="mt-4 text-white/75 max-w-2xl">
+              Free on-site consultation, written estimate the same day, and a
+              dedicated project manager from start to finish.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/contact">Get a free estimate <ArrowRight /></Link>
+              </Button>
+              <Button asChild size="lg" variant="outlineWhite">
+                <a href={SITE.phoneHref}><Phone /> Call {SITE.phone}</a>
+              </Button>
+            </div>
+          </div>
+          <div className="grid gap-3">
+            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
+              <Award className="h-6 w-6 text-sd-green" />
+              <div>
+                <p className="font-semibold">Elite Preferred</p>
+                <p className="text-xs text-white/60">Top 2% of US installers</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
+              <ShieldCheck className="h-6 w-6 text-sd-green" />
+              <div>
+                <p className="font-semibold">Licensed &amp; Insured</p>
+                <p className="text-xs text-white/60">GA GC #RBQA006789</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
