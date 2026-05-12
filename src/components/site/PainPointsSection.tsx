@@ -3,7 +3,9 @@ import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 import { RelatedProjects } from "./RelatedProjects";
+import { QuoteModal } from "./QuoteModal";
 import { BEFORE_AFTER_PAIRS } from "@/data/site";
+import { track } from "@/lib/track";
 
 const PAINS = [
   "Crews cut corners because there's no on-site project manager.",
@@ -12,6 +14,8 @@ const PAINS = [
   "You get stuck with a half-finished home and a dead contractor.",
   "You spend the money — and still hate the way your house looks.",
 ];
+
+const SLIDER_SOURCE = "Slider antes/depois";
 
 export function PainPointsSection() {
   const pair = BEFORE_AFTER_PAIRS[0];
@@ -27,7 +31,7 @@ export function PainPointsSection() {
             afterAlt={pair.afterAlt}
           />
           <p className="mt-3 text-xs text-sd-gray-text text-center">
-            Drag the slider to see the transformation.
+            Drag the slider — or use the arrow keys — to see the transformation.
           </p>
 
           {/* Lead-capture CTA next to the slider */}
@@ -40,9 +44,18 @@ export function PainPointsSection() {
                 Orçamento gratuito · resposta em 24h.
               </p>
             </div>
-            <Button asChild size="lg" className="w-full sm:w-auto shrink-0">
-              <Link to="/contact">Solicitar Orçamento</Link>
-            </Button>
+            <QuoteModal
+              source={SLIDER_SOURCE}
+              trigger={
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto shrink-0"
+                  onClick={() => track("quote_cta_click", { source: SLIDER_SOURCE })}
+                >
+                  Solicitar Orçamento
+                </Button>
+              }
+            />
           </div>
 
           <RelatedProjects />
