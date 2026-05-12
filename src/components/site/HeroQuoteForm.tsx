@@ -90,7 +90,11 @@ export function HeroQuoteForm() {
           body: JSON.stringify(payload),
         });
       }
-      track("quote_form_submit", { source: SOURCE });
+      track("quote_form_submit", {
+        source: SOURCE,
+        services: parsed.data.services.join(","),
+        services_count: parsed.data.services.length,
+      });
       setDone(true);
     } catch {
       track("quote_form_error", { source: SOURCE });
