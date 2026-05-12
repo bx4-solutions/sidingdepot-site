@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
+import { RelatedProjects } from "./RelatedProjects";
 import { BEFORE_AFTER_PAIRS } from "@/data/site";
 
 const PAINS = [
@@ -17,7 +18,7 @@ export function PainPointsSection() {
 
   return (
     <section className="py-20 lg:py-24 bg-sd-gray-bg">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-start">
         <div>
           <BeforeAfterSlider
             before={pair.before}
@@ -28,6 +29,7 @@ export function PainPointsSection() {
           <p className="mt-3 text-xs text-sd-gray-text text-center">
             Drag the slider to see the transformation.
           </p>
+          <RelatedProjects />
         </div>
 
         <div>

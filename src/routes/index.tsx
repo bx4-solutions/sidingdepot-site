@@ -13,7 +13,7 @@ import { AwardsStrip } from "@/components/site/AwardsStrip";
 import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { SERVICES, CITIES, STATS, SITE } from "@/data/site";
-import heroHome from "@/assets/hero-home.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,7 +52,7 @@ function HomePage() {
           </>
         }
         subtitle="Premium James Hardie installation, exterior painting, windows, decks and roofing across Marietta, Alpharetta, Milton, Canton and all of North Atlanta."
-        bgImage={heroHome}
+        
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
           {STATS.map((s) => (
