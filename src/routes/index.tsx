@@ -85,6 +85,7 @@ function HomePage() {
                 title={s.title}
                 description={s.short}
                 to={`/${s.slug}`}
+                image={s.image}
               />
             ))}
           </div>
