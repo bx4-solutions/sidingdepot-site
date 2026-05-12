@@ -7,6 +7,11 @@ import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
 import { StatCard } from "@/components/site/StatCard";
+import { PainPointsSection } from "@/components/site/PainPointsSection";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { AwardsStrip } from "@/components/site/AwardsStrip";
+import { ProjectGallery } from "@/components/site/ProjectGallery";
+import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { SERVICES, CITIES, STATS, SITE } from "@/data/site";
 
 export const Route = createFileRoute("/")({
