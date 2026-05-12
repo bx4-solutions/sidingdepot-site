@@ -47,29 +47,38 @@ export function BeforeAfterSlider({ before, after, beforeAlt, afterAlt }: Props)
         After
       </span>
 
-      {/* Divider line + handle */}
-      <div
-        className="pointer-events-none absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.5)]"
-        style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-14 w-14 sm:h-12 sm:w-12 rounded-full bg-sd-green flex items-center justify-center shadow-xl ring-4 ring-white/30">
-          <svg viewBox="0 0 24 24" className="h-6 w-6 sm:h-5 sm:w-5 text-sd-black" fill="currentColor" aria-hidden>
-            <path d="M8 5l-7 7 7 7V5zm8 14l7-7-7-7v14z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* Range input overlay — native touch + keyboard support */}
+      {/* Range input overlay — native touch + full keyboard support (←/→/Home/End/PageUp/PageDown).
+          The "peer" class lets the visible handle below react to focus state. */}
       <input
         type="range"
         min={0}
         max={100}
+        step={1}
         value={pos}
         onChange={(e) => setPos(Number(e.target.value))}
-        aria-label="Drag to compare before and after"
-        className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0 touch-pan-y"
+        role="slider"
+        aria-label="Compare before and after — use arrow keys to adjust"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={pos}
+        aria-valuetext={`${pos}% after, ${100 - pos}% before`}
+        className="peer absolute inset-0 z-10 h-full w-full cursor-ew-resize opacity-0 touch-pan-y focus:outline-none"
         style={{ WebkitTapHighlightColor: "transparent" }}
       />
+
+      {/* Divider line + handle (purely decorative; positioned by `pos`).
+          peer-focus-visible on the input above lights up the handle when focused via keyboard. */}
+      <div
+        className="pointer-events-none absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.5)] transition-[box-shadow] peer-focus-visible:bg-sd-green"
+        style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
+        aria-hidden
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-14 w-14 sm:h-12 sm:w-12 rounded-full bg-sd-green flex items-center justify-center shadow-xl ring-4 ring-white/30 peer-focus-visible:ring-sd-navy peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white">
+          <svg viewBox="0 0 24 24" className="h-6 w-6 sm:h-5 sm:w-5 text-sd-black" fill="currentColor">
+            <path d="M8 5l-7 7 7 7V5zm8 14l7-7-7-7v14z" />
+          </svg>
+        </div>
+      </div>
     </div>
   );
 }
