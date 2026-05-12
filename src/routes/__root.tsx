@@ -10,7 +10,6 @@ import {
 
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
-import { ServiceStrip } from "@/components/site/ServiceStrip";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
 import { SITE } from "@/data/site";
@@ -165,7 +164,6 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-background">
         <Navbar />
-        <ServiceStrip />
         <main className="flex-1">
           <Outlet />
         </main>
