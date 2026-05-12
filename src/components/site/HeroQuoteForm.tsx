@@ -18,8 +18,19 @@ const schema = z.object({
     .regex(/^[+\d\s().-]+$/, { message: "Telefone inválido" }),
   email: z.string().trim().email({ message: "E-mail inválido" }).max(255),
   city: z.string().trim().min(2, { message: "Informe sua cidade" }).max(80),
+  services: z.array(z.string()).min(1, { message: "Select at least one service" }),
   message: z.string().trim().max(1000).optional().or(z.literal("")),
 });
+
+const SERVICE_OPTIONS = [
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
+] as const;
 
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
