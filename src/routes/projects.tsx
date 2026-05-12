@@ -49,8 +49,6 @@ export const Route = createFileRoute("/projects")({
 
 function ProjectsPage() {
   const { page, tag } = Route.useSearch();
-  const navigate = useNavigate({ from: Route.fullPath });
-
   const filtered = useMemo<ReadonlyArray<Project>>(
     () =>
       tag === "All"
