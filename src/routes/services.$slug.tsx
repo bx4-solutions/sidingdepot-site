@@ -233,7 +233,8 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServicePage() {
-  const { slug, content } = Route.useLoaderData();
+  const data = Route.useLoaderData() as { slug: ServiceSlug; content: ServiceContent };
+  const { slug, content } = data;
   const related = PROJECTS_SORTED.filter((p) => p.tags.includes(content.label)).slice(0, 3);
 
   return (
