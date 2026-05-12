@@ -275,28 +275,93 @@ export function faqJsonLd(faqs: ReadonlyArray<FaqItem>) {
   };
 }
 
-/** Build the standard Service JSON-LD with LocalBusiness provider. */
-export function serviceJsonLd(name: string, description: string) {
+/**
+ * Cities served across North Atlanta. Mirrors the LocalBusiness areaServed in
+ * the root layout so per-service Service schema stays consistent for local SEO.
+ */
+const AREA_SERVED = [
+  "Marietta, GA",
+  "Alpharetta, GA",
+  "Milton, GA",
+  "Canton, GA",
+  "Woodstock, GA",
+  "Roswell, GA",
+  "Kennesaw, GA",
+  "Johns Creek, GA",
+  "Sandy Springs, GA",
+  "Acworth, GA",
+];
+
+/**
+ * Build a Service JSON-LD enriched with a fully-described LocalBusiness
+ * provider (address, phone, url, image, ratings, area served). Pair with the
+ * root LocalBusiness schema to reinforce local SEO signals across each service
+ * page. `canonical` should be the absolute URL of the service page.
+ */
+export function serviceJsonLd(
+  name: string,
+  description: string,
+  options?: {
+    canonical?: string;
+    image?: string;
+    serviceType?: string;
+  }
+) {
+  const siteUrl = "https://sidingdepot.com";
+  const canonical = options?.canonical;
+  const image = options?.image
+    ? options.image.startsWith("http")
+      ? options.image
+      : `${siteUrl}${options.image}`
+    : `${siteUrl}/og-default.jpg`;
+
   return {
     type: "application/ld+json",
     children: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
+      ...(canonical ? { "@id": `${canonical}#service` } : {}),
       name,
+      serviceType: options?.serviceType ?? name,
+      description,
+      ...(canonical ? { url: canonical } : {}),
+      image,
+      areaServed: AREA_SERVED.map((n) => ({
+        "@type": "City",
+        name: n,
+      })),
       provider: {
         "@type": "LocalBusiness",
+        "@id": `${siteUrl}#localbusiness`,
         name: SITE.legalName,
         telephone: SITE.phone,
+        email: SITE.email,
+        url: siteUrl,
+        image: `${siteUrl}/og-default.jpg`,
+        priceRange: "$$",
         address: {
           "@type": "PostalAddress",
           streetAddress: SITE.address.street,
           addressLocality: SITE.address.city,
           addressRegion: SITE.address.state,
           postalCode: SITE.address.zip,
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 33.9526,
+          longitude: -84.5499,
+        },
+        areaServed: AREA_SERVED.map((n) => ({
+          "@type": "City",
+          name: n,
+        })),
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "60",
         },
       },
-      areaServed: "North Atlanta, GA",
-      description,
     }),
   };
 }
