@@ -63,7 +63,7 @@ export const Route = createFileRoute("/gutters")({
       canonical: CANONICAL,
     }),
     scripts: [
-      serviceJsonLd("Seamless Gutter Installation", PAGE_DESC),
+      serviceJsonLd("Seamless Gutter Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Seamless Gutter Installation" }),
       faqJsonLd(FAQS),
     ],
   }),

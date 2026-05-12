@@ -67,7 +67,7 @@ export const Route = createFileRoute("/roofing")({
       canonical: CANONICAL,
     }),
     scripts: [
-      serviceJsonLd("Roof Replacement & Repair", PAGE_DESC),
+      serviceJsonLd("Roof Replacement & Repair", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Roof Replacement & Repair" }),
       faqJsonLd(FAQS),
     ],
   }),

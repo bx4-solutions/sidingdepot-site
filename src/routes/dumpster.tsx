@@ -59,7 +59,7 @@ export const Route = createFileRoute("/dumpster")({
       canonical: CANONICAL,
     }),
     scripts: [
-      serviceJsonLd("Dumpster Rental", PAGE_DESC),
+      serviceJsonLd("Dumpster Rental", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Dumpster Rental" }),
       faqJsonLd(FAQS),
     ],
   }),
