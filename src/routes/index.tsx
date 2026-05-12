@@ -81,7 +81,7 @@ function HomePage() {
               <ServiceCard
                 key={s.slug}
                 id={`services-${s.slug}`}
-                icon={s.icon}
+                Icon={s.Icon}
                 title={s.title}
                 description={s.short}
                 to={`/${s.slug}`}

@@ -30,15 +30,31 @@ export const HERO = {
   bgAlt: "Newly renovated North Atlanta home with James Hardie siding by Siding Depot",
 } as const;
 
-export const SERVICES = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", icon: "🏠" },
-  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", icon: "🎨" },
-  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", icon: "🪟" },
-  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", icon: "🪵" },
-  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", icon: "💧" },
-  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", icon: "🏚️" },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", icon: "🚛" },
-] as const;
+import {
+  PanelsTopLeft,
+  PaintRoller,
+  AppWindow,
+  Hammer,
+  CloudRain,
+  Triangle,
+  Truck,
+  type LucideIcon,
+} from "lucide-react";
+
+export const SERVICES: ReadonlyArray<{
+  slug: string;
+  title: string;
+  short: string;
+  Icon: LucideIcon;
+}> = [
+  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft },
+  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller },
+  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow },
+  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer },
+  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain },
+  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck },
+];
 
 export const CITIES = [
   { slug: "marietta", name: "Marietta", county: "Cobb County" },

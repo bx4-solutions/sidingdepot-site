@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
 
 type Props = {
-  icon: string;
+  Icon: LucideIcon;
   title: string;
   description: string;
   to?: string;
@@ -10,13 +10,13 @@ type Props = {
   id?: string;
 };
 
-export function ServiceCard({ icon, title, description, to, id }: Props) {
+export function ServiceCard({ Icon, title, description, to, id }: Props) {
   const inner = (
     <div className="group relative h-full bg-white border border-sd-gray-border rounded-lg overflow-hidden transition-all hover:bg-sd-navy hover:border-sd-navy hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
       <div className="h-1.5 bg-sd-green" />
       <div className="p-6">
-        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-xl">
-          {icon}
+        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy group-hover:bg-sd-green group-hover:text-sd-navy transition-colors">
+          <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
         </div>
         <h3 className="mt-4 text-lg font-semibold text-sd-black group-hover:text-white transition-colors">
           {title}
