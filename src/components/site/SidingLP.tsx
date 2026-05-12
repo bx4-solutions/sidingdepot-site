@@ -367,7 +367,7 @@ export function SidingLP({ city }: SidingLPProps) {
           <img src={HERO_BG} alt="" aria-hidden className="h-full w-full object-cover opacity-30" loading="eager" />
           <div className="absolute inset-0" style={{ background: "rgba(30, 42, 56, 0.65)" }} />
         </div>
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-16">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg">
           <div>
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               <Star className="h-3.5 w-3.5 fill-sd-green" /> James Hardie Elite Preferred — Top 2% Nationwide

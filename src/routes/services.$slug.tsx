@@ -240,7 +240,7 @@ function ServicePage() {
   return (
     <div className="bg-sd-gray-bg">
       {/* Hero */}
-      <section className="bg-sd-navy text-white py-20 lg:py-28">
+      <section className="bg-sd-navy text-white py-hero lg:py-hero-lg">
         <div className="mx-auto max-w-5xl px-4 lg:px-8 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-sd-green">
             {content.label} Services

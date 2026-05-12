@@ -88,7 +88,7 @@ export function ServiceLandingPage({
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-20 lg:py-28">
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
           <div className="max-w-2xl">
             <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               {eyebrow}
