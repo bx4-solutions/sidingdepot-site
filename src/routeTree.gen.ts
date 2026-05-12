@@ -9,16 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
+import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
+import { Route as GuttersRouteImport } from './routes/gutters'
+import { Route as DumpsterRouteImport } from './routes/dumpster'
+import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 
+const WindowsRoute = WindowsRouteImport.update({
+  id: '/windows',
+  path: '/windows',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -29,6 +39,11 @@ const SidingRoute = SidingRouteImport.update({
   path: '/siding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoofingRoute = RoofingRouteImport.update({
+  id: '/roofing',
+  path: '/roofing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -37,6 +52,21 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const PaintingRoute = PaintingRouteImport.update({
   id: '/painting',
   path: '/painting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuttersRoute = GuttersRouteImport.update({
+  id: '/gutters',
+  path: '/gutters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DumpsterRoute = DumpsterRouteImport.update({
+  id: '/dumpster',
+  path: '/dumpster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeckRoute = DeckRouteImport.update({
+  id: '/deck',
+  path: '/deck',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -68,10 +98,15 @@ const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/deck': typeof DeckRoute
+  '/dumpster': typeof DumpsterRoute
+  '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/roofing': typeof RoofingRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/windows': typeof WindowsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -79,10 +114,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/deck': typeof DeckRoute
+  '/dumpster': typeof DumpsterRoute
+  '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/roofing': typeof RoofingRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/windows': typeof WindowsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -91,10 +131,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/deck': typeof DeckRoute
+  '/dumpster': typeof DumpsterRoute
+  '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/roofing': typeof RoofingRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/windows': typeof WindowsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -104,10 +149,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/deck'
+    | '/dumpster'
+    | '/gutters'
     | '/painting'
     | '/projects'
+    | '/roofing'
     | '/siding'
     | '/sitemap.xml'
+    | '/windows'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -115,10 +165,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/deck'
+    | '/dumpster'
+    | '/gutters'
     | '/painting'
     | '/projects'
+    | '/roofing'
     | '/siding'
     | '/sitemap.xml'
+    | '/windows'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -126,10 +181,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
+    | '/deck'
+    | '/dumpster'
+    | '/gutters'
     | '/painting'
     | '/projects'
+    | '/roofing'
     | '/siding'
     | '/sitemap.xml'
+    | '/windows'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -138,16 +198,28 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  DeckRoute: typeof DeckRoute
+  DumpsterRoute: typeof DumpsterRoute
+  GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  RoofingRoute: typeof RoofingRoute
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  WindowsRoute: typeof WindowsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/windows': {
+      id: '/windows'
+      path: '/windows'
+      fullPath: '/windows'
+      preLoaderRoute: typeof WindowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -162,6 +234,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SidingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roofing': {
+      id: '/roofing'
+      path: '/roofing'
+      fullPath: '/roofing'
+      preLoaderRoute: typeof RoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -174,6 +253,27 @@ declare module '@tanstack/react-router' {
       path: '/painting'
       fullPath: '/painting'
       preLoaderRoute: typeof PaintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gutters': {
+      id: '/gutters'
+      path: '/gutters'
+      fullPath: '/gutters'
+      preLoaderRoute: typeof GuttersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dumpster': {
+      id: '/dumpster'
+      path: '/dumpster'
+      fullPath: '/dumpster'
+      preLoaderRoute: typeof DumpsterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deck': {
+      id: '/deck'
+      path: '/deck'
+      fullPath: '/deck'
+      preLoaderRoute: typeof DeckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -229,13 +329,28 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  DeckRoute: DeckRoute,
+  DumpsterRoute: DumpsterRoute,
+  GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  RoofingRoute: RoofingRoute,
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  WindowsRoute: WindowsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

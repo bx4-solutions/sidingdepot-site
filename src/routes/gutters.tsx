@@ -1,0 +1,97 @@
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  Award,
+  ShieldCheck,
+  FileText,
+  Wrench,
+  Search,
+  Clock,
+} from "lucide-react";
+import {
+  ServiceLandingPage,
+  buildServiceMeta,
+  faqJsonLd,
+  serviceJsonLd,
+  type FaqItem,
+  type ChecklistItem,
+} from "@/components/site/ServiceLandingPage";
+
+const PAGE_TITLE = "Seamless Gutters in Marietta, GA | Siding Depot — Free Estimate";
+const PAGE_DESC =
+  "6-inch seamless aluminum gutters and LeafGuard guards built for Georgia's 50+ inches of annual rain. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+const HERO_IMAGE = "/projects/project-5.webp";
+const CANONICAL = "https://sidingdepot.com/services/gutters";
+
+const FAQS: ReadonlyArray<FaqItem> = [
+  {
+    q: "How much does gutter installation cost in Marietta or Canton, GA?",
+    a: "Seamless aluminum gutter installation in North Atlanta typically costs $1,200–$3,500 for a standard home, depending on linear footage, gutter size (5\" vs 6\"), and whether gutter guards are included. 6-inch gutters are strongly recommended for Georgia — our rainfall averages 50+ inches per year, and standard 5-inch gutters frequently overflow during summer storms.",
+  },
+  {
+    q: "What size gutters does a home in North Atlanta need?",
+    a: "We recommend 6-inch K-style gutters for most homes in Marietta, Canton, and surrounding areas. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
+  },
+  {
+    q: "How often should gutters be cleaned in Georgia?",
+    a: "Twice a year minimum — spring (after pollen season) and fall (after leaves drop). Homes near pine trees in Cherokee or Cobb counties may need cleaning 3–4 times per year, as pine needles accumulate quickly and block downspouts. Clogged gutters cause fascia rot, foundation problems, and basement flooding — all expensive repairs.",
+  },
+  {
+    q: "Are gutter guards worth it in Atlanta?",
+    a: "For most North Atlanta homeowners, yes. Georgia's combination of heavy rain, pine pollen, and leaf fall makes gutters clog faster than average. Quality gutter guards (LeafGuard, MicroMesh) reduce cleaning frequency to once per year and prevent the standing water that breeds mosquitoes — a real concern in our climate. ROI over 5–7 years vs cleaning costs is typically positive.",
+  },
+  {
+    q: "Can clogged gutters damage my foundation in Georgia?",
+    a: "Yes — this is one of the most common and costly problems we see in Cobb and Cherokee counties. When gutters overflow, water pools at the foundation. Georgia's clay-heavy soil expands and contracts with moisture, accelerating foundation movement. We've seen $30,000+ foundation repairs that started with a $200 gutter cleaning that was skipped for years.",
+  },
+];
+
+const CHECKLIST: ReadonlyArray<ChecklistItem> = [
+  { Icon: Award, title: "Seamless, on-site forming", desc: "Sectional gutters leak at every joint. Demand seamless aluminum cut on-site to your exact runs." },
+  { Icon: ShieldCheck, title: "License & insurance", desc: "Ladder work above 20 feet is high-risk. Verify GA GC license plus general liability and workers' comp." },
+  { Icon: FileText, title: "Itemized written estimate", desc: "Linear footage, hangers per run, downspouts, splash blocks and guard model — never a single lump sum." },
+  { Icon: Wrench, title: "Hidden hangers, not spike-and-ferrule", desc: "Hidden hangers screwed into fascia hold 50% better than 1990s-era spikes that pull free under our rainfall." },
+  { Icon: Search, title: "6-inch K-style for North Atlanta", desc: "5-inch gutters are undersized for Georgia rainfall. Insist on 6-inch capacity and 3x4 downspouts." },
+  { Icon: Clock, title: "Realistic timeline", desc: "A standard home takes 4–8 hours start to finish. Beware crews that quote a multi-day install — usually means undermanned." },
+];
+
+export const Route = createFileRoute("/gutters")({
+  head: () => ({
+    meta: buildServiceMeta({
+      title: PAGE_TITLE,
+      description: PAGE_DESC,
+      image: HERO_IMAGE,
+      canonical: CANONICAL,
+    }),
+    scripts: [
+      serviceJsonLd("Seamless Gutter Installation", PAGE_DESC),
+      faqJsonLd(FAQS),
+    ],
+  }),
+  component: GuttersPage,
+});
+
+function GuttersPage() {
+  return (
+    <ServiceLandingPage
+      eyebrow="Seamless Aluminum · LeafGuard"
+      title="Seamless gutters,"
+      titleAccent="sized for Georgia rainfall."
+      intro="Marietta's trusted gutter installer. 6-inch seamless aluminum gutters cut on-site, hidden-hanger installed, and paired with LeafGuard or MicroMesh guards built for our heavy pollen and leaf-fall."
+      heroImage={HERO_IMAGE}
+      benefits={[
+        "6-inch K-style gutters move 40% more water than 5-inch",
+        "Seamless aluminum formed on-site — no leaky joints",
+        "LeafGuard / MicroMesh guards for pine-heavy yards",
+        "Most homes installed in 4–8 hours",
+      ]}
+      hiringRole="gutter installer"
+      hiringIntro="Gutters are the cheapest way to protect a foundation. Use this checklist before you sign with anyone — including us."
+      hiringChecklist={CHECKLIST}
+      faqLabel="Gutter"
+      faqs={FAQS}
+      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly repairs."
+      ctaAccent="years, not seasons?"
+      trustBadge={{ title: "LeafGuard Authorized", subtitle: "Lifetime no-clog warranty" }}
+    />
+  );
+}
