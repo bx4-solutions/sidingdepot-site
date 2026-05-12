@@ -22,9 +22,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie Siding Installation in Marietta, GA — Siding Depot";
+const PAGE_TITLE = "James Hardie Siding in Marietta, GA | Siding Depot — Free Estimate";
 const PAGE_DESC =
-  "Elite Preferred James Hardie siding contractor in Marietta and North Atlanta. Board & Batten, HardiePlank, Cedarmill and Shingle — installed by W-2 crews with a 30-year material warranty.";
+  "Elite Preferred James Hardie siding engineered for HardieZone HZ10. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -471,28 +471,28 @@ function WhatToConsiderSection() {
 
 const FAQ_ITEMS = [
   {
-    q: "How much does new James Hardie siding cost in North Atlanta?",
-    a: "For a typical single-family home in Marietta and the surrounding counties, full James Hardie replacement runs roughly $18,000–$45,000 depending on square footage, profile (HardiePlank vs Board & Batten vs Shingle), trim package and existing wall condition. Every estimate we send is itemized and free.",
+    q: "How much does James Hardie siding cost in Marietta, GA in 2026?",
+    a: "For most homes in the Marietta and North Atlanta area, James Hardie fiber cement siding costs between $15,000 and $30,000 for a full installation on a 2,500 sq ft home. Per square foot, expect $8–$14 installed, depending on the style (HardiePlank, HardieShingle, Board & Batten), trim work, and whether old siding removal is included. Homes in higher-end communities like Milton or Alpharetta with more complex architecture may run higher. We provide free, itemized estimates with no hidden fees.",
   },
   {
-    q: "How long does a siding replacement take?",
-    a: "Most homes take 5–10 working days from tear-off to clean-up. Larger homes or complex elevations with extensive trim or shake accents can extend to 2–3 weeks. We assign a project manager who gives you a written schedule before day one.",
+    q: "What is the best siding for Georgia's climate?",
+    a: "James Hardie fiber cement siding is widely considered the best choice for Georgia. It's engineered specifically for the Southeast's heat, humidity, and storm season through the HardieZone® HZ10 system. Unlike vinyl, it won't warp in 95°F summers. Unlike wood, it won't rot from moisture or attract termites — a real concern in Cherokee and Cobb counties. It also carries a 30-year non-prorated warranty.",
   },
   {
-    q: "What warranty do you provide?",
-    a: "James Hardie's 30-year limited material warranty plus 15 years on the ColorPlus® finish, backed by our own multi-year workmanship warranty. As Elite Preferred installers, our work qualifies for the strongest warranty tier Hardie offers.",
+    q: "How long does siding installation take in Marietta or Alpharetta?",
+    a: "Most single-family homes in the North Atlanta area take 3 to 7 days from start to finish, depending on home size, number of stories, and siding style. We schedule projects so your home is never left exposed overnight. Weather delays are rare but we communicate proactively.",
   },
   {
-    q: "Will I have to repaint my siding?",
-    a: "Not for a long time. James Hardie ColorPlus® Technology bakes the finish on at the factory and is engineered to resist UV fading. Most homeowners go 15+ years before any repaint is even considered.",
+    q: "Does James Hardie siding increase home value in Georgia?",
+    a: "Yes. According to national remodeling data, James Hardie fiber cement siding delivers up to 80% ROI on resale — one of the highest of any exterior renovation. In high-value markets like Milton, Johns Creek, and Alpharetta, new siding can directly impact appraisal value and days on market.",
   },
   {
-    q: "Do you offer financing?",
-    a: "Yes — we partner with GreenSky to offer 0% APR plans and longer-term financing that fits most budgets. You can pre-qualify in minutes from our financing page without affecting your credit score.",
+    q: "Will my homeowner's insurance cover siding damage from a storm?",
+    a: "In most cases, yes — if the damage was caused by a covered peril like hail, wind, or a fallen tree. Georgia's hail season (March–May) causes thousands of siding claims across Cobb, Cherokee, and Fulton counties every year. We work directly with insurance adjusters and can document damage to help you get the coverage you deserve.",
   },
   {
-    q: "Are you licensed and insured in Georgia?",
-    a: "Yes. We hold a Georgia General Contractor license (GC #RBQA006789) and carry full general liability plus workers' compensation insurance. Certificates are provided on request before any project starts.",
+    q: "What's the difference between James Hardie Elite Preferred and a regular contractor?",
+    a: "Elite Preferred is James Hardie's top certification, awarded to fewer than 2% of contractors nationwide. It requires passing installation training, maintaining high customer satisfaction scores, and completing a minimum volume of certified installs. Siding Depot holds this status — meaning your installation is backed by both our labor warranty and James Hardie's extended product warranty, which is only available through certified installers.",
   },
 ] as const;
 

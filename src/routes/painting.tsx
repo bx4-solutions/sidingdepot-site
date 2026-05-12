@@ -15,9 +15,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * Mirrors the architecture of /services/siding for SEO + UX consistency.
  */
 
-const PAGE_TITLE = "Exterior Painting in Marietta, GA — Sherwin-Williams Premium · Siding Depot";
+const PAGE_TITLE = "Exterior Painting in Marietta, GA | Siding Depot — Free Estimate";
 const PAGE_DESC =
-  "Long-lasting exterior repaints with Sherwin-Williams Emerald & Duration systems. Power-wash, prime, caulk and finish by W-2 crews — backed by a 5-year workmanship warranty.";
+  "Sherwin-Williams Emerald & Duration exterior paint built for Georgia heat and humidity. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 
 const PROJECT_HERO = "/projects/project-5.webp";
 const PROJECT_HERO_ALT =
@@ -437,28 +437,24 @@ function WhatToConsiderSection() {
 
 const FAQ_ITEMS = [
   {
-    q: "How much does an exterior repaint cost in North Atlanta?",
-    a: "For a typical single-family home in Marietta, a full exterior repaint with Sherwin-Williams premium paint runs roughly $5,500–$12,000 depending on square footage, prep condition, trim complexity and accent details. Every estimate we send is itemized and free.",
+    q: "How much does exterior house painting cost in Marietta or Alpharetta, GA?",
+    a: "Exterior painting in the North Atlanta area typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
   },
   {
-    q: "How long does a full exterior repaint take?",
-    a: "Most homes take 4–8 working days from power-wash to clean-up. Larger homes or jobs with extensive prep (peeling paint, rotted trim) extend to 2 weeks. We give you a written schedule before day one.",
+    q: "How often should I repaint the exterior of my home in Georgia?",
+    a: "In Georgia's climate, most exteriors need repainting every 7–10 years for quality paints, or every 4–5 years for builder-grade coatings. Signs you need repainting sooner: chalking, peeling, fading, or wood that's absorbing water. North-facing walls tend to hold moisture longer and may need attention first.",
   },
   {
-    q: "What paint do you use?",
-    a: "Sherwin-Williams Emerald and Duration product lines for body coats, plus Emerald Urethane Trim Enamel for trim and doors. These are the longest-lasting consumer-available systems on the market.",
+    q: "What's included in a professional exterior paint job?",
+    a: "A complete job includes pressure washing, surface repair (caulking gaps, filling cracks), sanding rough areas, priming bare or repaired surfaces, and applying two coats of premium exterior paint. We also mask windows, doors, and trim. We never apply paint over dirty or wet surfaces — shortcuts that cause peeling within a year.",
   },
   {
-    q: "What warranty do you offer on painting?",
-    a: "5-year workmanship warranty on top of the manufacturer's product warranty. If a finish fails from defects in our prep or application, we come back and fix it — no fine print.",
+    q: "Do I need permits to paint my house exterior in Cobb or Cherokee County?",
+    a: "No — exterior painting does not require a permit in Cobb, Cherokee, or Fulton counties. However, if your home is in an HOA community (common in Alpharetta, Milton, or Woodstock), your HOA may require color approval before you begin. We're familiar with HOA requirements across North Atlanta and can advise.",
   },
   {
-    q: "How long will the paint last?",
-    a: "With proper prep and Emerald-grade paint, expect 8–12 years on the body coat in our climate before any meaningful fade. South-facing walls and high-UV elevations age faster than the rest.",
-  },
-  {
-    q: "Do you offer financing?",
-    a: "Yes — we partner with GreenSky for 0% APR plans and longer-term financing. Pre-qualify in minutes without affecting your credit score.",
+    q: "Can you paint James Hardie siding?",
+    a: "Yes. James Hardie's ColorPlus® factory finish is designed to last 15+ years without repainting. But if your fiber cement siding is older or you want a color change, it can absolutely be repainted using the right primers and exterior paints. We follow James Hardie's painting guidelines to maintain the warranty.",
   },
 ] as const;
 
