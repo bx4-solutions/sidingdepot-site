@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
-import { ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2,
+  Search, FileText, Wrench, Clock,
+} from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
