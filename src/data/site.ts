@@ -55,3 +55,62 @@ export const PROOF_BAR = [
   { icon: "✅", label: "Licensed & Insured" },
   { icon: "💰", label: "Financing Available" },
 ] as const;
+
+export const PROCESS_STEPS = [
+  {
+    num: "01",
+    title: "Consultation",
+    desc: "Free on-site visit. We listen to your vision, measure, and walk you through a written, no-pressure proposal — usually the same day.",
+  },
+  {
+    num: "02",
+    title: "Renovation",
+    desc: "Your dedicated project manager runs daily check-ins. Our W-2 crews install James Hardie, paint, decks or roofing — never subcontracted.",
+  },
+  {
+    num: "03",
+    title: "Celebration",
+    desc: "Final walk-through to make sure every detail meets your expectations. Then step back to the curb and admire your transformed home.",
+  },
+] as const;
+
+export const AWARDS = [
+  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of US installers" },
+  { name: "GAF Factory Certified", subtitle: "Roofing system warranty" },
+  { name: "Google · 4.9★", subtitle: "128+ verified reviews" },
+  { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
+  { name: "BBB Accredited", subtitle: "A+ rating" },
+  { name: "GreenSky Financing", subtitle: "0% APR plans available" },
+] as const;
+
+export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
+
+export const PROJECTS: ReadonlyArray<{
+  src: string;
+  alt: string;
+  tags: ReadonlyArray<ProjectTag>;
+}> = [
+  { src: "/projects/project-1.webp", alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim", tags: ["Siding", "Painting", "Windows"] },
+  { src: "/projects/project-2.webp", alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door", tags: ["Siding", "Painting", "Roofing"] },
+  { src: "/projects/project-3.webp", alt: "Renovated split-level home with white siding and dark trim accents in North Atlanta", tags: ["Siding", "Painting"] },
+  { src: "/projects/project-4.webp", alt: "Newly painted white home with two-car garage and shake siding gable", tags: ["Painting", "Siding"] },
+  { src: "/projects/project-5.webp", alt: "Two-story Cobb County home repainted in deep blue with crisp white trim and gutters", tags: ["Painting", "Gutters"] },
+  { src: "/projects/project-6.webp", alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck", tags: ["Siding", "Painting", "Decks"] },
+  { src: "/projects/project-7.webp", alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing", tags: ["Siding", "Roofing"] },
+  { src: "/projects/project-8.webp", alt: "Backyard view of repainted home with new windows and rebuilt wood deck", tags: ["Windows", "Decks", "Painting"] },
+];
+
+export const BEFORE_AFTER_PAIRS = [
+  {
+    before: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1400&q=80",
+    after: "/projects/project-1.webp",
+    beforeAlt: "Older home with worn vinyl siding before renovation",
+    afterAlt: "Same Marietta home transformed with James Hardie blue siding by Siding Depot",
+  },
+  {
+    before: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80",
+    after: "/projects/project-5.webp",
+    beforeAlt: "Outdated two-story home with faded paint",
+    afterAlt: "Same home repainted in deep blue with white trim by Siding Depot",
+  },
+] as const;
