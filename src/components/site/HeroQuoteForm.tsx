@@ -171,6 +171,35 @@ export function HeroQuoteForm() {
             autoComplete="email"
           />
           <div className="grid gap-1.5">
+            <Label className="text-xs font-semibold text-sd-black">
+              Services <span className="text-sd-gray-text font-normal">(select all that apply)</span>
+            </Label>
+            <div className="grid grid-cols-2 gap-1.5 rounded-md border border-input p-2">
+              {SERVICE_OPTIONS.map((name) => {
+                const checked = values.services.includes(name);
+                return (
+                  <label
+                    key={name}
+                    className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
+                      checked ? "bg-sd-navy/5 text-sd-black" : "hover:bg-muted"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleService(name)}
+                      className="h-4 w-4 accent-sd-navy"
+                    />
+                    <span>{name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            {errors.services && (
+              <p className="text-[11px] text-destructive">{errors.services}</p>
+            )}
+          </div>
+          <div className="grid gap-1.5">
             <Label htmlFor="hero-msg" className="text-xs font-semibold text-sd-black">
               Project details <span className="text-sd-gray-text font-normal">(optional)</span>
             </Label>
