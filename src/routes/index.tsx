@@ -61,6 +61,8 @@ function HomePage() {
 
       <ProofBar />
 
+      <PainPointsSection />
+
       {/* SERVICES GRID */}
       <section className="py-20 lg:py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
