@@ -8,23 +8,42 @@ type Props = {
   to?: string;
   /** Optional DOM id, used as a scroll anchor target (e.g. "services-siding"). */
   id?: string;
+  /** Background image shown behind the card content; covered by white on hover. */
+  image?: string;
 };
 
-export function ServiceCard({ Icon, title, description, to, id }: Props) {
+export function ServiceCard({ Icon, title, description, to, id, image }: Props) {
   const inner = (
-    <div className="group relative h-full bg-white border border-sd-gray-border rounded-lg overflow-hidden transition-all hover:bg-sd-navy hover:border-sd-navy hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
-      <div className="h-1.5 bg-sd-green" />
-      <div className="p-6">
-        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy group-hover:bg-sd-green group-hover:text-sd-navy transition-colors">
+    <div className="group relative h-full overflow-hidden rounded-lg border border-sd-gray-border bg-white transition-all hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
+      <div className="relative z-20 h-1.5 bg-sd-green" />
+
+      {/* Background image (behind text). Hidden on hover by white overlay. */}
+      {image && (
+        <img
+          src={image}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-0"
+        />
+      )}
+      {/* Soft white veil for default-state readability */}
+      {image && (
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-white/55 transition-opacity duration-300 group-hover:opacity-0" />
+      )}
+      {/* Solid white cover on hover so text is crisp */}
+      <div className="pointer-events-none absolute inset-0 z-[2] bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      <div className="relative z-10 p-6">
+        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy transition-colors">
           <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
         </div>
-        <h3 className="mt-4 text-lg font-semibold text-sd-black group-hover:text-white transition-colors">
+        <h3 className="mt-4 text-lg font-bold text-sd-black [text-shadow:0_1px_2px_rgba(255,255,255,0.6)] group-hover:[text-shadow:none]">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-sd-gray-text group-hover:text-white/65 transition-colors">
+        <p className="mt-2 text-sm leading-relaxed text-sd-black/85 group-hover:text-sd-gray-text">
           {description}
         </p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sd-green">
+        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sd-green-text">
           View More <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </span>
       </div>
