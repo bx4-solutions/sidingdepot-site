@@ -72,6 +72,11 @@ export function QuoteModal({
     if (next) {
       track("quote_modal_open", { source });
     } else {
+      // Track abandonment — only when user closes without a successful submit
+      if (!done) {
+        const hadInput = Boolean(values.name || values.phone || values.message);
+        track("quote_modal_close", { source, had_input: hadInput });
+      }
       // Defer reset so the closing animation looks clean
       setTimeout(reset, 200);
     }
@@ -87,6 +92,10 @@ export function QuoteModal({
         if (!fe[k]) fe[k] = issue.message;
       }
       setErrors(fe);
+      track("quote_form_validation_error", {
+        source,
+        fields: Object.keys(fe).join(","),
+      });
       return;
     }
     setErrors({});

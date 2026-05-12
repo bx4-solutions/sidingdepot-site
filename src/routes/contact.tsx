@@ -133,7 +133,7 @@ function ContactPage() {
                   onChange={(e) => setValues((v) => ({ ...v, name: e.target.value }))}
                   aria-invalid={Boolean(errors.name)}
                 />
-                {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
+                {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -149,7 +149,7 @@ function ContactPage() {
                     onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
                     aria-invalid={Boolean(errors.email)}
                   />
-                  {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                 </div>
                 <div className="grid gap-1.5">
                   <Label htmlFor="c-phone">Telefone</Label>
@@ -164,7 +164,7 @@ function ContactPage() {
                     onChange={(e) => setValues((v) => ({ ...v, phone: e.target.value }))}
                     aria-invalid={Boolean(errors.phone)}
                   />
-                  {errors.phone && <p className="text-xs text-red-600">{errors.phone}</p>}
+                  {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
                 </div>
               </div>
 
@@ -198,7 +198,7 @@ function ContactPage() {
                   maxLength={1000}
                   onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
                 />
-                {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
+                {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
               <Button type="submit" size="lg" disabled={submitting}>
