@@ -379,6 +379,157 @@ function BeforeAfterCarousel() {
 /* Page                                                              */
 /* ---------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------- */
+/* What to consider when hiring (Section 4)                          */
+/* ---------------------------------------------------------------- */
+
+const HIRING_CHECKLIST = [
+  {
+    Icon: Award,
+    title: "Manufacturer credentials",
+    desc: "Demand James Hardie Elite Preferred status — only the top 2% of US installers qualify, with installer training and warranty backing.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "License & insurance",
+    desc: "Verify a current Georgia GC license and proof of general liability + workers' comp before any contract is signed.",
+  },
+  {
+    Icon: FileText,
+    title: "Written, itemized estimate",
+    desc: "Insist on a written quote that breaks out tear-off, weather barrier, profile, ColorPlus® finish, trim and clean-up — not a single lump sum.",
+  },
+  {
+    Icon: Wrench,
+    title: "W-2 crews, not subcontractors",
+    desc: "Ask who actually installs the siding. W-2 employees mean accountability, training and a single point of contact for warranty issues.",
+  },
+  {
+    Icon: Search,
+    title: "Verifiable local reviews",
+    desc: "Look for 50+ recent Google reviews from your county. Drive by completed jobs nearby — quality holds up after a few summers.",
+  },
+  {
+    Icon: Clock,
+    title: "Realistic timeline",
+    desc: "Average tear-off + reinstall on a single-family home is 5–10 working days. Anyone promising 2 days is cutting corners.",
+  },
+] as const;
+
+function WhatToConsiderSection() {
+  return (
+    <section className="bg-white py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+            Hire smart
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+            What to consider when hiring a{" "}
+            <span className="text-sd-green">siding contractor.</span>
+          </h2>
+          <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
+            Siding is a 20–30 year decision. Use this checklist before you sign
+            with anyone — including us.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {HIRING_CHECKLIST.map(({ Icon, title, desc }) => (
+            <div
+              key={title}
+              className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy">
+                <Icon className="h-5 w-5" strokeWidth={2} />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-sd-black">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------- */
+/* FAQ (Section 5)                                                   */
+/* ---------------------------------------------------------------- */
+
+const FAQ_ITEMS = [
+  {
+    q: "How much does new James Hardie siding cost in North Atlanta?",
+    a: "For a typical single-family home in Marietta and the surrounding counties, full James Hardie replacement runs roughly $18,000–$45,000 depending on square footage, profile (HardiePlank vs Board & Batten vs Shingle), trim package and existing wall condition. Every estimate we send is itemized and free.",
+  },
+  {
+    q: "How long does a siding replacement take?",
+    a: "Most homes take 5–10 working days from tear-off to clean-up. Larger homes or complex elevations with extensive trim or shake accents can extend to 2–3 weeks. We assign a project manager who gives you a written schedule before day one.",
+  },
+  {
+    q: "What warranty do you provide?",
+    a: "James Hardie's 30-year limited material warranty plus 15 years on the ColorPlus® finish, backed by our own multi-year workmanship warranty. As Elite Preferred installers, our work qualifies for the strongest warranty tier Hardie offers.",
+  },
+  {
+    q: "Will I have to repaint my siding?",
+    a: "Not for a long time. James Hardie ColorPlus® Technology bakes the finish on at the factory and is engineered to resist UV fading. Most homeowners go 15+ years before any repaint is even considered.",
+  },
+  {
+    q: "Do you offer financing?",
+    a: "Yes — we partner with GreenSky to offer 0% APR plans and longer-term financing that fits most budgets. You can pre-qualify in minutes from our financing page without affecting your credit score.",
+  },
+  {
+    q: "Are you licensed and insured in Georgia?",
+    a: "Yes. We hold a Georgia General Contractor license (GC #RBQA006789) and carry full general liability plus workers' compensation insurance. Certificates are provided on request before any project starts.",
+  },
+] as const;
+
+function SidingFaqSection() {
+  return (
+    <section className="bg-sd-gray-bg py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="text-center">
+          <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+            FAQ
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+            Siding questions,{" "}
+            <span className="text-sd-green">answered.</span>
+          </h2>
+        </div>
+
+        <Accordion type="single" collapsible className="mt-10 space-y-3">
+          {FAQ_ITEMS.map((item, i) => (
+            <AccordionItem
+              key={item.q}
+              value={`item-${i}`}
+              className="rounded-xl border border-sd-gray-border bg-white px-5 sm:px-6"
+            >
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-sd-navy hover:no-underline">
+                {item.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-sd-gray-text leading-relaxed">
+                {item.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        <p className="mt-8 text-center text-sd-gray-text">
+          Still have questions?{" "}
+          <Link to="/contact" className="font-semibold text-sd-green hover:underline">
+            Talk to our team →
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------- */
+/* Page constants                                                    */
+/* ---------------------------------------------------------------- */
+
 const BENEFITS = [
   "Top 2% Elite Preferred James Hardie contractor",
   "Engineered for HardieZone HZ10 — Georgia humidity, storms & UV",
