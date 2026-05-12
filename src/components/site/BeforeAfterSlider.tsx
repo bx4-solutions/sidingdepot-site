@@ -11,11 +11,13 @@ export function BeforeAfterSlider({ before, after, beforeAlt, afterAlt }: Props)
   const [pos, setPos] = useState(50);
 
   return (
-    <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-2xl select-none">
+    <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-2xl select-none bg-sd-gray-bg">
       {/* AFTER (base) */}
       <img
         src={after}
         alt={afterAlt}
+        width={1400}
+        height={875}
         className="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
         decoding="async"
@@ -29,6 +31,8 @@ export function BeforeAfterSlider({ before, after, beforeAlt, afterAlt }: Props)
         <img
           src={before}
           alt={beforeAlt}
+          width={1400}
+          height={875}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
           decoding="async"
