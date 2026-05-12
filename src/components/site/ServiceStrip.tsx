@@ -23,7 +23,7 @@ export function ServiceStrip() {
                 to="/"
                 hash={`services-${item.slug}`}
                 onClick={() => track("service_strip_click", { service: item.slug })}
-                className="group flex items-center justify-center gap-2 py-4 sm:py-5 px-4 font-display text-2xl sm:text-3xl tracking-wide text-sd-navy transition-colors hover:text-sd-green focus-visible:outline-none focus-visible:text-sd-green"
+                className="group flex items-center justify-center gap-2 py-3 sm:py-3.5 px-4 font-display text-base sm:text-lg tracking-wide text-sd-navy transition-colors hover:text-sd-green focus-visible:outline-none focus-visible:text-sd-green"
               >
                 <span>{item.label}</span>
                 <span
