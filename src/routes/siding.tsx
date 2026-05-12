@@ -190,36 +190,38 @@ function SidingTypesSection() {
         </div>
       </div>
 
-      {/* Detail dialog — large zoomed photo on top, copy below */}
+      {/* Detail dialog — compact 2-column card (image left, copy right on ≥sm) */}
       <Dialog open={!!active} onOpenChange={(o) => !o && setActiveId(null)}>
-        <DialogContent className="max-w-5xl p-0 overflow-hidden bg-white">
+        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white sm:rounded-xl">
           {active && (
-            <div className="flex flex-col">
-              <div className="relative aspect-[16/9] w-full bg-sd-gray-bg">
+            <div className="grid sm:grid-cols-2">
+              {/* Image */}
+              <div className="relative aspect-[4/3] sm:aspect-auto sm:h-full bg-sd-gray-bg">
                 <img
                   src={active.image}
                   alt={active.imageAlt}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <span className="absolute left-4 top-4 rounded-pill bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-navy shadow-sm">
+                <span className="absolute left-3 top-3 rounded-pill bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-sd-navy shadow-sm">
                   Siding type
                 </span>
               </div>
-              <div className="p-6 sm:p-8 lg:p-10">
-                <DialogTitle className="text-2xl sm:text-3xl font-extrabold text-sd-navy leading-tight">
+              {/* Copy */}
+              <div className="p-5 sm:p-6">
+                <DialogTitle className="text-lg sm:text-xl font-extrabold text-sd-navy leading-tight">
                   {active.title}
                 </DialogTitle>
-                <span className="mt-3 block h-0.5 w-16 bg-sd-green" />
-                <DialogDescription className="mt-5 max-w-3xl text-base sm:text-lg text-sd-gray-text leading-relaxed">
+                <span className="mt-2 block h-0.5 w-12 bg-sd-green" />
+                <DialogDescription className="mt-3 text-sm sm:text-[15px] text-sd-gray-text leading-relaxed">
                   {active.description}
                 </DialogDescription>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Button asChild>
+                <div className="mt-5 flex flex-col gap-2">
+                  <Button asChild size="sm">
                     <Link to="/contact">
                       Get a quote for {active.title} <ArrowRight />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline">
+                  <Button asChild variant="outline" size="sm">
                     <Link to="/projects">See real projects</Link>
                   </Button>
                 </div>
