@@ -98,83 +98,134 @@ export const AWARDS = [
 export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
 
 export type Project = {
+  /** Unique URL-safe identifier used for /projects/$slug. */
+  slug: string;
   src: string;
   alt: string;
   tags: ReadonlyArray<ProjectTag>;
   /** Headline shown over the card on the /projects page. */
   title?: string;
-  /** Category label shown at the bottom of the card. */
+  /** Service category label shown at the bottom of the card. */
   category?: string;
-  /** Display date string (e.g. "April 29, 2026"). */
+  /** City + state shown on the detail page (e.g. "Marietta, GA"). */
+  city?: string;
+  /** Publish date as ISO 8601 (e.g. "2026-04-29"). */
   date?: string;
+  /** Long-form description for the detail page / SEO. */
+  description?: string;
 };
 
 export const PROJECTS: ReadonlyArray<Project> = [
   {
+    slug: "hardie-board-batten-marietta",
     src: "/projects/project-1.webp",
     alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim",
     tags: ["Siding", "Painting", "Windows"],
     title: "James Hardie Board & Batten Siding — Marietta, GA",
     category: "Siding Installation & Replacement",
-    date: "April 29, 2026",
+    city: "Marietta, GA",
+    date: "2026-04-29",
+    description:
+      "Full James Hardie Board & Batten siding replacement on a two-story Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
   },
   {
+    slug: "hardieplank-repaint-alpharetta",
     src: "/projects/project-2.webp",
     alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door",
     tags: ["Siding", "Painting", "Roofing"],
     title: "HardiePlank Siding & Full Repaint — Alpharetta, GA",
     category: "Siding Installation & Replacement",
-    date: "April 22, 2026",
+    city: "Alpharetta, GA",
+    date: "2026-04-22",
+    description:
+      "Cape Cod home in Alpharetta transformed with white HardiePlank lap siding, complete exterior repaint and a refreshed roofline. ColorPlus® Technology baked-on finish keeps the color sharp.",
   },
   {
+    slug: "fiber-cement-cedarmill-cumming",
     src: "/projects/project-3.webp",
     alt: "Renovated split-level home with white siding and dark trim accents in North Atlanta",
     tags: ["Siding", "Painting"],
     title: "Fiber Cement Board & Cedarmill Siding — Cumming, GA",
     category: "Siding Installation & Replacement",
-    date: "April 21, 2026",
+    city: "Cumming, GA",
+    date: "2026-04-21",
+    description:
+      "Split-level home in Cumming reclad with fiber cement Board & Batten plus Cedarmill accents, finished with high-contrast trim and a fresh paint system.",
   },
   {
+    slug: "exterior-repaint-shake-roswell",
     src: "/projects/project-4.webp",
     alt: "Newly painted white home with two-car garage and shake siding gable",
     tags: ["Painting", "Siding"],
     title: "Exterior Repaint & Shake Gable Refresh — Roswell, GA",
     category: "Exterior Painting",
-    date: "April 12, 2026",
+    city: "Roswell, GA",
+    date: "2026-04-12",
+    description:
+      "Bright exterior repaint with refreshed shake-style gable detailing on a Roswell home. Sherwin-Williams premium system with UV protection.",
   },
   {
+    slug: "deep-blue-repaint-gutters-kennesaw",
     src: "/projects/project-5.webp",
     alt: "Two-story Cobb County home repainted in deep blue with crisp white trim and gutters",
     tags: ["Painting", "Gutters"],
     title: "Deep Blue Repaint & Seamless Gutters — Kennesaw, GA",
     category: "Exterior Painting",
-    date: "April 5, 2026",
+    city: "Kennesaw, GA",
+    date: "2026-04-05",
+    description:
+      "Two-story Kennesaw home in deep navy blue with crisp white trim and brand-new seamless aluminum gutters.",
   },
   {
+    slug: "hardie-repaint-deck-canton",
     src: "/projects/project-6.webp",
     alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
     title: "Hardie Siding, Repaint & Rebuilt Deck — Canton, GA",
     category: "Siding Installation & Replacement",
-    date: "March 28, 2026",
+    city: "Canton, GA",
+    date: "2026-03-28",
+    description:
+      "Three-story Canton home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
   },
   {
+    slug: "craftsman-siding-roof-roswell",
     src: "/projects/project-7.webp",
     alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing",
     tags: ["Siding", "Roofing"],
     title: "Craftsman Siding & Roof Replacement — Roswell, GA",
     category: "Siding & Roofing",
-    date: "March 18, 2026",
+    city: "Roswell, GA",
+    date: "2026-03-18",
+    description:
+      "Craftsman-style Roswell home with new gable detailing, GAF Factory Certified roofing system and refreshed garage doors.",
   },
   {
+    slug: "windows-deck-repaint-milton",
     src: "/projects/project-8.webp",
     alt: "Backyard view of repainted home with new windows and rebuilt wood deck",
     tags: ["Windows", "Decks", "Painting"],
     title: "New Windows, Deck Rebuild & Repaint — Milton, GA",
     category: "Windows & Decks",
-    date: "March 9, 2026",
+    city: "Milton, GA",
+    date: "2026-03-09",
+    description:
+      "Backyard transformation in Milton: energy-efficient windows, a fully rebuilt wood deck and a fresh exterior paint system.",
   },
 ];
+
+/** Projects sorted by date descending (most recent first). */
+export const PROJECTS_SORTED: ReadonlyArray<Project> = [...PROJECTS].sort(
+  (a, b) => (b.date ?? "").localeCompare(a.date ?? ""),
+);
+
+/** Format an ISO date as a readable label (e.g. "April 29, 2026"). */
+export function formatProjectDate(iso?: string): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
 
 export const BEFORE_AFTER_PAIRS = [
   {
