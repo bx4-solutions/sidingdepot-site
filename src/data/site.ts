@@ -41,19 +41,28 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import sidingImg from "@/assets/services/siding.webp";
+import paintingImg from "@/assets/services/painting.jpg";
+import windowsImg from "@/assets/services/windows.jpg";
+import deckImg from "@/assets/services/deck.jpg";
+import guttersImg from "@/assets/services/gutters.jpg";
+import roofingImg from "@/assets/services/roofing.jpg";
+import dumpsterImg from "@/assets/services/dumpster.jpg";
+
 export const SERVICES: ReadonlyArray<{
   slug: string;
   title: string;
   short: string;
   Icon: LucideIcon;
+  image: string;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft },
-  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller },
-  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow },
-  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer },
-  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain },
-  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck },
+  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: sidingImg },
+  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: paintingImg },
+  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: windowsImg },
+  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: deckImg },
+  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: guttersImg },
+  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: roofingImg },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: dumpsterImg },
 ];
 
 export const CITIES = [
