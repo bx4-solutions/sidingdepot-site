@@ -8,7 +8,7 @@ const FILTERS: ReadonlyArray<"All" | ProjectTag> = [
   "All",
   "Siding",
   "Painting",
-  "Roofing",
+  "Roof",
   "Windows",
   "Decks",
   "Gutters",

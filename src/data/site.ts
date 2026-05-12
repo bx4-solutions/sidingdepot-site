@@ -36,7 +36,7 @@ export const SERVICES = [
   { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", icon: "🪟" },
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", icon: "🪵" },
   { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", icon: "💧" },
-  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", icon: "🏚️" },
+  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", icon: "🏚️" },
   { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", icon: "🚛" },
 ] as const;
 
@@ -154,7 +154,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     slug: "hardieplank-repaint-alpharetta",
     src: "/projects/project-2.webp",
     alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door",
-    tags: ["Siding", "Painting", "Roofing"],
+    tags: ["Siding", "Painting", "Roof"],
     title: "HardiePlank Siding & Full Repaint — Alpharetta, GA",
     category: "Siding Installation & Replacement",
     city: "Alpharetta, GA",
@@ -214,7 +214,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     slug: "craftsman-siding-roof-roswell",
     src: "/projects/project-7.webp",
     alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing",
-    tags: ["Siding", "Roofing"],
+    tags: ["Siding", "Roof"],
     title: "Craftsman Siding & Roof Replacement — Roswell, GA",
     category: "Siding & Roofing",
     city: "Roswell, GA",
