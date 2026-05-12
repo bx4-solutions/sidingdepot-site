@@ -52,6 +52,11 @@
   --color-sd-gray-bg: var(--sd-gray-bg);
   --color-sd-gray-border: var(--sd-gray-border);
   --color-sd-gray-text: var(--sd-gray-text);
+
+  /* Layout — sticky navbar height (single source of truth) */
+  --spacing-nav-mobile: 91px;
+  --spacing-nav-tablet: 110px;
+  --spacing-nav-desktop: 91px;
 }
 
 :root {
