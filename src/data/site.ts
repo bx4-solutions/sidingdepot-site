@@ -95,7 +95,29 @@ export const AWARDS = [
   { name: "GreenSky Financing", subtitle: "0% APR plans available" },
 ] as const;
 
-export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
+/**
+ * Canonical list of services. Used as:
+ *  - Multi-select options in quote forms (HeroQuoteForm, project admin)
+ *  - Filter chips on /projects
+ *  - URL slugs for /services/$slug SEO landing pages
+ *  - Allowed values for Project.tags
+ */
+export const SERVICE_OPTIONS = [
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
+] as const;
+
+export type ProjectTag = (typeof SERVICE_OPTIONS)[number];
+
+/** Map a service label to its URL-safe slug used by /services/$slug. */
+export function serviceSlug(label: ProjectTag): string {
+  return label.toLowerCase();
+}
 
 export type Project = {
   /** Unique URL-safe identifier used for /projects/$slug. */
