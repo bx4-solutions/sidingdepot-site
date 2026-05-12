@@ -2,13 +2,15 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/data/site";
+import { SITE, HERO } from "@/data/site";
 
 type HeroProps = {
   badge?: string;
   title: ReactNode;
   subtitle?: string;
   bgImage?: string;
+  bgImageMobile?: string;
+  bgAlt?: string;
   primaryCta?: { label: string; to?: string; href?: string };
   showCallCta?: boolean;
   align?: "left" | "center";
@@ -19,21 +21,26 @@ export function HeroSection({
   badge,
   title,
   subtitle,
-  bgImage = "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80",
+  bgImage = HERO.bgImage,
+  bgImageMobile = HERO.bgImageMobile,
+  bgAlt = HERO.bgAlt,
   primaryCta = { label: "Get Free Quote", to: "/contact" },
   showCallCta = true,
   align = "left",
   children,
 }: HeroProps) {
   return (
-    <section
-      className="relative isolate overflow-hidden"
-      style={{
-        backgroundImage: `url("${bgImage}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <section className="relative isolate overflow-hidden bg-sd-dark">
+      <picture>
+        {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}
+        <img
+          src={bgImage}
+          alt={bgAlt}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </picture>
       <div
         aria-hidden
         className="absolute inset-0 bg-[#0D1B2A]"
