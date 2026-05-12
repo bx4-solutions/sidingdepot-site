@@ -62,5 +62,48 @@ test.describe("Navbar header", () => {
       const header = page.locator("header").first();
       await expect(header).toHaveScreenshot(`navbar-${projectName}.png`);
     });
+
+    test(`[${projectName}] sticky height stays ${expected}px after scroll`, async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name !== projectName, "wrong project");
+
+      await gotoHome(page);
+
+      // Make sure the page is tall enough to actually scroll past the header.
+      await page.evaluate(() => {
+        if (document.body.scrollHeight < window.innerHeight + 1200) {
+          const spacer = document.createElement("div");
+          spacer.style.height = "1600px";
+          spacer.setAttribute("data-test-spacer", "true");
+          document.body.appendChild(spacer);
+        }
+      });
+
+      const header = page.locator("header").first();
+      const bar = header.locator("> div").first();
+
+      // Scroll well past the header so the sticky behavior engages.
+      await page.evaluate(() => window.scrollTo(0, 800));
+      await page.waitForFunction(() => window.scrollY >= 800);
+
+      // Header must remain pinned to the top of the viewport.
+      const headerBox = await header.boundingBox();
+      expect(headerBox, "header bounding box").not.toBeNull();
+      expect(headerBox!.y).toBeCloseTo(0, 0);
+
+      // Bar height must not change between resting and sticky states.
+      await expect(bar).toHaveCSS("height", `${expected}px`);
+
+      // Overflow guard must still hold while sticky.
+      const overflow = await bar.evaluate((el) => {
+        const r = el.getBoundingClientRect();
+        return [...el.querySelectorAll("*")].some((c) => {
+          const cr = c.getBoundingClientRect();
+          return cr.bottom > r.bottom + 0.5 || cr.top < r.top - 0.5;
+        });
+      });
+      expect(overflow, "child overflows sticky navbar").toBe(false);
+    });
   }
 });
