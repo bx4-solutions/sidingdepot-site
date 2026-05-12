@@ -97,7 +97,7 @@ function ProjectDetailPage() {
           </Link>
 
           <div className="mt-6 flex flex-wrap gap-1.5">
-            {p.tags.map((t) => (
+            {p.tags.map((t: string) => (
               <span
                 key={t}
                 className="rounded-pill bg-sd-green px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-sd-black"
