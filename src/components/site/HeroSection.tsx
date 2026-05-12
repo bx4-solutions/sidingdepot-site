@@ -60,7 +60,7 @@ export function HeroSection({
       />
 
       <div
-        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-16 lg:py-24 grid gap-10 ${
+        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg grid gap-10 ${
           hasForm ? "lg:grid-cols-[1.2fr_minmax(360px,440px)] lg:gap-12 items-center" : ""
         }`}
       >

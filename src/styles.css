@@ -57,6 +57,15 @@
   --spacing-nav-mobile: 91px;
   --spacing-nav-tablet: 110px;
   --spacing-nav-desktop: 91px;
+
+  /* Layout — hero (first block) vertical spacing tokens.
+     Used as `py-hero` (mobile) and `lg:py-hero-lg` (desktop) so every page
+     hero has consistent breathing room below the sticky navbar. */
+  --spacing-hero: 5rem;        /* 80px — mobile/tablet */
+  --spacing-hero-lg: 7rem;     /* 112px — desktop */
+  /* Compact hero (used when the hero contains a tall lead form) */
+  --spacing-hero-compact: 3rem;     /* 48px */
+  --spacing-hero-compact-lg: 4rem;  /* 64px */
 }
 
 :root {

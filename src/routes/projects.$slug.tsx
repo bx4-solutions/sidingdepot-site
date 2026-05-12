@@ -147,7 +147,7 @@ function ProjectDetailPage() {
       </div>
 
       {/* Body + CTA */}
-      <div className="mx-auto max-w-4xl px-4 lg:px-8 py-12 lg:py-16">
+      <div className="mx-auto max-w-4xl px-4 lg:px-8 py-hero-compact lg:py-hero-compact-lg">
         {p.description && (
           <p className="text-lg text-sd-gray-text leading-relaxed">{p.description}</p>
         )}
