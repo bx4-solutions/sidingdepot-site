@@ -359,21 +359,7 @@ export function SidingLP({ city }: SidingLPProps) {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* HEADER */}
-      <header className="sticky top-0 z-40 w-full" style={{ background: "#1E2A38" }}>
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
-          <span className="text-xl font-extrabold tracking-tight" style={{ color: "#8DC63F" }}>
-            Siding Depot
-          </span>
-          <a
-            href={SITE.phoneHref}
-            className="inline-flex items-center gap-2 rounded-pill bg-sd-green px-4 py-2 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
-            onClick={() => track("lp_phone_click", { location: "header" })}
-          >
-            <Phone className="h-4 w-4" /> {SITE.phone}
-          </a>
-        </div>
-      </header>
+      {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
       <section className="relative overflow-hidden text-white" style={{ background: "#1E2A38" }}>
