@@ -47,19 +47,14 @@ function HomePage() {
         badge="James Hardie Elite Preferred"
         title={
           <>
-            Georgia's Most Trusted{" "}
-            <span className="text-sd-green">Siding Experts</span>
+            Elevate Your Home's Exterior with{" "}
+            <span className="text-sd-green">Precision &amp; Craftsmanship</span>
           </>
         }
-        subtitle="Premium James Hardie installation, exterior painting, windows, decks and roofing across Marietta, Alpharetta, Milton, Canton and all of North Atlanta."
-        
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
-          {STATS.map((s) => (
-            <StatCard key={s.label} value={s.value} label={s.label} />
-          ))}
-        </div>
-      </HeroSection>
+        subtitle="Certified James Hardie installers serving Marietta, Alpharetta, Milton & all of North Atlanta — backed by 1,500+ transformations and a written 24-hour quote guarantee."
+        primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
+        formSlot={<HeroQuoteForm />}
+      />
 
       <ProofBar />
 
