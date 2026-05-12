@@ -46,20 +46,20 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
-      <div className="mx-auto flex h-[91px] sm:h-[110px] lg:h-[91px] max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
-        <div className="flex flex-col items-start leading-none min-w-0">
+      <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
+        <div className="flex flex-col items-start leading-none min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
             <img
               src={logoSidingDepot}
               alt="Siding Depot"
               width={224}
               height={68}
-              className="h-12 w-auto sm:h-14 lg:h-16"
+              className="h-11 w-auto sm:h-13 lg:h-14"
               loading="eager"
               decoding="async"
             />
           </Link>
-          <div className="mt-0.5 sm:mt-1.5 flex items-center gap-0.5 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em] text-white/70 whitespace-nowrap">
+          <div className="mt-1.5 sm:mt-2 flex items-center gap-0.5 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em] text-white/70 whitespace-nowrap">
             {STRIP_ITEMS.map((item, i) => {
               const active = isHome && activeHash === `services-${item.slug}`;
               return (
