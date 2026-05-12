@@ -97,19 +97,83 @@ export const AWARDS = [
 
 export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
 
-export const PROJECTS: ReadonlyArray<{
+export type Project = {
   src: string;
   alt: string;
   tags: ReadonlyArray<ProjectTag>;
-}> = [
-  { src: "/projects/project-1.webp", alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim", tags: ["Siding", "Painting", "Windows"] },
-  { src: "/projects/project-2.webp", alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door", tags: ["Siding", "Painting", "Roofing"] },
-  { src: "/projects/project-3.webp", alt: "Renovated split-level home with white siding and dark trim accents in North Atlanta", tags: ["Siding", "Painting"] },
-  { src: "/projects/project-4.webp", alt: "Newly painted white home with two-car garage and shake siding gable", tags: ["Painting", "Siding"] },
-  { src: "/projects/project-5.webp", alt: "Two-story Cobb County home repainted in deep blue with crisp white trim and gutters", tags: ["Painting", "Gutters"] },
-  { src: "/projects/project-6.webp", alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck", tags: ["Siding", "Painting", "Decks"] },
-  { src: "/projects/project-7.webp", alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing", tags: ["Siding", "Roofing"] },
-  { src: "/projects/project-8.webp", alt: "Backyard view of repainted home with new windows and rebuilt wood deck", tags: ["Windows", "Decks", "Painting"] },
+  /** Headline shown over the card on the /projects page. */
+  title?: string;
+  /** Category label shown at the bottom of the card. */
+  category?: string;
+  /** Display date string (e.g. "April 29, 2026"). */
+  date?: string;
+};
+
+export const PROJECTS: ReadonlyArray<Project> = [
+  {
+    src: "/projects/project-1.webp",
+    alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim",
+    tags: ["Siding", "Painting", "Windows"],
+    title: "James Hardie Board & Batten Siding — Marietta, GA",
+    category: "Siding Installation & Replacement",
+    date: "April 29, 2026",
+  },
+  {
+    src: "/projects/project-2.webp",
+    alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door",
+    tags: ["Siding", "Painting", "Roofing"],
+    title: "HardiePlank Siding & Full Repaint — Alpharetta, GA",
+    category: "Siding Installation & Replacement",
+    date: "April 22, 2026",
+  },
+  {
+    src: "/projects/project-3.webp",
+    alt: "Renovated split-level home with white siding and dark trim accents in North Atlanta",
+    tags: ["Siding", "Painting"],
+    title: "Fiber Cement Board & Cedarmill Siding — Cumming, GA",
+    category: "Siding Installation & Replacement",
+    date: "April 21, 2026",
+  },
+  {
+    src: "/projects/project-4.webp",
+    alt: "Newly painted white home with two-car garage and shake siding gable",
+    tags: ["Painting", "Siding"],
+    title: "Exterior Repaint & Shake Gable Refresh — Roswell, GA",
+    category: "Exterior Painting",
+    date: "April 12, 2026",
+  },
+  {
+    src: "/projects/project-5.webp",
+    alt: "Two-story Cobb County home repainted in deep blue with crisp white trim and gutters",
+    tags: ["Painting", "Gutters"],
+    title: "Deep Blue Repaint & Seamless Gutters — Kennesaw, GA",
+    category: "Exterior Painting",
+    date: "April 5, 2026",
+  },
+  {
+    src: "/projects/project-6.webp",
+    alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck",
+    tags: ["Siding", "Painting", "Decks"],
+    title: "Hardie Siding, Repaint & Rebuilt Deck — Canton, GA",
+    category: "Siding Installation & Replacement",
+    date: "March 28, 2026",
+  },
+  {
+    src: "/projects/project-7.webp",
+    alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing",
+    tags: ["Siding", "Roofing"],
+    title: "Craftsman Siding & Roof Replacement — Roswell, GA",
+    category: "Siding & Roofing",
+    date: "March 18, 2026",
+  },
+  {
+    src: "/projects/project-8.webp",
+    alt: "Backyard view of repainted home with new windows and rebuilt wood deck",
+    tags: ["Windows", "Decks", "Painting"],
+    title: "New Windows, Deck Rebuild & Repaint — Milton, GA",
+    category: "Windows & Decks",
+    date: "March 9, 2026",
+  },
 ];
 
 export const BEFORE_AFTER_PAIRS = [
