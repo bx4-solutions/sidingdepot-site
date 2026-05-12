@@ -40,28 +40,11 @@ export const Route = createFileRoute("/siding")({
       { rel: "canonical", href: "https://sidingdepot.com/siding" },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "James Hardie Siding Installation",
-          provider: {
-            "@type": "LocalBusiness",
-            name: SITE.legalName,
-            telephone: SITE.phone,
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: SITE.address.street,
-              addressLocality: SITE.address.city,
-              addressRegion: SITE.address.state,
-              postalCode: SITE.address.zip,
-            },
-          },
-          areaServed: "North Atlanta, GA",
-          description: PAGE_DESC,
-        }),
-      },
+      serviceJsonLd("James Hardie Siding Installation", PAGE_DESC, {
+        canonical: "https://sidingdepot.com/siding",
+        image: "/projects/project-1.webp",
+        serviceType: "James Hardie Siding Installation",
+      }),
       {
         type: "application/ld+json",
         children: JSON.stringify({
