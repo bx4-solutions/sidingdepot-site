@@ -13,7 +13,7 @@ import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { AwardsStrip } from "@/components/site/AwardsStrip";
 import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
-import { SERVICES, CITIES, STATS, SITE } from "@/data/site";
+import { SERVICES, CITIES, SITE } from "@/data/site";
 
 
 export const Route = createFileRoute("/")({
