@@ -35,7 +35,7 @@ export function PainPointsSection() {
           </p>
 
           {/* Lead-capture CTA next to the slider */}
-          <div className="mt-5 rounded-xl bg-sd-black p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg">
+          <div className="mt-5 rounded-xl bg-sd-navy p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white font-semibold text-sm sm:text-base">
                 Quer ver sua casa transformada assim?

@@ -66,7 +66,7 @@ function HomePage() {
       <PainPointsSection />
 
       {/* SERVICES GRID */}
-      <section className="py-20 lg:py-24 bg-background">
+      <section id="services" className="py-20 lg:py-24 bg-background scroll-mt-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
@@ -84,6 +84,7 @@ function HomePage() {
             {SERVICES.slice(0, 6).map((s) => (
               <ServiceCard
                 key={s.slug}
+                id={`services-${s.slug}`}
                 icon={s.icon}
                 title={s.title}
                 description={s.short}
