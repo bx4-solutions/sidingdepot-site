@@ -1,18 +1,16 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { PROJECTS_SORTED, formatProjectDate, type ProjectTag, type Project } from "@/data/site";
+import {
+  PROJECTS_SORTED,
+  SERVICE_OPTIONS,
+  formatProjectDate,
+  type ProjectTag,
+  type Project,
+} from "@/data/site";
 import { ProjectModal } from "@/components/site/ProjectModal";
 
-const FILTERS: ReadonlyArray<"All" | ProjectTag> = [
-  "All",
-  "Siding",
-  "Painting",
-  "Roofing",
-  "Windows",
-  "Decks",
-  "Gutters",
-];
+const FILTERS: ReadonlyArray<"All" | ProjectTag> = ["All", ...SERVICE_OPTIONS];
 
 const PAGE_SIZE = 6;
 

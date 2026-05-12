@@ -36,7 +36,7 @@ export const SERVICES = [
   { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", icon: "🪟" },
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", icon: "🪵" },
   { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", icon: "💧" },
-  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", icon: "🏚️" },
+  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", icon: "🏚️" },
   { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", icon: "🚛" },
 ] as const;
 
@@ -95,7 +95,29 @@ export const AWARDS = [
   { name: "GreenSky Financing", subtitle: "0% APR plans available" },
 ] as const;
 
-export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
+/**
+ * Canonical list of services. Used as:
+ *  - Multi-select options in quote forms (HeroQuoteForm, project admin)
+ *  - Filter chips on /projects
+ *  - URL slugs for /services/$slug SEO landing pages
+ *  - Allowed values for Project.tags
+ */
+export const SERVICE_OPTIONS = [
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
+] as const;
+
+export type ProjectTag = (typeof SERVICE_OPTIONS)[number];
+
+/** Map a service label to its URL-safe slug used by /services/$slug. */
+export function serviceSlug(label: ProjectTag): string {
+  return label.toLowerCase();
+}
 
 export type Project = {
   /** Unique URL-safe identifier used for /projects/$slug. */
@@ -132,7 +154,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     slug: "hardieplank-repaint-alpharetta",
     src: "/projects/project-2.webp",
     alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door",
-    tags: ["Siding", "Painting", "Roofing"],
+    tags: ["Siding", "Painting", "Roof"],
     title: "HardiePlank Siding & Full Repaint — Alpharetta, GA",
     category: "Siding Installation & Replacement",
     city: "Alpharetta, GA",
@@ -192,7 +214,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     slug: "craftsman-siding-roof-roswell",
     src: "/projects/project-7.webp",
     alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing",
-    tags: ["Siding", "Roofing"],
+    tags: ["Siding", "Roof"],
     title: "Craftsman Siding & Roof Replacement — Roswell, GA",
     category: "Siding & Roofing",
     city: "Roswell, GA",

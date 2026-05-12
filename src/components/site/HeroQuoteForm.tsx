@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { SITE } from "@/data/site";
+import { SITE, SERVICE_OPTIONS } from "@/data/site";
 import { track } from "@/lib/track";
 
 const schema = z.object({
@@ -22,15 +22,7 @@ const schema = z.object({
   message: z.string().trim().max(1000).optional().or(z.literal("")),
 });
 
-const SERVICE_OPTIONS = [
-  "Siding",
-  "Painting",
-  "Windows",
-  "Doors",
-  "Gutters",
-  "Decks",
-  "Roof",
-] as const;
+// SERVICE_OPTIONS is the single source of truth — see src/data/site.ts
 
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
@@ -81,15 +73,28 @@ export function HeroQuoteForm() {
     }
     setErrors({});
     setSubmitting(true);
+    const payload = {
+      ...parsed.data,
+      services: parsed.data.services, // explicit array of selected services
+      source: SOURCE,
+      submittedAt: new Date().toISOString(),
+    };
+    if (import.meta.env.DEV) {
+      console.info("[HeroQuoteForm] submit payload", payload);
+    }
     try {
       if (SITE.ghlWebhookUrl) {
         await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...parsed.data, source: SOURCE }),
+          body: JSON.stringify(payload),
         });
       }
-      track("quote_form_submit", { source: SOURCE });
+      track("quote_form_submit", {
+        source: SOURCE,
+        services: parsed.data.services.join(","),
+        services_count: parsed.data.services.length,
+      });
       setDone(true);
     } catch {
       track("quote_form_error", { source: SOURCE });
