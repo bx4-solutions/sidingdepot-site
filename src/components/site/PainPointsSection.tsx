@@ -29,6 +29,22 @@ export function PainPointsSection() {
           <p className="mt-3 text-xs text-sd-gray-text text-center">
             Drag the slider to see the transformation.
           </p>
+
+          {/* Lead-capture CTA next to the slider */}
+          <div className="mt-5 rounded-xl bg-sd-black p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg">
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-semibold text-sm sm:text-base">
+                Quer ver sua casa transformada assim?
+              </p>
+              <p className="text-white/65 text-xs sm:text-sm mt-0.5">
+                Orçamento gratuito · resposta em 24h.
+              </p>
+            </div>
+            <Button asChild size="lg" className="w-full sm:w-auto shrink-0">
+              <Link to="/contact">Solicitar Orçamento</Link>
+            </Button>
+          </div>
+
           <RelatedProjects />
         </div>
 
