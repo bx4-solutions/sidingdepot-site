@@ -174,7 +174,7 @@ export const Route = createFileRoute("/services/$slug")({
   beforeLoad: ({ params }) => {
     if (!SLUG_SET.has(params.slug)) throw notFound();
   },
-  loader: ({ params }) => {
+  loader: ({ params }): { slug: ServiceSlug; content: ServiceContent } => {
     const slug = params.slug as ServiceSlug;
     const content = SERVICE_CONTENT[slug];
     return { slug, content };
