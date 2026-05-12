@@ -23,7 +23,7 @@ const PROJECT_HERO = "/projects/project-5.webp";
 const PROJECT_HERO_ALT =
   "Two-story Kennesaw home freshly repainted in deep navy blue with crisp white trim";
 
-export const Route = createFileRoute("/services/painting")({
+export const Route = createFileRoute("/painting")({
   head: () => ({
     meta: [
       { title: PAGE_TITLE },

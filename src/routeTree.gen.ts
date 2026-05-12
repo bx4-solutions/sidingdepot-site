@@ -10,11 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SidingRouteImport } from './routes/siding'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesSidingRouteImport } from './routes/services.siding'
-import { Route as ServicesPaintingRouteImport } from './routes/services.painting'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
@@ -24,9 +24,19 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SidingRoute = SidingRouteImport.update({
+  id: '/siding',
+  path: '/siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaintingRoute = PaintingRouteImport.update({
+  id: '/painting',
+  path: '/painting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -37,16 +47,6 @@ const ContactRoute = ContactRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesSidingRoute = ServicesSidingRouteImport.update({
-  id: '/services/siding',
-  path: '/services/siding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesPaintingRoute = ServicesPaintingRouteImport.update({
-  id: '/services/painting',
-  path: '/services/painting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
@@ -68,35 +68,35 @@ const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/services/painting': typeof ServicesPaintingRoute
-  '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/services/painting': typeof ServicesPaintingRoute
-  '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/services/painting': typeof ServicesPaintingRoute
-  '/services/siding': typeof ServicesSidingRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRouteTypes {
@@ -104,45 +104,45 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/painting'
     | '/projects'
+    | '/siding'
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
-    | '/services/painting'
-    | '/services/siding'
     | '/locations/$city/$service'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
+    | '/painting'
     | '/projects'
+    | '/siding'
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
-    | '/services/painting'
-    | '/services/siding'
     | '/locations/$city/$service'
   id:
     | '__root__'
     | '/'
     | '/contact'
+    | '/painting'
     | '/projects'
+    | '/siding'
     | '/sitemap.xml'
     | '/projects/$slug'
     | '/services/$slug'
-    | '/services/painting'
-    | '/services/siding'
     | '/locations/$city/$service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
-  ServicesPaintingRoute: typeof ServicesPaintingRoute
-  ServicesSidingRoute: typeof ServicesSidingRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
 
@@ -155,11 +155,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/siding': {
+      id: '/siding'
+      path: '/siding'
+      fullPath: '/siding'
+      preLoaderRoute: typeof SidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painting': {
+      id: '/painting'
+      path: '/painting'
+      fullPath: '/painting'
+      preLoaderRoute: typeof PaintingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -174,20 +188,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/siding': {
-      id: '/services/siding'
-      path: '/services/siding'
-      fullPath: '/services/siding'
-      preLoaderRoute: typeof ServicesSidingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/painting': {
-      id: '/services/painting'
-      path: '/services/painting'
-      fullPath: '/services/painting'
-      preLoaderRoute: typeof ServicesPaintingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -229,13 +229,23 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ServicesSlugRoute: ServicesSlugRoute,
-  ServicesPaintingRoute: ServicesPaintingRoute,
-  ServicesSidingRoute: ServicesSidingRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
