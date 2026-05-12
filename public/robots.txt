@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /locations/
+
+Sitemap: https://sidingdepot.com/sitemap.xml
