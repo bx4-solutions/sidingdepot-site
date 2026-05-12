@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
