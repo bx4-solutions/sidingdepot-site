@@ -7,6 +7,11 @@ import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
 import { StatCard } from "@/components/site/StatCard";
+import { PainPointsSection } from "@/components/site/PainPointsSection";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { AwardsStrip } from "@/components/site/AwardsStrip";
+import { ProjectGallery } from "@/components/site/ProjectGallery";
+import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { SERVICES, CITIES, STATS, SITE } from "@/data/site";
 
 export const Route = createFileRoute("/")({
@@ -55,6 +60,8 @@ function HomePage() {
       </HeroSection>
 
       <ProofBar />
+
+      <PainPointsSection />
 
       {/* SERVICES GRID */}
       <section className="py-20 lg:py-24 bg-background">
@@ -127,6 +134,10 @@ function HomePage() {
         </div>
       </section>
 
+      <ProcessTimeline />
+
+      <AwardsStrip />
+
       {/* CITIES GRID */}
       <section className="py-20 lg:py-24 bg-sd-gray-bg">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -155,6 +166,10 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <ProjectGallery />
+
+      <FinancingBlock />
 
       {/* QUOTE FORM TEASER */}
       <section className="bg-sd-dark text-white py-20 lg:py-24">
