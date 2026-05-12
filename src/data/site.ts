@@ -98,15 +98,21 @@ export const AWARDS = [
 export type ProjectTag = "Siding" | "Painting" | "Roofing" | "Windows" | "Decks" | "Gutters";
 
 export type Project = {
+  /** Unique URL-safe identifier used for /projects/$slug. */
+  slug: string;
   src: string;
   alt: string;
   tags: ReadonlyArray<ProjectTag>;
   /** Headline shown over the card on the /projects page. */
   title?: string;
-  /** Category label shown at the bottom of the card. */
+  /** Service category label shown at the bottom of the card. */
   category?: string;
-  /** Display date string (e.g. "April 29, 2026"). */
+  /** City + state shown on the detail page (e.g. "Marietta, GA"). */
+  city?: string;
+  /** Publish date as ISO 8601 (e.g. "2026-04-29"). */
   date?: string;
+  /** Long-form description for the detail page / SEO. */
+  description?: string;
 };
 
 export const PROJECTS: ReadonlyArray<Project> = [
