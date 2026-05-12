@@ -97,7 +97,7 @@ function ContactPage() {
   }
 
   return (
-    <section className="py-20 lg:py-24 bg-sd-gray-bg min-h-[70vh]">
+    <section className="py-hero-compact lg:py-hero-compact-lg bg-sd-gray-bg min-h-[70vh]">
       <div className="mx-auto max-w-2xl px-4 lg:px-8">
         <div className="text-center">
           <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
