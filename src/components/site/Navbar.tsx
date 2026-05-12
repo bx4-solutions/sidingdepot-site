@@ -3,6 +3,7 @@ import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
+import logoSidingDepot from "@/assets/logo-sidingdepot.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -20,10 +21,20 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2" aria-label={SITE.name}>
-          <span className="font-display text-2xl leading-none text-sd-green">
-            SIDING DEPOT
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-8">
+        <Link to="/" className="flex flex-col items-start leading-none" aria-label={SITE.name}>
+          <img
+            src={logoSidingDepot}
+            alt="Siding Depot"
+            width={160}
+            height={64}
+            className="h-11 w-auto sm:h-12"
+            loading="eager"
+            decoding="async"
+          />
+          <span className="mt-1 text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase text-white/80">
+            Siding <span className="text-sd-green">–</span> Painting{" "}
+            <span className="text-sd-green">–</span> Windows
           </span>
         </Link>
 
