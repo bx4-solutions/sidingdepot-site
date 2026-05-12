@@ -29,7 +29,7 @@ const NAV_LINKS = [
   { to: "/windows", label: "Windows" },
   { to: "/service-areas", label: "Service Areas" },
   { to: "/about", label: "About" },
-  { to: "/gallery", label: "Gallery" },
+  { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
