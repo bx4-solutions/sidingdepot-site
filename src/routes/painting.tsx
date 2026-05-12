@@ -38,28 +38,11 @@ export const Route = createFileRoute("/painting")({
       { rel: "canonical", href: "https://sidingdepot.com/painting" },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Exterior Painting",
-          provider: {
-            "@type": "LocalBusiness",
-            name: SITE.legalName,
-            telephone: SITE.phone,
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: SITE.address.street,
-              addressLocality: SITE.address.city,
-              addressRegion: SITE.address.state,
-              postalCode: SITE.address.zip,
-            },
-          },
-          areaServed: "North Atlanta, GA",
-          description: PAGE_DESC,
-        }),
-      },
+      serviceJsonLd("Exterior Painting", PAGE_DESC, {
+        canonical: "https://sidingdepot.com/painting",
+        image: PROJECT_HERO,
+        serviceType: "Exterior Painting",
+      }),
       {
         type: "application/ld+json",
         children: JSON.stringify({
