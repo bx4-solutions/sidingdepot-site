@@ -59,11 +59,11 @@ export function Navbar() {
               decoding="async"
             />
           </Link>
-          <div className="mt-1 sm:mt-1.5 flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.14em] text-white/70">
+          <div className="mt-0.5 sm:mt-1.5 flex items-center gap-0.5 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em] text-white/70 whitespace-nowrap">
             {STRIP_ITEMS.map((item, i) => {
               const active = isHome && activeHash === `services-${item.slug}`;
               return (
-                <span key={item.slug} className="flex items-center gap-1 sm:gap-1.5">
+                <span key={item.slug} className="flex items-center gap-0.5 sm:gap-1.5">
                   {i > 0 && <span aria-hidden className="text-sd-green">–</span>}
                   <Link
                     to="/"
