@@ -1,10 +1,26 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
+
+/**
+ * Strip items: slug must match a SERVICES[].slug AND the ServiceCard id
+ * (`services-${slug}`) on the home page. Label is derived from the SERVICES
+ * source of truth to prevent label/slug drift.
+ */
+const STRIP_SLUGS = ["siding", "painting", "windows"] as const;
+type StripSlug = (typeof STRIP_SLUGS)[number];
+const STRIP_ITEMS: { slug: StripSlug; label: string }[] = STRIP_SLUGS.map((slug) => {
+  const svc = SERVICES.find((s) => s.slug === slug);
+  if (!svc) {
+    // Fail fast in dev if data/site.ts ever drifts away from these slugs.
+    throw new Error(`[Navbar] Missing SERVICES entry for slug "${slug}"`);
+  }
+  return { slug, label: slug.charAt(0).toUpperCase() + slug.slice(1) };
+});
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -19,36 +35,48 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  // TanStack Router stores the hash without the leading "#".
+  const activeHash = location.hash;
+  const isHome = location.pathname === "/";
+
+  const handleStripClick = (slug: StripSlug) => {
+    track("service_strip_click", { service: slug });
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-8">
-        <div className="flex flex-col items-start leading-none">
+        <div className="flex flex-col items-start leading-none min-w-0">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
             <img
               src={logoSidingDepot}
               alt="Siding Depot"
               width={224}
               height={68}
-              className="h-14 w-auto sm:h-16"
+              className="h-12 w-auto sm:h-14 lg:h-16"
               loading="eager"
               decoding="async"
             />
           </Link>
-          <div className="mt-1.5 hidden sm:flex items-center gap-1 text-[9px] sm:text-[10px] leading-none font-semibold uppercase tracking-[0.14em] text-white/70">
-            {(["siding", "painting", "windows"] as const).map((slug, i) => (
-              <span key={slug} className="flex items-center gap-1">
-                {i > 0 && <span aria-hidden className="text-sd-green">–</span>}
-                <Link
-                  to="/"
-                  hash={`services-${slug}`}
-                  onClick={() => track("service_strip_click", { service: slug })}
-                  className="hover:text-sd-green transition-colors"
-                >
-                  {slug.charAt(0).toUpperCase() + slug.slice(1)}
-                </Link>
-              </span>
-            ))}
+          <div className="mt-1 sm:mt-1.5 flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.14em] text-white/70">
+            {STRIP_ITEMS.map((item, i) => {
+              const active = isHome && activeHash === `services-${item.slug}`;
+              return (
+                <span key={item.slug} className="flex items-center gap-1 sm:gap-1.5">
+                  {i > 0 && <span aria-hidden className="text-sd-green">–</span>}
+                  <Link
+                    to="/"
+                    hash={`services-${item.slug}`}
+                    onClick={() => handleStripClick(item.slug)}
+                    aria-current={active ? "true" : undefined}
+                    className={`transition-colors hover:text-sd-green ${active ? "text-sd-green" : ""}`}
+                  >
+                    {item.label}
+                  </Link>
+                </span>
+              );
+            })}
           </div>
         </div>
 
