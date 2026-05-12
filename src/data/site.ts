@@ -18,6 +18,18 @@ export const SITE = {
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
 } as const;
 
+/**
+ * HERO config — change these paths to swap the homepage Hero background.
+ * Drop your image into `public/` (e.g. `public/hero-home.webp`) and update the
+ * paths below. No code changes required. The mobile variant is optional but
+ * recommended for faster loads on phones.
+ */
+export const HERO = {
+  bgImage: "/hero-home.webp",
+  bgImageMobile: "/hero-home-sm.webp",
+  bgAlt: "Newly renovated North Atlanta home with James Hardie siding by Siding Depot",
+} as const;
+
 export const SERVICES = [
   { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", icon: "🏠" },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", icon: "🎨" },
