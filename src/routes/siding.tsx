@@ -26,7 +26,7 @@ const PAGE_TITLE = "James Hardie Siding Installation in Marietta, GA — Siding 
 const PAGE_DESC =
   "Elite Preferred James Hardie siding contractor in Marietta and North Atlanta. Board & Batten, HardiePlank, Cedarmill and Shingle — installed by W-2 crews with a 30-year material warranty.";
 
-export const Route = createFileRoute("/services/siding")({
+export const Route = createFileRoute("/siding")({
   head: () => ({
     meta: [
       { title: PAGE_TITLE },
