@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
-import { ArrowRight, ArrowLeft, X, Phone, ShieldCheck, Award, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
