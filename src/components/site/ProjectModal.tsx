@@ -32,10 +32,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNex
 
   return (
     <Dialog open={Boolean(project)} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent
-        className="max-w-5xl p-0 overflow-hidden bg-sd-navy border-white/10"
-        showCloseButton
-      >
+      <DialogContent className="max-w-5xl p-0 overflow-hidden bg-sd-navy border-white/10">
         {project && (
           <div className="grid lg:grid-cols-[1.4fr_1fr]">
             {/* Image */}
