@@ -102,15 +102,15 @@ export const PROJECTS: ReadonlyArray<{
 
 export const BEFORE_AFTER_PAIRS = [
   {
-    before: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1400&q=80",
+    before: "/projects/project-1-before.webp",
     after: "/projects/project-1.webp",
-    beforeAlt: "Older home with worn vinyl siding before renovation",
+    beforeAlt: "Marietta home before renovation with peeling paint and worn siding",
     afterAlt: "Same Marietta home transformed with James Hardie blue siding by Siding Depot",
   },
   {
-    before: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80",
+    before: "/projects/project-5-before.webp",
     after: "/projects/project-5.webp",
-    beforeAlt: "Outdated two-story home with faded paint",
+    beforeAlt: "Two-story home before renovation with faded, mildewed siding",
     afterAlt: "Same home repainted in deep blue with white trim by Siding Depot",
   },
 ] as const;
