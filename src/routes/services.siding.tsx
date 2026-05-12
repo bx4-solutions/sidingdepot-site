@@ -444,6 +444,12 @@ function SidingPage() {
       {/* SECTION 3 — before/after carousel */}
       <BeforeAfterCarousel />
 
+      {/* SECTION 4 — What to consider when hiring */}
+      <WhatToConsiderSection />
+
+      {/* SECTION 5 — FAQ */}
+      <SidingFaqSection />
+
       {/* TRUST + CTA */}
       <section className="bg-sd-navy py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
