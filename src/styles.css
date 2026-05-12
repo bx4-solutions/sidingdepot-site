@@ -126,6 +126,15 @@
 
   html {
     scroll-behavior: smooth;
+    /* Offset in-page anchor jumps so sticky navbar doesn't cover the target.
+       Mirrors --spacing-nav-* tokens; bumped at sm where the bar is tallest. */
+    scroll-padding-top: calc(var(--spacing-nav-mobile) + 8px);
+  }
+  @media (min-width: 640px) {
+    html { scroll-padding-top: calc(var(--spacing-nav-tablet) + 8px); }
+  }
+  @media (min-width: 1024px) {
+    html { scroll-padding-top: calc(var(--spacing-nav-desktop) + 8px); }
   }
 
   body {
