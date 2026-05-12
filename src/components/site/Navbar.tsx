@@ -1,10 +1,26 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
+
+/**
+ * Strip items: slug must match a SERVICES[].slug AND the ServiceCard id
+ * (`services-${slug}`) on the home page. Label is derived from the SERVICES
+ * source of truth to prevent label/slug drift.
+ */
+const STRIP_SLUGS = ["siding", "painting", "windows"] as const;
+type StripSlug = (typeof STRIP_SLUGS)[number];
+const STRIP_ITEMS: { slug: StripSlug; label: string }[] = STRIP_SLUGS.map((slug) => {
+  const svc = SERVICES.find((s) => s.slug === slug);
+  if (!svc) {
+    // Fail fast in dev if data/site.ts ever drifts away from these slugs.
+    throw new Error(`[Navbar] Missing SERVICES entry for slug "${slug}"`);
+  }
+  return { slug, label: slug.charAt(0).toUpperCase() + slug.slice(1) };
+});
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
