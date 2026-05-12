@@ -20,7 +20,7 @@ const PAGE_TITLE = "Deck Construction in Marietta, GA | Siding Depot — Free Es
 const PAGE_DESC =
   "Custom composite, hardwood and pressure-treated decks built for Georgia weather. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-6.webp";
-const CANONICAL = "https://sidingdepot.com/services/decks";
+const CANONICAL = "https://sidingdepot.com/deck";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {

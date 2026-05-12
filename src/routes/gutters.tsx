@@ -20,7 +20,7 @@ const PAGE_TITLE = "Seamless Gutters in Marietta, GA | Siding Depot — Free Est
 const PAGE_DESC =
   "6-inch seamless aluminum gutters and LeafGuard guards built for Georgia's 50+ inches of annual rain. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-5.webp";
-const CANONICAL = "https://sidingdepot.com/services/gutters";
+const CANONICAL = "https://sidingdepot.com/gutters";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {

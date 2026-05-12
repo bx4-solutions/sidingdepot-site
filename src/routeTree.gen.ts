@@ -22,6 +22,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-marietta'
+import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
+import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 
 const WindowsRoute = WindowsRouteImport.update({
@@ -89,6 +92,21 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ProjectsRoute,
 } as any)
+const LpSidingMariettaRoute = LpSidingMariettaRouteImport.update({
+  id: '/lp/siding-marietta',
+  path: '/lp/siding-marietta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpSidingCantonRoute = LpSidingCantonRouteImport.update({
+  id: '/lp/siding-canton',
+  path: '/lp/siding-canton',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpSidingAlpharettaRoute = LpSidingAlpharettaRouteImport.update({
+  id: '/lp/siding-alpharetta',
+  path: '/lp/siding-alpharetta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   id: '/locations/$city/$service',
   path: '/locations/$city/$service',
@@ -107,6 +125,9 @@ export interface FileRoutesByFullPath {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
+  '/lp/siding-canton': typeof LpSidingCantonRoute
+  '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -123,6 +144,9 @@ export interface FileRoutesByTo {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
+  '/lp/siding-canton': typeof LpSidingCantonRoute
+  '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -140,6 +164,9 @@ export interface FileRoutesById {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
+  '/lp/siding-canton': typeof LpSidingCantonRoute
+  '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
@@ -158,6 +185,9 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/lp/siding-alpharetta'
+    | '/lp/siding-canton'
+    | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -174,6 +204,9 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/lp/siding-alpharetta'
+    | '/lp/siding-canton'
+    | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -190,6 +223,9 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/lp/siding-alpharetta'
+    | '/lp/siding-canton'
+    | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
     | '/locations/$city/$service'
@@ -207,6 +243,9 @@ export interface RootRouteChildren {
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WindowsRoute: typeof WindowsRoute
+  LpSidingAlpharettaRoute: typeof LpSidingAlpharettaRoute
+  LpSidingCantonRoute: typeof LpSidingCantonRoute
+  LpSidingMariettaRoute: typeof LpSidingMariettaRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
@@ -304,6 +343,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof ProjectsRoute
     }
+    '/lp/siding-marietta': {
+      id: '/lp/siding-marietta'
+      path: '/lp/siding-marietta'
+      fullPath: '/lp/siding-marietta'
+      preLoaderRoute: typeof LpSidingMariettaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/siding-canton': {
+      id: '/lp/siding-canton'
+      path: '/lp/siding-canton'
+      fullPath: '/lp/siding-canton'
+      preLoaderRoute: typeof LpSidingCantonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/siding-alpharetta': {
+      id: '/lp/siding-alpharetta'
+      path: '/lp/siding-alpharetta'
+      fullPath: '/lp/siding-alpharetta'
+      preLoaderRoute: typeof LpSidingAlpharettaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations/$city/$service': {
       id: '/locations/$city/$service'
       path: '/locations/$city/$service'
@@ -338,6 +398,9 @@ const rootRouteChildren: RootRouteChildren = {
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WindowsRoute: WindowsRoute,
+  LpSidingAlpharettaRoute: LpSidingAlpharettaRoute,
+  LpSidingCantonRoute: LpSidingCantonRoute,
+  LpSidingMariettaRoute: LpSidingMariettaRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }

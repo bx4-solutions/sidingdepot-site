@@ -20,7 +20,7 @@ const PAGE_TITLE = "Dumpster Rental in Marietta, GA | Siding Depot — Free Esti
 const PAGE_DESC =
   "10, 15 and 20-yard dumpsters with same-day or next-day delivery in North Atlanta. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-3.webp";
-const CANONICAL = "https://sidingdepot.com/services/dumpster";
+const CANONICAL = "https://sidingdepot.com/dumpster";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {

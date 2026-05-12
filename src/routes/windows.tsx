@@ -20,7 +20,7 @@ const PAGE_TITLE = "Window Replacement in Marietta, GA | Siding Depot — Free E
 const PAGE_DESC =
   "Energy Star double-pane Low-E window replacement built for Atlanta's climate zone. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
-const CANONICAL = "https://sidingdepot.com/services/windows";
+const CANONICAL = "https://sidingdepot.com/windows";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
