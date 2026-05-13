@@ -36,6 +36,7 @@ import {
   getGA4Metrics
 } from "@/lib/gsc.functions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CreateAdminForm } from "@/components/admin/CreateAdminForm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -559,9 +560,7 @@ function SEODashboard() {
                     </CardTitle>
                     <CardDescription className="text-slate-500">Controle quem pode acessar o SEO Command Center</CardDescription>
                   </div>
-                  <Button size="sm" className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold" onClick={() => alert("Para criar novos usuários, utilize o dashboard do Supabase Auth para garantir segurança máxima.")}>
-                    <UserPlus className="h-4 w-4 mr-2" /> Novo Usuário
-                  </Button>
+                  <CreateAdminForm onSuccess={refetchProfiles} />
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">

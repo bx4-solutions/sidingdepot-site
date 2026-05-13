@@ -46,7 +46,6 @@ function ResetPassword() {
       const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
       setSuccess(true);
-      setTimeout(() => navigate({ to: "/admin/login" }), 3000);
     } catch (err: any) {
       setError(err.message || "Falha ao atualizar senha");
     } finally {
@@ -65,9 +64,23 @@ function ResetPassword() {
         </CardHeader>
         <CardContent>
           {success ? (
-            <Alert className="bg-green-500/10 border-green-500/20 text-green-400">
-              <AlertDescription>Senha atualizada com sucesso! Redirecionando para o login...</AlertDescription>
-            </Alert>
+            <div className="space-y-6 py-4 text-center">
+              <div className="flex justify-center">
+                <div className="bg-green-500/10 p-3 rounded-full">
+                  <CheckCircle2 className="h-12 w-12 text-green-500" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-white">Senha Redefinida!</h3>
+                <p className="text-slate-400">Sua senha foi atualizada com sucesso. Você já pode acessar o painel.</p>
+              </div>
+              <Button 
+                onClick={() => navigate({ to: "/admin/login" })}
+                className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold"
+              >
+                Voltar ao Login
+              </Button>
+            </div>
           ) : (
             <form onSubmit={handleUpdatePassword} className="space-y-4">
               {error && (
