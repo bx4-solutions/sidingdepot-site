@@ -76,6 +76,7 @@ export function Footer() {
               <li><Link to="/contact" className="text-white/55 hover:text-sd-green">Contact</Link></li>
               <li><Link to="/privacy-policy" className="text-white/55 hover:text-sd-green">Privacy Policy</Link></li>
               <li><Link to="/terms-of-use" className="text-white/55 hover:text-sd-green">Terms of Use</Link></li>
+              <li><Link to="/seo-dashboard" className="text-white/55 hover:text-sd-green">SEO Dashboard</Link></li>
             </ul>
             <div className="flex gap-3 mt-5">
               <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><Facebook className="h-5 w-5" /></a>
