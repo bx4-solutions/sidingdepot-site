@@ -1,8 +1,24 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Music2, Phone, Youtube } from "lucide-react";
 import { SITE, SERVICES, CITIES } from "@/data/site";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 export function Footer() {
+  const [session, setSession] = useState<any>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <footer className="bg-sd-dark text-white">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
@@ -76,7 +92,11 @@ export function Footer() {
               <li><Link to="/contact" className="text-white/55 hover:text-sd-green">Contact</Link></li>
               <li><Link to="/privacy-policy" className="text-white/55 hover:text-sd-green">Privacy Policy</Link></li>
               <li><Link to="/terms-of-use" className="text-white/55 hover:text-sd-green">Terms of Use</Link></li>
-              <li><Link to="/seo-dashboard" className="text-white/55 hover:text-sd-green">SEO Dashboard</Link></li>
+              {session ? (
+                <li><Link to="/seo-dashboard" className="text-sd-green font-bold">SEO Dashboard</Link></li>
+              ) : (
+                <li><Link to="/admin/login" className="text-white/30 hover:text-white/50">Admin</Link></li>
+              )}
             </ul>
             <div className="flex gap-3 mt-5">
               <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><Facebook className="h-5 w-5" /></a>

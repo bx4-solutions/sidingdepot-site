@@ -22,6 +22,7 @@ import { Route as DumpsterRentalRouteImport } from './routes/dumpster-rental'
 import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
@@ -30,6 +31,8 @@ import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-mariett
 import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
 import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
 import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
+import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 
 const WindowsRoute = WindowsRouteImport.update({
@@ -97,6 +100,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccessDeniedRoute = AccessDeniedRouteImport.update({
+  id: '/access-denied',
+  path: '/access-denied',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -137,6 +145,16 @@ const GuideThankYouRoute = GuideThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => GuideRoute,
 } as any)
+const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
+  id: '/admin/reset-password',
+  path: '/admin/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   id: '/locations/$city/$service',
   path: '/locations/$city/$service',
@@ -146,6 +164,7 @@ const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
@@ -159,6 +178,8 @@ export interface FileRoutesByFullPath {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -170,6 +191,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
@@ -183,6 +205,8 @@ export interface FileRoutesByTo {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -195,6 +219,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
@@ -208,6 +233,8 @@ export interface FileRoutesById {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -221,6 +248,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/access-denied'
     | '/contact'
     | '/deck'
     | '/dumpster'
@@ -234,6 +262,8 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/login'
+    | '/admin/reset-password'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -245,6 +275,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/access-denied'
     | '/contact'
     | '/deck'
     | '/dumpster'
@@ -258,6 +289,8 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/login'
+    | '/admin/reset-password'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -269,6 +302,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/access-denied'
     | '/contact'
     | '/deck'
     | '/dumpster'
@@ -282,6 +316,8 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/login'
+    | '/admin/reset-password'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -294,6 +330,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccessDeniedRoute: typeof AccessDeniedRoute
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DumpsterRoute: typeof DumpsterRoute
@@ -307,6 +344,8 @@ export interface RootRouteChildren {
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WindowsRoute: typeof WindowsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminResetPasswordRoute: typeof AdminResetPasswordRoute
   LpSidingAlpharettaRoute: typeof LpSidingAlpharettaRoute
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
@@ -407,6 +446,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/access-denied': {
+      id: '/access-denied'
+      path: '/access-denied'
+      fullPath: '/access-denied'
+      preLoaderRoute: typeof AccessDeniedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -463,6 +509,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuideThankYouRouteImport
       parentRoute: typeof GuideRoute
     }
+    '/admin/reset-password': {
+      id: '/admin/reset-password'
+      path: '/admin/reset-password'
+      fullPath: '/admin/reset-password'
+      preLoaderRoute: typeof AdminResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations/$city/$service': {
       id: '/locations/$city/$service'
       path: '/locations/$city/$service'
@@ -498,6 +558,7 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccessDeniedRoute: AccessDeniedRoute,
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DumpsterRoute: DumpsterRoute,
@@ -511,6 +572,8 @@ const rootRouteChildren: RootRouteChildren = {
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WindowsRoute: WindowsRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminResetPasswordRoute: AdminResetPasswordRoute,
   LpSidingAlpharettaRoute: LpSidingAlpharettaRoute,
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,

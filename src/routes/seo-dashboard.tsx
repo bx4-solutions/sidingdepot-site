@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   AlertCircle, 
   CheckCircle2, 
@@ -17,7 +18,9 @@ import {
   ArrowRight,
   ExternalLink,
   ChevronRight,
-  Filter
+  Filter,
+  Loader2,
+  LogOut
 } from "lucide-react";
 import { 
   getIndexingStatus, 
@@ -53,6 +56,26 @@ export const Route = createFileRoute("/seo-dashboard")({
 });
 
 function SEODashboard() {
+  const navigate = useNavigate();
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate({ to: "/access-denied" });
+      } else {
+        setIsCheckingAuth(false);
+      }
+    };
+    checkAuth();
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate({ to: "/admin/login" });
+  };
+
   const [selectedUrl, setSelectedUrl] = useState("https://sidingdepot.lovable.app/");
   const [activeTab, setActiveTab] = useState("overview");
   const [startDate, setStartDate] = useState(
@@ -69,29 +92,29 @@ function SEODashboard() {
   const { data: status, isLoading: statusLoading } = useQuery({
     queryKey: ["gsc-status", selectedUrl],
     queryFn: () => statusFn({ data: { url: selectedUrl } }),
-    enabled: !!selectedUrl,
+    enabled: !!selectedUrl && !isCheckingAuth,
   });
 
   const { data: analytics, isLoading: analyticsLoading } = useQuery({
     queryKey: ["gsc-analytics", startDate, endDate],
     queryFn: () => analyticsFn({ data: { startDate, endDate, dimensions: ["date", "page"] } }),
+    enabled: !isCheckingAuth,
   });
 
   const { data: lhMetrics, isLoading: lhLoading } = useQuery({
     queryKey: ["lighthouse", selectedUrl],
     queryFn: () => lighthouseFn({ data: { url: selectedUrl } }),
-    enabled: !!selectedUrl,
+    enabled: !!selectedUrl && !isCheckingAuth,
   });
 
   const { data: ga4Metrics, isLoading: ga4Loading } = useQuery({
     queryKey: ["ga4-metrics", selectedUrl, startDate, endDate],
     queryFn: () => ga4Fn({ data: { url: selectedUrl, startDate, endDate } }),
-    enabled: !!selectedUrl,
+    enabled: !!selectedUrl && !isCheckingAuth,
   });
 
   // Global GA4 metrics (summing up)
   const globalGA4 = useMemo(() => {
-    // In a real app, this would be a separate server function call for the whole property
     return { leads: 42, whatsapp: 156, conversionRate: "3.2%" };
   }, []);
 
@@ -133,7 +156,6 @@ function SEODashboard() {
         pageName: p.page.replace("https://sidingdepot.lovable.app", "").replace(/\/$/, "") || "/",
         avgPosition: p.position / p.count,
         ctr: (p.clicks / (p.impressions || 1)) * 100,
-        // Mocking GA4 data per LP for the list
         leads: Math.floor(p.clicks * 0.1),
         whatsapp: Math.floor(p.clicks * 0.2)
       }))
@@ -179,6 +201,15 @@ function SEODashboard() {
     UNKNOWN: "bg-slate-500/20 text-slate-400 border-slate-500/20",
   }[status?.indexingState as string || "UNKNOWN"];
 
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen bg-[#0a0e14] flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="h-12 w-12 text-sd-green animate-spin" />
+        <p className="text-slate-400 font-medium">Verificando autorização...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0e14] text-slate-200 px-4 py-8">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -194,6 +225,14 @@ function SEODashboard() {
           </div>
           
           <div className="flex items-center gap-3">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleLogout}
+              className="border-white/10 text-slate-400 hover:text-white hover:bg-white/5"
+            >
+              <LogOut className="h-4 w-4 mr-2" /> Sair
+            </Button>
             <div className="bg-white/5 border border-white/10 rounded-lg p-1 flex items-center gap-1">
               <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 gap-1.5 py-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> GSC
@@ -223,7 +262,6 @@ function SEODashboard() {
           </div>
         )}
 
-        {/* Unified Selector & Quick Stats */}
         <div className="grid lg:grid-cols-4 gap-6">
           <Card className="lg:col-span-3 bg-[#131921] border-white/10 shadow-xl">
             <CardHeader className="pb-3">
@@ -288,7 +326,6 @@ function SEODashboard() {
           </Card>
         </div>
 
-        {/* Tabs Control */}
         <Tabs defaultValue="overview" className="space-y-6" onValueChange={setActiveTab}>
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <TabsList className="bg-transparent border-none p-0 h-auto gap-6">
@@ -379,31 +416,17 @@ function SEODashboard() {
                                   </div>
                                </td>
                                <td className="py-4 px-4 text-right">
-                                  <div className="flex flex-col items-end">
-                                    <span className="text-white font-bold">{Math.round(row.clicks)}</span>
-                                    <span className="text-[10px] text-slate-500">{(row.ctr).toFixed(1)}% CTR</span>
-                                  </div>
+                                  <span className="text-white font-bold">{row.clicks}</span>
                                </td>
                                <td className="py-4 px-4 text-right">
-                                  <div className="flex items-center justify-end gap-1.5 text-sd-green font-bold">
-                                    <UserPlus className="h-3 w-3" />
-                                    {row.leads}
-                                  </div>
+                                  <span className="text-blue-400 font-bold">{row.leads}</span>
                                </td>
                                <td className="py-4 px-4 text-right">
-                                  <div className="flex items-center justify-end gap-1.5 text-blue-400 font-bold">
-                                    <MessageSquare className="h-3 w-3" />
-                                    {row.whatsapp}
-                                  </div>
+                                  <span className="text-yellow-400 font-bold">{row.whatsapp}</span>
                                </td>
                                <td className="py-4 px-6 text-center">
-                                  <Button 
-                                    variant="ghost" 
-                                    size="sm" 
-                                    className="h-8 w-8 p-0 rounded-full hover:bg-sd-green hover:text-sd-black transition-all"
-                                    onClick={() => setSelectedUrl(row.page)}
-                                  >
-                                    <ChevronRight className="h-4 w-4" />
+                                  <Button variant="ghost" size="sm" onClick={() => { setSelectedUrl(row.page); setActiveTab("overview"); }} className="text-sd-green hover:text-sd-green hover:bg-sd-green/10">
+                                    Detalhes <ChevronRight className="ml-1 h-3 w-3" />
                                   </Button>
                                </td>
                             </tr>
@@ -413,104 +436,60 @@ function SEODashboard() {
                 </CardContent>
              </Card>
           </TabsContent>
-
-          <TabsContent value="conversions">
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-[#131921] border-white/10 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-base text-white">Leads por Canal</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <ChannelRow label="Tráfego Orgânico" value={28} percentage={67} color="#16a34a" />
-                    <ChannelRow label="Tráfego Pago (Ads)" value={12} percentage={28} color="#3b82f6" />
-                    <ChannelRow label="Direto / Outros" value={2} percentage={5} color="#94a3b8" />
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#131921] border-white/10 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-base text-white">WhatsApp por Serviço</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <ChannelRow label="Siding" value={84} percentage={54} color="#16a34a" />
-                    <ChannelRow label="Painting" value={32} percentage={21} color="#eab308" />
-                    <ChannelRow label="Windows" value={24} percentage={15} color="#3b82f6" />
-                    <ChannelRow label="Outros" value={16} percentage={10} color="#94a3b8" />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </div>
     </div>
   );
 }
 
-function StatCard({ title, value, icon, trend }: { title: string; value: string | number; icon: React.ReactNode; trend: string }) {
-  return (
-    <Card className="bg-[#131921] border-white/10 shadow-lg hover:border-white/20 transition-all">
-      <CardContent className="p-5">
-        <div className="flex justify-between items-start mb-4">
-          <div className="p-2.5 bg-white/5 rounded-lg border border-white/5">
-            {icon}
-          </div>
-          <Badge className="bg-green-500/10 text-green-500 border-none text-[10px] font-bold">
-            {trend}
-          </Badge>
-        </div>
-        <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">{title}</p>
-        <p className="text-2xl font-black text-white">{value}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
 function MetricBox({ label, value, icon }: { label: string; value: string | number; icon: React.ReactNode }) {
   return (
-    <div className="p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
-      <div className="flex items-center gap-2 mb-2">
+    <div className="bg-white/5 border border-white/10 rounded-lg p-3 space-y-1">
+      <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
         {icon}
-        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{label}</span>
+        {label}
       </div>
-      <p className="text-xl font-bold text-white">{value}</p>
+      <div className="text-xl font-bold text-white">{value}</div>
     </div>
   );
 }
 
 function VitalsRow({ label, value }: { label: string; value?: string }) {
-  const isGood = value && parseFloat(value) < 2.5; // Simple logic
+  const isGood = value && !value.includes("s") && parseFloat(value) < 100 || (value?.includes("s") && parseFloat(value) < 2.5);
   return (
-    <div className="flex justify-between items-center py-2 border-b border-white/5 last:border-none">
-      <span className="text-slate-400 text-[11px] font-medium">{label}</span>
-      <span className={`text-xs font-bold ${value ? 'text-white' : 'text-slate-600 italic'}`}>
-        {value || '--'}
-      </span>
+    <div className="flex justify-between items-center group">
+      <span className="text-xs text-slate-400 font-medium group-hover:text-white transition-colors">{label}</span>
+      <Badge variant="outline" className={`text-[10px] font-mono font-bold ${isGood ? 'border-green-500/20 text-green-400 bg-green-500/5' : 'border-red-500/20 text-red-400 bg-red-500/5'}`}>
+        {value || "---"}
+      </Badge>
     </div>
+  );
+}
+
+function StatCard({ title, value, icon, trend }: { title: string; value: string | number; icon: React.ReactNode; trend: string }) {
+  return (
+    <Card className="bg-[#131921] border-white/10 shadow-lg group hover:border-sd-green/30 transition-all">
+      <CardContent className="p-5 space-y-3">
+        <div className="flex justify-between items-start">
+          <div className="p-2 bg-white/5 rounded-lg group-hover:bg-sd-green/10 transition-colors">
+            {icon}
+          </div>
+          <Badge className="bg-green-500/10 text-green-500 border-none text-[10px] font-bold">{trend}</Badge>
+        </div>
+        <div>
+          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{title}</div>
+          <div className="text-2xl font-bold text-white mt-0.5">{value}</div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
 function LegendItem({ color, label }: { color: string; label: string }) {
   return (
-    <div className="flex items-center gap-2">
-      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-[10px] font-bold text-slate-400 uppercase">{label}</span>
-    </div>
-  );
-}
-
-function ChannelRow({ label, value, percentage, color }: { label: string; value: number; percentage: number; color: string }) {
-  return (
-    <div className="space-y-1.5">
-      <div className="flex justify-between text-[11px] font-bold">
-        <span className="text-slate-300">{label}</span>
-        <span className="text-white">{value} leads</span>
-      </div>
-      <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-        <div className="h-full rounded-full" style={{ width: `${percentage}%`, backgroundColor: color }} />
-      </div>
+    <div className="flex items-center gap-1.5">
+      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+      <span className="text-[10px] font-bold text-slate-500 uppercase">{label}</span>
     </div>
   );
 }
