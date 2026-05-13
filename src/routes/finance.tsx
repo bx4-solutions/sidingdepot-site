@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, ExternalLink, ShieldCheck, Clock, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
-import { trackFinanceApply } from "@/lib/track";
+import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/finance")({
   head: () => {
