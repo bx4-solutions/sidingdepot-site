@@ -502,6 +502,7 @@ function SEODashboard() {
               <TabsTrigger value="ab-testing" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">A/B Testing</TabsTrigger>
               <TabsTrigger value="blog" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Blog Calendar</TabsTrigger>
               <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Conversions</TabsTrigger>
+               <TabsTrigger value="seo-audit" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">SEO Audit</TabsTrigger>
 
               {userProfile?.role === "admin" && (
                 <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
@@ -658,11 +659,9 @@ function SEODashboard() {
                       <tbody>
                         {(["A", "B", "C"] as ABVariation[]).map((v) => {
                           const meta = SERVICE_METADATA_AB[service][v];
-                          // Generate realistic mock data for dashboard
-                          const views = Math.floor(Math.random() * 500) + 200;
-                          const leads = Math.floor(views * (v === "B" ? 0.08 : 0.05));
-                          const conv = ((leads / views) * 100).toFixed(1);
-                          const isWinner = v === "B"; // Mock winner
+                          const perf = abPerformance.find(p => p.service === service && p.variation === v) || { views: 0, leads: 0, clicks: 0, ctr: "0.0", cr: "0.0" };
+                          
+                          const isWinner = parseFloat(perf.cr) > 5; // Example logic
 
                           return (
                             <tr key={v} className="border-b border-white/5 hover:bg-white/10 transition-colors">
@@ -679,13 +678,13 @@ function SEODashboard() {
                               <td className="py-4 px-6 max-w-xs">
                                 <p className="text-slate-400 line-clamp-1 italic">"{meta.h1("Marietta")}"</p>
                               </td>
-                              <td className="py-4 px-4 text-right text-white font-bold">{views}</td>
-                              <td className="py-4 px-4 text-right text-sd-green font-bold">{leads}</td>
+                              <td className="py-4 px-4 text-right text-white font-bold">{perf.views}</td>
+                              <td className="py-4 px-4 text-right text-sd-green font-bold">{perf.leads}</td>
                               <td className="py-4 px-4 text-right">
                                 <div className="flex flex-col items-end">
-                                  <span className="text-white font-bold">{conv}%</span>
+                                  <span className="text-white font-bold">{perf.cr}% Conv</span>
                                   <div className="w-16 h-1 bg-white/10 rounded-full mt-1">
-                                    <div className="h-full bg-sd-green rounded-full" style={{ width: `${conv}%` }} />
+                                    <div className="h-full bg-sd-green rounded-full" style={{ width: `${perf.cr}%` }} />
                                   </div>
                                 </div>
                               </td>
@@ -699,6 +698,7 @@ function SEODashboard() {
                             </tr>
                           );
                         })}
+
                       </tbody>
                     </table>
                   </CardContent>
