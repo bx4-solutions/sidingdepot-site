@@ -58,6 +58,7 @@ type FieldErrors = Partial<Record<keyof FormState, string>>;
 
 function ContactPage() {
   const search = Route.useSearch();
+  const submitToGHLFn = useServerFn(submitToGHL);
   const [values, setValues] = useState<FormState>({
     name: "",
     email: "",
