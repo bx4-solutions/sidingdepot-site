@@ -93,7 +93,7 @@ function RoofingPage() {
         "1–2 day install on standard 2,000 sq ft homes",
       ]}
       hiringRole="roofing contractor"
-      hiringIntro="A roof is a 20–50 year decision. Use this checklist before you sign with anyone — including us."
+      hiringIntro="Your roof is your home's most critical structural barrier. Use this checklist to verify factory certifications and system-wide warranty protections before signing."
       hiringChecklist={CHECKLIST}
       faqLabel="Roofing"
       faqs={FAQS}

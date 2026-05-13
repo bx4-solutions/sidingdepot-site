@@ -89,7 +89,7 @@ function DoorsPage() {
         "Custom paint and stain finishes available",
       ]}
       hiringRole="door contractor"
-      hiringIntro="A door is your home's first impression and first line of defense. Use this checklist before you book with anyone — including us."
+      hiringIntro="Your entryway is your home's first impression and first line of security. Use this checklist to verify structural alignment and thermal efficiency standards."
       hiringChecklist={CHECKLIST}
       faqLabel="Door"
       faqs={FAQS}

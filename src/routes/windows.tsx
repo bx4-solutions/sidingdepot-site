@@ -89,7 +89,7 @@ function WindowsPage() {
         "We handle Cobb / Cherokee / Fulton permits",
       ]}
       hiringRole="window contractor"
-      hiringIntro="Windows are a 25+ year decision and the #1 driver of summer cooling costs. Use this checklist before you sign with anyone — including us."
+      hiringIntro="Energy-efficient windows are a 25-year investment. Use this checklist to verify thermal performance specs and installation certifications for Georgia's climate."
       hiringChecklist={CHECKLIST}
       faqLabel="Window"
       faqs={FAQS}

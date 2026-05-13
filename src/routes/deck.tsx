@@ -89,7 +89,7 @@ function DeckPage() {
         "65–75% ROI on resale in the Atlanta metro market",
       ]}
       hiringRole="deck builder"
-      hiringIntro="A deck is a permitted structure that has to live through 50+ inches of rain a year. Use this checklist before you sign with anyone — including us."
+      hiringIntro="A custom deck is a structural extension of your home. Use this checklist to ensure your builder follows strict framing codes and utilizes Southeast-rated materials."
       hiringChecklist={CHECKLIST}
       faqLabel="Deck"
       faqs={FAQS}

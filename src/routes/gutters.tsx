@@ -89,7 +89,7 @@ function GuttersPage() {
         "Most homes installed in 4–8 hours",
       ]}
       hiringRole="gutter installer"
-      hiringIntro="Gutters are the cheapest way to protect a foundation. Use this checklist before you sign with anyone — including us."
+      hiringIntro="Gutters are your foundation's primary defense against erosion. Use this checklist to verify pitch engineering and material capacity for heavy Georgia rainfall."
       hiringChecklist={CHECKLIST}
       faqLabel="Gutter"
       faqs={FAQS}
