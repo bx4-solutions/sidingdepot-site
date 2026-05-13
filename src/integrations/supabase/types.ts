@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      ab_events: {
+        Row: {
+          city: string | null
+          event_type: string
+          id: string
+          landing_page: string | null
+          metadata: Json | null
+          service_key: string
+          timestamp: string
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          variation: string
+        }
+        Insert: {
+          city?: string | null
+          event_type: string
+          id?: string
+          landing_page?: string | null
+          metadata?: Json | null
+          service_key: string
+          timestamp?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          variation: string
+        }
+        Update: {
+          city?: string | null
+          event_type?: string
+          id?: string
+          landing_page?: string | null
+          metadata?: Json | null
+          service_key?: string
+          timestamp?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          variation?: string
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -47,6 +89,54 @@ export type Database = {
           ip_address?: string | null
           status?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          category: string | null
+          content: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          keywords: string[] | null
+          published_at: string | null
+          slug: string
+          status: string | null
+          suggested_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          keywords?: string[] | null
+          published_at?: string | null
+          slug: string
+          status?: string | null
+          suggested_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          keywords?: string[] | null
+          published_at?: string | null
+          slug?: string
+          status?: string | null
+          suggested_date?: string | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }

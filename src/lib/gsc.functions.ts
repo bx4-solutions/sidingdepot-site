@@ -1,5 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_search_console/webmasters/v3";
 const GSC_SITE_URL = "https://sidingdepot.lovable.app/";
@@ -193,23 +195,39 @@ export const getGA4Metrics = createServerFn({ method: "POST" })
     }).parse(data)
   )
   .handler(async ({ data }) => {
-    // Simulated GA4 response for lead_submit and whatsapp_click events
-    await new Promise(r => setTimeout(r, 500));
+    // 1. Fetch data from our ab_events table for "real" conversion metrics
+    const { data: events, error } = await supabase
+      .from("ab_events")
+      .select("event_type, variation, service_key")
+      .gte("timestamp", data.startDate)
+      .lte("timestamp", data.endDate);
 
-    // Generating realistic simulated data
-    const seed = data.url ? data.url.length : 10;
-    const leads = Math.floor(seed * (0.5 + Math.random()));
-    const whatsapp = Math.floor(seed * (1.2 + Math.random()));
+    if (error) {
+      console.error("[GA4 Metrics] Supabase error:", error);
+      // Fallback to simulation if DB fails, or return zeros
+      return { leads: 0, whatsapp: 0, conversionRate: "0.0", error: error.message };
+    }
+
+    const views = events.filter(e => e.event_type === 'ab_variation_view').length;
+    const leads = events.filter(e => e.event_type === 'qualified_lead' || e.event_type === 'lead_submit').length;
+    const whatsapp = events.filter(e => e.event_type === 'whatsapp_click').length;
+    const calls = events.filter(e => e.event_type === 'call_click').length;
+
+    const totalConversions = leads + whatsapp + calls;
+    const conversionRate = views > 0 ? ((totalConversions / views) * 100).toFixed(1) : "0.0";
 
     return {
       leads,
       whatsapp,
-      conversionRate: ((leads + whatsapp) / (seed * 10 || 1) * 100).toFixed(1),
+      calls,
+      views,
+      conversionRate,
       startDate: data.startDate,
       endDate: data.endDate,
       url: data.url
     };
   });
+
 
 /**
  * Simulates Lighthouse metrics
