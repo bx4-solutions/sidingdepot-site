@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, ExternalLink, ShieldCheck, Clock, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
+import { trackFinanceApply } from "@/lib/track";
 
 export const Route = createFileRoute("/finance")({
   head: () => ({
@@ -81,7 +82,7 @@ function FinancePage() {
               </div>
 
               <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-10">
+                <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-10" onClick={() => trackFinanceApply()}>
                   <a href={SITE.greenSkyUrl} target="_blank" rel="noopener noreferrer">
                     APPLY NOW <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
