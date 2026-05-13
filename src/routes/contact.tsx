@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { SITE } from "@/data/site";
 import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
+import { submitToGHL } from "@/lib/ghl.functions";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
