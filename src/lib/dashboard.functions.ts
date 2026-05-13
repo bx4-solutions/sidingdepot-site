@@ -252,7 +252,9 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           avgTime: formatSeconds(avgSeconds),
           bounceRate: page.bounceRate || 0,
           leadsBySource: Array.from((page.sourceCounts as Map<string, number>).entries()).map(([source, count]) => ({ source, count })),
+          trend: Array.from((page.trendCounts as Map<string, any>).values()).sort((a, b) => a.date.localeCompare(b.date)),
           sourceCounts: undefined,
+          trendCounts: undefined,
         };
       }).sort((a, b) => b.views - a.views);
 
