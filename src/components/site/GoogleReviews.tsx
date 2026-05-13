@@ -84,20 +84,28 @@ export function GoogleReviews() {
   });
 
   const syncMutation = useMutation({
-    mutationFn: () => syncReviews({ data: { placeId: "ChIJgXSHh4OH9YgR9nx8zHzMfMw" } }), // Actual Siding Depot Place ID
+    mutationFn: () => syncReviews({ data: { placeId: "ChIJgXSHh4OH9YgR9nx8zHzMfMw" } }),
     onSuccess: (res: any) => {
       if (res.success) {
         toast.success(`Successfully synced ${res.count} reviews!`);
-        if (res.overallRating) {
-          console.log(`Overall Rating: ${res.overallRating}, Total: ${res.totalReviews}`);
-        }
         queryClient.invalidateQueries({ queryKey: ["google-reviews"] });
+      } else if (res.status === 429) {
+        toast.error("Google API limit reached. Using cached reviews.");
       } else {
         toast.error(`Sync failed: ${res.error}`);
       }
     },
     onError: () => toast.error("An error occurred during sync"),
   });
+
+  // Auto-sync effect
+  useEffect(() => {
+    if (remoteData?.shouldSync && !syncMutation.isPending) {
+      console.log("Auto-syncing reviews (data is older than 24h)...");
+      syncMutation.mutate();
+    }
+  }, [remoteData?.shouldSync]);
+
 
   const allReviews: Review[] = useMemo(() => {
     if (!remoteData?.reviews || remoteData.reviews.length === 0) {
