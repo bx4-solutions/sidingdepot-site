@@ -286,12 +286,16 @@ function HomePage() {
               </Button>
             </div>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80"
-            alt="James Hardie fiber cement siding installed on a North Atlanta home"
-            className="rounded-xl object-cover w-full h-[460px]"
-            loading="lazy"
-          />
+          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
+              title="Why James Hardie siding is built for Georgia"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
         </div>
       </section>
     </>
