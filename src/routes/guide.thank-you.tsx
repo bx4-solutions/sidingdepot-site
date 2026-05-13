@@ -27,7 +27,7 @@ export const Route = createFileRoute("/guide/thank-you")({
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
-  component: ThankYouPage;
+  component: ThankYouPage,
 });
 
 /**
