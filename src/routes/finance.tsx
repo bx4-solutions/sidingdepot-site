@@ -255,6 +255,47 @@ function FinancePage() {
               </div>
             </div>
           </section>
+          {/* FAQ Section */}
+          <section className="mt-20 lg:mt-32">
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <h2 className="font-display text-3xl font-extrabold tracking-tight text-sd-navy sm:text-4xl">
+                  Frequently Asked Questions
+                </h2>
+                <p className="mt-4 text-lg text-sd-gray-text">
+                  Common questions about our GreenSky® financing options
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {faqs.map((faq, idx) => (
+                  <div 
+                    key={idx} 
+                    className="overflow-hidden rounded-2xl border border-black/5 bg-sd-gray-bg"
+                  >
+                    <button
+                      onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                      className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-sd-green/5"
+                    >
+                      <span className="text-lg font-bold text-sd-navy">{faq.q}</span>
+                      {openFaq === idx ? (
+                        <ChevronUp className="h-5 w-5 text-sd-green-text" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-sd-gray-text" />
+                      )}
+                    </button>
+                    {openFaq === idx && (
+                      <div className="border-t border-black/5 p-6 pt-0">
+                        <p className="mt-4 leading-relaxed text-sd-gray-text">
+                          {faq.a}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
