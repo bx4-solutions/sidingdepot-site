@@ -12,7 +12,7 @@ export function MapSection() {
   
   const mapUrl = apiKey
     ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${addressQuery}`
-    : `https://maps.google.com/maps?q=${addressQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+    : `https://www.google.com/maps?q=${addressQuery}&z=15&output=embed`;
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
   const wazeUrl = `https://waze.com/ul?q=${addressQuery}&navigate=yes`;
