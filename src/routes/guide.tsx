@@ -196,9 +196,7 @@ function GuidePage() {
             <SidingGuide />
           </div>
         )}
-    </div>
-  );
-}
+      </div>
 
       {/* Footer Info (Static) */}
       {!downloadReady && (
