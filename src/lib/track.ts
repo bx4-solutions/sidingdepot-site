@@ -19,6 +19,7 @@ const UTM_KEYS = [
 
 
 const STORAGE_KEY = "__lp_attribution_v1";
+const VISITOR_ID_KEY = "__lp_visitor_id_v1";
 
 function safeSession(): Storage | null {
   try {
@@ -27,6 +28,35 @@ function safeSession(): Storage | null {
   } catch {
     return null;
   }
+}
+
+function safeLocal(): Storage | null {
+  try {
+    if (typeof window === "undefined") return null;
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get or create a persistent visitor UUID.
+ */
+export function getVisitorId(): string {
+  if (typeof window === "undefined") return "";
+  const storage = safeLocal();
+  if (!storage) return "";
+
+  let id = storage.getItem(VISITOR_ID_KEY);
+  if (!id) {
+    id = crypto.randomUUID();
+    try {
+      storage.setItem(VISITOR_ID_KEY, id);
+    } catch {
+      // ignore
+    }
+  }
+  return id;
 }
 
 /**
