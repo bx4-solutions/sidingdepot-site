@@ -156,6 +156,8 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           conversions: 0,
           leadsBySource: [] as Array<{ source: string; count: number }>,
           sourceCounts: new Map<string, number>(),
+          trend: [] as Array<{ date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>,
+          trendCounts: new Map<string, { date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>(),
         };
         if (isViewEvent(eventType)) pageStats.views += 1;
         if (isLeadEvent(eventType)) {
@@ -163,6 +165,14 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           pageStats.sourceCounts.set(source, (pageStats.sourceCounts.get(source) || 0) + 1);
         }
         if (duration > 0) pageStats.avgTimeSeconds += duration;
+
+        const pageTrend = pageStats.trendCounts.get(day) || { date: day, views: 0, leads: 0, leadsByChannel: {} };
+        if (isViewEvent(eventType)) pageTrend.views += 1;
+        if (isLeadEvent(eventType)) {
+          pageTrend.leads += 1;
+          pageTrend.leadsByChannel[source] = (pageTrend.leadsByChannel[source] || 0) + 1;
+        }
+        pageStats.trendCounts.set(day, pageTrend);
         pageMap.set(page, pageStats);
 
         if (isClickEvent(eventType)) {
@@ -196,8 +206,8 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
             keywords: Array.isArray(metadata.keywords) ? metadata.keywords : [],
             leadsBySource: [] as Array<{ source: string; count: number }>,
             sourceCounts: new Map<string, number>(),
-            trend: [] as Array<{ date: string; views: number; leads: number }>,
-            trendCounts: new Map<string, { date: string; views: number; leads: number }>(),
+            trend: [] as Array<{ date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>,
+            trendCounts: new Map<string, { date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>(),
           };
           if (isViewEvent(eventType)) article.views += 1;
           if (duration > 0) article.avgTimeSeconds += duration;
@@ -205,9 +215,12 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
             article.conversions += 1;
             article.sourceCounts.set(source, (article.sourceCounts.get(source) || 0) + 1);
           }
-          const trend = article.trendCounts.get(day) || { date: day, views: 0, leads: 0 };
+          const trend = article.trendCounts.get(day) || { date: day, views: 0, leads: 0, leadsByChannel: {} };
           if (isViewEvent(eventType)) trend.views += 1;
-          if (isLeadEvent(eventType)) trend.leads += 1;
+          if (isLeadEvent(eventType)) {
+            trend.leads += 1;
+            trend.leadsByChannel[source] = (trend.leadsByChannel[source] || 0) + 1;
+          }
           article.trendCounts.set(day, trend);
           blogMap.set(page, article);
         }
@@ -239,7 +252,9 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           avgTime: formatSeconds(avgSeconds),
           bounceRate: page.bounceRate || 0,
           leadsBySource: Array.from((page.sourceCounts as Map<string, number>).entries()).map(([source, count]) => ({ source, count })),
+          trend: Array.from((page.trendCounts as Map<string, any>).values()).sort((a, b) => a.date.localeCompare(b.date)),
           sourceCounts: undefined,
+          trendCounts: undefined,
         };
       }).sort((a, b) => b.views - a.views);
 

@@ -54,7 +54,8 @@ import {
   Pie,
   Cell,
   BarChart,
-  Bar
+  Bar,
+  Legend
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
 import { cn } from "@/lib/utils";
@@ -1103,33 +1104,92 @@ function SEODashboard() {
               {selectedPageForLeads}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            {metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource?.map((src: any, idx: number) => (
-              <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
-                <span className="text-sm font-bold">{src.source}</span>
-                <Badge className="bg-sd-green text-sd-black font-black">{src.count} LEADS</Badge>
+          <div className="space-y-6 py-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads (Total)</p>
+                <div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+                  {metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource?.map((src: any, idx: number) => (
+                    <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+                      <span className="text-sm font-bold truncate max-w-[150px]" title={src.source}>{src.source}</span>
+                      <Badge className="bg-sd-green text-sd-black font-black whitespace-nowrap">{src.count} LEADS</Badge>
+                    </div>
+                  ))}
+                  {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
+                    <div className="text-center py-8 text-slate-500 italic text-sm">
+                      Nenhuma conversão registrada.
+                    </div>
+                  )}
+                </div>
               </div>
-            ))}
-            <div className="grid grid-cols-3 gap-3 pt-2">
-              {(() => {
-                const page = metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads);
-                return [
-                  ["Views", page?.views || 0],
-                  ["Tempo", page?.avgTime || "0s"],
-                  ["Conversões", page?.conversions || 0],
-                ].map(([label, value]) => (
-                  <div key={String(label)} className="rounded-lg bg-white/5 p-3 text-center border border-white/5">
-                    <p className="text-[10px] uppercase font-black text-slate-400">{label}</p>
-                    <p className="mt-1 text-lg font-black text-white">{value}</p>
-                  </div>
-                ));
-              })()}
+
+              <div className="space-y-3">
+                <p className="text-xs font-black uppercase text-slate-400">Métricas Principais</p>
+                <div className="grid grid-cols-1 gap-2">
+                  {(() => {
+                    const page = metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads);
+                    return [
+                      { label: "Visualizações", value: page?.views || 0, icon: Eye },
+                      { label: "Tempo Médio", value: page?.avgTime || "0s", icon: Clock },
+                      { label: "Conversões", value: page?.conversions || 0, icon: Target },
+                    ].map((m) => (
+                      <div key={m.label} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
+                        <div className="flex items-center gap-2">
+                          <m.icon className="h-3 w-3 text-sd-green" />
+                          <span className="text-[10px] uppercase font-black text-slate-400">{m.label}</span>
+                        </div>
+                        <p className="text-lg font-black text-white">{m.value}</p>
+                      </div>
+                    ));
+                  })()}
+                </div>
+              </div>
             </div>
-            {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
-              <div className="text-center py-8 text-slate-500 italic text-sm">
-                Nenhuma conversão registrada para esta página no período.
+
+            <div className="space-y-3">
+              <p className="text-xs font-black uppercase text-slate-400">Evolução de Leads por Canal</p>
+              <div className="h-[250px] rounded-xl bg-white/5 p-4 border border-white/5">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.trend || []}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#94a3b8" 
+                      fontSize={10} 
+                      tickLine={false} 
+                      axisLine={false}
+                      tickFormatter={(val) => val.split('-').slice(1).reverse().join('/')}
+                    />
+                    <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '10px' }}
+                      itemStyle={{ padding: '0px' }}
+                    />
+                    <Legend iconType="circle" wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    {(() => {
+                      const trend = metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.trend || [];
+                      const allChannels = new Set<string>();
+                      trend.forEach((day: any) => {
+                        Object.keys(day.leadsByChannel || {}).forEach(ch => allChannels.add(ch));
+                      });
+                      
+                      const palette = ["var(--sd-green)", "#3b82f6", "#f59e0b", "#ec4899", "#8b5cf6", "#10b981", "#ef4444"];
+                      
+                      return Array.from(allChannels).map((channel, i) => (
+                        <Bar 
+                          key={channel} 
+                          dataKey={`leadsByChannel.${channel}`} 
+                          name={channel} 
+                          stackId="a" 
+                          fill={palette[i % palette.length]} 
+                          radius={i === allChannels.size - 1 ? [2, 2, 0, 0] : [0, 0, 0, 0]}
+                        />
+                      ));
+                    })()}
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
-            )}
+            </div>
           </div>
           <Button 
             variant="outline" 
@@ -1142,7 +1202,7 @@ function SEODashboard() {
       </Dialog>
 
       <Dialog open={!!selectedBlogArticle} onOpenChange={() => setSelectedBlogArticle(null)}>
-        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-3xl">
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-4xl max-h-[90vh] overflow-y-auto custom-scrollbar">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <FileText className="h-5 w-5 text-sd-green" />
@@ -1163,36 +1223,82 @@ function SEODashboard() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-4">
-            <div className="space-y-2">
-              <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
-              {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
-                <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
-                  <span className="text-sm font-bold">{src.source}</span>
-                  <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
+                <div className="space-y-2 max-h-[150px] overflow-y-auto pr-2 custom-scrollbar">
+                  {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
+                    <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
+                      <span className="text-sm font-bold truncate max-w-[150px]" title={src.source}>{src.source}</span>
+                      <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+                    </div>
+                  ))}
+                  {(!selectedBlogArticle?.leadsBySource || selectedBlogArticle.leadsBySource.length === 0) && (
+                    <div className="text-center py-4 text-slate-500 italic text-xs">Sem leads registrados.</div>
+                  )}
                 </div>
-              ))}
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
+                <div className="flex flex-wrap gap-2">
+                  {(selectedBlogArticle?.keywords || []).map((kw: string) => (
+                    <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="space-y-2">
-              <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
-              <div className="flex flex-wrap gap-2">
-                {(selectedBlogArticle?.keywords || []).map((kw: string) => (
-                  <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
-                ))}
+              <p className="text-xs font-black uppercase text-slate-400">Evolução de Leads por Canal</p>
+              <div className="h-[250px] rounded-xl bg-white/5 p-3 border border-white/5">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={selectedBlogArticle?.trend || []}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#94a3b8" 
+                      fontSize={10} 
+                      tickLine={false} 
+                      axisLine={false}
+                      tickFormatter={(val) => val.split('-').slice(1).reverse().join('/')}
+                    />
+                    <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '10px' }}
+                    />
+                    <Legend iconType="circle" wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    {(() => {
+                      const trend = selectedBlogArticle?.trend || [];
+                      const allChannels = new Set<string>();
+                      trend.forEach((day: any) => {
+                        Object.keys(day.leadsByChannel || {}).forEach(ch => allChannels.add(ch));
+                      });
+                      const palette = ["var(--sd-green)", "#3b82f6", "#f59e0b", "#ec4899", "#8b5cf6", "#10b981", "#ef4444"];
+                      return Array.from(allChannels).map((channel, i) => (
+                        <Bar key={channel} dataKey={`leadsByChannel.${channel}`} name={channel} stackId="a" fill={palette[i % palette.length]} />
+                      ));
+                    })()}
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
           </div>
-          <div className="h-[220px] rounded-xl bg-white/5 p-3 border border-white/5">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={selectedBlogArticle?.trend || []}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
-                <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
-                <Area type="monotone" dataKey="leads" name="Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
-              </AreaChart>
-            </ResponsiveContainer>
+          
+          <div className="space-y-2 pb-4">
+            <p className="text-xs font-black uppercase text-slate-400">Visão Geral de Tráfego vs Leads</p>
+            <div className="h-[200px] rounded-xl bg-white/5 p-3 border border-white/5">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={selectedBlogArticle?.trend || []}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+                  <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
+                  <Area type="monotone" dataKey="leads" name="Total Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
