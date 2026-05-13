@@ -84,11 +84,17 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
           }),
         });
       }
-      track("lead_magnet_download", { source, city });
+      track("lead_magnet_download", { source, city, pdf_path: PDF_PATH });
     } catch {
       track("lead_magnet_error", { source });
     } finally {
       setSubmitting(false);
+      if (onSuccess) {
+        // Parent owns post-download flow (e.g. navigate to /guide/thank-you
+        // and open the PDF there). Don't open here to avoid double-tabs.
+        onSuccess(parsed.data);
+        return;
+      }
       setDone(true);
       // Trigger download in a new tab so users see the asset immediately.
       if (typeof window !== "undefined") {
