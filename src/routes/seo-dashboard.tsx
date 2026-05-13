@@ -154,12 +154,14 @@ function SEODashboard() {
   const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
-  const [dateRange, setDateRange] = useState({ 
-    startDate: "2026-04-13", 
-    endDate: "2026-05-13" 
-  });
+  const [dateRange, setDateRange] = useState(getInitialDateRange);
   const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
+  const [selectedBlogArticle, setSelectedBlogArticle] = useState<any | null>(null);
   const userProfile = loaderData?.profile;
+
+  useEffect(() => {
+    window.localStorage.setItem("seo-dashboard-date-range", JSON.stringify(dateRange));
+  }, [dateRange]);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
