@@ -93,12 +93,14 @@ function AboutPage() {
               </Button>
             </div>
           </div>
-          <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80"
-              alt="Newly renovated North Atlanta home with James Hardie siding installed by Siding Depot"
-              className="rounded-xl object-cover w-full h-[460px] shadow-2xl"
-              loading="eager"
+          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/fgNhcGoEYmE?rel=0"
+              title="About Siding Depot"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
             />
           </div>
         </div>
