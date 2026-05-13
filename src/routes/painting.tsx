@@ -32,7 +32,10 @@ export const Route = createFileRoute("/painting")({
       image: PROJECT_HERO,
       canonical: "https://sidingdepot.com/painting",
     }),
-    links: [{ rel: "canonical", href: "https://sidingdepot.com/painting" }],
+    links: [
+      { rel: "canonical", href: "https://sidingdepot.com/painting" },
+      { rel: "preload", as: "image", href: PROJECT_HERO, fetchPriority: "high" as any },
+    ],
     scripts: [
       serviceJsonLd("Exterior Painting", PAGE_DESC, {
         canonical: "https://sidingdepot.com/painting",
