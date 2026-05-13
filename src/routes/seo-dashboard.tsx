@@ -30,8 +30,11 @@ import {
   CalendarCheck2,
   MessageSquare,
   AlertTriangle,
-  RefreshCcw
+  RefreshCcw,
+  User,
+  Key
 } from "lucide-react";
+import { toast } from "sonner";
 import { 
   AreaChart, 
   Area, 
