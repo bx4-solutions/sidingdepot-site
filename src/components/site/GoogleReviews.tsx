@@ -171,6 +171,15 @@ export function GoogleReviews() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
+            <Button 
+              onClick={() => syncMutation.mutate()} 
+              disabled={syncMutation.isPending}
+              variant="outline" 
+              className="border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white"
+            >
+              <RefreshCw className={`mr-2 h-4 w-4 ${syncMutation.isPending ? "animate-spin" : ""}`} />
+              {syncMutation.isPending ? "Syncing..." : "Sync Reviews"}
+            </Button>
             <Button asChild variant="outline" className="border-sd-green text-sd-green hover:bg-sd-green hover:text-white">
               <a href={gmbUrl} target="_blank" rel="noopener noreferrer">
                 <MessageSquare className="mr-2 h-4 w-4" />
