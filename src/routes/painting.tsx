@@ -129,8 +129,8 @@ function PaintSystemSection() {
               Paint System
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              High-Performance{" "}
-              <span className="text-sd-green">Exterior Painting Systems.</span>
+              Exterior Painting:{" "}
+              <span className="text-sd-green">High-Performance UV Systems.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
               We create UV-resistant thermal barriers that handle North Atlanta's extreme temperature swings. Tap each hotspot to see the Sherwin-Williams® systems we use to protect every surface.

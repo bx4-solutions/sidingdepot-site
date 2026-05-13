@@ -78,8 +78,8 @@ function WindowsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Energy Star · Low-E Double Pane"
-      title="Energy-Efficient Windows,"
-      titleAccent="engineered for Atlanta summers."
+      title="Energy-Efficient Windows:"
+      titleAccent="Atlanta's Thermal Barrier."
       intro="Slash your cooling costs by 15-25% with Energy Star® certified windows. Our double-pane Low-E systems are sized specifically for Georgia's climate, blocking infrared heat while flooding your home with light."
       heroImage={HERO_IMAGE}
       benefits={[

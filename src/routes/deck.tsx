@@ -78,8 +78,8 @@ function DeckPage() {
   return (
     <ServiceLandingPage
       eyebrow="Trex · TimberTech · Pressure-Treated"
-      title="Custom Composite Decks,"
-      titleAccent="built for Georgia outdoor living."
+      title="Custom Composite Decks:"
+      titleAccent="Low-Maintenance Luxury."
       intro="Maximize your outdoor living with a deck built for decades, not seasons. As Trex Pro® installers, we build moisture-proof spaces that resist the warping, rotting, and fading common in North Atlanta."
       heroImage={HERO_IMAGE}
       benefits={[

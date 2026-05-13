@@ -78,8 +78,8 @@ function GuttersPage() {
   return (
     <ServiceLandingPage
       eyebrow="Seamless Aluminum · LeafGuard"
-      title="6-Inch Seamless Gutters,"
-      titleAccent="engineered for Georgia rainfall."
+      title="6-Inch Seamless Gutters:"
+      titleAccent="High-Volume Protection."
       intro="Protect your foundation from Georgia's 50+ inches of annual rain. Our 6-inch seamless systems move 40% more water than standard gutters, preventing basement leaks and fascia rot."
       heroImage={HERO_IMAGE}
       benefits={[

@@ -82,8 +82,8 @@ function RoofingPage() {
   return (
     <ServiceLandingPage
       eyebrow="GAF Factory Certified · Top Roofer"
-      title="GAF Factory-Certified Roofing,"
-      titleAccent="built for storm protection."
+      title="GAF Factory-Certified Roofing:"
+      titleAccent="North Atlanta's Shield."
       intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
       heroImage={HERO_IMAGE}
       benefits={[

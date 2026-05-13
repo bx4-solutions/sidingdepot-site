@@ -78,8 +78,8 @@ function DoorsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Fiberglass · Steel · Patio · Storm"
-      title="Custom Entry & Patio Doors,"
-      titleAccent="engineered for security and style."
+      title="Custom Entry & Patio Doors:"
+      titleAccent="Security Meets Style."
       intro="Upgrade your curb appeal and security simultaneously. We install high-performance Therma-Tru® and ProVia® door systems featuring multi-point locking and thermal-break thresholds designed for Georgia homes."
       heroImage={HERO_IMAGE}
       benefits={[
