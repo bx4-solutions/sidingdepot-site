@@ -232,7 +232,7 @@ function HomePage() {
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {CITIES.map((c) => (
-              <CityCard key={c.slug} name={c.name} county={c.county} />
+              <CityCard key={c.slug} slug={c.slug} name={c.name} county={c.county} />
             ))}
           </div>
 
