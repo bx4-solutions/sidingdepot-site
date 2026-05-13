@@ -493,7 +493,64 @@ function SEODashboard() {
              </Card>
           </TabsContent>
         </Tabs>
-      </div>
+      {userProfile?.role === "admin" && auditLogs && (
+        <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+          <CardHeader className="border-b border-white/5 bg-white/[0.02]">
+            <div className="flex items-center gap-2">
+              <History className="h-5 w-5 text-sd-green" />
+              <CardTitle className="text-lg text-white">Log de Auditoria Administrativa</CardTitle>
+            </div>
+            <CardDescription className="text-slate-500">Histórico de ações e segurança do painel</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-white/5 bg-white/[0.01]">
+                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Data/Hora</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Usuário</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Ação</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Status</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Detalhes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {auditLogs.map((log: any) => (
+                    <tr key={log.id} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="px-6 py-4 text-xs font-mono text-slate-400">
+                        {new Date(log.created_at).toLocaleString('pt-BR')}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-xs font-medium text-white">{log.profiles?.display_name || 'Sistema'}</div>
+                        <div className="text-[10px] text-slate-500">{log.profiles?.email || 'N/A'}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Badge variant="outline" className="text-[10px] font-bold uppercase border-white/10 bg-white/5">
+                          {log.action.replace(/_/g, ' ')}
+                        </Badge>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Badge 
+                          className={`text-[10px] font-bold uppercase ${
+                            log.status === 'success' 
+                              ? 'bg-green-500/10 text-green-500 border-green-500/20' 
+                              : 'bg-red-500/10 text-red-500 border-red-500/20'
+                          }`}
+                        >
+                          {log.status}
+                        </Badge>
+                      </td>
+                      <td className="px-6 py-4 text-[10px] text-slate-400 max-w-xs truncate">
+                        {JSON.stringify(log.details)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
