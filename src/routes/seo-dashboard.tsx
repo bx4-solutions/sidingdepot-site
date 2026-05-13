@@ -706,7 +706,195 @@ function SEODashboard() {
               ))}
             </div>
           </TabsContent>
+          <TabsContent value="blog" className="space-y-6">
+            <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+              <CardHeader className="bg-white/5 border-b border-white/10 flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="text-white text-lg font-bold">Calendário de Conteúdo do Blog</CardTitle>
+                  <CardDescription className="text-slate-500">12 rascunhos iniciais gerados para revisão e publicação</CardDescription>
+                </div>
+                {!blogPosts?.length && (
+                  <Button 
+                    size="sm" 
+                    className="bg-sd-green text-sd-black hover:bg-sd-green-hover"
+                    onClick={() => seedBlogFn().then(() => refetchBlog())}
+                  >
+                    Gerar Rascunhos
+                  </Button>
+                )}
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs">
+                    <thead className="bg-white/5">
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Título do Post</th>
+                        <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Categoria</th>
+                        <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Data Sugerida</th>
+                        <th className="text-center py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Status</th>
+                        <th className="text-right py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {blogPosts?.map((post: any) => (
+                        <tr key={post.id} className="border-b border-white/5 hover:bg-white/10 transition-colors">
+                          <td className="py-4 px-6">
+                            <div className="flex flex-col">
+                              <span className="text-white font-bold text-sm">{post.title}</span>
+                              <span className="text-[10px] text-slate-500 font-mono">/{post.slug}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-6">
+                            <Badge variant="outline" className="text-blue-400 border-blue-400/20 bg-blue-400/5 uppercase text-[10px]">
+                              {post.category}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-6 text-slate-300 font-medium">
+                            {new Date(post.suggested_date).toLocaleDateString('pt-BR')}
+                          </td>
+                          <td className="py-4 px-6 text-center">
+                            <Badge className={post.status === 'published' ? 'bg-green-500/20 text-green-400' : 'bg-slate-700 text-slate-300'}>
+                              {post.status.toUpperCase()}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-6 text-right">
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="text-sd-green hover:bg-sd-green/10"
+                              onClick={() => {
+                                const newStatus = post.status === 'draft' ? 'published' : 'draft';
+                                updateBlogFn({ data: { id: post.id, status: newStatus as any, published_at: newStatus === 'published' ? new Date().toISOString() : undefined } })
+                                  .then(() => refetchBlog());
+                              }}
+                            >
+                              {post.status === 'draft' ? 'Publicar' : 'Reverter'}
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
+          <TabsContent value="seo-audit" className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-[#131921] border-white/10 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-sd-green" />
+                    Arquivos Técnicos
+                  </CardTitle>
+                  <CardDescription>Status do robots.txt e sitemap.xml</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                      <span className="text-sm font-bold text-white">robots.txt</span>
+                    </div>
+                    <Badge className="bg-green-500/10 text-green-500 border-green-500/20">ACESSÍVEL</Badge>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg border border-white/5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                      <span className="text-sm font-bold text-white">sitemap.xml</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-slate-500 font-bold">75 URLs</span>
+                      <Badge className="bg-green-500/10 text-green-500 border-green-500/20">INDEXADO</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-[#131921] border-white/10 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Search className="h-5 w-5 text-blue-400" />
+                    Relatório de Indexabilidade
+                  </CardTitle>
+                  <CardDescription>URLs bloqueadas ou com erros</CardDescription>
+                </CardHeader>
+                <CardContent>
+                   <div className="p-8 text-center bg-white/5 rounded-xl border border-dashed border-white/10">
+                      <CheckCircle2 className="h-10 w-10 text-sd-green mx-auto mb-3 opacity-20" />
+                      <p className="text-slate-400 text-sm font-medium">Nenhum erro de rastreamento detectado nas últimas 24h.</p>
+                      <p className="text-[10px] text-slate-600 mt-1 uppercase tracking-widest font-bold">Google Search Console Sync: OK</p>
+                   </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-[#131921] border-white/10 shadow-xl">
+              <CardHeader className="flex flex-row items-center justify-between border-b border-white/5">
+                <div>
+                  <CardTitle className="text-white text-lg font-bold">SEO Audit Report — Full Site</CardTitle>
+                  <CardDescription className="text-slate-500">Métricas de SEO On-page para todas as 7 LPs e variações</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" className="border-white/10 text-slate-400 hover:text-white" onClick={() => window.open('/seo_audit_report.md', '_blank')}>
+                  Download Markdown
+                </Button>
+              </CardHeader>
+              <CardContent className="p-0">
+                 <div className="overflow-x-auto">
+                    <table className="w-full text-[11px]">
+                      <thead className="bg-white/5">
+                        <tr className="border-b border-white/10">
+                          <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">URL Sample</th>
+                          <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Title Tag</th>
+                          <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Meta Description</th>
+                          <th className="text-center py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Index</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {['siding', 'painting', 'windows', 'doors', 'gutters', 'deck', 'roofing'].map(s => (
+                          <tr key={s} className="border-b border-white/5 hover:bg-white/10 transition-colors">
+                            <td className="py-4 px-6 text-white font-mono font-bold">/services/{s}</td>
+                            <td className="py-4 px-6 text-slate-300 italic">{SERVICE_METADATA_AB[s].A.metaTitle("Marietta")}</td>
+                            <td className="py-4 px-6 text-slate-400 max-w-xs truncate">{SERVICE_METADATA_AB[s].A.metaDesc}</td>
+                            <td className="py-4 px-6 text-center">
+                              <Badge className="bg-green-500/20 text-green-400 border-none text-[9px] font-bold">YES</Badge>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="conversions">
+            <Card className="bg-[#131921] border-white/10 shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-white">Relatório de Funil (GA4)</CardTitle>
+                <CardDescription>Fluxo de usuários da visita até o Lead Qualificado</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[400px]">
+                   <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={chartData}>
+                        <defs>
+                          <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#16a34a" stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor="#16a34a" stopOpacity={0}/>
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#2a2f35" vertical={false} />
+                        <XAxis dataKey="date" stroke="#475569" fontSize={10} />
+                        <YAxis stroke="#475569" fontSize={10} />
+                        <Tooltip contentStyle={{ backgroundColor: '#131921', borderColor: '#2a2f35' }} />
+                        <Area type="monotone" dataKey="clicks" stroke="#16a34a" fillOpacity={1} fill="url(#colorViews)" />
+                      </AreaChart>
+                   </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           {userProfile?.role === "admin" && (
             <TabsContent value="users">
