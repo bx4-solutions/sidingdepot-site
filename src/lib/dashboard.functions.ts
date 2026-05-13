@@ -14,10 +14,14 @@ const formatSeconds = (seconds: number) => {
   return minutes > 0 ? `${minutes}m ${rest}s` : `${rest}s`;
 };
 
+const asRecord = (value: unknown): Record<string, any> =>
+  value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, any>) : {};
+
 const getSourceLabel = (event: any) => {
-  const source = event.utm_source || event.metadata?.utm_source || event.metadata?.source || "Direto";
-  const medium = event.utm_medium || event.metadata?.utm_medium;
-  const campaign = event.utm_campaign || event.metadata?.utm_campaign;
+  const metadata = asRecord(event.metadata);
+  const source = event.utm_source || metadata.utm_source || metadata.source || "Direto";
+  const medium = event.utm_medium || metadata.utm_medium;
+  const campaign = event.utm_campaign || metadata.utm_campaign;
   return [source, medium, campaign].filter(Boolean).join(" / ");
 };
 
@@ -107,10 +111,10 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
       ]);
 
       if (eventsResult.error) throw eventsResult.error;
-      const events = eventsResult.data || [];
-      const trafficRows = trafficResult.data || [];
-      const sourceRows = sourceResult.data || [];
-      const posts = postsResult.data || [];
+      const events = (eventsResult.data || []) as any[];
+      const trafficRows = (trafficResult.data || []) as any[];
+      const sourceRows = (sourceResult.data || []) as any[];
+      const posts = (postsResult.data || []) as any[];
 
       const pageMap = new Map<string, any>();
       const sourceMap = new Map<string, { source: string; visitors: number; leads: number }>();
@@ -122,11 +126,12 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
       let durationCount = 0;
 
       for (const event of events) {
+        const metadata = asRecord(event.metadata);
         const eventType = String(event.event_type || "").toLowerCase();
-        const page = event.landing_page || event.metadata?.page_path || event.metadata?.path || "/";
+        const page = event.landing_page || metadata.page_path || metadata.path || "/";
         const source = getSourceLabel(event);
         const day = new Date(event.timestamp).toISOString().slice(0, 10);
-        const duration = Number(event.metadata?.duration_seconds || event.metadata?.avg_time_seconds || event.metadata?.time_on_page_seconds || 0);
+        const duration = Number(metadata.duration_seconds || metadata.avg_time_seconds || metadata.time_on_page_seconds || 0);
 
         if (duration > 0) {
           totalDuration += duration;
@@ -161,7 +166,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
         pageMap.set(page, pageStats);
 
         if (isClickEvent(eventType)) {
-          const button = event.metadata?.button || event.metadata?.button_label || event.metadata?.cta || event.metadata?.event_label || "CTA sem rótulo";
+          const button = metadata.button || metadata.button_label || metadata.cta || metadata.event_label || "CTA sem rótulo";
           const clickStats = clickMap.get(button) || {
             button,
             clicks: 0,
@@ -175,11 +180,11 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           clickMap.set(button, clickStats);
         }
 
-        const country = event.metadata?.country || event.metadata?.country_name;
+        const country = metadata.country || metadata.country_name;
         if (country) countryMap.set(country, (countryMap.get(country) || 0) + 1);
 
         if (page.includes("blog") || page.includes("article")) {
-          const title = event.metadata?.post_title || event.metadata?.title || page.replace(/^\/blog\/?/, "");
+          const title = metadata.post_title || metadata.title || page.replace(/^\/blog\/?/, "");
           const article = blogMap.get(page) || {
             path: page,
             title: title || page,
@@ -188,7 +193,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
             bounceRate: 0,
             conversion: 0,
             conversions: 0,
-            keywords: event.metadata?.keywords || [],
+            keywords: Array.isArray(metadata.keywords) ? metadata.keywords : [],
             leadsBySource: [] as Array<{ source: string; count: number }>,
             sourceCounts: new Map<string, number>(),
             trend: [] as Array<{ date: string; views: number; leads: number }>,
