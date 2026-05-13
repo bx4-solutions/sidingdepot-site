@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Roof Replacement in Marietta, GA | Siding Depot — Free Estimate";
+const PAGE_TITLE = "GAF Certified Roof Replacement in Marietta, GA | Siding Depot";
 const PAGE_DESC =
-  "GAF Factory Certified roof replacement & storm-damage repair built for Georgia hail season. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "GAF Factory Certified roof replacement & storm damage repair. Golden Pledge 50-year warranty available. Serving Marietta, Alpharetta, Milton & Canton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 
