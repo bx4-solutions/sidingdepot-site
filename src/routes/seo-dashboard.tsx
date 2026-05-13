@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, useNavigate, Link, Outlet } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +28,9 @@ import {
   ChevronRight,
   MousePointer2,
   CalendarCheck2,
-  MessageSquare
+  MessageSquare,
+  AlertTriangle,
+  RefreshCcw
 } from "lucide-react";
 import { 
   AreaChart, 
@@ -44,6 +46,23 @@ import {
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
 import { cn } from "@/lib/utils";
+
+const FALLBACK_METRICS = {
+  overview: {
+    totalConversions: 0,
+    conversionRate: 0,
+    appointments: 0,
+    chatInteractions: 0,
+    totalVisitors: 0,
+    uniqueVisitors: 0,
+    pageViews: 0,
+    pagesPerVisit: 0,
+    bounceRate: 0,
+    avgSessionDuration: "0s",
+  },
+  trafficTrend: [],
+  acquisition: []
+};
 
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
@@ -71,12 +90,40 @@ export const Route = createFileRoute("/seo-dashboard")({
 function SEODashboard() {
   const navigate = useNavigate();
   const loaderData = Route.useLoaderData();
+  const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
+  const [sessionExists, setSessionExists] = useState(true);
   const userProfile = loaderData?.profile;
 
-  const { data: metrics, isLoading } = useQuery({
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSessionExists(!!session);
+    };
+    
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSessionExists(!!session);
+    });
+
+    checkSession();
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView],
-    queryFn: () => getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } }),
+    queryFn: async (): Promise<any> => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Unauthorized");
+      
+      return getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } });
+    },
+    enabled: sessionExists,
+    retry: (failureCount, error: any) => {
+      if (error?.message === "Unauthorized") return false;
+      return failureCount < 3;
+    },
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    placeholderData: (previousData) => previousData || (FALLBACK_METRICS as any),
   });
 
   const handleLogout = async () => {
@@ -105,13 +152,13 @@ function SEODashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
-      {/* SIDEBAR - Estilo ClickOne */}
+      {/* SIDEBAR - Estilo Siding Depot */}
       <aside className="w-64 bg-[#131921] border-r border-white/10 flex flex-col h-screen sticky top-0 shrink-0">
         <div className="p-6 flex items-center gap-3">
           <div className="bg-sd-green/10 p-2 rounded-lg">
             <Gauge className="h-6 w-6 text-sd-green" />
           </div>
-          <span className="font-display text-2xl tracking-tight text-white uppercase">ClickOne <span className="text-sd-green">SD</span></span>
+          <span className="font-display text-2xl tracking-tight text-white uppercase">Siding Depot <span className="text-sd-green">SD</span></span>
         </div>
 
         <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
@@ -202,7 +249,36 @@ function SEODashboard() {
               </Button>
             </div>
 
-            {isLoading ? (
+            {!sessionExists ? (
+              <Card className="bg-[#131921] border-sd-green/20 p-12 text-center animate-in fade-in zoom-in duration-500">
+                <div className="bg-sd-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <AlertTriangle className="h-8 w-8 text-sd-green" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Sessão Expirada ou Desconectado</h3>
+                <p className="text-slate-400 mb-8 max-w-sm mx-auto">
+                  Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.
+                </p>
+                <Button 
+                  onClick={() => navigate({ to: "/admin/login" })}
+                  className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-black"
+                >
+                  <RefreshCcw className="h-4 w-4 mr-2" /> RECONECTAR AGORA
+                </Button>
+              </Card>
+            ) : error ? (
+              <Card className="bg-[#131921] border-red-500/20 p-12 text-center animate-in fade-in duration-500">
+                <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+                <h3 className="text-xl font-bold">Erro ao buscar métricas</h3>
+                <p className="text-slate-400 mt-2">Ocorreu uma falha intermitente na conexão com o servidor.</p>
+                <Button 
+                  onClick={() => refetch()}
+                  variant="outline"
+                  className="mt-6 border-white/10 hover:bg-white/5"
+                >
+                  TENTAR NOVAMENTE
+                </Button>
+              </Card>
+            ) : isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[1, 2, 3, 4].map(i => (
                   <Card key={i} className="bg-[#131921] border-white/10 h-32 animate-pulse" />
@@ -277,7 +353,7 @@ function SEODashboard() {
                                     paddingAngle={5}
                                     dataKey="visitors"
                                   >
-                                    {metrics?.acquisition.map((entry, index) => (
+                                    {metrics?.acquisition?.map((entry: any, index: number) => (
                                       <Cell key={`cell-${index}`} fill={entry.color} />
                                     ))}
                                   </Pie>
@@ -286,7 +362,7 @@ function SEODashboard() {
                               </ResponsiveContainer>
                            </div>
                            <div className="w-full space-y-2 mt-4">
-                              {metrics?.acquisition.map((item, i) => (
+                              {metrics?.acquisition?.map((item: any, i: number) => (
                                 <div key={i} className="flex items-center justify-between text-xs">
                                   <div className="flex items-center gap-2">
                                     <div className="h-2 w-2 rounded-full" style={{ backgroundColor: item.color }} />
@@ -351,7 +427,7 @@ function SEODashboard() {
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
                     </div>
                     <h3 className="text-2xl font-bold">Módulo em Desenvolvimento</h3>
-                    <p className="text-slate-500 max-w-sm mt-2">Estamos portando as métricas 1:1 do ClickOne para este módulo. Disponível em breve.</p>
+                    <p className="text-slate-500 max-w-sm mt-2">Estamos portando as métricas 1:1 do Siding Depot para este módulo. Disponível em breve.</p>
                   </div>
                 )}
               </>
