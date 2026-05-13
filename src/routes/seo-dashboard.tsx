@@ -1093,7 +1093,7 @@ function SEODashboard() {
       </div>
 
       <Dialog open={!!selectedPageForLeads} onOpenChange={() => setSelectedPageForLeads(null)}>
-        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-md">
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <Globe className="h-5 w-5 text-sd-green" />
@@ -1110,6 +1110,21 @@ function SEODashboard() {
                 <Badge className="bg-sd-green text-sd-black font-black">{src.count} LEADS</Badge>
               </div>
             ))}
+            <div className="grid grid-cols-3 gap-3 pt-2">
+              {(() => {
+                const page = metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads);
+                return [
+                  ["Views", page?.views || 0],
+                  ["Tempo", page?.avgTime || "0s"],
+                  ["Conversões", page?.conversions || 0],
+                ].map(([label, value]) => (
+                  <div key={String(label)} className="rounded-lg bg-white/5 p-3 text-center border border-white/5">
+                    <p className="text-[10px] uppercase font-black text-slate-400">{label}</p>
+                    <p className="mt-1 text-lg font-black text-white">{value}</p>
+                  </div>
+                ));
+              })()}
+            </div>
             {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
               <div className="text-center py-8 text-slate-500 italic text-sm">
                 Nenhuma conversão registrada para esta página no período.
@@ -1123,6 +1138,62 @@ function SEODashboard() {
           >
             FECHAR
           </Button>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedBlogArticle} onOpenChange={() => setSelectedBlogArticle(null)}>
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <FileText className="h-5 w-5 text-sd-green" />
+              {selectedBlogArticle?.title}
+            </DialogTitle>
+            <DialogDescription className="text-slate-400">Leads, UTM, palavras-chave e evolução no período selecionado.</DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              ["Views", selectedBlogArticle?.views || 0],
+              ["Tempo", selectedBlogArticle?.avgTime || "0s"],
+              ["Bounce", `${selectedBlogArticle?.bounceRate || 0}%`],
+              ["Conversão", `${selectedBlogArticle?.conversion || 0}%`],
+            ].map(([label, value]) => (
+              <div key={String(label)} className="rounded-lg bg-white/5 p-3 border border-white/5">
+                <p className="text-[10px] uppercase font-black text-slate-400">{label}</p>
+                <p className="mt-1 text-lg font-black text-white">{value}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-4">
+            <div className="space-y-2">
+              <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
+              {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
+                <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
+                  <span className="text-sm font-bold">{src.source}</span>
+                  <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
+              <div className="flex flex-wrap gap-2">
+                {(selectedBlogArticle?.keywords || []).map((kw: string) => (
+                  <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="h-[220px] rounded-xl bg-white/5 p-3 border border-white/5">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={selectedBlogArticle?.trend || []}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+                <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
+                <Area type="monotone" dataKey="leads" name="Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
