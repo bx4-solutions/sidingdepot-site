@@ -2,17 +2,12 @@ import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import { SITE } from "@/data/site";
 
 export function MapSection() {
-  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${
-    import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""
-  }&q=${encodeURIComponent(SITE.address.full)}`;
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const mapUrl = apiKey
+    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(SITE.address.full)}`
+    : `https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.full)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
-  // Fallback to a simpler search embed if no API key is provided
-  // Note: Standard embed without API key uses a different URL structure
-  const fallbackMapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    SITE.address.full
-  )}&output=embed`;
-
-  const finalUrl = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ? mapUrl : fallbackMapUrl;
+  const finalUrl = mapUrl;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
