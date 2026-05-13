@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, useNavigate, Link, Outlet } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +28,9 @@ import {
   ChevronRight,
   MousePointer2,
   CalendarCheck2,
-  MessageSquare
+  MessageSquare,
+  AlertTriangle,
+  RefreshCcw
 } from "lucide-react";
 import { 
   AreaChart, 
@@ -44,6 +46,23 @@ import {
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
 import { cn } from "@/lib/utils";
+
+const FALLBACK_METRICS = {
+  overview: {
+    totalConversions: 0,
+    conversionRate: 0,
+    appointments: 0,
+    chatInteractions: 0,
+    totalVisitors: 0,
+    uniqueVisitors: 0,
+    pageViews: 0,
+    pagesPerVisit: 0,
+    bounceRate: 0,
+    avgSessionDuration: "0s",
+  },
+  trafficTrend: [],
+  acquisition: []
+};
 
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
@@ -71,12 +90,40 @@ export const Route = createFileRoute("/seo-dashboard")({
 function SEODashboard() {
   const navigate = useNavigate();
   const loaderData = Route.useLoaderData();
+  const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
+  const [sessionExists, setSessionExists] = useState(true);
   const userProfile = loaderData?.profile;
 
-  const { data: metrics, isLoading } = useQuery({
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSessionExists(!!session);
+    };
+    
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSessionExists(!!session);
+    });
+
+    checkSession();
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView],
-    queryFn: () => getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } }),
+    queryFn: async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Unauthorized");
+      
+      return getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } });
+    },
+    enabled: sessionExists,
+    retry: (failureCount, error: any) => {
+      if (error?.message === "Unauthorized") return false;
+      return failureCount < 3;
+    },
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    placeholderData: (previousData) => previousData || FALLBACK_METRICS,
   });
 
   const handleLogout = async () => {
@@ -105,13 +152,13 @@ function SEODashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
-      {/* SIDEBAR - Estilo ClickOne */}
+      {/* SIDEBAR - Estilo Siding Depot */}
       <aside className="w-64 bg-[#131921] border-r border-white/10 flex flex-col h-screen sticky top-0 shrink-0">
         <div className="p-6 flex items-center gap-3">
           <div className="bg-sd-green/10 p-2 rounded-lg">
             <Gauge className="h-6 w-6 text-sd-green" />
           </div>
-          <span className="font-display text-2xl tracking-tight text-white uppercase">ClickOne <span className="text-sd-green">SD</span></span>
+          <span className="font-display text-2xl tracking-tight text-white uppercase">Siding Depot <span className="text-sd-green">SD</span></span>
         </div>
 
         <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
