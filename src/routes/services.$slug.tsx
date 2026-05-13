@@ -188,6 +188,20 @@ export const Route = createFileRoute("/services/$slug")({
     const title = `${content.hero} | ${SITE.name}`;
     const description = content.intro;
     const url = `https://www.sidingdepot.com/services/${slug}`;
+
+    // Generate enhanced schemas
+    const serviceSchemas = generateServicePageSchemas({
+      title: content.hero,
+      description: content.intro,
+      serviceType: content.label,
+      image: content.ogImage ? `https://www.sidingdepot.com${content.ogImage}` : undefined,
+      // Adding common FAQs for these services
+      faqs: [
+        { q: `Do you provide free estimates for ${content.label.toLowerCase()}?`, a: "Yes, we provide 100% free, no-obligation on-site estimates for all our exterior services." },
+        { q: "Are you licensed and insured?", a: "Yes, Siding Depot is fully licensed and carries comprehensive liability and workers' compensation insurance." }
+      ]
+    });
+
     const meta = [
       { title },
       { name: "description", content: description },
@@ -206,20 +220,10 @@ export const Route = createFileRoute("/services/$slug")({
     return {
       meta,
       links: [{ rel: "canonical", href: url }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: content.hero,
-            provider: { "@type": "LocalBusiness", name: SITE.name, telephone: SITE.phone },
-            areaServed: "Greater Atlanta, GA",
-            description,
-            url,
-          }),
-        },
-      ],
+      scripts: serviceSchemas.map(schema => ({
+        type: "application/ld+json",
+        children: JSON.stringify(schema),
+      })),
     };
   },
   notFoundComponent: () => (
