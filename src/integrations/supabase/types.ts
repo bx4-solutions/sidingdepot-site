@@ -245,6 +245,30 @@ export type Database = {
         }
         Relationships: []
       }
+      sync_jobs: {
+        Row: {
+          details: Json | null
+          id: string
+          job_name: string
+          last_run: string | null
+          status: string
+        }
+        Insert: {
+          details?: Json | null
+          id?: string
+          job_name: string
+          last_run?: string | null
+          status: string
+        }
+        Update: {
+          details?: Json | null
+          id?: string
+          job_name?: string
+          last_run?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
