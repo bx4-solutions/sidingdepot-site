@@ -155,7 +155,11 @@ function DumpsterRentalPage() {
             decoding="async"
             className="absolute inset-0 -z-10 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-sd-navy/85 via-sd-navy/65 to-sd-navy/85" />
+          {/* Lighter left-to-right scrim only on the text side, plus a subtle
+              bottom fade — keeps the dumpster photo clearly visible while
+              preserving headline contrast. */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-sd-navy/80 via-sd-navy/45 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-sd-navy/60 to-transparent" />
           <div className="mx-auto max-w-6xl px-4 py-16 text-white lg:px-8 lg:py-24">
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               <Truck className="h-3.5 w-3.5" /> Dumpster Rental · North Atlanta
