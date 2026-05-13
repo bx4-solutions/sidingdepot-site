@@ -1157,6 +1157,7 @@ function SEODashboard() {
             </Card>
           </div>
         </TabsContent>
+        </Tabs>
 
         {userProfile?.role === "admin" && auditLogs && (
           <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
