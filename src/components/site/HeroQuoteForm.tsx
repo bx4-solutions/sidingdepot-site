@@ -34,12 +34,15 @@ type HeroQuoteFormProps = {
   tag?: string;
   /** Hide outer card chrome (header band + ring) — useful inside dialogs. */
   bare?: boolean;
+  /** Optional callback fired after successful submission. */
+  onSuccess?: () => void;
 };
 
 export function HeroQuoteForm({
   source = "hero_inline_form",
   tag = "hero_quote_request",
   bare = false,
+  onSuccess,
 }: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -115,6 +118,7 @@ export function HeroQuoteForm({
         services_count: parsed.data.services.length,
       });
       setDone(true);
+      onSuccess?.();
     } catch {
       track("quote_form_error", { source: source });
       setErrors({ message: "Não foi possível enviar agora. Tente novamente." });
