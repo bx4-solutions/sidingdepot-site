@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Window Replacement in Marietta, GA | Siding Depot — Free Estimate";
+const PAGE_TITLE = "Energy-Efficient Window Replacement in Marietta, GA | Siding Depot";
 const PAGE_DESC =
-  "Energy Star double-pane Low-E window replacement built for Atlanta's climate zone. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "Certified Simonton & PGT window replacement in North Atlanta. Energy Star double-pane Low-E windows built for Georgia heat. Serving Marietta, Alpharetta, Milton & Canton. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/windows";
 

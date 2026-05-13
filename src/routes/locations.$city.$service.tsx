@@ -10,7 +10,7 @@ import {
   getServiceMeta,
   SITE_ORIGIN,
 } from "@/data/locations";
-import { SITE } from "@/data/site";
+import { SITE, HERO } from "@/data/site";
 
 export const Route = createFileRoute("/locations/$city/$service")({
   loader: ({ params }) => {
@@ -94,7 +94,10 @@ export const Route = createFileRoute("/locations/$city/$service")({
         { name: "twitter:description", content: description },
         { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        { rel: "preload", as: "image", href: HERO.bgImage, fetchPriority: "high" as any },
+      ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(localBusiness) },
         { type: "application/ld+json", children: JSON.stringify(serviceSchema) },
