@@ -543,8 +543,75 @@ export function SidingLP({ city }: SidingLPProps) {
 
       <LeadMagnet city={city} source="lp_siding_magnet" />
 
+      {/* GREENSKY FINANCING */}
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-block rounded bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-sd-green-text">
+              0% APR Financing Available
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-sd-black sm:text-4xl">
+              GreenSky® Home Improvement Financing
+            </h2>
+            <p className="mt-3 text-sd-gray-text">
+              Pre-approved in 60 seconds. Soft credit pull, zero obligation, no impact on your score.
+            </p>
+          </div>
+
+          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {GREENSKY_STEPS.map((s) => (
+              <li
+                key={s.step}
+                className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-navy">
+                  {s.step}
+                </div>
+                <h3 className="mt-4 text-base font-bold text-sd-navy">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mx-auto mt-10 max-w-3xl">
+            <h3 className="text-center text-xl font-bold text-sd-navy">
+              Quick Financing Questions
+            </h3>
+            <Accordion type="single" collapsible className="mt-5 space-y-3">
+              {GREENSKY_FAQS.map((item, i) => (
+                <AccordionItem
+                  key={item.q}
+                  value={`gs-${i}`}
+                  className="rounded-xl border border-sd-gray-border bg-white px-5"
+                >
+                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-navy hover:no-underline">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-sd-gray-text leading-relaxed">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={scrollToLeadForm}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+              >
+                Get Pre-Approved With My Free Estimate →
+              </button>
+              <p className="mt-2 text-xs text-sd-gray-text">
+                Subject to credit approval. GreenSky® is a registered service mark of GreenSky, LLC.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-center text-3xl sm:text-4xl font-extrabold text-sd-black">
             Common <span className="text-sd-green">Questions</span>
@@ -560,13 +627,21 @@ export function SidingLP({ city }: SidingLPProps) {
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sd-gray-text leading-relaxed">
-                  {item.a}
+                  <p>{item.a}</p>
+                  <button
+                    type="button"
+                    onClick={scrollToLeadForm}
+                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                  >
+                    Request My Free Estimate →
+                  </button>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
+
 
       {/* FOOTER */}
       <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
