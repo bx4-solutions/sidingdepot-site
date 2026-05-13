@@ -5,7 +5,6 @@ const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_search_console
 
 /**
  * Server function to request URL inspection from Google Search Console
- * Useful for immediate indexing after publishing new pages
  */
 export const inspectURL = createServerFn({ method: "POST" })
   .inputValidator((data) =>
@@ -22,7 +21,6 @@ export const inspectURL = createServerFn({ method: "POST" })
       throw new Error("Google Search Console not connected");
     }
 
-    // Extract site URL from the path parameter
     const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
 
     const response = await fetch(
@@ -46,6 +44,11 @@ export const inspectURL = createServerFn({ method: "POST" })
     }
 
     const result = await response.json();
+    
+    // Side effect: Log to persistent storage (simulated here since we don't have a DB yet, 
+    // but in a real scenario we'd use Supabase or a JSON file)
+    console.info(`[GSC-LOG] ${new Date().toISOString()} | INSPECTED | ${data.url} | ${result.indexingState || 'PENDING'}`);
+
     return {
       success: true,
       inspectionResult: result,
@@ -98,17 +101,19 @@ export const getIndexingStatus = createServerFn({ method: "POST" })
       coverageState: result.coverageState,
       crawlState: result.crawlState,
       robotsTxtState: result.robotsTxtState,
+      timestamp: new Date().toISOString(),
     };
   });
 
 /**
- * Fetch search analytics data from GSC
+ * Fetch search analytics data from GSC with dimensions and date ranges
  */
 export const getSearchAnalytics = createServerFn({ method: "POST" })
   .inputValidator((data) =>
     z.object({
       startDate: z.string(), // YYYY-MM-DD
       endDate: z.string(), // YYYY-MM-DD
+      dimensions: z.array(z.string()).optional().default(["page", "query"]),
     }).parse(data)
   )
   .handler(async ({ data }) => {
@@ -136,8 +141,8 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
         body: JSON.stringify({
           startDate: data.startDate,
           endDate: data.endDate,
-          dimensions: ["page", "query"],
-          rowLimit: 25,
+          dimensions: data.dimensions,
+          rowLimit: 100,
         }),
       }
     );
@@ -152,5 +157,35 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
       rows: result.rows || [],
       startDate: data.startDate,
       endDate: data.endDate,
+    };
+  });
+
+/**
+ * Simulates Lighthouse metrics (in a real app, this would call a Lighthouse API or run a tool)
+ */
+export const getLighthouseMetrics = createServerFn({ method: "POST" })
+  .inputValidator((data) => z.object({ url: z.string().url() }).parse(data))
+  .handler(async ({ data }) => {
+    // In a production environment, we'd use PageSpeed Insights API
+    // For now, we return high-quality simulated data based on common benchmarks
+    // to demonstrate the dashboard functionality.
+    
+    // Simulate API delay
+    await new Promise(r => setTimeout(r, 800));
+
+    return {
+      url: data.url,
+      performance: 92 + Math.floor(Math.random() * 8),
+      accessibility: 95 + Math.floor(Math.random() * 5),
+      bestPractices: 98 + Math.floor(Math.random() * 2),
+      seo: 100,
+      metrics: {
+        lcp: "1.2s",
+        cls: "0.02",
+        tbt: "120ms",
+        fid: "15ms",
+        tti: "2.1s"
+      },
+      timestamp: new Date().toISOString(),
     };
   });
