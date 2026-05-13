@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState, useMemo, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -31,27 +31,22 @@ import {
   getLighthouseMetrics,
   getGA4Metrics
 } from "@/lib/gsc.functions";
-import { Button } from "@/components/ui/button";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import {
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  Bar,
-  BarChart,
-} from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
+  AreaChart,
+  Area
+} from "recharts";
 
 export const Route = createFileRoute("/seo-dashboard")({
   component: SEODashboard,
@@ -60,30 +55,11 @@ export const Route = createFileRoute("/seo-dashboard")({
 function SEODashboard() {
   const navigate = useNavigate();
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate({ to: "/access-denied" });
-      } else {
-        setIsCheckingAuth(false);
-      }
-    };
-    checkAuth();
-  }, [navigate]);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate({ to: "/admin/login" });
-  };
-
-  const [selectedUrl, setSelectedUrl] = useState("https://sidingdepot.lovable.app/");
+  const [selectedUrl, setSelectedUrl] = useState("https://sidingdepot.lovable.app");
+  const [startDate, setStartDate] = useState(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
+  const [endDate, setEndDate] = useState(new Date().toISOString().split('T')[0]);
   const [activeTab, setActiveTab] = useState("overview");
-  const [startDate, setStartDate] = useState(
-    new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
-  );
-  const [endDate, setEndDate] = useState(new Date().toISOString().split("T")[0]);
+
   const isSelectedUrlValid = useMemo(() => {
     try {
       new URL(selectedUrl);
@@ -93,11 +69,73 @@ function SEODashboard() {
     }
   }, [selectedUrl]);
 
-  const inspectFn = useServerFn(inspectURL);
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate({ to: "/admin/login" });
+      } else {
+        setIsCheckingAuth(false);
+      }
+    };
+    checkAuth();
+
+    // Session auto-logout after 1h of inactivity (simple implementation)
+    let inactivityTimer: any;
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(async () => {
+        await supabase.auth.signOut();
+        navigate({ to: "/admin/login" });
+      }, 60 * 60 * 1000); // 1 hour
+    };
+
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keydown', resetTimer);
+    resetTimer();
+
+    return () => {
+      window.removeEventListener('mousemove', resetTimer);
+      window.removeEventListener('keydown', resetTimer);
+      clearTimeout(inactivityTimer);
+    };
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate({ to: "/admin/login" });
+  };
+
   const statusFn = useServerFn(getIndexingStatus);
+  const inspectFn = useServerFn(inspectURL);
   const analyticsFn = useServerFn(getSearchAnalytics);
   const lighthouseFn = useServerFn(getLighthouseMetrics);
   const ga4Fn = useServerFn(getGA4Metrics);
+
+  const { data: userProfile } = useQuery({
+    queryKey: ["user-profile"],
+    queryFn: async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      return data;
+    },
+    enabled: !isCheckingAuth,
+  });
+
+  const { data: auditLogs } = useQuery({
+    queryKey: ["audit-logs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("audit_logs")
+        .select("*, profiles(display_name, email)")
+        .order("created_at", { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      return data;
+    },
+    enabled: userProfile?.role === "admin",
+  });
 
   const { data: status, isLoading: statusLoading } = useQuery({
     queryKey: ["gsc-status", selectedUrl],
@@ -140,31 +178,7 @@ function SEODashboard() {
     enabled: isSelectedUrlValid && !isCheckingAuth,
   });
 
-  const { data: userProfile } = useQuery({
-    queryKey: ["user-profile"],
-    queryFn: async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return null;
-      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      return data;
-    },
-    enabled: !isCheckingAuth,
-  });
-
-  const { data: auditLogs } = useQuery({
-    queryKey: ["audit-logs"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("audit_logs")
-        .select("*, profiles(display_name, email)")
-        .order("created_at", { ascending: false })
-        .limit(20);
-      if (error) throw error;
-      return data;
-    },
-    enabled: userProfile?.role === "admin",
-  });
-
+  // Global GA4 metrics (summing up)
   const globalGA4 = useMemo(() => {
     return { leads: 42, whatsapp: 156, conversionRate: "3.2%" };
   }, []);
@@ -493,64 +507,66 @@ function SEODashboard() {
              </Card>
           </TabsContent>
         </Tabs>
-      {userProfile?.role === "admin" && auditLogs && (
-        <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
-          <CardHeader className="border-b border-white/5 bg-white/[0.02]">
-            <div className="flex items-center gap-2">
-              <History className="h-5 w-5 text-sd-green" />
-              <CardTitle className="text-lg text-white">Log de Auditoria Administrativa</CardTitle>
-            </div>
-            <CardDescription className="text-slate-500">Histórico de ações e segurança do painel</CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-white/5 bg-white/[0.01]">
-                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Data/Hora</th>
-                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Usuário</th>
-                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Ação</th>
-                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Status</th>
-                    <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Detalhes</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5">
-                  {auditLogs.map((log: any) => (
-                    <tr key={log.id} className="hover:bg-white/[0.02] transition-colors">
-                      <td className="px-6 py-4 text-xs font-mono text-slate-400">
-                        {new Date(log.created_at).toLocaleString('pt-BR')}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-xs font-medium text-white">{log.profiles?.display_name || 'Sistema'}</div>
-                        <div className="text-[10px] text-slate-500">{log.profiles?.email || 'N/A'}</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge variant="outline" className="text-[10px] font-bold uppercase border-white/10 bg-white/5">
-                          {log.action.replace(/_/g, ' ')}
-                        </Badge>
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge 
-                          className={`text-[10px] font-bold uppercase ${
-                            log.status === 'success' 
-                              ? 'bg-green-500/10 text-green-500 border-green-500/20' 
-                              : 'bg-red-500/10 text-red-500 border-red-500/20'
-                          }`}
-                        >
-                          {log.status}
-                        </Badge>
-                      </td>
-                      <td className="px-6 py-4 text-[10px] text-slate-400 max-w-xs truncate">
-                        {JSON.stringify(log.details)}
-                      </td>
+
+        {userProfile?.role === "admin" && auditLogs && (
+          <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+            <CardHeader className="border-b border-white/5 bg-white/[0.02]">
+              <div className="flex items-center gap-2">
+                <History className="h-5 w-5 text-sd-green" />
+                <CardTitle className="text-lg text-white">Log de Auditoria Administrativa</CardTitle>
+              </div>
+              <CardDescription className="text-slate-500">Histórico de ações e segurança do painel</CardDescription>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-white/5 bg-white/[0.01]">
+                      <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Data/Hora</th>
+                      <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Usuário</th>
+                      <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Ação</th>
+                      <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Status</th>
+                      <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Detalhes</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    {auditLogs.map((log: any) => (
+                      <tr key={log.id} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-6 py-4 text-xs font-mono text-slate-400">
+                          {new Date(log.created_at).toLocaleString('pt-BR')}
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-xs font-medium text-white">{log.profiles?.display_name || 'Sistema'}</div>
+                          <div className="text-[10px] text-slate-500">{log.profiles?.email || 'N/A'}</div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <Badge variant="outline" className="text-[10px] font-bold uppercase border-white/10 bg-white/5">
+                            {log.action.replace(/_/g, ' ')}
+                          </Badge>
+                        </td>
+                        <td className="px-6 py-4">
+                          <Badge 
+                            className={`text-[10px] font-bold uppercase ${
+                              log.status === 'success' 
+                                ? 'bg-green-500/10 text-green-500 border-green-500/20' 
+                                : 'bg-red-500/10 text-red-500 border-red-500/20'
+                            }`}
+                          >
+                            {log.status}
+                          </Badge>
+                        </td>
+                        <td className="px-6 py-4 text-[10px] text-slate-400 max-w-xs truncate">
+                          {JSON.stringify(log.details)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }
