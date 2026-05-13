@@ -60,7 +60,7 @@ export const Route = createFileRoute("/finance")({
           content: "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
         },
         { property: "og:title", content: "Financing for Siding & Roofing | Siding Depot" },
-        { property: "og:description", content: "Flexible financing for your siding, roofing, or painting project via GreenSky®." },
+        { property: "og:description", content: "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available." },
         { property: "og:image", content: "/projects/project-1.webp" },
         { property: "og:type", content: "website" },
       ],
