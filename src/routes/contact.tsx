@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
 import { track, trackLeadSubmit, trackContactPageView, trackQualifiedLead } from "@/lib/track";
 import { submitToGHL } from "@/lib/ghl.functions";
+import { MapSection } from "@/components/site/MapSection";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
