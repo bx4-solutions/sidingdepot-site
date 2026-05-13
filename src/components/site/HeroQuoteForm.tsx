@@ -27,9 +27,20 @@ const schema = z.object({
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
 
-const SOURCE = "hero_inline_form";
+type HeroQuoteFormProps = {
+  /** Tracking source label sent to analytics + GHL payload. */
+  source?: string;
+  /** Optional override for the lead tag sent to GHL. */
+  tag?: string;
+  /** Hide outer card chrome (header band + ring) — useful inside dialogs. */
+  bare?: boolean;
+};
 
-export function HeroQuoteForm() {
+export function HeroQuoteForm({
+  source = "hero_inline_form",
+  tag = "hero_quote_request",
+  bare = false,
+}: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
