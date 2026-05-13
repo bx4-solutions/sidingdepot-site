@@ -276,6 +276,11 @@ function SEODashboard() {
           </div>
           
           <div className="flex items-center gap-3">
+            {userProfile?.role === "admin" && (
+              <Badge variant="outline" className="bg-sd-green/10 text-sd-green border-sd-green/20 gap-1.5 py-1">
+                <ShieldCheck className="h-3 w-3" /> Admin
+              </Badge>
+            )}
             <Button 
               variant="outline" 
               size="sm" 
