@@ -98,6 +98,10 @@ function SEODashboard() {
   const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
+  const [dateRange, setDateRange] = useState({ 
+    startDate: "2026-04-13", 
+    endDate: "2026-05-13" 
+  });
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
@@ -115,15 +119,15 @@ function SEODashboard() {
   }, []);
 
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
-    queryKey: ["dashboard-metrics", activeView],
+    queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
     queryFn: async (): Promise<any> => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error("Unauthorized");
       
-      return getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } });
+      return getDashboardMetrics({ data: { startDate: dateRange.startDate, endDate: dateRange.endDate } });
     },
     enabled: sessionExists,
-    refetchInterval: 60000, // Atualização automática a cada 60 segundos
+    refetchInterval: 60000,
     retry: (failureCount, error: any) => {
       if (error?.message === "Unauthorized") return false;
       return failureCount < 3;
