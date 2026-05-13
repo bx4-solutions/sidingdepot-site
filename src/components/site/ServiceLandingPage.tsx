@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
 import { SERVICE_METADATA_AB, getSeoForVariation } from "@/data/seo-config";
 import {
@@ -126,35 +127,43 @@ export function ServiceLandingPage({
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
-          <div className="max-w-2xl">
-            <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              {eyebrow}
-            </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              {title}{" "}
-              <span className="text-sd-green">{titleAccent}</span>
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">{intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
-                  Get a free estimate <ArrowRight />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
-                  <Phone /> Call {SITE.phone}
-                </a>
-              </Button>
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
+            <div className="max-w-2xl">
+              <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
+                {eyebrow}
+              </span>
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+                {title}{" "}
+                <span className="text-sd-green">{titleAccent}</span>
+              </h1>
+              <p className="mt-6 text-lg text-white/80 leading-relaxed">{intro}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
+                    Get a free estimate <ArrowRight />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outlineWhite">
+                  <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
+                    <Phone /> Call {SITE.phone}
+                  </a>
+                </Button>
+              </div>
+              <ul className="mt-10 grid gap-3 sm:grid-cols-2 text-sm text-white/85">
+                {benefits.map((b) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 text-sd-green shrink-0" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="mt-10 grid gap-3 sm:grid-cols-2 text-sm text-white/85">
-              {benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-sd-green shrink-0" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="lg:sticky lg:top-24">
+              <HeroQuoteForm
+                source={`service_${serviceKey}_hero`}
+                tag={`service_${serviceKey}_quote`}
+              />
+            </div>
           </div>
         </div>
       </section>
