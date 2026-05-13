@@ -65,6 +65,11 @@ function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
+  // Track page view on mount
+  useEffect(() => {
+    trackContactPageView();
+  }, []);
+
   // Keep "origem" in sync if the user lands with ?source=...
   useEffect(() => {
     if (search.source) {
