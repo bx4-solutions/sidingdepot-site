@@ -1,22 +1,35 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Facebook, Instagram, Mail, MapPin, Music2, Phone, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Siding Depot — James Hardie Elite Preferred Contractor in Georgia" },
+      {
+        title:
+          "About Siding Depot — James Hardie Elite Preferred Siding Contractor in Marietta, GA",
+      },
       {
         name: "description",
         content:
-          "For 15+ years, Siding Depot has helped Georgia homeowners protect and enhance their homes. James Hardie certified contractor delivering siding, painting, windows, decks, gutters & roofing.",
+          "Local James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 15+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
-      { property: "og:title", content: "About Siding Depot — Georgia's Trusted Exterior Contractor" },
+      {
+        name: "keywords",
+        content:
+          "siding contractor Marietta GA, James Hardie installer Atlanta, fiber cement siding Georgia, siding replacement North Atlanta, siding installation Cobb County, exterior remodeling Alpharetta",
+      },
+      {
+        property: "og:title",
+        content:
+          "About Siding Depot — Georgia's Trusted James Hardie Siding Installer",
+      },
       {
         property: "og:description",
         content:
-          "1,500+ homes transformed, 98% customer satisfaction. James Hardie Elite Preferred installer serving North Atlanta.",
+          "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
     ],
   }),
