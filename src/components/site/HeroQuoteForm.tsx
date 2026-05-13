@@ -9,17 +9,38 @@ import { SITE, SERVICE_OPTIONS } from "@/data/site";
 import { track } from "@/lib/track";
 
 const schema = z.object({
-  name: z.string().trim().min(2, { message: "Informe seu nome" }).max(100),
+  name: z
+    .string()
+    .trim()
+    .min(2, { message: "Informe seu nome completo (mínimo 2 caracteres)" })
+    .max(100, { message: "Nome muito longo (máximo 100 caracteres)" }),
   phone: z
     .string()
     .trim()
-    .min(7, { message: "Telefone inválido" })
-    .max(30)
-    .regex(/^[+\d\s().-]+$/, { message: "Telefone inválido" }),
-  email: z.string().trim().email({ message: "E-mail inválido" }).max(255),
-  city: z.string().trim().min(2, { message: "Informe sua cidade" }).max(80),
-  services: z.array(z.string()).min(1, { message: "Select at least one service" }),
-  message: z.string().trim().max(1000).optional().or(z.literal("")),
+    .min(7, { message: "Informe um telefone válido com DDD" })
+    .max(30, { message: "Telefone muito longo" })
+    .regex(/^[+\d\s().-]+$/, {
+      message: "Use apenas números, espaços e os caracteres + ( ) . -",
+    }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Informe um e-mail válido (ex.: nome@dominio.com)" })
+    .max(255, { message: "E-mail muito longo" }),
+  city: z
+    .string()
+    .trim()
+    .min(2, { message: "Informe sua cidade" })
+    .max(80, { message: "Cidade muito longa" }),
+  services: z
+    .array(z.string())
+    .min(1, { message: "Selecione pelo menos um serviço" }),
+  message: z
+    .string()
+    .trim()
+    .max(1000, { message: "Mensagem muito longa (máximo 1000 caracteres)" })
+    .optional()
+    .or(z.literal("")),
 });
 
 // SERVICE_OPTIONS is the single source of truth — see src/data/site.ts
