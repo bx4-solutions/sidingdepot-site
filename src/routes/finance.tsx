@@ -5,20 +5,75 @@ import { SITE } from "@/data/site";
 import { trackFinanceApply } from "@/lib/track";
 
 export const Route = createFileRoute("/finance")({
-  head: () => ({
-    meta: [
-      { title: "Financing Options | Siding Depot — GreenSky® Home Improvement Loans" },
-      {
-        name: "description",
-        content:
-          "Flexible financing for your siding, roofing, or painting project. Deferred interest and fixed monthly budget plans via GreenSky®. Apply online in minutes.",
-      },
-      { property: "og:title", content: "Financing Options | Siding Depot" },
-      { property: "og:description", content: "Flexible financing for your siding, roofing, or painting project via GreenSky®." },
-      { property: "og:image", content: "/projects/project-1.webp" },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () => {
+    const canonical = "https://sidingdepot.com/finance";
+    const schema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": `${canonical}/#webpage`,
+          "url": canonical,
+          "name": "Financing Options | Siding Depot — GreenSky® Home Improvement Loans",
+          "description": "Flexible financing for your siding, roofing, or painting project. Deferred interest and fixed monthly budget plans via GreenSky®. Apply online in minutes.",
+          "isPartOf": { "@id": "https://sidingdepot.com/#website" }
+        },
+        {
+          "@type": ["Organization", "LocalBusiness"],
+          "@id": "https://sidingdepot.com/#organization",
+          "name": SITE.name,
+          "legalName": SITE.legalName,
+          "url": "https://sidingdepot.com",
+          "logo": "https://sidingdepot.com/logo.png",
+          "telephone": SITE.phone,
+          "email": SITE.email,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": SITE.address.street,
+            "addressLocality": SITE.address.city,
+            "addressRegion": SITE.address.state,
+            "postalCode": SITE.address.zip,
+            "addressCountry": "US"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          "sameAs": [
+            SITE.social.facebook,
+            SITE.social.instagram,
+            SITE.social.youtube,
+            SITE.social.tiktok
+          ]
+        }
+      ]
+    };
+
+    return {
+      meta: [
+        { title: "Financing Options | Siding Depot — GreenSky® Home Improvement Loans" },
+        {
+          name: "description",
+          content: "Flexible financing for your siding, roofing, or painting project. Deferred interest and fixed monthly budget plans via GreenSky®. Apply online in minutes.",
+        },
+        { property: "og:title", content: "Financing Options | Siding Depot" },
+        { property: "og:description", content: "Flexible financing for your siding, roofing, or painting project via GreenSky®." },
+        { property: "og:image", content: "/projects/project-1.webp" },
+        { property: "og:type", content: "website" },
+      ],
+      links: [
+        { rel: "canonical", href: canonical }
+      ],
+      script: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(schema)
+        }
+      ]
+    };
+  },
   component: FinancePage,
 });
 
