@@ -56,6 +56,77 @@ export type Database = {
         }
         Relationships: []
       }
+      alert_history: {
+        Row: {
+          created_at: string | null
+          id: string
+          metric_value: number
+          rule_id: string | null
+          status: string | null
+          threshold_value: number
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          metric_value: number
+          rule_id?: string | null
+          status?: string | null
+          threshold_value: number
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          metric_value?: number
+          rule_id?: string | null
+          status?: string | null
+          threshold_value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alert_history_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "alert_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      alert_rules: {
+        Row: {
+          comparison_operator: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          metric: string
+          name: string
+          threshold: number
+          time_window_minutes: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          comparison_operator: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          metric: string
+          name: string
+          threshold: number
+          time_window_minutes?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          comparison_operator?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          metric?: string
+          name?: string
+          threshold?: number
+          time_window_minutes?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -137,6 +208,86 @@ export type Database = {
           suggested_date?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      campaign_metrics_daily: {
+        Row: {
+          campaign_id: string | null
+          conversions: number | null
+          created_at: string | null
+          date: string
+          id: string
+          reach: number | null
+          revenue: number | null
+          views: number | null
+          visitors: number | null
+        }
+        Insert: {
+          campaign_id?: string | null
+          conversions?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          reach?: number | null
+          revenue?: number | null
+          views?: number | null
+          visitors?: number | null
+        }
+        Update: {
+          campaign_id?: string | null
+          conversions?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          reach?: number | null
+          revenue?: number | null
+          views?: number | null
+          visitors?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "campaign_metrics_daily_campaign_id_fkey"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "campaigns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      campaigns: {
+        Row: {
+          created_at: string | null
+          current_revenue: number | null
+          end_date: string | null
+          id: string
+          name: string
+          start_date: string | null
+          status: string | null
+          target_revenue: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          current_revenue?: number | null
+          end_date?: string | null
+          id?: string
+          name: string
+          start_date?: string | null
+          status?: string | null
+          target_revenue?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          current_revenue?: number | null
+          end_date?: string | null
+          id?: string
+          name?: string
+          start_date?: string | null
+          status?: string | null
+          target_revenue?: number | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -266,6 +417,108 @@ export type Database = {
           job_name?: string
           last_run?: string | null
           status?: string
+        }
+        Relationships: []
+      }
+      traffic_metrics_daily: {
+        Row: {
+          appointments: number | null
+          avg_session_duration: string | null
+          bounce_rate: number | null
+          conversions: number | null
+          created_at: string | null
+          date: string
+          id: string
+          page_views: number | null
+          total_visitors: number | null
+          unique_visitors: number | null
+        }
+        Insert: {
+          appointments?: number | null
+          avg_session_duration?: string | null
+          bounce_rate?: number | null
+          conversions?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          page_views?: number | null
+          total_visitors?: number | null
+          unique_visitors?: number | null
+        }
+        Update: {
+          appointments?: number | null
+          avg_session_duration?: string | null
+          bounce_rate?: number | null
+          conversions?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          page_views?: number | null
+          total_visitors?: number | null
+          unique_visitors?: number | null
+        }
+        Relationships: []
+      }
+      traffic_sources_daily: {
+        Row: {
+          conversions: number | null
+          created_at: string | null
+          date: string
+          id: string
+          revenue: number | null
+          source: string
+          visitors: number | null
+        }
+        Insert: {
+          conversions?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          revenue?: number | null
+          source: string
+          visitors?: number | null
+        }
+        Update: {
+          conversions?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          revenue?: number | null
+          source?: string
+          visitors?: number | null
+        }
+        Relationships: []
+      }
+      utm_campaigns: {
+        Row: {
+          conv_rate: number | null
+          conversions: number | null
+          id: string
+          last_synced: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          visitors: number | null
+        }
+        Insert: {
+          conv_rate?: number | null
+          conversions?: number | null
+          id?: string
+          last_synced?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visitors?: number | null
+        }
+        Update: {
+          conv_rate?: number | null
+          conversions?: number | null
+          id?: string
+          last_synced?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visitors?: number | null
         }
         Relationships: []
       }
