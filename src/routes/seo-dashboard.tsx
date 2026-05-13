@@ -1202,7 +1202,7 @@ function SEODashboard() {
       </Dialog>
 
       <Dialog open={!!selectedBlogArticle} onOpenChange={() => setSelectedBlogArticle(null)}>
-        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-3xl">
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-4xl max-h-[90vh] overflow-y-auto custom-scrollbar">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <FileText className="h-5 w-5 text-sd-green" />
