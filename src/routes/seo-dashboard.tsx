@@ -436,15 +436,16 @@ function SEODashboard() {
 
         <Tabs defaultValue="overview" className="space-y-6" onValueChange={setActiveTab}>
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <TabsList className="bg-transparent border-none p-0 h-auto gap-6">
+            <TabsList className="bg-transparent border-none p-0 h-auto gap-6 flex-wrap">
               <TabsTrigger value="overview" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">VISÃO GERAL</TabsTrigger>
               <TabsTrigger value="pages" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">LANDING PAGES</TabsTrigger>
+              <TabsTrigger value="ab-testing" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">A/B Testing Performance</TabsTrigger>
+              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
               {userProfile?.role === "admin" && (
                 <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
               )}
-
-              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
             </TabsList>
+
             
             <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-3 py-1.5">
               <Filter className="h-3.5 w-3.5 text-slate-500" />
