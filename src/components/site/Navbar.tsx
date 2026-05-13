@@ -6,7 +6,7 @@ import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
-// ... keep existing code
+
 const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/siding", label: "Siding" },
@@ -22,8 +22,6 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState<any>(null);
   const location = useLocation();
-  // TanStack Router stores the hash without the leading "#".
-  const activeHash = location.hash;
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -114,6 +112,15 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            {session && (
+              <Link
+                to="/seo-dashboard"
+                className="px-3 py-2 rounded-md text-sm font-bold text-sd-green hover:bg-white/5"
+                onClick={() => setOpen(false)}
+              >
+                SEO Dashboard
+              </Link>
+            )}
             <Button asChild className="mt-3">
               <a href={SITE.phoneHref}>
                 <Phone /> Call {SITE.phone}
