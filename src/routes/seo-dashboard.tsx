@@ -159,10 +159,11 @@ function SEODashboard() {
     setIsExporting(true);
     try {
       if (type === 'csv') {
-        const headers = ["Service", "Variation", "Views", "Clicks", "Leads", "CTR (%)", "Conv. Rate (%)"];
+        const headers = ["Service", "Variation", "City", "Views", "Clicks", "Leads", "CTR (%)", "Conv. Rate (%)"];
         const rows = abPerformance.map(p => [
           p.service,
           p.variation,
+          p.city,
           p.views,
           p.clicks,
           p.leads,
