@@ -156,6 +156,8 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           conversions: 0,
           leadsBySource: [] as Array<{ source: string; count: number }>,
           sourceCounts: new Map<string, number>(),
+          trend: [] as Array<{ date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>,
+          trendCounts: new Map<string, { date: string; views: number; leads: number; leadsByChannel: Record<string, number> }>(),
         };
         if (isViewEvent(eventType)) pageStats.views += 1;
         if (isLeadEvent(eventType)) {
@@ -163,6 +165,14 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           pageStats.sourceCounts.set(source, (pageStats.sourceCounts.get(source) || 0) + 1);
         }
         if (duration > 0) pageStats.avgTimeSeconds += duration;
+
+        const pageTrend = pageStats.trendCounts.get(day) || { date: day, views: 0, leads: 0, leadsByChannel: {} };
+        if (isViewEvent(eventType)) pageTrend.views += 1;
+        if (isLeadEvent(eventType)) {
+          pageTrend.leads += 1;
+          pageTrend.leadsByChannel[source] = (pageTrend.leadsByChannel[source] || 0) + 1;
+        }
+        pageStats.trendCounts.set(day, pageTrend);
         pageMap.set(page, pageStats);
 
         if (isClickEvent(eventType)) {
