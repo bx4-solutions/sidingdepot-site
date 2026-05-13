@@ -174,6 +174,7 @@ function SEODashboard() {
     }
   });
 
+  const { data: status, isLoading: statusLoading } = useQuery({
     queryKey: ["gsc-status", selectedUrl],
     queryFn: async () => {
       try {
