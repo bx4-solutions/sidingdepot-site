@@ -140,7 +140,31 @@ function SEODashboard() {
     enabled: isSelectedUrlValid && !isCheckingAuth,
   });
 
-  // Global GA4 metrics (summing up)
+  const { data: userProfile } = useQuery({
+    queryKey: ["user-profile"],
+    queryFn: async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      return data;
+    },
+    enabled: !isCheckingAuth,
+  });
+
+  const { data: auditLogs } = useQuery({
+    queryKey: ["audit-logs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("audit_logs")
+        .select("*, profiles(display_name, email)")
+        .order("created_at", { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      return data;
+    },
+    enabled: userProfile?.role === "admin",
+  });
+
   const globalGA4 = useMemo(() => {
     return { leads: 42, whatsapp: 156, conversionRate: "3.2%" };
   }, []);
