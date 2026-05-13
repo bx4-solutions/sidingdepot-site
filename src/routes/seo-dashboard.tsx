@@ -353,7 +353,7 @@ function SEODashboard() {
                                     paddingAngle={5}
                                     dataKey="visitors"
                                   >
-                                    {metrics?.acquisition.map((entry, index) => (
+                                    {metrics?.acquisition?.map((entry: any, index: number) => (
                                       <Cell key={`cell-${index}`} fill={entry.color} />
                                     ))}
                                   </Pie>
@@ -362,7 +362,7 @@ function SEODashboard() {
                               </ResponsiveContainer>
                            </div>
                            <div className="w-full space-y-2 mt-4">
-                              {metrics?.acquisition.map((item, i) => (
+                              {metrics?.acquisition?.map((item: any, i: number) => (
                                 <div key={i} className="flex items-center justify-between text-xs">
                                   <div className="flex items-center gap-2">
                                     <div className="h-2 w-2 rounded-full" style={{ backgroundColor: item.color }} />
