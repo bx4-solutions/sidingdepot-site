@@ -39,7 +39,8 @@ import {
   ArrowDownRight,
   ExternalLink,
   ChevronDown,
-  Info
+  Info,
+  Phone
 } from "lucide-react";
 import { toast } from "sonner";
 import { 
