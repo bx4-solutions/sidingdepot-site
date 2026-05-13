@@ -234,7 +234,7 @@ function SEODashboard() {
   // Fetch Blog Posts
   const { data: blogPosts, refetch: refetchBlog } = useQuery({
     queryKey: ["blog-posts"],
-    queryFn: () => getBlogFn({ data: {} }),
+    queryFn: () => getBlogFn(),
     enabled: !isCheckingAuth,
   });
 
