@@ -25,54 +25,86 @@ function AdminLogin() {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate({ to: "/seo-dashboard" });
+        // Verify if session is actually valid
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (user && !error) {
+          navigate({ to: "/seo-dashboard" });
+        } else {
+          // If session exists but user call fails, clear it
+          await supabase.auth.signOut();
+        }
       }
     };
     checkUser();
   }, [navigate]);
+
+  const clearSession = async () => {
+    await supabase.auth.signOut();
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.reload();
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     
+    // Basic validation
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      setError("Por favor, preencha todos os campos.");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: trimmedEmail,
+        password: password,
       });
 
       if (error) {
         let userMessage = "Ocorreu um erro ao tentar entrar.";
         
         if (error.message.includes("Invalid login credentials") || error.message.includes("invalid_credentials")) {
-          // Check if user exists to distinguish between user-not-found and wrong-password
-          // Note: In secure auth, we shouldn't reveal if user exists, but user specifically asked for it.
-          // However, Supabase doesn't reveal this easily via signInWithPassword.
-          // We can use a custom error mapping:
-          userMessage = "Senha incorreta ou e-mail não cadastrado.";
+          userMessage = "Senha incorreta ou e-mail não cadastrado. Verifique seus dados e tente novamente.";
         } else if (error.message.includes("Email not confirmed")) {
-          userMessage = "E-mail ainda não confirmado.";
+          userMessage = "E-mail ainda não confirmado. Verifique sua caixa de entrada.";
         } else if (error.message.includes("rate limit")) {
-          userMessage = "Muitas tentativas. Tente novamente mais tarde.";
+          userMessage = "Muitas tentativas. Por favor, aguarde alguns minutos.";
         } else {
           userMessage = error.message;
         }
 
-        await supabase.rpc('log_admin_action', {
-          p_action: 'login_failed',
-          p_details: { email, reason: error.message },
-          p_status: 'error'
-        });
+        // Try to log failed attempt if possible
+        try {
+          await supabase.from('audit_logs').insert({
+            action: 'login_failed',
+            details: { email: trimmedEmail, reason: error.message },
+            status: 'error'
+          });
+        } catch (logErr) {
+          console.error("Failed to log audit:", logErr);
+        }
+
         throw new Error(userMessage);
       }
 
-      await supabase.rpc('log_admin_action', {
-        p_action: 'login_success',
-        p_details: { email }
-      });
-      
-      navigate({ to: "/seo-dashboard" });
+      if (data.session) {
+        try {
+          await supabase.from('audit_logs').insert({
+            action: 'login_success',
+            details: { email: trimmedEmail },
+            status: 'success',
+            user_id: data.user.id
+          });
+        } catch (logErr) {
+          console.error("Failed to log audit:", logErr);
+        }
+        
+        navigate({ to: "/seo-dashboard" });
+      }
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -175,12 +207,22 @@ function AdminLogin() {
 
             <Button 
               type="submit" 
-              className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold"
+              className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold h-11"
               disabled={loading}
             >
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === "login" ? "Entrar" : "Enviar Link"}
+              {mode === "login" ? "Entrar no Painel" : "Enviar Link de Recuperação"}
             </Button>
+
+            {mode === "login" && error && (
+              <button
+                type="button"
+                onClick={clearSession}
+                className="w-full text-[10px] text-slate-400 hover:text-white transition-colors mt-2 uppercase tracking-widest"
+              >
+                Problemas para entrar? Clique aqui para limpar o cache de login
+              </button>
+            )}
           </form>
         </CardContent>
         <CardFooter>

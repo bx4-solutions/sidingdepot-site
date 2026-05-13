@@ -93,22 +93,30 @@ const FALLBACK_METRICS = {
 
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
+    // Try to get session, but allow some grace for refreshing
     const { data: { session } } = await supabase.auth.getSession();
     
+    // If no session, try one more time or just let the component handle it
+    // to avoid flickering redirects during background refreshes
     if (!session) {
-      throw redirect({
-        to: "/admin/login",
-        search: {
-          redirect: location.href,
-        },
-      });
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        throw redirect({
+          to: "/admin/login",
+          search: {
+            redirect: location.href,
+          },
+        });
+      }
     }
   },
   loader: async () => {
      const { data: { session } } = await supabase.auth.getSession();
-     if (!session) return null;
+     const user = session?.user;
      
-     const { data: profile } = await supabase.from("profiles").select("*").eq("id", session.user.id).single();
+     if (!user) return null;
+     
+     const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
      return { session, profile };
   },
   component: SEODashboard,
@@ -128,34 +136,69 @@ function SEODashboard() {
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
-    const checkSession = async () => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("Auth event:", event, !!session);
+      
+      if (event === 'TOKEN_REFRESHED') {
+        setSessionExists(true);
+        return;
+      }
+      
+      if (event === 'SIGNED_OUT') {
+        // Double check if we really have no session
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+          setSessionExists(false);
+          toast.error("Sessão encerrada");
+        }
+      } else if (session) {
+        setSessionExists(true);
+      }
+    });
+
+    const checkCurrent = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setSessionExists(!!session);
     };
-    
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSessionExists(!!session);
-    });
+    checkCurrent();
 
-    checkSession();
     return () => subscription.unsubscribe();
   }, []);
 
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
     queryFn: async (): Promise<any> => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error("Unauthorized");
+      // Ensure we have a fresh session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
-      return getDashboardMetrics({ data: { startDate: dateRange.startDate, endDate: dateRange.endDate } });
+      if (sessionError || !session) {
+        // Try refreshing if possible
+        const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+        if (refreshError || !refreshed.session) {
+          throw new Error("Unauthorized");
+        }
+      }
+      
+      try {
+        const response = await getDashboardMetrics({ 
+          data: { 
+            startDate: dateRange.startDate, 
+            endDate: dateRange.endDate 
+          } 
+        });
+        return response;
+      } catch (err: any) {
+        console.error("Dashboard fetch error:", err);
+        throw err;
+      }
     },
     enabled: sessionExists,
     refetchInterval: 60000,
     retry: (failureCount, error: any) => {
       if (error?.message === "Unauthorized") return false;
-      return failureCount < 3;
+      return failureCount < 2;
     },
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
     placeholderData: (previousData) => previousData || (FALLBACK_METRICS as any),
   });
 
@@ -302,21 +345,28 @@ function SEODashboard() {
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
              <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
-             <span className="text-slate-300 text-xs flex items-center gap-2">
-               <Clock className="h-3 w-3" /> 
-               {isFetching ? "Atualizando..." : "Sincronizado"}
-               <button 
-                 onClick={() => {
-                   refetch();
-                   toast.success("Atualizando dados...");
-                 }}
-                 disabled={isFetching}
-                 className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
-                 title="Atualizar agora"
-               >
-                 <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
-               </button>
-             </span>
+             <div className="flex flex-col">
+               <span className="text-slate-300 text-[10px] flex items-center gap-2">
+                 <Clock className="h-3 w-3" /> 
+                 {isFetching ? "Atualizando..." : "Sincronizado"}
+                 <button 
+                   onClick={() => {
+                     refetch();
+                     toast.success("Atualizando dados...");
+                   }}
+                   disabled={isFetching}
+                   className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
+                   title="Atualizar agora"
+                 >
+                   <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
+                 </button>
+               </span>
+               {metrics?.isSimulated && (
+                 <span className="text-[9px] text-sd-green/70 font-bold uppercase tracking-widest">
+                   Modo Demonstração (Dados Simulados)
+                 </span>
+               )}
+             </div>
           </div>
 
           <div className="flex items-center gap-6">
