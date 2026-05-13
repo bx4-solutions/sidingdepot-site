@@ -1048,8 +1048,6 @@ function SEODashboard() {
             </TabsContent>
           )}
 
-        </Tabs>
-
         <TabsContent value="integrations" className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
