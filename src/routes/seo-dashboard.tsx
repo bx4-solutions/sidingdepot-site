@@ -136,14 +136,31 @@ function SEODashboard() {
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Auth event:", event);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("Auth event:", event, !!session);
+      
+      if (event === 'TOKEN_REFRESHED') {
+        setSessionExists(true);
+        return;
+      }
+      
       if (event === 'SIGNED_OUT') {
-        setSessionExists(false);
+        // Double check if we really have no session
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+          setSessionExists(false);
+          toast.error("Sessão encerrada");
+        }
       } else if (session) {
         setSessionExists(true);
       }
     });
+
+    const checkCurrent = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSessionExists(!!session);
+    };
+    checkCurrent();
 
     return () => subscription.unsubscribe();
   }, []);
