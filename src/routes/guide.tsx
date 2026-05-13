@@ -29,6 +29,12 @@ export const Route = createFileRoute("/guide")({
         content:
           "4-page PDF + 8-question checklist. Sent instantly to your inbox, no spam.",
       },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Free Guide — 5 Siding Mistakes to Avoid in Georgia" },
+      { name: "twitter:description", content: "4-page PDF + 8-question checklist. Sent instantly to your inbox, no spam." },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
   }),
   component: GuidePage,
