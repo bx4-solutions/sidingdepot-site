@@ -142,18 +142,20 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
+// Smaller variants (r_320 instead of r_640) — partner logos render at max-h-16,
+// so 320px wide is more than enough and ~4× smaller payload.
 const PARTNER_LOGOS = [
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b594a44584e19b5e18190f.svg",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b5950c3441c1803b96202d.jpeg",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68a8c7609c19c009b3f34d09.svg",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68ac604545eaf7e812e3da66.png",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b59793acd791744f0bde7d.jpeg",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://storage.googleapis.com/msgsndr/VPwAmJKkB62wR0BJhYil/media/68bacd232398ef53b4c4598c.jpeg",
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_640/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b594a44584e19b5e18190f.svg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b5950c3441c1803b96202d.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68a8c7609c19c009b3f34d09.svg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68ac604545eaf7e812e3da66.png",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b59793acd791744f0bde7d.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://storage.googleapis.com/msgsndr/VPwAmJKkB62wR0BJhYil/media/68bacd232398ef53b4c4598c.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
 ] as const;
 
 const CERT_HERO =
-  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/689f1907c6ba4e35d9b05691.png";
+  "https://images.leadconnectorhq.com/image/f_webp/q_75/r_800/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/689f1907c6ba4e35d9b05691.png";
 
 const DIFFERENTIATORS = [
   "You get a line-by-line itemized estimate with exact pricing up front.",
