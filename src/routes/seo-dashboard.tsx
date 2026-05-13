@@ -251,7 +251,21 @@ function SEODashboard() {
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
              <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
-             <span className="text-slate-500 text-xs flex items-center gap-1"><Clock className="h-3 w-3" /> Atualizado agora</span>
+             <span className="text-slate-500 text-xs flex items-center gap-2">
+               <Clock className="h-3 w-3" /> 
+               {isFetching ? "Atualizando..." : "Sincronizado"}
+               <button 
+                 onClick={() => {
+                   refetch();
+                   toast.success("Atualizando dados...");
+                 }}
+                 disabled={isFetching}
+                 className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
+                 title="Atualizar agora"
+               >
+                 <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
+               </button>
+             </span>
           </div>
 
           <div className="flex items-center gap-6">
