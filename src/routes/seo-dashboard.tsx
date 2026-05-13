@@ -335,9 +335,10 @@ function SEODashboard() {
     
     const stats: Record<string, any> = {};
     abMetrics.forEach((e: any) => {
-      const key = `${e.service_key}_${e.variation}`;
+      const city = e.city || "global";
+      const key = `${e.service_key}_${e.variation}_${city}`;
       if (!stats[key]) {
-        stats[key] = { service: e.service_key, variation: e.variation, views: 0, leads: 0, clicks: 0, ctr: 0 };
+        stats[key] = { service: e.service_key, variation: e.variation, city, views: 0, leads: 0, clicks: 0, ctr: 0 };
       }
       if (e.event_type === 'ab_variation_view') stats[key].views++;
       if (e.event_type === 'qualified_lead') stats[key].leads++;
