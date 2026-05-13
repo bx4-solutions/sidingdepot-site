@@ -137,12 +137,12 @@ export function ServiceLandingPage({
             <p className="mt-6 text-lg text-white/80 leading-relaxed">{intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
                   Get a free estimate <ArrowRight />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
+                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
                   <Phone /> Call {SITE.phone}
                 </a>
               </Button>
@@ -329,12 +329,12 @@ export function ServiceLandingPage({
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "footer_quote" })}>
                   Get a free estimate <ArrowRight />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
+                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
                   <Phone /> Call {SITE.phone}
                 </a>
               </Button>
