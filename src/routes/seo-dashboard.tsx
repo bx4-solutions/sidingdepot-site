@@ -1223,36 +1223,82 @@ function SEODashboard() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-4">
-            <div className="space-y-2">
-              <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
-              {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
-                <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
-                  <span className="text-sm font-bold">{src.source}</span>
-                  <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
+                <div className="space-y-2 max-h-[150px] overflow-y-auto pr-2 custom-scrollbar">
+                  {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
+                    <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
+                      <span className="text-sm font-bold truncate max-w-[150px]" title={src.source}>{src.source}</span>
+                      <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+                    </div>
+                  ))}
+                  {(!selectedBlogArticle?.leadsBySource || selectedBlogArticle.leadsBySource.length === 0) && (
+                    <div className="text-center py-4 text-slate-500 italic text-xs">Sem leads registrados.</div>
+                  )}
                 </div>
-              ))}
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
+                <div className="flex flex-wrap gap-2">
+                  {(selectedBlogArticle?.keywords || []).map((kw: string) => (
+                    <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="space-y-2">
-              <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
-              <div className="flex flex-wrap gap-2">
-                {(selectedBlogArticle?.keywords || []).map((kw: string) => (
-                  <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
-                ))}
+              <p className="text-xs font-black uppercase text-slate-400">Evolução de Leads por Canal</p>
+              <div className="h-[250px] rounded-xl bg-white/5 p-3 border border-white/5">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={selectedBlogArticle?.trend || []}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#94a3b8" 
+                      fontSize={10} 
+                      tickLine={false} 
+                      axisLine={false}
+                      tickFormatter={(val) => val.split('-').slice(1).reverse().join('/')}
+                    />
+                    <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '10px' }}
+                    />
+                    <Legend iconType="circle" wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    {(() => {
+                      const trend = selectedBlogArticle?.trend || [];
+                      const allChannels = new Set<string>();
+                      trend.forEach((day: any) => {
+                        Object.keys(day.leadsByChannel || {}).forEach(ch => allChannels.add(ch));
+                      });
+                      const palette = ["var(--sd-green)", "#3b82f6", "#f59e0b", "#ec4899", "#8b5cf6", "#10b981", "#ef4444"];
+                      return Array.from(allChannels).map((channel, i) => (
+                        <Bar key={channel} dataKey={`leadsByChannel.${channel}`} name={channel} stackId="a" fill={palette[i % palette.length]} />
+                      ));
+                    })()}
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
           </div>
-          <div className="h-[220px] rounded-xl bg-white/5 p-3 border border-white/5">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={selectedBlogArticle?.trend || []}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
-                <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
-                <Area type="monotone" dataKey="leads" name="Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
-              </AreaChart>
-            </ResponsiveContainer>
+          
+          <div className="space-y-2 pb-4">
+            <p className="text-xs font-black uppercase text-slate-400">Visão Geral de Tráfego vs Leads</p>
+            <div className="h-[200px] rounded-xl bg-white/5 p-3 border border-white/5">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={selectedBlogArticle?.trend || []}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+                  <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
+                  <Area type="monotone" dataKey="leads" name="Total Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
