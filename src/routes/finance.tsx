@@ -81,12 +81,12 @@ function FinancePage() {
               </div>
 
               <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="xl" className="w-full sm:w-auto text-lg h-16 px-10">
+                <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-10">
                   <a href={SITE.greenSkyUrl} target="_blank" rel="noopener noreferrer">
                     APPLY NOW <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="xl" className="w-full sm:w-auto h-16 px-10 border-2">
+                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 border-2">
                   <a href="http://www.greenskycredit.com/" target="_blank" rel="noopener noreferrer">
                     Learn More
                   </a>
