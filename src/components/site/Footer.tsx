@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Mail, MapPin, Music2, Phone, Youtube } from "lucide-react";
+import { Mail, MapPin, Music2, Phone, Facebook as LucideFacebook, Instagram as LucideInstagram, Youtube as LucideYoutube } from "lucide-react";
 import { SITE, SERVICES, CITIES } from "@/data/site";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
