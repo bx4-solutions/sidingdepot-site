@@ -35,7 +35,10 @@ export const Route = createFileRoute("/siding")({
       image: "/projects/project-1.webp",
       canonical: "https://sidingdepot.com/siding",
     }),
-    links: [{ rel: "canonical", href: "https://sidingdepot.com/siding" }],
+    links: [
+      { rel: "canonical", href: "https://sidingdepot.com/siding" },
+      { rel: "preload", as: "image", href: "/projects/project-1.webp", fetchPriority: "high" as any },
+    ],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", PAGE_DESC, {
         canonical: "https://sidingdepot.com/siding",
