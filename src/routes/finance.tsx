@@ -16,7 +16,7 @@ export const Route = createFileRoute("/finance")({
           "@id": `${canonical}/#webpage`,
           "url": canonical,
           "name": "Financing for Siding & Roofing Projects in North Atlanta",
-          "description": "Flexible financing for your siding, roofing, or painting project. Deferred interest and fixed monthly budget plans via GreenSky®. Apply online in minutes.",
+          "description": "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
           "isPartOf": { "@id": "https://sidingdepot.com/#website" }
         },
         {
