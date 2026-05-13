@@ -16,6 +16,7 @@ import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
+import { Route as GuideRouteImport } from './routes/guide'
 import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -61,6 +62,11 @@ const PaintingRoute = PaintingRouteImport.update({
 const GuttersRoute = GuttersRouteImport.update({
   id: '/gutters',
   path: '/gutters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DumpsterRoute = DumpsterRouteImport.update({
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRoute
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRoute
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRoute
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DumpsterRoute: typeof DumpsterRoute
+  GuideRoute: typeof GuideRoute
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/gutters'
       fullPath: '/gutters'
       preLoaderRoute: typeof GuttersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dumpster': {
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DumpsterRoute: DumpsterRoute,
+  GuideRoute: GuideRoute,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
@@ -428,3 +449,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
