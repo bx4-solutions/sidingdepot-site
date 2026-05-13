@@ -433,6 +433,131 @@ function SEODashboard() {
                         </CardContent>
                       </Card>
                     </div>
+
+                    {/* VISUALIZAÇÕES E VISITANTES (série diária) */}
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader>
+                        <CardTitle className="text-lg font-bold text-white">Visualizações e Visitantes</CardTitle>
+                        <CardDescription className="text-xs">Série diária dentro do período selecionado</CardDescription>
+                      </CardHeader>
+                      <CardContent className="h-[280px] p-0 pr-6">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <AreaChart data={metrics?.dailyTrend}>
+                            <defs>
+                              <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="var(--sd-green)" stopOpacity={0.4}/>
+                                <stop offset="95%" stopColor="var(--sd-green)" stopOpacity={0}/>
+                              </linearGradient>
+                              <linearGradient id="colorVisitors" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="oklch(0.65 0.18 220)" stopOpacity={0.3}/>
+                                <stop offset="95%" stopColor="oklch(0.65 0.18 220)" stopOpacity={0}/>
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                            <XAxis dataKey="date" stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} dy={8} interval={3} />
+                            <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                            <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '12px' }} />
+                            <Area type="monotone" dataKey="views" name="Visualizações" stroke="var(--sd-green)" strokeWidth={2} fill="url(#colorViews)" />
+                            <Area type="monotone" dataKey="visitors" name="Visitantes" stroke="oklch(0.65 0.18 220)" strokeWidth={2} fill="url(#colorVisitors)" />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+
+                    {/* DISPOSITIVOS / PÁGINAS / PAÍSES */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Dispositivos</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col items-center pt-0">
+                          <div className="h-[180px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <PieChart>
+                                <Pie data={metrics?.devices} cx="50%" cy="50%" innerRadius={50} outerRadius={75} paddingAngle={4} dataKey="value">
+                                  {metrics?.devices?.map((entry: any, i: number) => (
+                                    <Cell key={i} fill={entry.color} />
+                                  ))}
+                                </Pie>
+                                <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '12px' }} />
+                              </PieChart>
+                            </ResponsiveContainer>
+                          </div>
+                          <div className="flex gap-4 mt-3">
+                            {metrics?.devices?.map((d: any, i: number) => (
+                              <div key={i} className="flex items-center gap-1.5 text-xs">
+                                <div className="h-2 w-2 rounded-sm" style={{ backgroundColor: d.color }} />
+                                <span className="text-slate-200">{d.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Páginas Mais Visitadas</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                          {metrics?.topPages?.map((p: any, i: number) => (
+                            <div key={i} className="flex items-center justify-between text-sm py-1.5 border-b border-white/5 last:border-0">
+                              <span className="text-slate-200 truncate font-mono text-xs">{p.path}</span>
+                              <span className="font-bold text-white">{p.views}</span>
+                            </div>
+                          ))}
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Visitantes por País</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                          {metrics?.countries?.map((c: any, i: number) => (
+                            <div key={i} className="flex items-center justify-between text-sm py-1.5 border-b border-white/5 last:border-0">
+                              <span className="text-slate-200">{c.name}</span>
+                              <span className="font-bold text-white">{c.visitors}</span>
+                            </div>
+                          ))}
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    {/* RELATÓRIOS AGENDADOS */}
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader className="flex flex-row items-start justify-between">
+                        <div className="flex items-center gap-3">
+                          <Calendar className="h-5 w-5 text-sd-green" />
+                          <div>
+                            <CardTitle className="text-lg font-bold text-white">Relatórios Agendados</CardTitle>
+                            <CardDescription className="text-xs">Configure envio automático de relatórios por e-mail</CardDescription>
+                          </div>
+                        </div>
+                        <Button className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold h-9">
+                          + Novo Agendamento
+                        </Button>
+                      </CardHeader>
+                      <CardContent>
+                        {!metrics?.scheduledReports?.length ? (
+                          <div className="flex flex-col items-center justify-center py-10 text-center">
+                            <Calendar className="h-10 w-10 text-slate-600 mb-3" />
+                            <p className="font-bold text-white">Nenhum relatório agendado</p>
+                            <p className="text-slate-300 text-sm">Clique em "Novo Agendamento" para criar um.</p>
+                          </div>
+                        ) : (
+                          <div className="space-y-2">
+                            {metrics.scheduledReports.map((r: any) => (
+                              <div key={r.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                                <div>
+                                  <p className="font-bold text-white text-sm">{r.name}</p>
+                                  <p className="text-xs text-slate-300">{r.email} · {r.frequency}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
                    </div>
                 )}
 
