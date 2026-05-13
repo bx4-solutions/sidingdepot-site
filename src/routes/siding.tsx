@@ -551,7 +551,7 @@ function SidingPage() {
               James Hardie · Elite Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie® Siding,{" "}
+              James Hardie® Siding:{" "}
               <span className="text-sd-green">Elite Installation & Protection.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
