@@ -10,7 +10,7 @@ import {
   getServiceMeta,
   SITE_ORIGIN,
 } from "@/data/locations";
-import { SITE } from "@/data/site";
+import { SITE, HERO } from "@/data/site";
 
 export const Route = createFileRoute("/locations/$city/$service")({
   loader: ({ params }) => {
