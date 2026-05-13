@@ -22,7 +22,11 @@ import {
   Loader2,
   LogOut,
   ShieldCheck,
-  History
+  History,
+  Users,
+  UserCog,
+  Trash2,
+  Shield
 } from "lucide-react";
 import { 
   getIndexingStatus, 
