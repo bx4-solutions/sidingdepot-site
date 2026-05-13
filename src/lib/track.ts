@@ -126,8 +126,83 @@ export function track(event: string, payload: TrackPayload = {}): void {
 }
 
 // =====================================================================
-// Smoke test / debug helper
+// Conversion Event Helpers
 // =====================================================================
+
+/**
+ * Track contact form submission (lead conversion)
+ */
+export function trackLeadSubmit(data: {
+  service?: string;
+  city?: string;
+  phone?: string;
+  source?: string;
+}): void {
+  track("lead_submit", {
+    event_category: "conversion",
+    event_label: data.service || "general",
+    service: data.service,
+    city: data.city,
+    source: data.source || "contact_form",
+  });
+}
+
+/**
+ * Track WhatsApp button click
+ */
+export function trackWhatsAppClick(data: {
+  service?: string;
+  location?: string;
+  source?: string;
+}): void {
+  track("whatsapp_click", {
+    event_category: "engagement",
+    event_label: data.service || "general",
+    service: data.service,
+    location: data.location,
+    source: data.source || "whatsapp_btn",
+  });
+}
+
+/**
+ * Track contact page view
+ */
+export function trackContactPageView(): void {
+  track("contact_page_view", {
+    event_category: "pageview",
+    page_type: "contact",
+  });
+}
+
+/**
+ * Track service page view (siding, windows, painting, etc.)
+ */
+export function trackServiceView(service: string): void {
+  track("service_view", {
+    event_category: "pageview",
+    page_type: "service",
+    service,
+  });
+}
+
+/**
+ * Track quote/estimate request
+ */
+export function trackQuoteRequest(data: {
+  service?: string;
+  city?: string;
+  source?: string;
+}): void {
+  track("quote_request", {
+    event_category: "conversion",
+    event_label: data.service || "general",
+    service: data.service,
+    city: data.city,
+    source: data.source || "quote_btn",
+  });
+}
+
+
 // Run from the browser console:   __trackSmokeTest()
 // Or in dev, results are auto-logged once on first import in the browser.
 
