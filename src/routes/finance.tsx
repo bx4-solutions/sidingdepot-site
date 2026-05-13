@@ -79,6 +79,35 @@ export const Route = createFileRoute("/finance")({
 });
 
 function FinancePage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "How does the credit approval process work?",
+      a: "The application process is quick and secure. You can apply online through the GreenSky® portal and receive a credit decision in seconds. Once approved, you'll receive a loan agreement and can start your project immediately."
+    },
+    {
+      q: "What are the promotional interest rates?",
+      a: "We offer two main promotional plans: a 12-month deferred interest plan where interest is waived if paid in full within a year, and a long-term plan with a reduced APR of 9.99% for up to 138 months."
+    },
+    {
+      q: "How does the 12-month deferred interest period work?",
+      a: "With this plan, interest is billed during the promotional period but is completely waived if the entire purchase amount is paid in full within 12 months of the first transaction."
+    },
+    {
+      q: "Is everyone eligible for the 9.99% APR plan?",
+      a: "Eligibility is subject to credit approval by GreenSky®. This plan offers low fixed monthly payments stretched over 138 months, making large exterior projects affordable for most qualified homeowners."
+    },
+    {
+      q: "How do I make my loan payments?",
+      a: "Payments are made directly to GreenSky®. You can set up automatic payments, pay online through their portal, or pay by mail. You'll receive all the necessary information once your loan is finalized."
+    },
+    {
+      q: "Are there any prepayment penalties?",
+      a: "No, GreenSky® loans through Siding Depot do not have prepayment penalties. You can pay off your loan at any time without incurring extra fees, which is especially beneficial for the deferred interest plan."
+    }
+  ];
+
   useEffect(() => {
     // Detect if returning from GreenSky or moving to next step
     const sp = new URLSearchParams(window.location.search);
