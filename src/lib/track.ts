@@ -104,7 +104,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
     w.dataLayer.push(enriched);
 
     // 2. Supabase for A/B Dashboard
-    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click", "finance_apply"];
+    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click", "finance_apply", "finance_qualified"];
     if (abEvents.includes(event)) {
       supabase.from("ab_events").insert({
         event_type: event,
@@ -260,6 +260,17 @@ export function trackFinanceApply(): void {
     serviceKey: "finance",
     variation: "A",
     source: "finance_apply_btn",
+  });
+}
+
+/** Track Finance qualification (next step in the flow). */
+export function trackFinanceQualified(): void {
+  track("finance_qualified", {
+    event_category: "conversion",
+    event_label: "finance_qualification",
+    serviceKey: "finance",
+    variation: "A",
+    source: "finance_flow_complete",
   });
 }
 
