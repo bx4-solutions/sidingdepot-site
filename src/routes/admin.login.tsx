@@ -37,12 +37,27 @@ function AdminLogin() {
     setError(null);
     
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        // Log failed attempt if user exists (client-side best effort)
+        await supabase.rpc('log_admin_action', {
+          p_action: 'login_failed',
+          p_details: { email, reason: error.message },
+          p_status: 'error'
+        });
+        throw error;
+      }
+
+      // Log success
+      await supabase.rpc('log_admin_action', {
+        p_action: 'login_success',
+        p_details: { email }
+      });
+      
       navigate({ to: "/seo-dashboard" });
     } catch (err: any) {
       setError(err.message || "Falha ao entrar");
