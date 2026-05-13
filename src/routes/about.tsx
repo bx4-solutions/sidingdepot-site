@@ -1,22 +1,35 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Facebook, Instagram, Mail, MapPin, Music2, Phone, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Siding Depot — James Hardie Elite Preferred Contractor in Georgia" },
+      {
+        title:
+          "About Siding Depot — James Hardie Elite Preferred Siding Contractor in Marietta, GA",
+      },
       {
         name: "description",
         content:
-          "For 15+ years, Siding Depot has helped Georgia homeowners protect and enhance their homes. James Hardie certified contractor delivering siding, painting, windows, decks, gutters & roofing.",
+          "Local James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 15+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
-      { property: "og:title", content: "About Siding Depot — Georgia's Trusted Exterior Contractor" },
+      {
+        name: "keywords",
+        content:
+          "siding contractor Marietta GA, James Hardie installer Atlanta, fiber cement siding Georgia, siding replacement North Atlanta, siding installation Cobb County, exterior remodeling Alpharetta",
+      },
+      {
+        property: "og:title",
+        content:
+          "About Siding Depot — Georgia's Trusted James Hardie Siding Installer",
+      },
       {
         property: "og:description",
         content:
-          "1,500+ homes transformed, 98% customer satisfaction. James Hardie Elite Preferred installer serving North Atlanta.",
+          "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
     ],
   }),
@@ -76,33 +89,29 @@ function AboutPage() {
               About Siding Depot
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              For 15 years, helping Georgia homeowners{" "}
-              <span className="text-sd-green">protect and enhance</span> their homes.
+              15 years installing{" "}
+              <span className="text-sd-green">James Hardie siding</span> across
+              Marietta &amp; North Atlanta.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
-              As one of the fastest-growing James Hardie certified contractors in the
-              region, we combine top-tier quality, highly trained crews, and professional
-              management to deliver flawless results.
+              Siding Depot is a James Hardie Elite Preferred contractor based in
+              Marietta, GA — specialists in fiber cement siding installation,
+              replacement, repair, painting, windows, decks, gutters and roofing
+              for homeowners in Cobb, Cherokee, Fulton and Forsyth counties.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">Get a Free Quote</Link>
+                <Link to="/contact">Get a Free Siding Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
                 <a href={SITE.phoneHref}>Call {SITE.phone}</a>
               </Button>
             </div>
           </div>
-          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
-            <iframe
-              src="https://www.youtube.com/embed/fgNhcGoEYmE?rel=0"
-              title="About Siding Depot"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
+          <YoutubeEmbed
+            videoId="fgNhcGoEYmE"
+            title="Meet Siding Depot — Marietta, GA"
+          />
         </div>
       </section>
 
@@ -111,14 +120,15 @@ function AboutPage() {
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-              Why Siding Depot
+              Why choose a local James Hardie Elite installer
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              What sets us apart from other remodeling contractors
+              What sets our siding installation apart in Georgia
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Siding Depot is one of the fastest-growing James Hardie Replacement Contractors
-              in Georgia. The differences are clear, the reasons are simple:
+              Siding Depot is one of the fastest-growing James Hardie Replacement
+              Contractors in Georgia. Hiring a certified local installer matters —
+              here's why North Atlanta homeowners trust us with their siding project:
             </p>
           </div>
 
