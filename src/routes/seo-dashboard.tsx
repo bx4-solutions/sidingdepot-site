@@ -20,7 +20,9 @@ import {
   ChevronRight,
   Filter,
   Loader2,
-  LogOut
+  LogOut,
+  ShieldCheck,
+  History
 } from "lucide-react";
 import { 
   getIndexingStatus, 
