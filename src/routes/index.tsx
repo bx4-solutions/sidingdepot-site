@@ -365,6 +365,20 @@ function HomePage() {
                 <Link to="/siding">See Siding Services</Link>
               </Button>
             </div>
+            <nav
+              aria-label="Related Hardie siding pages"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+            >
+              <Link to="/siding" className="text-sd-green hover:underline">
+                Fiber cement siding services
+              </Link>
+              <Link to="/painting" className="text-sd-green hover:underline">
+                Exterior painting in North Atlanta
+              </Link>
+              <Link to="/contact" className="text-sd-green hover:underline">
+                Request a free Hardie siding quote
+              </Link>
+            </nav>
           </div>
         </div>
       </section>
