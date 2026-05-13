@@ -107,9 +107,9 @@ function LocationPage() {
 
       <ProofBar />
 
-      <section className="py-16 lg:py-20 bg-background">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-sd-black">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-sd-black tracking-tight">
             Why {city.name} homeowners choose Siding Depot for {service.title.toLowerCase()}
           </h2>
           <ul className="mt-6 space-y-3">
@@ -128,10 +128,14 @@ function LocationPage() {
           </ul>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-sd-green hover:bg-sd-green/90 text-white border-none shadow-md hover:shadow-lg transition-all duration-200">
               <Link
                 to="/contact"
-                search={{ city: city.slug, service: service.slug } as never}
+                search={{ 
+                  city: city.slug, 
+                  service: service.slug,
+                  source: `location_page_${city.slug}_${service.slug}` 
+                } as any}
               >
                 Get a free {city.name} quote
               </Link>
@@ -145,9 +149,9 @@ function LocationPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-20 bg-sd-gray-bg">
+      <section className="py-20 lg:py-28 bg-sd-gray-bg">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
-          <h2 className="text-2xl font-bold text-sd-black mb-8 text-center">
+          <h2 className="text-3xl font-extrabold text-sd-black mb-12 text-center tracking-tight">
             What {city.name} customers say
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
