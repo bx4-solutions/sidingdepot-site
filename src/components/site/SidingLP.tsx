@@ -14,6 +14,12 @@ import {
 import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
 import { track } from "@/lib/track";
+import {
+  SIDING_TYPES,
+  buildFaqs,
+  GREENSKY_STEPS,
+  GREENSKY_FAQS,
+} from "@/data/lp-content";
 
 /**
  * Conversion-optimized landing page for Google Ads traffic.
@@ -50,55 +56,7 @@ const SERVICES = [
 const HERO_BG =
   "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1920&q=70";
 
-const FAQS = [
-  {
-    q: "How much does James Hardie siding cost in Marietta, GA?",
-    a: "For most homes in the Marietta and North Atlanta area, a full James Hardie installation runs $15,000–$30,000 for a 2,500 sq ft home ($8–$14/sqft installed). Every estimate is itemized and fixed — the price we quote is the price you pay.",
-  },
-  {
-    q: "Do you offer financing or 0% APR plans?",
-    a: "Yes. We partner with GreenSky to offer 0% APR plans (subject to credit approval). Most homeowners get pre-approved in under 60 seconds during the consultation, with monthly payments often less than what they spend on coffee per week.",
-  },
-  {
-    q: "How long does siding installation take?",
-    a: "Most homes in North Atlanta take 3–7 days from start to finish. Your home is never left exposed overnight. We assign a dedicated project manager and communicate proactively if weather causes any delay.",
-  },
-  {
-    q: "How long will James Hardie siding last on my home?",
-    a: "James Hardie fiber cement is engineered for 50+ years and comes with a 30-year limited transferable product warranty plus our workmanship guarantee. ColorPlus® Technology keeps the finish sharp 30% longer than traditional paint.",
-  },
-  {
-    q: "How soon can you start my project?",
-    a: "We're currently booking 3–4 weeks out. Request your free estimate today to lock in your spot before our spring calendar fills up. Insurance and storm-damage projects can often be prioritized.",
-  },
-  {
-    q: "Does insurance cover siding damage from hail or storms?",
-    a: "In most cases, yes. Georgia's hail season (March–June) generates thousands of siding claims across Cobb and Cherokee counties. We work directly with your insurance adjuster and document damage on your behalf — at no cost to you.",
-  },
-  {
-    q: "Are you really licensed and insured?",
-    a: "Yes — Georgia GC #RBQA006789, fully insured with general liability and workers' comp. We're James Hardie Elite Preferred (top 2% nationwide), GAF Factory Certified, and BBB A+ accredited.",
-  },
-] as const;
-
-const SIDING_TYPES = [
-  {
-    title: "Plank Siding",
-    desc: "Long, narrow horizontal boards. Durable, low-maintenance and weather-resistant — the most popular Hardie style in North Atlanta.",
-  },
-  {
-    title: "Board & Batten",
-    desc: "Vertical panels with batten strips covering the seams. Adds height, drama and a modern-farmhouse feel to any elevation.",
-  },
-  {
-    title: "Shingle Siding",
-    desc: "Overlapping rectangular pieces for a warm, traditional look. Perfect for gables, accents and Cape Cod-style homes.",
-  },
-  {
-    title: "Soffit, Trim & Fascia",
-    desc: "The often-overlooked pieces that protect attics and crawl spaces from moisture, heat and pests — installed in matching Hardie finishes.",
-  },
-] as const;
+/* FAQs and Siding types now come from @/data/lp-content (shared across LPs). */
 
 const REVIEWS = [
   {
@@ -376,6 +334,14 @@ function LpSelect({
 export type SidingLPProps = { city: string };
 
 export function SidingLP({ city }: SidingLPProps) {
+  const FAQS = buildFaqs(city);
+
+  function scrollToLeadForm() {
+    const el = document.querySelector("[data-lead-form]");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    track("lp_faq_cta_click", { city });
+  }
+
   // Hide the sticky mobile call bar when a lead form is on screen
   // so the buttons don't fight the form CTA.
   const [hideStickyCall, setHideStickyCall] = useState(false);
@@ -577,8 +543,75 @@ export function SidingLP({ city }: SidingLPProps) {
 
       <LeadMagnet city={city} source="lp_siding_magnet" />
 
+      {/* GREENSKY FINANCING */}
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-block rounded bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-sd-green-text">
+              0% APR Financing Available
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-sd-black sm:text-4xl">
+              GreenSky® Home Improvement Financing
+            </h2>
+            <p className="mt-3 text-sd-gray-text">
+              Pre-approved in 60 seconds. Soft credit pull, zero obligation, no impact on your score.
+            </p>
+          </div>
+
+          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {GREENSKY_STEPS.map((s) => (
+              <li
+                key={s.step}
+                className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-navy">
+                  {s.step}
+                </div>
+                <h3 className="mt-4 text-base font-bold text-sd-navy">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mx-auto mt-10 max-w-3xl">
+            <h3 className="text-center text-xl font-bold text-sd-navy">
+              Quick Financing Questions
+            </h3>
+            <Accordion type="single" collapsible className="mt-5 space-y-3">
+              {GREENSKY_FAQS.map((item, i) => (
+                <AccordionItem
+                  key={item.q}
+                  value={`gs-${i}`}
+                  className="rounded-xl border border-sd-gray-border bg-white px-5"
+                >
+                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-navy hover:no-underline">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-sd-gray-text leading-relaxed">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={scrollToLeadForm}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+              >
+                Get Pre-Approved With My Free Estimate →
+              </button>
+              <p className="mt-2 text-xs text-sd-gray-text">
+                Subject to credit approval. GreenSky® is a registered service mark of GreenSky, LLC.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-center text-3xl sm:text-4xl font-extrabold text-sd-black">
             Common <span className="text-sd-green">Questions</span>
@@ -594,13 +627,21 @@ export function SidingLP({ city }: SidingLPProps) {
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sd-gray-text leading-relaxed">
-                  {item.a}
+                  <p>{item.a}</p>
+                  <button
+                    type="button"
+                    onClick={scrollToLeadForm}
+                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                  >
+                    Request My Free Estimate →
+                  </button>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
+
 
       {/* FOOTER */}
       <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
@@ -672,6 +713,21 @@ export function lpHead({ city, path }: { city: string; path: string }) {
           },
           areaServed: ["Marietta", "Alpharetta", "Milton", "Canton", "Woodstock", "Roswell", "Kennesaw"],
           priceRange: "$$$",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [...buildFaqs(city), ...GREENSKY_FAQS].map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.a,
+            },
+          })),
         }),
       },
     ],
