@@ -121,12 +121,16 @@ function HomePage() {
           </div>
 
           <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=900&q=80"
-              alt="Siding Depot installation crew at work in North Atlanta"
-              className="rounded-xl object-cover w-full h-[460px]"
-              loading="lazy"
-            />
+            <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/898FBaW_VnI?rel=0"
+                title="Siding Depot — Institutional video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
             <div className="absolute -bottom-6 -left-6 bg-sd-green text-sd-black rounded-full h-32 w-32 flex flex-col items-center justify-center shadow-2xl">
               <span className="font-display text-3xl leading-none">15+</span>
               <span className="text-[11px] font-bold uppercase tracking-wider mt-1">Years</span>
@@ -282,12 +286,16 @@ function HomePage() {
               </Button>
             </div>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80"
-            alt="James Hardie fiber cement siding installed on a North Atlanta home"
-            className="rounded-xl object-cover w-full h-[460px]"
-            loading="lazy"
-          />
+          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
+              title="Why James Hardie siding is built for Georgia"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
         </div>
       </section>
     </>
