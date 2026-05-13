@@ -334,6 +334,14 @@ function LpSelect({
 export type SidingLPProps = { city: string };
 
 export function SidingLP({ city }: SidingLPProps) {
+  const FAQS = buildFaqs(city);
+
+  function scrollToLeadForm() {
+    const el = document.querySelector("[data-lead-form]");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    track("lp_faq_cta_click", { city });
+  }
+
   // Hide the sticky mobile call bar when a lead form is on screen
   // so the buttons don't fight the form CTA.
   const [hideStickyCall, setHideStickyCall] = useState(false);
