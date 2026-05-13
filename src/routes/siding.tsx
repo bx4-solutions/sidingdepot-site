@@ -8,8 +8,13 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
-import { serviceJsonLd, buildServiceMeta } from "@/components/site/ServiceLandingPage";
+import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
+import { SERVICE_METADATA } from "@/data/seo-config";
+
+const SERVICE_KEY = "siding";
+const CITY = "Marietta";
+const seo = SERVICE_METADATA[SERVICE_KEY];
 
 /**
  * /services/siding — flagship service landing page.
@@ -29,18 +34,20 @@ const PAGE_DESC =
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
-    meta: buildServiceMeta({
-      title: PAGE_TITLE,
-      description: PAGE_DESC,
-      image: "/projects/project-1.webp",
-      canonical: "https://sidingdepot.com/siding",
-    }),
+    meta: [
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
+      { property: "og:image", content: "/projects/project-1.webp" },
+      { property: "og:type", content: "website" },
+    ],
     links: [
       { rel: "canonical", href: "https://sidingdepot.com/siding" },
       { rel: "preload", as: "image", href: "/projects/project-1.webp", fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("James Hardie Siding Installation", PAGE_DESC, {
+      serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
         canonical: "https://sidingdepot.com/siding",
         image: "/projects/project-1.webp",
         serviceType: "James Hardie Siding Installation",
