@@ -129,13 +129,6 @@ function GuidePage() {
                 />
               </div>
 
-              {/* Development bypass - subtle for non-devs */}
-              <button 
-                onClick={() => setDownloadReady(true)}
-                className="mt-8 text-[10px] text-sd-gray-text/20 uppercase font-bold tracking-widest hover:text-sd-green transition-colors"
-              >
-                (Dev: View Guide Content)
-              </button>
             </div>
           </div>
         ) : (
