@@ -66,7 +66,10 @@ export const Route = createFileRoute("/roofing")({
       image: HERO_IMAGE,
       canonical: CANONICAL,
     }),
-    links: [{ rel: "canonical", href: CANONICAL }],
+    links: [
+      { rel: "canonical", href: CANONICAL },
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
+    ],
     scripts: [
       serviceJsonLd("Roof Replacement & Repair", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Roof Replacement & Repair" }),
       faqJsonLd(FAQS),
