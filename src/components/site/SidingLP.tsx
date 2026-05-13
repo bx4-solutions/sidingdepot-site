@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { track, type TrackPayload } from "@/lib/track";
 import {
   SIDING_TYPES,
@@ -128,201 +129,16 @@ function readUtm(): Record<string, string> {
 
 type LeadFormProps = {
   source: string;
-  defaultCity: string;
+  defaultCity?: string;
   defaultService?: string;
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
 };
 
-function LeadForm({ source, defaultCity, defaultService = "James Hardie Siding", title, subtitle }: LeadFormProps) {
-  const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
-  const [errors, setErrors] = useState<FieldErrors>({});
-  const [values, setValues] = useState<FormState>({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    city: defaultCity,
-    service: defaultService,
-    notes: "",
-  });
-
-  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
-    setValues((v) => ({ ...v, [key]: value }));
-  }
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const parsed = schema.safeParse(values);
-    if (!parsed.success) {
-      const fe: FieldErrors = {};
-      for (const issue of parsed.error.issues) {
-        const k = issue.path[0] as keyof FormState;
-        if (!fe[k]) fe[k] = issue.message;
-      }
-      setErrors(fe);
-      track("lp_form_validation_error", { source, fields: Object.keys(fe).join(",") });
-      return;
-    }
-    setErrors({});
-    setSubmitting(true);
-    const payload = {
-      ...parsed.data,
-      source,
-      landingPage: typeof window !== "undefined" ? window.location.pathname : source,
-      submittedAt: new Date().toISOString(),
-      ...readUtm(),
-    };
-    try {
-      if (SITE.ghlWebhookUrl) {
-        await fetch(SITE.ghlWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      }
-      track("lp_form_submit", { source, city: parsed.data.city, service: parsed.data.service });
-      setDone(true);
-    } catch {
-      track("lp_form_error", { source });
-      setErrors({ notes: "Could not send right now. Please call us." });
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
+function LeadForm({ source }: LeadFormProps) {
   return (
-    <div
-      className="w-full rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden border-t-4"
-      style={{ borderTopColor: "#8DC63F" }}
-      data-lead-form
-    >
-      <div className="px-6 pt-6 pb-4 text-center">
-        <h2 className="text-xl font-bold text-sd-navy">{title}</h2>
-        <p className="mt-1 text-xs text-sd-gray-text">{subtitle}</p>
-      </div>
-
-      {done ? (
-        <div className="px-6 pb-8 pt-2 text-center">
-          <CheckCircle2 className="mx-auto h-14 w-14 text-sd-green" />
-          <h3 className="mt-3 text-lg font-bold text-sd-navy">We received your request!</h3>
-          <p className="mt-2 text-sm text-sd-gray-text">
-            A member of our team will contact you within 24 hours to schedule your free estimate.
-          </p>
-          <p className="mt-4 text-sm text-sd-gray-text">
-            Questions? Call us now: <strong className="text-sd-navy">{SITE.phone}</strong>
-          </p>
-          <a
-            href={SITE.phoneHref}
-            className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-pill bg-sd-green font-bold text-sd-navy hover:opacity-90 transition-opacity"
-          >
-            <Phone className="h-4 w-4" /> Call Us Now →
-          </a>
-        </div>
-      ) : (
-        <form onSubmit={onSubmit} noValidate className="px-6 pb-6 pt-2 grid gap-3">
-          <div className="grid grid-cols-2 gap-3">
-            <LpField id="lp-first" label="First Name" value={values.firstName} onChange={(v) => update("firstName", v)} error={errors.firstName} autoComplete="given-name" />
-            <LpField id="lp-last" label="Last Name" value={values.lastName} onChange={(v) => update("lastName", v)} error={errors.lastName} autoComplete="family-name" />
-          </div>
-          <LpField
-            id="lp-phone"
-            label="Phone"
-            type="tel"
-            inputMode="tel"
-            value={values.phone}
-            onChange={(v) => update("phone", formatPhone(v))}
-            error={errors.phone}
-            autoComplete="tel"
-            placeholder="(___) ___-____"
-          />
-          <LpField id="lp-email" label="Email" type="email" value={values.email} onChange={(v) => update("email", v)} error={errors.email} autoComplete="email" />
-          <LpSelect id="lp-city" label="City" value={values.city} onChange={(v) => update("city", v)} options={CITIES as readonly string[]} error={errors.city} />
-          <LpSelect id="lp-service" label="Service" value={values.service} onChange={(v) => update("service", v)} options={SERVICES as readonly string[]} error={errors.service} />
-          <div className="grid gap-1.5">
-            <Label htmlFor="lp-notes" className="text-xs font-semibold text-sd-black">
-              Notes <span className="text-sd-gray-text font-normal">(optional)</span>
-            </Label>
-            <Textarea
-              id="lp-notes"
-              rows={2}
-              maxLength={1000}
-              placeholder="Tell us about your project..."
-              value={values.notes ?? ""}
-              onChange={(e) => update("notes", e.target.value)}
-              className="resize-none"
-            />
-            {errors.notes && <p className="text-[11px] text-destructive">{errors.notes}</p>}
-          </div>
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="mt-1 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-pill bg-sd-green text-base font-bold text-sd-navy hover:opacity-90 transition-opacity disabled:opacity-60"
-          >
-            {submitting ? (
-              <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
-            ) : (
-              "GET MY FREE ESTIMATE →"
-            )}
-          </button>
-          <p className="flex items-center justify-center gap-1.5 text-[12px] text-sd-gray-text">
-            <ShieldCheck className="h-3.5 w-3.5" /> Your information is secure. No spam, ever.
-          </p>
-        </form>
-      )}
-    </div>
-  );
-}
-
-function LpField({
-  id, label, value, onChange, error, type = "text", inputMode, autoComplete, placeholder,
-}: {
-  id: string; label: string; value: string; onChange: (v: string) => void;
-  error?: string; type?: string; inputMode?: "tel" | "email" | "text";
-  autoComplete?: string; placeholder?: string;
-}) {
-  return (
-    <div className="grid gap-1.5">
-      <Label htmlFor={id} className="text-xs font-semibold text-sd-black">{label}</Label>
-      <Input
-        id={id}
-        type={type}
-        inputMode={inputMode}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        aria-invalid={Boolean(error)}
-        className="h-11"
-      />
-      {error && <p className="text-[11px] text-destructive">{error}</p>}
-    </div>
-  );
-}
-
-function LpSelect({
-  id, label, value, onChange, options, error,
-}: {
-  id: string; label: string; value: string; onChange: (v: string) => void;
-  options: readonly string[]; error?: string;
-}) {
-  return (
-    <div className="grid gap-1.5">
-      <Label htmlFor={id} className="text-xs font-semibold text-sd-black">{label}</Label>
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        aria-invalid={Boolean(error)}
-        className="h-11 rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-sd-navy/30"
-      >
-        {options.map((o) => (
-          <option key={o} value={o}>{o}</option>
-        ))}
-      </select>
-      {error && <p className="text-[11px] text-destructive">{error}</p>}
+    <div data-lead-form>
+      <HeroQuoteForm source={source} tag="lp_quote_request" />
     </div>
   );
 }

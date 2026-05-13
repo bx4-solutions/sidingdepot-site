@@ -27,9 +27,20 @@ const schema = z.object({
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
 
-const SOURCE = "hero_inline_form";
+type HeroQuoteFormProps = {
+  /** Tracking source label sent to analytics + GHL payload. */
+  source?: string;
+  /** Optional override for the lead tag sent to GHL. */
+  tag?: string;
+  /** Hide outer card chrome (header band + ring) — useful inside dialogs. */
+  bare?: boolean;
+};
 
-export function HeroQuoteForm() {
+export function HeroQuoteForm({
+  source = "hero_inline_form",
+  tag = "hero_quote_request",
+  bare = false,
+}: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -66,7 +77,7 @@ export function HeroQuoteForm() {
       }
       setErrors(fe);
       track("quote_form_validation_error", {
-        source: SOURCE,
+        source: source,
         fields: Object.keys(fe).join(","),
       });
       return;
@@ -81,8 +92,8 @@ export function HeroQuoteForm() {
       city: parsed.data.city,
       services: parsed.data.services.join(", "),
       message: parsed.data.message,
-      source: SOURCE,
-      tag: "hero_quote_request",
+      source: source,
+      tag: tag,
       submittedAt: new Date().toISOString(),
     };
     if (import.meta.env.DEV) {
@@ -99,13 +110,13 @@ export function HeroQuoteForm() {
         if (!response.ok) throw new Error("Webhook failed");
       }
       track("quote_form_submit", {
-        source: SOURCE,
+        source: source,
         services: parsed.data.services.join(","),
         services_count: parsed.data.services.length,
       });
       setDone(true);
     } catch {
-      track("quote_form_error", { source: SOURCE });
+      track("quote_form_error", { source: source });
       setErrors({ message: "Não foi possível enviar agora. Tente novamente." });
     } finally {
       setSubmitting(false);
@@ -113,26 +124,33 @@ export function HeroQuoteForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden">
-      {/* Header band */}
-      <div className="bg-sd-navy px-6 pt-6 pb-5 text-center text-white">
-        <h2 className="font-display text-2xl sm:text-3xl leading-tight">
-          Get Your <span className="text-sd-green">FREE</span> Quote
-        </h2>
-        <p className="mt-1.5 text-xs text-white/75">
-          24h response · No obligation · Written estimate
-        </p>
-        <div className="mt-3 inline-flex items-center gap-1.5">
-          <div className="flex">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" />
-            ))}
+    <div
+      className={
+        bare
+          ? "w-full"
+          : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden"
+      }
+    >
+      {!bare && (
+        <div className="bg-sd-navy px-6 pt-6 pb-5 text-center text-white">
+          <h2 className="font-display text-2xl sm:text-3xl leading-tight">
+            Get Your <span className="text-sd-green">FREE</span> Quote
+          </h2>
+          <p className="mt-1.5 text-xs text-white/75">
+            24h response · No obligation · Written estimate
+          </p>
+          <div className="mt-3 inline-flex items-center gap-1.5">
+            <div className="flex">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" />
+              ))}
+            </div>
+            <span className="text-[11px] font-semibold text-white/80">
+              4.9 · 128+ reviews
+            </span>
           </div>
-          <span className="text-[11px] font-semibold text-white/80">
-            4.9 · 128+ reviews
-          </span>
         </div>
-      </div>
+      )}
 
       {done ? (
         <div className="px-6 py-10 text-center">
