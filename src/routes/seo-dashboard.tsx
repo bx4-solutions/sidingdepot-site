@@ -359,7 +359,7 @@ function SEODashboard() {
                       <Card className="lg:col-span-2 bg-[#131921] border-white/10">
                         <CardHeader className="flex flex-row items-center justify-between pb-8">
                           <div>
-                            <CardTitle className="text-lg font-bold">Evolução de Tráfego</CardTitle>
+                            <CardTitle className="text-lg font-bold text-white">Evolução de Tráfego</CardTitle>
                             <CardDescription className="text-xs">Visualizações e visitantes únicos nos últimos 30 dias</CardDescription>
                           </div>
                         </CardHeader>
@@ -387,7 +387,7 @@ function SEODashboard() {
 
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold">Fontes de Aquisição</CardTitle>
+                          <CardTitle className="text-lg font-bold text-white">Fontes de Aquisição</CardTitle>
                           <CardDescription className="text-xs">Principais canais de entrada</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-col items-center justify-center pt-0">
@@ -436,7 +436,7 @@ function SEODashboard() {
                           <User className="h-6 w-6 text-sd-green" />
                         </div>
                         <div>
-                          <CardTitle className="text-xl font-bold">Meu Perfil</CardTitle>
+                          <CardTitle className="text-xl font-bold text-white">Meu Perfil</CardTitle>
                           <CardDescription>Gerencie suas informações e segurança</CardDescription>
                         </div>
                       </CardHeader>
@@ -503,7 +503,7 @@ function SEODashboard() {
                               <Search className="h-6 w-6 text-sd-green" />
                            </div>
                            <div>
-                              <CardTitle className="text-xl font-bold">Google Search Console</CardTitle>
+                              <CardTitle className="text-xl font-bold text-white">Google Search Console</CardTitle>
                               <CardDescription>Status de indexação e performance orgânica</CardDescription>
                            </div>
                         </CardHeader>
@@ -525,7 +525,7 @@ function SEODashboard() {
                               <Activity className="h-6 w-6 text-sd-green" />
                            </div>
                            <div>
-                              <CardTitle className="text-xl font-bold">Google Analytics 4</CardTitle>
+                              <CardTitle className="text-xl font-bold text-white">Google Analytics 4</CardTitle>
                               <CardDescription>Eventos, conversões e fluxo de usuários</CardDescription>
                            </div>
                         </CardHeader>
