@@ -45,8 +45,6 @@ export const inspectURL = createServerFn({ method: "POST" })
 
     const result = await response.json();
     
-    // Side effect: Log to persistent storage (simulated here since we don't have a DB yet, 
-    // but in a real scenario we'd use Supabase or a JSON file)
     console.info(`[GSC-LOG] ${new Date().toISOString()} | INSPECTED | ${data.url} | ${result.indexingState || 'PENDING'}`);
 
     return {
@@ -102,30 +100,27 @@ export const getIndexingStatus = createServerFn({ method: "POST" })
       crawlState: result.crawlState,
       robotsTxtState: result.robotsTxtState,
       timestamp: new Date().toISOString(),
+      verdict: result.verdict || "NEUTRAL", // Added for alerts
     };
   });
 
 /**
- * Fetch search analytics data from GSC with dimensions and date ranges
+ * Fetch search analytics data from GSC
  */
 export const getSearchAnalytics = createServerFn({ method: "POST" })
   .inputValidator((data) =>
     z.object({
-      startDate: z.string(), // YYYY-MM-DD
-      endDate: z.string(), // YYYY-MM-DD
+      startDate: z.string(),
+      endDate: z.string(),
       dimensions: z.array(z.string()).optional().default(["page", "query"]),
     }).parse(data)
   )
   .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
-    }
+    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY missing");
 
     const GSC_API_KEY = process.env.GOOGLE_SEARCH_CONSOLE_API_KEY;
-    if (!GSC_API_KEY) {
-      throw new Error("Google Search Console not connected");
-    }
+    if (!GSC_API_KEY) throw new Error("GSC key missing");
 
     const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
 
@@ -149,7 +144,7 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(`Failed to fetch search analytics: ${JSON.stringify(error)}`);
+      throw new Error(`Failed to fetch GSC analytics: ${JSON.stringify(error)}`);
     }
 
     const result = await response.json();
@@ -161,16 +156,41 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
   });
 
 /**
- * Simulates Lighthouse metrics (in a real app, this would call a Lighthouse API or run a tool)
+ * Simulates GA4 Metrics for leads and WhatsApp clicks
+ */
+export const getGA4Metrics = createServerFn({ method: "POST" })
+  .inputValidator((data) =>
+    z.object({
+      startDate: z.string(),
+      endDate: z.string(),
+      url: z.string().url().optional(),
+    }).parse(data)
+  )
+  .handler(async ({ data }) => {
+    // Simulated GA4 response for lead_submit and whatsapp_click events
+    await new Promise(r => setTimeout(r, 500));
+
+    // Generating realistic simulated data
+    const seed = data.url ? data.url.length : 10;
+    const leads = Math.floor(seed * (0.5 + Math.random()));
+    const whatsapp = Math.floor(seed * (1.2 + Math.random()));
+
+    return {
+      leads,
+      whatsapp,
+      conversionRate: ((leads + whatsapp) / (seed * 10 || 1) * 100).toFixed(1),
+      startDate: data.startDate,
+      endDate: data.endDate,
+      url: data.url
+    };
+  });
+
+/**
+ * Simulates Lighthouse metrics
  */
 export const getLighthouseMetrics = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ url: z.string().url() }).parse(data))
   .handler(async ({ data }) => {
-    // In a production environment, we'd use PageSpeed Insights API
-    // For now, we return high-quality simulated data based on common benchmarks
-    // to demonstrate the dashboard functionality.
-    
-    // Simulate API delay
     await new Promise(r => setTimeout(r, 800));
 
     return {
