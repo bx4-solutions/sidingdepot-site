@@ -82,6 +82,14 @@ function SEODashboard() {
     new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
   );
   const [endDate, setEndDate] = useState(new Date().toISOString().split("T")[0]);
+  const isSelectedUrlValid = useMemo(() => {
+    try {
+      new URL(selectedUrl);
+      return true;
+    } catch {
+      return false;
+    }
+  }, [selectedUrl]);
 
   const inspectFn = useServerFn(inspectURL);
   const statusFn = useServerFn(getIndexingStatus);
@@ -91,8 +99,25 @@ function SEODashboard() {
 
   const { data: status, isLoading: statusLoading } = useQuery({
     queryKey: ["gsc-status", selectedUrl],
-    queryFn: () => statusFn({ data: { url: selectedUrl } }),
-    enabled: !!selectedUrl && !isCheckingAuth,
+    queryFn: async () => {
+      try {
+        return await statusFn({ data: { url: selectedUrl } });
+      } catch (error) {
+        console.error("[SEO Dashboard] Failed to load indexing status:", error);
+        return {
+          url: selectedUrl,
+          indexingState: "UNKNOWN",
+          lastCrawlTime: null,
+          coverageState: null,
+          crawlState: null,
+          robotsTxtState: null,
+          timestamp: new Date().toISOString(),
+          verdict: "NEUTRAL",
+          error: error instanceof Error ? error.message : "Failed to load indexing status",
+        };
+      }
+    },
+    enabled: isSelectedUrlValid && !isCheckingAuth,
   });
 
   const { data: analytics, isLoading: analyticsLoading } = useQuery({
@@ -104,13 +129,13 @@ function SEODashboard() {
   const { data: lhMetrics, isLoading: lhLoading } = useQuery({
     queryKey: ["lighthouse", selectedUrl],
     queryFn: () => lighthouseFn({ data: { url: selectedUrl } }),
-    enabled: !!selectedUrl && !isCheckingAuth,
+    enabled: isSelectedUrlValid && !isCheckingAuth,
   });
 
   const { data: ga4Metrics, isLoading: ga4Loading } = useQuery({
     queryKey: ["ga4-metrics", selectedUrl, startDate, endDate],
     queryFn: () => ga4Fn({ data: { url: selectedUrl, startDate, endDate } }),
-    enabled: !!selectedUrl && !isCheckingAuth,
+    enabled: isSelectedUrlValid && !isCheckingAuth,
   });
 
   // Global GA4 metrics (summing up)
