@@ -371,9 +371,9 @@ export function buildServiceMeta(args: {
   title: string;
   description: string;
   image: string;
-  canonical: string;
+  canonical?: string;
 }) {
-  return [
+  const meta = [
     { title: args.title },
     { name: "description", content: args.description },
     { property: "og:title", content: args.title },
@@ -382,6 +382,6 @@ export function buildServiceMeta(args: {
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:image", content: args.image },
-    { rel: "canonical", href: args.canonical },
   ];
+  return meta;
 }
