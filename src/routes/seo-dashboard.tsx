@@ -35,7 +35,9 @@ import {
   getLighthouseMetrics,
   getGA4Metrics
 } from "@/lib/gsc.functions";
+import { getBlogPosts, updateBlogPost, seedBlogPosts } from "@/lib/blog.functions";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
+
 import type { ABVariation } from "@/data/ab-testing";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -119,6 +121,10 @@ function SEODashboard() {
   const analyticsFn = useServerFn(getSearchAnalytics);
   const lighthouseFn = useServerFn(getLighthouseMetrics);
   const ga4Fn = useServerFn(getGA4Metrics);
+  const getBlogFn = useServerFn(getBlogPosts);
+  const updateBlogFn = useServerFn(updateBlogPost);
+  const seedBlogFn = useServerFn(seedBlogPosts);
+
 
   const { data: userProfile } = useQuery({
     queryKey: ["user-profile"],
@@ -221,8 +227,52 @@ function SEODashboard() {
 
   // Global GA4 metrics (summing up)
   const globalGA4 = useMemo(() => {
-    return { leads: 42, whatsapp: 156, conversionRate: "3.2%" };
-  }, []);
+    if (!ga4Metrics) return { leads: 0, whatsapp: 0, conversionRate: "0.0" };
+    return ga4Metrics;
+  }, [ga4Metrics]);
+
+  // Fetch Blog Posts
+  const { data: blogPosts, refetch: refetchBlog } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: () => getBlogFn({ data: {} }),
+    enabled: !isCheckingAuth,
+  });
+
+  const { data: abMetrics, isLoading: abLoading } = useQuery({
+    queryKey: ["ab-detailed-metrics", startDate, endDate],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("ab_events")
+        .select("*")
+        .gte("timestamp", startDate)
+        .lte("timestamp", endDate);
+      if (error) throw error;
+      return data;
+    },
+    enabled: !isCheckingAuth,
+  });
+
+  const abPerformance = useMemo(() => {
+    if (!abMetrics) return [];
+    
+    const stats: Record<string, any> = {};
+    abMetrics.forEach((e: any) => {
+      const key = `${e.service_key}_${e.variation}`;
+      if (!stats[key]) {
+        stats[key] = { service: e.service_key, variation: e.variation, views: 0, leads: 0, clicks: 0, ctr: 0 };
+      }
+      if (e.event_type === 'ab_variation_view') stats[key].views++;
+      if (e.event_type === 'qualified_lead') stats[key].leads++;
+      if (e.event_type === 'cta_click') stats[key].clicks++;
+    });
+
+    return Object.values(stats).map((s: any) => ({
+      ...s,
+      ctr: s.views > 0 ? ((s.clicks / s.views) * 100).toFixed(1) : "0.0",
+      cr: s.views > 0 ? ((s.leads / s.views) * 100).toFixed(1) : "0.0"
+    }));
+  }, [abMetrics]);
+
 
   // Process data for charts
   const chartData = useMemo(() => {
