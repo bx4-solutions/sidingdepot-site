@@ -494,20 +494,152 @@ function SEODashboard() {
                         </CardContent>
                       </Card>
 
+                      <Card className="lg:col-span-2 bg-[#131921] border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                          <CardTitle className="text-lg font-bold text-white">Ranqueamento e Performance de Páginas</CardTitle>
+                          <Badge className="bg-sd-green/10 text-sd-green border-sd-green/20">Site Interno</Badge>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-sm text-left">
+                              <thead>
+                                <tr className="border-b border-white/5 text-slate-400 text-[10px] uppercase font-black tracking-widest">
+                                  <th className="pb-3 px-2">Página</th>
+                                  <th className="pb-3 text-right">Views</th>
+                                  <th className="pb-3 text-right">Tempo Médio</th>
+                                  <th className="pb-3 text-right">Bounce</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-white/5">
+                                {metrics?.topPages?.map((p: any, i: number) => (
+                                  <tr key={i} className="group hover:bg-white/5 transition-colors">
+                                    <td className="py-3 px-2">
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-sd-green font-bold w-4">#{i+1}</span>
+                                        <span className="text-slate-200 truncate font-mono text-xs max-w-[200px]">{p.path}</span>
+                                      </div>
+                                    </td>
+                                    <td className="py-3 text-right font-bold">{p.views}</td>
+                                    <td className="py-3 text-right text-slate-300">{p.avgTime}</td>
+                                    <td className="py-3 text-right">
+                                      <span className={cn(
+                                        "px-2 py-0.5 rounded text-[10px] font-bold",
+                                        p.bounceRate < 30 ? "bg-green-500/10 text-green-500" : "bg-yellow-500/10 text-yellow-500"
+                                      )}>
+                                        {p.bounceRate}%
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </CardContent>
+                      </Card>
+
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold text-white">Páginas Mais Visitadas</CardTitle>
+                          <CardTitle className="text-lg font-bold text-white">Origem de Leads</CardTitle>
+                          <CardDescription className="text-xs">Rastreamento de conversão por canal</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2">
-                          {metrics?.topPages?.map((p: any, i: number) => (
-                            <div key={i} className="flex items-center justify-between text-sm py-1.5 border-b border-white/5 last:border-0">
-                              <span className="text-slate-200 truncate font-mono text-xs">{p.path}</span>
-                              <span className="font-bold text-white">{p.views}</span>
+                        <CardContent className="space-y-4">
+                          {metrics?.acquisition?.map((item: any, i: number) => (
+                            <div key={i} className="space-y-1">
+                              <div className="flex items-center justify-between text-xs">
+                                <span className="text-slate-300">{item.source}</span>
+                                <span className="font-bold text-sd-green">{item.leads} leads</span>
+                              </div>
+                              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-sd-green rounded-full" 
+                                  style={{ width: `${(item.leads / 142) * 100}%` }} 
+                                />
+                              </div>
                             </div>
                           ))}
                         </CardContent>
                       </Card>
+                    </div>
 
+                    {/* EVENTOS DE CLIQUE */}
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader>
+                        <CardTitle className="text-lg font-bold text-white">Botões e Interações</CardTitle>
+                        <CardDescription className="text-xs">Rastreamento de cliques em CTAs principais</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                          {metrics?.clickEvents?.map((ev: any, i: number) => (
+                            <div key={i} className="p-4 bg-white/5 border border-white/10 rounded-xl hover:border-sd-green/30 transition-all">
+                              <p className="text-[10px] font-black uppercase text-slate-400 mb-2">{ev.button}</p>
+                              <div className="flex items-end justify-between">
+                                <span className="text-2xl font-black text-white">{ev.clicks}</span>
+                                <div className="text-right">
+                                  <p className="text-[10px] font-bold text-sd-green">CONVERSÃO</p>
+                                  <p className="text-sm font-black">{ev.conversion}%</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      <Card className="lg:col-span-2 bg-[#131921] border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                          <div>
+                            <CardTitle className="text-lg font-bold text-white">Performance de Artigos</CardTitle>
+                            <CardDescription className="text-xs">Ranqueamento dos melhores posts do blog</CardDescription>
+                          </div>
+                          <Badge className="bg-sd-green/10 text-sd-green border-sd-green/20">Blog</Badge>
+                        </CardHeader>
+                        <CardContent>
+                           <div className="space-y-4">
+                              {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
+                                <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg group hover:bg-white/10 transition-colors">
+                                   <div className="flex items-center gap-4">
+                                      <div className="h-8 w-8 rounded bg-sd-green/10 flex items-center justify-center text-sd-green font-bold text-xs">
+                                        {i + 1}
+                                      </div>
+                                      <div>
+                                        <p className="text-sm font-bold text-white">{art.title}</p>
+                                        <p className="text-[10px] text-slate-400">{art.views.toLocaleString()} views · {art.conversion}% conv.</p>
+                                      </div>
+                                   </div>
+                                   <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-sd-green transition-colors" />
+                                </div>
+                              ))}
+                           </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Benchmarks do Mercado</CardTitle>
+                          <CardDescription className="text-xs">Comparativo com médias do setor</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                           {metrics?.blogStats?.marketBenchmarks?.map((bench: any, i: number) => (
+                             <div key={i} className="space-y-2">
+                               <div className="flex justify-between text-xs">
+                                 <span className="text-slate-300 font-bold">{bench.category}</span>
+                                 <span className="text-sd-green font-black">{bench.value}% <span className="text-slate-500 font-normal">/ {bench.benchmark}%</span></span>
+                               </div>
+                               <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                 <div className="absolute top-0 left-0 h-full bg-sd-green rounded-full z-10" style={{ width: `${bench.value}%` }} />
+                                 <div className="absolute top-0 left-[70%] h-full w-0.5 bg-white/20 z-20" title="Benchmark" />
+                               </div>
+                             </div>
+                           ))}
+                           <div className="pt-2 border-t border-white/5">
+                              <p className="text-[10px] text-slate-400 italic">Benchmarks baseados em dados de mercado para o segmento de Construção/IA em 2026.</p>
+                           </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
                           <CardTitle className="text-lg font-bold text-white">Visitantes por País</CardTitle>
@@ -521,43 +653,7 @@ function SEODashboard() {
                           ))}
                         </CardContent>
                       </Card>
-                    </div>
 
-                    {/* RELATÓRIOS AGENDADOS */}
-                    <Card className="bg-[#131921] border-white/10">
-                      <CardHeader className="flex flex-row items-start justify-between">
-                        <div className="flex items-center gap-3">
-                          <Calendar className="h-5 w-5 text-sd-green" />
-                          <div>
-                            <CardTitle className="text-lg font-bold text-white">Relatórios Agendados</CardTitle>
-                            <CardDescription className="text-xs">Configure envio automático de relatórios por e-mail</CardDescription>
-                          </div>
-                        </div>
-                        <Button className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold h-9">
-                          + Novo Agendamento
-                        </Button>
-                      </CardHeader>
-                      <CardContent>
-                        {!metrics?.scheduledReports?.length ? (
-                          <div className="flex flex-col items-center justify-center py-10 text-center">
-                            <Calendar className="h-10 w-10 text-slate-600 mb-3" />
-                            <p className="font-bold text-white">Nenhum relatório agendado</p>
-                            <p className="text-slate-300 text-sm">Clique em "Novo Agendamento" para criar um.</p>
-                          </div>
-                        ) : (
-                          <div className="space-y-2">
-                            {metrics.scheduledReports.map((r: any) => (
-                              <div key={r.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                                <div>
-                                  <p className="font-bold text-white text-sm">{r.name}</p>
-                                  <p className="text-xs text-slate-300">{r.email} · {r.frequency}</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
                    </div>
                 )}
 
