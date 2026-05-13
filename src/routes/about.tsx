@@ -350,8 +350,11 @@ function AboutPage() {
             <img
               src={CERT_HERO}
               alt="James Hardie Elite Preferred Contractor certification"
+              width={800}
+              height={600}
               className="max-w-full h-auto rounded-xl"
               loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
