@@ -202,6 +202,49 @@ export function trackQuoteRequest(data: {
   });
 }
 
+// =====================================================================
+// A/B Testing — variation-aware lead & engagement helpers
+// =====================================================================
+
+type AbCtx = { serviceKey?: string; variation?: string };
+
+/** Fired once per page-view when a variation is rendered. */
+export function trackVariationView(ctx: AbCtx & { city?: string }): void {
+  track("ab_variation_view", {
+    event_category: "experiment",
+    event_label: `${ctx.serviceKey}_${ctx.variation}`,
+    ...ctx,
+  });
+}
+
+/** Qualified lead — form submission tagged with variation. */
+export function trackQualifiedLead(ctx: AbCtx & { city?: string; source?: string }): void {
+  track("qualified_lead", {
+    event_category: "conversion",
+    event_label: `${ctx.serviceKey}_${ctx.variation}`,
+    source: ctx.source ?? "lead_form",
+    ...ctx,
+  });
+}
+
+/** Primary CTA click (Get a free quote, etc.) tagged with variation. */
+export function trackCtaClick(ctx: AbCtx & { cta: string; city?: string }): void {
+  track("cta_click", {
+    event_category: "engagement",
+    event_label: `${ctx.serviceKey}_${ctx.variation}_${ctx.cta}`,
+    ...ctx,
+  });
+}
+
+/** Phone-call click tagged with variation. */
+export function trackCallClick(ctx: AbCtx & { city?: string }): void {
+  track("call_click", {
+    event_category: "conversion",
+    event_label: `${ctx.serviceKey}_${ctx.variation}`,
+    ...ctx,
+  });
+}
+
 
 // Run from the browser console:   __trackSmokeTest()
 // Or in dev, results are auto-logged once on first import in the browser.

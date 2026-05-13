@@ -9,65 +9,68 @@ import {
 } from "lucide-react";
 import {
   ServiceLandingPage,
-  buildServiceMeta,
   faqJsonLd,
   serviceJsonLd,
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { SERVICE_METADATA } from "@/data/seo-config";
 
-const PAGE_TITLE = "Energy-Efficient Windows in Marietta, GA | Siding Depot — Energy Star®";
-const PAGE_DESC =
-  "Certified Simonton & PGT window replacement in North Atlanta. Energy Star® double-pane Low-E windows built for Georgia heat. Serving Marietta & Alpharetta. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/windows";
+const SERVICE_KEY = "windows";
+const CITY = "Marietta";
+
+const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
     q: "How much does window replacement cost in Marietta or Alpharetta, GA?",
-    a: "Window replacement in North Atlanta typically costs $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) runs $7,000–$18,000. Energy-efficient double-pane Low-E windows — recommended for Georgia's climate — reduce cooling costs by 15–25%, which matters when your AC runs 6+ months per year.",
+    a: "Window replacement in North Atlanta typically ranges from $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) generally falls in the $7,000–$18,000 range. According to Energy Star, certified Low-E windows can meaningfully reduce cooling costs in hot climates like Atlanta. Final pricing depends on your home's specifications and selected products.",
   },
   {
     q: "What's the best window for Georgia's hot and humid climate?",
-    a: "Double-pane Low-E (low emissivity) windows with argon gas fill are the standard recommendation for Georgia. The Low-E coating reflects infrared heat, keeping interiors cooler in summer without blocking natural light. Look for a U-factor below 0.30 and Solar Heat Gain Coefficient (SHGC) below 0.25 for optimal performance in Atlanta's climate zone (4A/3A).",
+    a: "Double-pane Low-E (low emissivity) windows with argon gas fill are widely recommended for Georgia. The Low-E coating reflects infrared heat, helping keep interiors cooler in summer without blocking natural light. Energy Star recommends a U-factor below 0.30 and Solar Heat Gain Coefficient (SHGC) below 0.25 for Atlanta's climate zone (3A/4A).",
   },
   {
     q: "Do I need permits to replace windows in Cobb or Cherokee County?",
-    a: "Yes for structural changes (enlarging openings), no for same-size replacements in most cases. Cobb County requires a permit if you're changing the window opening size. Cherokee County has similar requirements. We handle all permit applications and inspections — homeowners never need to deal with the county directly.",
+    a: "Generally yes for structural changes (such as enlarging openings) and not for same-size replacements, but this varies by jurisdiction. Cobb and Cherokee counties typically require a permit if the opening size changes. We handle all applicable permit applications and inspections so homeowners don't deal with the county directly.",
   },
   {
     q: "How long do replacement windows last in Georgia?",
-    a: "Quality vinyl or fiberglass windows last 20–40 years in Georgia's climate. Wood windows require more maintenance and are susceptible to moisture swelling in our humid summers. We install Simonton and PGT brands — both rated for Southeast humidity and designed to maintain a tight seal through Georgia's temperature swings (20°F winters to 100°F summers).",
+    a: "Quality vinyl or fiberglass windows can last 20–40 years in Georgia's climate when properly installed and maintained. Wood windows generally require more upkeep due to humidity. We install Simonton and PGT brands — both designed for Southeast climates and engineered to maintain a tight seal through Georgia's temperature swings.",
   },
   {
     q: "Can new windows really lower my energy bill in Atlanta?",
-    a: "Yes, measurably. The average Atlanta home spends $200–$300/month on cooling in summer. Upgrading from single-pane or aged windows to Energy Star certified double-pane Low-E can reduce that by $30–$60/month. Over the life of the windows, energy savings often cover 40–60% of the installation cost.",
+    a: "According to Energy Star, upgrading from single-pane or aged windows to certified Low-E double-pane can lower heating and cooling costs in hot-humid climates like Atlanta. Actual savings depend on your home's insulation, HVAC efficiency, and existing window condition. We'd be happy to provide a personalized assessment.",
   },
 ];
 
 const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "Energy Star certified product", desc: "Look for U-factor < 0.30 and SHGC < 0.25 for Atlanta's climate zone (3A/4A) — the only specs that meaningfully cut summer cooling costs." },
+  { Icon: Award, title: "Energy Star certified product", desc: "According to Energy Star, look for U-factor < 0.30 and SHGC < 0.25 for Atlanta's climate zone (3A/4A) — the specs that meaningfully impact summer cooling costs." },
   { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit changes hands." },
   { Icon: FileText, title: "Itemized written estimate", desc: "Insist on per-window pricing, frame material, glazing package, install method (insert vs. full-frame), and trim/wrap details." },
-  { Icon: Wrench, title: "Manufacturer-trained installers", desc: "Improperly installed windows leak air and water no matter how good the product. Ask who trains the install crew." },
-  { Icon: Search, title: "Local reviews after one summer", desc: "Drive past jobs from 12+ months ago. Caulk lines and trim wraps tell you everything about install quality." },
-  { Icon: Clock, title: "Realistic timeline", desc: "A standard 15–20 window swap takes 2–3 days for an experienced crew. Anything faster usually means rushed flashing or insulation." },
+  { Icon: Wrench, title: "Manufacturer-trained installers", desc: "Improperly installed windows can leak air and water no matter how good the product. Ask who trains the install crew." },
+  { Icon: Search, title: "Local reviews after one summer", desc: "Drive past jobs from 12+ months ago. Caulk lines and trim wraps tell you a lot about install quality." },
+  { Icon: Clock, title: "Realistic timeline", desc: "A standard 15–20 window swap typically takes 2–3 days for an experienced crew. Substantially faster timelines may indicate rushed flashing or insulation work." },
 ];
 
 export const Route = createFileRoute("/windows")({
   head: () => ({
-    meta: buildServiceMeta({
-      title: PAGE_TITLE,
-      description: PAGE_DESC,
-      image: HERO_IMAGE,
-      canonical: CANONICAL,
-    }),
+    meta: [
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
+      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:type", content: "website" },
+    ],
     links: [
       { rel: "canonical", href: CANONICAL },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Window Replacement & Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Window Replacement & Installation" }),
+      serviceJsonLd("Window Replacement & Installation", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Window Replacement & Installation" }),
       faqJsonLd(FAQS),
     ],
   }),
@@ -77,23 +80,25 @@ export const Route = createFileRoute("/windows")({
 function WindowsPage() {
   return (
     <ServiceLandingPage
+      serviceKey={SERVICE_KEY}
+      city={CITY}
+      heroImage={HERO_IMAGE}
       eyebrow="Energy Star · Low-E Double Pane"
       title="Energy-Efficient Windows:"
       titleAccent="Atlanta's Thermal Barrier."
-      intro="Slash your cooling costs by 15-25% with Energy Star® certified windows. Our double-pane Low-E systems are sized specifically for Georgia's climate, blocking infrared heat while flooding your home with light."
-      heroImage={HERO_IMAGE}
+      intro="Help reduce cooling costs with Energy Star® certified windows. According to Energy Star, certified Low-E double-pane systems can meaningfully cut summer cooling bills in Atlanta's climate zone — we'd love to assess your home."
       benefits={[
-        "Double-pane Low-E with argon fill — Atlanta climate zone",
-        "Cuts summer cooling bills by 15–25%",
-        "Simonton & PGT — rated for Southeast humidity",
+        "Double-pane Low-E with argon fill — sized for Atlanta climate",
+        "Energy Star certified options — up to meaningful cooling savings",
+        "Simonton & PGT — designed for Southeast humidity",
         "We handle Cobb / Cherokee / Fulton permits",
       ]}
       hiringRole="window contractor"
-      hiringIntro="Energy-efficient windows are a 25-year investment. Use this checklist to verify thermal performance specs and installation certifications for Georgia's climate."
+      hiringIntro="Energy-efficient windows are a long-term investment. Use this checklist to verify thermal performance specs and installation certifications for Georgia's climate."
       hiringChecklist={CHECKLIST}
       faqLabel="Window"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces windows across Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth — covering Cobb County, Cherokee County and Fulton County in Metro Atlanta. We specify Energy Star double-pane Low-E windows engineered for Atlanta's climate zone (3A/4A), where AC runs 6+ months a year and Georgia's heat and humidity will destroy a poorly sealed install. Most full-home window replacements in 2026 run $7,000–$18,000 in our service area, and quality Low-E packages typically cut summer cooling bills $30–$60 per month."
+      seoParagraph="Siding Depot replaces windows across Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth — covering Cobb County, Cherokee County and Fulton County in Metro Atlanta. We specify Energy Star double-pane Low-E windows for Atlanta's climate zone (3A/4A), where AC runs much of the year. Most full-home window replacements in our service area generally run $7,000–$18,000, and according to Energy Star, certified Low-E packages can meaningfully reduce summer cooling costs."
       ctaAccent="decades, not summers?"
       trustBadge={{ title: "Energy Star Partner", subtitle: "Low-E + Argon double-pane" }}
     />

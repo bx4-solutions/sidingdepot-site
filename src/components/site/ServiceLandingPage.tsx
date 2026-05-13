@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -20,7 +21,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
-import { SERVICE_METADATA } from "@/data/seo-config";
+import { SERVICE_METADATA_AB, getSeoForVariation } from "@/data/seo-config";
+import {
+  trackVariationView,
+  trackCtaClick,
+  trackCallClick,
+} from "@/lib/track";
+
 
 export type ChecklistItem = {
   Icon: LucideIcon;
@@ -71,8 +78,8 @@ export function ServiceLandingPage({
 }: ServiceLandingProps) {
   const variation = getServiceVariation(serviceKey);
   const abContent = AB_CONTENT[serviceKey]?.[variation];
-  const seo = SERVICE_METADATA[serviceKey];
-  
+  const seo = getSeoForVariation(serviceKey, variation);
+
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
   const title = abContent?.title ?? manualTitle;
@@ -86,6 +93,22 @@ export function ServiceLandingPage({
 
   // Internal links for SEO consistency
   const relatedServices = SERVICES.filter(s => s.slug !== serviceKey).slice(0, 3);
+
+  // Track variation view + override <title>/meta description on client per assigned variation
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    trackVariationView({ serviceKey, variation, city });
+    const t = seo.metaTitle(city);
+    if (t) document.title = t;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", seo.metaDesc);
+    const ogt = document.querySelector('meta[property="og:title"]');
+    if (ogt) ogt.setAttribute("content", t);
+    const ogd = document.querySelector('meta[property="og:description"]');
+    if (ogd) ogd.setAttribute("content", seo.metaDesc);
+  }, [serviceKey, variation, city, seo]);
+
+  const ctx = { serviceKey, variation, city };
 
   return (
     <main>
@@ -114,12 +137,12 @@ export function ServiceLandingPage({
             <p className="mt-6 text-lg text-white/80 leading-relaxed">{intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
                   Get a free estimate <ArrowRight />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
+                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
                   <Phone /> Call {SITE.phone}
                 </a>
               </Button>
@@ -306,12 +329,12 @@ export function ServiceLandingPage({
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "footer_quote" })}>
                   Get a free estimate <ArrowRight />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
+                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
                   <Phone /> Call {SITE.phone}
                 </a>
               </Button>

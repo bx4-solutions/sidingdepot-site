@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
-import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
+import { track, trackLeadSubmit, trackContactPageView, trackQualifiedLead } from "@/lib/track";
 import { submitToGHL } from "@/lib/ghl.functions";
 
 const searchSchema = z.object({
@@ -111,9 +111,19 @@ function ContactPage() {
 
       await submitToGHLFn({ data: payload });
 
+      const svcKey = (search.service || "general").toString();
+      const variation = (typeof window !== "undefined"
+        ? sessionStorage.getItem(`ab_var_${svcKey}`)
+        : null) || "A";
       trackLeadSubmit({
-        service: search.service || "general",
+        service: svcKey,
         phone: parsed.data.phone,
+        source: parsed.data.source || "contact_page",
+      });
+      trackQualifiedLead({
+        serviceKey: svcKey,
+        variation,
+        city: search.city,
         source: parsed.data.source || "contact_page",
       });
       setDone(true);

@@ -70,7 +70,8 @@ export function Footer() {
               {CITIES.slice(0, 8).map((c) => (
                 <li key={c.slug}>
                   <Link
-                    to="/service-areas"
+                    to="/locations/$city/$service"
+                    params={{ city: c.slug, service: "siding" }}
                     className="text-sm text-white/55 hover:text-sd-green"
                   >
                     {c.name}, GA
@@ -86,12 +87,9 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/about" className="text-white/55 hover:text-sd-green">About</Link></li>
-              <li><Link to="/gallery" className="text-white/55 hover:text-sd-green">Gallery</Link></li>
-              <li><Link to="/reviews" className="text-white/55 hover:text-sd-green">Reviews</Link></li>
-              <li><Link to="/finance" className="text-white/55 hover:text-sd-green">Financing</Link></li>
+              <li><Link to="/projects" className="text-white/55 hover:text-sd-green">Gallery</Link></li>
+              <li><Link to="/guide" className="text-white/55 hover:text-sd-green">Free Guide</Link></li>
               <li><Link to="/contact" className="text-white/55 hover:text-sd-green">Contact</Link></li>
-              <li><Link to="/privacy-policy" className="text-white/55 hover:text-sd-green">Privacy Policy</Link></li>
-              <li><Link to="/terms-of-use" className="text-white/55 hover:text-sd-green">Terms of Use</Link></li>
               {session ? (
                 <li><Link to="/seo-dashboard" className="text-sd-green font-bold">SEO Dashboard</Link></li>
               ) : (
