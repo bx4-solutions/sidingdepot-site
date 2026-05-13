@@ -35,6 +35,31 @@ function readUtm(): Record<string, string> {
   return out;
 }
 
+/**
+ * Per-session dedupe flag. We key by `source` so a user who submits the form
+ * inside a city LP (`lp_siding_magnet`) and later opens `/guide` (source
+ * `guide_page`) can still receive the guide once per surface — but cannot
+ * re-trigger the same surface twice in the same session.
+ */
+const SUBMITTED_KEY = (source: string) => `__lm_submitted__${source}`;
+const DOWNLOAD_THROTTLE_MS = 4000;
+
+function safeSession(): Storage | null {
+  try {
+    if (typeof window === "undefined") return null;
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+function alreadySubmitted(source: string): boolean {
+  return safeSession()?.getItem(SUBMITTED_KEY(source)) === "1";
+}
+function markSubmitted(source: string) {
+  try { safeSession()?.setItem(SUBMITTED_KEY(source), "1"); } catch { /* ignore */ }
+}
+
 type Props = {
   /** City pre-tagged on the lead (e.g. "Marietta"). */
   city?: string;
