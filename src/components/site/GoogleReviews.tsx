@@ -85,9 +85,12 @@ export function GoogleReviews() {
 
   const syncMutation = useMutation({
     mutationFn: () => syncReviews({ data: { placeId: "ChIJgXSHh4OH9YgR9nx8zHzMfMw" } }), // Actual Siding Depot Place ID
-    onSuccess: (res) => {
+    onSuccess: (res: any) => {
       if (res.success) {
         toast.success(`Successfully synced ${res.count} reviews!`);
+        if (res.overallRating) {
+          console.log(`Overall Rating: ${res.overallRating}, Total: ${res.totalReviews}`);
+        }
         queryClient.invalidateQueries({ queryKey: ["google-reviews"] });
       } else {
         toast.error(`Sync failed: ${res.error}`);
