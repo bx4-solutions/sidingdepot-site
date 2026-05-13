@@ -47,7 +47,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
-        <div className="flex flex-col items-start leading-none min-w-0 py-2">
+        <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
             <img
               src={logoSidingDepot}
@@ -59,25 +59,6 @@ export function Navbar() {
               decoding="async"
             />
           </Link>
-          <div className="mt-1.5 sm:mt-2 flex items-center gap-0.5 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] lg:text-[11px] leading-none font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em] text-white/70 whitespace-nowrap">
-            {STRIP_ITEMS.map((item, i) => {
-              const active = isHome && activeHash === `services-${item.slug}`;
-              return (
-                <span key={item.slug} className="flex items-center gap-0.5 sm:gap-1.5">
-                  {i > 0 && <span aria-hidden className="text-sd-green">–</span>}
-                  <Link
-                    to="/"
-                    hash={`services-${item.slug}`}
-                    onClick={() => handleStripClick(item.slug)}
-                    aria-current={active ? "true" : undefined}
-                    className={`transition-colors hover:text-sd-green ${active ? "text-sd-green" : ""}`}
-                  >
-                    {item.label}
-                  </Link>
-                </span>
-              );
-            })}
-          </div>
         </div>
 
         <nav className="hidden lg:flex items-center gap-7">
