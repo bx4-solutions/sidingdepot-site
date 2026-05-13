@@ -4,7 +4,7 @@
  * Pushes events to window.dataLayer (consumed by Google Tag Manager)
  * and persists A/B testing events to Supabase for the internal dashboard.
  */
-import { supabase } from "./supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 export type TrackPayload = Record<string, string | number | boolean | undefined>;
 
@@ -116,7 +116,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
         utm_campaign: attribution.utm_campaign,
         landing_page: attribution.landing_page,
         metadata: payload
-      }).then(({ error }) => {
+      }).then(({ error }: { error: any }) => {
         if (error && import.meta.env.DEV) console.error("[track] supabase error", error);
       });
     }
