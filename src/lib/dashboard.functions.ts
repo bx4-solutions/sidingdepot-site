@@ -27,6 +27,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
     });
 
     return {
+      isSimulated: true,
       overview: {
         totalConversions: 142,
         conversionRate: 3.2,
