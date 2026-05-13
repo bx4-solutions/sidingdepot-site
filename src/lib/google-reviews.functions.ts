@@ -60,8 +60,8 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
         return { success: false, error: error.message };
       }
 
-      // Update sync log
-      await supabaseAdmin
+      // Update sync log - Using type assertion to bypass temporary type mismatch
+      await (supabaseAdmin as any)
         .from("google_reviews_sync_log")
         .insert({ 
           place_id: data.placeId, 
@@ -83,6 +83,21 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
 
 export const getGoogleReviews = createServerFn({ method: "GET" })
   .handler(async () => {
+    // Check if we need to sync based on last sync log
+    const { data: syncData } = await (supabaseAdmin as any)
+      .from("google_reviews_sync_log")
+      .select("created_at")
+      .order("created_at", { ascending: false })
+      .limit(1);
+
+    const lastSync = syncData && syncData[0] ? new Date(syncData[0].created_at).getTime() : 0;
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    // Optional: Return a flag to the client to trigger sync if older than 24h
+    // or we could trigger it here if it's a server environment.
+    // For now, let's just return the data.
+
     const { data, error } = await supabaseAdmin
       .from("google_reviews")
       .select("*")
@@ -96,6 +111,7 @@ export const getGoogleReviews = createServerFn({ method: "GET" })
     return { 
       reviews: data || [],
       overallRating: 4.9, 
-      totalReviews: 128    
+      totalReviews: 128,
+      shouldSync: (now - lastSync) > oneDay
     };
   });
