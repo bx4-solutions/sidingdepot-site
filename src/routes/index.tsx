@@ -130,10 +130,18 @@ function HomePage() {
                 allowFullScreen
                 className="absolute inset-0 h-full w-full"
               />
+              <div className="absolute -top-5 -right-5 bg-sd-green text-sd-black rounded-full h-24 w-24 flex flex-col items-center justify-center shadow-2xl border-4 border-sd-navy">
+                <span className="font-display text-2xl leading-none">15+</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider mt-0.5">Years</span>
+              </div>
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-sd-green text-sd-black rounded-full h-32 w-32 flex flex-col items-center justify-center shadow-2xl">
-              <span className="font-display text-3xl leading-none">15+</span>
-              <span className="text-[11px] font-bold uppercase tracking-wider mt-1">Years</span>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/contact">Get Your Free Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="outlineWhite">
+                <Link to="/about">About Siding Depot</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -286,15 +294,25 @@ function HomePage() {
               </Button>
             </div>
           </div>
-          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
-            <iframe
-              src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
-              title="Why James Hardie siding is built for Georgia"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
+          <div>
+            <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
+                title="Why James Hardie siding is built for Georgia"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/contact">Get Your Free Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="outlineWhite">
+                <Link to="/siding">See Siding Services</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
