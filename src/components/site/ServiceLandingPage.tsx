@@ -18,8 +18,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/data/site";
-import { type SocialProof } from "@/data/ab-testing";
+import { SITE, SERVICES } from "@/data/site";
+import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
+import { SERVICE_METADATA } from "@/data/seo-config";
 
 export type ChecklistItem = {
   Icon: LucideIcon;
@@ -45,25 +46,47 @@ export type ServiceLandingProps = {
   ctaAccent: string;
   trustBadge?: { title: string; subtitle: string };
   socialProof?: SocialProof;
+  serviceKey?: string;
+  city?: string;
 };
 
 export function ServiceLandingPage({
-  eyebrow,
-  title,
-  titleAccent,
-  intro,
+  eyebrow: manualEyebrow,
+  title: manualTitle,
+  titleAccent: manualAccent,
+  intro: manualIntro,
   heroImage,
-  benefits,
+  benefits: manualBenefits,
   hiringRole,
-  hiringIntro,
+  hiringIntro: manualHiringIntro,
   hiringChecklist,
   faqLabel,
   faqs,
   seoParagraph,
   ctaAccent,
   trustBadge = { title: "Licensed & Insured", subtitle: "GA GC #RBQA006789" },
-  socialProof,
+  socialProof: manualSocialProof,
+  serviceKey = "siding",
+  city = "Marietta",
 }: ServiceLandingProps) {
+  const variation = getServiceVariation(serviceKey);
+  const abContent = AB_CONTENT[serviceKey]?.[variation];
+  const seo = SERVICE_METADATA[serviceKey];
+  
+  // Use AB content if available, fallback to manual props
+  const eyebrow = abContent?.eyebrow ?? manualEyebrow;
+  const title = abContent?.title ?? manualTitle;
+  const titleAccent = abContent?.titleAccent ?? manualAccent;
+  const intro = abContent?.intro ?? manualIntro;
+  const benefits = abContent?.benefits ?? manualBenefits;
+  const hiringIntro = abContent?.hiringIntro ?? manualHiringIntro;
+  const process = abContent?.process;
+
+  const socialProof = manualSocialProof || SOCIAL_PROOF[serviceKey] || SOCIAL_PROOF["siding"];
+
+  // Internal links for SEO consistency
+  const relatedServices = SERVICES.filter(s => s.slug !== serviceKey).slice(0, 3);
+
   return (
     <main>
       {/* HERO */}
@@ -155,7 +178,7 @@ export function ServiceLandingPage({
         </div>
       </section>
 
-      {/* What to consider when hiring */}
+      {/* What to consider when hiring / Process */}
       <section className="bg-sd-gray-bg py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="max-w-3xl">
@@ -163,8 +186,7 @@ export function ServiceLandingPage({
               Hire smart
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              What to consider when hiring a{" "}
-              <span className="text-sd-green">{hiringRole}.</span>
+              {seo?.h2 || `Certified ${faqLabel} Experts in ${city}`}
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
               {hiringIntro}
@@ -172,22 +194,58 @@ export function ServiceLandingPage({
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {hiringChecklist.map(({ Icon, title: itemTitle, desc }) => (
-              <div
-                key={itemTitle}
-                className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy">
-                  <Icon className="h-5 w-5" strokeWidth={2} />
+            {process ? (
+              process.map((step, i) => (
+                <div
+                  key={i}
+                  className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy font-bold text-xl">
+                    {i + 1}
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-sd-black">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
+                    {step.desc}
+                  </p>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-sd-black">
-                  {itemTitle}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
-                  {desc}
-                </p>
-              </div>
+              ))
+            ) : (
+              hiringChecklist.map(({ Icon, title: itemTitle, desc }) => (
+                <div
+                  key={itemTitle}
+                  className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-sd-black">
+                    {itemTitle}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
+                    {desc}
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Internal Linking Section */}
+      <section className="py-16 bg-white border-t border-sd-dark/5">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl font-display text-sd-dark mb-8">Related Services in {city}</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {relatedServices.map(s => (
+              <Button key={s.slug} asChild variant="outline" className="rounded-full">
+                <Link to={`/${s.slug}`}>{s.title} Installation</Link>
+              </Button>
             ))}
+            <Button asChild variant="outline" className="rounded-full">
+              <Link to="/contact">Free {city} Estimate</Link>
+            </Button>
           </div>
         </div>
       </section>
