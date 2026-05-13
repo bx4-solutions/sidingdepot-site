@@ -54,6 +54,7 @@ export const STATIC_ROUTES = [
   "/roofing",
   "/gutters",
   "/windows",
+  "/doors",
   "/deck",
   "/dumpster",
   "/dumpster-rental",
