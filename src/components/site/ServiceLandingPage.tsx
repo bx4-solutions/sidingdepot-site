@@ -6,6 +6,10 @@ import {
   Award,
   CheckCircle2,
   type LucideIcon,
+  Star,
+  Users,
+  MapPin,
+  BadgeCheck,
 } from "lucide-react";
 import {
   Accordion,
@@ -15,6 +19,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
+import { type SocialProof } from "@/data/ab-testing";
 
 export type ChecklistItem = {
   Icon: LucideIcon;
@@ -25,35 +30,21 @@ export type ChecklistItem = {
 export type FaqItem = { q: string; a: string };
 
 export type ServiceLandingProps = {
-  /** Pill above the H1 (e.g. "GAF Factory Certified · Roofing"). */
   eyebrow: string;
-  /** First part of the H1 (left of the green accent). */
   title: string;
-  /** Green-accented continuation of the H1. */
   titleAccent: string;
-  /** Lead paragraph under the H1. */
   intro: string;
-  /** Hero background image (also used as faded backdrop). */
   heroImage: string;
-  /** Heroic bullets shown under the CTAs. */
   benefits: ReadonlyArray<string>;
-  /** What-to-consider checklist title (e.g. "roofer", "gutter installer"). */
   hiringRole: string;
-  /** What-to-consider lead paragraph. */
   hiringIntro: string;
-  /** 4–6 cards under "What to consider when hiring a {role}". */
   hiringChecklist: ReadonlyArray<ChecklistItem>;
-  /** FAQ section heading word (e.g. "Roofing", "Gutter", "Window"). */
   faqLabel: string;
-  /** FAQ list rendered with the standard accordion + JSON-LD upstream. */
   faqs: ReadonlyArray<FaqItem>;
-  /** Optional supporting paragraph rendered between hero and checklist —
-   *  useful for stuffing the SEO-required city / county / climate copy. */
   seoParagraph: string;
-  /** Final CTA closing text (e.g. "decades, not seasons?"). */
   ctaAccent: string;
-  /** Right-rail trust badge title (defaults to "Licensed & Insured"). */
   trustBadge?: { title: string; subtitle: string };
+  socialProof?: SocialProof;
 };
 
 export function ServiceLandingPage({
@@ -70,10 +61,8 @@ export function ServiceLandingPage({
   faqs,
   seoParagraph,
   ctaAccent,
-  trustBadge = {
-    title: "Licensed & Insured",
-    subtitle: "GA GC #RBQA006789",
-  },
+  trustBadge = { title: "Licensed & Insured", subtitle: "GA GC #RBQA006789" },
+  socialProof,
 }: ServiceLandingProps) {
   return (
     <main>
@@ -123,6 +112,39 @@ export function ServiceLandingPage({
           </div>
         </div>
       </section>
+
+      {/* SOCIAL PROOF SECTION */}
+      {socialProof && (
+        <section className="bg-sd-gray-bg py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-3">
+              {socialProof.stats.map((s) => (
+                <div key={s.label} className="flex items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border">
+                  <div className="p-3 bg-sd-green-pale rounded-full text-sd-green">
+                    <s.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-sd-navy">{s.value}</div>
+                    <div className="text-sm text-sd-gray-text">{s.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {socialProof.reviews.map((r, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border">
+                  <div className="flex text-sd-green mb-3">
+                    {[...Array(r.rating)].map((_, j) => <Star key={j} className="h-4 w-4 fill-sd-green" />)}
+                  </div>
+                  <p className="text-sm text-sd-gray-text italic leading-relaxed">"{r.text}"</p>
+                  <p className="mt-4 text-xs font-bold text-sd-navy">{r.name} — {r.city}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* SEO copy block */}
       <section className="bg-white py-16 lg:py-20">
@@ -222,9 +244,7 @@ export function ServiceLandingPage({
             </h2>
             <p className="mt-4 text-white/75 max-w-2xl">
               Free on-site consultation, written estimate the same day, and a
-              dedicated project manager from start to finish — across Marietta,
-              Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns
-              Creek, Sandy Springs and Acworth.
+              dedicated project manager from start to finish.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -261,7 +281,6 @@ export function ServiceLandingPage({
   );
 }
 
-/** Build the FAQPage JSON-LD payload matching Google's required schema. */
 export function faqJsonLd(faqs: ReadonlyArray<FaqItem>) {
   return {
     type: "application/ld+json",
@@ -277,29 +296,6 @@ export function faqJsonLd(faqs: ReadonlyArray<FaqItem>) {
   };
 }
 
-/**
- * Cities served across North Atlanta. Mirrors the LocalBusiness areaServed in
- * the root layout so per-service Service schema stays consistent for local SEO.
- */
-const AREA_SERVED = [
-  "Marietta, GA",
-  "Alpharetta, GA",
-  "Milton, GA",
-  "Canton, GA",
-  "Woodstock, GA",
-  "Roswell, GA",
-  "Kennesaw, GA",
-  "Johns Creek, GA",
-  "Sandy Springs, GA",
-  "Acworth, GA",
-];
-
-/**
- * Build a Service JSON-LD enriched with a fully-described LocalBusiness
- * provider (address, phone, url, image, ratings, area served). Pair with the
- * root LocalBusiness schema to reinforce local SEO signals across each service
- * page. `canonical` should be the absolute URL of the service page.
- */
 export function serviceJsonLd(
   name: string,
   description: string,
@@ -309,73 +305,26 @@ export function serviceJsonLd(
     serviceType?: string;
   }
 ) {
-  const siteUrl = "https://sidingdepot.com";
-  const canonical = options?.canonical;
-  const image = options?.image
-    ? options.image.startsWith("http")
-      ? options.image
-      : `${siteUrl}${options.image}`
-    : `${siteUrl}/og-default.jpg`;
-
   return {
     type: "application/ld+json",
     children: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      ...(canonical ? { "@id": `${canonical}#service` } : {}),
       name,
       serviceType: options?.serviceType ?? name,
       description,
-      ...(canonical ? { url: canonical } : {}),
-      image,
-      areaServed: AREA_SERVED.map((n) => ({
-        "@type": "City",
-        name: n,
-      })),
-      provider: {
-        "@type": "LocalBusiness",
-        "@id": `${siteUrl}#localbusiness`,
-        name: SITE.legalName,
-        telephone: SITE.phone,
-        email: SITE.email,
-        url: siteUrl,
-        image: `${siteUrl}/og-default.jpg`,
-        priceRange: "$$",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: SITE.address.street,
-          addressLocality: SITE.address.city,
-          addressRegion: SITE.address.state,
-          postalCode: SITE.address.zip,
-          addressCountry: "US",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: 33.9526,
-          longitude: -84.5499,
-        },
-        areaServed: AREA_SERVED.map((n) => ({
-          "@type": "City",
-          name: n,
-        })),
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "60",
-        },
-      },
+      image: options?.image,
     }),
   };
 }
 
-/** Build the standard meta array from page title + description + image. */
 export function buildServiceMeta(args: {
   title: string;
   description: string;
   image: string;
   canonical?: string;
 }) {
-  const meta = [
+  return [
     { title: args.title },
     { name: "description", content: args.description },
     { property: "og:title", content: args.title },
@@ -385,5 +334,4 @@ export function buildServiceMeta(args: {
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:image", content: args.image },
   ];
-  return meta;
 }
