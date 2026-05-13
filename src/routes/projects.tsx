@@ -40,6 +40,12 @@ export const Route = createFileRoute("/projects")({
         content:
           "Real homes across Metro Atlanta — siding, painting, windows and full exterior renovations.",
       },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Project Gallery — Siding Depot" },
+      { name: "twitter:description", content: "Real homes across Metro Atlanta — siding, painting, windows and full exterior renovations." },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
   }),
   component: ProjectsPage,
