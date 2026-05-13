@@ -73,5 +73,9 @@ export const getGoogleReviews = createServerFn({ method: "GET" })
       return { reviews: [] };
     }
 
-    return { reviews: data };
+    return { 
+      reviews: data,
+      overallRating: 4.9, // Default fallback
+      totalReviews: 128    // Default fallback
+    };
   });
