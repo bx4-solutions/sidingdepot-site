@@ -17,6 +17,45 @@ import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SERVICES, CITIES, SITE } from "@/data/site";
 
 
+const HOME_VIDEOS = [
+  {
+    id: "898FBaW_VnI",
+    name: "Siding Depot — Institutional video",
+    description:
+      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta and all of North Atlanta. 1,500+ homes resided.",
+    duration: "PT2M",
+    uploadDate: "2024-06-01",
+  },
+  {
+    id: "tENqAaDFr9s",
+    name: "Why James Hardie fiber cement siding is built for Georgia",
+    description:
+      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Marietta, GA.",
+    duration: "PT3M",
+    uploadDate: "2024-04-15",
+  },
+] as const;
+
+const VIDEO_JSONLD_LIST = HOME_VIDEOS.map((v) => ({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: v.name,
+  description: v.description,
+  thumbnailUrl: [
+    `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`,
+    `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+  ],
+  uploadDate: v.uploadDate,
+  duration: v.duration,
+  contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+  embedUrl: `https://www.youtube.com/embed/${v.id}`,
+  publisher: {
+    "@type": "Organization",
+    name: "Siding Depot",
+    logo: { "@type": "ImageObject", url: "https://sidingdepot.com/logo.png" },
+  },
+}));
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -25,6 +64,14 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Siding Depot — Georgia's Most Trusted Siding Experts" },
       { property: "og:description", content: "James Hardie Elite Preferred. 1,500+ homes. Free quote in 24h across North Atlanta." },
     ],
+    links: [
+      { rel: "preconnect", href: "https://www.youtube.com" },
+      { rel: "preconnect", href: "https://i.ytimg.com" },
+    ],
+    scripts: VIDEO_JSONLD_LIST.map((data) => ({
+      type: "application/ld+json",
+      children: JSON.stringify(data),
+    })),
   }),
   component: HomePage,
 });
@@ -140,6 +187,20 @@ function HomePage() {
                 <Link to="/about">About Siding Depot</Link>
               </Button>
             </div>
+            <nav
+              aria-label="Related siding pages"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+            >
+              <Link to="/siding" className="text-sd-green hover:underline">
+                James Hardie siding installation in Marietta
+              </Link>
+              <Link to="/service-areas" className="text-sd-green hover:underline">
+                North Atlanta service areas
+              </Link>
+              <Link to="/projects" className="text-sd-green hover:underline">
+                See recent siding projects
+              </Link>
+            </nav>
           </div>
         </div>
       </section>
@@ -304,6 +365,20 @@ function HomePage() {
                 <Link to="/siding">See Siding Services</Link>
               </Button>
             </div>
+            <nav
+              aria-label="Related Hardie siding pages"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+            >
+              <Link to="/siding" className="text-sd-green hover:underline">
+                Fiber cement siding services
+              </Link>
+              <Link to="/painting" className="text-sd-green hover:underline">
+                Exterior painting in North Atlanta
+              </Link>
+              <Link to="/contact" className="text-sd-green hover:underline">
+                Request a free Hardie siding quote
+              </Link>
+            </nav>
           </div>
         </div>
       </section>
