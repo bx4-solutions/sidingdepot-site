@@ -118,6 +118,7 @@ export function HeroQuoteForm({
         services_count: parsed.data.services.length,
       });
       setDone(true);
+      onSuccess?.();
     } catch {
       track("quote_form_error", { source: source });
       setErrors({ message: "Não foi possível enviar agora. Tente novamente." });
