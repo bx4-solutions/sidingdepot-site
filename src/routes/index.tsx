@@ -7,6 +7,8 @@ import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
+import { MapSection } from "@/components/site/MapSection";
+import { GoogleReviews } from "@/components/site/GoogleReviews";
 
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
@@ -244,6 +246,10 @@ function HomePage() {
         </div>
       </section>
 
+      <MapSection />
+
+      <GoogleReviews />
+
       <ProjectGallery />
 
       <FinancingBlock />
@@ -305,27 +311,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-20 lg:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-              Real Reviews
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              What North Atlanta Homeowners Say
-            </h2>
-            <p className="mt-3 text-sd-gray-text">
-              4.9★ average across 60+ Google Reviews.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <TestimonialCard key={t.name} {...t} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* GAF/HARDIE SEALS STRIP OR CTA */}
 
       {/* HARDIE SECTION */}
       <section className="relative bg-gradient-to-br from-sd-navy via-sd-navy to-sd-dark text-white py-20 lg:py-24">
