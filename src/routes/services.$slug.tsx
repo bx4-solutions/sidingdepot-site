@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -6,6 +7,8 @@ import {
   Star,
   Award,
 } from "lucide-react";
+import { seoAutomation } from "@/lib/seo-automation";
+import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
   PROJECTS_SORTED,
   SERVICE_OPTIONS,
@@ -185,6 +188,20 @@ export const Route = createFileRoute("/services/$slug")({
     const title = `${content.hero} | ${SITE.name}`;
     const description = content.intro;
     const url = `https://www.sidingdepot.com/services/${slug}`;
+
+    // Generate enhanced schemas
+    const serviceSchemas = generateServicePageSchemas({
+      title: content.hero,
+      description: content.intro,
+      serviceType: content.label,
+      image: content.ogImage ? `https://www.sidingdepot.com${content.ogImage}` : undefined,
+      // Adding common FAQs for these services
+      faqs: [
+        { q: `Do you provide free estimates for ${content.label.toLowerCase()}?`, a: "Yes, we provide 100% free, no-obligation on-site estimates for all our exterior services." },
+        { q: "Are you licensed and insured?", a: "Yes, Siding Depot is fully licensed and carries comprehensive liability and workers' compensation insurance." }
+      ]
+    });
+
     const meta = [
       { title },
       { name: "description", content: description },
@@ -203,20 +220,10 @@ export const Route = createFileRoute("/services/$slug")({
     return {
       meta,
       links: [{ rel: "canonical", href: url }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: content.hero,
-            provider: { "@type": "LocalBusiness", name: SITE.name, telephone: SITE.phone },
-            areaServed: "Greater Atlanta, GA",
-            description,
-            url,
-          }),
-        },
-      ],
+      scripts: serviceSchemas.map(schema => ({
+        type: "application/ld+json",
+        children: JSON.stringify(schema),
+      })),
     };
   },
   notFoundComponent: () => (
@@ -236,6 +243,14 @@ function ServicePage() {
   const data = Route.useLoaderData() as { slug: ServiceSlug; content: ServiceContent };
   const { slug, content } = data;
   const related = PROJECTS_SORTED.filter((p) => p.tags.includes(content.label)).slice(0, 3);
+
+  // Auto-schedule indexing inspection when a user (or bot) visits a service page
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = window.location.href;
+      seoAutomation.scheduleInspection(url).catch(console.error);
+    }
+  }, [slug]);
 
   return (
     <div className="bg-sd-gray-bg">

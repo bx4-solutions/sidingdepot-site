@@ -111,17 +111,41 @@ export function serviceSchema(input: ServiceSchemaInput) {
       name: SITE.legalName,
       url: "https://sidingdepot.com",
       image: "https://sidingdepot.com/og-default.jpg",
+      telephone: SITE.phone,
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: SITE.address.street,
+        addressLocality: SITE.address.city,
+        addressRegion: SITE.address.state,
+        postalCode: SITE.address.zip,
+        addressCountry: "US",
+      },
     },
     areaServed: input.city
       ? [{ "@type": "City", name: `${input.city}, GA` }]
-      : "GA",
+      : [
+          { "@type": "City", name: "Marietta, GA" },
+          { "@type": "City", name: "Alpharetta, GA" },
+          { "@type": "City", name: "Milton, GA" },
+          { "@type": "City", name: "Canton, GA" },
+          { "@type": "City", name: "Woodstock, GA" },
+          { "@type": "City", name: "Roswell, GA" },
+          { "@type": "City", name: "Kennesaw, GA" },
+          { "@type": "City", name: "Johns Creek, GA" },
+          { "@type": "City", name: "Sandy Springs, GA" },
+          { "@type": "City", name: "Acworth, GA" },
+        ],
     url: "https://sidingdepot.com",
-    telephone: SITE.phone,
-    priceRange: "$$",
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
       description: "Free estimate — no obligation",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "LocalBusiness",
+        name: SITE.legalName
+      }
     },
   };
 }
