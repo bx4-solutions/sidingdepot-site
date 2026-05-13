@@ -228,7 +228,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
       const clickEvents = Array.from(clickMap.values()).map((click) => ({
         ...click,
         conversion: click.clicks ? Number(((click.conversions / click.clicks) * 100).toFixed(1)) : 0,
-        sources: Array.from(click.sourceCounts.entries()).map(([source, count]) => ({ source, count })),
+        sources: Array.from((click.sourceCounts as Map<string, number>).entries()).map(([source, count]) => ({ source, count })),
       })).sort((a, b) => b.clicks - a.clicks);
 
       const topPages = Array.from(pageMap.values()).map((page) => {
@@ -238,7 +238,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           avgTimeSeconds: avgSeconds,
           avgTime: formatSeconds(avgSeconds),
           bounceRate: page.bounceRate || 0,
-          leadsBySource: Array.from(page.sourceCounts.entries()).map(([source, count]) => ({ source, count })),
+          leadsBySource: Array.from((page.sourceCounts as Map<string, number>).entries()).map(([source, count]) => ({ source, count })),
           sourceCounts: undefined,
         };
       }).sort((a, b) => b.views - a.views);
@@ -250,8 +250,8 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
           avgTimeSeconds: avgSeconds,
           avgTime: formatSeconds(avgSeconds),
           conversion: article.views ? Number(((article.conversions / article.views) * 100).toFixed(1)) : 0,
-          leadsBySource: Array.from(article.sourceCounts.entries()).map(([source, count]) => ({ source, count })),
-          trend: Array.from(article.trendCounts.values()).sort((a, b) => a.date.localeCompare(b.date)),
+          leadsBySource: Array.from((article.sourceCounts as Map<string, number>).entries()).map(([source, count]) => ({ source, count })),
+          trend: Array.from((article.trendCounts as Map<string, { date: string; views: number; leads: number }>).values()).sort((a, b) => a.date.localeCompare(b.date)),
           sourceCounts: undefined,
           trendCounts: undefined,
         };
