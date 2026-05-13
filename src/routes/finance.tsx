@@ -122,38 +122,61 @@ function FinancePage() {
           style={{ width: "min(1100px, 95vw)", height: "min(1100px, 95vw)" }}
         />
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 pt-16 lg:px-8 lg:pt-20">
-          <h2 className="text-center font-display text-5xl sm:text-6xl font-extrabold tracking-tight text-sd-black uppercase">
-            FINANCE
+        <div className="relative z-10 mx-auto max-w-5xl px-4 pt-16 lg:px-8 lg:pt-20">
+          <h2 className="text-center font-display text-4xl sm:text-5xl font-extrabold tracking-[0.2em] text-sd-black uppercase">
+            FINANCING OPTIONS FROM
           </h2>
 
-          <div className="mx-auto mt-10 max-w-2xl rounded-2xl bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-10">
-            <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-sd-navy">
-              Financing options from
-            </p>
-            <div className="mt-5 flex justify-center">
+          <div className="mx-auto mt-10 rounded-2xl bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-12 lg:p-16">
+            <div className="flex justify-center">
               <img
                 src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/691b50c1bb3d036e04caa4af.png"
                 alt="GreenSky"
-                className="h-auto w-full max-w-[260px]"
+                className="h-auto w-full max-w-[320px]"
               />
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-xl">
+            <div className="mt-10 overflow-hidden rounded-xl">
               <img
                 src="/projects/project-1.webp"
                 alt="Beautifully renovated North Atlanta home"
-                className="h-64 w-full object-cover sm:h-80"
+                className="h-72 w-full object-cover sm:h-96"
               />
             </div>
 
-            <p className="mt-8 text-center text-base sm:text-lg italic leading-relaxed text-sd-navy">
+            {/* Plan 1 */}
+            <div className="mt-10 border-b border-sd-green/40 pb-8">
+              <h3 className="font-display text-3xl sm:text-4xl font-extrabold leading-tight text-sd-navy">
+                No Interest if<br />
+                Paid in Full in<br />
+                <span className="text-sd-green">12 Months</span>
+              </h3>
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-sd-gray-text">
+                Subject to credit approval. Interest is billed during the promotional
+                period but all interest is waived if the purchase amount is paid in full
+                within 12 months.
+              </p>
+            </div>
+
+            {/* Plan 2 */}
+            <div className="mt-8 border-b border-sd-green/40 pb-8">
+              <h3 className="font-display text-3xl sm:text-4xl font-extrabold leading-tight text-sd-green">
+                Reduced APR<br />
+                of 9.99% for<br />
+                138 Months!
+              </h3>
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-sd-gray-text">
+                *with approved credit
+              </p>
+            </div>
+
+            <p className="mt-10 text-center text-lg sm:text-xl italic leading-relaxed text-sd-navy">
               Whether you want to pay using a deferred interest plan or have a
               fixed monthly budget, the GreenSky® programs offer flexible
               consumer financing options to meet your needs.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 asChild
                 size="lg"
