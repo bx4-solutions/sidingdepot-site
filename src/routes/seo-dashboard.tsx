@@ -827,8 +827,102 @@ function SEODashboard() {
                    </div>
                 )}
 
+                {activeView === "blog-analytics" && (
+                  <div className="space-y-8 animate-in fade-in duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <KPICard title="Total de Artigos" value={metrics?.blogStats?.totalPosts} icon={FileText} color="sd-green" diff="Ativos no site" />
+                      <KPICard title="Tempo Médio de Leitura" value={metrics?.blogStats?.avgReadingTime} icon={Clock} color="sd-green" diff="Benchmark do setor" />
+                      <KPICard title="Lead Conversion" value="4.8%" icon={Target} color="sd-green" diff="+1.2% vs set/25" />
+                    </div>
+
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader className="flex flex-row items-center justify-between">
+                        <div>
+                          <CardTitle className="text-xl font-black text-white uppercase tracking-tight">Ranking de Performance do Blog</CardTitle>
+                          <CardDescription className="text-xs">Comparativo detalhado entre os melhores posts</CardDescription>
+                        </div>
+                        <Button variant="outline" size="sm" className="border-white/10 hover:bg-white/5 h-8 text-[10px] font-black uppercase">
+                          Filtrar por Keywords
+                        </Button>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="overflow-x-auto">
+                          <Table>
+                            <TableHeader>
+                              <TableRow className="border-white/5 hover:bg-transparent">
+                                <TableHead className="text-[10px] font-black uppercase tracking-widest text-slate-400">Artigo</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Tempo Médio</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Bounce</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Conversão</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Palavras-Chave</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
+                                <TableRow key={i} className="border-white/5 group hover:bg-white/5 transition-colors">
+                                  <TableCell className="py-4">
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-sd-green font-black">#{i+1}</span>
+                                      <span className="text-white font-bold">{art.title}</span>
+                                    </div>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4 font-mono text-xs">{art.avgTime}</TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <span className="text-yellow-500 font-bold">{art.bounceRate}%</span>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30">{art.conversion}%</Badge>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <div className="flex gap-1 justify-end flex-wrap max-w-[200px] ml-auto">
+                                      {art.keywords?.map((kw: string, kidx: number) => (
+                                        <Badge key={kidx} variant="outline" className="text-[9px] py-0 px-1 border-white/10 text-slate-400 font-normal">
+                                          {kw}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Benchmarks de Engajamento</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                           {metrics?.blogStats?.marketBenchmarks?.map((bench: any, i: number) => (
+                             <div key={i} className="space-y-2">
+                               <div className="flex justify-between text-xs">
+                                 <span className="text-slate-300 font-bold">{bench.category}</span>
+                                 <span className="text-sd-green font-black">{bench.value}% <span className="text-slate-500 font-normal">/ {bench.benchmark}%</span></span>
+                               </div>
+                               <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                 <div className="absolute top-0 left-0 h-full bg-sd-green rounded-full z-10" style={{ width: `${bench.value}%` }} />
+                                 <div className="absolute top-0 left-[70%] h-full w-0.5 bg-white/20 z-20" />
+                               </div>
+                             </div>
+                           ))}
+                        </CardContent>
+                      </Card>
+                      
+                      <Card className="bg-[#131921] border-white/10 flex flex-col items-center justify-center p-8 text-center">
+                        <TrendingUp className="h-12 w-12 text-sd-green mb-4 opacity-50" />
+                        <h4 className="text-lg font-bold mb-2">Sugestão de Conteúdo</h4>
+                        <p className="text-sm text-slate-400 mb-6">Com base na performance das palavras-chave, sugerimos criar conteúdos sobre "Automação de Orçamentos com IA".</p>
+                        <Button className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-black uppercase text-xs px-8">Ver Sugestões IA</Button>
+                      </Card>
+                    </div>
+                  </div>
+                )}
+
                 {/* PLACEHOLDER PARA OUTRAS ABAS */}
-                {["campaigns", "ab-testing", "site", "audiencia", "blog-analytics", "blog", "calendar", "users"].includes(activeView) && (
+                {["campaigns", "ab-testing", "site", "audiencia", "blog", "calendar", "users"].includes(activeView) && (
                   <div className="flex flex-col items-center justify-center py-20 text-center animate-in zoom-in duration-300">
                     <div className="bg-sd-green/5 p-8 rounded-full mb-6">
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
