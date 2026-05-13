@@ -127,9 +127,9 @@ function HomePage() {
                 videoId="898FBaW_VnI"
                 title="Siding Depot — Institutional"
               />
-              <div className="absolute -top-5 -right-5 bg-sd-green text-sd-black rounded-full h-24 w-24 flex flex-col items-center justify-center shadow-2xl border-4 border-sd-navy z-10">
-                <span className="font-display text-2xl leading-none">15+</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider mt-0.5">Years</span>
+              <div className="absolute top-2 right-2 sm:-top-5 sm:-right-5 bg-sd-green text-sd-black rounded-full h-16 w-16 sm:h-24 sm:w-24 flex flex-col items-center justify-center shadow-2xl border-2 sm:border-4 border-sd-navy z-10">
+                <span className="font-display text-base sm:text-2xl leading-none">15+</span>
+                <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider mt-0.5">Years</span>
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
