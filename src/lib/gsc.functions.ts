@@ -2,6 +2,47 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_search_console/webmasters/v3";
+const GSC_SITE_URL = "https://sidingdepot.lovable.app/";
+const ENCODED_GSC_SITE_URL = encodeURIComponent(GSC_SITE_URL);
+
+const unknownIndexingStatus = (url: string, message: string) => ({
+  url,
+  indexingState: "UNKNOWN" as const,
+  lastCrawlTime: null,
+  coverageState: null,
+  crawlState: null,
+  robotsTxtState: null,
+  timestamp: new Date().toISOString(),
+  verdict: "NEUTRAL" as const,
+  error: message,
+});
+
+const parseJsonResponse = async (response: Response) => {
+  const text = await response.text().catch(() => "");
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { raw: text };
+  }
+};
+
+const normalizeIndexingStatus = (url: string, result: any) => {
+  const indexStatus = result?.inspectionResult?.indexStatusResult ?? result ?? {};
+
+  return {
+    url,
+    indexingState: indexStatus.indexingState || "UNKNOWN",
+    lastCrawlTime: indexStatus.lastCrawlTime ?? null,
+    coverageState: indexStatus.coverageState ?? null,
+    crawlState: indexStatus.pageFetchState ?? indexStatus.crawlState ?? null,
+    robotsTxtState: indexStatus.robotsTxtState ?? null,
+    timestamp: new Date().toISOString(),
+    verdict: indexStatus.verdict || "NEUTRAL",
+    error: null,
+  };
+};
 
 /**
  * Server function to request URL inspection from Google Search Console
