@@ -126,7 +126,8 @@ export function track(event: string, payload: TrackPayload = {}): void {
     if (typeof window === "undefined") return;
     
     const attribution = getAttribution();
-    const enriched = { event, ...attribution, ...payload };
+    const visitorId = getVisitorId();
+    const enriched = { event, visitorId, ...attribution, ...payload };
 
     // 1. DataLayer for GA4/GTM
     const w = window as any;
@@ -138,6 +139,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
     if (abEvents.includes(event)) {
       supabase.from("ab_events").insert({
         event_type: event,
+        visitor_id: visitorId,
         service_key: String(payload.serviceKey || "unknown"),
         variation: String(payload.variation || "A"),
         city: String(payload.city || ""),
@@ -145,7 +147,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
         utm_medium: attribution.utm_medium,
         utm_campaign: attribution.utm_campaign,
         landing_page: attribution.landing_page,
-        metadata: payload
+        metadata: { ...payload, referrer: attribution.referrer }
       }).then(({ error }: { error: any }) => {
         if (error && import.meta.env.DEV) console.error("[track] supabase error", error);
       });
