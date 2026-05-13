@@ -273,9 +273,13 @@ function SEODashboard() {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 group hover:border-sd-green/50 transition-colors cursor-default">
               <Calendar className="h-3 w-3 text-sd-green" />
-              <span className="text-xs font-bold">13 abr - 13 mai</span>
+              <span className="text-xs font-bold text-white uppercase tracking-wider">
+                {dateRange.startDate === "2026-04-13" && dateRange.endDate === "2026-05-13" 
+                  ? "Últimos 30 dias" 
+                  : `${dateRange.startDate} - ${dateRange.endDate}`}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 border-l border-white/10 pl-6">
