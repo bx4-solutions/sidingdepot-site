@@ -170,7 +170,6 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
     ogImage: "/projects/project-7.webp",
   },
 };
-};
 
 const SLUG_SET = new Set<string>(SERVICE_OPTIONS.map(serviceSlug));
 
