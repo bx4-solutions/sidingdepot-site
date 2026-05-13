@@ -395,13 +395,20 @@ function SEODashboard() {
               <LogOut className="h-4 w-4 mr-2" /> Sair
             </Button>
             <div className="bg-white/5 border border-white/10 rounded-lg p-1 flex items-center gap-1">
-              <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 gap-1.5 py-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> GSC
-              </Badge>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="h-8 px-2 text-[10px] font-bold gap-1.5 text-green-500 hover:bg-green-500/10"
+                onClick={() => window.open('https://lovable.dev/projects/' + window.location.hostname.split('.')[0] + '/connect/google_search_console', '_blank')}
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 
+                GSC: CONECTADO
+              </Button>
               <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 gap-1.5 py-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> GA4
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> GA4: ATIVO
               </Badge>
             </div>
+
           </div>
         </div>
 
@@ -492,8 +499,10 @@ function SEODashboard() {
             <TabsList className="bg-transparent border-none p-0 h-auto gap-6 flex-wrap">
               <TabsTrigger value="overview" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">VISÃO GERAL</TabsTrigger>
               <TabsTrigger value="pages" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">LANDING PAGES</TabsTrigger>
-              <TabsTrigger value="ab-testing" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">A/B Testing Performance</TabsTrigger>
-              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
+              <TabsTrigger value="ab-testing" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">A/B Testing</TabsTrigger>
+              <TabsTrigger value="blog" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Blog Calendar</TabsTrigger>
+              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Conversions</TabsTrigger>
+
               {userProfile?.role === "admin" && (
                 <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
               )}
