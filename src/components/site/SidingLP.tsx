@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
-import { track } from "@/lib/track";
+import { track, type TrackPayload } from "@/lib/track";
 import {
   SIDING_TYPES,
   buildFaqs,
@@ -336,10 +336,10 @@ export type SidingLPProps = { city: string };
 export function SidingLP({ city }: SidingLPProps) {
   const FAQS = buildFaqs(city);
 
-  function scrollToLeadForm() {
+  function scrollToLeadForm(meta: TrackPayload = {}) {
     const el = document.querySelector("[data-lead-form]");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-    track("lp_faq_cta_click", { city });
+    track("lp_cta_click", { city, ...meta });
   }
 
   // Hide the sticky mobile call bar when a lead form is on screen
@@ -597,7 +597,7 @@ export function SidingLP({ city }: SidingLPProps) {
             <div className="mt-6 text-center">
               <button
                 type="button"
-                onClick={scrollToLeadForm}
+                onClick={() => scrollToLeadForm({ source: "greensky_section" })}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
               >
                 Get Pre-Approved With My Free Estimate →
@@ -630,7 +630,13 @@ export function SidingLP({ city }: SidingLPProps) {
                   <p>{item.a}</p>
                   <button
                     type="button"
-                    onClick={scrollToLeadForm}
+                    onClick={() =>
+                      scrollToLeadForm({
+                        source: "faq",
+                        faq_index: i,
+                        faq_question: item.q,
+                      })
+                    }
                     className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
                   >
                     Request My Free Estimate →
