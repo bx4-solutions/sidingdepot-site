@@ -123,6 +123,7 @@ function SEODashboard() {
       return getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } });
     },
     enabled: sessionExists,
+    refetchInterval: 60000, // Atualização automática a cada 60 segundos
     retry: (failureCount, error: any) => {
       if (error?.message === "Unauthorized") return false;
       return failureCount < 3;
