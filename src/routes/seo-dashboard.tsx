@@ -26,7 +26,12 @@ import {
   Users,
   UserCog,
   Trash2,
-  Shield
+  Shield,
+  Download,
+  Settings,
+  Database,
+  Link2,
+  Unlink
 } from "lucide-react";
 import { 
   getIndexingStatus, 
