@@ -400,13 +400,30 @@ function SEODashboard() {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 group hover:border-sd-green/50 transition-colors cursor-default">
+            <div className="flex flex-wrap items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
               <Calendar className="h-3 w-3 text-sd-green" />
-              <span className="text-xs font-bold text-white uppercase tracking-wider">
-                {dateRange.startDate === "2026-04-13" && dateRange.endDate === "2026-05-13" 
-                  ? "Últimos 30 dias" 
-                  : `${dateRange.startDate} - ${dateRange.endDate}`}
-              </span>
+              {DATE_RANGE_PRESETS.map((preset) => (
+                <button
+                  key={preset.days}
+                  type="button"
+                  onClick={() => setDateRange(resolveDateRange(preset.days))}
+                  className="rounded-md px-2 py-1 text-[10px] font-black uppercase text-slate-200 hover:bg-white/10 hover:text-white"
+                >
+                  {preset.label}
+                </button>
+              ))}
+              <Input
+                type="date"
+                value={dateRange.startDate}
+                onChange={(e) => setDateRange((current: any) => ({ ...current, startDate: e.target.value }))}
+                className="h-7 w-[130px] bg-transparent border-white/10 text-[10px] text-white"
+              />
+              <Input
+                type="date"
+                value={dateRange.endDate}
+                onChange={(e) => setDateRange((current: any) => ({ ...current, endDate: e.target.value }))}
+                className="h-7 w-[130px] bg-transparent border-white/10 text-[10px] text-white"
+              />
             </div>
 
             <div className="flex items-center gap-3 border-l border-white/10 pl-6">
