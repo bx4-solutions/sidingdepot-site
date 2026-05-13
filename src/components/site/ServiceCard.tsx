@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, type LucideIcon } from "lucide-react";
+import type { ServiceImage } from "@/data/site";
 
 type Props = {
   Icon: LucideIcon;
@@ -9,7 +10,7 @@ type Props = {
   /** Optional DOM id, used as a scroll anchor target (e.g. "services-siding"). */
   id?: string;
   /** Background image shown behind the card content; covered by white on hover. */
-  image?: string;
+  image?: ServiceImage;
 };
 
 export function ServiceCard({ Icon, title, description, to, id, image }: Props) {
@@ -19,17 +20,21 @@ export function ServiceCard({ Icon, title, description, to, id, image }: Props) 
 
       {/* Background image (behind text). Hidden on hover by white overlay. */}
       {image && (
-        <img
-          src={image}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          width={480}
-          height={320}
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-0"
-        />
+        <picture>
+          {image.avif && <source srcSet={image.avif} type="image/avif" />}
+          {image.webp && <source srcSet={image.webp} type="image/webp" />}
+          <img
+            src={image.src}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            width={480}
+            height={320}
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-0"
+          />
+        </picture>
       )}
       {/* Soft white veil for default-state readability */}
       {image && (
