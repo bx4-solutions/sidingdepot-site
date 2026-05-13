@@ -62,6 +62,7 @@ export const Route = createFileRoute("/windows")({
       image: HERO_IMAGE,
       canonical: CANONICAL,
     }),
+    links: [{ rel: "canonical", href: CANONICAL }],
     scripts: [
       serviceJsonLd("Window Replacement & Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Window Replacement & Installation" }),
       faqJsonLd(FAQS),
