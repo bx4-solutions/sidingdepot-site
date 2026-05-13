@@ -20,9 +20,12 @@ const asRecord = (value: unknown): Record<string, any> =>
 const getSourceLabel = (event: any) => {
   const metadata = asRecord(event.metadata);
   const source = event.utm_source || metadata.utm_source || metadata.source || "Direto";
-  const medium = event.utm_medium || metadata.utm_medium;
-  const campaign = event.utm_campaign || metadata.utm_campaign;
-  return [source, medium, campaign].filter(Boolean).join(" / ");
+  const medium = event.utm_medium || metadata.utm_medium || "Referral";
+  const campaign = event.utm_campaign || metadata.utm_campaign || "None";
+  
+  // Return a clear label
+  if (source === "Direto") return source;
+  return `${source} (${medium}${campaign !== "None" ? ` / ${campaign}` : ""})`;
 };
 
 const isViewEvent = (type: string) => type.includes("view") || type.includes("visit") || type.includes("page");

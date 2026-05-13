@@ -39,7 +39,8 @@ import {
   ArrowDownRight,
   ExternalLink,
   ChevronDown,
-  Info
+  Info,
+  Phone
 } from "lucide-react";
 import { toast } from "sonner";
 import { 
@@ -505,9 +506,10 @@ function SEODashboard() {
                 {activeView === "dashboard" && (
                   <div className="space-y-8 animate-in fade-in duration-500">
                     {/* KPI GRIDS */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                       <KPICard title="Total Conversões" value={metrics?.overview.totalConversions} icon={MousePointer2} color="sd-green" diff="+12% vs anterior" />
                       <KPICard title="Taxa Conversão" value={`${metrics?.overview.conversionRate}%`} icon={TrendingUp} color="sd-green" diff="+0.5% vs anterior" />
+                      <KPICard title="Call Clicks" value={metrics?.clickEvents?.find((e: any) => e.button.toLowerCase().includes('call'))?.clicks || 0} icon={Phone} color="sd-green" diff="Leads por telefone" />
                       <KPICard title="Agendamentos" value={metrics?.overview.appointments} icon={CalendarCheck2} color="sd-green" diff="3 novos hoje" />
                       <KPICard title="Chat com Bia" value={metrics?.overview.chatInteractions} icon={MessageSquare} color="sd-green" diff="Interações 24h" />
                     </div>
