@@ -200,7 +200,7 @@ function HomePage() {
               <Link to="/siding" className="text-sd-green hover:underline">
                 James Hardie siding installation in Marietta
               </Link>
-              <Link to="/service-areas" className="text-sd-green hover:underline">
+              <Link to="/lp/siding-marietta" className="text-sd-green hover:underline">
                 North Atlanta service areas
               </Link>
               <Link to="/projects" className="text-sd-green hover:underline">
