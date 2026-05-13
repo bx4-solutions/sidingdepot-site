@@ -89,33 +89,29 @@ function AboutPage() {
               About Siding Depot
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              For 15 years, helping Georgia homeowners{" "}
-              <span className="text-sd-green">protect and enhance</span> their homes.
+              15 years installing{" "}
+              <span className="text-sd-green">James Hardie siding</span> across
+              Marietta &amp; North Atlanta.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
-              As one of the fastest-growing James Hardie certified contractors in the
-              region, we combine top-tier quality, highly trained crews, and professional
-              management to deliver flawless results.
+              Siding Depot is a James Hardie Elite Preferred contractor based in
+              Marietta, GA — specialists in fiber cement siding installation,
+              replacement, repair, painting, windows, decks, gutters and roofing
+              for homeowners in Cobb, Cherokee, Fulton and Forsyth counties.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">Get a Free Quote</Link>
+                <Link to="/contact">Get a Free Siding Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outlineWhite">
                 <a href={SITE.phoneHref}>Call {SITE.phone}</a>
               </Button>
             </div>
           </div>
-          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
-            <iframe
-              src="https://www.youtube.com/embed/fgNhcGoEYmE?rel=0"
-              title="About Siding Depot"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
+          <YoutubeEmbed
+            videoId="fgNhcGoEYmE"
+            title="Meet Siding Depot — Marietta, GA"
+          />
         </div>
       </section>
 
@@ -124,14 +120,15 @@ function AboutPage() {
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-              Why Siding Depot
+              Why choose a local James Hardie Elite installer
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              What sets us apart from other remodeling contractors
+              What sets our siding installation apart in Georgia
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Siding Depot is one of the fastest-growing James Hardie Replacement Contractors
-              in Georgia. The differences are clear, the reasons are simple:
+              Siding Depot is one of the fastest-growing James Hardie Replacement
+              Contractors in Georgia. Hiring a certified local installer matters —
+              here's why North Atlanta homeowners trust us with their siding project:
             </p>
           </div>
 
