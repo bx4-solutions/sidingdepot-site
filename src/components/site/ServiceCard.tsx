@@ -11,9 +11,14 @@ type Props = {
   id?: string;
   /** Background image shown behind the card content; covered by white on hover. */
   image?: ServiceImage;
+  /**
+   * When true, the background image is preloaded eagerly with high fetch priority.
+   * Use for cards rendered in the first viewport (above the fold).
+   */
+  priority?: boolean;
 };
 
-export function ServiceCard({ Icon, title, description, to, id, image }: Props) {
+export function ServiceCard({ Icon, title, description, to, id, image, priority = false }: Props) {
   const inner = (
     <div className="group relative h-full overflow-hidden rounded-lg border border-sd-gray-border bg-white transition-all hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
       <div className="relative z-20 h-1.5 bg-sd-green" />
