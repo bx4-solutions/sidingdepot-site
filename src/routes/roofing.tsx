@@ -9,18 +9,19 @@ import {
 } from "lucide-react";
 import {
   ServiceLandingPage,
-  buildServiceMeta,
   faqJsonLd,
   serviceJsonLd,
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { SERVICE_METADATA } from "@/data/seo-config";
 
-const PAGE_TITLE = "GAF Certified Roofing in Marietta, GA | Siding Depot — Storm Protection";
-const PAGE_DESC =
-  "GAF Factory Certified roof replacement & repair in North Atlanta. Golden Pledge® 50-year warranty available. Serving Marietta & Canton. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
+const SERVICE_KEY = "roofing";
+const CITY = "Marietta";
+
+const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
@@ -60,18 +61,20 @@ const CHECKLIST: ReadonlyArray<ChecklistItem> = [
 
 export const Route = createFileRoute("/roofing")({
   head: () => ({
-    meta: buildServiceMeta({
-      title: PAGE_TITLE,
-      description: PAGE_DESC,
-      image: HERO_IMAGE,
-      canonical: CANONICAL,
-    }),
+    meta: [
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
+      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:type", content: "website" },
+    ],
     links: [
       { rel: "canonical", href: CANONICAL },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Roof Replacement & Repair", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Roof Replacement & Repair" }),
+      serviceJsonLd("Roof Replacement & Repair", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "RoofingContractor" }),
       faqJsonLd(FAQS),
     ],
   }),
@@ -81,11 +84,13 @@ export const Route = createFileRoute("/roofing")({
 function RoofingPage() {
   return (
     <ServiceLandingPage
+      serviceKey={SERVICE_KEY}
+      city={CITY}
+      heroImage={HERO_IMAGE}
       eyebrow="GAF Factory Certified · Top Roofer"
       title="GAF Factory-Certified Roofing:"
       titleAccent="North Atlanta's Shield."
       intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
-      heroImage={HERO_IMAGE}
       benefits={[
         "GAF Factory Certified — Golden Pledge warranty available",
         "Hail and wind storm damage specialists (March–June season)",
