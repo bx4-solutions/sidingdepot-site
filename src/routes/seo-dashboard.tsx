@@ -673,7 +673,7 @@ function SEODashboard() {
                                   <Tooltip 
                                     cursor={{fill: 'rgba(255,255,255,0.02)'}}
                                     contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                                    formatter={(v: number) => [`${v} segundos`, 'Tempo Médio']}
+                                    formatter={(v: any) => [`${v} segundos`, 'Tempo Médio']}
                                   />
                                   <Bar dataKey="value" radius={[6, 6, 0, 0]}>
                                      <Cell fill="var(--sd-green)" />
