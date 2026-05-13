@@ -345,7 +345,7 @@ function SEODashboard() {
                 )}
 
                 {/* PLACEHOLDER PARA OUTRAS ABAS */}
-                {["campaigns", "ab-testing", "visao-geral", "site", "audiencia", "aquisicao", "blog-analytics", "alertas", "blog", "calendar", "users"].includes(activeView) && (
+                {["campaigns", "ab-testing", "site", "audiencia", "blog-analytics", "blog", "calendar", "users"].includes(activeView) && (
                   <div className="flex flex-col items-center justify-center py-20 text-center animate-in zoom-in duration-300">
                     <div className="bg-sd-green/5 p-8 rounded-full mb-6">
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
