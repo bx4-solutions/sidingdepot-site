@@ -59,19 +59,81 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
         { name: "Tablet", value: 5, color: "oklch(0.75 0.12 200)" },
       ],
       topPages: [
-        { path: "/", views: 304, avgTime: "1m 20s", bounceRate: 32 },
-        { path: "/agendar-demo", views: 30, avgTime: "2m 45s", bounceRate: 15 },
-        { path: "/sobre", views: 11, avgTime: "1m 10s", bounceRate: 45 },
-        { path: "/produto/recepcionista-ia-voz", views: 8, avgTime: "4m 12s", bounceRate: 10 },
-        { path: "/contato", views: 8, avgTime: "0m 55s", bounceRate: 50 },
+        { 
+          path: "/", 
+          views: 304, 
+          avgTime: "1m 20s", 
+          avgTimeSeconds: 80,
+          bounceRate: 32,
+          conversions: 12,
+          leadsBySource: [
+            { source: "Google", count: 8 },
+            { source: "Direct", count: 4 }
+          ]
+        },
+        { 
+          path: "/agendar-demo", 
+          views: 30, 
+          avgTime: "2m 45s", 
+          avgTimeSeconds: 165,
+          bounceRate: 15,
+          conversions: 18,
+          leadsBySource: [
+            { source: "Email Marketing", count: 12 },
+            { source: "Social Ads", count: 6 }
+          ]
+        },
+        { 
+          path: "/sobre", 
+          views: 11, 
+          avgTime: "1m 10s", 
+          avgTimeSeconds: 70,
+          bounceRate: 45,
+          conversions: 2,
+          leadsBySource: [
+            { source: "Direct", count: 2 }
+          ]
+        },
+        { 
+          path: "/produto/recepcionista-ia-voz", 
+          views: 8, 
+          avgTime: "4m 12s", 
+          avgTimeSeconds: 252,
+          bounceRate: 10,
+          conversions: 5,
+          leadsBySource: [
+            { source: "Organic Search", count: 5 }
+          ]
+        },
       ],
       blogStats: {
         totalPosts: 24,
         avgReadingTime: "3m 15s",
         topArticles: [
-          { title: "Como a IA está mudando o atendimento", views: 1250, conversion: 4.2 },
-          { title: "O guia completo de Siding em 2026", views: 980, conversion: 3.8 },
-          { title: "5 dicas para aumentar sua produtividade", views: 750, conversion: 2.5 },
+          { 
+            title: "Como a IA está mudando o atendimento", 
+            views: 1250, 
+            avgTime: "4m 15s", 
+            bounceRate: 28, 
+            conversion: 4.2,
+            keywords: ["IA atendimento", "futuro do suporte"]
+          },
+          { 
+            title: "O guia completo de Siding em 2026", 
+            views: 980, 
+            avgTime: "3m 45s", 
+            bounceRate: 35, 
+            conversion: 3.8,
+            keywords: ["guia siding", "materiais construção 2026"]
+          },
+          { 
+            title: "5 dicas para aumentar sua produtividade", 
+            views: 750, 
+            avgTime: "2m 30s", 
+            bounceRate: 52, 
+            conversion: 2.5,
+            keywords: ["produtividade", "dicas trabalho"]
+          },
         ],
         marketBenchmarks: [
           { category: "SEO Health", value: 85, benchmark: 70 },
@@ -80,11 +142,46 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
         ]
       },
       clickEvents: [
-        { button: "Agendar Demo", clicks: 145, conversion: 12.4 },
-        { button: "Download Catálogo", clicks: 89, conversion: 8.2 },
-        { button: "Falar com Consultor", clicks: 64, conversion: 15.1 },
-        { button: "Assinar Newsletter", clicks: 230, conversion: 2.4 },
+        { 
+          button: "Agendar Demo", 
+          clicks: 145, 
+          conversion: 12.4, 
+          sources: [
+            { source: "Home Hero", count: 85 },
+            { source: "Pricing Page", count: 60 }
+          ]
+        },
+        { 
+          button: "Download Catálogo", 
+          clicks: 89, 
+          conversion: 8.2, 
+          sources: [
+            { source: "Product Footer", count: 50 },
+            { source: "Sidebar", count: 39 }
+          ]
+        },
+        { 
+          button: "Falar com Consultor", 
+          clicks: 64, 
+          conversion: 15.1, 
+          sources: [
+            { source: "Contact Page", count: 64 }
+          ]
+        },
+        { 
+          button: "Assinar Newsletter", 
+          clicks: 230, 
+          conversion: 2.4, 
+          sources: [
+            { source: "Blog Sidebar", count: 180 },
+            { source: "Footer", count: 50 }
+          ]
+        },
       ],
+      timeComparison: {
+        topPagesAvg: 145, // seconds
+        restOfSiteAvg: 58, // seconds
+      },
       countries: [
         { name: "United States", visitors: 187 },
         { name: "Brazil", visitors: 64 },
