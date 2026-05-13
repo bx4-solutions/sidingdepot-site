@@ -166,11 +166,14 @@ export function GoogleReviews() {
             <div className="mt-4 flex items-center gap-2">
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="h-5 w-5 fill-sd-green text-sd-green" />
+                  <Star 
+                    key={s} 
+                    className={`h-5 w-5 ${s <= (remoteData?.overallRating || 4.9) ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                  />
                 ))}
               </div>
-              <span className="font-bold text-sd-black">4.9/5.0</span>
-              <span className="text-sd-gray-text">(128+ Reviews)</span>
+              <span className="font-bold text-sd-black">{remoteData?.overallRating || "4.9"}/5.0</span>
+              <span className="text-sd-gray-text">({remoteData?.totalReviews || "128"}+ Reviews)</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
