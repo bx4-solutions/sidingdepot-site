@@ -140,6 +140,84 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_metrics: {
+        Row: {
+          avg_position: number | null
+          city: string | null
+          clicks: number | null
+          created_at: string | null
+          ctr: number | null
+          date: string
+          id: string
+          impressions: number | null
+          leads: number | null
+          service_key: string | null
+          source: string
+          variation: string | null
+          views: number | null
+        }
+        Insert: {
+          avg_position?: number | null
+          city?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          ctr?: number | null
+          date: string
+          id?: string
+          impressions?: number | null
+          leads?: number | null
+          service_key?: string | null
+          source: string
+          variation?: string | null
+          views?: number | null
+        }
+        Update: {
+          avg_position?: number | null
+          city?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          ctr?: number | null
+          date?: string
+          id?: string
+          impressions?: number | null
+          leads?: number | null
+          service_key?: string | null
+          source?: string
+          variation?: string | null
+          views?: number | null
+        }
+        Relationships: []
+      }
+      gsc_settings: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_connected: boolean | null
+          last_sync_at: string | null
+          property_id: string | null
+          site_url: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_connected?: boolean | null
+          last_sync_at?: string | null
+          property_id?: string | null
+          site_url: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_connected?: boolean | null
+          last_sync_at?: string | null
+          property_id?: string | null
+          site_url?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
