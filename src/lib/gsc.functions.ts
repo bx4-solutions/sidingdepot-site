@@ -62,10 +62,8 @@ export const inspectURL = createServerFn({ method: "POST" })
       throw new Error("Google Search Console not connected");
     }
 
-    const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
-
     const response = await fetch(
-      `${GATEWAY_URL}/sites/${siteUrl}/inspectUrl`,
+      `${GATEWAY_URL}/sites/${ENCODED_GSC_SITE_URL}/inspectUrl`,
       {
         method: "POST",
         headers: {
@@ -84,7 +82,7 @@ export const inspectURL = createServerFn({ method: "POST" })
       throw new Error(`GSC inspection failed: ${JSON.stringify(error)}`);
     }
 
-    const result = await response.json();
+    const result = await parseJsonResponse(response);
     
     console.info(`[GSC-LOG] ${new Date().toISOString()} | INSPECTED | ${data.url} | ${result.indexingState || 'PENDING'}`);
 
