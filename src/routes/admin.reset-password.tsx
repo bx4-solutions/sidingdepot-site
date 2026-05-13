@@ -58,7 +58,7 @@ function ResetPassword() {
       <Card className="w-full max-w-md bg-[#131921] border-white/10 text-white">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl font-bold">Nova Senha</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardDescription className="text-slate-200">
             Crie uma nova senha segura para sua conta
           </CardDescription>
         </CardHeader>
@@ -72,7 +72,7 @@ function ResetPassword() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-white">Senha Redefinida!</h3>
-                <p className="text-slate-400">Sua senha foi atualizada com sucesso. Você já pode acessar o painel.</p>
+                <p className="text-slate-200">Sua senha foi atualizada com sucesso. Você já pode acessar o painel.</p>
               </div>
               <Button 
                 onClick={() => navigate({ to: "/admin/login" })}

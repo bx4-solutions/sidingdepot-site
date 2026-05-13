@@ -206,7 +206,7 @@ function SEODashboard() {
                 "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold transition-all",
                 activeView === item.id 
                   ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(141,198,63,0.3)]" 
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" />
@@ -215,7 +215,7 @@ function SEODashboard() {
           ))}
 
           <div className="pt-6 pb-2">
-            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-500">Administração</span>
+            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-300">Administração</span>
           </div>
 
           {adminItems.map((item) => (
@@ -226,7 +226,7 @@ function SEODashboard() {
                 "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold transition-all",
                 activeView === item.id 
                   ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(141,198,63,0.3)]" 
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" />
@@ -238,7 +238,7 @@ function SEODashboard() {
         <div className="p-4 border-t border-white/5">
           <button 
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-slate-200 hover:text-white hover:bg-white/5 transition-all"
           >
             <LogOut className="h-4 w-4" />
             Sair do Painel
@@ -251,7 +251,7 @@ function SEODashboard() {
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
              <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
-             <span className="text-slate-500 text-xs flex items-center gap-2">
+             <span className="text-slate-300 text-xs flex items-center gap-2">
                <Clock className="h-3 w-3" /> 
                {isFetching ? "Atualizando..." : "Sincronizado"}
                <button 
@@ -292,7 +292,7 @@ function SEODashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? 'Painel de Controle' : menuItems.find(i => i.id === activeView)?.label || adminItems.find(i => i.id === activeView)?.label}</h1>
-                <p className="text-slate-400 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
+                <p className="text-slate-200 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
               </div>
               <Button className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10">
                 <Download className="h-4 w-4 mr-2" /> EXPORTAR PDF/CSV
@@ -305,7 +305,7 @@ function SEODashboard() {
                   <AlertTriangle className="h-8 w-8 text-sd-green" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Sessão Expirada ou Desconectado</h3>
-                <p className="text-slate-400 mb-8 max-w-sm mx-auto">
+                <p className="text-slate-200 mb-8 max-w-sm mx-auto">
                   Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.
                 </p>
                 <Button 
@@ -319,7 +319,7 @@ function SEODashboard() {
               <Card className="bg-[#131921] border-red-500/20 p-12 text-center animate-in fade-in duration-500">
                 <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
                 <h3 className="text-xl font-bold">Erro ao buscar métricas</h3>
-                <p className="text-slate-400 mt-2">Ocorreu uma falha intermitente na conexão com o servidor.</p>
+                <p className="text-slate-200 mt-2">Ocorreu uma falha intermitente na conexão com o servidor.</p>
                 <Button 
                   onClick={() => refetch()}
                   variant="outline"
@@ -416,7 +416,7 @@ function SEODashboard() {
                                 <div key={i} className="flex items-center justify-between text-xs">
                                   <div className="flex items-center gap-2">
                                     <div className="h-2 w-2 rounded-full" style={{ backgroundColor: item.color }} />
-                                    <span className="text-slate-400">{item.source}</span>
+                                    <span className="text-slate-200">{item.source}</span>
                                   </div>
                                   <span className="font-bold">{item.visitors.toLocaleString()}</span>
                                 </div>
@@ -443,11 +443,11 @@ function SEODashboard() {
                       <CardContent className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
                           <div>
-                            <p className="text-[10px] font-black uppercase text-slate-500 mb-1">E-mail</p>
+                            <p className="text-[10px] font-black uppercase text-slate-300 mb-1">E-mail</p>
                             <p className="font-bold">{userProfile?.email}</p>
                           </div>
                           <div>
-                            <p className="text-[10px] font-black uppercase text-slate-500 mb-1">Nível de Acesso</p>
+                            <p className="text-[10px] font-black uppercase text-slate-300 mb-1">Nível de Acesso</p>
                             <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30 uppercase">{userProfile?.role}</Badge>
                           </div>
                         </div>
@@ -459,7 +459,7 @@ function SEODashboard() {
                           <form onSubmit={handleUpdatePassword} className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className="space-y-2">
-                                <label className="text-sm text-slate-400">Nova Senha</label>
+                                <label className="text-sm text-slate-200">Nova Senha</label>
                                 <Input 
                                   type="password" 
                                   className="bg-white/5 border-white/10 text-white" 
@@ -470,7 +470,7 @@ function SEODashboard() {
                                 />
                               </div>
                               <div className="space-y-2">
-                                <label className="text-sm text-slate-400">Confirmar Senha</label>
+                                <label className="text-sm text-slate-200">Confirmar Senha</label>
                                 <Input 
                                   type="password" 
                                   className="bg-white/5 border-white/10 text-white" 
@@ -530,7 +530,7 @@ function SEODashboard() {
                            </div>
                         </CardHeader>
                         <CardContent className="space-y-4 text-center py-8">
-                           <p className="text-slate-500 text-sm">Métricas reais integradas via Global Site Tag.</p>
+                           <p className="text-slate-300 text-sm">Métricas reais integradas via Global Site Tag.</p>
                            <Button variant="outline" className="border-white/10 text-white font-bold h-10">Gerenciar Integração</Button>
                         </CardContent>
                       </Card>
@@ -544,7 +544,7 @@ function SEODashboard() {
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
                     </div>
                     <h3 className="text-2xl font-bold">Módulo em Desenvolvimento</h3>
-                    <p className="text-slate-500 max-w-sm mt-2">Estamos portando as métricas 1:1 do Siding Depot para este módulo. Disponível em breve.</p>
+                    <p className="text-slate-300 max-w-sm mt-2">Estamos portando as métricas 1:1 do Siding Depot para este módulo. Disponível em breve.</p>
                   </div>
                 )}
               </>
@@ -563,7 +563,7 @@ function KPICard({ title, value, icon: Icon, color, diff }: any) {
           <Icon className="h-12 w-12 text-sd-green" />
        </div>
        <CardHeader className="pb-2">
-          <CardDescription className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500">{title}</CardDescription>
+          <CardDescription className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-300">{title}</CardDescription>
           <CardTitle className="text-3xl font-black text-white">{value}</CardTitle>
        </CardHeader>
        <CardContent>
@@ -579,7 +579,7 @@ function MiniKPICard({ title, value, diff }: any) {
   const isPositive = diff.startsWith('+');
   return (
     <div className="bg-[#131921]/50 border border-white/5 rounded-xl p-4 hover:bg-[#131921] transition-colors">
-       <p className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">{title}</p>
+       <p className="text-[9px] font-black uppercase tracking-widest text-slate-300 mb-1">{title}</p>
        <div className="flex items-end justify-between">
           <span className="text-xl font-bold">{value}</span>
           <span className={cn("text-[10px] font-bold", isPositive ? "text-sd-green" : "text-red-400")}>{diff}</span>
