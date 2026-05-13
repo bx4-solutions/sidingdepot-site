@@ -119,7 +119,8 @@ export function GoogleReviews() {
   const [ratingFilter, setRatingFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("newest");
   const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 3;
+  const reviewsPerPage = 10; // Updated from 3 to 10 as per request
+
 
   const filteredReviews = useMemo(() => {
     let result = [...allReviews];
