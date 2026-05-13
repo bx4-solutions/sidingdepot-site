@@ -119,7 +119,12 @@ function AdminLogin() {
     setMessage(null);
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const trimmedEmail = email.trim();
+      if (!trimmedEmail) {
+        throw new Error("Informe seu e-mail para receber o link de recuperação.");
+      }
+
+      const { error } = await supabase.auth.resetPasswordForEmail(trimmedEmail, {
         redirectTo: `${window.location.origin}/admin/reset-password`,
       });
 
