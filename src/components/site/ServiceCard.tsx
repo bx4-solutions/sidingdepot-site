@@ -32,8 +32,10 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
             src={image.src}
             alt=""
             aria-hidden="true"
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
             decoding="async"
+            // @ts-expect-error - fetchpriority is a valid HTML attribute, types lag behind
+            fetchpriority={priority ? "high" : "auto"}
             width={480}
             height={320}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
