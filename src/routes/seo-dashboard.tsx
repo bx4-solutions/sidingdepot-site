@@ -438,6 +438,10 @@ function SEODashboard() {
             <TabsList className="bg-transparent border-none p-0 h-auto gap-6">
               <TabsTrigger value="overview" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">VISÃO GERAL</TabsTrigger>
               <TabsTrigger value="pages" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">LANDING PAGES</TabsTrigger>
+              {userProfile?.role === "admin" && (
+                <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
+              )}
+
               <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
             </TabsList>
             
