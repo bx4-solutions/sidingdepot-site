@@ -94,7 +94,10 @@ export const Route = createFileRoute("/locations/$city/$service")({
         { name: "twitter:description", content: description },
         { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        { rel: "preload", as: "image", href: SITE.hero?.bgImage || "/hero-home.webp", fetchPriority: "high" as any },
+      ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(localBusiness) },
         { type: "application/ld+json", children: JSON.stringify(serviceSchema) },
