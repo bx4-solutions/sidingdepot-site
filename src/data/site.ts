@@ -109,7 +109,7 @@ export const CITIES = [
 
 export const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
-  { value: "15+", label: "Years in Georgia" },
+  { value: "12+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
   { value: "4.9★", label: "Google Rating" },
 ] as const;

@@ -18,7 +18,7 @@ const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
   title: "Meet Siding Depot — James Hardie Siding Installer in Marietta, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton and all of North Atlanta. 15+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton and all of North Atlanta. 12+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
@@ -115,7 +115,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Local James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 15+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
+          "Local James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 12+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
       {
         name: "keywords",
@@ -200,7 +200,7 @@ const DIFFERENTIATORS = [
 
 const STATS = [
   {
-    value: "15+",
+    value: "12+",
     label: "Years of Experience",
     desc: "Over a decade delivering siding, painting, and exterior renovation projects with quality and technical precision.",
   },
@@ -227,7 +227,7 @@ function AboutPage() {
               About Siding Depot
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              15 years installing{" "}
+              12 years installing{" "}
               <span className="text-sd-green">James Hardie siding</span> across
               Marietta &amp; North Atlanta.
             </h1>
