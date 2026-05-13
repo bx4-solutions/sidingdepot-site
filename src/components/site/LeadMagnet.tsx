@@ -1,174 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { z } from "zod";
-import { CheckCircle2, Download, FileText, Loader2, ShieldCheck } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
-
-/**
- * Lead-magnet block: capture an email in exchange for the
- * "5 Mistakes You Can't Afford to Make When Replacing Siding in Georgia" PDF.
- *
- * On submit:
- *  - posts the lead to the GHL webhook (tagged source: "lead_magnet_5_mistakes")
- *  - opens the PDF in a new tab so the user gets immediate value
- *  - falls back to a direct download link if the post fails
- */
-
-const PDF_PATH = "/downloads/5-mistakes-siding-georgia.pdf";
-
-const schema = z.object({
-  firstName: z.string().trim().min(1, "Required").max(60),
-  email: z.string().trim().email("Invalid email").max(255),
-});
-type Values = z.infer<typeof schema>;
-
-function readUtm(): Record<string, string> {
-  if (typeof window === "undefined") return {};
-  const sp = new URLSearchParams(window.location.search);
-  const out: Record<string, string> = {};
-  for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_keyword", "utm_term", "utm_content"]) {
-    const v = sp.get(k);
-    if (v) out[k] = v;
-  }
-  return out;
-}
-
-/**
- * Per-session dedupe flag. We key by `source` so a user who submits the form
- * inside a city LP (`lp_siding_magnet`) and later opens `/guide` (source
- * `guide_page`) can still receive the guide once per surface — but cannot
- * re-trigger the same surface twice in the same session.
- */
-const SUBMITTED_KEY = (source: string) => `__lm_submitted__${source}`;
-const DOWNLOAD_THROTTLE_MS = 4000;
-
-function safeSession(): Storage | null {
-  try {
-    if (typeof window === "undefined") return null;
-    return window.sessionStorage;
-  } catch {
-    return null;
-  }
-}
-
-function alreadySubmitted(source: string): boolean {
-  return safeSession()?.getItem(SUBMITTED_KEY(source)) === "1";
-}
-function markSubmitted(source: string) {
-  try { safeSession()?.setItem(SUBMITTED_KEY(source), "1"); } catch { /* ignore */ }
-}
+import { CheckCircle2, FileText } from "lucide-react";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 
 type Props = {
   /** City pre-tagged on the lead (e.g. "Marietta"). */
   city?: string;
   /** Tracking source label (defaults to "lead_magnet"). */
   source?: string;
-  /**
-   * If provided, called after a successful submit instead of auto-opening
-   * the PDF. Lets the parent route navigate the user to a thank-you page
-   * (and trigger the download itself).
-   */
+  /** Kept for backwards-compat with parent routes; ignored now that the
+   *  form is the standardized HeroQuoteForm. */
   onSuccess?: (data: { firstName: string; email: string }) => void;
 };
 
-export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
-  const [values, setValues] = useState<Values>({ firstName: "", email: "" });
-  const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
-  // Synchronous in-flight guard — wins the race a `submitting` state can lose
-  // when two clicks fire in the same tick before React re-renders.
-  const inFlightRef = useRef(false);
-  // Throttle for the fallback "Download the PDF" link on the success card.
-  const lastDownloadAtRef = useRef(0);
-
-  // If the user already submitted in this session, skip straight to the
-  // success state. Avoids an empty form re-prompt after navigating back.
-  useEffect(() => {
-    if (alreadySubmitted(source)) {
-      setDone(true);
-    }
-  }, [source]);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    // Layer 1 — synchronous guards: in-flight or already-submitted.
-    if (inFlightRef.current || submitting) return;
-    if (alreadySubmitted(source)) {
-      track("lead_magnet_duplicate_blocked", { source, city });
-      setDone(true);
-      return;
-    }
-
-    const parsed = schema.safeParse(values);
-    if (!parsed.success) {
-      const fe: Partial<Record<keyof Values, string>> = {};
-      for (const issue of parsed.error.issues) {
-        const k = issue.path[0] as keyof Values;
-        if (!fe[k]) fe[k] = issue.message;
-      }
-      setErrors(fe);
-      return;
-    }
-    setErrors({});
-    inFlightRef.current = true;
-    setSubmitting(true);
-    try {
-      if (SITE.ghlWebhookUrl) {
-        await fetch(SITE.ghlWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...parsed.data,
-            source,
-            tag: "lead_magnet_5_mistakes",
-            city: city ?? "",
-            landingPage: typeof window !== "undefined" ? window.location.pathname : source,
-            submittedAt: new Date().toISOString(),
-            ...readUtm(),
-          }),
-        });
-      }
-      // Mark as submitted BEFORE firing analytics so any synchronous re-entry
-      // through React's event system is short-circuited.
-      markSubmitted(source);
-      track("lead_magnet_download", { source, city, pdf_path: PDF_PATH });
-    } catch {
-      track("lead_magnet_error", { source });
-    } finally {
-      setSubmitting(false);
-      inFlightRef.current = false;
-      if (onSuccess) {
-        // Parent owns post-download flow (e.g. navigate to /guide/thank-you
-        // and open the PDF there). Don't open here to avoid double-tabs.
-        onSuccess(parsed.data);
-        return;
-      }
-      setDone(true);
-      // Trigger download in a new tab so users see the asset immediately.
-      if (typeof window !== "undefined") {
-        window.open(PDF_PATH, "_blank", "noopener,noreferrer");
-        lastDownloadAtRef.current = Date.now();
-      }
-    }
-  }
-
-  /**
-   * Throttled fallback download — protects against rage-clicking the success-
-   * state link from spawning multiple tabs / firing duplicate GA events.
-   */
-  function handleFallbackDownload(e: React.MouseEvent<HTMLAnchorElement>) {
-    const now = Date.now();
-    if (now - lastDownloadAtRef.current < DOWNLOAD_THROTTLE_MS) {
-      e.preventDefault();
-      return;
-    }
-    lastDownloadAtRef.current = now;
-    track("lead_magnet_fallback_download", { source });
-  }
-
+export function LeadMagnet({ source = "lead_magnet" }: Props) {
   return (
     <section className="bg-sd-gray-bg py-16 lg:py-20">
       <div className="mx-auto max-w-5xl px-4 lg:px-8">
@@ -183,8 +26,7 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-white/75">
               The same five contract traps wreck siding budgets across North Atlanta every year.
-              This 4-page guide shows you how to spot them before you sign &mdash; plus an 8-question
-              checklist to bring to every estimate.
+              Request a quote and our team will share the full guide along with a written estimate.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-white/85">
               {[
@@ -198,93 +40,11 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-[11px] font-semibold uppercase tracking-wider text-white/50">
-              4 pages &middot; 5 minute read &middot; PDF
-            </p>
           </div>
 
-          {/* Right: Form */}
-          <div className="p-8 lg:p-10">
-            {done ? (
-              <div className="flex h-full flex-col items-start justify-center text-left">
-                <CheckCircle2 className="h-12 w-12 text-sd-green" />
-                <h3 className="mt-4 text-xl font-bold text-sd-navy">Your guide is on the way!</h3>
-                <p className="mt-2 text-sm text-sd-gray-text">
-                  The PDF should have opened in a new tab. If it didn&rsquo;t, you can download it directly:
-                </p>
-                <a
-                  href={PDF_PATH}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 font-bold text-sd-navy hover:opacity-90 transition-opacity"
-                  onClick={handleFallbackDownload}
-                >
-                  <Download className="h-4 w-4" /> Download the PDF
-                </a>
-              </div>
-            ) : (
-              <form onSubmit={onSubmit} noValidate className="grid gap-4">
-                <div>
-                  <h3 className="font-display text-2xl text-sd-navy leading-tight">
-                    Get the free guide
-                  </h3>
-                  <p className="mt-1 text-sm text-sd-gray-text">
-                    Sent instantly to your inbox &mdash; no spam, ever.
-                  </p>
-                </div>
-
-                <div className="grid gap-1.5">
-                  <Label htmlFor="lm-first" className="text-xs font-semibold text-sd-black">
-                    First name
-                  </Label>
-                  <Input
-                    id="lm-first"
-                    autoComplete="given-name"
-                    value={values.firstName}
-                    onChange={(e) => setValues((v) => ({ ...v, firstName: e.target.value }))}
-                    aria-invalid={Boolean(errors.firstName)}
-                    className="h-11"
-                  />
-                  {errors.firstName && (
-                    <p className="text-[11px] text-destructive">{errors.firstName}</p>
-                  )}
-                </div>
-
-                <div className="grid gap-1.5">
-                  <Label htmlFor="lm-email" className="text-xs font-semibold text-sd-black">
-                    Email
-                  </Label>
-                  <Input
-                    id="lm-email"
-                    type="email"
-                    autoComplete="email"
-                    value={values.email}
-                    onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
-                    aria-invalid={Boolean(errors.email)}
-                    className="h-11"
-                  />
-                  {errors.email && (
-                    <p className="text-[11px] text-destructive">{errors.email}</p>
-                  )}
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="mt-1 inline-flex h-12 w-full items-center justify-center gap-2 rounded-pill bg-sd-green text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity disabled:opacity-60"
-                >
-                  {submitting ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" /> Sending&hellip;</>
-                  ) : (
-                    <><Download className="h-4 w-4" /> SEND ME THE GUIDE</>
-                  )}
-                </button>
-
-                <p className="flex items-center justify-center gap-1.5 text-[11px] text-sd-gray-text">
-                  <ShieldCheck className="h-3.5 w-3.5" /> We&rsquo;ll never share your email.
-                </p>
-              </form>
-            )}
+          {/* Right: Standardized lead form */}
+          <div className="p-6 lg:p-8 flex items-center">
+            <HeroQuoteForm source={source} tag="lead_magnet_request" />
           </div>
         </div>
       </div>
