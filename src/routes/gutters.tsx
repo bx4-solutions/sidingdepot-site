@@ -78,9 +78,9 @@ function GuttersPage() {
   return (
     <ServiceLandingPage
       eyebrow="Seamless Aluminum · LeafGuard"
-      title="Seamless gutters,"
-      titleAccent="sized for Georgia rainfall."
-      intro="Marietta's trusted gutter installer. 6-inch seamless aluminum gutters cut on-site, hidden-hanger installed, and paired with LeafGuard or MicroMesh guards built for our heavy pollen and leaf-fall."
+      title="6-Inch Seamless Gutters,"
+      titleAccent="engineered for Georgia rainfall."
+      intro="Protect your foundation from Georgia's 50+ inches of annual rain. Our 6-inch seamless systems move 40% more water than standard gutters, preventing basement leaks and fascia rot."
       heroImage={HERO_IMAGE}
       benefits={[
         "6-inch K-style gutters move 40% more water than 5-inch",
@@ -89,7 +89,7 @@ function GuttersPage() {
         "Most homes installed in 4–8 hours",
       ]}
       hiringRole="gutter installer"
-      hiringIntro="Gutters are the cheapest way to protect a foundation. Use this checklist before you sign with anyone — including us."
+      hiringIntro="Gutters are your foundation's primary defense against erosion. Use this checklist to verify pitch engineering and material capacity for heavy Georgia rainfall."
       hiringChecklist={CHECKLIST}
       faqLabel="Gutter"
       faqs={FAQS}

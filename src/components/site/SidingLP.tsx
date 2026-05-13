@@ -375,11 +375,10 @@ export function SidingLP({ city }: SidingLPProps) {
               <Star className="h-3.5 w-3.5 fill-sd-green" /> James Hardie Elite Preferred — Top 2% Nationwide
             </span>
             <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]">
-              James Hardie Siding Installation in {city}, GA
+              James Hardie® Siding Installation in {city}, GA
             </h1>
             <p className="mt-5 text-base sm:text-lg text-white/75 leading-relaxed">
-              Georgia&apos;s most trusted fiber cement contractor. Serving Marietta, Alpharetta,
-              Milton, Canton & North Atlanta. Free estimate in 24 hours.
+              Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
             </p>
             <ul className="mt-6 grid gap-2.5 text-sm text-white/85">
               {[

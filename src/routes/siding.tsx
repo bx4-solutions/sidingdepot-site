@@ -23,9 +23,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie Siding in Marietta, GA | Siding Depot — Free Estimate";
+const PAGE_TITLE = "James Hardie® Siding Installation in Marietta, GA | Siding Depot";
 const PAGE_DESC =
-  "Elite Preferred James Hardie siding engineered for HardieZone HZ10. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Engineered siding systems for Georgia humidity. Serving Marietta, Canton & Alpharetta. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -139,13 +139,11 @@ function SidingTypesSection() {
               Siding Types
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              One home,{" "}
-              <span className="text-sd-green">every James Hardie profile.</span>
+              Elite James Hardie®{" "}
+              <span className="text-sd-green">Installation & Protection.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              Tap a hotspot on the home to see exactly where each siding style
-              lives — and how Board &amp; Batten, HardiePlank, Shingle and Trim
-              work together to create a finished exterior.
+              As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {SIDING_TYPES.map((t) => (
@@ -426,8 +424,7 @@ function WhatToConsiderSection() {
             <span className="text-sd-green">siding contractor.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            Siding is a 20–30 year decision. Use this checklist before you sign
-            with anyone — including us.
+            Choosing the right siding is a 30-year decision. Use this checklist to verify your contractor meets the highest industry standards for Georgia installations.
           </p>
         </div>
 
@@ -551,16 +548,14 @@ function SidingPage() {
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
           <div className="max-w-2xl">
             <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              Elite Preferred · Top 2% in the US
+              James Hardie · Elite Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie siding,{" "}
-              <span className="text-sd-green">built for Georgia.</span>
+              James Hardie® Siding,{" "}
+              <span className="text-sd-green">Elite Installation & Protection.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              Marietta&apos;s trusted siding contractor. Board &amp; Batten,
-              HardiePlank, Cedarmill and Shingle — installed by W-2 crews and
-              backed by a 30-year material warranty.
+              Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's HZ10 zone, our siding systems combine unbeatable durability with the vibrant ColorPlus® Technology finish.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">

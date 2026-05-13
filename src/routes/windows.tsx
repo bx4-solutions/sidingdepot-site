@@ -78,9 +78,9 @@ function WindowsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Energy Star · Low-E Double Pane"
-      title="Replacement windows,"
-      titleAccent="built for Atlanta summers."
-      intro="Marietta's trusted window installer. Energy Star double-pane Low-E windows from Simonton and PGT — engineered for Georgia humidity, sized for our 100°F summers and 20°F winters."
+      title="Energy-Efficient Windows,"
+      titleAccent="engineered for Atlanta summers."
+      intro="Slash your cooling costs by 15-25% with Energy Star® certified windows. Our double-pane Low-E systems are sized specifically for Georgia's climate, blocking infrared heat while flooding your home with light."
       heroImage={HERO_IMAGE}
       benefits={[
         "Double-pane Low-E with argon fill — Atlanta climate zone",
@@ -89,7 +89,7 @@ function WindowsPage() {
         "We handle Cobb / Cherokee / Fulton permits",
       ]}
       hiringRole="window contractor"
-      hiringIntro="Windows are a 25+ year decision and the #1 driver of summer cooling costs. Use this checklist before you sign with anyone — including us."
+      hiringIntro="Energy-efficient windows are a 25-year investment. Use this checklist to verify thermal performance specs and installation certifications for Georgia's climate."
       hiringChecklist={CHECKLIST}
       faqLabel="Window"
       faqs={FAQS}
