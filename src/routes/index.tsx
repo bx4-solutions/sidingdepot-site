@@ -200,7 +200,7 @@ function HomePage() {
               <Link to="/siding" className="text-sd-green hover:underline">
                 James Hardie siding installation in Marietta
               </Link>
-              <Link to="/service-areas" className="text-sd-green hover:underline">
+              <Link to="/lp/siding-marietta" className="text-sd-green hover:underline">
                 North Atlanta service areas
               </Link>
               <Link to="/projects" className="text-sd-green hover:underline">
@@ -232,13 +232,13 @@ function HomePage() {
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {CITIES.map((c) => (
-              <CityCard key={c.slug} name={c.name} county={c.county} />
+              <CityCard key={c.slug} slug={c.slug} name={c.name} county={c.county} />
             ))}
           </div>
 
           <div className="mt-10 text-center">
             <Button asChild variant="dark">
-              <Link to="/service-areas">View All Service Areas</Link>
+              <Link to="/contact">View All Service Areas</Link>
             </Button>
           </div>
         </div>
