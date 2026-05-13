@@ -25,11 +25,25 @@ function AdminLogin() {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate({ to: "/seo-dashboard" });
+        // Verify if session is actually valid
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (user && !error) {
+          navigate({ to: "/seo-dashboard" });
+        } else {
+          // If session exists but user call fails, clear it
+          await supabase.auth.signOut();
+        }
       }
     };
     checkUser();
   }, [navigate]);
+
+  const clearSession = async () => {
+    await supabase.auth.signOut();
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.reload();
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
