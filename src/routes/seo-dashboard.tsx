@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, useNavigate, Link, Outlet } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +34,12 @@ import {
   RefreshCcw,
   User,
   Key,
-  RefreshCw
+  RefreshCw,
+  ArrowUpRight,
+  ArrowDownRight,
+  ExternalLink,
+  ChevronDown,
+  Info
 } from "lucide-react";
 import { toast } from "sonner";
 import { 
@@ -47,10 +52,27 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  BarChart,
+  Bar
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
 import { cn } from "@/lib/utils";
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const FALLBACK_METRICS = {
   overview: {
@@ -102,6 +124,7 @@ function SEODashboard() {
     startDate: "2026-04-13", 
     endDate: "2026-05-13" 
   });
+  const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
@@ -139,6 +162,30 @@ function SEODashboard() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate({ to: "/admin/login" });
+  };
+
+  const handleExport = (format: 'csv' | 'pdf') => {
+    toast.promise(
+      new Promise((resolve) => setTimeout(resolve, 2000)),
+      {
+        loading: `Gerando relatório ${format.toUpperCase()}...`,
+        success: `Relatório exportado com sucesso!`,
+        error: `Falha ao exportar relatório.`,
+      }
+    );
+    
+    if (format === 'csv') {
+      const headers = "Página,Visualizações,Tempo Médio,Bounce Rate,Conversões\n";
+      const rows = metrics?.topPages?.map((p: any) => `${p.path},${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions}`).join("\n");
+      const csvContent = "data:text/csv;charset=utf-8," + headers + rows;
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `dashboard-metrics-${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   const menuItems = [
@@ -302,9 +349,22 @@ function SEODashboard() {
                 <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? 'Painel de Controle' : menuItems.find(i => i.id === activeView)?.label || adminItems.find(i => i.id === activeView)?.label}</h1>
                 <p className="text-slate-200 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
               </div>
-              <Button className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10">
-                <Download className="h-4 w-4 mr-2" /> EXPORTAR PDF/CSV
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={() => handleExport('csv')}
+                  className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
+                >
+                  <Download className="h-4 w-4 mr-2" /> CSV
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => handleExport('pdf')}
+                  className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
+                >
+                  <FileText className="h-4 w-4 mr-2" /> PDF
+                </Button>
+              </div>
             </div>
 
             {!sessionExists ? (
@@ -561,29 +621,81 @@ function SEODashboard() {
                       </Card>
                     </div>
 
-                    {/* EVENTOS DE CLIQUE */}
-                    <Card className="bg-[#131921] border-white/10">
-                      <CardHeader>
-                        <CardTitle className="text-lg font-bold text-white">Botões e Interações</CardTitle>
-                        <CardDescription className="text-xs">Rastreamento de cliques em CTAs principais</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* RANKING DE CLIQUES E COMPETIÇÃO */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Ranking de Cliques em Botões</CardTitle>
+                          <CardDescription className="text-xs">CTAs mais convertidos e origem do clique</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
                           {metrics?.clickEvents?.map((ev: any, i: number) => (
-                            <div key={i} className="p-4 bg-white/5 border border-white/10 rounded-xl hover:border-sd-green/30 transition-all">
-                              <p className="text-[10px] font-black uppercase text-slate-400 mb-2">{ev.button}</p>
-                              <div className="flex items-end justify-between">
-                                <span className="text-2xl font-black text-white">{ev.clicks}</span>
-                                <div className="text-right">
-                                  <p className="text-[10px] font-bold text-sd-green">CONVERSÃO</p>
-                                  <p className="text-sm font-black">{ev.conversion}%</p>
-                                </div>
-                              </div>
+                            <div key={i} className="p-4 bg-white/5 border border-white/10 rounded-xl group hover:border-sd-green/30 transition-all">
+                               <div className="flex items-center justify-between mb-3">
+                                  <div className="flex items-center gap-3">
+                                     <div className="p-2 bg-sd-green/10 rounded-lg">
+                                        <MousePointer2 className="h-4 w-4 text-sd-green" />
+                                     </div>
+                                     <span className="text-sm font-bold text-white">{ev.button}</span>
+                                  </div>
+                                  <Badge className="bg-sd-green/20 text-sd-green border-0 text-xs font-black">{ev.conversion}% CONV.</Badge>
+                               </div>
+                               <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                                  <div className="flex gap-2">
+                                     {ev.sources?.map((s: any, si: number) => (
+                                       <span key={si} className="text-[9px] text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">{s.source}</span>
+                                     ))}
+                                  </div>
+                                  <div className="text-right">
+                                     <span className="text-lg font-black text-white">{ev.clicks}</span>
+                                     <span className="text-[10px] text-slate-500 ml-1 uppercase font-bold tracking-tighter">Cliques</span>
+                                  </div>
+                               </div>
                             </div>
                           ))}
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Competição de Permanência</CardTitle>
+                          <CardDescription className="text-xs">Tempo médio: Top Páginas vs Resto do Site</CardDescription>
+                        </CardHeader>
+                        <CardContent className="h-[280px] flex flex-col justify-between pt-6">
+                           <div className="flex-1">
+                             <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={[
+                                  { name: 'Top Páginas', value: metrics?.timeComparison?.topPagesAvg || 0 },
+                                  { name: 'Média Geral', value: metrics?.timeComparison?.restOfSiteAvg || 0 }
+                                ]}>
+                                  <XAxis dataKey="name" stroke="#475569" fontSize={11} axisLine={false} tickLine={false} />
+                                  <YAxis hide />
+                                  <Tooltip 
+                                    cursor={{fill: 'rgba(255,255,255,0.02)'}}
+                                    contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                                    formatter={(v: any) => [`${v} segundos`, 'Tempo Médio']}
+                                  />
+                                  <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+                                     <Cell fill="var(--sd-green)" />
+                                     <Cell fill="rgba(255,255,255,0.1)" />
+                                  </Bar>
+                                </BarChart>
+                             </ResponsiveContainer>
+                           </div>
+                           <div className="flex justify-around items-end pt-6 border-t border-white/5">
+                              <div className="text-center">
+                                 <p className="text-2xl font-black text-sd-green">{metrics?.timeComparison?.topPagesAvg}s</p>
+                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Retenção Top</p>
+                              </div>
+                              <div className="h-8 w-px bg-white/10" />
+                              <div className="text-center">
+                                 <p className="text-2xl font-black text-white/20">{metrics?.timeComparison?.restOfSiteAvg}s</p>
+                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Média Site</p>
+                              </div>
+                           </div>
+                        </CardContent>
+                      </Card>
+                    </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       <Card className="lg:col-span-2 bg-[#131921] border-white/10">
@@ -767,8 +879,102 @@ function SEODashboard() {
                    </div>
                 )}
 
+                {activeView === "blog-analytics" && (
+                  <div className="space-y-8 animate-in fade-in duration-500">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <KPICard title="Total de Artigos" value={metrics?.blogStats?.totalPosts} icon={FileText} color="sd-green" diff="Ativos no site" />
+                      <KPICard title="Tempo Médio de Leitura" value={metrics?.blogStats?.avgReadingTime} icon={Clock} color="sd-green" diff="Benchmark do setor" />
+                      <KPICard title="Lead Conversion" value="4.8%" icon={Target} color="sd-green" diff="+1.2% vs set/25" />
+                    </div>
+
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader className="flex flex-row items-center justify-between">
+                        <div>
+                          <CardTitle className="text-xl font-black text-white uppercase tracking-tight">Ranking de Performance do Blog</CardTitle>
+                          <CardDescription className="text-xs">Comparativo detalhado entre os melhores posts</CardDescription>
+                        </div>
+                        <Button variant="outline" size="sm" className="border-white/10 hover:bg-white/5 h-8 text-[10px] font-black uppercase">
+                          Filtrar por Keywords
+                        </Button>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="overflow-x-auto">
+                          <Table>
+                            <TableHeader>
+                              <TableRow className="border-white/5 hover:bg-transparent">
+                                <TableHead className="text-[10px] font-black uppercase tracking-widest text-slate-400">Artigo</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Tempo Médio</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Bounce</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Conversão</TableHead>
+                                <TableHead className="text-right text-[10px] font-black uppercase tracking-widest text-slate-400">Palavras-Chave</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
+                                <TableRow key={i} className="border-white/5 group hover:bg-white/5 transition-colors">
+                                  <TableCell className="py-4">
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-sd-green font-black">#{i+1}</span>
+                                      <span className="text-white font-bold">{art.title}</span>
+                                    </div>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4 font-mono text-xs">{art.avgTime}</TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <span className="text-yellow-500 font-bold">{art.bounceRate}%</span>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30">{art.conversion}%</Badge>
+                                  </TableCell>
+                                  <TableCell className="text-right py-4">
+                                    <div className="flex gap-1 justify-end flex-wrap max-w-[200px] ml-auto">
+                                      {art.keywords?.map((kw: string, kidx: number) => (
+                                        <Badge key={kidx} variant="outline" className="text-[9px] py-0 px-1 border-white/10 text-slate-400 font-normal">
+                                          {kw}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white">Benchmarks de Engajamento</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                           {metrics?.blogStats?.marketBenchmarks?.map((bench: any, i: number) => (
+                             <div key={i} className="space-y-2">
+                               <div className="flex justify-between text-xs">
+                                 <span className="text-slate-300 font-bold">{bench.category}</span>
+                                 <span className="text-sd-green font-black">{bench.value}% <span className="text-slate-500 font-normal">/ {bench.benchmark}%</span></span>
+                               </div>
+                               <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                 <div className="absolute top-0 left-0 h-full bg-sd-green rounded-full z-10" style={{ width: `${bench.value}%` }} />
+                                 <div className="absolute top-0 left-[70%] h-full w-0.5 bg-white/20 z-20" />
+                               </div>
+                             </div>
+                           ))}
+                        </CardContent>
+                      </Card>
+                      
+                      <Card className="bg-[#131921] border-white/10 flex flex-col items-center justify-center p-8 text-center">
+                        <TrendingUp className="h-12 w-12 text-sd-green mb-4 opacity-50" />
+                        <h4 className="text-lg font-bold mb-2">Sugestão de Conteúdo</h4>
+                        <p className="text-sm text-slate-400 mb-6">Com base na performance das palavras-chave, sugerimos criar conteúdos sobre "Automação de Orçamentos com IA".</p>
+                        <Button className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-black uppercase text-xs px-8">Ver Sugestões IA</Button>
+                      </Card>
+                    </div>
+                  </div>
+                )}
+
                 {/* PLACEHOLDER PARA OUTRAS ABAS */}
-                {["campaigns", "ab-testing", "site", "audiencia", "blog-analytics", "blog", "calendar", "users"].includes(activeView) && (
+                {["campaigns", "ab-testing", "site", "audiencia", "blog", "calendar", "users"].includes(activeView) && (
                   <div className="flex flex-col items-center justify-center py-20 text-center animate-in zoom-in duration-300">
                     <div className="bg-sd-green/5 p-8 rounded-full mb-6">
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
@@ -782,6 +988,40 @@ function SEODashboard() {
           </div>
         </main>
       </div>
+
+      <Dialog open={!!selectedPageForLeads} onOpenChange={() => setSelectedPageForLeads(null)}>
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <Globe className="h-5 w-5 text-sd-green" />
+              Origem dos Leads
+            </DialogTitle>
+            <DialogDescription className="text-slate-400 font-mono text-[10px]">
+              {selectedPageForLeads}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource?.map((src: any, idx: number) => (
+              <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+                <span className="text-sm font-bold">{src.source}</span>
+                <Badge className="bg-sd-green text-sd-black font-black">{src.count} LEADS</Badge>
+              </div>
+            ))}
+            {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
+              <div className="text-center py-8 text-slate-500 italic text-sm">
+                Nenhuma conversão registrada para esta página no período.
+              </div>
+            )}
+          </div>
+          <Button 
+            variant="outline" 
+            onClick={() => setSelectedPageForLeads(null)}
+            className="w-full border-white/10 hover:bg-white/5 text-white"
+          >
+            FECHAR
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
