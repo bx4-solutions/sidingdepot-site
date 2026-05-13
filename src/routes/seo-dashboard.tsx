@@ -69,11 +69,18 @@ export const Route = createFileRoute("/seo-dashboard")({
 
 function SEODashboard() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [selectedUrl, setSelectedUrl] = useState("https://sidingdepot.lovable.app");
   const [startDate, setStartDate] = useState(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
   const [endDate, setEndDate] = useState(new Date().toISOString().split('T')[0]);
   const [activeTab, setActiveTab] = useState("overview");
+  const [isExporting, setIsExporting] = useState(false);
+
+  // GSC Settings State
+  const [gscSiteUrl, setGscSiteUrl] = useState("https://sidingdepot.lovable.app/");
+  const [gscPropertyId, setGscPropertyId] = useState("");
+  const [isGscConnected, setIsGscConnected] = useState(false);
 
   const isSelectedUrlValid = useMemo(() => {
     try {
