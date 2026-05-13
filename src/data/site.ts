@@ -86,10 +86,11 @@ export const SERVICES: ReadonlyArray<{
 }> = [
   { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: { src: sidingImg } },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
-  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
+  { slug: "windows", title: "Windows", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
+  { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
   { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
-  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
+  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
   { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
 ];
 
