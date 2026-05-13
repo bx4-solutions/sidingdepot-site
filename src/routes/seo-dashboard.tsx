@@ -128,6 +128,72 @@ function SEODashboard() {
     navigate({ to: "/admin/login" });
   };
 
+  const { data: gscSettings, refetch: refetchGscSettings } = useQuery({
+    queryKey: ["gsc-settings"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("gsc_settings").select("*").single();
+      if (error && error.code !== 'PGRST116') throw error;
+      return data;
+    },
+    enabled: !isCheckingAuth,
+  });
+
+  const updateGscSettingsMutation = useMutation({
+    mutationFn: async (settings: any) => {
+      const { error } = await supabase
+        .from("gsc_settings")
+        .upsert({ 
+          site_url: settings.site_url,
+          property_id: settings.property_id,
+          is_connected: settings.is_connected,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'site_url' });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      refetchGscSettings();
+    }
+  });
+
+  const handleExportData = (type: 'csv' | 'pdf') => {
+    setIsExporting(true);
+    try {
+      if (type === 'csv') {
+        const headers = ["Service", "Variation", "Views", "Clicks", "Leads", "CTR (%)", "Conv. Rate (%)"];
+        const rows = abPerformance.map(p => [
+          p.service,
+          p.variation,
+          p.views,
+          p.clicks,
+          p.leads,
+          p.ctr,
+          p.cr
+        ]);
+
+        const csvContent = [
+          headers.join(","),
+          ...rows.map(row => row.join(","))
+        ].join("\n");
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `ab_performance_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.print();
+      }
+    } catch (error) {
+      console.error("Export failed:", error);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const statusFn = useServerFn(getIndexingStatus);
   const inspectFn = useServerFn(inspectURL);
   const analyticsFn = useServerFn(getSearchAnalytics);
