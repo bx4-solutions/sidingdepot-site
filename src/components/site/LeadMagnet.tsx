@@ -78,9 +78,30 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  // Synchronous in-flight guard — wins the race a `submitting` state can lose
+  // when two clicks fire in the same tick before React re-renders.
+  const inFlightRef = useRef(false);
+  // Throttle for the fallback "Download the PDF" link on the success card.
+  const lastDownloadAtRef = useRef(0);
+
+  // If the user already submitted in this session, skip straight to the
+  // success state. Avoids an empty form re-prompt after navigating back.
+  useEffect(() => {
+    if (alreadySubmitted(source)) {
+      setDone(true);
+    }
+  }, [source]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Layer 1 — synchronous guards: in-flight or already-submitted.
+    if (inFlightRef.current || submitting) return;
+    if (alreadySubmitted(source)) {
+      track("lead_magnet_duplicate_blocked", { source, city });
+      setDone(true);
+      return;
+    }
+
     const parsed = schema.safeParse(values);
     if (!parsed.success) {
       const fe: Partial<Record<keyof Values, string>> = {};
@@ -92,6 +113,7 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
       return;
     }
     setErrors({});
+    inFlightRef.current = true;
     setSubmitting(true);
     try {
       if (SITE.ghlWebhookUrl) {
@@ -109,11 +131,15 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
           }),
         });
       }
+      // Mark as submitted BEFORE firing analytics so any synchronous re-entry
+      // through React's event system is short-circuited.
+      markSubmitted(source);
       track("lead_magnet_download", { source, city, pdf_path: PDF_PATH });
     } catch {
       track("lead_magnet_error", { source });
     } finally {
       setSubmitting(false);
+      inFlightRef.current = false;
       if (onSuccess) {
         // Parent owns post-download flow (e.g. navigate to /guide/thank-you
         // and open the PDF there). Don't open here to avoid double-tabs.
@@ -124,8 +150,23 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
       // Trigger download in a new tab so users see the asset immediately.
       if (typeof window !== "undefined") {
         window.open(PDF_PATH, "_blank", "noopener,noreferrer");
+        lastDownloadAtRef.current = Date.now();
       }
     }
+  }
+
+  /**
+   * Throttled fallback download — protects against rage-clicking the success-
+   * state link from spawning multiple tabs / firing duplicate GA events.
+   */
+  function handleFallbackDownload(e: React.MouseEvent<HTMLAnchorElement>) {
+    const now = Date.now();
+    if (now - lastDownloadAtRef.current < DOWNLOAD_THROTTLE_MS) {
+      e.preventDefault();
+      return;
+    }
+    lastDownloadAtRef.current = now;
+    track("lead_magnet_fallback_download", { source });
   }
 
   return (
