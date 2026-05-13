@@ -10,9 +10,9 @@ const DashboardMetricsSchema = z.object({
 export const getDashboardMetrics = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data) => DashboardMetricsSchema.parse(data))
-  .handler(async ({ input, context }) => {
+  .handler(async ({ data, context }) => {
     const { supabase } = context;
-    const { startDate, endDate } = input;
+    const { startDate, endDate } = data;
 
     // Simular dados reais enquanto o job de sincronização não popula as tabelas
     // No futuro, isso faria: 
