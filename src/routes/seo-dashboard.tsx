@@ -54,7 +54,8 @@ import {
   Pie,
   Cell,
   BarChart,
-  Bar
+  Bar,
+  Legend
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
 import { cn } from "@/lib/utils";
