@@ -134,7 +134,7 @@ function FinancePage() {
 
 
           <h1 className="font-display text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Finance
+            Financing Options
           </h1>
         </div>
       </section>
