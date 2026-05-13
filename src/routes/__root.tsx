@@ -166,7 +166,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
         <Navbar />
         <main className="flex-1">
           <Outlet />
