@@ -119,12 +119,11 @@ function GuidePage() {
                   but for now we'll simulate the successful transition based on GHL submit logic
                   or provide a simple success state for the user. */}
               <div className="text-left">
-                <HeroQuoteForm
+                <SimpleLeadForm
                   source={src || "guide_page"}
                   tag="guide_request"
-                  bare
+                  submitLabel="Send My Free Guide →"
                   onSuccess={() => {
-                    // Slight delay to let user see success state, then show guide
                     setTimeout(() => setDownloadReady(true), 800);
                   }}
                 />
