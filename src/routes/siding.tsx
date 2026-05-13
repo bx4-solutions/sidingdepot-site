@@ -424,8 +424,7 @@ function WhatToConsiderSection() {
             <span className="text-sd-green">siding contractor.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            Siding is a 20–30 year decision. Use this checklist before you sign
-            with anyone — including us.
+            Choosing the right siding is a 30-year decision. Use this checklist to verify your contractor meets the highest industry standards for Georgia installations.
           </p>
         </div>
 
