@@ -61,14 +61,20 @@ export const getIndexingStatus = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ url: z.string().url() }).parse(data))
   .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
-    }
-
     const GSC_API_KEY = process.env.GOOGLE_SEARCH_CONSOLE_API_KEY;
-    if (!GSC_API_KEY) {
-      throw new Error("Google Search Console not connected");
-    }
+    const fallback = (msg: string) => ({
+      url: data.url,
+      indexingState: "UNKNOWN" as const,
+      lastCrawlTime: null,
+      coverageState: null,
+      crawlState: null,
+      robotsTxtState: null,
+      timestamp: new Date().toISOString(),
+      verdict: "NEUTRAL" as const,
+      error: msg,
+    });
+    if (!LOVABLE_API_KEY) return fallback("LOVABLE_API_KEY not configured");
+    if (!GSC_API_KEY) return fallback("Google Search Console not connected");
 
     const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
 
