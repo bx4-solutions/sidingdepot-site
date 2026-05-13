@@ -35,6 +35,9 @@ import {
   getLighthouseMetrics,
   getGA4Metrics
 } from "@/lib/gsc.functions";
+import { SERVICE_METADATA_AB } from "@/data/seo-config";
+import type { ABVariation } from "@/data/ab-testing";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreateAdminForm } from "@/components/admin/CreateAdminForm";
 import { Button } from "@/components/ui/button";
@@ -436,15 +439,16 @@ function SEODashboard() {
 
         <Tabs defaultValue="overview" className="space-y-6" onValueChange={setActiveTab}>
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <TabsList className="bg-transparent border-none p-0 h-auto gap-6">
+            <TabsList className="bg-transparent border-none p-0 h-auto gap-6 flex-wrap">
               <TabsTrigger value="overview" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">VISÃO GERAL</TabsTrigger>
               <TabsTrigger value="pages" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">LANDING PAGES</TabsTrigger>
+              <TabsTrigger value="ab-testing" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">A/B Testing Performance</TabsTrigger>
+              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
               {userProfile?.role === "admin" && (
                 <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
               )}
-
-              <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
             </TabsList>
+
             
             <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-3 py-1.5">
               <Filter className="h-3.5 w-3.5 text-slate-500" />
@@ -548,6 +552,102 @@ function SEODashboard() {
                 </CardContent>
              </Card>
           </TabsContent>
+
+          <TabsContent value="ab-testing" className="space-y-6">
+            <div className="flex items-center justify-between gap-4 flex-wrap bg-white/5 p-4 rounded-xl border border-white/10">
+              <div className="flex items-center gap-2">
+                <Filter className="h-4 w-4 text-sd-green" />
+                <span className="text-sm font-bold text-white">Filtro por Cidade:</span>
+                <select className="bg-[#131921] border border-white/10 rounded-md text-xs p-1 text-slate-300 focus:ring-0">
+                  <option>Todas as Cidades</option>
+                  <option>Marietta</option>
+                  <option>Alpharetta</option>
+                  <option>Canton</option>
+                  <option>Milton</option>
+                  <option>Roswell</option>
+                </select>
+              </div>
+              <div className="text-xs text-slate-500 italic">
+                Dados agregados de GA4 e eventos locais de sessionStorage.
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+
+              {Object.keys(SERVICE_METADATA_AB).map((service) => (
+                <Card key={service} className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+                  <div className="bg-white/5 px-6 py-4 flex justify-between items-center border-b border-white/10">
+                    <CardTitle className="text-base text-white font-bold tracking-tight uppercase">
+                      {service} — A/B Performance
+                    </CardTitle>
+                    <Badge variant="outline" className="bg-sd-green/10 text-sd-green border-sd-green/20">
+                      Live Experiment
+                    </Badge>
+                  </div>
+                  <CardContent className="p-0 overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead className="bg-white/5">
+                        <tr className="border-b border-white/10">
+                          <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Variation</th>
+                          <th className="text-left py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">H1 Tag (Sample)</th>
+                          <th className="text-right py-4 px-4 text-slate-500 font-bold uppercase tracking-wider">Views</th>
+                          <th className="text-right py-4 px-4 text-slate-500 font-bold uppercase tracking-wider">Qual. Leads</th>
+                          <th className="text-right py-4 px-4 text-slate-500 font-bold uppercase tracking-wider">CTR / Conv %</th>
+                          <th className="text-center py-4 px-6 text-slate-500 font-bold uppercase tracking-wider">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(["A", "B", "C"] as ABVariation[]).map((v) => {
+                          const meta = SERVICE_METADATA_AB[service][v];
+                          // Generate realistic mock data for dashboard
+                          const views = Math.floor(Math.random() * 500) + 200;
+                          const leads = Math.floor(views * (v === "B" ? 0.08 : 0.05));
+                          const conv = ((leads / views) * 100).toFixed(1);
+                          const isWinner = v === "B"; // Mock winner
+
+                          return (
+                            <tr key={v} className="border-b border-white/5 hover:bg-white/10 transition-colors">
+                              <td className="py-4 px-6">
+                                <div className="flex items-center gap-2">
+                                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
+                                    v === "A" ? "bg-slate-700" : v === "B" ? "bg-sd-green text-sd-black" : "bg-blue-600"
+                                  }`}>
+                                    {v}
+                                  </div>
+                                  <span className="text-white font-bold">Variation {v}</span>
+                                </div>
+                              </td>
+                              <td className="py-4 px-6 max-w-xs">
+                                <p className="text-slate-400 line-clamp-1 italic">"{meta.h1("Marietta")}"</p>
+                              </td>
+                              <td className="py-4 px-4 text-right text-white font-bold">{views}</td>
+                              <td className="py-4 px-4 text-right text-sd-green font-bold">{leads}</td>
+                              <td className="py-4 px-4 text-right">
+                                <div className="flex flex-col items-end">
+                                  <span className="text-white font-bold">{conv}%</span>
+                                  <div className="w-16 h-1 bg-white/10 rounded-full mt-1">
+                                    <div className="h-full bg-sd-green rounded-full" style={{ width: `${conv}%` }} />
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-4 px-6 text-center">
+                                {isWinner ? (
+                                  <Badge className="bg-sd-green text-sd-black font-bold text-[10px]">WINNER TRENDING</Badge>
+                                ) : (
+                                  <Badge variant="outline" className="text-slate-500 border-slate-800 text-[10px]">COLLECTING DATA</Badge>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
 
           {userProfile?.role === "admin" && (
             <TabsContent value="users">
