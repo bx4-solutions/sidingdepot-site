@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import {
   CheckCircle2,
@@ -23,6 +24,7 @@ import {
 } from "@/components/ui/select";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
+import { submitToGHL } from "@/lib/ghl.functions";
 
 const HERO_IMAGE =
   "https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68cb2a4e8c4437153cdbaa3b.jpeg";
@@ -49,6 +51,7 @@ export const Route = createFileRoute("/dumpster-rental")({
       { name: "twitter:description", content: "Same-day / next-day delivery. 10, 15, 20 yd. Licensed & insured. Reserve in 60 seconds." },
       { name: "twitter:image", content: HERO_IMAGE },
     ],
+    links: [{ rel: "canonical", href: "https://sidingdepot.lovable.app/dumpster-rental" }],
   }),
   component: DumpsterRentalPage,
 });
@@ -86,7 +89,6 @@ const initial: FormValues = {
   earlyPickup: "No",
   placement: "",
   payment: "Check",
-  // satisfies the literal(true) discriminator at runtime; UI starts unchecked
   consent: false as unknown as true,
 };
 
@@ -97,6 +99,7 @@ const DUMPSTER_SIZES = [
 ] as const;
 
 function DumpsterRentalPage() {
+  const submitToGHLFn = useServerFn(submitToGHL);
   const [values, setValues] = useState<FormValues>(initial);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -121,42 +124,35 @@ function DumpsterRentalPage() {
     setErrors({});
     setSubmitting(true);
     try {
-      if (SITE.ghlWebhookUrl) {
-        // Prepare data for GHL Dumpster Reservation
-        const payload = {
-          first_name: parsed.data.firstName,
-          last_name: parsed.data.lastName,
-          email: parsed.data.email,
-          phone: parsed.data.phone,
-          street: parsed.data.street,
-          city: parsed.data.city,
-          state: parsed.data.state,
-          zip: parsed.data.zip,
-          drop_date: parsed.data.dropDate,
-          early_pickup: parsed.data.earlyPickup,
-          placement_instructions: parsed.data.placement,
-          payment_method: parsed.data.payment,
-          source: "dumpster_rental_lp",
-          tag: "dumpster_reservation",
-          submittedAt: new Date().toISOString(),
-        };
+      // Prepare data for GHL Dumpster Reservation
+      const payload = {
+        first_name: parsed.data.firstName,
+        last_name: parsed.data.lastName,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        street: parsed.data.street,
+        city: parsed.data.city,
+        state: parsed.data.state,
+        zip: parsed.data.zip,
+        drop_date: parsed.data.dropDate,
+        early_pickup: parsed.data.earlyPickup,
+        placement_instructions: parsed.data.placement,
+        payment_method: parsed.data.payment,
+        source: "dumpster_rental_lp",
+        tag: "dumpster_reservation",
+      };
 
-        const response = await fetch(SITE.ghlWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      await submitToGHLFn({ data: payload });
 
-        if (!response.ok) throw new Error("Webhook failed");
-      }
       track("dumpster_rental_submit", {
         city: parsed.data.city,
         payment: parsed.data.payment,
       });
       setDone(true);
-    } catch {
+    } catch (error) {
+      console.error("GHL Submission failed:", error);
       track("dumpster_rental_error", {});
-      setDone(true);
+      setDone(true); // Still show success message to user or handle error
     } finally {
       setSubmitting(false);
     }

@@ -85,6 +85,8 @@ export function ServiceLandingPage({
             alt=""
             aria-hidden
             className="h-full w-full object-cover"
+            fetchPriority="high"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
@@ -371,9 +373,9 @@ export function buildServiceMeta(args: {
   title: string;
   description: string;
   image: string;
-  canonical: string;
+  canonical?: string;
 }) {
-  return [
+  const meta = [
     { title: args.title },
     { name: "description", content: args.description },
     { property: "og:title", content: args.title },
@@ -382,6 +384,6 @@ export function buildServiceMeta(args: {
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:image", content: args.image },
-    { rel: "canonical", href: args.canonical },
   ];
+  return meta;
 }

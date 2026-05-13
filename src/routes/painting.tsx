@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
-import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
+import { serviceJsonLd, buildServiceMeta, faqJsonLd } from "@/components/site/ServiceLandingPage";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 
 /**
@@ -26,16 +26,15 @@ const PROJECT_HERO_ALT =
 
 export const Route = createFileRoute("/painting")({
   head: () => ({
-    meta: [
-      { title: PAGE_TITLE },
-      { name: "description", content: PAGE_DESC },
-      { property: "og:title", content: PAGE_TITLE },
-      { property: "og:description", content: PAGE_DESC },
-      { property: "og:image", content: PROJECT_HERO },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: PROJECT_HERO },
+    meta: buildServiceMeta({
+      title: PAGE_TITLE,
+      description: PAGE_DESC,
+      image: PROJECT_HERO,
+      canonical: "https://sidingdepot.com/painting",
+    }),
+    links: [
       { rel: "canonical", href: "https://sidingdepot.com/painting" },
+      { rel: "preload", as: "image", href: PROJECT_HERO, fetchPriority: "high" as any },
     ],
     scripts: [
       serviceJsonLd("Exterior Painting", PAGE_DESC, {

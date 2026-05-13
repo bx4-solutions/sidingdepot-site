@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
 import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
+import { submitToGHL } from "@/lib/ghl.functions";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
@@ -56,6 +58,7 @@ type FieldErrors = Partial<Record<keyof FormState, string>>;
 
 function ContactPage() {
   const search = Route.useSearch();
+  const submitToGHLFn = useServerFn(submitToGHL);
   const [values, setValues] = useState<FormState>({
     name: "",
     email: "",
@@ -94,34 +97,28 @@ function ContactPage() {
     setErrors({});
     setSubmitting(true);
     try {
-      if (SITE.ghlWebhookUrl) {
-        // Prepare data for GHL
-        const payload = {
-          first_name: parsed.data.name.split(" ")[0],
-          last_name: parsed.data.name.split(" ").slice(1).join(" ") || " ",
-          email: parsed.data.email,
-          phone: parsed.data.phone,
-          source: parsed.data.source || "contact_page",
-          message: parsed.data.message,
-          location: search.city || "North Atlanta",
-          service_requested: search.service || "General Inquiry",
-        };
+      // Prepare data for GHL
+      const payload = {
+        first_name: parsed.data.name.split(" ")[0] || "Client",
+        last_name: parsed.data.name.split(" ").slice(1).join(" ") || " ",
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        source: parsed.data.source || "contact_page",
+        message: parsed.data.message,
+        location: search.city || "North Atlanta",
+        service_requested: search.service || "General Inquiry",
+      };
 
-        const response = await fetch(SITE.ghlWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      await submitToGHLFn({ data: payload });
 
-        if (!response.ok) throw new Error("Webhook failed");
-      }
       trackLeadSubmit({
         service: search.service || "general",
         phone: parsed.data.phone,
         source: parsed.data.source || "contact_page",
       });
       setDone(true);
-    } catch {
+    } catch (error) {
+      console.error("Submission failed:", error);
       track("quote_form_error", { source: parsed.data.source || "contact_page" });
       setErrors({ message: "Ocorreu um erro ao enviar. Por favor, tente novamente ou ligue para nós." });
     } finally {

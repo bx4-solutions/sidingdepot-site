@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
-import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
+import { serviceJsonLd, buildServiceMeta } from "@/components/site/ServiceLandingPage";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 
 /**
@@ -29,16 +29,15 @@ const PAGE_DESC =
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
-    meta: [
-      { title: PAGE_TITLE },
-      { name: "description", content: PAGE_DESC },
-      { property: "og:title", content: PAGE_TITLE },
-      { property: "og:description", content: PAGE_DESC },
-      { property: "og:image", content: "/projects/project-1.webp" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/projects/project-1.webp" },
+    meta: buildServiceMeta({
+      title: PAGE_TITLE,
+      description: PAGE_DESC,
+      image: "/projects/project-1.webp",
+      canonical: "https://sidingdepot.com/siding",
+    }),
+    links: [
       { rel: "canonical", href: "https://sidingdepot.com/siding" },
+      { rel: "preload", as: "image", href: "/projects/project-1.webp", fetchPriority: "high" as any },
     ],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", PAGE_DESC, {

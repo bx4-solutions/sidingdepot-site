@@ -56,6 +56,7 @@ export const STATIC_ROUTES = [
   "/windows",
   "/deck",
   "/dumpster",
+  "/dumpster-rental",
   "/contact",
   "/guide",
   "/guide/thank-you",
