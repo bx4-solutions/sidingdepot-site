@@ -136,16 +136,15 @@ function SEODashboard() {
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSessionExists(!!session);
-    };
-    
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSessionExists(!!session);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth event:", event);
+      if (event === 'SIGNED_OUT') {
+        setSessionExists(false);
+      } else if (session) {
+        setSessionExists(true);
+      }
     });
 
-    checkSession();
     return () => subscription.unsubscribe();
   }, []);
 
