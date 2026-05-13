@@ -381,6 +381,30 @@ export type Database = {
         }
         Relationships: []
       }
+      google_reviews_sync_log: {
+        Row: {
+          created_at: string | null
+          id: string
+          place_id: string
+          reviews_count: number | null
+          status: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          place_id: string
+          reviews_count?: number | null
+          status: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          place_id?: string
+          reviews_count?: number | null
+          status?: string
+        }
+        Relationships: []
+      }
       gsc_settings: {
         Row: {
           created_at: string | null
