@@ -467,6 +467,15 @@ function SEODashboard() {
             <Button 
               variant="outline" 
               size="sm" 
+              onClick={() => handleExportData('csv')}
+              disabled={isExporting}
+              className="border-white/10 text-slate-400 hover:text-white hover:bg-white/5"
+            >
+              <Download className="h-4 w-4 mr-2" /> Exportar CSV
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
               onClick={handleLogout}
               className="border-white/10 text-slate-400 hover:text-white hover:bg-white/5"
             >
@@ -477,10 +486,10 @@ function SEODashboard() {
                 variant="ghost" 
                 size="sm" 
                 className="h-8 px-2 text-[10px] font-bold gap-1.5 text-green-500 hover:bg-green-500/10"
-                onClick={() => window.open('https://lovable.dev/projects/' + window.location.hostname.split('.')[0] + '/connect/google_search_console', '_blank')}
+                onClick={() => setActiveTab("integrations")}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 
-                GSC: CONECTADO
+                <div className={`w-1.5 h-1.5 rounded-full ${gscSettings?.is_connected ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]' : 'bg-red-500'}`} /> 
+                GSC: {gscSettings?.is_connected ? 'CONECTADO' : 'DESCONECTADO'}
               </Button>
               <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 gap-1.5 py-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> GA4: ATIVO
