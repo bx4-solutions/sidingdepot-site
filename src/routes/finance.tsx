@@ -79,6 +79,14 @@ export const Route = createFileRoute("/finance")({
 });
 
 function FinancePage() {
+  useEffect(() => {
+    // Detect if returning from GreenSky or moving to next step
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.get("status") === "success" || sp.get("qualified") === "true") {
+      trackFinanceQualified();
+    }
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
