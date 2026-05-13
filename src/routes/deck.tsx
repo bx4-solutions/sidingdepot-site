@@ -9,18 +9,19 @@ import {
 } from "lucide-react";
 import {
   ServiceLandingPage,
-  buildServiceMeta,
   faqJsonLd,
   serviceJsonLd,
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { SERVICE_METADATA } from "@/data/seo-config";
 
-const PAGE_TITLE = "Custom Composite Decks in Marietta, GA | Siding Depot — Trex Pro®";
-const PAGE_DESC =
-  "Expert composite deck builders in North Atlanta. Trex Pro® & TimberTech® certified. Serving Marietta, Alpharetta & Milton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-6.webp";
 const CANONICAL = "https://sidingdepot.com/deck";
+const SERVICE_KEY = "deck";
+const CITY = "Marietta";
+
+const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
@@ -56,18 +57,20 @@ const CHECKLIST: ReadonlyArray<ChecklistItem> = [
 
 export const Route = createFileRoute("/deck")({
   head: () => ({
-    meta: buildServiceMeta({
-      title: PAGE_TITLE,
-      description: PAGE_DESC,
-      image: HERO_IMAGE,
-      canonical: CANONICAL,
-    }),
+    meta: [
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
+      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:type", content: "website" },
+    ],
     links: [
       { rel: "canonical", href: CANONICAL },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Deck Construction & Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Deck Construction & Installation" }),
+      serviceJsonLd("Deck Construction & Installation", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "DeckContractor" }),
       faqJsonLd(FAQS),
     ],
   }),
@@ -77,11 +80,13 @@ export const Route = createFileRoute("/deck")({
 function DeckPage() {
   return (
     <ServiceLandingPage
+      serviceKey={SERVICE_KEY}
+      city={CITY}
+      heroImage={HERO_IMAGE}
       eyebrow="Trex · TimberTech · Pressure-Treated"
       title="Custom Composite Decks:"
       titleAccent="Low-Maintenance Luxury."
       intro="Maximize your outdoor living with a deck built for decades, not seasons. As Trex Pro® installers, we build moisture-proof spaces that resist the warping, rotting, and fading common in North Atlanta."
-      heroImage={HERO_IMAGE}
       benefits={[
         "Composite decking with 25–30 year material warranty",
         "Permit-ready engineered plans, every project",

@@ -9,18 +9,19 @@ import {
 } from "lucide-react";
 import {
   ServiceLandingPage,
-  buildServiceMeta,
   faqJsonLd,
   serviceJsonLd,
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { SERVICE_METADATA } from "@/data/seo-config";
 
-const PAGE_TITLE = "Seamless Gutters in Marietta, GA | Siding Depot — 6-Inch Systems";
-const PAGE_DESC =
-  "6-inch seamless aluminum gutters and LeafGuard® systems built for Georgia rainfall. Serving Marietta, Alpharetta & Canton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-5.webp";
 const CANONICAL = "https://sidingdepot.com/gutters";
+const SERVICE_KEY = "gutters";
+const CITY = "Marietta";
+
+const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
@@ -56,18 +57,20 @@ const CHECKLIST: ReadonlyArray<ChecklistItem> = [
 
 export const Route = createFileRoute("/gutters")({
   head: () => ({
-    meta: buildServiceMeta({
-      title: PAGE_TITLE,
-      description: PAGE_DESC,
-      image: HERO_IMAGE,
-      canonical: CANONICAL,
-    }),
+    meta: [
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
+      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:type", content: "website" },
+    ],
     links: [
       { rel: "canonical", href: CANONICAL },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Seamless Gutter Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Seamless Gutter Installation" }),
+      serviceJsonLd("Seamless Gutter Installation", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "GutterContractor" }),
       faqJsonLd(FAQS),
     ],
   }),
@@ -77,11 +80,13 @@ export const Route = createFileRoute("/gutters")({
 function GuttersPage() {
   return (
     <ServiceLandingPage
+      serviceKey={SERVICE_KEY}
+      city={CITY}
+      heroImage={HERO_IMAGE}
       eyebrow="Seamless Aluminum · LeafGuard"
       title="6-Inch Seamless Gutters:"
       titleAccent="High-Volume Protection."
       intro="Protect your foundation from Georgia's 50+ inches of annual rain. Our 6-inch seamless systems move 40% more water than standard gutters, preventing basement leaks and fascia rot."
-      heroImage={HERO_IMAGE}
       benefits={[
         "6-inch K-style gutters move 40% more water than 5-inch",
         "Seamless aluminum formed on-site — no leaky joints",

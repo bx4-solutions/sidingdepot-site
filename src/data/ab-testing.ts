@@ -1,4 +1,5 @@
 import { LucideIcon, Award, ShieldCheck, Clock, CheckCircle2, Star, Users, MapPin, BadgeCheck } from "lucide-react";
+import { track } from "@/lib/track";
 
 export type ABVariation = "A" | "B" | "C";
 
@@ -168,3 +169,26 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
     ],
   },
 };
+
+/**
+ * Persists and returns the assigned variation for a service.
+ * Tracks CTR (assignment) and ensures consistency.
+ */
+export function getServiceVariation(service: string): ABVariation {
+  if (typeof window === "undefined") return "A";
+  
+  const key = `ab_var_${service}`;
+  let variation = sessionStorage.getItem(key) as ABVariation;
+  
+  if (!variation) {
+    // 60% A (Authority), 20% B (Benefit), 20% C (Conversion)
+    const rand = Math.random();
+    variation = rand < 0.6 ? "A" : rand < 0.8 ? "B" : "C";
+    sessionStorage.setItem(key, variation);
+    
+    // Track CTR (Variation Assignment)
+    track("ab_variation_assigned", { service, variation });
+  }
+  
+  return variation;
+}
