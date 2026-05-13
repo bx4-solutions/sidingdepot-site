@@ -63,6 +63,13 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Siding Depot — Georgia's Most Trusted Siding Experts | Marietta GA" },
       { name: "description", content: "James Hardie Elite Preferred contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 1,500+ homes transformed. Free quote in 24h." },
+      { name: "keywords", content: "siding contractor Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
+      { name: "geo.region", content: "US-GA" },
+      { name: "geo.placename", content: "Marietta" },
+      { name: "geo.position", content: "33.9806;-84.4752" },
+      { name: "ICBM", content: "33.9806, -84.4752" },
+      { name: "address", content: SITE.address.full },
+      { name: "telephone", content: SITE.phone },
       { property: "og:title", content: "Siding Depot — Georgia's Most Trusted Siding Experts" },
       { property: "og:description", content: "James Hardie Elite Preferred. 1,500+ homes. Free quote in 24h across North Atlanta." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
