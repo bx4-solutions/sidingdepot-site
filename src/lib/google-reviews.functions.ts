@@ -18,8 +18,19 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
       const response = await fetch(
         `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=${fields}&key=${apiKey}`
       );
+      
+      if (response.status === 429) {
+        console.warn("Google Places API rate limit hit (429)");
+        return { success: false, error: "Rate limit reached. Please try again later.", status: 429 };
+      }
+
       const result = await response.json();
       
+      if (result.status === "OVER_QUERY_LIMIT") {
+        console.warn("Google Places API OVER_QUERY_LIMIT");
+        return { success: false, error: "Google API limit reached.", status: 429 };
+      }
+
       if (result.status !== "OK") {
         console.error("Google Places API error:", result.status, result.error_message);
         return { success: false, error: result.error_message || result.status };
@@ -49,6 +60,15 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
         return { success: false, error: error.message };
       }
 
+      // Update sync log
+      await supabaseAdmin
+        .from("google_reviews_sync_log")
+        .insert({ 
+          place_id: data.placeId, 
+          status: "success", 
+          reviews_count: reviews.length 
+        });
+
       return { 
         success: true, 
         count: reviews.length,
@@ -74,8 +94,8 @@ export const getGoogleReviews = createServerFn({ method: "GET" })
     }
 
     return { 
-      reviews: data,
-      overallRating: 4.9, // Default fallback
-      totalReviews: 128    // Default fallback
+      reviews: data || [],
+      overallRating: 4.9, 
+      totalReviews: 128    
     };
   });
