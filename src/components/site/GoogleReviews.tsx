@@ -74,6 +74,43 @@ const RECENT_REVIEWS: Review[] = [
 ];
 
 export function GoogleReviews() {
+  const queryClient = useQueryClient();
+  const fetchReviews = useServerFn(getGoogleReviews);
+  const syncReviews = useServerFn(syncGoogleReviews);
+
+  const { data: remoteData, isLoading } = useQuery({
+    queryKey: ["google-reviews"],
+    queryFn: () => fetchReviews(),
+  });
+
+  const syncMutation = useMutation({
+    mutationFn: () => syncReviews({ data: { placeId: "ChIJgXSHh4OH9YgR9nx8zHzMfMw" } }), // Actual Siding Depot Place ID
+    onSuccess: (res) => {
+      if (res.success) {
+        toast.success(`Successfully synced ${res.count} reviews!`);
+        queryClient.invalidateQueries({ queryKey: ["google-reviews"] });
+      } else {
+        toast.error(`Sync failed: ${res.error}`);
+      }
+    },
+    onError: () => toast.error("An error occurred during sync"),
+  });
+
+  const allReviews: Review[] = useMemo(() => {
+    if (!remoteData?.reviews || remoteData.reviews.length === 0) {
+      return RECENT_REVIEWS;
+    }
+    return remoteData.reviews.map((r: any) => ({
+      author: r.author_name,
+      date: r.relative_time_description,
+      timestamp: r.time_timestamp * 1000,
+      rating: r.rating,
+      text: r.text,
+      avatar: r.author_name.charAt(0),
+      photoUrl: r.author_photo_url,
+    }));
+  }, [remoteData]);
+
   const gmbUrl = "https://www.google.com/maps/place/Siding+Depot/@33.9856525,-84.4716183,17z/data=!4m8!3m7!1s0x88f5148386377777:0x7c7c7c7c7c7c7c7c!8m2!3d33.9856525!4d-84.4716183!9m1!1b1!16s%2Fg%2F11b6_v1_v1";
 
   const [ratingFilter, setRatingFilter] = useState<string>("all");
@@ -82,7 +119,7 @@ export function GoogleReviews() {
   const reviewsPerPage = 3;
 
   const filteredReviews = useMemo(() => {
-    let result = [...RECENT_REVIEWS];
+    let result = [...allReviews];
 
     // Filter by rating
     if (ratingFilter !== "all") {
@@ -99,7 +136,7 @@ export function GoogleReviews() {
     });
 
     return result;
-  }, [ratingFilter, sortOrder]);
+  }, [ratingFilter, sortOrder, allReviews]);
 
   const totalPages = Math.ceil(filteredReviews.length / reviewsPerPage);
   const currentReviews = filteredReviews.slice(
