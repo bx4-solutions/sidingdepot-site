@@ -207,12 +207,22 @@ function AdminLogin() {
 
             <Button 
               type="submit" 
-              className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold"
+              className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold h-11"
               disabled={loading}
             >
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === "login" ? "Entrar" : "Enviar Link"}
+              {mode === "login" ? "Entrar no Painel" : "Enviar Link de Recuperação"}
             </Button>
+
+            {mode === "login" && error && (
+              <button
+                type="button"
+                onClick={clearSession}
+                className="w-full text-[10px] text-slate-400 hover:text-white transition-colors mt-2 uppercase tracking-widest"
+              >
+                Problemas para entrar? Clique aqui para limpar o cache de login
+              </button>
+            )}
           </form>
         </CardContent>
         <CardFooter>
