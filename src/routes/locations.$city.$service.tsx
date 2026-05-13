@@ -96,7 +96,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
       ],
       links: [
         { rel: "canonical", href: url },
-        { rel: "preload", as: "image", href: SITE.hero?.bgImage || "/hero-home.webp", fetchPriority: "high" as any },
+        { rel: "preload", as: "image", href: HERO.bgImage, fetchPriority: "high" as any },
       ],
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(localBusiness) },
