@@ -38,7 +38,7 @@ type HeroQuoteFormProps = {
 
 export function HeroQuoteForm({
   source = "hero_inline_form",
-  tag = "hero_quote_request",
+  tag = tag,
   bare = false,
 }: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
@@ -77,7 +77,7 @@ export function HeroQuoteForm({
       }
       setErrors(fe);
       track("quote_form_validation_error", {
-        source: SOURCE,
+        source: source,
         fields: Object.keys(fe).join(","),
       });
       return;
@@ -92,8 +92,8 @@ export function HeroQuoteForm({
       city: parsed.data.city,
       services: parsed.data.services.join(", "),
       message: parsed.data.message,
-      source: SOURCE,
-      tag: "hero_quote_request",
+      source: source,
+      tag: tag,
       submittedAt: new Date().toISOString(),
     };
     if (import.meta.env.DEV) {
@@ -110,13 +110,13 @@ export function HeroQuoteForm({
         if (!response.ok) throw new Error("Webhook failed");
       }
       track("quote_form_submit", {
-        source: SOURCE,
+        source: source,
         services: parsed.data.services.join(","),
         services_count: parsed.data.services.length,
       });
       setDone(true);
     } catch {
-      track("quote_form_error", { source: SOURCE });
+      track("quote_form_error", { source: source });
       setErrors({ message: "Não foi possível enviar agora. Tente novamente." });
     } finally {
       setSubmitting(false);
