@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { CheckCircle2, Download, FileText, Loader2, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -35,6 +35,31 @@ function readUtm(): Record<string, string> {
   return out;
 }
 
+/**
+ * Per-session dedupe flag. We key by `source` so a user who submits the form
+ * inside a city LP (`lp_siding_magnet`) and later opens `/guide` (source
+ * `guide_page`) can still receive the guide once per surface — but cannot
+ * re-trigger the same surface twice in the same session.
+ */
+const SUBMITTED_KEY = (source: string) => `__lm_submitted__${source}`;
+const DOWNLOAD_THROTTLE_MS = 4000;
+
+function safeSession(): Storage | null {
+  try {
+    if (typeof window === "undefined") return null;
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+function alreadySubmitted(source: string): boolean {
+  return safeSession()?.getItem(SUBMITTED_KEY(source)) === "1";
+}
+function markSubmitted(source: string) {
+  try { safeSession()?.setItem(SUBMITTED_KEY(source), "1"); } catch { /* ignore */ }
+}
+
 type Props = {
   /** City pre-tagged on the lead (e.g. "Marietta"). */
   city?: string;
@@ -53,9 +78,30 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  // Synchronous in-flight guard — wins the race a `submitting` state can lose
+  // when two clicks fire in the same tick before React re-renders.
+  const inFlightRef = useRef(false);
+  // Throttle for the fallback "Download the PDF" link on the success card.
+  const lastDownloadAtRef = useRef(0);
+
+  // If the user already submitted in this session, skip straight to the
+  // success state. Avoids an empty form re-prompt after navigating back.
+  useEffect(() => {
+    if (alreadySubmitted(source)) {
+      setDone(true);
+    }
+  }, [source]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Layer 1 — synchronous guards: in-flight or already-submitted.
+    if (inFlightRef.current || submitting) return;
+    if (alreadySubmitted(source)) {
+      track("lead_magnet_duplicate_blocked", { source, city });
+      setDone(true);
+      return;
+    }
+
     const parsed = schema.safeParse(values);
     if (!parsed.success) {
       const fe: Partial<Record<keyof Values, string>> = {};
@@ -67,6 +113,7 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
       return;
     }
     setErrors({});
+    inFlightRef.current = true;
     setSubmitting(true);
     try {
       if (SITE.ghlWebhookUrl) {
@@ -84,11 +131,15 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
           }),
         });
       }
+      // Mark as submitted BEFORE firing analytics so any synchronous re-entry
+      // through React's event system is short-circuited.
+      markSubmitted(source);
       track("lead_magnet_download", { source, city, pdf_path: PDF_PATH });
     } catch {
       track("lead_magnet_error", { source });
     } finally {
       setSubmitting(false);
+      inFlightRef.current = false;
       if (onSuccess) {
         // Parent owns post-download flow (e.g. navigate to /guide/thank-you
         // and open the PDF there). Don't open here to avoid double-tabs.
@@ -99,8 +150,23 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
       // Trigger download in a new tab so users see the asset immediately.
       if (typeof window !== "undefined") {
         window.open(PDF_PATH, "_blank", "noopener,noreferrer");
+        lastDownloadAtRef.current = Date.now();
       }
     }
+  }
+
+  /**
+   * Throttled fallback download — protects against rage-clicking the success-
+   * state link from spawning multiple tabs / firing duplicate GA events.
+   */
+  function handleFallbackDownload(e: React.MouseEvent<HTMLAnchorElement>) {
+    const now = Date.now();
+    if (now - lastDownloadAtRef.current < DOWNLOAD_THROTTLE_MS) {
+      e.preventDefault();
+      return;
+    }
+    lastDownloadAtRef.current = now;
+    track("lead_magnet_fallback_download", { source });
   }
 
   return (
@@ -151,7 +217,7 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 font-bold text-sd-navy hover:opacity-90 transition-opacity"
-                  onClick={() => track("lead_magnet_fallback_download", { source })}
+                  onClick={handleFallbackDownload}
                 >
                   <Download className="h-4 w-4" /> Download the PDF
                 </a>
