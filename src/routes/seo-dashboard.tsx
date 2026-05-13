@@ -35,6 +35,9 @@ import {
   getLighthouseMetrics,
   getGA4Metrics
 } from "@/lib/gsc.functions";
+import { SERVICE_METADATA_AB } from "@/data/seo-config";
+import type { ABVariation } from "@/data/ab-testing";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreateAdminForm } from "@/components/admin/CreateAdminForm";
 import { Button } from "@/components/ui/button";
