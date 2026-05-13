@@ -82,7 +82,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button asChild size="sm" variant="default">
+          <Button asChild size="sm" variant="default" onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}>
             <a href={SITE.phoneHref} aria-label={`Call ${SITE.phone}`}>
               <Phone /> Call {SITE.phone}
             </a>
