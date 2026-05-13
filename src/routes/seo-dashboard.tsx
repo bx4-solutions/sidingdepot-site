@@ -1039,6 +1039,116 @@ function SEODashboard() {
 
         </Tabs>
 
+        <TabsContent value="integrations" className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+              <CardHeader className="bg-white/5 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <Search className="h-5 w-5 text-sd-green" />
+                  <CardTitle className="text-lg text-white font-bold">Google Search Console</CardTitle>
+                </div>
+                <CardDescription className="text-slate-500">Conecte sua conta GSC para puxar CTR e Indexação</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-4">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Site URL / Property</label>
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                      <input 
+                        type="text" 
+                        placeholder="https://example.com"
+                        value={gscSiteUrl}
+                        onChange={(e) => setGscSiteUrl(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-md text-slate-200 focus:outline-none focus:ring-2 focus:ring-sd-green/50"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Property ID (Opcional)</label>
+                  <input 
+                    type="text" 
+                    placeholder="sc-domain:example.com"
+                    value={gscPropertyId}
+                    onChange={(e) => setGscPropertyId(e.target.value)}
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-md text-slate-200 focus:outline-none focus:ring-2 focus:ring-sd-green/50"
+                  />
+                </div>
+
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${gscSettings?.is_connected ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]' : 'bg-red-500'}`} />
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-tight">
+                      {gscSettings?.is_connected ? 'CONECTADO' : 'DESCONECTADO'}
+                    </span>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    {gscSettings?.is_connected ? (
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => updateGscSettingsMutation.mutate({ site_url: gscSiteUrl, property_id: gscPropertyId, is_connected: false })}
+                        className="border-red-500/20 text-red-500 hover:bg-red-500/10 h-8 text-[10px] font-bold"
+                      >
+                        <Unlink className="h-3 w-3 mr-1.5" /> DESCONECTAR
+                      </Button>
+                    ) : (
+                      <Button 
+                        onClick={() => updateGscSettingsMutation.mutate({ site_url: gscSiteUrl, property_id: gscPropertyId, is_connected: true })}
+                        className="bg-sd-green hover:bg-sd-green-hover text-sd-black h-8 text-[10px] font-bold"
+                      >
+                        <Link2 className="h-3 w-3 mr-1.5" /> CONECTAR AGORA
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+              <CardHeader className="bg-white/5 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-blue-400" />
+                  <CardTitle className="text-lg text-white font-bold">Google Analytics 4</CardTitle>
+                </div>
+                <CardDescription className="text-slate-500">Métricas de Leads e WhatsApp sincronizadas</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-6">
+                <div className="flex items-center justify-between bg-blue-500/5 p-4 rounded-lg border border-blue-500/20">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                      <Activity className="h-5 w-5 text-blue-500" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-white uppercase tracking-tight">Sincronização Automática</div>
+                      <div className="text-[10px] text-slate-500 mt-0.5">Atualizado a cada 6h via Supabase Cron</div>
+                    </div>
+                  </div>
+                  <Badge className="bg-blue-500/10 text-blue-500 border-none text-[9px] font-bold">ATIVO</Badge>
+                </div>
+
+                <div className="space-y-4">
+                   <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400 font-medium tracking-tight uppercase">Última Sincronização:</span>
+                      <span className="text-white font-mono font-bold tracking-tight">13/05/2026 14:32</span>
+                   </div>
+                   <div className="flex justify-between items-center text-xs">
+                      <span className="text-slate-400 font-medium tracking-tight uppercase">Métricas Rastreadas:</span>
+                      <span className="text-sd-green font-bold tracking-tight">Leads, Cliques, Views</span>
+                   </div>
+                </div>
+
+                <Button variant="outline" size="sm" className="w-full border-white/10 text-slate-400 text-[10px] font-bold uppercase tracking-widest hover:text-white" onClick={() => window.open('https://analytics.google.com/', '_blank')}>
+                   Abrir Console GA4 <ExternalLink className="h-3 w-3 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+
         {userProfile?.role === "admin" && auditLogs && (
           <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
             <CardHeader className="border-b border-white/5 bg-white/[0.02]">
