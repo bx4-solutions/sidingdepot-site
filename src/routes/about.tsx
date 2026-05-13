@@ -4,6 +4,97 @@ import { Button } from "@/components/ui/button";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SITE } from "@/data/site";
 
+const ABOUT_VIDEO = {
+  id: "fgNhcGoEYmE",
+  title: "Meet Siding Depot — James Hardie Siding Installer in Marietta, GA",
+  description:
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton and all of North Atlanta. 15+ years and 1,500+ homes resided.",
+  duration: "PT2M30S",
+  uploadDate: "2024-06-01",
+} as const;
+
+const LOCAL_BUSINESS_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "GeneralContractor", "HomeAndConstructionBusiness"],
+  "@id": "https://sidingdepot.com/#about",
+  name: "Siding Depot",
+  legalName: "Siding Depot LLC",
+  alternateName: "Siding Depot Marietta",
+  url: "https://sidingdepot.com/about",
+  image: "https://sidingdepot.com/og-default.jpg",
+  logo: "https://sidingdepot.com/logo.png",
+  telephone: "+1-678-400-2012",
+  email: "info@sidingdepot.com",
+  description:
+    "James Hardie Elite Preferred siding contractor in Marietta, GA. Specialists in fiber cement siding installation, replacement windows, painting, decks, gutters and roofing across North Atlanta.",
+  foundingDate: "2010",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "3036 Roswell Rd",
+    addressLocality: "Marietta",
+    addressRegion: "GA",
+    postalCode: "30062",
+    addressCountry: "US",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 33.9526, longitude: -84.5499 },
+  areaServed: [
+    "Marietta, GA", "Alpharetta, GA", "Milton, GA", "Canton, GA",
+    "Woodstock, GA", "Roswell, GA", "Kennesaw, GA", "Johns Creek, GA",
+    "Sandy Springs, GA", "Acworth, GA", "Cobb County, GA", "Cherokee County, GA",
+    "Fulton County, GA", "Forsyth County, GA",
+  ].map((n) => ({ "@type": "City", name: n })),
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "James Hardie Elite Preferred Contractor",
+      credentialCategory: "Manufacturer Certification",
+      recognizedBy: { "@type": "Organization", name: "James Hardie Industries" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Licensed & Insured General Contractor — State of Georgia",
+      credentialCategory: "license",
+    },
+  ],
+  knowsAbout: [
+    "James Hardie fiber cement siding installation",
+    "HardiePlank lap siding",
+    "HardieShingle siding",
+    "ColorPlus Technology",
+    "Siding replacement",
+    "Exterior painting",
+    "Replacement windows",
+    "Gutters", "Decks", "Roofing",
+  ],
+  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "128" },
+  sameAs: [
+    "https://www.facebook.com/SidingDepot",
+    "https://www.instagram.com/sidingdepot/",
+    "https://www.youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
+  ],
+};
+
+const VIDEO_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: ABOUT_VIDEO.title,
+  description: ABOUT_VIDEO.description,
+  thumbnailUrl: [
+    `https://i.ytimg.com/vi/${ABOUT_VIDEO.id}/maxresdefault.jpg`,
+    `https://i.ytimg.com/vi/${ABOUT_VIDEO.id}/hqdefault.jpg`,
+  ],
+  uploadDate: ABOUT_VIDEO.uploadDate,
+  duration: ABOUT_VIDEO.duration,
+  contentUrl: `https://www.youtube.com/watch?v=${ABOUT_VIDEO.id}`,
+  embedUrl: `https://www.youtube.com/embed/${ABOUT_VIDEO.id}`,
+  publisher: {
+    "@type": "Organization",
+    name: "Siding Depot",
+    logo: { "@type": "ImageObject", url: "https://sidingdepot.com/logo.png" },
+  },
+};
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
@@ -31,6 +122,21 @@ export const Route = createFileRoute("/about")({
         content:
           "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
+      {
+        property: "og:image",
+        content: `https://i.ytimg.com/vi/${ABOUT_VIDEO.id}/maxresdefault.jpg`,
+      },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sidingdepot.com/about" },
+      // Pre-warm YouTube hosts so the click-to-play embed feels instant
+      { rel: "preconnect", href: "https://www.youtube.com" },
+      { rel: "preconnect", href: "https://i.ytimg.com" },
+      { rel: "dns-prefetch", href: "https://www.youtube-nocookie.com" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_JSONLD) },
+      { type: "application/ld+json", children: JSON.stringify(VIDEO_JSONLD) },
     ],
   }),
   component: AboutPage,
