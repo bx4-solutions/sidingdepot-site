@@ -1,8 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, Facebook, Instagram, Mail, MapPin, Music2, Phone, Youtube } from "lucide-react";
+import { CheckCircle2, Mail, MapPin, Music2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SITE } from "@/data/site";
+
+const LucideFacebook = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+);
+const LucideInstagram = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.51"/></svg>
+);
+const LucideYoutube = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 69.14 69.14 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 69.14 69.14 0 0 1-15 0 2 2 0 0 1-2-2z"/><polyline points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+);
 
 const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
@@ -403,49 +413,30 @@ function AboutPage() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 text-white/80 hover:text-sd-green"
                 >
-                  <MapPin className="h-5 w-5 mt-0.5 shrink-0" /> {SITE.address.full}
+                  <MapPin className="h-5 w-5 mt-1 shrink-0" />
+                  {SITE.address.full}
                 </a>
               </li>
             </ul>
+            <div className="flex gap-4 mt-10">
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/50 hover:text-sd-green transition-colors"><LucideFacebook className="h-6 w-6" /></a>
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/50 hover:text-sd-green transition-colors"><LucideInstagram className="h-6 w-6" /></a>
+              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/50 hover:text-sd-green transition-colors"><LucideYoutube className="h-6 w-6" /></a>
+              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/50 hover:text-sd-green transition-colors"><Music2 className="h-6 w-6" /></a>
+            </div>
           </div>
           <div>
-            <h2 className="font-display text-4xl">Follow Us</h2>
-            <p className="mt-3 text-white/65 max-w-md">
-              See real projects, before/after transformations and tips from our crews.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={SITE.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-pill bg-white/5 hover:bg-sd-green hover:text-sd-navy transition-colors px-5 py-3 text-sm font-semibold border border-white/10"
-              >
-                <Facebook className="h-4 w-4" /> Facebook
-              </a>
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-pill bg-white/5 hover:bg-sd-green hover:text-sd-navy transition-colors px-5 py-3 text-sm font-semibold border border-white/10"
-              >
-                <Instagram className="h-4 w-4" /> Instagram
-              </a>
-              <a
-                href={SITE.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-pill bg-white/5 hover:bg-sd-green hover:text-sd-navy transition-colors px-5 py-3 text-sm font-semibold border border-white/10"
-              >
-                <Youtube className="h-4 w-4" /> YouTube
-              </a>
-              <a
-                href={SITE.social.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-pill bg-white/5 hover:bg-sd-green hover:text-sd-navy transition-colors px-5 py-3 text-sm font-semibold border border-white/10"
-              >
-                <Music2 className="h-4 w-4" /> TikTok
-              </a>
+            <div className="rounded-2xl overflow-hidden border border-white/10 h-[300px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3310.283180424572!2d-84.4564887!3d33.9461111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5150893335555%3A0x68a8c7609c19c009!2sSiding%20Depot!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Siding Depot Office Location"
+              ></iframe>
             </div>
           </div>
         </div>
