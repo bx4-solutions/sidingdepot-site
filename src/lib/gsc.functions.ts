@@ -101,25 +101,12 @@ export const getIndexingStatus = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
     const GSC_API_KEY = process.env.GOOGLE_SEARCH_CONSOLE_API_KEY;
-    const fallback = (msg: string) => ({
-      url: data.url,
-      indexingState: "UNKNOWN" as const,
-      lastCrawlTime: null,
-      coverageState: null,
-      crawlState: null,
-      robotsTxtState: null,
-      timestamp: new Date().toISOString(),
-      verdict: "NEUTRAL" as const,
-      error: msg,
-    });
-    if (!LOVABLE_API_KEY) return fallback("LOVABLE_API_KEY not configured");
-    if (!GSC_API_KEY) return fallback("Google Search Console not connected");
-
-    const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
+    if (!LOVABLE_API_KEY) return unknownIndexingStatus(data.url, "LOVABLE_API_KEY not configured");
+    if (!GSC_API_KEY) return unknownIndexingStatus(data.url, "Google Search Console not connected");
 
     try {
       const response = await fetch(
-        `${GATEWAY_URL}/sites/${siteUrl}/inspectUrl`,
+        `${GATEWAY_URL}/sites/${ENCODED_GSC_SITE_URL}/inspectUrl`,
         {
           method: "POST",
           headers: {
@@ -134,44 +121,14 @@ export const getIndexingStatus = createServerFn({ method: "POST" })
       if (!response.ok) {
         const errBody = await response.text().catch(() => "");
         console.error(`[GSC] inspectUrl failed: ${response.status} ${errBody}`);
-        return {
-          url: data.url,
-          indexingState: "UNKNOWN",
-          lastCrawlTime: null,
-          coverageState: null,
-          crawlState: null,
-          robotsTxtState: null,
-          timestamp: new Date().toISOString(),
-          verdict: "NEUTRAL",
-          error: `GSC unavailable (${response.status})`,
-        };
+        return unknownIndexingStatus(data.url, `GSC unavailable (${response.status})`);
       }
 
-      const result = await response.json();
-      return {
-        url: data.url,
-        indexingState: result.indexingState || "UNKNOWN",
-        lastCrawlTime: result.lastCrawlTime ?? null,
-        coverageState: result.coverageState ?? null,
-        crawlState: result.crawlState ?? null,
-        robotsTxtState: result.robotsTxtState ?? null,
-        timestamp: new Date().toISOString(),
-        verdict: result.verdict || "NEUTRAL",
-        error: null,
-      };
+      const result = await parseJsonResponse(response);
+      return normalizeIndexingStatus(data.url, result);
     } catch (e) {
       console.error("[GSC] inspectUrl exception:", e);
-      return {
-        url: data.url,
-        indexingState: "UNKNOWN",
-        lastCrawlTime: null,
-        coverageState: null,
-        crawlState: null,
-        robotsTxtState: null,
-        timestamp: new Date().toISOString(),
-        verdict: "NEUTRAL",
-        error: e instanceof Error ? e.message : "Unknown error",
-      };
+      return unknownIndexingStatus(data.url, e instanceof Error ? e.message : "Unknown error");
     }
   });
 
