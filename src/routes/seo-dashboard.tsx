@@ -168,18 +168,37 @@ function SEODashboard() {
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
     queryFn: async (): Promise<any> => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error("Unauthorized");
+      // Ensure we have a fresh session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
-      return getDashboardMetrics({ data: { startDate: dateRange.startDate, endDate: dateRange.endDate } });
+      if (sessionError || !session) {
+        // Try refreshing if possible
+        const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+        if (refreshError || !refreshed.session) {
+          throw new Error("Unauthorized");
+        }
+      }
+      
+      try {
+        const response = await getDashboardMetrics({ 
+          data: { 
+            startDate: dateRange.startDate, 
+            endDate: dateRange.endDate 
+          } 
+        });
+        return response;
+      } catch (err: any) {
+        console.error("Dashboard fetch error:", err);
+        throw err;
+      }
     },
     enabled: sessionExists,
     refetchInterval: 60000,
     retry: (failureCount, error: any) => {
       if (error?.message === "Unauthorized") return false;
-      return failureCount < 3;
+      return failureCount < 2;
     },
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
     placeholderData: (previousData) => previousData || (FALLBACK_METRICS as any),
   });
 
