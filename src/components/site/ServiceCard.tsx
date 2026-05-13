@@ -23,6 +23,11 @@ export function ServiceCard({ Icon, title, description, to, id, image }: Props) 
           src={image}
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          width={480}
+          height={320}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-0"
         />
       )}
