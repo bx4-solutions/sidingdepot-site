@@ -236,18 +236,12 @@ function SEODashboard() {
   };
 
   const handleExport = (format: 'csv' | 'pdf') => {
-    toast.promise(
-      new Promise((resolve) => setTimeout(resolve, 2000)),
-      {
-        loading: `Gerando relatório ${format.toUpperCase()}...`,
-        success: `Relatório exportado com sucesso!`,
-        error: `Falha ao exportar relatório.`,
-      }
-    );
-    
     if (format === 'csv') {
-      const headers = "Página,Visualizações,Tempo Médio,Bounce Rate,Conversões\n";
-      const rows = metrics?.topPages?.map((p: any) => `${p.path},${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions}`).join("\n");
+      const headers = "Tipo,Nome,Visualizações/Cliques,Tempo Médio,Bounce,Conversões/Taxa,Origem\n";
+      const pageRows = metrics?.topPages?.map((p: any) => `Página,"${p.path}",${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions},"${p.leadsBySource?.map((s: any) => `${s.source}: ${s.count}`).join(" | ") || ""}"`) || [];
+      const blogRows = metrics?.blogStats?.topArticles?.map((p: any) => `Blog,"${p.title}",${p.views},${p.avgTime},${p.bounceRate}%,${p.conversion}%,"${p.keywords?.join(" | ") || ""}"`) || [];
+      const clickRows = metrics?.clickEvents?.map((p: any) => `Botão,"${p.button}",${p.clicks},,,${p.conversion}%,"${p.sources?.map((s: any) => `${s.source}: ${s.count}`).join(" | ") || ""}"`) || [];
+      const rows = [...pageRows, ...blogRows, ...clickRows].join("\n");
       const csvContent = "data:text/csv;charset=utf-8," + headers + rows;
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
@@ -256,6 +250,14 @@ function SEODashboard() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      toast.success("CSV exportado com métricas de páginas, blog e botões.");
+    } else {
+      const printWindow = window.open("", "_blank");
+      if (!printWindow) return toast.error("Permita pop-ups para exportar PDF.");
+      printWindow.document.write(`<html><head><title>Relatório SEO</title></head><body><h1>Relatório SEO</h1><p>Período: ${dateRange.startDate} até ${dateRange.endDate}</p><pre>${JSON.stringify({ paginas: metrics?.topPages, blog: metrics?.blogStats?.topArticles, botoes: metrics?.clickEvents }, null, 2)}</pre></body></html>`);
+      printWindow.document.close();
+      printWindow.print();
+      toast.success("PDF pronto para salvar/compartilhar.");
     }
   };
 
