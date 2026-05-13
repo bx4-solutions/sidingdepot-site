@@ -58,7 +58,6 @@ export const inspectURL = createServerFn({ method: "POST" })
  */
 export const getIndexingStatus = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ url: z.string().url() }).parse(data))
-  .middleware([requireSupabaseAuth])
   .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
     if (!LOVABLE_API_KEY) {
