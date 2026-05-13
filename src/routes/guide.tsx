@@ -196,52 +196,9 @@ function GuidePage() {
             <SidingGuide />
           </div>
         )}
-      </div>
-      )}
-
-      <div className={`transition-all duration-500 ${downloadReady ? "pt-24 opacity-100" : "pt-20"}`}>
-        {!downloadReady ? (
-          <div className="mx-auto max-w-4xl px-4 text-center py-20">
-             <div className="inline-block bg-sd-green/15 text-sd-green font-bold text-xs px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
-                Free 2026 Edition
-             </div>
-            <h1 className="font-display text-4xl sm:text-6xl text-sd-navy leading-[1.1] uppercase">
-              The Georgia Homeowner's<br />
-              <span className="text-sd-green">Siding Guide</span>
-            </h1>
-            <p className="mt-6 text-sd-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
-              Don't hire a contractor until you read this. 8 pages of expert advice covering Georgia climate risks, material comparisons, and the 5 fatal mistakes that ruin budgets.
-            </p>
-
-            <div className="mt-12 bg-white p-8 rounded-2xl shadow-xl border border-sd-gray-border max-w-md mx-auto relative isolate overflow-hidden">
-              <div className="absolute top-0 right-0 -z-10 opacity-5">
-                <Download className="h-40 w-40 text-sd-navy" />
-              </div>
-              <h3 className="text-xl font-bold text-sd-navy mb-2 uppercase tracking-tight">Request Instant Access</h3>
-              <p className="text-sd-gray-text text-sm mb-8 italic">Sent directly to your inbox and available for download.</p>
-              
-              {/* Using a custom onSuccess callback proxy via HeroQuoteForm if we had one, 
-                  but for now we'll simulate the successful transition based on GHL submit logic
-                  or provide a simple success state for the user. */}
-              <div className="text-left">
-                <SimpleLeadForm
-                  source={src || "guide_page"}
-                  tag="guide_request"
-                  submitLabel="Send My Free Guide →"
-                  onSuccess={() => {
-                    setTimeout(() => setDownloadReady(true), 800);
-                  }}
-                />
-              </div>
-
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center pb-20">
-            <SidingGuide />
-          </div>
-        )}
-      </div>
+    </div>
+  );
+}
 
       {/* Footer Info (Static) */}
       {!downloadReady && (
