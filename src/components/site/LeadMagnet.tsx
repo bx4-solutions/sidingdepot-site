@@ -217,7 +217,7 @@ export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 font-bold text-sd-navy hover:opacity-90 transition-opacity"
-                  onClick={() => track("lead_magnet_fallback_download", { source })}
+                  onClick={handleFallbackDownload}
                 >
                   <Download className="h-4 w-4" /> Download the PDF
                 </a>
