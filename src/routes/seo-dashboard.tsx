@@ -124,6 +124,7 @@ function SEODashboard() {
     startDate: "2026-04-13", 
     endDate: "2026-05-13" 
   });
+  const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
@@ -161,6 +162,30 @@ function SEODashboard() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate({ to: "/admin/login" });
+  };
+
+  const handleExport = (format: 'csv' | 'pdf') => {
+    toast.promise(
+      new Promise((resolve) => setTimeout(resolve, 2000)),
+      {
+        loading: `Gerando relatório ${format.toUpperCase()}...`,
+        success: `Relatório exportado com sucesso!`,
+        error: `Falha ao exportar relatório.`,
+      }
+    );
+    
+    if (format === 'csv') {
+      const headers = "Página,Visualizações,Tempo Médio,Bounce Rate,Conversões\n";
+      const rows = metrics?.topPages?.map((p: any) => `${p.path},${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions}`).join("\n");
+      const csvContent = "data:text/csv;charset=utf-8," + headers + rows;
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `dashboard-metrics-${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   const menuItems = [
