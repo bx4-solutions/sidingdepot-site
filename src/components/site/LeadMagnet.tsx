@@ -40,9 +40,15 @@ type Props = {
   city?: string;
   /** Tracking source label (defaults to "lead_magnet"). */
   source?: string;
+  /**
+   * If provided, called after a successful submit instead of auto-opening
+   * the PDF. Lets the parent route navigate the user to a thank-you page
+   * (and trigger the download itself).
+   */
+  onSuccess?: (data: { firstName: string; email: string }) => void;
 };
 
-export function LeadMagnet({ city, source = "lead_magnet" }: Props) {
+export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
   const [values, setValues] = useState<Values>({ firstName: "", email: "" });
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
   const [submitting, setSubmitting] = useState(false);
