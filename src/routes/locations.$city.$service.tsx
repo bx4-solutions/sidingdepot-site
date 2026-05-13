@@ -144,7 +144,7 @@ function LocationPage() {
           </h2>
           <ul className="mt-6 space-y-3">
             {[
-              `15+ years of ${service.title.toLowerCase()} projects in ${city.county}.`,
+              `12+ years of ${service.title.toLowerCase()} projects in ${city.county}.`,
               `Crews based in North Atlanta — fast scheduling for ${city.name} addresses.`,
               `Familiar with local HOAs, permits and architectural standards.`,
               `Transparent written quotes — no surprises after we start.`,

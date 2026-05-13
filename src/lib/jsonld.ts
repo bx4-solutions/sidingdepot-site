@@ -47,7 +47,7 @@ export function localBusinessSchema(city?: string) {
     name: SITE.legalName,
     image: "https://sidingdepot.com/og-default.jpg",
     description:
-      "James Hardie Elite Preferred siding and exterior contractor serving North Atlanta with 15+ years experience, 1,500+ homes completed.",
+      "James Hardie Elite Preferred siding and exterior contractor serving North Atlanta with 12+ years experience, 1,500+ homes completed.",
     telephone: SITE.phone,
     email: SITE.email,
     url: "https://sidingdepot.com",
