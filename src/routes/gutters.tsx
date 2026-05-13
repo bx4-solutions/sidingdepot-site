@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Seamless Gutter Installation in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "Seamless Gutters in Marietta, GA | Siding Depot — 6-Inch Systems";
 const PAGE_DESC =
-  "6-inch seamless aluminum gutters and LeafGuard systems built for Georgia's 50+ inches of rain. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "6-inch seamless aluminum gutters and LeafGuard® systems built for Georgia rainfall. Serving Marietta, Alpharetta & Canton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-5.webp";
 const CANONICAL = "https://sidingdepot.com/gutters";
 
@@ -78,8 +78,8 @@ function GuttersPage() {
   return (
     <ServiceLandingPage
       eyebrow="Seamless Aluminum · LeafGuard"
-      title="6-Inch Seamless Gutters,"
-      titleAccent="engineered for Georgia rainfall."
+      title="6-Inch Seamless Gutters:"
+      titleAccent="High-Volume Protection."
       intro="Protect your foundation from Georgia's 50+ inches of annual rain. Our 6-inch seamless systems move 40% more water than standard gutters, preventing basement leaks and fascia rot."
       heroImage={HERO_IMAGE}
       benefits={[

@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Energy-Efficient Window Replacement in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "Energy-Efficient Windows in Marietta, GA | Siding Depot — Energy Star®";
 const PAGE_DESC =
-  "Certified Simonton & PGT window replacement in North Atlanta. Energy Star double-pane Low-E windows built for Georgia heat. Serving Marietta, Alpharetta, Milton & Canton. Free estimate in 24h. Call (678) 400-2012.";
+  "Certified Simonton & PGT window replacement in North Atlanta. Energy Star® double-pane Low-E windows built for Georgia heat. Serving Marietta & Alpharetta. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/windows";
 
@@ -78,8 +78,8 @@ function WindowsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Energy Star · Low-E Double Pane"
-      title="Energy-Efficient Windows,"
-      titleAccent="engineered for Atlanta summers."
+      title="Energy-Efficient Windows:"
+      titleAccent="Atlanta's Thermal Barrier."
       intro="Slash your cooling costs by 15-25% with Energy Star® certified windows. Our double-pane Low-E systems are sized specifically for Georgia's climate, blocking infrared heat while flooding your home with light."
       heroImage={HERO_IMAGE}
       benefits={[

@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Entry & Patio Door Replacement in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "Entry & Patio Doors in Marietta, GA | Siding Depot — Secure & Stylish";
 const PAGE_DESC =
-  "Upgrade your home with Energy Star entry, patio and storm doors. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Therma-Tru & ProVia authorized installer. Free estimate in 24h. Call (678) 400-2012.";
+  "Upgrade your home with Energy Star® entry and patio doors. Serving Marietta, Alpharetta & North Atlanta. Therma-Tru® authorized installer. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/doors";
 
@@ -78,8 +78,8 @@ function DoorsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Fiberglass · Steel · Patio · Storm"
-      title="Custom Entry & Patio Doors,"
-      titleAccent="engineered for security and style."
+      title="Custom Entry & Patio Doors:"
+      titleAccent="Security Meets Style."
       intro="Upgrade your curb appeal and security simultaneously. We install high-performance Therma-Tru® and ProVia® door systems featuring multi-point locking and thermal-break thresholds designed for Georgia homes."
       heroImage={HERO_IMAGE}
       benefits={[

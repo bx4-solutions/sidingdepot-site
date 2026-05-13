@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "GAF Certified Roof Replacement in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "GAF Certified Roofing in Marietta, GA | Siding Depot — Storm Protection";
 const PAGE_DESC =
-  "GAF Factory Certified roof replacement & storm damage repair. Golden Pledge 50-year warranty available. Serving Marietta, Alpharetta, Milton & Canton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "GAF Factory Certified roof replacement & repair in North Atlanta. Golden Pledge® 50-year warranty available. Serving Marietta & Canton. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 
@@ -82,8 +82,8 @@ function RoofingPage() {
   return (
     <ServiceLandingPage
       eyebrow="GAF Factory Certified · Top Roofer"
-      title="GAF Factory-Certified Roofing,"
-      titleAccent="built for storm protection."
+      title="GAF Factory-Certified Roofing:"
+      titleAccent="North Atlanta's Shield."
       intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
       heroImage={HERO_IMAGE}
       benefits={[

@@ -23,9 +23,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie® Siding Installation in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "James Hardie® Siding in Marietta, GA | Siding Depot — Elite Preferred";
 const PAGE_DESC =
-  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Engineered siding systems for Georgia humidity. Serving Marietta, Canton & Alpharetta. Free estimate in 24h. Call (678) 400-2012.";
+  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Serving Marietta, Canton & Alpharetta. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -139,8 +139,8 @@ function SidingTypesSection() {
               Siding Types
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              Elite James Hardie®{" "}
-              <span className="text-sd-green">Installation & Protection.</span>
+              James Hardie® Siding:{" "}
+              <span className="text-sd-green">Elite Installation & Protection.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
               As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
@@ -551,7 +551,7 @@ function SidingPage() {
               James Hardie · Elite Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie® Siding,{" "}
+              James Hardie® Siding:{" "}
               <span className="text-sd-green">Elite Installation & Protection.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
