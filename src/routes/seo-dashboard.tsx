@@ -460,7 +460,7 @@ function SEODashboard() {
                                   className="bg-white/5 border-white/10 text-white" 
                                   placeholder="••••••••"
                                   value={confirmPassword}
-                                  onChange={(e) => setConfirmPassword(e.target.value)}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
                                   required
                                 />
                               </div>
