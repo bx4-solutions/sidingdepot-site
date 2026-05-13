@@ -122,7 +122,7 @@ export function Navbar() {
                 SEO Dashboard
               </Link>
             )}
-            <Button asChild className="mt-3">
+            <Button asChild className="mt-3" onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}>
               <a href={SITE.phoneHref}>
                 <Phone /> Call {SITE.phone}
               </a>
