@@ -254,6 +254,7 @@ function ContactPage() {
           )}
         </div>
       </div>
+      <MapSection />
     </section>
   );
 }
