@@ -31,6 +31,7 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
+  { to: "/seo-dashboard", label: "SEO Dashboard" },
 ] as const;
 
 export function Navbar() {
