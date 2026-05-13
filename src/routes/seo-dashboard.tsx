@@ -673,7 +673,13 @@ function SEODashboard() {
                                     <td className="py-3 px-2">
                                       <div className="flex items-center gap-2">
                                         <span className="text-sd-green font-bold w-4">#{i+1}</span>
-                                        <span className="text-slate-200 truncate font-mono text-xs max-w-[200px]">{p.path}</span>
+                                        <button
+                                          type="button"
+                                          onClick={() => setSelectedPageForLeads(p.path)}
+                                          className="text-left text-slate-200 truncate font-mono text-xs max-w-[200px] hover:text-sd-green"
+                                        >
+                                          {p.path}
+                                        </button>
                                       </div>
                                     </td>
                                     <td className="py-3 text-right font-bold">{p.views}</td>
@@ -806,7 +812,7 @@ function SEODashboard() {
                         <CardContent>
                            <div className="space-y-4">
                               {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
-                                <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg group hover:bg-white/10 transition-colors">
+                                <button key={i} type="button" onClick={() => setSelectedBlogArticle(art)} className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg group hover:bg-white/10 transition-colors text-left">
                                    <div className="flex items-center gap-4">
                                       <div className="h-8 w-8 rounded bg-sd-green/10 flex items-center justify-center text-sd-green font-bold text-xs">
                                         {i + 1}
@@ -817,7 +823,7 @@ function SEODashboard() {
                                       </div>
                                    </div>
                                    <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-sd-green transition-colors" />
-                                </div>
+                                </button>
                               ))}
                            </div>
                         </CardContent>
@@ -1008,7 +1014,7 @@ function SEODashboard() {
                             </TableHeader>
                             <TableBody>
                               {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
-                                <TableRow key={i} className="border-white/5 group hover:bg-white/5 transition-colors">
+                                <TableRow key={i} onClick={() => setSelectedBlogArticle(art)} className="border-white/5 group hover:bg-white/5 transition-colors cursor-pointer">
                                   <TableCell className="py-4">
                                     <div className="flex items-center gap-3">
                                       <span className="text-sd-green font-black">#{i+1}</span>
