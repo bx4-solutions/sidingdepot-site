@@ -1,27 +1,12 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
+import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
-
-/**
- * Strip items: slug must match a SERVICES[].slug AND the ServiceCard id
- * (`services-${slug}`) on the home page. Label is derived from the SERVICES
- * source of truth to prevent label/slug drift.
- */
-const STRIP_SLUGS = ["siding", "painting", "windows"] as const;
-type StripSlug = (typeof STRIP_SLUGS)[number];
-const STRIP_ITEMS: { slug: StripSlug; label: string }[] = STRIP_SLUGS.map((slug) => {
-  const svc = SERVICES.find((s) => s.slug === slug);
-  if (!svc) {
-    // Fail fast in dev if data/site.ts ever drifts away from these slugs.
-    throw new Error(`[Navbar] Missing SERVICES entry for slug "${slug}"`);
-  }
-  return { slug, label: slug.charAt(0).toUpperCase() + slug.slice(1) };
-});
-
+// ... keep existing code
 const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/siding", label: "Siding" },
@@ -31,15 +16,27 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
-  { to: "/seo-dashboard", label: "SEO Dashboard" },
 ] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [session, setSession] = useState<any>(null);
   const location = useLocation();
   // TanStack Router stores the hash without the leading "#".
   const activeHash = location.hash;
   const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleStripClick = (slug: StripSlug) => {
     track("service_strip_click", { service: slug });
@@ -74,6 +71,15 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
+          {session && (
+            <Link
+              to="/seo-dashboard"
+              className="text-[13px] font-bold tracking-wide text-sd-green hover:text-sd-green-hover transition-colors"
+              activeProps={{ className: "text-white" }}
+            >
+              SEO Dashboard
+            </Link>
+          )}
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">

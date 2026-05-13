@@ -179,6 +179,15 @@ function SEODashboard() {
     UNKNOWN: "bg-slate-500/20 text-slate-400 border-slate-500/20",
   }[status?.indexingState as string || "UNKNOWN"];
 
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen bg-[#0a0e14] flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="h-12 w-12 text-sd-green animate-spin" />
+        <p className="text-slate-400 font-medium">Verificando autorização...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0e14] text-slate-200 px-4 py-8">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -194,6 +203,14 @@ function SEODashboard() {
           </div>
           
           <div className="flex items-center gap-3">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleLogout}
+              className="border-white/10 text-slate-400 hover:text-white hover:bg-white/5"
+            >
+              <LogOut className="h-4 w-4 mr-2" /> Sair
+            </Button>
             <div className="bg-white/5 border border-white/10 rounded-lg p-1 flex items-center gap-1">
               <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 gap-1.5 py-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500" /> GSC
