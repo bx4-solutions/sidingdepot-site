@@ -23,9 +23,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie® Siding Installation in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "James Hardie® Siding in Marietta, GA | Siding Depot — Elite Preferred";
 const PAGE_DESC =
-  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Engineered siding systems for Georgia humidity. Serving Marietta, Canton & Alpharetta. Free estimate in 24h. Call (678) 400-2012.";
+  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Serving Marietta, Canton & Alpharetta. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({

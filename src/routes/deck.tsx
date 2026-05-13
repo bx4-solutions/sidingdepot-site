@@ -16,9 +16,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Custom Deck Construction in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "Custom Composite Decks in Marietta, GA | Siding Depot — Trex Pro®";
 const PAGE_DESC =
-  "Expert composite, hardwood and pressure-treated deck builders in North Atlanta. Trex Pro & TimberTech certified. Serving Marietta, Alpharetta, Milton & Canton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "Expert composite deck builders in North Atlanta. Trex Pro® & TimberTech® certified. Serving Marietta, Alpharetta & Milton. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-6.webp";
 const CANONICAL = "https://sidingdepot.com/deck";
 

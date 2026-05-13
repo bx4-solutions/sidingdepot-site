@@ -16,9 +16,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * Mirrors the architecture of /services/siding for SEO + UX consistency.
  */
 
-const PAGE_TITLE = "Exterior Painting Services in Marietta, GA | Siding Depot";
+const PAGE_TITLE = "Exterior Painting in Marietta, GA | Siding Depot — Premium Systems";
 const PAGE_DESC =
-  "Premium Sherwin-Williams® exterior painting built for Georgia heat. UV-resistant thermal barriers for Marietta, Milton & Alpharetta homes. W-2 crews. Free estimate in 24h. Call (678) 400-2012.";
+  "Sherwin-Williams® premium exterior painting in North Atlanta. UV-resistant thermal barriers for Marietta, Milton & Alpharetta homes. W-2 crews. Free estimate in 24h. Call (678) 400-2012.";
 
 const PROJECT_HERO = "/projects/project-5.webp";
 const PROJECT_HERO_ALT =
