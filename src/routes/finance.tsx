@@ -54,7 +54,7 @@ export const Route = createFileRoute("/finance")({
 
     return {
       meta: [
-        { title: "Financing Options | Siding Depot — GreenSky® Home Improvement Loans" },
+        { title: "Financing for Siding & Roofing Projects | Siding Depot North Atlanta" },
         {
           name: "description",
           content: "Flexible financing for your siding, roofing, or painting project. Deferred interest and fixed monthly budget plans via GreenSky®. Apply online in minutes.",
