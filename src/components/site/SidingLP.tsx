@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SITE } from "@/data/site";
+import { LeadMagnet } from "@/components/site/LeadMagnet";
 import { track } from "@/lib/track";
 
 /**
@@ -573,6 +574,8 @@ export function SidingLP({ city }: SidingLPProps) {
           </div>
         </div>
       </section>
+
+      <LeadMagnet city={city} source="lp_siding_magnet" />
 
       {/* FAQ */}
       <section className="bg-white py-16 lg:py-20">
