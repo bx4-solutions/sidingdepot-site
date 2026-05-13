@@ -98,6 +98,10 @@ function SEODashboard() {
   const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
+  const [dateRange, setDateRange] = useState({ 
+    startDate: "2026-04-13", 
+    endDate: "2026-05-13" 
+  });
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
@@ -115,15 +119,15 @@ function SEODashboard() {
   }, []);
 
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
-    queryKey: ["dashboard-metrics", activeView],
+    queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
     queryFn: async (): Promise<any> => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error("Unauthorized");
       
-      return getDashboardMetrics({ data: { startDate: "2026-04-13", endDate: "2026-05-13" } });
+      return getDashboardMetrics({ data: { startDate: dateRange.startDate, endDate: dateRange.endDate } });
     },
     enabled: sessionExists,
-    refetchInterval: 60000, // Atualização automática a cada 60 segundos
+    refetchInterval: 60000,
     retry: (failureCount, error: any) => {
       if (error?.message === "Unauthorized") return false;
       return failureCount < 3;
@@ -269,9 +273,13 @@ function SEODashboard() {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 group hover:border-sd-green/50 transition-colors cursor-default">
               <Calendar className="h-3 w-3 text-sd-green" />
-              <span className="text-xs font-bold">13 abr - 13 mai</span>
+              <span className="text-xs font-bold text-white uppercase tracking-wider">
+                {dateRange.startDate === "2026-04-13" && dateRange.endDate === "2026-05-13" 
+                  ? "Últimos 30 dias" 
+                  : `${dateRange.startDate} - ${dateRange.endDate}`}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 border-l border-white/10 pl-6">
