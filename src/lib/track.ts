@@ -263,6 +263,17 @@ export function trackFinanceApply(): void {
   });
 }
 
+/** Track Finance qualification (next step in the flow). */
+export function trackFinanceQualified(): void {
+  track("finance_qualified", {
+    event_category: "conversion",
+    event_label: "finance_qualification",
+    serviceKey: "finance",
+    variation: "A",
+    source: "finance_flow_complete",
+  });
+}
+
 
 // Run from the browser console:   __trackSmokeTest()
 // Or in dev, results are auto-logged once on first import in the browser.
