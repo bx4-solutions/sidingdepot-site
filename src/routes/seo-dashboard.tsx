@@ -842,6 +842,40 @@ function SEODashboard() {
           </div>
         </main>
       </div>
+
+      <Dialog open={!!selectedPageForLeads} onOpenChange={() => setSelectedPageForLeads(null)}>
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <Globe className="h-5 w-5 text-sd-green" />
+              Origem dos Leads
+            </DialogTitle>
+            <DialogDescription className="text-slate-400 font-mono text-[10px]">
+              {selectedPageForLeads}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource?.map((src: any, idx: number) => (
+              <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+                <span className="text-sm font-bold">{src.source}</span>
+                <Badge className="bg-sd-green text-sd-black font-black">{src.count} LEADS</Badge>
+              </div>
+            ))}
+            {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
+              <div className="text-center py-8 text-slate-500 italic text-sm">
+                Nenhuma conversão registrada para esta página no período.
+              </div>
+            )}
+          </div>
+          <Button 
+            variant="outline" 
+            onClick={() => setSelectedPageForLeads(null)}
+            className="w-full border-white/10 hover:bg-white/5 text-white"
+          >
+            FECHAR
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
