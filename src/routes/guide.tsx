@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
 import { SidingGuide } from "@/components/SidingGuide";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
