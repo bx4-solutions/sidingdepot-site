@@ -111,7 +111,7 @@ function SEODashboard() {
 
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView],
-    queryFn: async () => {
+    queryFn: async (): Promise<any> => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error("Unauthorized");
       
@@ -123,7 +123,7 @@ function SEODashboard() {
       return failureCount < 3;
     },
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-    placeholderData: (previousData) => previousData || FALLBACK_METRICS,
+    placeholderData: (previousData) => previousData || (FALLBACK_METRICS as any),
   });
 
   const handleLogout = async () => {
