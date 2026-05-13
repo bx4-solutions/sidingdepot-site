@@ -1,26 +1,11 @@
 /**
- * GA4 + GTM event tracking with first-touch attribution.
+ * GA4 + GTM event tracking with first-touch attribution and Supabase persistence.
  *
- * Pushes events to window.dataLayer (consumed by Google Tag Manager which is
- * loaded in src/routes/__root.tsx). Safe on SSR — no-ops when window is absent.
- *
- * Attribution: first-touch UTMs are persisted to sessionStorage on first visit
- * so events fired later (e.g. after internal navigation that drops the query
- * string) still carry the original source. If the user arrives without UTM
- * params, attribution falls back to referrer + landing_page only.
- *
- * Conversion Events:
- *   - lead_submit: Contact form submission (phone, email, service type)
- *   - whatsapp_click: WhatsApp button click (service, location)
- *   - contact_page_view: Contact page view
- *   - service_view: Service page view (siding, painting, windows, etc.)
- *   - quote_request: Free estimate request initiated
- *
- * Usage:
- *   track("lead_submit", { service: "siding", city: "Marietta" });
- *   track("whatsapp_click", { service: "windows" });
- *   track("contact_page_view");
+ * Pushes events to window.dataLayer (consumed by Google Tag Manager)
+ * and persists A/B testing events to Supabase for the internal dashboard.
  */
+import { supabase } from "./supabase";
+
 export type TrackPayload = Record<string, string | number | boolean | undefined>;
 
 const UTM_KEYS = [
@@ -31,6 +16,7 @@ const UTM_KEYS = [
   "utm_term",
   "utm_content",
 ] as const;
+
 
 const STORAGE_KEY = "__lp_attribution_v1";
 
@@ -108,22 +94,43 @@ export function getAttribution(): Record<string, string> {
 export function track(event: string, payload: TrackPayload = {}): void {
   try {
     if (typeof window === "undefined") return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
+    const attribution = getAttribution();
+    const enriched = { event, ...attribution, ...payload };
+
+    // 1. DataLayer for GA4/GTM
     const w = window as any;
     w.dataLayer = w.dataLayer || [];
-    const enriched = { event, ...getAttribution(), ...payload };
     w.dataLayer.push(enriched);
+
+    // 2. Supabase for A/B Dashboard
+    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click"];
+    if (abEvents.includes(event)) {
+      supabase.from("ab_events").insert({
+        event_type: event,
+        service_key: String(payload.serviceKey || "unknown"),
+        variation: String(payload.variation || "A"),
+        city: String(payload.city || ""),
+        utm_source: attribution.utm_source,
+        utm_medium: attribution.utm_medium,
+        utm_campaign: attribution.utm_campaign,
+        landing_page: attribution.landing_page,
+        metadata: payload
+      }).then(({ error }) => {
+        if (error && import.meta.env.DEV) console.error("[track] supabase error", error);
+      });
+    }
+
     if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
       console.info("[track]", event, enriched);
     }
   } catch (err) {
     if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
       console.warn("[track] failed", err);
     }
   }
 }
+
 
 // =====================================================================
 // Conversion Event Helpers
