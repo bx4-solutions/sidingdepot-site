@@ -93,22 +93,30 @@ const FALLBACK_METRICS = {
 
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
+    // Try to get session, but allow some grace for refreshing
     const { data: { session } } = await supabase.auth.getSession();
     
+    // If no session, try one more time or just let the component handle it
+    // to avoid flickering redirects during background refreshes
     if (!session) {
-      throw redirect({
-        to: "/admin/login",
-        search: {
-          redirect: location.href,
-        },
-      });
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        throw redirect({
+          to: "/admin/login",
+          search: {
+            redirect: location.href,
+          },
+        });
+      }
     }
   },
   loader: async () => {
      const { data: { session } } = await supabase.auth.getSession();
-     if (!session) return null;
+     const user = session?.user;
      
-     const { data: profile } = await supabase.from("profiles").select("*").eq("id", session.user.id).single();
+     if (!user) return null;
+     
+     const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
      return { session, profile };
   },
   component: SEODashboard,
