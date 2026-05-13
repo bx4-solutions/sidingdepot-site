@@ -187,6 +187,20 @@ function HomePage() {
                 <Link to="/about">About Siding Depot</Link>
               </Button>
             </div>
+            <nav
+              aria-label="Related siding pages"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+            >
+              <Link to="/siding" className="text-sd-green hover:underline">
+                James Hardie siding installation in Marietta
+              </Link>
+              <Link to="/service-areas" className="text-sd-green hover:underline">
+                North Atlanta service areas
+              </Link>
+              <Link to="/projects" className="text-sd-green hover:underline">
+                See recent siding projects
+              </Link>
+            </nav>
           </div>
         </div>
       </section>
