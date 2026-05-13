@@ -14,10 +14,12 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
     }
 
     try {
+      const fields = \"reviews,rating,user_ratings_total\";
       const response = await fetch(
-        `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=reviews&key=${apiKey}`
+        `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=${fields}&key=${apiKey}`
       );
       const result = await response.json();
+      console.log(\"Google Places API Response Status:\", result.status);
 
       if (!result.result || !result.result.reviews) {
         return { success: false, error: "No reviews found or API error" };
