@@ -42,27 +42,49 @@ import {
 } from "lucide-react";
 
 import sidingImg from "@/assets/services/siding.webp";
+import sidingAvif from "@/assets/services/siding.avif";
 import paintingImg from "@/assets/services/painting.jpg";
+import paintingWebp from "@/assets/services/painting.webp";
+import paintingAvif from "@/assets/services/painting.avif";
 import windowsImg from "@/assets/services/windows.jpg";
+import windowsWebp from "@/assets/services/windows.webp";
+import windowsAvif from "@/assets/services/windows.avif";
 import deckImg from "@/assets/services/deck.jpg";
+import deckWebp from "@/assets/services/deck.webp";
+import deckAvif from "@/assets/services/deck.avif";
 import guttersImg from "@/assets/services/gutters.jpg";
+import guttersWebp from "@/assets/services/gutters.webp";
+import guttersAvif from "@/assets/services/gutters.avif";
 import roofingImg from "@/assets/services/roofing.jpg";
+import roofingWebp from "@/assets/services/roofing.webp";
+import roofingAvif from "@/assets/services/roofing.avif";
 import dumpsterImg from "@/assets/services/dumpster.jpg";
+import dumpsterWebp from "@/assets/services/dumpster.webp";
+import dumpsterAvif from "@/assets/services/dumpster.avif";
+
+export type ServiceImage = {
+  /** Fallback raster (JPEG/WebP) used as <img src>. */
+  src: string;
+  /** Optional WebP variant for <source type="image/webp">. */
+  webp?: string;
+  /** Optional AVIF variant for <source type="image/avif">. */
+  avif?: string;
+};
 
 export const SERVICES: ReadonlyArray<{
   slug: string;
   title: string;
   short: string;
   Icon: LucideIcon;
-  image: string;
+  image: ServiceImage;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: sidingImg },
-  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: paintingImg },
-  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: windowsImg },
-  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: deckImg },
-  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: guttersImg },
-  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: roofingImg },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: dumpsterImg },
+  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: { src: sidingImg, avif: sidingAvif } },
+  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
+  { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
+  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
+  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
+  { slug: "roofing", title: "Roof", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
 ];
 
 export const CITIES = [
