@@ -17,9 +17,9 @@ export const SITE = {
     "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=810185699&dealerplan=25211&channel=External-Button-03",
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
   social: {
-    facebook: "https://facebook.com/SidingDepot",
-    instagram: "https://instagram.com/sidingdepot/",
-    youtube: "https://youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
+    facebook: "https://www.facebook.com/SidingDepot",
+    instagram: "https://www.instagram.com/sidingdepot/",
+    youtube: "https://www.youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
     tiktok: "https://www.tiktok.com/@sidingdepot",
   },
 } as const;
