@@ -112,7 +112,7 @@ function AdminLogin() {
           <CardTitle className="text-2xl font-bold">
             {mode === "login" ? "Acesso Administrativo" : "Recuperar Senha"}
           </CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardDescription className="text-slate-200">
             {mode === "login" 
               ? "Entre com suas credenciais para gerenciar o SEO" 
               : "Enviaremos um link para redefinir sua senha"}
@@ -134,7 +134,7 @@ function AdminLogin() {
             <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
                 <Input
                   id="email"
                   type="email"
@@ -160,7 +160,7 @@ function AdminLogin() {
                   </button>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
                   <Input
                     id="password"
                     type="password"
@@ -187,12 +187,12 @@ function AdminLogin() {
           {mode === "reset" && (
             <button 
               onClick={() => setMode("login")}
-              className="flex items-center text-sm text-slate-400 hover:text-white transition-colors"
+              className="flex items-center text-sm text-slate-200 hover:text-white transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para o login
             </button>
           )}
-          <Link to="/" className="text-sm text-slate-500 hover:text-slate-400 mx-auto mt-4">
+          <Link to="/" className="text-sm text-slate-300 hover:text-slate-200 mx-auto mt-4">
             Voltar para o site
           </Link>
         </CardFooter>
