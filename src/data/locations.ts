@@ -2,7 +2,7 @@ import { CITIES, SERVICES } from "./site";
 
 export const SITE_ORIGIN =
   (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ??
-  "https://sidingdepot.com";
+  "https://sidingdepot.lovable.app";
 
 /**
  * Phase 2 — City × Service priority matrix from the PRD.
@@ -47,6 +47,7 @@ export function getServiceMeta(slug: string) {
 /** All static (non-dynamic) routes that should appear in sitemap.xml */
 export const STATIC_ROUTES = [
   "/",
+  "/about",
   "/projects",
   "/siding",
   "/painting",
@@ -55,5 +56,11 @@ export const STATIC_ROUTES = [
   "/windows",
   "/deck",
   "/dumpster",
+  "/dumpster-rental",
   "/contact",
+  "/guide",
+  "/guide/thank-you",
+  "/lp/siding-marietta",
+  "/lp/siding-alpharetta",
+  "/lp/siding-canton",
 ] as const;
