@@ -621,29 +621,81 @@ function SEODashboard() {
                       </Card>
                     </div>
 
-                    {/* EVENTOS DE CLIQUE */}
-                    <Card className="bg-[#131921] border-white/10">
-                      <CardHeader>
-                        <CardTitle className="text-lg font-bold text-white">Botões e Interações</CardTitle>
-                        <CardDescription className="text-xs">Rastreamento de cliques em CTAs principais</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* RANKING DE CLIQUES E COMPETIÇÃO */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Ranking de Cliques em Botões</CardTitle>
+                          <CardDescription className="text-xs">CTAs mais convertidos e origem do clique</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
                           {metrics?.clickEvents?.map((ev: any, i: number) => (
-                            <div key={i} className="p-4 bg-white/5 border border-white/10 rounded-xl hover:border-sd-green/30 transition-all">
-                              <p className="text-[10px] font-black uppercase text-slate-400 mb-2">{ev.button}</p>
-                              <div className="flex items-end justify-between">
-                                <span className="text-2xl font-black text-white">{ev.clicks}</span>
-                                <div className="text-right">
-                                  <p className="text-[10px] font-bold text-sd-green">CONVERSÃO</p>
-                                  <p className="text-sm font-black">{ev.conversion}%</p>
-                                </div>
-                              </div>
+                            <div key={i} className="p-4 bg-white/5 border border-white/10 rounded-xl group hover:border-sd-green/30 transition-all">
+                               <div className="flex items-center justify-between mb-3">
+                                  <div className="flex items-center gap-3">
+                                     <div className="p-2 bg-sd-green/10 rounded-lg">
+                                        <MousePointer2 className="h-4 w-4 text-sd-green" />
+                                     </div>
+                                     <span className="text-sm font-bold text-white">{ev.button}</span>
+                                  </div>
+                                  <Badge className="bg-sd-green/20 text-sd-green border-0 text-xs font-black">{ev.conversion}% CONV.</Badge>
+                               </div>
+                               <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                                  <div className="flex gap-2">
+                                     {ev.sources?.map((s: any, si: number) => (
+                                       <span key={si} className="text-[9px] text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">{s.source}</span>
+                                     ))}
+                                  </div>
+                                  <div className="text-right">
+                                     <span className="text-lg font-black text-white">{ev.clicks}</span>
+                                     <span className="text-[10px] text-slate-500 ml-1 uppercase font-bold tracking-tighter">Cliques</span>
+                                  </div>
+                               </div>
                             </div>
                           ))}
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Competição de Permanência</CardTitle>
+                          <CardDescription className="text-xs">Tempo médio: Top Páginas vs Resto do Site</CardDescription>
+                        </CardHeader>
+                        <CardContent className="h-[280px] flex flex-col justify-between pt-6">
+                           <div className="flex-1">
+                             <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={[
+                                  { name: 'Top Páginas', value: metrics?.timeComparison?.topPagesAvg || 0 },
+                                  { name: 'Média Geral', value: metrics?.timeComparison?.restOfSiteAvg || 0 }
+                                ]}>
+                                  <XAxis dataKey="name" stroke="#475569" fontSize={11} axisLine={false} tickLine={false} />
+                                  <YAxis hide />
+                                  <Tooltip 
+                                    cursor={{fill: 'rgba(255,255,255,0.02)'}}
+                                    contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                                    formatter={(v: number) => [`${v} segundos`, 'Tempo Médio']}
+                                  />
+                                  <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+                                     <Cell fill="var(--sd-green)" />
+                                     <Cell fill="rgba(255,255,255,0.1)" />
+                                  </Bar>
+                                </BarChart>
+                             </ResponsiveContainer>
+                           </div>
+                           <div className="flex justify-around items-end pt-6 border-t border-white/5">
+                              <div className="text-center">
+                                 <p className="text-2xl font-black text-sd-green">{metrics?.timeComparison?.topPagesAvg}s</p>
+                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Retenção Top</p>
+                              </div>
+                              <div className="h-8 w-px bg-white/10" />
+                              <div className="text-center">
+                                 <p className="text-2xl font-black text-white/20">{metrics?.timeComparison?.restOfSiteAvg}s</p>
+                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Média Site</p>
+                              </div>
+                           </div>
+                        </CardContent>
+                      </Card>
+                    </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       <Card className="lg:col-span-2 bg-[#131921] border-white/10">
