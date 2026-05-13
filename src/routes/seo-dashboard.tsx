@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   Gauge, 
@@ -30,8 +31,11 @@ import {
   CalendarCheck2,
   MessageSquare,
   AlertTriangle,
-  RefreshCcw
+  RefreshCcw,
+  User,
+  Key
 } from "lucide-react";
+import { toast } from "sonner";
 import { 
   AreaChart, 
   Area, 
@@ -148,7 +152,37 @@ function SEODashboard() {
     { id: "calendar", label: "Calendário", icon: Calendar },
     { id: "users", label: "Usuários", icon: Users },
     { id: "integrations", label: "Integrações", icon: Settings },
+    { id: "profile", label: "Meu Perfil", icon: User },
   ];
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [updatingPassword, setUpdatingPassword] = useState(false);
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      toast.error("As senhas não coincidem");
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.error("A senha deve ter pelo menos 6 caracteres");
+      return;
+    }
+
+    setUpdatingPassword(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      toast.success("Senha atualizada com sucesso!");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (err: any) {
+      toast.error(err.message || "Falha ao atualizar senha");
+    } finally {
+      setUpdatingPassword(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
@@ -375,6 +409,73 @@ function SEODashboard() {
                         </CardContent>
                       </Card>
                     </div>
+                   </div>
+                )}
+
+                {activeView === "profile" && (
+                  <div className="max-w-2xl animate-in fade-in duration-500">
+                    <Card className="bg-[#131921] border-white/10">
+                      <CardHeader className="flex flex-row items-center gap-4">
+                        <div className="p-3 bg-sd-green/10 rounded-xl">
+                          <User className="h-6 w-6 text-sd-green" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-xl font-bold">Meu Perfil</CardTitle>
+                          <CardDescription>Gerencie suas informações e segurança</CardDescription>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
+                          <div>
+                            <p className="text-[10px] font-black uppercase text-slate-500 mb-1">E-mail</p>
+                            <p className="font-bold">{userProfile?.email}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-black uppercase text-slate-500 mb-1">Nível de Acesso</p>
+                            <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30 uppercase">{userProfile?.role}</Badge>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 pt-4 border-t border-white/5">
+                          <h3 className="text-lg font-bold flex items-center gap-2">
+                            <Key className="h-4 w-4 text-sd-green" /> Alterar Senha
+                          </h3>
+                          <form onSubmit={handleUpdatePassword} className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <label className="text-sm text-slate-400">Nova Senha</label>
+                                <Input 
+                                  type="password" 
+                                  className="bg-white/5 border-white/10 text-white" 
+                                  placeholder="••••••••"
+                                  value={newPassword}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
+                                  required
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <label className="text-sm text-slate-400">Confirmar Senha</label>
+                                <Input 
+                                  type="password" 
+                                  className="bg-white/5 border-white/10 text-white" 
+                                  placeholder="••••••••"
+                                  value={confirmPassword}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <Button 
+                              type="submit" 
+                              className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold h-11 px-8"
+                              disabled={updatingPassword}
+                            >
+                              {updatingPassword ? "Atualizando..." : "Salvar Nova Senha"}
+                            </Button>
+                          </form>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
                 )}
 

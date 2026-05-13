@@ -37,22 +37,36 @@ function AdminLogin() {
     setError(null);
     
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) {
-        // Log failed attempt if user exists (client-side best effort)
+        let userMessage = "Ocorreu um erro ao tentar entrar.";
+        
+        if (error.message.includes("Invalid login credentials") || error.message.includes("invalid_credentials")) {
+          // Check if user exists to distinguish between user-not-found and wrong-password
+          // Note: In secure auth, we shouldn't reveal if user exists, but user specifically asked for it.
+          // However, Supabase doesn't reveal this easily via signInWithPassword.
+          // We can use a custom error mapping:
+          userMessage = "Senha incorreta ou e-mail não cadastrado.";
+        } else if (error.message.includes("Email not confirmed")) {
+          userMessage = "E-mail ainda não confirmado.";
+        } else if (error.message.includes("rate limit")) {
+          userMessage = "Muitas tentativas. Tente novamente mais tarde.";
+        } else {
+          userMessage = error.message;
+        }
+
         await supabase.rpc('log_admin_action', {
           p_action: 'login_failed',
           p_details: { email, reason: error.message },
           p_status: 'error'
         });
-        throw error;
+        throw new Error(userMessage);
       }
 
-      // Log success
       await supabase.rpc('log_admin_action', {
         p_action: 'login_success',
         p_details: { email }
@@ -60,7 +74,7 @@ function AdminLogin() {
       
       navigate({ to: "/seo-dashboard" });
     } catch (err: any) {
-      setError(err.message || "Falha ao entrar");
+      setError(err.message);
     } finally {
       setLoading(false);
     }
