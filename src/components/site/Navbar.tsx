@@ -16,6 +16,7 @@ const NAV_LINKS = [
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
+  { to: "/finance", label: "Finance" },
 ] as const;
 
 export function Navbar() {
