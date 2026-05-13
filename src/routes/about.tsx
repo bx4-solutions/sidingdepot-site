@@ -216,10 +216,30 @@ function AboutPage() {
               </Button>
             </div>
           </div>
-          <YoutubeEmbed
-            videoId="fgNhcGoEYmE"
-            title="Meet Siding Depot — Marietta, GA"
-          />
+          <div>
+            <YoutubeEmbed
+              videoId="fgNhcGoEYmE"
+              title="Meet Siding Depot — Marietta, GA"
+            />
+            <nav
+              aria-label="Related siding services"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/75"
+            >
+              <span className="text-white/55">Explore:</span>
+              <Link to="/siding" className="text-sd-green hover:underline">
+                James Hardie siding installation
+              </Link>
+              <Link to="/painting" className="text-sd-green hover:underline">
+                exterior painting in Marietta
+              </Link>
+              <Link to="/windows" className="text-sd-green hover:underline">
+                replacement windows
+              </Link>
+              <Link to="/contact" className="text-sd-green hover:underline">
+                request a free siding quote
+              </Link>
+            </nav>
+          </div>
         </div>
       </section>
 
