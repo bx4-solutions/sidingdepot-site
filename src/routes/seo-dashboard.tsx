@@ -427,7 +427,7 @@ function SEODashboard() {
                       <LayoutDashboard className="h-16 w-16 text-sd-green/20" />
                     </div>
                     <h3 className="text-2xl font-bold">Módulo em Desenvolvimento</h3>
-                    <p className="text-slate-500 max-w-sm mt-2">Estamos portando as métricas 1:1 do ClickOne para este módulo. Disponível em breve.</p>
+                    <p className="text-slate-500 max-w-sm mt-2">Estamos portando as métricas 1:1 do Siding Depot para este módulo. Disponível em breve.</p>
                   </div>
                 )}
               </>
