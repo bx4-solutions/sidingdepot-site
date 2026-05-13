@@ -238,7 +238,7 @@ function HomePage() {
 
           <div className="mt-10 text-center">
             <Button asChild variant="dark">
-              <Link to="/service-areas">View All Service Areas</Link>
+              <Link to="/contact">View All Service Areas</Link>
             </Button>
           </div>
         </div>
