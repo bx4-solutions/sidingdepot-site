@@ -38,7 +38,7 @@ export function Navbar() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleStripClick = (slug: StripSlug) => {
+  const handleStripClick = (slug: string) => {
     track("service_strip_click", { service: slug });
   };
 
