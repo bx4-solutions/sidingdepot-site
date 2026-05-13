@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
+import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
