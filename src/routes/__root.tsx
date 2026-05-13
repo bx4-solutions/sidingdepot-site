@@ -20,11 +20,15 @@ const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: SITE.legalName,
+  "@id": "https://sidingdepot.com/#organization",
+  name: SITE.name,
+  legalName: SITE.legalName,
   image: "https://sidingdepot.com/og-default.jpg",
+  logo: "https://sidingdepot.com/logo.png",
   telephone: SITE.phone,
   email: SITE.email,
   url: "https://sidingdepot.com",
+  description: "Georgia's trusted James Hardie Elite Preferred contractor. Specializing in siding, painting, windows, and home exteriors.",
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.address.street,
@@ -33,12 +37,42 @@ const ORG_JSONLD = {
     postalCode: SITE.address.zip,
     addressCountry: "US",
   },
-  areaServed: ["Marietta GA", "Alpharetta GA", "Milton GA", "Canton GA", "Woodstock GA", "Roswell GA", "Kennesaw GA", "Johns Creek GA", "Sandy Springs GA", "Acworth GA"],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 33.9806, // Marietta coordinates approx
+    longitude: -84.4752,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+  ],
+  sameAs: [
+    SITE.social.facebook,
+    SITE.social.instagram,
+    SITE.social.youtube,
+    SITE.social.tiktok,
+  ],
+  areaServed: [
+    { "@type": "City", name: "Marietta", sameAs: "https://en.wikipedia.org/wiki/Marietta,_Georgia" },
+    { "@type": "City", name: "Alpharetta" },
+    { "@type": "City", name: "Milton" },
+    { "@type": "City", name: "Canton" },
+    { "@type": "City", name: "Woodstock" },
+    { "@type": "City", name: "Roswell" },
+    { "@type": "City", name: "Kennesaw" },
+    { "@type": "City", name: "Johns Creek" },
+    { "@type": "City", name: "Sandy Springs" },
+    { "@type": "City", name: "Acworth" },
+  ],
   priceRange: "$$",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",
-    reviewCount: "60",
+    reviewCount: "128",
   },
 };
 

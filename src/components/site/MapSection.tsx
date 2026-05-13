@@ -1,13 +1,21 @@
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone, Mail, Navigation, ExternalLink, Loader2 } from "lucide-react";
 import { SITE } from "@/data/site";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function MapSection() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const addressQuery = encodeURIComponent(`${SITE.name}, ${SITE.address.full}`);
+  
   const mapUrl = apiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(SITE.address.full)}`
-    : `https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.full)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${addressQuery}`
+    : `https://maps.google.com/maps?q=${addressQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
-  const finalUrl = mapUrl;
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
+  const wazeUrl = `https://waze.com/ul?q=${addressQuery}&navigate=yes`;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
@@ -68,20 +76,69 @@ export function MapSection() {
                   </a>
                 </div>
               </div>
+
+              <div className="pt-6 flex flex-wrap gap-3">
+                <Button asChild variant="outline" size="sm" className="rounded-full">
+                  <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Open in Google Maps
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="sm" className="rounded-full">
+                  <a href={wazeUrl} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Open in Waze
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-sd-gray-bg shadow-xl bg-sd-gray-bg">
-            <iframe
-              title="Siding Depot Location"
-              src={finalUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-sd-gray-bg shadow-xl bg-sd-gray-bg group">
+            {isLoading && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-sd-gray-bg z-10">
+                <Loader2 className="h-8 w-8 text-sd-green animate-spin" />
+                <p className="mt-2 text-sm text-sd-gray-text animate-pulse">Loading Map...</p>
+              </div>
+            )}
+            
+            {hasError ? (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-sd-gray-bg p-8 text-center">
+                <MapPin className="h-12 w-12 text-sd-gray-text/30 mb-4" />
+                <h4 className="font-semibold text-sd-black">Map couldn't be loaded</h4>
+                <p className="mt-2 text-sm text-sd-gray-text max-w-xs">
+                  We're having trouble loading the interactive map. You can still view our location directly on Google Maps.
+                </p>
+                <Button asChild variant="dark" className="mt-6" size="sm">
+                  <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                    View on Google Maps
+                  </a>
+                </Button>
+              </div>
+            ) : (
+              <iframe
+                title={`${SITE.name} Location`}
+                src={mapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                onLoad={() => setIsLoading(false)}
+                onError={() => {
+                  setIsLoading(false);
+                  setHasError(true);
+                }}
+              ></iframe>
+            )}
+            
+            <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl border border-sd-gray-bg shadow-lg lg:hidden opacity-0 group-hover:opacity-100 transition-opacity">
+              <p className="text-xs font-semibold text-sd-black flex items-center gap-2">
+                <Navigation className="h-3 w-3 text-sd-green" />
+                Tap to interact with the map
+              </p>
+            </div>
           </div>
         </div>
       </div>
