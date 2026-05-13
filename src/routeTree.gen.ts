@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
@@ -59,6 +60,11 @@ const SeoDashboardRoute = SeoDashboardRouteImport.update({
 const RoofingRoute = RoofingRouteImport.update({
   id: '/roofing',
   path: '/roofing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -180,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/gutters'
     | '/painting'
     | '/projects'
+    | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/gutters'
     | '/painting'
     | '/projects'
+    | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
@@ -323,6 +334,7 @@ export interface FileRouteTypes {
     | '/gutters'
     | '/painting'
     | '/projects'
+    | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
@@ -352,6 +364,7 @@ export interface RootRouteChildren {
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
   SidingRoute: typeof SidingRoute
@@ -401,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/roofing'
       fullPath: '/roofing'
       preLoaderRoute: typeof RoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -588,6 +608,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
   SidingRoute: SidingRoute,

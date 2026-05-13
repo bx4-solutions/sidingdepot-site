@@ -91,6 +91,32 @@ const FALLBACK_METRICS = {
   acquisition: []
 };
 
+const DATE_RANGE_PRESETS = [
+  { label: "7 dias", days: 7 },
+  { label: "30 dias", days: 30 },
+  { label: "90 dias", days: 90 },
+];
+
+const resolveDateRange = (days: number) => {
+  const end = new Date();
+  const start = new Date(end);
+  start.setDate(end.getDate() - (days - 1));
+  return {
+    startDate: start.toISOString().slice(0, 10),
+    endDate: end.toISOString().slice(0, 10),
+  };
+};
+
+const getInitialDateRange = () => {
+  if (typeof window === "undefined") return resolveDateRange(30);
+  try {
+    const stored = window.localStorage.getItem("seo-dashboard-date-range");
+    return stored ? JSON.parse(stored) : resolveDateRange(30);
+  } catch {
+    return resolveDateRange(30);
+  }
+};
+
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
     // Try to get session, but allow some grace for refreshing
@@ -128,12 +154,14 @@ function SEODashboard() {
   const queryClient = useQueryClient();
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
-  const [dateRange, setDateRange] = useState({ 
-    startDate: "2026-04-13", 
-    endDate: "2026-05-13" 
-  });
+  const [dateRange, setDateRange] = useState(getInitialDateRange);
   const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
+  const [selectedBlogArticle, setSelectedBlogArticle] = useState<any | null>(null);
   const userProfile = loaderData?.profile;
+
+  useEffect(() => {
+    window.localStorage.setItem("seo-dashboard-date-range", JSON.stringify(dateRange));
+  }, [dateRange]);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -208,18 +236,12 @@ function SEODashboard() {
   };
 
   const handleExport = (format: 'csv' | 'pdf') => {
-    toast.promise(
-      new Promise((resolve) => setTimeout(resolve, 2000)),
-      {
-        loading: `Gerando relatório ${format.toUpperCase()}...`,
-        success: `Relatório exportado com sucesso!`,
-        error: `Falha ao exportar relatório.`,
-      }
-    );
-    
     if (format === 'csv') {
-      const headers = "Página,Visualizações,Tempo Médio,Bounce Rate,Conversões\n";
-      const rows = metrics?.topPages?.map((p: any) => `${p.path},${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions}`).join("\n");
+      const headers = "Tipo,Nome,Visualizações/Cliques,Tempo Médio,Bounce,Conversões/Taxa,Origem\n";
+      const pageRows = metrics?.topPages?.map((p: any) => `Página,"${p.path}",${p.views},${p.avgTime},${p.bounceRate}%,${p.conversions},"${p.leadsBySource?.map((s: any) => `${s.source}: ${s.count}`).join(" | ") || ""}"`) || [];
+      const blogRows = metrics?.blogStats?.topArticles?.map((p: any) => `Blog,"${p.title}",${p.views},${p.avgTime},${p.bounceRate}%,${p.conversion}%,"${p.keywords?.join(" | ") || ""}"`) || [];
+      const clickRows = metrics?.clickEvents?.map((p: any) => `Botão,"${p.button}",${p.clicks},,,${p.conversion}%,"${p.sources?.map((s: any) => `${s.source}: ${s.count}`).join(" | ") || ""}"`) || [];
+      const rows = [...pageRows, ...blogRows, ...clickRows].join("\n");
       const csvContent = "data:text/csv;charset=utf-8," + headers + rows;
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
@@ -228,6 +250,14 @@ function SEODashboard() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      toast.success("CSV exportado com métricas de páginas, blog e botões.");
+    } else {
+      const printWindow = window.open("", "_blank");
+      if (!printWindow) return toast.error("Permita pop-ups para exportar PDF.");
+      printWindow.document.write(`<html><head><title>Relatório SEO</title></head><body><h1>Relatório SEO</h1><p>Período: ${dateRange.startDate} até ${dateRange.endDate}</p><pre>${JSON.stringify({ paginas: metrics?.topPages, blog: metrics?.blogStats?.topArticles, botoes: metrics?.clickEvents }, null, 2)}</pre></body></html>`);
+      printWindow.document.close();
+      printWindow.print();
+      toast.success("PDF pronto para salvar/compartilhar.");
     }
   };
 
@@ -370,13 +400,30 @@ function SEODashboard() {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 group hover:border-sd-green/50 transition-colors cursor-default">
+            <div className="flex flex-wrap items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
               <Calendar className="h-3 w-3 text-sd-green" />
-              <span className="text-xs font-bold text-white uppercase tracking-wider">
-                {dateRange.startDate === "2026-04-13" && dateRange.endDate === "2026-05-13" 
-                  ? "Últimos 30 dias" 
-                  : `${dateRange.startDate} - ${dateRange.endDate}`}
-              </span>
+              {DATE_RANGE_PRESETS.map((preset) => (
+                <button
+                  key={preset.days}
+                  type="button"
+                  onClick={() => setDateRange(resolveDateRange(preset.days))}
+                  className="rounded-md px-2 py-1 text-[10px] font-black uppercase text-slate-200 hover:bg-white/10 hover:text-white"
+                >
+                  {preset.label}
+                </button>
+              ))}
+              <Input
+                type="date"
+                value={dateRange.startDate}
+                onChange={(e) => setDateRange((current: any) => ({ ...current, startDate: e.target.value }))}
+                className="h-7 w-[130px] bg-transparent border-white/10 text-[10px] text-white"
+              />
+              <Input
+                type="date"
+                value={dateRange.endDate}
+                onChange={(e) => setDateRange((current: any) => ({ ...current, endDate: e.target.value }))}
+                className="h-7 w-[130px] bg-transparent border-white/10 text-[10px] text-white"
+              />
             </div>
 
             <div className="flex items-center gap-3 border-l border-white/10 pl-6">
@@ -626,7 +673,13 @@ function SEODashboard() {
                                     <td className="py-3 px-2">
                                       <div className="flex items-center gap-2">
                                         <span className="text-sd-green font-bold w-4">#{i+1}</span>
-                                        <span className="text-slate-200 truncate font-mono text-xs max-w-[200px]">{p.path}</span>
+                                        <button
+                                          type="button"
+                                          onClick={() => setSelectedPageForLeads(p.path)}
+                                          className="text-left text-slate-200 truncate font-mono text-xs max-w-[200px] hover:text-sd-green"
+                                        >
+                                          {p.path}
+                                        </button>
                                       </div>
                                     </td>
                                     <td className="py-3 text-right font-bold">{p.views}</td>
@@ -759,7 +812,7 @@ function SEODashboard() {
                         <CardContent>
                            <div className="space-y-4">
                               {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
-                                <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg group hover:bg-white/10 transition-colors">
+                                <button key={i} type="button" onClick={() => setSelectedBlogArticle(art)} className="w-full flex items-center justify-between p-3 bg-white/5 rounded-lg group hover:bg-white/10 transition-colors text-left">
                                    <div className="flex items-center gap-4">
                                       <div className="h-8 w-8 rounded bg-sd-green/10 flex items-center justify-center text-sd-green font-bold text-xs">
                                         {i + 1}
@@ -770,7 +823,7 @@ function SEODashboard() {
                                       </div>
                                    </div>
                                    <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-sd-green transition-colors" />
-                                </div>
+                                </button>
                               ))}
                            </div>
                         </CardContent>
@@ -961,7 +1014,7 @@ function SEODashboard() {
                             </TableHeader>
                             <TableBody>
                               {metrics?.blogStats?.topArticles?.map((art: any, i: number) => (
-                                <TableRow key={i} className="border-white/5 group hover:bg-white/5 transition-colors">
+                                <TableRow key={i} onClick={() => setSelectedBlogArticle(art)} className="border-white/5 group hover:bg-white/5 transition-colors cursor-pointer">
                                   <TableCell className="py-4">
                                     <div className="flex items-center gap-3">
                                       <span className="text-sd-green font-black">#{i+1}</span>
@@ -1040,7 +1093,7 @@ function SEODashboard() {
       </div>
 
       <Dialog open={!!selectedPageForLeads} onOpenChange={() => setSelectedPageForLeads(null)}>
-        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-md">
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <Globe className="h-5 w-5 text-sd-green" />
@@ -1057,6 +1110,21 @@ function SEODashboard() {
                 <Badge className="bg-sd-green text-sd-black font-black">{src.count} LEADS</Badge>
               </div>
             ))}
+            <div className="grid grid-cols-3 gap-3 pt-2">
+              {(() => {
+                const page = metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads);
+                return [
+                  ["Views", page?.views || 0],
+                  ["Tempo", page?.avgTime || "0s"],
+                  ["Conversões", page?.conversions || 0],
+                ].map(([label, value]) => (
+                  <div key={String(label)} className="rounded-lg bg-white/5 p-3 text-center border border-white/5">
+                    <p className="text-[10px] uppercase font-black text-slate-400">{label}</p>
+                    <p className="mt-1 text-lg font-black text-white">{value}</p>
+                  </div>
+                ));
+              })()}
+            </div>
             {(!metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource || metrics?.topPages?.find((p: any) => p.path === selectedPageForLeads)?.leadsBySource.length === 0) && (
               <div className="text-center py-8 text-slate-500 italic text-sm">
                 Nenhuma conversão registrada para esta página no período.
@@ -1070,6 +1138,62 @@ function SEODashboard() {
           >
             FECHAR
           </Button>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedBlogArticle} onOpenChange={() => setSelectedBlogArticle(null)}>
+        <DialogContent className="bg-[#131921] border-white/10 text-white max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <FileText className="h-5 w-5 text-sd-green" />
+              {selectedBlogArticle?.title}
+            </DialogTitle>
+            <DialogDescription className="text-slate-400">Leads, UTM, palavras-chave e evolução no período selecionado.</DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              ["Views", selectedBlogArticle?.views || 0],
+              ["Tempo", selectedBlogArticle?.avgTime || "0s"],
+              ["Bounce", `${selectedBlogArticle?.bounceRate || 0}%`],
+              ["Conversão", `${selectedBlogArticle?.conversion || 0}%`],
+            ].map(([label, value]) => (
+              <div key={String(label)} className="rounded-lg bg-white/5 p-3 border border-white/5">
+                <p className="text-[10px] uppercase font-black text-slate-400">{label}</p>
+                <p className="mt-1 text-lg font-black text-white">{value}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-4">
+            <div className="space-y-2">
+              <p className="text-xs font-black uppercase text-slate-400">Origem dos Leads</p>
+              {(selectedBlogArticle?.leadsBySource || []).map((src: any, idx: number) => (
+                <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 p-3 border border-white/5">
+                  <span className="text-sm font-bold">{src.source}</span>
+                  <Badge className="bg-sd-green text-sd-black font-black">{src.count}</Badge>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs font-black uppercase text-slate-400">Palavras-chave</p>
+              <div className="flex flex-wrap gap-2">
+                {(selectedBlogArticle?.keywords || []).map((kw: string) => (
+                  <Badge key={kw} variant="outline" className="border-white/10 text-slate-300">{kw}</Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="h-[220px] rounded-xl bg-white/5 p-3 border border-white/5">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={selectedBlogArticle?.trend || []}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={{ backgroundColor: '#131921', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+                <Area type="monotone" dataKey="views" name="Views" stroke="var(--sd-green)" fill="var(--sd-green)" fillOpacity={0.18} />
+                <Area type="monotone" dataKey="leads" name="Leads" stroke="oklch(0.65 0.18 220)" fill="oklch(0.65 0.18 220)" fillOpacity={0.12} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
