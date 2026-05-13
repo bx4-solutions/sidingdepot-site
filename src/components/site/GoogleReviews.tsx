@@ -85,9 +85,12 @@ export function GoogleReviews() {
 
   const syncMutation = useMutation({
     mutationFn: () => syncReviews({ data: { placeId: "ChIJgXSHh4OH9YgR9nx8zHzMfMw" } }), // Actual Siding Depot Place ID
-    onSuccess: (res) => {
+    onSuccess: (res: any) => {
       if (res.success) {
         toast.success(`Successfully synced ${res.count} reviews!`);
+        if (res.overallRating) {
+          console.log(`Overall Rating: ${res.overallRating}, Total: ${res.totalReviews}`);
+        }
         queryClient.invalidateQueries({ queryKey: ["google-reviews"] });
       } else {
         toast.error(`Sync failed: ${res.error}`);
@@ -163,11 +166,14 @@ export function GoogleReviews() {
             <div className="mt-4 flex items-center gap-2">
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="h-5 w-5 fill-sd-green text-sd-green" />
+                  <Star 
+                    key={s} 
+                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.9) ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                  />
                 ))}
               </div>
-              <span className="font-bold text-sd-black">4.9/5.0</span>
-              <span className="text-sd-gray-text">(128+ Reviews)</span>
+              <span className="font-bold text-sd-black">{(remoteData as any)?.overallRating || "4.9"}/5.0</span>
+              <span className="text-sd-gray-text">({(remoteData as any)?.totalReviews || "128"}+ Reviews)</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
