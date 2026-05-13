@@ -1,16 +1,19 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
 import { SidingGuide } from "@/components/SidingGuide";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
-import { Download, Loader2, ArrowLeft } from "lucide-react";
+import { Download, Loader2, ArrowLeft, Share2, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/guide")({
   validateSearch: (search: Record<string, unknown>) => ({
     city: (search.city as string) || "",
     src: (search.src as string) || "",
+    download: (search.download as string) || "",
   }),
   head: () => ({
     meta: [
@@ -29,10 +32,25 @@ export const Route = createFileRoute("/guide")({
 });
 
 function GuidePage() {
-  const { city, src } = Route.useSearch();
+  const { city, src, download } = Route.useSearch();
   const navigate = useNavigate();
   const [downloadReady, setDownloadReady] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const [publicUrl, setPublicUrl] = useState<string | null>(null);
+  const [copying, setCopying] = useState(false);
+
+  // Persistence within session
+  useEffect(() => {
+    const isUnlocked = sessionStorage.getItem("guide_unlocked") === "true";
+    if (isUnlocked || download) {
+      setDownloadReady(true);
+    }
+  }, [download]);
+
+  const handleSuccess = () => {
+    sessionStorage.setItem("guide_unlocked", "true");
+    setDownloadReady(true);
+  };
 
   const exportPDF = async () => {
     setExporting(true);
@@ -55,11 +73,46 @@ function GuidePage() {
         pdf.addImage(imgData, "JPEG", 0, 0, 595, 842);
       }
       
+      const fileName = `SidingDepot-Georgia-Homeowner-Guide-2026-${Date.now()}.pdf`;
+      const pdfBlob = pdf.output("blob");
+
+      // Save locally
       pdf.save("SidingDepot-Georgia-Homeowner-Guide-2026.pdf");
+
+      // Upload to Supabase for shareable link
+      const { data, error } = await supabase.storage
+        .from("guides")
+        .upload(fileName, pdfBlob, {
+          contentType: "application/pdf",
+          cacheControl: "3600",
+          upsert: false
+        });
+
+      if (error) throw error;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("guides")
+        .getPublicUrl(fileName);
+
+      setPublicUrl(publicUrl);
+      toast.success("Shareable link generated!");
     } catch (err) {
       console.error("PDF Export failed:", err);
+      toast.error("Failed to generate shareable link, but PDF was downloaded.");
     } finally {
       setExporting(false);
+    }
+  };
+
+  const copyToClipboard = async () => {
+    if (!publicUrl) return;
+    setCopying(true);
+    try {
+      await navigator.clipboard.writeText(publicUrl);
+      toast.success("Link copied to clipboard!");
+      setTimeout(() => setCopying(false), 2000);
+    } catch (err) {
+      setCopying(false);
     }
   };
 
@@ -80,17 +133,29 @@ function GuidePage() {
                Georgia Homeowner's Siding Guide 2026
              </div>
           </div>
-          <Button 
-            onClick={exportPDF} 
-            disabled={exporting}
-            className="bg-sd-green text-sd-navy font-bold rounded-pill h-10 px-6"
-          >
-            {exporting ? (
-              <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Generating...</>
-            ) : (
-              <><Download className="h-4 w-4 mr-2" /> Download PDF</>
+          <div className="flex items-center gap-2">
+            {publicUrl && (
+              <Button 
+                onClick={copyToClipboard}
+                variant="outline"
+                className="bg-transparent border-white/20 text-white hover:bg-white/10 font-bold rounded-pill h-10 px-4"
+              >
+                {copying ? <Check className="h-4 w-4 mr-2" /> : <Copy className="h-4 w-4 mr-2" />}
+                {copying ? "Copied" : "Copy Link"}
+              </Button>
             )}
-          </Button>
+            <Button 
+              onClick={exportPDF} 
+              disabled={exporting}
+              className="bg-sd-green text-sd-navy font-bold rounded-pill h-10 px-6"
+            >
+              {exporting ? (
+                <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Generating...</>
+              ) : (
+                <><Download className="h-4 w-4 mr-2" /> Download PDF</>
+              )}
+            </Button>
+          </div>
         </div>
       )}
 
@@ -115,17 +180,12 @@ function GuidePage() {
               <h3 className="text-xl font-bold text-sd-navy mb-2 uppercase tracking-tight">Request Instant Access</h3>
               <p className="text-sd-gray-text text-sm mb-8 italic">Sent directly to your inbox and available for download.</p>
               
-              {/* Using a custom onSuccess callback proxy via HeroQuoteForm if we had one, 
-                  but for now we'll simulate the successful transition based on GHL submit logic
-                  or provide a simple success state for the user. */}
               <div className="text-left">
                 <SimpleLeadForm
                   source={src || "guide_page"}
                   tag="guide_request"
                   submitLabel="Send My Free Guide →"
-                  onSuccess={() => {
-                    setTimeout(() => setDownloadReady(true), 800);
-                  }}
+                  onSuccess={handleSuccess}
                 />
               </div>
 
