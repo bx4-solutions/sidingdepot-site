@@ -11,8 +11,7 @@ export const inspectURL = createServerFn({ method: "POST" })
   .inputValidator((data) =>
     z.object({ url: z.string().url(), action: z.enum(["REQUEST_INDEXING"]) }).parse(data)
   )
-  .middleware([requireSupabaseAuth])
-  .handler(async ({ data, context }) => {
+  .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
