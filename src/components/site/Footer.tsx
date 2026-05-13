@@ -5,7 +5,7 @@ import { SITE, SERVICES, CITIES } from "@/data/site";
 export function Footer() {
   return (
     <footer className="bg-sd-dark text-white">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
             <div className="font-display text-3xl leading-none text-sd-green">
