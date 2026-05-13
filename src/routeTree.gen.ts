@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
+import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
@@ -44,6 +45,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SidingRoute = SidingRouteImport.update({
   id: '/siding',
   path: '/siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoDashboardRoute = SeoDashboardRouteImport.update({
+  id: '/seo-dashboard',
+  path: '/seo-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RoofingRoute = RoofingRouteImport.update({
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/roofing': typeof RoofingRoute
+  '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/roofing': typeof RoofingRoute
+  '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/roofing': typeof RoofingRoute
+  '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
@@ -221,6 +230,7 @@ export interface FileRouteTypes {
     | '/painting'
     | '/projects'
     | '/roofing'
+    | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/painting'
     | '/projects'
     | '/roofing'
+    | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/painting'
     | '/projects'
     | '/roofing'
+    | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
@@ -291,6 +303,7 @@ export interface RootRouteChildren {
   PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   RoofingRoute: typeof RoofingRoute
+  SeoDashboardRoute: typeof SeoDashboardRoute
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WindowsRoute: typeof WindowsRoute
@@ -322,6 +335,13 @@ declare module '@tanstack/react-router' {
       path: '/siding'
       fullPath: '/siding'
       preLoaderRoute: typeof SidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-dashboard': {
+      id: '/seo-dashboard'
+      path: '/seo-dashboard'
+      fullPath: '/seo-dashboard'
+      preLoaderRoute: typeof SeoDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/roofing': {
@@ -487,6 +507,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   RoofingRoute: RoofingRoute,
+  SeoDashboardRoute: SeoDashboardRoute,
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WindowsRoute: WindowsRoute,

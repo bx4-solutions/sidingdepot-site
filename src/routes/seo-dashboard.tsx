@@ -47,7 +47,15 @@ function SEODashboard() {
     CRAWLED: "text-yellow-600",
     NOT_INDEXED: "text-red-600",
     UNKNOWN: "text-gray-600",
-  }[status?.indexingState || "UNKNOWN"] || "text-gray-600";
+  }[(status?.indexingState as keyof typeof colorMap) || "UNKNOWN"] || "text-gray-600";
+
+  const colorMap = {
+    INDEXED: "text-green-600",
+    DISCOVERED: "text-blue-600",
+    CRAWLED: "text-yellow-600",
+    NOT_INDEXED: "text-red-600",
+    UNKNOWN: "text-gray-600",
+  } as const;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-sd-navy to-sd-navy/95 px-4 py-12">
