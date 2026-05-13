@@ -102,11 +102,8 @@ function FinancePage() {
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 lg:px-12 lg:pb-20 lg:pt-40">
-          <nav className="mb-4 flex items-center gap-2 text-sm font-medium text-white/70">
-            <Link to="/" className="hover:text-sd-green transition-colors">Home</Link>
-            <span className="text-sd-green">•</span>
-            <span className="text-white">Service</span>
-          </nav>
+
+
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">
             Finance
           </h1>
