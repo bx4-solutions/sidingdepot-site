@@ -345,21 +345,28 @@ function SEODashboard() {
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
              <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
-             <span className="text-slate-300 text-xs flex items-center gap-2">
-               <Clock className="h-3 w-3" /> 
-               {isFetching ? "Atualizando..." : "Sincronizado"}
-               <button 
-                 onClick={() => {
-                   refetch();
-                   toast.success("Atualizando dados...");
-                 }}
-                 disabled={isFetching}
-                 className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
-                 title="Atualizar agora"
-               >
-                 <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
-               </button>
-             </span>
+             <div className="flex flex-col">
+               <span className="text-slate-300 text-[10px] flex items-center gap-2">
+                 <Clock className="h-3 w-3" /> 
+                 {isFetching ? "Atualizando..." : "Sincronizado"}
+                 <button 
+                   onClick={() => {
+                     refetch();
+                     toast.success("Atualizando dados...");
+                   }}
+                   disabled={isFetching}
+                   className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
+                   title="Atualizar agora"
+                 >
+                   <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
+                 </button>
+               </span>
+               {metrics?.isSimulated && (
+                 <span className="text-[9px] text-sd-green/70 font-bold uppercase tracking-widest">
+                   Modo Demonstração (Dados Simulados)
+                 </span>
+               )}
+             </div>
           </div>
 
           <div className="flex items-center gap-6">
