@@ -43,15 +43,41 @@ export const Route = createFileRoute("/locations/$city/$service")({
         addressCountry: "US",
       },
       areaServed: { "@type": "City", name: `${city.name}, GA` },
+      image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
     };
 
     const serviceSchema = {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: service.title,
-      provider: { "@type": "LocalBusiness", name: "Siding Depot" },
+      name: `${service.title} in ${city.name}`,
+      description,
+      provider: { "@type": "LocalBusiness", name: "Siding Depot", telephone: SITE.phone },
       areaServed: { "@type": "City", name: `${city.name}, GA` },
       url,
+    };
+
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `Do you provide ${service.title.toLowerCase()} estimates in ${city.name}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Yes, Siding Depot provides free, on-site estimates for ${service.title.toLowerCase()} projects throughout ${city.name} and the surrounding ${city.county} area.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Is Siding Depot licensed to work in ${city.name}, GA?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Yes, we are a fully licensed Georgia General Contractor (#RBQA006789) and carry comprehensive insurance for all ${service.title.toLowerCase()} work in ${city.name}.`,
+          },
+        },
+      ],
     };
 
     return {
@@ -72,6 +98,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(localBusiness) },
         { type: "application/ld+json", children: JSON.stringify(serviceSchema) },
+        { type: "application/ld+json", children: JSON.stringify(faqSchema) },
       ],
     };
   },
@@ -82,7 +109,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
         We don't have a dedicated landing page for this combination yet.
       </p>
       <Button asChild className="mt-8">
-        <Link to="/service-areas">View all service areas</Link>
+        <Link to="/">Back to home</Link>
       </Button>
     </div>
   ),
