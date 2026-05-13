@@ -294,15 +294,25 @@ function HomePage() {
               </Button>
             </div>
           </div>
-          <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
-            <iframe
-              src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
-              title="Why James Hardie siding is built for Georgia"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
+          <div>
+            <div className="relative w-full overflow-hidden rounded-xl bg-sd-black aspect-video shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/tENqAaDFr9s?rel=0"
+                title="Why James Hardie siding is built for Georgia"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/contact">Get Your Free Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="outlineWhite">
+                <Link to="/siding">See Siding Services</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
