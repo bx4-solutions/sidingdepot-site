@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -20,7 +21,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
-import { SERVICE_METADATA } from "@/data/seo-config";
+import { SERVICE_METADATA_AB, getSeoForVariation } from "@/data/seo-config";
+import {
+  trackVariationView,
+  trackCtaClick,
+  trackCallClick,
+} from "@/lib/track";
+
 
 export type ChecklistItem = {
   Icon: LucideIcon;
