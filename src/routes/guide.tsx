@@ -65,7 +65,9 @@ function GuidePage() {
         {/* PDF preview + form */}
         <section className="py-12 lg:py-16">
           <div className="mx-auto grid max-w-6xl gap-8 px-4 lg:grid-cols-[1.2fr_1fr] lg:px-8">
-            {/* PDF iframe preview */}
+            {/* PDF preview card — visual mock of the cover page. Avoids the
+                Chrome inline-PDF iframe blocker that shows "Esta página foi
+                bloqueada pelo Chrome". The real PDF opens in a new tab. */}
             <div className="overflow-hidden rounded-2xl border border-sd-gray-border bg-white shadow-sm">
               <div className="flex items-center justify-between border-b border-sd-gray-border bg-sd-gray-bg/60 px-4 py-2.5">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-sd-gray-text">
@@ -87,12 +89,63 @@ function GuidePage() {
                   Open in new tab
                 </a>
               </div>
-              <iframe
-                title="5 Mistakes to Avoid When Replacing Siding in Georgia — preview"
-                src={`${PDF_PATH}#view=FitH`}
-                className="h-[640px] w-full bg-white"
-                loading="lazy"
-              />
+
+              {/* Mocked cover */}
+              <a
+                href={PDF_PATH}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  track("lead_magnet_pdf_preview_open", {
+                    source: src ?? "guide_page",
+                    city,
+                    pdf_path: PDF_PATH,
+                    location: "preview_card",
+                  })
+                }
+                className="group relative block bg-sd-navy"
+              >
+                <div className="relative mx-auto max-w-md px-8 py-12 text-white">
+                  <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
+                    <FileText className="h-3 w-3" /> Homeowner Guide
+                  </span>
+                  <h3 className="mt-5 font-display text-2xl leading-tight sm:text-3xl">
+                    5 Mistakes You Can&rsquo;t Afford to Make When Replacing Siding in Georgia
+                  </h3>
+                  <p className="mt-3 text-xs leading-relaxed text-white/70">
+                    A 4-page contract-trap checklist for North Atlanta homeowners
+                    &mdash; including the 8 questions to ask every estimator.
+                  </p>
+
+                  <div className="mt-8 space-y-2">
+                    {[
+                      "Reading a siding quote line by line",
+                      "James Hardie certifications to verify",
+                      "8 questions that filter pros from amateurs",
+                      "Red-flag clauses hidden in standard contracts",
+                    ].map((b, i) => (
+                      <div key={b} className="flex items-start gap-2 text-[12px] text-white/80">
+                        <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-sd-green/20 text-[10px] font-bold text-sd-green">
+                          {i + 1}
+                        </span>
+                        <span>{b}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-10 flex items-center justify-between border-t border-white/15 pt-4 text-[10px] uppercase tracking-wider text-white/45">
+                    <span>Siding Depot &middot; Marietta, GA</span>
+                    <span>Page 1 / 4</span>
+                  </div>
+                </div>
+
+                {/* Hover affordance */}
+                <div className="absolute inset-0 flex items-center justify-center bg-sd-navy/0 transition-colors duration-200 group-hover:bg-sd-navy/40">
+                  <span className="opacity-0 transition-opacity duration-200 group-hover:opacity-100 inline-flex items-center gap-2 rounded-pill bg-sd-green px-5 py-2.5 text-xs font-bold text-sd-navy shadow-lg">
+                    <FileText className="h-3.5 w-3.5" /> Open the full PDF
+                  </span>
+                </div>
+              </a>
             </div>
 
             {/* Form */}
