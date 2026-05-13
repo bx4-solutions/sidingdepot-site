@@ -122,16 +122,32 @@ function DumpsterRentalPage() {
     setSubmitting(true);
     try {
       if (SITE.ghlWebhookUrl) {
-        await fetch(SITE.ghlWebhookUrl, {
+        // Prepare data for GHL Dumpster Reservation
+        const payload = {
+          first_name: parsed.data.firstName,
+          last_name: parsed.data.lastName,
+          email: parsed.data.email,
+          phone: parsed.data.phone,
+          street: parsed.data.street,
+          city: parsed.data.city,
+          state: parsed.data.state,
+          zip: parsed.data.zip,
+          drop_date: parsed.data.dropDate,
+          early_pickup: parsed.data.earlyPickup,
+          placement_instructions: parsed.data.placement,
+          payment_method: parsed.data.payment,
+          source: "dumpster_rental_lp",
+          tag: "dumpster_reservation",
+          submittedAt: new Date().toISOString(),
+        };
+
+        const response = await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...parsed.data,
-            source: "dumpster_rental_lp",
-            tag: "dumpster_rental_quote",
-            submittedAt: new Date().toISOString(),
-          }),
+          body: JSON.stringify(payload),
         });
+
+        if (!response.ok) throw new Error("Webhook failed");
       }
       track("dumpster_rental_submit", {
         city: parsed.data.city,

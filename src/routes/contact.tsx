@@ -11,6 +11,8 @@ import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
+  city: z.string().max(80).optional(),
+  service: z.string().max(80).optional(),
 });
 
 export const Route = createFileRoute("/contact")({
@@ -93,21 +95,35 @@ function ContactPage() {
     setSubmitting(true);
     try {
       if (SITE.ghlWebhookUrl) {
-        await fetch(SITE.ghlWebhookUrl, {
+        // Prepare data for GHL
+        const payload = {
+          first_name: parsed.data.name.split(" ")[0],
+          last_name: parsed.data.name.split(" ").slice(1).join(" ") || " ",
+          email: parsed.data.email,
+          phone: parsed.data.phone,
+          source: parsed.data.source || "contact_page",
+          message: parsed.data.message,
+          location: search.city || "North Atlanta",
+          service_requested: search.service || "General Inquiry",
+        };
+
+        const response = await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(parsed.data),
+          body: JSON.stringify(payload),
         });
+
+        if (!response.ok) throw new Error("Webhook failed");
       }
       trackLeadSubmit({
-        service: "general",
+        service: search.service || "general",
         phone: parsed.data.phone,
         source: parsed.data.source || "contact_page",
       });
       setDone(true);
     } catch {
       track("quote_form_error", { source: parsed.data.source || "contact_page" });
-      setErrors({ message: "Falha ao enviar. Tente novamente." });
+      setErrors({ message: "Ocorreu um erro ao enviar. Por favor, tente novamente ou ligue para nós." });
     } finally {
       setSubmitting(false);
     }

@@ -74,9 +74,15 @@ export function HeroQuoteForm() {
     setErrors({});
     setSubmitting(true);
     const payload = {
-      ...parsed.data,
-      services: parsed.data.services, // explicit array of selected services
+      first_name: parsed.data.name.split(" ")[0],
+      last_name: parsed.data.name.split(" ").slice(1).join(" ") || " ",
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      city: parsed.data.city,
+      services: parsed.data.services.join(", "),
+      message: parsed.data.message,
       source: SOURCE,
+      tag: "hero_quote_request",
       submittedAt: new Date().toISOString(),
     };
     if (import.meta.env.DEV) {
@@ -84,11 +90,13 @@ export function HeroQuoteForm() {
     }
     try {
       if (SITE.ghlWebhookUrl) {
-        await fetch(SITE.ghlWebhookUrl, {
+        const response = await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
+
+        if (!response.ok) throw new Error("Webhook failed");
       }
       track("quote_form_submit", {
         source: SOURCE,
