@@ -52,15 +52,50 @@ const HERO_BG =
 const FAQS = [
   {
     q: "How much does James Hardie siding cost in Marietta, GA?",
-    a: "For most homes in the Marietta and North Atlanta area, a full James Hardie installation runs $15,000–$30,000 for a 2,500 sq ft home ($8–$14/sqft installed). We provide free, itemized estimates — no surprises.",
+    a: "For most homes in the Marietta and North Atlanta area, a full James Hardie installation runs $15,000–$30,000 for a 2,500 sq ft home ($8–$14/sqft installed). Every estimate is itemized and fixed — the price we quote is the price you pay.",
+  },
+  {
+    q: "Do you offer financing or 0% APR plans?",
+    a: "Yes. We partner with GreenSky to offer 0% APR plans (subject to credit approval). Most homeowners get pre-approved in under 60 seconds during the consultation, with monthly payments often less than what they spend on coffee per week.",
   },
   {
     q: "How long does siding installation take?",
-    a: "Most homes in North Atlanta take 3–7 days from start to finish. Your home is never left exposed overnight. We communicate proactively if weather causes any delay.",
+    a: "Most homes in North Atlanta take 3–7 days from start to finish. Your home is never left exposed overnight. We assign a dedicated project manager and communicate proactively if weather causes any delay.",
+  },
+  {
+    q: "How long will James Hardie siding last on my home?",
+    a: "James Hardie fiber cement is engineered for 50+ years and comes with a 30-year limited transferable product warranty plus our workmanship guarantee. ColorPlus® Technology keeps the finish sharp 30% longer than traditional paint.",
+  },
+  {
+    q: "How soon can you start my project?",
+    a: "We're currently booking 3–4 weeks out. Request your free estimate today to lock in your spot before our spring calendar fills up. Insurance and storm-damage projects can often be prioritized.",
   },
   {
     q: "Does insurance cover siding damage from hail or storms?",
-    a: "In most cases, yes. Georgia's hail season (March–June) generates thousands of siding claims across Cobb and Cherokee counties. We work with your insurance adjuster and can document damage on your behalf.",
+    a: "In most cases, yes. Georgia's hail season (March–June) generates thousands of siding claims across Cobb and Cherokee counties. We work directly with your insurance adjuster and document damage on your behalf — at no cost to you.",
+  },
+  {
+    q: "Are you really licensed and insured?",
+    a: "Yes — Georgia GC #RBQA006789, fully insured with general liability and workers' comp. We're James Hardie Elite Preferred (top 2% nationwide), GAF Factory Certified, and BBB A+ accredited.",
+  },
+] as const;
+
+const SIDING_TYPES = [
+  {
+    title: "Plank Siding",
+    desc: "Long, narrow horizontal boards. Durable, low-maintenance and weather-resistant — the most popular Hardie style in North Atlanta.",
+  },
+  {
+    title: "Board & Batten",
+    desc: "Vertical panels with batten strips covering the seams. Adds height, drama and a modern-farmhouse feel to any elevation.",
+  },
+  {
+    title: "Shingle Siding",
+    desc: "Overlapping rectangular pieces for a warm, traditional look. Perfect for gables, accents and Cape Cod-style homes.",
+  },
+  {
+    title: "Soffit, Trim & Fascia",
+    desc: "The often-overlooked pieces that protect attics and crawl spaces from moisture, heat and pests — installed in matching Hardie finishes.",
   },
 ] as const;
 
@@ -435,6 +470,35 @@ export function SidingLP({ city }: SidingLPProps) {
                 <div className="text-3xl">{c.icon}</div>
                 <h3 className="mt-3 text-lg font-bold text-sd-navy">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TYPES OF SIDING */}
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-block rounded bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-sd-green-text">
+              James Hardie Styles
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-sd-black sm:text-4xl">
+              Types of Siding We Install in {city}
+            </h2>
+            <p className="mt-3 text-sd-gray-text">
+              Every Hardie product line — installed by Elite Preferred crews engineered for HardieZone HZ10.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {SIDING_TYPES.map((t) => (
+              <div
+                key={t.title}
+                className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="h-1 w-10 rounded-full bg-sd-green" />
+                <h3 className="mt-4 text-lg font-bold text-sd-navy">{t.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{t.desc}</p>
               </div>
             ))}
           </div>

@@ -77,7 +77,7 @@ function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.slice(0, 6).map((s) => (
+            {SERVICES.slice(0, 6).map((s, i) => (
               <ServiceCard
                 key={s.slug}
                 id={`services-${s.slug}`}
@@ -86,6 +86,7 @@ function HomePage() {
                 description={s.short}
                 to={`/${s.slug}`}
                 image={s.image}
+                priority={i < 3}
               />
             ))}
           </div>
