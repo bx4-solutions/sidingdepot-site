@@ -78,8 +78,8 @@ export const inspectURL = createServerFn({ method: "POST" })
     );
 
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(`GSC inspection failed: ${JSON.stringify(error)}`);
+      const error = await parseJsonResponse(response);
+      throw new Error(`GSC inspection failed (${response.status}): ${JSON.stringify(error)}`);
     }
 
     const result = await parseJsonResponse(response);
