@@ -62,6 +62,7 @@ export const Route = createFileRoute("/gutters")({
       image: HERO_IMAGE,
       canonical: CANONICAL,
     }),
+    links: [{ rel: "canonical", href: CANONICAL }],
     scripts: [
       serviceJsonLd("Seamless Gutter Installation", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Seamless Gutter Installation" }),
       faqJsonLd(FAQS),
