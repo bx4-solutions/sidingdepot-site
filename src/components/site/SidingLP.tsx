@@ -630,7 +630,13 @@ export function SidingLP({ city }: SidingLPProps) {
                   <p>{item.a}</p>
                   <button
                     type="button"
-                    onClick={scrollToLeadForm}
+                    onClick={() =>
+                      scrollToLeadForm({
+                        source: "faq",
+                        faq_index: i,
+                        faq_question: item.q,
+                      })
+                    }
                     className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
                   >
                     Request My Free Estimate →
