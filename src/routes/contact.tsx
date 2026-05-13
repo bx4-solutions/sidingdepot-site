@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
+import { track, trackLeadSubmit, trackContactPageView } from "@/lib/track";
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
@@ -65,6 +65,11 @@ function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
+  // Track page view on mount
+  useEffect(() => {
+    trackContactPageView();
+  }, []);
+
   // Keep "origem" in sync if the user lands with ?source=...
   useEffect(() => {
     if (search.source) {
@@ -94,7 +99,11 @@ function ContactPage() {
           body: JSON.stringify(parsed.data),
         });
       }
-      track("quote_form_submit", { source: parsed.data.source || "contact_page" });
+      trackLeadSubmit({
+        service: "general",
+        phone: parsed.data.phone,
+        source: parsed.data.source || "contact_page",
+      });
       setDone(true);
     } catch {
       track("quote_form_error", { source: parsed.data.source || "contact_page" });

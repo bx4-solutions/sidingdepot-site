@@ -1,5 +1,5 @@
 /**
- * Lightweight analytics helper.
+ * GA4 + GTM event tracking with first-touch attribution.
  *
  * Pushes events to window.dataLayer (consumed by Google Tag Manager which is
  * loaded in src/routes/__root.tsx). Safe on SSR — no-ops when window is absent.
@@ -9,8 +9,17 @@
  * string) still carry the original source. If the user arrives without UTM
  * params, attribution falls back to referrer + landing_page only.
  *
+ * Conversion Events:
+ *   - lead_submit: Contact form submission (phone, email, service type)
+ *   - whatsapp_click: WhatsApp button click (service, location)
+ *   - contact_page_view: Contact page view
+ *   - service_view: Service page view (siding, painting, windows, etc.)
+ *   - quote_request: Free estimate request initiated
+ *
  * Usage:
- *   track("quote_cta_click", { source: "before_after_slider", city: "Marietta" });
+ *   track("lead_submit", { service: "siding", city: "Marietta" });
+ *   track("whatsapp_click", { service: "windows" });
+ *   track("contact_page_view");
  */
 export type TrackPayload = Record<string, string | number | boolean | undefined>;
 
@@ -117,8 +126,83 @@ export function track(event: string, payload: TrackPayload = {}): void {
 }
 
 // =====================================================================
-// Smoke test / debug helper
+// Conversion Event Helpers
 // =====================================================================
+
+/**
+ * Track contact form submission (lead conversion)
+ */
+export function trackLeadSubmit(data: {
+  service?: string;
+  city?: string;
+  phone?: string;
+  source?: string;
+}): void {
+  track("lead_submit", {
+    event_category: "conversion",
+    event_label: data.service || "general",
+    service: data.service,
+    city: data.city,
+    source: data.source || "contact_form",
+  });
+}
+
+/**
+ * Track WhatsApp button click
+ */
+export function trackWhatsAppClick(data: {
+  service?: string;
+  location?: string;
+  source?: string;
+}): void {
+  track("whatsapp_click", {
+    event_category: "engagement",
+    event_label: data.service || "general",
+    service: data.service,
+    location: data.location,
+    source: data.source || "whatsapp_btn",
+  });
+}
+
+/**
+ * Track contact page view
+ */
+export function trackContactPageView(): void {
+  track("contact_page_view", {
+    event_category: "pageview",
+    page_type: "contact",
+  });
+}
+
+/**
+ * Track service page view (siding, windows, painting, etc.)
+ */
+export function trackServiceView(service: string): void {
+  track("service_view", {
+    event_category: "pageview",
+    page_type: "service",
+    service,
+  });
+}
+
+/**
+ * Track quote/estimate request
+ */
+export function trackQuoteRequest(data: {
+  service?: string;
+  city?: string;
+  source?: string;
+}): void {
+  track("quote_request", {
+    event_category: "conversion",
+    event_label: data.service || "general",
+    service: data.service,
+    city: data.city,
+    source: data.source || "quote_btn",
+  });
+}
+
+
 // Run from the browser console:   __trackSmokeTest()
 // Or in dev, results are auto-logged once on first import in the browser.
 
