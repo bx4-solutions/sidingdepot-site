@@ -314,8 +314,11 @@ function AboutPage() {
                 <img
                   src={src}
                   alt={`Manufacturer partner ${i + 1}`}
+                  width={160}
+                  height={64}
                   className="max-h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
