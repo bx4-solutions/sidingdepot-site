@@ -14,7 +14,7 @@ export const SITE = {
   },
   hours: "Mon–Sat: 8:00 AM – 6:00 PM",
   greenSkyUrl:
-    "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=810185699&dealerplan=25211&channel=External-Button-03",
+    "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03",
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
   social: {
     facebook: "https://www.facebook.com/SidingDepot",
