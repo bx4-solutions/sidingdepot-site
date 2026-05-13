@@ -554,7 +554,26 @@ function SEODashboard() {
           </TabsContent>
 
           <TabsContent value="ab-testing" className="space-y-6">
+            <div className="flex items-center justify-between gap-4 flex-wrap bg-white/5 p-4 rounded-xl border border-white/10">
+              <div className="flex items-center gap-2">
+                <Filter className="h-4 w-4 text-sd-green" />
+                <span className="text-sm font-bold text-white">Filtro por Cidade:</span>
+                <select className="bg-[#131921] border border-white/10 rounded-md text-xs p-1 text-slate-300 focus:ring-0">
+                  <option>Todas as Cidades</option>
+                  <option>Marietta</option>
+                  <option>Alpharetta</option>
+                  <option>Canton</option>
+                  <option>Milton</option>
+                  <option>Roswell</option>
+                </select>
+              </div>
+              <div className="text-xs text-slate-500 italic">
+                Dados agregados de GA4 e eventos locais de sessionStorage.
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 gap-6">
+
               {Object.keys(SERVICE_METADATA_AB).map((service) => (
                 <Card key={service} className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
                   <div className="bg-white/5 px-6 py-4 flex justify-between items-center border-b border-white/10">
