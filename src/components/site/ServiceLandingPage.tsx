@@ -85,6 +85,8 @@ export function ServiceLandingPage({
             alt=""
             aria-hidden
             className="h-full w-full object-cover"
+            fetchPriority="high"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
