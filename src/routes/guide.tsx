@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
 import { SidingGuide } from "@/components/SidingGuide";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -119,12 +119,11 @@ function GuidePage() {
                   but for now we'll simulate the successful transition based on GHL submit logic
                   or provide a simple success state for the user. */}
               <div className="text-left">
-                <HeroQuoteForm
+                <SimpleLeadForm
                   source={src || "guide_page"}
                   tag="guide_request"
-                  bare
+                  submitLabel="Send My Free Guide →"
                   onSuccess={() => {
-                    // Slight delay to let user see success state, then show guide
                     setTimeout(() => setDownloadReady(true), 800);
                   }}
                 />
