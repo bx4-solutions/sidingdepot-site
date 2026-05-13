@@ -111,7 +111,6 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
       endDate: z.string(), // YYYY-MM-DD
     }).parse(data)
   )
-  .middleware([requireSupabaseAuth])
   .handler(async ({ data }) => {
     const LOVABLE_API_KEY = process.env.LOVABLE_API_KEY;
     if (!LOVABLE_API_KEY) {
