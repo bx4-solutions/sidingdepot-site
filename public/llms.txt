@@ -1,0 +1,42 @@
+# Siding Depot
+
+> James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Canton and all of North Atlanta, GA. 1,500+ homes resided in 15+ years.
+
+Siding Depot is a licensed and insured exterior contractor based in Marietta, Georgia. Services include James Hardie fiber cement siding installation, exterior painting, window replacement, decks, gutters, roofing, and dumpster rental. Free written quotes within 24 hours.
+
+## Pages
+
+- [Home](/): Overview, featured services, and quote form.
+- [About](/about): Company story, credentials, and James Hardie Elite Preferred status.
+- [Contact](/contact): Request a free quote or call the team.
+- [Projects](/projects): Recent siding, painting and exterior projects across North Atlanta.
+- [Guide](/guide): Free homeowner siding buyer's guide.
+
+## Services
+
+- [Siding](/siding): James Hardie fiber cement siding installation in North Atlanta.
+- [Painting](/painting): Exterior painting and color consultation.
+- [Roofing](/roofing): Roof replacement and repair.
+- [Windows](/windows): Energy-efficient window replacement.
+- [Deck](/deck): Custom deck design and build.
+- [Gutters](/gutters): Seamless gutter installation.
+- [Dumpster Rental](/dumpster-rental): Roll-off dumpster rentals.
+
+## Service Areas
+
+- [Siding in Marietta](/locations/marietta/siding)
+- [Siding in Alpharetta](/locations/alpharetta/siding)
+- [Siding in Milton](/locations/milton/siding)
+- [Siding in Canton](/locations/canton/siding)
+- [Siding in Woodstock](/locations/woodstock/siding)
+- [Siding in Roswell](/locations/roswell/siding)
+- [Siding in Kennesaw](/locations/kennesaw/siding)
+- [Siding in Johns Creek](/locations/johns-creek/siding)
+- [Siding in Sandy Springs](/locations/sandy-springs/siding)
+- [Siding in Acworth](/locations/acworth/siding)
+
+## Optional
+
+- [Marietta Siding Landing](/lp/siding-marietta)
+- [Alpharetta Siding Landing](/lp/siding-alpharetta)
+- [Canton Siding Landing](/lp/siding-canton)
