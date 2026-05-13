@@ -527,118 +527,35 @@ function SidingFaqSection() {
   );
 }
 
-/* ---------------------------------------------------------------- */
-/* Page constants                                                    */
-/* ---------------------------------------------------------------- */
-
-const BENEFITS = [
-  "Top 2% Elite Preferred James Hardie contractor",
-  "Engineered for HardieZone HZ10 — Georgia humidity, storms & UV",
-  "30-year limited warranty on materials and ColorPlus® finish",
-  "W-2 crews — never subcontracted",
-] as const;
-
 function SidingPage() {
   return (
-    <main>
-      {/* HERO */}
-      <section className="relative bg-sd-navy text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-25">
-          <img
-            src="/projects/project-1.webp"
-            alt=""
-            aria-hidden
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
-          <div className="max-w-2xl">
-            <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              James Hardie · Elite Preferred
-            </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie® Siding:{" "}
-              <span className="text-sd-green">Elite Installation & Protection.</span>
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's HZ10 zone, our siding systems combine unbeatable durability with the vibrant ColorPlus® Technology finish.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact">
-                  Get a free estimate <ArrowRight />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
-                  <Phone /> Call {SITE.phone}
-                </a>
-              </Button>
-            </div>
-            <ul className="mt-10 grid gap-3 sm:grid-cols-2 text-sm text-white/85">
-              {BENEFITS.map((b) => (
-                <li key={b} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-sd-green shrink-0" />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2 — interactive siding types */}
+    <div className="flex flex-col">
+      <ServiceLandingPage
+        serviceKey={SERVICE_KEY}
+        city={CITY}
+        heroImage="/projects/project-1.webp"
+        eyebrow="James Hardie · Elite Preferred"
+        title="Elite James Hardie Siding:"
+        titleAccent="Atlanta's Top 2% Choice."
+        intro="Transform your home with fiber cement siding engineered for Georgia's humidity. As an Elite Preferred contractor, we provide precision installation and the industry's best warranties."
+        benefits={[
+          "Top 2% Elite Preferred James Hardie status",
+          "Engineered for Georgia heat & humidity (HZ10)",
+          "30-year limited material warranty",
+          "W-2 certified crews — no subcontractors",
+        ]}
+        hiringRole="siding contractor"
+        hiringIntro="Choosing siding is a 30-year decision. Use this checklist to verify structural and moisture-barrier standards for Georgia homes."
+        hiringChecklist={HIRING_CHECKLIST}
+        faqLabel="Siding"
+        faqs={FAQ_ITEMS}
+        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We serve Cobb County, Cherokee County and Fulton County with Elite Preferred expertise. In 2026, a full James Hardie replacement in North Atlanta typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
+        ctaAccent="quality and durability?"
+      />
+      
+      {/* Flagship-only interactive sections */}
       <SidingTypesSection />
-
-      {/* SECTION 3 — before/after carousel */}
       <BeforeAfterCarousel />
-
-      {/* SECTION 4 — What to consider when hiring */}
-      <WhatToConsiderSection />
-
-      {/* SECTION 5 — FAQ */}
-      <SidingFaqSection />
-
-      {/* TRUST + CTA */}
-      <section className="bg-sd-navy py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
-              Ready for siding that lasts{" "}
-              <span className="text-sd-green">decades, not seasons?</span>
-            </h2>
-            <p className="mt-4 text-white/75 max-w-2xl">
-              Free on-site consultation, written estimate the same day, and a
-              dedicated project manager from start to finish.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact">Get a free estimate <ArrowRight /></Link>
-              </Button>
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}><Phone /> Call {SITE.phone}</a>
-              </Button>
-            </div>
-          </div>
-          <div className="grid gap-3">
-            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
-              <Award className="h-6 w-6 text-sd-green" />
-              <div>
-                <p className="font-semibold">Elite Preferred</p>
-                <p className="text-xs text-white/60">Top 2% of US installers</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
-              <ShieldCheck className="h-6 w-6 text-sd-green" />
-              <div>
-                <p className="font-semibold">Licensed &amp; Insured</p>
-                <p className="text-xs text-white/60">GA GC #RBQA006789</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   );
 }
