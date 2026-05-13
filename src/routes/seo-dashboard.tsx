@@ -151,7 +151,37 @@ function SEODashboard() {
     { id: "calendar", label: "Calendário", icon: Calendar },
     { id: "users", label: "Usuários", icon: Users },
     { id: "integrations", label: "Integrações", icon: Settings },
+    { id: "profile", label: "Meu Perfil", icon: User },
   ];
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [updatingPassword, setUpdatingPassword] = useState(false);
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      toast.error("As senhas não coincidem");
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.error("A senha deve ter pelo menos 6 caracteres");
+      return;
+    }
+
+    setUpdatingPassword(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      toast.success("Senha atualizada com sucesso!");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (err: any) {
+      toast.error(err.message || "Falha ao atualizar senha");
+    } finally {
+      setUpdatingPassword(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
