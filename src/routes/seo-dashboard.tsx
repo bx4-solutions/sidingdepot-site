@@ -449,7 +449,7 @@ function SEODashboard() {
                                   className="bg-white/5 border-white/10 text-white" 
                                   placeholder="••••••••"
                                   value={newPassword}
-                                  onChange={(e) => setNewPassword(e.target.value)}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                                   required
                                 />
                               </div>
