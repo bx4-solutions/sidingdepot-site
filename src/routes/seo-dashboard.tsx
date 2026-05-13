@@ -22,7 +22,11 @@ import {
   Loader2,
   LogOut,
   ShieldCheck,
-  History
+  History,
+  Users,
+  UserCog,
+  Trash2,
+  Shield
 } from "lucide-react";
 import { 
   getIndexingStatus, 
@@ -135,6 +139,39 @@ function SEODashboard() {
       return data;
     },
     enabled: userProfile?.role === "admin",
+  });
+
+  const { data: allProfiles, refetch: refetchProfiles } = useQuery({
+    queryKey: ["all-profiles"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: userProfile?.role === "admin",
+  });
+
+  const updateProfileMutation = useMutation({
+    mutationFn: async ({ id, role }: { id: string, role: 'admin' | 'viewer' }) => {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ role })
+        .eq("id", id);
+      if (error) throw error;
+      
+      await supabase.rpc('log_admin_action', {
+        p_action: 'update_user_role',
+        p_entity_type: 'profiles',
+        p_entity_id: id,
+        p_details: { new_role: role }
+      });
+    },
+    onSuccess: () => {
+      refetchProfiles();
+    }
   });
 
   const { data: status, isLoading: statusLoading } = useQuery({
@@ -401,6 +438,10 @@ function SEODashboard() {
             <TabsList className="bg-transparent border-none p-0 h-auto gap-6">
               <TabsTrigger value="overview" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">VISÃO GERAL</TabsTrigger>
               <TabsTrigger value="pages" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">LANDING PAGES</TabsTrigger>
+              {userProfile?.role === "admin" && (
+                <TabsTrigger value="users" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all uppercase">Gestão de Usuários</TabsTrigger>
+              )}
+
               <TabsTrigger value="conversions" className="data-[state=active]:text-sd-green data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none p-0 h-auto font-bold text-sm tracking-tight transition-all">CONVERSÕES (GA4)</TabsTrigger>
             </TabsList>
             
@@ -506,6 +547,72 @@ function SEODashboard() {
                 </CardContent>
              </Card>
           </TabsContent>
+
+          {userProfile?.role === "admin" && (
+            <TabsContent value="users">
+              <Card className="bg-[#131921] border-white/10 shadow-xl overflow-hidden">
+                <CardHeader className="border-b border-white/5 bg-white/[0.02] flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="text-lg text-white flex items-center gap-2">
+                      <Users className="h-5 w-5 text-sd-green" />
+                      Gestão de Usuários Administradores
+                    </CardTitle>
+                    <CardDescription className="text-slate-500">Controle quem pode acessar o SEO Command Center</CardDescription>
+                  </div>
+                  <Button size="sm" className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold" onClick={() => alert("Para criar novos usuários, utilize o dashboard do Supabase Auth para garantir segurança máxima.")}>
+                    <UserPlus className="h-4 w-4 mr-2" /> Novo Usuário
+                  </Button>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/5 bg-white/[0.01]">
+                          <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">E-mail</th>
+                          <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Nome</th>
+                          <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Role</th>
+                          <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase">Criado em</th>
+                          <th className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase text-right">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {allProfiles?.map((profile: any) => (
+                          <tr key={profile.id} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-6 py-4 text-sm text-white font-medium">{profile.email}</td>
+                            <td className="px-6 py-4 text-sm text-slate-400">{profile.display_name || 'N/A'}</td>
+                            <td className="px-6 py-4">
+                              <Badge className={`text-[10px] font-bold uppercase ${profile.role === 'admin' ? 'bg-sd-green/10 text-sd-green border-sd-green/20' : 'bg-blue-500/10 text-blue-500 border-blue-500/20'}`}>
+                                {profile.role}
+                              </Badge>
+                            </td>
+                            <td className="px-6 py-4 text-xs text-slate-500">
+                              {new Date(profile.created_at).toLocaleDateString('pt-BR')}
+                            </td>
+                            <td className="px-6 py-4 text-right space-x-2">
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="h-8 text-[10px] text-sd-green hover:bg-sd-green/10"
+                                onClick={() => {
+                                  const newRole = profile.role === 'admin' ? 'viewer' : 'admin';
+                                  if (confirm(`Alterar role de ${profile.email} para ${newRole}?`)) {
+                                    updateProfileMutation.mutate({ id: profile.id, role: newRole as any });
+                                  }
+                                }}
+                              >
+                                <UserCog className="h-3 w-3 mr-1" /> Alterar Role
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          )}
+
         </Tabs>
 
         {userProfile?.role === "admin" && auditLogs && (
