@@ -14,15 +14,19 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
     }
 
     try {
-      const fields = \"reviews,rating,user_ratings_total\";
+      const fields = "reviews,rating,user_ratings_total";
       const response = await fetch(
         `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=${fields}&key=${apiKey}`
       );
       const result = await response.json();
-      console.log(\"Google Places API Response Status:\", result.status);
+      
+      if (result.status !== "OK") {
+        console.error("Google Places API error:", result.status, result.error_message);
+        return { success: false, error: result.error_message || result.status };
+      }
 
       if (!result.result || !result.result.reviews) {
-        return { success: false, error: "No reviews found or API error" };
+        return { success: false, error: "No reviews found" };
       }
 
       const reviews = result.result.reviews;
@@ -45,7 +49,12 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
         return { success: false, error: error.message };
       }
 
-      return { success: true, count: reviews.length };
+      return { 
+        success: true, 
+        count: reviews.length,
+        overallRating: result.result.rating,
+        totalReviews: result.result.user_ratings_total
+      };
     } catch (error: any) {
       console.error("Failed to sync Google Reviews:", error);
       return { success: false, error: error.message };
