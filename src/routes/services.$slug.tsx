@@ -8,6 +8,7 @@ import {
   Award,
 } from "lucide-react";
 import { seoAutomation } from "@/lib/seo-automation";
+import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
   PROJECTS_SORTED,
   SERVICE_OPTIONS,
