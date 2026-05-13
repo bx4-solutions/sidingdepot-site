@@ -78,8 +78,10 @@ export function Footer() {
               <li><Link to="/terms-of-use" className="text-white/55 hover:text-sd-green">Terms of Use</Link></li>
             </ul>
             <div className="flex gap-3 mt-5">
-              <a href="#" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><Facebook className="h-5 w-5" /></a>
-              <a href="#" aria-label="Instagram" className="text-white/40 hover:text-sd-green"><Instagram className="h-5 w-5" /></a>
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><Facebook className="h-5 w-5" /></a>
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/40 hover:text-sd-green"><Instagram className="h-5 w-5" /></a>
+              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/40 hover:text-sd-green"><Youtube className="h-5 w-5" /></a>
+              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/40 hover:text-sd-green"><Music2 className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
