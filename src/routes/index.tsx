@@ -7,6 +7,8 @@ import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
+import { MapSection } from "@/components/site/MapSection";
+import { GoogleReviews } from "@/components/site/GoogleReviews";
 
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
