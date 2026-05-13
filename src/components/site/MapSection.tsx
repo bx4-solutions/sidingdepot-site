@@ -1,13 +1,21 @@
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone, Mail, Navigation, ExternalLink, Loader2 } from "lucide-react";
 import { SITE } from "@/data/site";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function MapSection() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const addressQuery = encodeURIComponent(`${SITE.name}, ${SITE.address.full}`);
+  
   const mapUrl = apiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(SITE.address.full)}`
-    : `https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.full)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+    ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${addressQuery}`
+    : `https://maps.google.com/maps?q=${addressQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
-  const finalUrl = mapUrl;
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
+  const wazeUrl = `https://waze.com/ul?q=${addressQuery}&navigate=yes`;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
