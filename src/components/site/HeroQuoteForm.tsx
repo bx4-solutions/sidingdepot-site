@@ -38,7 +38,7 @@ type HeroQuoteFormProps = {
 
 export function HeroQuoteForm({
   source = "hero_inline_form",
-  tag = tag,
+  tag = "hero_quote_request",
   bare = false,
 }: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
