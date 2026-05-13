@@ -94,7 +94,11 @@ function ContactPage() {
           body: JSON.stringify(parsed.data),
         });
       }
-      track("quote_form_submit", { source: parsed.data.source || "contact_page" });
+      trackLeadSubmit({
+        service: "general",
+        phone: parsed.data.phone,
+        source: parsed.data.source || "contact_page",
+      });
       setDone(true);
     } catch {
       track("quote_form_error", { source: parsed.data.source || "contact_page" });
