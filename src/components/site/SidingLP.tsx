@@ -715,6 +715,21 @@ export function lpHead({ city, path }: { city: string; path: string }) {
           priceRange: "$$$",
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [...buildFaqs(city), ...GREENSKY_FAQS].map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.a,
+            },
+          })),
+        }),
+      },
     ],
   };
 }
