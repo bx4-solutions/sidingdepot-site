@@ -548,16 +548,14 @@ function SidingPage() {
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
           <div className="max-w-2xl">
             <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              Elite Preferred · Top 2% in the US
+              James Hardie · Elite Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              James Hardie siding,{" "}
-              <span className="text-sd-green">built for Georgia.</span>
+              James Hardie® Siding,{" "}
+              <span className="text-sd-green">Elite Installation & Protection.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              Marietta&apos;s trusted siding contractor. Board &amp; Batten,
-              HardiePlank, Cedarmill and Shingle — installed by W-2 crews and
-              backed by a 30-year material warranty.
+              Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's HZ10 zone, our siding systems combine unbeatable durability with the vibrant ColorPlus® Technology finish.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
