@@ -388,8 +388,7 @@ function WhatToConsiderSection() {
             <span className="text-sd-green">exterior painter.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            A repaint should last 8–12 years. Use this checklist before you
-            sign with anyone — including us.
+            A repaint is your home's primary line of defense against moisture. Use this checklist to ensure your painting partner doesn't skip critical surface preparation.
           </p>
         </div>
 
@@ -507,13 +506,11 @@ function PaintingPage() {
               Sherwin-Williams · PRO Preferred
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              Exterior painting,{" "}
-              <span className="text-sd-green">built to outlast Georgia summers.</span>
+              Exterior Painting,{" "}
+              <span className="text-sd-green">High-Performance Systems.</span>
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              Marietta&apos;s trusted exterior painters. Sherwin-Williams Emerald
-              &amp; Duration systems, applied by W-2 crews after a full
-              power-wash, prime and caulk — backed by a 5-year warranty.
+              A repaint should last a decade, not a few seasons. We utilize Sherwin-Williams® Emerald and Duration systems to create UV-resistant thermal barriers that handle North Atlanta's extreme temperature swings.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
