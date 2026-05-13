@@ -221,8 +221,8 @@ export function aggregateOfferSchema(input: {
 /**
  * Generate complete set of schemas for a service landing page
  */
-export function generateServicePageSchemas(input: ServiceSchemaInput) {
-  const schemas = [
+export function generateServicePageSchemas(input: ServiceSchemaInput): object[] {
+  const schemas: object[] = [
     organizationSchema(),
     localBusinessSchema(input.city),
     serviceSchema(input),
