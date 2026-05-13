@@ -42,7 +42,7 @@ import {
 } from "lucide-react";
 
 import sidingImg from "@/assets/services/siding.webp";
-import sidingAvif from "@/assets/services/siding.avif";
+
 import paintingImg from "@/assets/services/painting.jpg";
 import paintingWebp from "@/assets/services/painting.webp";
 import paintingAvif from "@/assets/services/painting.avif";
@@ -78,7 +78,7 @@ export const SERVICES: ReadonlyArray<{
   Icon: LucideIcon;
   image: ServiceImage;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: { src: sidingImg, avif: sidingAvif } },
+  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: { src: sidingImg } },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
   { slug: "windows", title: "Windows & Doors", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
