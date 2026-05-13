@@ -693,6 +693,7 @@ export function SidingLP({ city }: SidingLPProps) {
 export function lpHead({ city, path }: { city: string; path: string }) {
   const title = `James Hardie Siding ${city} GA | Free Estimate | Siding Depot`;
   const description = `James Hardie Elite Preferred contractor in ${city}, GA. Serving North Atlanta since 2009. Free estimate in 24h. Call ${SITE.phone}.`;
+  const image = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835";
   return {
     meta: [
       { title },
@@ -700,6 +701,12 @@ export function lpHead({ city, path }: { city: string; path: string }) {
       { name: "robots", content: "noindex, nofollow" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:image", content: image },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: image },
       { rel: "canonical", href: `https://sidingdepot.com${path}` },
     ],
     scripts: [
