@@ -342,6 +342,45 @@ export type Database = {
         }
         Relationships: []
       }
+      google_reviews: {
+        Row: {
+          author_name: string
+          author_photo_url: string | null
+          created_at: string
+          google_review_id: string
+          id: string
+          rating: number
+          relative_time_description: string | null
+          text: string | null
+          time_timestamp: number
+          updated_at: string
+        }
+        Insert: {
+          author_name: string
+          author_photo_url?: string | null
+          created_at?: string
+          google_review_id: string
+          id?: string
+          rating: number
+          relative_time_description?: string | null
+          text?: string | null
+          time_timestamp: number
+          updated_at?: string
+        }
+        Update: {
+          author_name?: string
+          author_photo_url?: string | null
+          created_at?: string
+          google_review_id?: string
+          id?: string
+          rating?: number
+          relative_time_description?: string | null
+          text?: string | null
+          time_timestamp?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gsc_settings: {
         Row: {
           created_at: string | null
