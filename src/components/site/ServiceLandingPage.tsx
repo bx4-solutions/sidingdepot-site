@@ -78,8 +78,8 @@ export function ServiceLandingPage({
 }: ServiceLandingProps) {
   const variation = getServiceVariation(serviceKey);
   const abContent = AB_CONTENT[serviceKey]?.[variation];
-  const seo = SERVICE_METADATA[serviceKey];
-  
+  const seo = getSeoForVariation(serviceKey, variation);
+
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
   const title = abContent?.title ?? manualTitle;
@@ -93,6 +93,22 @@ export function ServiceLandingPage({
 
   // Internal links for SEO consistency
   const relatedServices = SERVICES.filter(s => s.slug !== serviceKey).slice(0, 3);
+
+  // Track variation view + override <title>/meta description on client per assigned variation
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    trackVariationView({ serviceKey, variation, city });
+    const t = seo.metaTitle(city);
+    if (t) document.title = t;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", seo.metaDesc);
+    const ogt = document.querySelector('meta[property="og:title"]');
+    if (ogt) ogt.setAttribute("content", t);
+    const ogd = document.querySelector('meta[property="og:description"]');
+    if (ogd) ogd.setAttribute("content", seo.metaDesc);
+  }, [serviceKey, variation, city, seo]);
+
+  const ctx = { serviceKey, variation, city };
 
   return (
     <main>
