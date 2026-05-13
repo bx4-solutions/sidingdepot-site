@@ -91,6 +91,32 @@ const FALLBACK_METRICS = {
   acquisition: []
 };
 
+const DATE_RANGE_PRESETS = [
+  { label: "7 dias", days: 7 },
+  { label: "30 dias", days: 30 },
+  { label: "90 dias", days: 90 },
+];
+
+const resolveDateRange = (days: number) => {
+  const end = new Date();
+  const start = new Date(end);
+  start.setDate(end.getDate() - (days - 1));
+  return {
+    startDate: start.toISOString().slice(0, 10),
+    endDate: end.toISOString().slice(0, 10),
+  };
+};
+
+const getInitialDateRange = () => {
+  if (typeof window === "undefined") return resolveDateRange(30);
+  try {
+    const stored = window.localStorage.getItem("seo-dashboard-date-range");
+    return stored ? JSON.parse(stored) : resolveDateRange(30);
+  } catch {
+    return resolveDateRange(30);
+  }
+};
+
 export const Route = createFileRoute("/seo-dashboard")({
   beforeLoad: async ({ location }) => {
     // Try to get session, but allow some grace for refreshing
