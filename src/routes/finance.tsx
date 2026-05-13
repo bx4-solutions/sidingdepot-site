@@ -89,74 +89,86 @@ function FinancePage() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[400px] w-full overflow-hidden bg-sd-navy">
+      {/* Hero Section — illustrated banner */}
+      <section className="relative w-full overflow-hidden bg-sd-black">
         <div className="absolute inset-0 z-0">
           <img
-            src="/projects/project-1.webp"
-            alt="North Atlanta home"
-            className="h-full w-full object-cover opacity-30"
+            src="/finance-hero-bg.jpg"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-sd-navy/60 to-sd-navy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-sd-black/40 via-sd-black/20 to-sd-black/70" />
         </div>
-        
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-4 text-center lg:px-8">
-          <nav className="mb-6 flex items-center gap-2 text-sm font-medium text-white/60">
+
+        <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 lg:px-12 lg:pb-20 lg:pt-40">
+          <nav className="mb-4 flex items-center gap-2 text-sm font-medium text-white/70">
             <Link to="/" className="hover:text-sd-green transition-colors">Home</Link>
-            <span>•</span>
-            <span className="text-white">Finance</span>
+            <span className="text-sd-green">•</span>
+            <span className="text-white">Service</span>
           </nav>
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white uppercase">
+          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">
             Finance
           </h1>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="relative -mt-20 z-20 pb-20 lg:pb-32">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <div className="overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
-            <div className="p-8 sm:p-12 lg:p-16 text-center">
-              <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-                Payment Plans
-              </span>
-              <h2 className="mt-6 font-display text-4xl sm:text-5xl font-extrabold text-sd-navy uppercase tracking-tight">
-                FINANCE
-              </h2>
-              
-              <div className="mt-12 flex justify-center">
-                <div className="max-w-[400px] w-full">
-                   <p className="text-sm font-bold text-sd-gray-text uppercase tracking-widest mb-4">
-                    Financing options from
-                  </p>
-                  <img 
-                    src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/691b50c1bb3d036e04caa4af.png" 
-                    alt="GreenSky Logo" 
-                    className="h-auto w-full max-w-[280px] mx-auto"
-                  />
-                </div>
-              </div>
+      {/* Main Content — green semicircle backdrop */}
+      <section className="relative overflow-hidden bg-white pb-20 lg:pb-28">
+        {/* Green semicircle */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 rounded-b-full bg-sd-green/40"
+          style={{ width: "min(1100px, 95vw)", height: "min(1100px, 95vw)" }}
+        />
 
-              <div className="mt-12 space-y-4 max-w-2xl mx-auto italic text-lg sm:text-xl text-sd-navy font-medium leading-relaxed">
-                <p>
-                  Whether your customer wants to pay using a deferred interest plan
-                  or has a fixed monthly budget, the GreenSky® programs offer
-                  flexible consumer financing options to meet various needs.
-                </p>
-              </div>
+        <div className="relative z-10 mx-auto max-w-4xl px-4 pt-16 lg:px-8 lg:pt-20">
+          <h2 className="text-center font-display text-5xl sm:text-6xl font-extrabold tracking-tight text-sd-black uppercase">
+            FINANCE
+          </h2>
 
-              <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="lg" className="w-full sm:w-auto text-lg h-16 px-10" onClick={() => trackFinanceApply()}>
-                  <a href={SITE.greenSkyUrl} target="_blank" rel="noopener noreferrer">
-                    APPLY NOW <ExternalLink className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 border-2">
-                  <a href="http://www.greenskycredit.com/" target="_blank" rel="noopener noreferrer">
-                    Learn More
-                  </a>
-                </Button>
-              </div>
+          <div className="mx-auto mt-10 max-w-2xl rounded-2xl bg-white p-8 shadow-xl ring-1 ring-black/5 sm:p-10">
+            <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-sd-navy">
+              Financing options from
+            </p>
+            <div className="mt-5 flex justify-center">
+              <img
+                src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/691b50c1bb3d036e04caa4af.png"
+                alt="GreenSky"
+                className="h-auto w-full max-w-[260px]"
+              />
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-xl">
+              <img
+                src="/projects/project-1.webp"
+                alt="Beautifully renovated North Atlanta home"
+                className="h-64 w-full object-cover sm:h-80"
+              />
+            </div>
+
+            <p className="mt-8 text-center text-base sm:text-lg italic leading-relaxed text-sd-navy">
+              Whether you want to pay using a deferred interest plan or have a
+              fixed monthly budget, the GreenSky® programs offer flexible
+              consumer financing options to meet your needs.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="w-full sm:w-auto text-base h-14 px-10"
+                onClick={() => trackFinanceApply()}
+              >
+                <a href={SITE.greenSkyUrl} target="_blank" rel="noopener noreferrer">
+                  APPLY NOW <ExternalLink className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-14 px-10 border-2">
+                <a href="http://www.greenskycredit.com/" target="_blank" rel="noopener noreferrer">
+                  Learn More
+                </a>
+              </Button>
             </div>
           </div>
 
