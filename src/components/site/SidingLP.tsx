@@ -476,6 +476,35 @@ export function SidingLP({ city }: SidingLPProps) {
         </div>
       </section>
 
+      {/* TYPES OF SIDING */}
+      <section className="bg-white py-16 lg:py-20 border-t border-sd-gray-border">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-block rounded bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-sd-green-text">
+              James Hardie Styles
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-sd-black sm:text-4xl">
+              Types of Siding We Install in {city}
+            </h2>
+            <p className="mt-3 text-sd-gray-text">
+              Every Hardie product line — installed by Elite Preferred crews engineered for HardieZone HZ10.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {SIDING_TYPES.map((t) => (
+              <div
+                key={t.title}
+                className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="h-1 w-10 rounded-full bg-sd-green" />
+                <h3 className="mt-4 text-lg font-bold text-sd-navy">{t.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SOCIAL PROOF */}
       <section style={{ background: "#F4F7FA" }} className="py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:gap-12 lg:px-8">
