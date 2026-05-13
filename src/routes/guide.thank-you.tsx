@@ -23,6 +23,14 @@ export const Route = createFileRoute("/guide/thank-you")({
         content:
           "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next.",
       },
+      { property: "og:title", content: "Thanks! Your Siding Guide Is on the Way" },
+      { property: "og:description", content: "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Thanks! Your Siding Guide Is on the Way" },
+      { name: "twitter:description", content: "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next." },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       // Block this page from search results — it's a post-conversion thank-you.
       { name: "robots", content: "noindex, nofollow" },
     ],
