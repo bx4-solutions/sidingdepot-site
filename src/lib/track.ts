@@ -104,7 +104,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
     w.dataLayer.push(enriched);
 
     // 2. Supabase for A/B Dashboard
-    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click", "finance_apply"];
+    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click", "finance_apply", "finance_qualified"];
     if (abEvents.includes(event)) {
       supabase.from("ab_events").insert({
         event_type: event,
