@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
-import { track } from "@/lib/track";
+import { track, type TrackPayload } from "@/lib/track";
 import {
   SIDING_TYPES,
   buildFaqs,
