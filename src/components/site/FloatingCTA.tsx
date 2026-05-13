@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MessageSquareText } from "lucide-react";
 import { SITE } from "@/data/site";
+import { track } from "@/lib/track";
 
 export function FloatingCTA() {
   return (
