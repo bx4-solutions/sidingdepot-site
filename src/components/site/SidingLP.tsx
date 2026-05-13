@@ -597,7 +597,7 @@ export function SidingLP({ city }: SidingLPProps) {
             <div className="mt-6 text-center">
               <button
                 type="button"
-                onClick={scrollToLeadForm}
+                onClick={() => scrollToLeadForm({ source: "greensky_section" })}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
               >
                 Get Pre-Approved With My Free Estimate →
