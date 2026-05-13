@@ -29,17 +29,13 @@ const PAGE_DESC =
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
-    meta: [
-      { title: PAGE_TITLE },
-      { name: "description", content: PAGE_DESC },
-      { property: "og:title", content: PAGE_TITLE },
-      { property: "og:description", content: PAGE_DESC },
-      { property: "og:image", content: "/projects/project-1.webp" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/projects/project-1.webp" },
-      { rel: "canonical", href: "https://sidingdepot.com/siding" },
-    ],
+    meta: buildServiceMeta({
+      title: PAGE_TITLE,
+      description: PAGE_DESC,
+      image: "/projects/project-1.webp",
+      canonical: "https://sidingdepot.com/siding",
+    }),
+    links: [{ rel: "canonical", href: "https://sidingdepot.com/siding" }],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", PAGE_DESC, {
         canonical: "https://sidingdepot.com/siding",
