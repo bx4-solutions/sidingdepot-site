@@ -27,6 +27,7 @@ export type Database = {
           utm_medium: string | null
           utm_source: string | null
           variation: string
+          visitor_id: string | null
         }
         Insert: {
           city?: string | null
@@ -40,6 +41,7 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           variation: string
+          visitor_id?: string | null
         }
         Update: {
           city?: string | null
@@ -53,6 +55,7 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           variation?: string
+          visitor_id?: string | null
         }
         Relationships: []
       }
