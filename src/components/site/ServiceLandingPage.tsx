@@ -282,6 +282,43 @@ export function ServiceLandingPage({
         </div>
       </section>
 
+      {/* Mid-page quote form (below the fold) */}
+      <section className="bg-sd-gray-bg py-20 lg:py-24 border-t border-sd-gray-border">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8 grid gap-10 lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center">
+          <div>
+            <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+              Free Quote · 24h Response
+            </span>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold leading-tight text-sd-black">
+              Ready to start your{" "}
+              <span className="text-sd-green">{faqLabel.toLowerCase()}</span> project in {city}?
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-sd-gray-text leading-relaxed">
+              Conte sobre seu projeto e nossa equipe responde em até 24h com uma
+              estimativa por escrito — sem compromisso.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-sd-gray-text">
+              {[
+                "Resposta em 24h por equipe local",
+                "Orçamento detalhado por escrito",
+                "Licensed & insured · GA GC #RBQA006789",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 text-sd-green shrink-0" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <HeroQuoteForm
+              source={`service_${serviceKey}_midpage`}
+              tag={`service_${serviceKey}_quote`}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
