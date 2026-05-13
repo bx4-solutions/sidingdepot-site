@@ -88,7 +88,7 @@ export function Footer() {
 
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/40">
           <p>© {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</p>
-          <p>James Hardie Elite Preferred Contractor · Licensed & Insured · GA</p>
+          <p className="text-balance">James Hardie Elite Preferred Contractor · Licensed &amp; Insured · GA</p>
         </div>
       </div>
     </footer>
