@@ -1,10 +1,28 @@
-import { Star, MessageSquare } from "lucide-react";
+import { Star, MessageSquare, ChevronLeft, ChevronRight, Filter, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useMemo } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const RECENT_REVIEWS = [
+interface Review {
+  author: string;
+  date: string;
+  timestamp: number; // For sorting
+  rating: number;
+  text: string;
+  avatar: string;
+}
+
+const RECENT_REVIEWS: Review[] = [
   {
     author: "Jennifer M.",
     date: "2 weeks ago",
+    timestamp: Date.now() - 14 * 24 * 60 * 60 * 1000,
     rating: 5,
     text: "Siding Depot did an amazing job on our home. The James Hardie siding looks incredible and the team was professional from start to finish.",
     avatar: "J",
@@ -12,6 +30,7 @@ const RECENT_REVIEWS = [
   {
     author: "David & Susan R.",
     date: "1 month ago",
+    timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
     rating: 5,
     text: "From the first quote to final walkthrough they were professional. The estimate matched the final invoice — no surprises. Highly recommend!",
     avatar: "D",
@@ -19,9 +38,34 @@ const RECENT_REVIEWS = [
   {
     author: "Michael T.",
     date: "2 months ago",
+    timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
     rating: 5,
     text: "Replaced our siding, gutters and trim. The whole project finished one day ahead of schedule and looks fantastic. Great communication.",
     avatar: "M",
+  },
+  {
+    author: "Robert B.",
+    date: "3 months ago",
+    timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000,
+    rating: 4,
+    text: "Great experience with the siding install. Very communicative team.",
+    avatar: "R",
+  },
+  {
+    author: "Sarah L.",
+    date: "4 months ago",
+    timestamp: Date.now() - 120 * 24 * 60 * 60 * 1000,
+    rating: 5,
+    text: "Professional, clean, and quick. Siding Depot is the best in Georgia.",
+    avatar: "S",
+  },
+  {
+    author: "John D.",
+    date: "5 months ago",
+    timestamp: Date.now() - 150 * 24 * 60 * 60 * 1000,
+    rating: 5,
+    text: "Fantastic attention to detail. Our house looks brand new.",
+    avatar: "J",
   },
 ];
 
