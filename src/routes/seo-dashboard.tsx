@@ -141,7 +141,39 @@ function SEODashboard() {
     enabled: userProfile?.role === "admin",
   });
 
-  const { data: status, isLoading: statusLoading } = useQuery({
+  const { data: allProfiles, refetch: refetchProfiles } = useQuery({
+    queryKey: ["all-profiles"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: userProfile?.role === "admin",
+  });
+
+  const updateProfileMutation = useMutation({
+    mutationFn: async ({ id, role }: { id: string, role: 'admin' | 'viewer' }) => {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ role })
+        .eq("id", id);
+      if (error) throw error;
+      
+      await supabase.rpc('log_admin_action', {
+        p_action: 'update_user_role',
+        p_entity_type: 'profiles',
+        p_entity_id: id,
+        p_details: { new_role: role }
+      });
+    },
+    onSuccess: () => {
+      refetchProfiles();
+    }
+  });
+
     queryKey: ["gsc-status", selectedUrl],
     queryFn: async () => {
       try {
