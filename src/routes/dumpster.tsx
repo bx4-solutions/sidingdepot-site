@@ -58,7 +58,10 @@ export const Route = createFileRoute("/dumpster")({
       image: HERO_IMAGE,
       canonical: CANONICAL,
     }),
-    links: [{ rel: "canonical", href: CANONICAL }],
+    links: [
+      { rel: "canonical", href: CANONICAL },
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
+    ],
     scripts: [
       serviceJsonLd("Dumpster Rental", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Dumpster Rental" }),
       faqJsonLd(FAQS),
