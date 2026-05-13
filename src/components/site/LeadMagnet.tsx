@@ -40,9 +40,15 @@ type Props = {
   city?: string;
   /** Tracking source label (defaults to "lead_magnet"). */
   source?: string;
+  /**
+   * If provided, called after a successful submit instead of auto-opening
+   * the PDF. Lets the parent route navigate the user to a thank-you page
+   * (and trigger the download itself).
+   */
+  onSuccess?: (data: { firstName: string; email: string }) => void;
 };
 
-export function LeadMagnet({ city, source = "lead_magnet" }: Props) {
+export function LeadMagnet({ city, source = "lead_magnet", onSuccess }: Props) {
   const [values, setValues] = useState<Values>({ firstName: "", email: "" });
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -78,11 +84,17 @@ export function LeadMagnet({ city, source = "lead_magnet" }: Props) {
           }),
         });
       }
-      track("lead_magnet_download", { source, city });
+      track("lead_magnet_download", { source, city, pdf_path: PDF_PATH });
     } catch {
       track("lead_magnet_error", { source });
     } finally {
       setSubmitting(false);
+      if (onSuccess) {
+        // Parent owns post-download flow (e.g. navigate to /guide/thank-you
+        // and open the PDF there). Don't open here to avoid double-tabs.
+        onSuccess(parsed.data);
+        return;
+      }
       setDone(true);
       // Trigger download in a new tab so users see the asset immediately.
       if (typeof window !== "undefined") {

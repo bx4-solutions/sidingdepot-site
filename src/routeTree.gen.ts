@@ -16,6 +16,7 @@ import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
+import { Route as GuideRouteImport } from './routes/guide'
 import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -26,6 +27,7 @@ import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-marietta'
 import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
 import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
+import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 
 const WindowsRoute = WindowsRouteImport.update({
@@ -61,6 +63,11 @@ const PaintingRoute = PaintingRouteImport.update({
 const GuttersRoute = GuttersRouteImport.update({
   id: '/gutters',
   path: '/gutters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DumpsterRoute = DumpsterRouteImport.update({
@@ -113,6 +120,11 @@ const LpSidingAlpharettaRoute = LpSidingAlpharettaRouteImport.update({
   path: '/lp/siding-alpharetta',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuideThankYouRoute = GuideThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => GuideRoute,
+} as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   id: '/locations/$city/$service',
   path: '/locations/$city/$service',
@@ -125,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -132,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
@@ -145,6 +159,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -152,6 +167,7 @@ export interface FileRoutesByTo {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
@@ -166,6 +182,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/dumpster': typeof DumpsterRoute
+  '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
   '/projects': typeof ProjectsRouteWithChildren
@@ -173,6 +190,7 @@ export interface FileRoutesById {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
@@ -188,6 +206,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -195,6 +214,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
@@ -208,6 +228,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -215,6 +236,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
@@ -228,6 +250,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/deck'
     | '/dumpster'
+    | '/guide'
     | '/gutters'
     | '/painting'
     | '/projects'
@@ -235,6 +258,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
@@ -249,6 +273,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DumpsterRoute: typeof DumpsterRoute
+  GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
@@ -312,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/gutters'
       fullPath: '/gutters'
       preLoaderRoute: typeof GuttersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dumpster': {
@@ -384,6 +416,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LpSidingAlpharettaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guide/thank-you': {
+      id: '/guide/thank-you'
+      path: '/thank-you'
+      fullPath: '/guide/thank-you'
+      preLoaderRoute: typeof GuideThankYouRouteImport
+      parentRoute: typeof GuideRoute
+    }
     '/locations/$city/$service': {
       id: '/locations/$city/$service'
       path: '/locations/$city/$service'
@@ -393,6 +432,16 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface GuideRouteChildren {
+  GuideThankYouRoute: typeof GuideThankYouRoute
+}
+
+const GuideRouteChildren: GuideRouteChildren = {
+  GuideThankYouRoute: GuideThankYouRoute,
+}
+
+const GuideRouteWithChildren = GuideRoute._addFileChildren(GuideRouteChildren)
 
 interface ProjectsRouteChildren {
   ProjectsSlugRoute: typeof ProjectsSlugRoute
@@ -412,6 +461,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DumpsterRoute: DumpsterRoute,
+  GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
