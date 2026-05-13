@@ -150,10 +150,8 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
     const GSC_API_KEY = process.env.GOOGLE_SEARCH_CONSOLE_API_KEY;
     if (!GSC_API_KEY) throw new Error("GSC key missing");
 
-    const siteUrl = "https%3A%2F%2Fsidingdepot.lovable.app%2F";
-
     const response = await fetch(
-      `${GATEWAY_URL}/sites/${siteUrl}/searchAnalytics/query`,
+      `${GATEWAY_URL}/sites/${ENCODED_GSC_SITE_URL}/searchAnalytics/query`,
       {
         method: "POST",
         headers: {
@@ -171,11 +169,11 @@ export const getSearchAnalytics = createServerFn({ method: "POST" })
     );
 
     if (!response.ok) {
-      const error = await response.json();
+      const error = await parseJsonResponse(response);
       throw new Error(`Failed to fetch GSC analytics: ${JSON.stringify(error)}`);
     }
 
-    const result = await response.json();
+    const result = await parseJsonResponse(response);
     return {
       rows: result.rows || [],
       startDate: data.startDate,
