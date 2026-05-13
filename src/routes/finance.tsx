@@ -173,8 +173,8 @@ function FinancePage() {
 
             {/* Two plan highlights side-by-side */}
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:gap-8">
-              <article className="flex h-full flex-col rounded-xl border-l-4 border-sd-navy bg-sd-gray-bg p-6 sm:p-8">
-                <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-[1.1] text-sd-navy uppercase">
+              <article className="flex h-full min-h-[220px] flex-col rounded-xl border-l-4 border-sd-navy bg-sd-gray-bg p-6 sm:p-8">
+                <h3 className="font-display text-2xl font-extrabold leading-[1.1] text-sd-navy uppercase sm:text-3xl">
                   No Interest if Paid in Full in <span className="text-sd-green-text">12 Months</span>
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-sd-dark-mid sm:text-lg">
