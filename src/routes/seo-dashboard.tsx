@@ -349,9 +349,22 @@ function SEODashboard() {
                 <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? 'Painel de Controle' : menuItems.find(i => i.id === activeView)?.label || adminItems.find(i => i.id === activeView)?.label}</h1>
                 <p className="text-slate-200 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
               </div>
-              <Button className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10">
-                <Download className="h-4 w-4 mr-2" /> EXPORTAR PDF/CSV
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={() => handleExport('csv')}
+                  className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
+                >
+                  <Download className="h-4 w-4 mr-2" /> CSV
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => handleExport('pdf')}
+                  className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
+                >
+                  <FileText className="h-4 w-4 mr-2" /> PDF
+                </Button>
+              </div>
             </div>
 
             {!sessionExists ? (
