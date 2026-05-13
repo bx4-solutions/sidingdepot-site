@@ -336,10 +336,10 @@ export type SidingLPProps = { city: string };
 export function SidingLP({ city }: SidingLPProps) {
   const FAQS = buildFaqs(city);
 
-  function scrollToLeadForm() {
+  function scrollToLeadForm(meta: TrackPayload = {}) {
     const el = document.querySelector("[data-lead-form]");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-    track("lp_faq_cta_click", { city });
+    track("lp_cta_click", { city, ...meta });
   }
 
   // Hide the sticky mobile call bar when a lead form is on screen
