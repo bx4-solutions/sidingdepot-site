@@ -26,17 +26,13 @@ const PROJECT_HERO_ALT =
 
 export const Route = createFileRoute("/painting")({
   head: () => ({
-    meta: [
-      { title: PAGE_TITLE },
-      { name: "description", content: PAGE_DESC },
-      { property: "og:title", content: PAGE_TITLE },
-      { property: "og:description", content: PAGE_DESC },
-      { property: "og:image", content: PROJECT_HERO },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: PROJECT_HERO },
-      { rel: "canonical", href: "https://sidingdepot.com/painting" },
-    ],
+    meta: buildServiceMeta({
+      title: PAGE_TITLE,
+      description: PAGE_DESC,
+      image: PROJECT_HERO,
+      canonical: "https://sidingdepot.com/painting",
+    }),
+    links: [{ rel: "canonical", href: "https://sidingdepot.com/painting" }],
     scripts: [
       serviceJsonLd("Exterior Painting", PAGE_DESC, {
         canonical: "https://sidingdepot.com/painting",
