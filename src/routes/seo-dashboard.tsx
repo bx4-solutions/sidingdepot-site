@@ -654,7 +654,8 @@ function SEODashboard() {
                         </CardContent>
                       </Card>
 
-                   </div>
+                    </div>
+                  </div>
                 )}
 
                 {activeView === "profile" && (
