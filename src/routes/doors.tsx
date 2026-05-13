@@ -78,9 +78,9 @@ function DoorsPage() {
   return (
     <ServiceLandingPage
       eyebrow="Fiberglass · Steel · Patio · Storm"
-      title="Entry & patio doors,"
+      title="Custom Entry & Patio Doors,"
       titleAccent="engineered for security and style."
-      intro="Marietta's trusted door replacement partner. High-performance entry, patio and storm doors from Therma-Tru and ProVia — custom-fit for your home and built to withstand Georgia's humidity while lowering your energy bills."
+      intro="Upgrade your curb appeal and security simultaneously. We install high-performance Therma-Tru® and ProVia® door systems featuring multi-point locking and thermal-break thresholds designed for Georgia homes."
       heroImage={HERO_IMAGE}
       benefits={[
         "Fiberglass & steel options — no warping or rotting",

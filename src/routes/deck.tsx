@@ -78,9 +78,9 @@ function DeckPage() {
   return (
     <ServiceLandingPage
       eyebrow="Trex · TimberTech · Pressure-Treated"
-      title="Custom decks,"
+      title="Custom Composite Decks,"
       titleAccent="built for Georgia outdoor living."
-      intro="Marietta's trusted deck builder. Composite (Trex Transcend, TimberTech AZEK), hardwood and pressure-treated decks — engineered for Georgia humidity and permitted with Cobb, Cherokee or Fulton county before day one."
+      intro="Maximize your outdoor living with a deck built for decades, not seasons. As Trex Pro® installers, we build moisture-proof spaces that resist the warping, rotting, and fading common in North Atlanta."
       heroImage={HERO_IMAGE}
       benefits={[
         "Composite decking with 25–30 year material warranty",

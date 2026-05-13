@@ -82,9 +82,9 @@ function RoofingPage() {
   return (
     <ServiceLandingPage
       eyebrow="GAF Factory Certified · Top Roofer"
-      title="GAF roofing,"
-      titleAccent="built for Georgia storm season."
-      intro="Marietta's trusted GAF Factory Certified roofer. Full replacement, hail and wind repair, and storm-damage insurance work — backed by the GAF Golden Pledge 50-year product warranty."
+      title="GAF Factory-Certified Roofing,"
+      titleAccent="built for storm protection."
+      intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
       heroImage={HERO_IMAGE}
       benefits={[
         "GAF Factory Certified — Golden Pledge warranty available",

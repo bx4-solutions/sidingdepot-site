@@ -16,9 +16,9 @@ import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
  * Mirrors the architecture of /services/siding for SEO + UX consistency.
  */
 
-const PAGE_TITLE = "Exterior Painting in Marietta, GA | Siding Depot — Free Estimate";
+const PAGE_TITLE = "Exterior Painting Services in Marietta, GA | Siding Depot";
 const PAGE_DESC =
-  "Sherwin-Williams Emerald & Duration exterior paint built for Georgia heat and humidity. Serving Marietta, Alpharetta, Milton, Canton & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
+  "Premium Sherwin-Williams® exterior painting built for Georgia heat. UV-resistant thermal barriers for Marietta, Milton & Alpharetta homes. W-2 crews. Free estimate in 24h. Call (678) 400-2012.";
 
 const PROJECT_HERO = "/projects/project-5.webp";
 const PROJECT_HERO_ALT =
@@ -129,13 +129,11 @@ function PaintSystemSection() {
               Paint System
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              The same coat,{" "}
-              <span className="text-sd-green">on every surface that matters.</span>
+              High-Performance{" "}
+              <span className="text-sd-green">Exterior Painting Systems.</span>
             </h2>
             <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              Tap each hotspot to see exactly which Sherwin-Williams system we
-              use on body, trim, shake and high-traffic surfaces — and why it
-              outlasts a generic repaint.
+              We create UV-resistant thermal barriers that handle North Atlanta's extreme temperature swings. Tap each hotspot to see the Sherwin-Williams® systems we use to protect every surface.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {PAINT_SPOTS.map((s) => (
