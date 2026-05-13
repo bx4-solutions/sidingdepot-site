@@ -126,6 +126,26 @@ export const Route = createFileRoute("/about")({
         property: "og:image",
         content: `https://i.ytimg.com/vi/${ABOUT_VIDEO.id}/maxresdefault.jpg`,
       },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "About Siding Depot — Georgia's Trusted James Hardie Siding Installer",
+      },
+      {
+        name: "twitter:description",
+        content: "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
+      },
+      {
+        name: "twitter:image",
+        content: `https://i.ytimg.com/vi/${ABOUT_VIDEO.id}/maxresdefault.jpg`,
+      },
     ],
     links: [
       { rel: "canonical", href: "https://sidingdepot.com/about" },
