@@ -246,6 +246,10 @@ function HomePage() {
         </div>
       </section>
 
+      <MapSection />
+
+      <GoogleReviews />
+
       <ProjectGallery />
 
       <FinancingBlock />
