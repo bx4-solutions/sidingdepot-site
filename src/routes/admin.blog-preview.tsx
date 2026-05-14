@@ -167,14 +167,78 @@ function BlogAdminPreview() {
     await updatePostStatus(post, newStatus);
   };
 
+  const handleBulkStatusChange = async (newStatus: "published" | "draft") => {
+    if (selectedPosts.size === 0) return;
+    
+    try {
+      const { data: userData } = await supabase.auth.getUser();
+      const slugs = Array.from(selectedPosts);
+      
+      const { error } = await supabase
+        .from('blog_posts')
+        .update({ 
+          status: newStatus,
+          scheduled_at: null,
+          updated_at: new Date().toISOString()
+        })
+        .in('slug', slugs);
+
+      if (error) throw error;
+
+      // Log bulk action
+      await supabase.from('audit_logs').insert({
+        user_id: userData.user?.id,
+        action: `bulk_status_change_to_${newStatus}`,
+        entity_type: 'blog_post',
+        entity_id: 'multiple',
+        details: { slugs, newStatus }
+      });
+
+      const updatedStatuses = { ...dbStatuses };
+      slugs.forEach(slug => {
+        updatedStatuses[slug] = { ...updatedStatuses[slug], status: newStatus, scheduledAt: undefined };
+      });
+      
+      setDbStatuses(updatedStatuses);
+      setSelectedPosts(new Set());
+      toast.success(`Updated ${slugs.length} posts to ${newStatus}`);
+    } catch (error) {
+      console.error('Error in bulk update:', error);
+      toast.error('Bulk update failed');
+    }
+  };
+
   const handleSchedule = async (post: BlogPost, dateStr: string) => {
     if (!dateStr) return;
     await updatePostStatus(post, 'draft', dateStr);
   };
 
+  const toggleSelectPost = (slug: string) => {
+    const newSelected = new Set(selectedPosts);
+    if (newSelected.has(slug)) {
+      newSelected.delete(slug);
+    } else {
+      newSelected.add(slug);
+    }
+    setSelectedPosts(newSelected);
+  };
+
+  const toggleSelectAll = (filteredPosts: BlogPost[]) => {
+    if (selectedPosts.size === filteredPosts.length) {
+      setSelectedPosts(new Set());
+    } else {
+      setSelectedPosts(new Set(filteredPosts.map(p => p.slug)));
+    }
+  };
+
   const toggleSEO = (slug: string) => {
     setExpandedSEO(prev => ({ ...prev, [slug]: !prev[slug] }));
   };
+
+  const filteredPosts = BLOG_POSTS.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.slug.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gray-50/50 p-8">
