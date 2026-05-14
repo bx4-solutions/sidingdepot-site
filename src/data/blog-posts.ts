@@ -33,6 +33,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: 12,
     publishDate: '2026-05-14',
     featured: true,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
       alt: 'Luxury blue home in Marietta with James Hardie siding installation',
@@ -115,6 +116,7 @@ Second is the upgrade of house wrap. Many older homes were built without a prope
     readTime: 10,
     publishDate: '2026-05-13',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80',
       alt: 'Aging residential home in Georgia showing signs of siding wear',
@@ -185,6 +187,7 @@ When we perform inspections in places like Roswell and Johns Creek, we often fin
     readTime: 11,
     publishDate: '2026-05-12',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1200&q=80',
       alt: 'Comparing high quality fiber cement siding with standard vinyl siding',
@@ -248,6 +251,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 9,
     publishDate: '2026-05-11',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80',
       alt: 'Modern farmhouse with white board and batten siding installation',
@@ -299,6 +303,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 8,
     publishDate: '2026-05-10',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
       alt: 'Luxury real estate property representing high ROI',
@@ -341,6 +346,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 12,
     publishDate: '2026-05-09',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=1200&q=80',
       alt: 'Hailstones on a surface during a storm',
@@ -393,6 +399,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 9,
     publishDate: '2026-05-08',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80',
       alt: 'House with beautiful dark gray siding and white trim',
@@ -434,6 +441,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 10,
     publishDate: '2026-05-07',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
       alt: 'Construction site showing siding installation',
@@ -484,6 +492,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 11,
     publishDate: '2026-05-06',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
       alt: 'Close up of rotten wood framing in a home',
@@ -526,6 +535,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     readTime: 10,
     publishDate: '2026-05-05',
     featured: false,
+    status: "published",
     heroImage: {
       url: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?auto=format&fit=crop&w=1200&q=80',
       alt: 'Beautiful modern home exterior design in 2026',
