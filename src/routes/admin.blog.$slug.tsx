@@ -21,6 +21,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
+// @ts-ignore - Importing from sibling route file
+import { AuditLogViewer } from "./admin.blog-preview";
 
 export const Route = createFileRoute("/admin/blog/$slug")({
   component: ArticleDetail,
