@@ -384,7 +384,9 @@ function BlogAdminPreview() {
                               <Clock className="w-3 h-3" /> {post.readTime} min read
                             </span>
                           </div>
-                          <h3 className="text-xl font-bold text-sd-navy mb-2 leading-tight">{post.title}</h3>
+                          <Link to="/admin/blog/$slug" params={{ slug: post.slug }} className="hover:opacity-80 transition-opacity">
+                            <h3 className="text-xl font-bold text-sd-navy mb-2 leading-tight">{post.title}</h3>
+                          </Link>
                           <p className="text-sm text-sd-gray-text line-clamp-2 mb-4 leading-relaxed font-medium">
                             {post.excerpt}
                           </p>
