@@ -488,15 +488,22 @@ function BlogAdminPreview() {
 function AuditLogViewer({ limit = 50, slug }: { limit?: number, slug?: string }) {
   const [logs, setLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [dbStatuses, setDbStatuses] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const fetchLogs = async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('audit_logs')
         .select('*')
         .eq('entity_type', 'blog_post')
         .order('created_at', { ascending: false })
-        .limit(50);
+        .limit(limit);
+      
+      if (slug) {
+        query = query.eq('entity_id', slug);
+      }
+      
+      const { data, error } = await query;
       
       if (!error && data) {
         setLogs(data);
