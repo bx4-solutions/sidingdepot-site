@@ -17,7 +17,7 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
       <div className="mx-auto max-w-5xl px-4 lg:px-8">
         <div className="grid gap-8 overflow-hidden rounded-2xl border border-sd-gray-border bg-white shadow-sm lg:grid-cols-[1fr_1.1fr]">
           {/* Left: PDF preview / pitch */}
-          <div className="relative bg-sd-navy p-8 text-white lg:p-10">
+          <div className="relative bg-sd-black p-8 text-white lg:p-10">
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               <FileText className="h-3.5 w-3.5" /> Free Homeowner Guide
             </span>

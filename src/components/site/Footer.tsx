@@ -30,11 +30,11 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-sd-dark text-white">
+    <footer className="bg-sd-black text-white">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
-            <div className="font-display text-3xl leading-none text-sd-green">
+            <div className="font-display text-3xl leading-none text-sd-green bg-sd-black p-2 rounded transform rotate-[-2deg] inline-block mb-2">
               SIDING<br />DEPOT
             </div>
             <p className="mt-3 text-sm text-white/50 max-w-xs">

@@ -43,19 +43,26 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
+    <header className="sticky top-0 z-50 w-full bg-sd-dark/95 backdrop-blur-sm border-b border-white/5">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
-            <img
-              src={logoSidingDepot}
-              alt="Siding Depot"
-              width={224}
-              height={68}
-              className="h-11 w-auto sm:h-12 lg:h-14"
-              loading="eager"
-              decoding="async"
-            />
+            <div style={{
+              background: '#BCD635',
+              padding: '6px 14px',
+              borderRadius: '8px',
+              fontWeight: 900,
+              color: '#fff',
+              WebkitTextStroke: '2px #000',
+              paintOrder: 'stroke fill',
+              transform: 'rotate(-4deg)',
+              display: 'inline-block',
+              lineHeight: 1.1,
+              fontFamily: 'var(--font-display)',
+              fontSize: '20px'
+            }}>
+              Siding<br/>Depot
+            </div>
           </Link>
         </div>
 
@@ -102,7 +109,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/5 bg-sd-navy">
+        <div className="lg:hidden border-t border-white/5 bg-sd-dark">
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link

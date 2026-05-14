@@ -72,15 +72,15 @@
   --radius: 0.625rem;
 
   /* Brand palette (HEX → oklch) */
-  --sd-green:        oklch(0.823 0.179 130.2);   /* #8DC63F */
-  --sd-green-hover:  oklch(0.760 0.179 131.0);   /* #7AB535 */
-  --sd-green-dark:   oklch(0.700 0.180 130.5);   /* #6FA828 */
-  --sd-green-pale:   oklch(0.952 0.080 124.0);   /* #E8F5CC */
-  --sd-green-text:   oklch(0.480 0.165 132.0);   /* #2E6200 */
+  --sd-green:        oklch(0.850 0.170 120.0);   /* #BCD635 */
+  --sd-green-hover:  oklch(0.780 0.175 118.0);   /* #A3BE1E */
+  --sd-green-dark:   oklch(0.780 0.175 118.0);   /* #A3BE1E */
+  --sd-green-pale:   oklch(0.960 0.060 115.0);   /* #F0F7C0 */
+  --sd-green-text:   oklch(0.350 0.100 115.0);   /* #3A4800 */
   --sd-navy:         oklch(0.265 0.030 252.0);   /* #1E2A38 */
-  --sd-dark:         oklch(0.330 0.030 257.0);   /* #2D3748 */
-  --sd-dark-mid:     oklch(0.405 0.028 256.0);   /* #3A4A5C */
-  --sd-black:        oklch(0.180 0 0);           /* #1A1A1A */
+  --sd-dark:         oklch(0.180 0 0);           /* #1A1A1A */
+  --sd-dark-mid:     oklch(0.250 0 0);           /* #2D2D2D */
+  --sd-black:        oklch(0.120 0 0);           /* #0A0A0A */
   --sd-white:        oklch(1 0 0);
   --sd-gray-bg:      oklch(0.973 0.005 247.0);   /* #F4F7FA */
   --sd-gray-border:  oklch(0.918 0.008 247.0);   /* #E2E8EE */

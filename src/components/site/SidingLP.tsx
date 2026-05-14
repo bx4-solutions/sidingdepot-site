@@ -180,7 +180,7 @@ export function SidingLP({ city }: SidingLPProps) {
       {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
-      <section className="relative overflow-hidden text-white" style={{ background: "#1E2A38" }}>
+      <section className="relative overflow-hidden text-sd-black" style={{ background: "#1E2A38" }}>
         <div className="absolute inset-0">
           <img src={HERO_BG} alt="" aria-hidden className="h-full w-full object-cover opacity-30" loading="eager" />
           <div className="absolute inset-0" style={{ background: "rgba(30, 42, 56, 0.65)" }} />
@@ -193,10 +193,10 @@ export function SidingLP({ city }: SidingLPProps) {
             <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]">
               James Hardie® Siding Installation in {city}, GA
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-white/75 leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-sd-black/75 leading-relaxed">
               Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
             </p>
-            <ul className="mt-6 grid gap-2.5 text-sm text-white/85">
+            <ul className="mt-6 grid gap-2.5 text-sm text-sd-black/85">
               {[
                 "Licensed & Insured in Georgia",
                 "Elite Preferred — Extended 30-Year Warranty",
@@ -221,8 +221,8 @@ export function SidingLP({ city }: SidingLPProps) {
 
       {/* PROOF BAR */}
       <section
-        className="text-white"
-        style={{ background: "#1E2A38", borderTop: "3px solid #8DC63F" }}
+        className="text-sd-black"
+        style={{ background: "#1E2A38", borderTop: "3px solid #BCD635" }}
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
@@ -231,7 +231,7 @@ export function SidingLP({ city }: SidingLPProps) {
             "🏠 1,500+ Homes in Georgia",
             "✓ Free Estimates · No Obligation",
           ].map((t) => (
-            <div key={t} className="text-center text-sm font-semibold text-white/90">{t}</div>
+            <div key={t} className="text-center text-sm font-semibold text-sd-black/90">{t}</div>
           ))}
         </div>
       </section>
@@ -250,7 +250,7 @@ export function SidingLP({ city }: SidingLPProps) {
             ].map((c) => (
               <div key={c.title} className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm">
                 <div className="text-3xl">{c.icon}</div>
-                <h3 className="mt-3 text-lg font-bold text-sd-navy">{c.title}</h3>
+                <h3 className="mt-3 text-lg font-bold text-sd-black">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{c.desc}</p>
               </div>
             ))}
@@ -279,7 +279,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="h-1 w-10 rounded-full bg-sd-green" />
-                <h3 className="mt-4 text-lg font-bold text-sd-navy">{t.title}</h3>
+                <h3 className="mt-4 text-lg font-bold text-sd-black">{t.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{t.desc}</p>
               </div>
             ))}
@@ -294,11 +294,11 @@ export function SidingLP({ city }: SidingLPProps) {
             {REVIEWS.map((r) => (
               <div key={r.name} className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-black/5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sd-navy text-sm font-bold text-sd-green">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sd-black text-sm font-bold text-sd-green">
                     {r.initials}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-sd-navy">{r.name}</p>
+                    <p className="text-sm font-bold text-sd-black">{r.name}</p>
                     <p className="text-xs text-sd-gray-text">{r.location}</p>
                   </div>
                   <div className="ml-auto flex">
@@ -308,7 +308,7 @@ export function SidingLP({ city }: SidingLPProps) {
                   </div>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">{r.text}</p>
-                <span className="mt-2 inline-block rounded-pill bg-sd-green-pale px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sd-navy">
+                <span className="mt-2 inline-block rounded-pill bg-sd-green-pale px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sd-black">
                   Google Review
                 </span>
               </div>
@@ -317,7 +317,7 @@ export function SidingLP({ city }: SidingLPProps) {
           <div className="grid grid-cols-2 gap-4 self-center">
             {STATS.map((s) => (
               <div key={s.label} className="rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-black/5">
-                <div className="text-4xl font-extrabold text-sd-navy">{s.value}</div>
+                <div className="text-4xl font-extrabold text-sd-black">{s.value}</div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-sd-gray-text">
                   {s.label}
                 </div>
@@ -328,19 +328,19 @@ export function SidingLP({ city }: SidingLPProps) {
       </section>
 
       {/* URGENCY + CTA */}
-      <section className="text-white" style={{ background: "#1E2A38" }}>
+      <section className="text-sd-black" style={{ background: "#1E2A38" }}>
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div>
             <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
               Limited Project Slots Available
             </h2>
-            <p className="mt-4 text-white/65 leading-relaxed">
+            <p className="mt-4 text-sd-black/65 leading-relaxed">
               We limit the number of projects per month to guarantee quality on every job. Spring is
               our busiest season — North Atlanta homeowners are scheduling now.
             </p>
             <div
               className="mt-6 rounded-lg p-4 text-sm font-bold"
-              style={{ background: "#8DC63F", color: "#1E2A38" }}
+              style={{ background: "#BCD635", color: "#1E2A38" }}
             >
               ⚡ We&apos;re booking 3–4 weeks out. Request your estimate today to secure your spot.
             </div>
@@ -379,17 +379,17 @@ export function SidingLP({ city }: SidingLPProps) {
                 key={s.step}
                 className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-navy">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-black">
                   {s.step}
                 </div>
-                <h3 className="mt-4 text-base font-bold text-sd-navy">{s.title}</h3>
+                <h3 className="mt-4 text-base font-bold text-sd-black">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{s.desc}</p>
               </li>
             ))}
           </ol>
 
           <div className="mx-auto mt-10 max-w-3xl">
-            <h3 className="text-center text-xl font-bold text-sd-navy">
+            <h3 className="text-center text-xl font-bold text-sd-black">
               Quick Financing Questions
             </h3>
             <Accordion type="single" collapsible className="mt-5 space-y-3">
@@ -399,7 +399,7 @@ export function SidingLP({ city }: SidingLPProps) {
                   value={`gs-${i}`}
                   className="rounded-xl border border-sd-gray-border bg-white px-5"
                 >
-                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-navy hover:no-underline">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-black hover:no-underline">
                     {item.q}
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-sd-gray-text leading-relaxed">
@@ -413,7 +413,7 @@ export function SidingLP({ city }: SidingLPProps) {
               <button
                 type="button"
                 onClick={() => scrollToLeadForm({ source: "greensky_section" })}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-black hover:opacity-90 transition-opacity"
               >
                 Get Pre-Approved With My Free Estimate →
               </button>
@@ -438,7 +438,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 value={`q-${i}`}
                 className="rounded-xl border border-sd-gray-border bg-white px-5"
               >
-                <AccordionTrigger className="text-left text-base font-semibold text-sd-navy hover:no-underline">
+                <AccordionTrigger className="text-left text-base font-semibold text-sd-black hover:no-underline">
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sd-gray-text leading-relaxed">
@@ -452,7 +452,7 @@ export function SidingLP({ city }: SidingLPProps) {
                         faq_question: item.q,
                       })
                     }
-                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-black hover:opacity-90 transition-opacity"
                   >
                     Request My Free Estimate →
                   </button>
@@ -465,10 +465,10 @@ export function SidingLP({ city }: SidingLPProps) {
 
 
       {/* FOOTER */}
-      <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
+      <footer className="text-sd-black/70 text-sm" style={{ background: "#07111A" }}>
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex flex-col gap-1">
-            <span className="text-base font-extrabold" style={{ color: "#8DC63F" }}>
+            <span className="text-base font-extrabold" style={{ color: "#BCD635" }}>
               Siding Depot
             </span>
             <span>© 2026 {SITE.legalName}</span>
@@ -480,8 +480,8 @@ export function SidingLP({ city }: SidingLPProps) {
             <a href={`mailto:${SITE.email}`} className="hover:text-sd-green">
               {SITE.email}
             </a>
-            <span className="text-white/55">{SITE.address.full}</span>
-            <a href="/privacy-policy" className="text-white/55 hover:text-sd-green">
+            <span className="text-sd-black/55">{SITE.address.full}</span>
+            <a href="/privacy-policy" className="text-sd-black/55 hover:text-sd-green">
               Privacy Policy
             </a>
           </div>
@@ -495,7 +495,7 @@ export function SidingLP({ city }: SidingLPProps) {
         className={`fixed inset-x-0 bottom-0 z-[9999] flex h-14 items-center justify-center gap-2 text-base font-extrabold lg:hidden transition-transform ${
           hideStickyCall ? "translate-y-full" : "translate-y-0"
         }`}
-        style={{ background: "#8DC63F", color: "#1E2A38" }}
+        style={{ background: "#BCD635", color: "#1E2A38" }}
         aria-hidden={hideStickyCall}
       >
         <Phone className="h-5 w-5" /> TAP TO CALL {SITE.phone}

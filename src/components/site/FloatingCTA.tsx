@@ -17,7 +17,7 @@ export function FloatingCTA() {
       <Link
         to="/contact"
         aria-label="Get a free quote"
-        className="flex items-center justify-center h-13 w-13 rounded-full bg-sd-navy text-sd-green shadow-lg hover:bg-sd-dark transition-all"
+        className="flex items-center justify-center h-13 w-13 rounded-full bg-sd-black text-sd-green shadow-lg hover:bg-sd-dark transition-all"
       >
         <MessageSquareText className="h-5 w-5" />
       </Link>
