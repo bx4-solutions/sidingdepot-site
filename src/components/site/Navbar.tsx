@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
-import logoSidingDepot from "@/assets/logo-sidingdepot.png";
+import logo from "@/assets/logo.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
