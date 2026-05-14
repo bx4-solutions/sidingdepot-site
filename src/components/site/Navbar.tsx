@@ -51,13 +51,13 @@ export function Navbar() {
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-2">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="text-[13px] font-medium tracking-wide text-white/70 hover:text-sd-green transition-colors"
-              activeProps={{ className: "text-sd-green" }}
+              className="text-[13px] font-semibold tracking-wide text-[#3A4800] px-3 py-2 rounded-md transition-colors hover:bg-[#F0F7C0]"
+              activeProps={{ className: "bg-[#BCD635] text-[#0A0A0A] rounded-md" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -66,8 +66,8 @@ export function Navbar() {
           {session && (
             <Link
               to="/seo-dashboard"
-              className="text-[13px] font-bold tracking-wide text-sd-green hover:text-sd-green-hover transition-colors"
-              activeProps={{ className: "text-white" }}
+              className="text-[13px] font-bold tracking-wide text-[#BCD635] px-3 py-2 rounded-md hover:bg-[#F0F7C0] transition-colors"
+              activeProps={{ className: "bg-[#BCD635] text-[#0A0A0A]" }}
             >
               SEO Dashboard
             </Link>
