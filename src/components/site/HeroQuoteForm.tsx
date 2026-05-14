@@ -188,7 +188,108 @@ export function HeroQuoteForm({
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="px-6 py-5 grid gap-3">
+        <form onSubmit={handleSubmit} noValidate className={bare ? "grid gap-3" : "px-6 py-5 grid gap-3"}>
+          <Field
+            id="hero-name"
+            label="Full name"
+            value={values.name}
+            onChange={(v) => update("name", v)}
+            error={errors.name}
+            autoComplete="name"
+            dark={bare}
+          />
+          <div className="grid grid-cols-2 gap-3">
+            <Field
+              id="hero-phone"
+              label="Phone"
+              type="tel"
+              inputMode="tel"
+              value={values.phone}
+              onChange={(v) => update("phone", v)}
+              error={errors.phone}
+              autoComplete="tel"
+              dark={bare}
+            />
+            <Field
+              id="hero-city"
+              label="City"
+              value={values.city}
+              onChange={(v) => update("city", v)}
+              error={errors.city}
+              autoComplete="address-level2"
+              dark={bare}
+            />
+          </div>
+          <Field
+            id="hero-email"
+            label="Email"
+            type="email"
+            value={values.email}
+            onChange={(v) => update("email", v)}
+            error={errors.email}
+            autoComplete="email"
+            dark={bare}
+          />
+          <div className="grid gap-1.5">
+            <Label className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
+              Services <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(select all that apply)</span>
+            </Label>
+            <div className={`grid grid-cols-2 gap-1.5 rounded-md border p-2 ${bare ? "border-white/20 bg-white/5" : "border-input"}`}>
+              {SERVICE_OPTIONS.map((name) => {
+                const checked = values.services.includes(name);
+                return (
+                  <label
+                    key={name}
+                    className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
+                      bare
+                        ? checked ? "bg-white/10 text-white" : "text-white hover:bg-white/5"
+                        : checked ? "bg-sd-navy/5 text-sd-black" : "text-sd-black hover:bg-muted"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleService(name)}
+                      className="h-4 w-4 accent-sd-green"
+                    />
+                    <span>{name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            {errors.services && (
+              <p className="text-[11px] text-destructive">{errors.services}</p>
+            )}
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="hero-msg" className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
+              Project details <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(optional)</span>
+            </Label>
+            <Textarea
+              id="hero-msg"
+              rows={3}
+              maxLength={1000}
+              value={values.message ?? ""}
+              onChange={(e) => update("message", e.target.value)}
+              className={`resize-none ${bare ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""}`}
+            />
+          </div>
+
+          <Button type="submit" size="lg" disabled={submitting} className="mt-1">
+            {submitting ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+              </>
+            ) : (
+              "Schedule FREE Quote"
+            )}
+          </Button>
+          <p className={`text-[10px] leading-snug text-center ${bare ? "text-white/60" : "text-sd-gray-text"}`}>
+            By submitting, you agree to be contacted by Siding Depot regarding
+            your project. We never share your information.
+          </p>
+        </form>
+
           <Field
             id="hero-name"
             label="Full name"
