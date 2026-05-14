@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Rocket, Clock, FileText, CheckCircle2, CircleDashed, Search, Share2, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
+import { Eye, Rocket, Clock, FileText, CheckCircle2, CircleDashed, Search, Share2, ExternalLink, ChevronDown, ChevronUp, Calendar, LayoutDashboard } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -91,7 +91,7 @@ function SEOPreview({ post }: { post: BlogPost }) {
 }
 
 function BlogAdminPreview() {
-  const [dbStatuses, setDbStatuses] = useState<Record<string, string>>({});
+  const [dbStatuses, setDbStatuses] = useState<Record<string, { status: string; scheduledAt?: string }>>({});
   const [expandedSEO, setExpandedSEO] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
 
@@ -103,13 +103,16 @@ function BlogAdminPreview() {
     try {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('slug, status');
+        .select('slug, status, scheduled_at');
       
       if (error) throw error;
       
-      const statusMap: Record<string, string> = {};
+      const statusMap: Record<string, { status: string; scheduledAt?: string }> = {};
       data?.forEach(item => {
-        statusMap[item.slug] = item.status || 'draft';
+        statusMap[item.slug] = {
+          status: item.status || 'draft',
+          scheduledAt: item.scheduled_at || undefined
+        };
       });
       setDbStatuses(statusMap);
     } catch (error) {
@@ -119,10 +122,7 @@ function BlogAdminPreview() {
     }
   };
 
-  const toggleStatus = async (post: BlogPost) => {
-    const currentStatus = dbStatuses[post.slug] || post.status;
-    const newStatus = currentStatus === 'published' ? 'draft' : 'published';
-    
+  const updatePostStatus = async (post: BlogPost, newStatus: string, scheduledAt?: string) => {
     try {
       const { error } = await supabase
         .from('blog_posts')
@@ -130,17 +130,32 @@ function BlogAdminPreview() {
           slug: post.slug, 
           status: newStatus,
           title: post.title,
+          scheduled_at: scheduledAt || null,
           updated_at: new Date().toISOString()
         }, { onConflict: 'slug' });
 
       if (error) throw error;
 
-      setDbStatuses(prev => ({ ...prev, [post.slug]: newStatus }));
-      toast.success(`Post ${newStatus === 'published' ? 'published' : 'moved to drafts'}`);
+      setDbStatuses(prev => ({ 
+        ...prev, 
+        [post.slug]: { status: newStatus, scheduledAt: scheduledAt } 
+      }));
+      toast.success(scheduledAt ? `Post scheduled for ${new Date(scheduledAt).toLocaleString()}` : `Post ${newStatus === 'published' ? 'published' : 'moved to drafts'}`);
     } catch (error) {
       console.error('Error updating status:', error);
       toast.error('Failed to update status');
     }
+  };
+
+  const toggleStatus = async (post: BlogPost) => {
+    const currentStatus = dbStatuses[post.slug]?.status || post.status;
+    const newStatus = currentStatus === 'published' ? 'draft' : 'published';
+    await updatePostStatus(post, newStatus);
+  };
+
+  const handleSchedule = async (post: BlogPost, dateStr: string) => {
+    if (!dateStr) return;
+    await updatePostStatus(post, 'draft', dateStr);
   };
 
   const toggleSEO = (slug: string) => {
@@ -156,6 +171,12 @@ function BlogAdminPreview() {
             <p className="text-sd-gray-text font-medium">Review, preview, and manage publication status for all 10 strategic articles.</p>
           </div>
           <div className="flex items-center gap-3">
+             <Button asChild variant="outline" className="rounded-full shadow-sm">
+                <Link to="/admin/dashboard">
+                  <LayoutDashboard className="w-4 h-4 mr-2" />
+                  Admin Dashboard
+                </Link>
+             </Button>
              <div className="bg-white px-4 py-2 rounded-lg border shadow-sm flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-sd-green animate-pulse" />
                 <span className="text-xs font-bold text-sd-navy uppercase tracking-wider">Sync Active</span>
@@ -165,7 +186,9 @@ function BlogAdminPreview() {
 
         <div className="grid gap-6">
           {BLOG_POSTS.map((post) => {
-            const status = dbStatuses[post.slug] || post.status;
+            const dbData = dbStatuses[post.slug];
+            const status = dbData?.status || post.status;
+            const scheduledAt = dbData?.scheduledAt;
             const isPublished = status === 'published';
             const isSEOExpanded = expandedSEO[post.slug];
 
@@ -178,10 +201,16 @@ function BlogAdminPreview() {
                       alt={post.heroImage.alt}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-                    <div className="absolute top-3 left-3">
-                      <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
-                        {status}
+                    <div className="absolute top-3 left-3 flex flex-col gap-2">
+                      <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : scheduledAt ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
+                        {isPublished ? 'published' : scheduledAt ? 'scheduled' : status}
                       </Badge>
+                      {scheduledAt && (
+                        <Badge className="bg-white/90 text-sd-navy border-none text-[8px] font-bold py-0.5">
+                          <Calendar className="w-2.5 h-2.5 mr-1" />
+                          {new Date(scheduledAt).toLocaleDateString()}
+                        </Badge>
+                      )}
                     </div>
                   </div>
                   
@@ -204,6 +233,12 @@ function BlogAdminPreview() {
                           <div className="flex flex-wrap gap-4 text-[11px] font-bold text-sd-navy/50 uppercase tracking-wider">
                              <span className="flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> {post.sections.length} Sections</span>
                              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5" /> FAQ Complete</span>
+                             {scheduledAt && (
+                               <span className="flex items-center gap-1.5 text-blue-600">
+                                 <Calendar className="w-3.5 h-3.5" /> 
+                                 Scheduled: {new Date(scheduledAt).toLocaleString()}
+                               </span>
+                             )}
                           </div>
                         </div>
 
@@ -225,6 +260,20 @@ function BlogAdminPreview() {
                             SEO Preview
                             {isSEOExpanded ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
                           </Button>
+
+                          <div className="flex items-center gap-2">
+                            <div className="relative group/schedule">
+                              <input 
+                                type="datetime-local" 
+                                className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                                onChange={(e) => handleSchedule(post, e.target.value)}
+                              />
+                              <Button variant="outline" size="sm" className="rounded-full border-sd-navy/20 pointer-events-none group-hover/schedule:bg-gray-50">
+                                <Clock className="w-4 h-4 mr-2" />
+                                Schedule
+                              </Button>
+                            </div>
+                          </div>
                           
                           <Button 
                             onClick={() => toggleStatus(post)}

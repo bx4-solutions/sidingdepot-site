@@ -4,6 +4,7 @@ import {
   getAllLocationCombos,
   SITE_ORIGIN,
 } from "@/data/locations";
+import { BLOG_POSTS } from "@/data/blog-posts";
 
 function buildSitemap(origin: string): string {
   const lastmod = new Date().toISOString().slice(0, 10);
@@ -23,6 +24,17 @@ function buildSitemap(origin: string): string {
       priority: "0.9",
       changefreq: "weekly",
     });
+  }
+
+  for (const post of BLOG_POSTS) {
+    // Only include published posts in sitemap
+    if (post.status === 'published') {
+      urls.push({
+        loc: `${origin}/blog/${post.slug}`,
+        priority: "0.7",
+        changefreq: "monthly",
+      });
+    }
   }
 
   const body = urls

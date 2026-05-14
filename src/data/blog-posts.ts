@@ -6,7 +6,8 @@ export interface BlogPost {
   readTime: number
   publishDate: string
   featured: boolean
-  status: 'published' | 'draft'
+  status: 'published' | 'draft' | 'scheduled'
+  scheduledAt?: string
   heroImage: { url: string; alt: string; caption: string }
   sections: BlogSection[]
   faq: { q: string; a: string }[]

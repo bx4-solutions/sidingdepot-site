@@ -11,16 +11,29 @@ export function useBlogPosts() {
       try {
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('slug, status');
+          .select('slug, status, scheduled_at');
 
         if (error) throw error;
 
         if (data) {
-          const statusMap = new Map(data.map(item => [item.slug, item.status]));
-          const updatedPosts = BLOG_POSTS.map(post => ({
-            ...post,
-            status: (statusMap.get(post.slug) as 'published' | 'draft') || post.status
-          }));
+          const statusMap = new Map(data.map(item => [item.slug, { status: item.status, scheduledAt: item.scheduled_at }]));
+          const now = new Date();
+          const updatedPosts = BLOG_POSTS.map(post => {
+            const dbItem = statusMap.get(post.slug);
+            let status = (dbItem?.status as 'published' | 'draft' | 'scheduled') || post.status;
+            const scheduledAt = dbItem?.scheduledAt;
+
+            // Automatic publication logic: if draft/scheduled and date passed, it's published
+            if (status !== 'published' && scheduledAt && new Date(scheduledAt) <= now) {
+              status = 'published';
+            }
+
+            return {
+              ...post,
+              status,
+              scheduledAt: scheduledAt || undefined
+            };
+          });
           setPosts(updatedPosts);
         }
       } catch (err) {
@@ -48,7 +61,7 @@ export function useBlogPost(slug: string) {
       try {
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('status')
+          .select('status, scheduled_at')
           .eq('slug', slug)
           .single();
 
@@ -57,9 +70,18 @@ export function useBlogPost(slug: string) {
         if (data) {
           const basePost = BLOG_POSTS.find(p => p.slug === slug);
           if (basePost) {
+            let status = (data.status as 'published' | 'draft' | 'scheduled') || basePost.status;
+            const scheduledAt = data.scheduled_at;
+            const now = new Date();
+
+            if (status !== 'published' && scheduledAt && new Date(scheduledAt) <= now) {
+              status = 'published';
+            }
+
             setPost({
               ...basePost,
-              status: (data.status as 'published' | 'draft') || basePost.status
+              status,
+              scheduledAt: scheduledAt || undefined
             });
           }
         }
