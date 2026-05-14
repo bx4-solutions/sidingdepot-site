@@ -17,8 +17,10 @@ export default function BlogPostDetail() {
   const search = useSearch({ from: "/blog/$slug" });
   const isPreview = search.preview === true;
   
+  // Important: We use BLOG_POSTS directly for initial render to avoid flicker,
+  // then use hook data to handle draft/published status from DB
   const { posts, loading } = useBlogPosts();
-  const post = posts.find((p: BlogPost) => p.slug === slug);
+  const post = posts.find((p: BlogPost) => p.slug === slug) || BLOG_POSTS.find((p) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
 
