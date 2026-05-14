@@ -525,7 +525,7 @@ function AuditLogViewer() {
               </span>
             </div>
             <div className="text-sd-gray-text font-medium truncate">
-              Target: <span className="text-sd-navy">{log.entity_id}</span>
+              Target: <Link to="/admin/blog/$slug" params={{ slug: log.entity_id }} className="text-sd-navy hover:underline">{log.entity_id}</Link>
             </div>
             {log.details && (
               <div className="mt-1 text-[10px] text-gray-500 bg-gray-50 p-1 rounded">
