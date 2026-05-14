@@ -523,18 +523,28 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-05',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=1200&q=80',
-      alt: 'Modern home with mixed exterior materials',
+      url: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Beautiful modern home exterior design in 2026',
       caption: 'Combining siding with stone and wood accents is the hallmark of 2026 design.'
     },
     sections: [
       {
         h2: 'Mixed Material Mastery',
-        content: `The single biggest trend in 2026 is the use of multiple exterior textures. We are frequently installing James Hardie lap siding on the main body of the house, Board and Batten in the gables, and stone veneer accents around the foundation or entryway. This "layered" look adds depth and luxury that a single-material home lacks.`
+        content: `The single biggest trend in 2026 is the use of multiple exterior textures. We are frequently installing James Hardie lap siding on the main body of the house, Board and Batten in the gables, and stone veneer accents around the foundation or entryway. This "layered" look adds depth and luxury that a single-material home lacks.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Home with stone and blue siding mixed materials',
+          caption: 'Mixed material exteriors are one of the fastest growing trends in the North Atlanta high-end market.'
+        }
       },
       {
         h2: 'Natural Wood Accents',
-        content: `To soften the look of modern dark sidings, many Marietta and Milton homeowners are adding natural wood elements. Cedar-look soffits or porch ceilings provide a warm, organic contrast to the industrial feel of fiber cement.`
+        content: `To soften the look of modern dark sidings, many Marietta and Milton homeowners are adding natural wood elements. Cedar-look soffits or porch ceilings provide a warm, organic contrast to the industrial feel of fiber cement.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Natural wood accents on a modern porch ceiling',
+          caption: 'Warm wood tones complement the cool grays and blues of modern siding choices.'
+        }
       }
     ],
     faq: [
