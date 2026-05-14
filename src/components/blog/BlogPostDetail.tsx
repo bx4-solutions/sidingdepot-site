@@ -86,13 +86,13 @@ export default function BlogPostDetail() {
           {/* Main Article Content */}
           <article className="lg:w-[65%]">
             <header className="mb-12">
-              <span className="inline-block bg-[#BCD635] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 shadow-sm">
+              <span className="inline-block bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 shadow-sm">
                 {post.category}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold text-sd-black leading-tight mb-8">
                 {post.title}
               </h1>
-              <p className="text-xl italic text-sd-gray-text/80 leading-relaxed mb-10 border-l-4 border-[#BCD635] pl-6 py-2">
+              <p className="text-xl italic text-sd-gray-text/80 leading-relaxed mb-10 border-l-4 border-sd-green pl-6 py-2">
                 {post.excerpt}
               </p>
               
@@ -104,8 +104,8 @@ export default function BlogPostDetail() {
                     <span className="text-[10px] lowercase font-medium tracking-normal opacity-70">Editorial Staff</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#BCD635]" /> {new Date(post.publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#BCD635]" /> {post.readTime} min read</div>
+                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-sd-green" /> {new Date(post.publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-sd-green" /> {post.readTime} min read</div>
               </div>
 
               {/* Hero Image with Semantic Caption */}
@@ -128,7 +128,7 @@ export default function BlogPostDetail() {
               </div>
             </header>
             
-            <div className="prose prose-lg max-w-none prose-headings:text-sd-black prose-h2:text-[28px] prose-h2:font-bold prose-h2:border-l-[4px] prose-h2:border-[#BCD635] prose-h2:pl-6 prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:rounded-xl prose-table:overflow-hidden prose-th:bg-sd-black prose-th:text-sd-black prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4">
+            <div className="prose prose-lg max-w-none prose-headings:text-sd-black prose-h2:text-[28px] prose-h2:font-bold prose-h2:border-l-[4px] prose-h2:border-sd-green prose-h2:pl-6 prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:rounded-xl prose-table:overflow-hidden prose-th:bg-sd-black prose-th:text-sd-black prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4">
               {post.sections.map((section: any, idx: number) => {
                 const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                 
@@ -140,9 +140,9 @@ export default function BlogPostDetail() {
                       const [_, text, url] = match;
                       const isInternal = url.startsWith('/blog/');
                       if (isInternal) {
-                        return <Link key={i} to={url as any} className="text-[#BCD635] font-bold hover:underline">{text}</Link>;
+                        return <Link key={i} to={url as any} className="text-sd-green-text font-bold hover:underline">{text}</Link>;
                       }
-                      return <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-[#BCD635] font-bold hover:underline">{text}</a>;
+                      return <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-sd-green-text font-bold hover:underline">{text}</a>;
                     }
                     return part;
                   });
@@ -183,7 +183,7 @@ export default function BlogPostDetail() {
                     )}
 
                     {section.pullQuote && (
-                      <div className="my-12 bg-[#F4F7FA] border-l-[6px] border-[#BCD635] p-10 rounded-r-3xl shadow-sm">
+                      <div className="my-12 bg-sd-gray-bg border-l-[6px] border-sd-green p-10 rounded-r-3xl shadow-sm">
                         <p className="text-2xl font-bold text-sd-black italic leading-relaxed">
                           "{section.pullQuote}"
                         </p>
@@ -212,14 +212,14 @@ export default function BlogPostDetail() {
                     {/* Inline CTA after 2nd section (roughly the middle) */}
                     {idx === 1 && (
                       <div className="my-20 bg-sd-black p-12 rounded-3xl text-sd-black text-center shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-[#BCD635]"></div>
+                        <div className="absolute top-0 left-0 w-full h-1 bg-sd-green"></div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Getting quotes for your home?</h3>
                         <p className="text-lg text-sd-black/70 mb-10 font-medium">We respond within 24 hours. No high-pressure sales.</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                           <a href="tel:6784002012" className="text-3xl font-black text-[#BCD635] hover:text-sd-black transition-all transform hover:scale-105">
+                           <a href="tel:6784002012" className="text-3xl font-black text-sd-green hover:text-sd-black transition-all transform hover:scale-105">
                              (678) 400-2012
                            </a>
-                           <Button asChild size="lg" className="bg-[#BCD635] text-sd-black hover:bg-[#BCD635]/90 rounded-full font-black px-10 py-7 h-auto text-base transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-[#BCD635]/20">
+                           <Button asChild size="lg" className="bg-sd-green text-sd-black hover:bg-sd-green-hover rounded-full font-black px-10 py-7 h-auto text-base transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-sd-green/20">
                              <Link to="/contact">Get Free Estimate</Link>
                            </Button>
                         </div>
@@ -234,7 +234,7 @@ export default function BlogPostDetail() {
             {post.faq.length > 0 && (
               <section className="mt-24 pt-24 border-t border-gray-100">
                 <div className="flex items-center gap-4 mb-12">
-                  <div className="w-2 h-10 bg-[#BCD635] rounded-full"></div>
+                  <div className="w-2 h-10 bg-sd-green rounded-full"></div>
                   <h2 className="text-3xl font-bold text-sd-black m-0">Frequently Asked Questions</h2>
                 </div>
                 <div className="space-y-6">
@@ -264,7 +264,7 @@ export default function BlogPostDetail() {
                       {prevPost && (
                         <Link to="/blog/$slug" params={{ slug: prevPost.slug }} className="group">
                           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Previous Article</span>
-                          <span className="text-xl font-bold text-sd-black group-hover:text-[#BCD635] transition-colors line-clamp-2">{prevPost.title}</span>
+                          <span className="text-xl font-bold text-sd-black group-hover:text-sd-green transition-colors line-clamp-2">{prevPost.title}</span>
                         </Link>
                       )}
                     </div>
@@ -272,7 +272,7 @@ export default function BlogPostDetail() {
                       {nextPost && (
                         <Link to="/blog/$slug" params={{ slug: nextPost.slug }} className="group">
                           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Next Article</span>
-                          <span className="text-xl font-bold text-sd-black group-hover:text-[#BCD635] transition-colors line-clamp-2">{nextPost.title}</span>
+                          <span className="text-xl font-bold text-sd-black group-hover:text-sd-green transition-colors line-clamp-2">{nextPost.title}</span>
                         </Link>
                       )}
                     </div>
@@ -282,7 +282,7 @@ export default function BlogPostDetail() {
             </nav>
 
             {/* Final Conversion CTA */}
-            <div className="mt-24 bg-[#BCD635] p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
+            <div className="mt-24 bg-sd-green p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-black text-sd-black mb-6 leading-tight">Ready for Your Free Estimate?</h2>
                 <p className="text-xl text-sd-black/70 mb-12 max-w-2xl mx-auto font-bold leading-relaxed">
@@ -314,7 +314,7 @@ export default function BlogPostDetail() {
               {/* Table of Contents - ScrollSpy Style */}
               <div className="bg-white p-10 rounded-[32px] shadow-sm border border-gray-100 ring-1 ring-black/[0.02]">
                 <h3 className="text-xl font-bold text-sd-black mb-8 flex items-center gap-3">
-                   <div className="w-1.5 h-6 bg-[#BCD635] rounded-full"></div>
+                   <div className="w-1.5 h-6 bg-sd-green rounded-full"></div>
                    In This Article
                 </h3>
                 <ul className="space-y-6">
