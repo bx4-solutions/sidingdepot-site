@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { Star, ArrowRight, Clock, Calendar, User, Loader2 } from "lucide-react";
 import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
+
 
 export default function BlogListing() {
   const { posts, loading } = useBlogPosts();
