@@ -103,12 +103,12 @@ Thirdly, don't forget the trim and soffits. Often, if the siding is failing, the
         }
       },
       {
-        h2: 'Return on Investment (ROI) for Marietta Homeowners',
-        content: `Is the $25,000 investment worth it? According to the Remodeling 2026 Cost vs. Value Report, siding replacement with fiber cement provides one of the highest ROIs for Atlanta area homes, typically recouping over 80% of the cost in immediate equity. 
+        h2: 'Return on Investment (ROI) and Long-Term Value in Georgia',
+        content: `Is the $25,000 investment worth it? According to the Remodeling 2026 Cost vs. Value Report, siding replacement with fiber cement provides one of the highest ROIs for Atlanta area homes, typically recouping over 80% of the cost in immediate equity. In Marietta's strong housing market, curb appeal is king. A home that is freshly sided with James Hardie stands out to potential buyers and often leads to faster sales and higher closing prices compared to neighboring homes with dated or failing siding.
 
-Beyond the financial metrics, there is the "Quality of Life" factor. James Hardie is non-combustible—it will not ignite when exposed to a direct flame. This feature can often lead to lower homeowner insurance premiums in Georgia. Additionally, unlike vinyl which can melt or warp, or wood which can rot and attract termites, James Hardie is impervious to pests and the elements.
+Beyond the financial metrics, there is the "Quality of Life" factor. James Hardie is non-combustible—it will not ignite when exposed to a direct flame. This feature can often lead to lower homeowner insurance premiums in Georgia, as the home's fire resistance rating is significantly improved. Additionally, unlike vinyl which can melt or warp during a nearby brush fire or even from the sun's reflection off a neighbor's window, or wood which can rot and attract termites, James Hardie is impervious to pests and the elements. 
 
-For Marietta residents, this means peace of mind during our spring storm seasons and summer heat waves. When you choose Siding Depot for your installation, you're not just buying material; you're investing in the long-term health and value of your most important asset.`
+For Marietta residents, this means peace of mind during our spring storm seasons and summer heat waves. When you choose Siding Depot for your installation, you're not just buying material; you're investing in the long-term health and value of your most important asset. The 30-year warranty is transferable, which adds even more value if you decide to sell your home in the future. In short, while the upfront cost of James Hardie is higher than vinyl, the combination of durability, energy efficiency, and sheer aesthetic beauty makes it the clear choice for savvy Marietta homeowners looking to protect their investment for the next several decades.`
       }
     ],
     faq: [
