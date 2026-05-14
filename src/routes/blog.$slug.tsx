@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import BlogPostDetail from "@/components/blog/BlogPostDetail";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { z } from "zod";
+import { getOptimizedUnsplashUrl } from "@/utils/image-optimization";
+
 
 const blogSearchSchema = z.object({
   preview: z.boolean().optional(),
