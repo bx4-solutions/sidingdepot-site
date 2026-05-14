@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,6 +25,10 @@ type Props = {
   source?: string;
   tag?: string;
   submitLabel?: string;
+  /** URL of the PDF to offer for download in the success state. */
+  downloadUrl?: string;
+  /** Label for the download button shown after submission. */
+  downloadLabel?: string;
   onSuccess?: () => void;
 };
 
@@ -37,6 +41,8 @@ export function SimpleLeadForm({
   source = "ebook_download",
   tag = "ebook_request",
   submitLabel = "Send My Free Guide →",
+  downloadUrl = "/downloads/5-mistakes-siding-georgia.pdf",
+  downloadLabel = "Download Your Ebook",
   onSuccess,
 }: Props) {
   const [submitting, setSubmitting] = useState(false);
@@ -99,9 +105,23 @@ export function SimpleLeadForm({
   if (done) {
     return (
       <div className="px-2 py-6 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-sd-green" />
-        <h3 className="mt-3 font-display text-xl text-sd-black">Pronto!</h3>
-        <p className="mt-2 text-sm text-sd-gray-text">Seu guia está liberado para download.</p>
+        <CheckCircle2 className="mx-auto h-12 w-12 text-sd-green" />
+        <h3 className="mt-3 font-display text-xl text-sd-black uppercase tracking-tight">
+          Thank you!
+        </h3>
+        <p className="mt-2 text-sm text-sd-gray-text">
+          Your guide is ready. Click below to download your free copy.
+        </p>
+        <a
+          href={downloadUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          onClick={() => track("ebook_download_click", { source })}
+          className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+        >
+          <Download className="h-4 w-4" /> {downloadLabel}
+        </a>
       </div>
     );
   }
