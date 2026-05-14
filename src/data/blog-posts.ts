@@ -282,7 +282,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       }
     ],
     faq: [
-      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest.' },
+      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest (check our [2026 design trends](/blog/exterior-home-design-trends-north-atlanta-2026)).' },
       { q: 'What is the most popular color for Board and Batten in 2026?', a: 'Arctic White and Iron Gray are currently the top choices for Marietta and Milton homeowners.' }
     ],
     cta: { city: 'Milton', service: 'Siding' },
