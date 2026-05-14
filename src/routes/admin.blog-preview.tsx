@@ -4,10 +4,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Rocket, Clock, FileText, CheckCircle2, CircleDashed } from "lucide-react";
+import { Eye, Rocket, Clock, FileText, CheckCircle2, CircleDashed, Search, Share2, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { getOptimizedUnsplashUrl } from "@/utils/image-optimization";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 export const Route = createFileRoute("/admin/blog-preview")({
   component: BlogAdminPreview,
