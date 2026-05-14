@@ -369,8 +369,8 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     sections: [
       {
-        h2: 'The "Storm Chaser" Warning',
-        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door. Be careful. Many of these companies are storm chasers who do low-quality work and disappear. Always work with a local, established company like Siding Depot that will be here to honor your warranty.`,
+        h2: 'The "Storm Chaser" Warning: Protecting Your Investment',
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties.`,
         image: {
           url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1000&q=80',
           alt: 'Cloudy sky during a storm',
@@ -379,20 +379,34 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         h2: 'Identifying Hail Impact on Fiber Cement',
-        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to hidden rot problems. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
-        image: {
-          url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Close up of damage on an exterior wall',
-          caption: 'Identifying subtle storm damage requires a professional eye and proper documentation.'
-        }
+        content: `Unlike vinyl, which may crack or hole visibly, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to hidden rot problems. Because fiber cement is so dense, it doesn't always shatter—it deforms at the point of impact. \n\nWe use high-resolution photography, specialized lighting, and sometimes drone inspections to document this damage for your insurance adjuster. Without professional documentation, many adjusters will claim the damage is just "wear and tear."`,
+        table: {
+          headers: ['Siding Type', 'Hail Sign', 'Visibility', 'Long-term Risk'],
+          rows: [
+            ['Vinyl', 'Cracks/Star fractures', 'High', 'Immediate leaks'],
+            ['Fiber Cement', 'Surface bruising/chips', 'Low', 'Water absorption/Rot'],
+            ['Wood', 'Dents/Splintering', 'Medium', 'Termites/Rot'],
+            ['Metal', 'Large dents/Paint loss', 'High', 'Rust/Corrosion']
+          ]
+        },
+        pullQuote: "Insurance adjusters are trained to minimize claims. We are trained to document every single point of impact to ensure your home is fully protected."
       },
       {
-        h2: 'The "Matching" Law in Georgia',
-        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available, they may be required to replace the entire house to ensure a uniform appearance. We specialize in helping homeowners navigate these complex negotiations.`,
+        h2: 'The "Matching" Law in Georgia: Your Secret Weapon',
+        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available (which is common for siding older than 10 years), they may be required to replace the entire house to ensure a uniform appearance.\n\nThis is often the difference between a $2,000 patch job and a $25,000 full-house replacement. We specialize in identifying discontinued products and providing the documentation needed to justify a full-home claim.`,
         image: {
           url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
           alt: 'A house with perfectly matched siding after repair',
           caption: 'Ensuring a consistent look across the entire home is essential for maintaining market value after a storm repair.'
+        }
+      },
+      {
+        h2: 'The 12-Month Clock: Don\'t Delay',
+        content: `Most Georgia insurance policies have a strict 12-month limit for filing storm damage claims. If you wait until you see a leak in your ceiling, you may already be outside the window of coverage. We recommend a free "post-storm health check" after any significant hail event in North Atlanta to ensure you don't miss your opportunity for a covered replacement.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=1200&q=80',
+          alt: 'Hailstones on a surface during a storm',
+          caption: 'Hail damage can be hard to spot from the ground, but it compromises your home\'s protection.'
         }
       }
     ],
