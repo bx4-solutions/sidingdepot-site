@@ -33,9 +33,9 @@ export const BLOG_POSTS: BlogPost[] = [
     publishDate: '2026-05-14',
     featured: true,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
-      alt: 'Beautiful blue James Hardie siding installation on a luxury home in Marietta, GA',
-      caption: 'A professional James Hardie installation in the East Cobb area of Marietta, GA — providing a 50+ year solution.'
+      url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Luxury blue home in Marietta with James Hardie siding installation',
+      caption: 'A professional James Hardie installation in Marietta, GA, showcasing the durability and aesthetic appeal of fiber cement.'
     },
     sections: [
       {
@@ -45,6 +45,11 @@ export const BLOG_POSTS: BlogPost[] = [
 Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl. When you factor in Georgia\'s intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
 
 We categorized the costs into three distinct tiers to help Marietta residents plan their budgets:`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Exterior view of a newly sided suburban home in Marietta neighborhood',
+          caption: 'Quality siding installation not only protects your home but significantly enhances curb appeal in local Marietta communities.'
+        },
         table: {
           headers: ['Home Tier', 'Average Sq Ft', 'Investment Range', 'Typical Components'],
           rows: [
@@ -59,15 +64,20 @@ We categorized the costs into three distinct tiers to help Marietta residents pl
         content: `Most professional siding contractors in North Atlanta quote James Hardie between $8.50 and $13.50 per square foot installed. This range exists because every home in Marietta is unique — a home with multiple steep gables in Indian Hills will require more labor and scaffolding than a flat ranch in Smyrna.
 
 Labor represents roughly 45% of your total quote. In Marietta, local labor rates are influenced by the high demand for Elite Preferred contractors who adhere to the strict HZ10 installation guidelines required for James Hardie\'s 30-year warranty. Using a "general" contractor who doesn\'t specialize in fiber cement might save you 15% today but cost you the entire warranty tomorrow.`,
-        pullQuote: "In Marietta, the difference between a good siding job and a great one is in the flashing and moisture barrier. In the Georgia humidity, what you don't see behind the siding is as important as the panels themselves."
+        pullQuote: "In Marietta, the difference between a good siding job and a great one is in the flashing and moisture barrier. In the Georgia humidity, what you don't see behind the siding is as important as the panels themselves.",
+        image: {
+          url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Siding installation process on a modern home exterior',
+          caption: 'Proper installation techniques are critical for maintaining the James Hardie 30-year warranty.'
+        }
       },
       {
-        h2: 'Material Deep-Dive: ColorPlus vs. Prime & Paint',
+        h2: 'Material Deep-Dive: ColorPlus vs. Paint',
         content: `Many Marietta homeowners ask if they should choose the factory-finished ColorPlus® technology or have the siding painted on-site. For the North Atlanta climate, we almost exclusively recommend ColorPlus. The factory-baked finish is engineered to resist UV fading in the Georgia sun much better than traditional field-applied paint.
 
 From a cost perspective, ColorPlus adds about $1.50 per square foot to the material cost, but it eliminates the $4,000 - $6,000 cost of a professional paint job. More importantly, it extends your next maintenance interval by 5-7 years.`,
         image: {
-          url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1000&q=80',
+          url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1000&q=80',
           alt: 'Close up of fiber cement siding texture and quality',
           caption: 'The authentic wood grain texture of James Hardie fiber cement offers significantly higher curb appeal than vinyl or wood composite.'
         }
@@ -76,7 +86,12 @@ From a cost perspective, ColorPlus adds about $1.50 per square foot to the mater
         h2: 'Hidden Costs to Watch For in Older Marietta Neighborhoods',
         content: `If your home was built between 1980 and 2005, there are two common "surprises" that can impact your final cost. First is the discovery of OSB sheathing rot once the old siding is removed. In East Cobb homes, we find that roughly 15% of projects require at least some sheathing replacement due to old moisture intrusion.
 
-Second is the upgrade of house wrap. Many older homes were built without a proper weather-resistive barrier. We always include the HardieWrap® system in our Marietta quotes because it is essential for the moisture management required by the James Hardie warranty.`
+Second is the upgrade of house wrap. Many older homes were built without a proper weather-resistive barrier. We always include the HardieWrap® system in our Marietta quotes because it is essential for the moisture management required by the James Hardie warranty.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Exposed house sheathing showing moisture protection layer',
+          caption: 'A quality weather-resistive barrier is your home\'s first line of defense against Georgia humidity.'
+        }
       }
     ],
     faq: [
