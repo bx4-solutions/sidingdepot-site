@@ -8,7 +8,6 @@ export function useBlogPosts() {
 
   useEffect(() => {
     async function syncStatuses() {
-      setLoading(true);
       try {
         const { data, error } = await supabase
           .from('blog_posts')
@@ -61,7 +60,6 @@ export function useBlogPost(slug: string) {
       if (!slug) return;
       const localPost = BLOG_POSTS.find(p => p.slug === slug) || null;
       setPost(localPost);
-      setLoading(true);
       try {
         const { data, error } = await supabase
           .from('blog_posts')
