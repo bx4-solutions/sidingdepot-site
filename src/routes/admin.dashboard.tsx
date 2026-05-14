@@ -360,6 +360,7 @@ function AdminDashboard() {
                       <TableHead className="font-bold">Article Title</TableHead>
                       <TableHead className="font-bold text-center">Status</TableHead>
                       <TableHead className="font-bold">Schedule</TableHead>
+                      <TableHead className="font-bold text-right">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
