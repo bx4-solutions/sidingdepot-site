@@ -44,6 +44,7 @@ export const Route = createFileRoute("/blog/$slug")({
             "headline": post.title,
             "description": post.excerpt,
             "image": getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
+            "wordCount": post.sections.reduce((acc, section) => acc + section.content.split(/\s+/).length, 0),
             "datePublished": post.publishDate,
             "dateModified": post.publishDate,
             "author": {
