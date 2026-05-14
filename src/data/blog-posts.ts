@@ -162,6 +162,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'james-hardie-vs-vinyl-siding-georgia-climate',
     title: 'James Hardie vs Vinyl Siding: The Honest Comparison for Georgia Homeowners',
+    excerpt: "Vinyl is cheaper upfront, but Hardie wins in the Georgia climate. See the side-by-side comparison of cost, durability, and ROI for 2026.",
     category: 'Buying Guides',
     readTime: 8,
     publishDate: '2026-05-12',
