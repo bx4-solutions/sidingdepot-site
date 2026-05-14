@@ -155,9 +155,17 @@ export default function BlogListing() {
                       params={{ slug: p.slug }}
                       className="text-sm font-medium text-sd-gray-text hover:text-sd-green transition-colors flex gap-3"
                     >
-                      <span className="w-12 h-12 flex-shrink-0 rounded overflow-hidden">
-                        <img src={p.heroImage.url} alt={p.heroImage.alt} className="w-full h-full object-cover" />
+                      <span className="w-12 h-12 flex-shrink-0 rounded overflow-hidden bg-gray-100">
+                        <img 
+                          src={getOptimizedUnsplashUrl(p.heroImage.url, { width: 100, height: 100 })} 
+                          alt={p.heroImage.alt} 
+                          className="w-full h-full object-cover" 
+                          loading="lazy"
+                          width="48"
+                          height="48"
+                        />
                       </span>
+
                       <span className="line-clamp-2 leading-snug">{p.title}</span>
                     </Link>
                   </li>
