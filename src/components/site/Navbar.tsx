@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { to: "/siding", label: "Siding" },
   { to: "/painting", label: "Painting" },
   { to: "/windows", label: "Windows" },
+  { to: "/blog", label: "Blog" },
   { to: "/lp/siding-marietta", label: "Service Areas" },
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
