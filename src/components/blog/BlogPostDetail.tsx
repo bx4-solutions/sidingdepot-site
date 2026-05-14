@@ -5,6 +5,8 @@ import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
+
 
 export default function BlogPostDetail() {
   useEffect(() => {
