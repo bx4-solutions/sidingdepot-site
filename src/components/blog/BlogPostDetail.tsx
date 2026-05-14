@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { useBlogPosts, useBlogPost } from "@/hooks/use-blog-posts";
 import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
 
 
