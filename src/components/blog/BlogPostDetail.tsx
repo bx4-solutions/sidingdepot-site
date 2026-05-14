@@ -150,6 +150,8 @@ export default function BlogPostDetail() {
                 width="1200"
                 height="675"
                 decoding="async"
+                fetchPriority="high"
+                loading="eager"
               />
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
                 <p className="text-[13px] italic text-sd-gray-text text-center">{post.heroImage.caption}</p>
