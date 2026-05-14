@@ -179,7 +179,7 @@ export type Database = {
           slug: string
           status: string | null
           suggested_date: string | null
-          title: string
+          title: string | null
           updated_at: string
         }
         Insert: {
@@ -194,7 +194,7 @@ export type Database = {
           slug: string
           status?: string | null
           suggested_date?: string | null
-          title: string
+          title?: string | null
           updated_at?: string
         }
         Update: {
@@ -209,7 +209,7 @@ export type Database = {
           slug?: string
           status?: string | null
           suggested_date?: string | null
-          title?: string
+          title?: string | null
           updated_at?: string
         }
         Relationships: []
