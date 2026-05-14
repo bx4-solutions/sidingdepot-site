@@ -106,4 +106,100 @@ export const BLOG_POSTS_EXPANDED: Partial<BlogPost>[] = [
       }
     ]
   }
+  },
+  {
+    slug: 'board-batten-siding-guide-north-atlanta-2026',
+    readTime: 12,
+    sections: [
+      {
+        h2: 'The Modern Farmhouse Explosion in Georgia',
+        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with James Hardie materials, it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
+          alt: 'White modern farmhouse exterior with vertical siding',
+          caption: 'The Modern Farmhouse aesthetic remains a top choice for North Atlanta homeowners in 2026.'
+        }
+      },
+      {
+        h2: 'Installation Complexity and Cost',
+        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.\n\nThe process involves installing 4x8 or 4x10 panels first, then "battening" the seams with 2-inch or 3-inch trim boards. This multi-layered approach requires extreme precision; if the battens are even a quarter-inch out of plumb, the entire wall will look distorted.`,
+        table: {
+          headers: ['Component', 'Material Cost', 'Labor Intensity', 'Visual Impact'],
+          rows: [
+            ['HardiePanel', 'Medium', 'Standard', 'Base texture'],
+            ['HardieTrim (Battens)', 'Low-Medium', 'High', 'Defined vertical lines'],
+            ['Metal Flashing', 'Low', 'Medium', 'Waterproofing'],
+            ['Caulk/Sealant', 'Low', 'Very High', 'Seamless finish']
+          ]
+        },
+        pullQuote: "Board and Batten isn't just a siding choice—it's a precision trim project. The quality of the installation shows in every single vertical line."
+      },
+      {
+        h2: 'Getting HOA Approval in North Atlanta',
+        content: `HOAs in communities like Windward, Seven Oaks, or Sugarloaf can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples, technical data sheets, and digital renderings to make the approval process seamless.\n\nMany HOAs in Milton and Alpharetta now actually *encourage* Board and Batten as a way to modernize aging neighborhoods and boost overall property values.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Suburban neighborhood homes with high quality siding',
+          caption: 'Premium siding helps maintain community standards and individual property values.'
+        }
+      },
+      {
+        h2: 'Vertical vs. Horizontal: The Moisture Advantage',
+        content: `While mostly chosen for aesthetics, vertical siding has a functional advantage in Georgia: it sheds water faster. In areas of your home that receive little sunlight, horizontal lap siding can sometimes hold moisture in the "lap" joints. Board and Batten allow water to run straight down the panel, reducing the risk of mildew buildup on the shady side of your house.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Modern farmhouse with white board and batten siding installation',
+          caption: 'The vertical lines of board and batten create a height and modern feel that traditional lap siding cannot match.'
+        }
+      }
+    ]
+  },
+  {
+    slug: 'hail-damage-siding-insurance-claim-georgia-2026',
+    readTime: 12,
+    sections: [
+      {
+        h2: 'The "Storm Chaser" Warning: Protecting Your Investment',
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Cloudy sky during a storm',
+          caption: 'Georgia storm seasons can bring sudden and severe weather that impacts home exteriors.'
+        }
+      },
+      {
+        h2: 'Identifying Hail Impact on Fiber Cement',
+        content: `Unlike vinyl, which may crack or hole visibly, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to hidden rot problems. Because fiber cement is so dense, it doesn't always shatter—it deforms at the point of impact. \n\nWe use high-resolution photography, specialized lighting, and sometimes drone inspections to document this damage for your insurance adjuster. Without professional documentation, many adjusters will claim the damage is just "wear and tear."`,
+        table: {
+          headers: ['Siding Type', 'Hail Sign', 'Visibility', 'Long-term Risk'],
+          rows: [
+            ['Vinyl', 'Cracks/Star fractures', 'High', 'Immediate leaks'],
+            ['Fiber Cement', 'Surface bruising/chips', 'Low', 'Water absorption/Rot'],
+            ['Wood', 'Dents/Splintering', 'Medium', 'Termites/Rot'],
+            ['Metal', 'Large dents/Paint loss', 'High', 'Rust/Corrosion']
+          ]
+        },
+        pullQuote: "Insurance adjusters are trained to minimize claims. We are trained to document every single point of impact to ensure your home is fully protected."
+      },
+      {
+        h2: 'The "Matching" Law in Georgia: Your Secret Weapon',
+        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available (which is common for siding older than 10 years), they may be required to replace the entire house to ensure a uniform appearance.\n\nThis is often the difference between a $2,000 patch job and a $25,000 full-house replacement. We specialize in identifying discontinued products and providing the documentation needed to justify a full-home claim.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'A house with perfectly matched siding after repair',
+          caption: 'Ensuring a consistent look across the entire home is essential for maintaining market value after a storm repair.'
+        }
+      },
+      {
+        h2: 'The 12-Month Clock: Don\'t Delay',
+        content: `Most Georgia insurance policies have a strict 12-month limit for filing storm damage claims. If you wait until you see a leak in your ceiling, you may already be outside the window of coverage. We recommend a free "post-storm health check" after any significant hail event in North Atlanta to ensure you don't miss your opportunity for a covered replacement.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=1200&q=80',
+          alt: 'Hailstones on a surface during a storm',
+          caption: 'Hail damage can be hard to spot from the ground, but it compromises your home\'s protection.'
+        }
+      }
+    ]
+  }
 ];
+
