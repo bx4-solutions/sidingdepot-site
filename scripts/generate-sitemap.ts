@@ -5,12 +5,17 @@ const DOMAIN = 'https://sidingdepot.com';
 
 const staticRoutes = [
   '',
+  '/siding',
+  '/painting',
+  '/windows',
   '/blog',
-  '/contact',
-  '/services',
-  '/gallery',
-  '/reviews',
   '/about',
+  '/projects',
+  '/contact',
+  '/finance',
+  '/reviews',
+  '/gallery',
+  '/lp/siding-marietta',
 ];
 
 const generateSitemap = () => {
