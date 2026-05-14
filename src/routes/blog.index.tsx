@@ -3,7 +3,7 @@ import BlogListing from "@/components/blog/BlogListing";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   component: BlogListing,
   head: () => {
     const publishedPosts = BLOG_POSTS.filter(p => p.status === 'published');

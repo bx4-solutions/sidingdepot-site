@@ -4,23 +4,20 @@ import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { useBlogPosts, useBlogPost } from "@/hooks/use-blog-posts";
 import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
 
 
 export default function BlogPostDetail() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { slug } = useParams({ from: "/blog/$slug" });
   const search = useSearch({ from: "/blog/$slug" });
   const isPreview = search.preview === true;
   
-  // Important: We use BLOG_POSTS directly for initial render to avoid flicker,
-  // then use hook data to handle draft/published status from DB
-  const { posts } = useBlogPosts();
-  const post = posts.find((p: BlogPost) => p.slug === slug) || BLOG_POSTS.find((p) => p.slug === slug);
+  const { post, loading } = useBlogPost(slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   const [activeId, setActiveId] = useState<string>("");
 
@@ -253,6 +250,36 @@ export default function BlogPostDetail() {
                 </div>
               </section>
             )}
+
+            {/* Next / Previous Article Navigation */}
+            <nav className="mt-24 py-12 border-t border-b border-gray-100 flex flex-col sm:flex-row justify-between gap-12" aria-label="Post navigation">
+              {(() => {
+                const currentIndex = BLOG_POSTS.findIndex(p => p.slug === post.slug);
+                const prevPost = currentIndex > 0 ? BLOG_POSTS[currentIndex - 1] : null;
+                const nextPost = currentIndex < BLOG_POSTS.length - 1 ? BLOG_POSTS[currentIndex + 1] : null;
+                
+                return (
+                  <>
+                    <div className="flex-1 text-left">
+                      {prevPost && (
+                        <Link to="/blog/$slug" params={{ slug: prevPost.slug }} className="group">
+                          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Previous Article</span>
+                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors line-clamp-2">{prevPost.title}</span>
+                        </Link>
+                      )}
+                    </div>
+                    <div className="flex-1 text-right">
+                      {nextPost && (
+                        <Link to="/blog/$slug" params={{ slug: nextPost.slug }} className="group">
+                          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Next Article</span>
+                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors line-clamp-2">{nextPost.title}</span>
+                        </Link>
+                      )}
+                    </div>
+                  </>
+                );
+              })()}
+            </nav>
 
             {/* Final Conversion CTA */}
             <div className="mt-24 bg-[#8DC63F] p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">

@@ -15,7 +15,6 @@ import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
@@ -25,10 +24,11 @@ import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-marietta'
@@ -71,11 +71,6 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsRoute = ProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaintingRoute = PaintingRouteImport.update({
@@ -123,11 +118,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -141,6 +131,16 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
@@ -213,7 +213,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -223,7 +222,6 @@ export interface FileRoutesByFullPath {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
-  '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -241,6 +239,8 @@ export interface FileRoutesByFullPath {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -248,7 +248,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -258,7 +257,6 @@ export interface FileRoutesByTo {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
-  '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -276,6 +274,8 @@ export interface FileRoutesByTo {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -284,7 +284,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -294,7 +293,6 @@ export interface FileRoutesById {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
-  '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -312,6 +310,8 @@ export interface FileRoutesById {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -321,7 +321,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -331,7 +330,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
-    | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -349,6 +347,8 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog/'
+    | '/projects/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesByTo: FileRoutesByTo
@@ -356,7 +356,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -366,7 +365,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
-    | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -384,6 +382,8 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog'
+    | '/projects'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   id:
@@ -391,7 +391,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -401,7 +400,6 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
-    | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -419,6 +417,8 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog/'
+    | '/projects/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesById: FileRoutesById
@@ -427,7 +427,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
-  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DoorsRoute: typeof DoorsRoute
@@ -437,7 +436,6 @@ export interface RootRouteChildren {
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
-  ProjectsRoute: typeof ProjectsRouteWithChildren
   ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
@@ -452,6 +450,8 @@ export interface RootRouteChildren {
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
   AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
@@ -498,13 +498,6 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painting': {
@@ -570,13 +563,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -596,6 +582,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -692,16 +692,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 interface GuideRouteChildren {
   GuideThankYouRoute: typeof GuideThankYouRoute
 }
@@ -712,23 +702,10 @@ const GuideRouteChildren: GuideRouteChildren = {
 
 const GuideRouteWithChildren = GuideRoute._addFileChildren(GuideRouteChildren)
 
-interface ProjectsRouteChildren {
-  ProjectsSlugRoute: typeof ProjectsSlugRoute
-}
-
-const ProjectsRouteChildren: ProjectsRouteChildren = {
-  ProjectsSlugRoute: ProjectsSlugRoute,
-}
-
-const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
-  ProjectsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
-  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DoorsRoute: DoorsRoute,
@@ -738,7 +715,6 @@ const rootRouteChildren: RootRouteChildren = {
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
-  ProjectsRoute: ProjectsRouteWithChildren,
   ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
@@ -753,9 +729,21 @@ const rootRouteChildren: RootRouteChildren = {
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
   AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
