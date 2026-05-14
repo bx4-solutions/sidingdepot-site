@@ -185,8 +185,8 @@ When we perform inspections in places like Roswell and Johns Creek, we often fin
     publishDate: '2026-05-12',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?w=1200&q=80',
-      alt: 'Comparing high quality siding with basic vinyl',
+      url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Comparing high quality fiber cement siding with standard vinyl siding',
       caption: 'In the Georgia heat, the difference between vinyl and fiber cement becomes obvious within just a few seasons.'
     },
     sections: [
@@ -194,11 +194,21 @@ When we perform inspections in places like Roswell and Johns Creek, we often fin
         h2: 'The Georgia Heat Factor: Why Vinyl Warps',
         content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted.
 
-James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`
+James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Close up of high quality fiber cement siding texture',
+          caption: 'Fiber cement offers a natural wood grain look without the maintenance or durability issues of real wood or plastic.'
+        }
       },
       {
         h2: 'Side-by-Side Comparison',
         content: `When making a decision for your home in Roswell or Cumming, consider these key performance metrics:`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1595841055318-47db9930f78c?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Home exterior showcasing professional siding and trim',
+          caption: 'A professional installation ensures both aesthetics and performance for decades.'
+        },
         table: {
           headers: ['Feature', 'James Hardie (Fiber Cement)', 'Standard Vinyl Siding'],
           rows: [
@@ -212,7 +222,12 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'The ROI Myth: Is Vinyl Really Cheaper?',
-        content: `While the upfront cost of vinyl is roughly 40% lower, the "real cost" over 15 years is often higher. A vinyl-sided home in North Atlanta will likely need to be replaced twice in the same timeframe that a Hardie-sided home remains in pristine condition. Furthermore, many high-end HOAs in Alpharetta and Milton no longer allow new vinyl installations because of the negative impact on neighborhood property values.`
+        content: `While the upfront cost of vinyl is roughly 40% lower, the "real cost" over 15 years is often higher. A vinyl-sided home in North Atlanta will likely need to be replaced twice in the same timeframe that a Hardie-sided home remains in pristine condition. Furthermore, many high-end HOAs in Alpharetta and Milton no longer allow new vinyl installations because of the negative impact on neighborhood property values.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Suburban home with premium siding installation',
+          caption: 'Investing in high-quality siding is one of the most effective ways to increase your home\'s market value.'
+        }
       }
     ],
     faq: [
