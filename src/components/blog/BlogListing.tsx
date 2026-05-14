@@ -28,6 +28,57 @@ export default function BlogListing() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* SEO Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Siding Depot Insights",
+          "description": "Expert advice on James Hardie siding, painting, and home exterior projects in North Atlanta.",
+          "url": "https://sidingdepot.com/blog",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Siding Depot",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://sidingdepot.com/logo.png"
+            }
+          },
+          "blogPost": publishedPosts.map(post => ({
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt,
+            "url": `https://sidingdepot.com/blog/${post.slug}`,
+            "datePublished": post.publishDate,
+            "author": {
+              "@type": "Organization",
+              "name": "Siding Depot Team"
+            }
+          }))
+        })}
+      </script>
+
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://sidingdepot.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://sidingdepot.com/blog"
+            }
+          ]
+        })}
+      </script>
+
       {/* Header */}
       <section className="bg-sd-navy py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
