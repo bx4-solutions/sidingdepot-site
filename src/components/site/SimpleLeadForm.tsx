@@ -25,6 +25,10 @@ type Props = {
   source?: string;
   tag?: string;
   submitLabel?: string;
+  /** URL of the PDF to offer for download in the success state. */
+  downloadUrl?: string;
+  /** Label for the download button shown after submission. */
+  downloadLabel?: string;
   onSuccess?: () => void;
 };
 
