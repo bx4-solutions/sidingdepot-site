@@ -43,9 +43,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'What Does James Hardie Siding Cost Per Square Foot in North Atlanta in 2026?',
-        content: `Many Marietta homeowners are reaching a critical point where their original wood or builder-grade vinyl siding from the 1990s and early 2000s is failing. Especially after the severe hail season of 2025 that impacted much of Cobb County, the shift toward James Hardie fiber cement has accelerated.
-
-But the question remains: what is the actual investment required? In the North Atlanta market for 2026, professional James Hardie installation typically ranges between $8 and $14 per square foot, depending on the complexity of the project and the specific product lines selected.`,
+        content: `Many Marietta homeowners are reaching a critical point where their original wood or builder-grade vinyl siding from the 1990s and early 2000s is failing. Especially after the severe hail season of 2025 that impacted much of Cobb County, the shift toward James Hardie fiber cement has accelerated.\n\nBut the question remains: what is the actual investment required? In the North Atlanta market for 2026, professional James Hardie installation typically ranges between $8 and $14 per square foot, depending on the complexity of the project and the specific product lines selected.`,
         table: {
           headers: ['Home Size', 'Sq Ft Siding', 'Estimated Cost', 'Notes'],
           rows: [
@@ -78,22 +76,15 @@ But the question remains: what is the actual investment required? In the North A
       },
       {
         h2: 'What Adds to the Final Cost in Georgia?',
-        content: `Beyond the siding itself, several regional factors influence the final quote for a Georgia home. 
-
-- **Rotten wood replacement:** On 90% of Georgia homes over 15 years old, we find rot behind the existing siding. We typically charge $8–$18 per linear foot for replacement, which is always documented before we proceed.
-- **Second story premium:** Homes over 1.5 stories require additional scaffolding and safety measures, typically resulting in a 15–25% labor increase.
-- **Complex architecture:** Custom trim work, turrets, or intricate gables can add between $2,000 and $6,000 to the total.
-- **Permit fees:** Local municipalities like Cobb County ($250–$450) or Fulton County ($300–$500) have specific requirements that we handle as part of the project.
-- **Old siding removal:** $1–$3 per sqft is standard for a clean tear-off and disposal.
-- **House wrap (WRB):** Essential for warranty compliance, adding $0.50–$1.50 per sqft for high-performance barriers like HardieWrap.`,
+        content: `Beyond the siding itself, several regional factors influence the final quote for a Georgia home. \n\n- **Rotten wood replacement:** On 90% of Georgia homes over 15 years old, we find rot behind the existing siding. We typically charge $8–$18 per linear foot for replacement, which is always documented before we proceed.\n- **Second story premium:** Homes over 1.5 stories require additional scaffolding and safety measures, typically resulting in a 15–25% labor increase.\n- **Complex architecture:** Custom trim work, turrets, or intricate gables can add between $2,000 and $6,000 to the total.\n- **Permit fees:** Local municipalities like Cobb County ($250–$450) or Fulton County ($300–$500) have specific requirements that we handle as part of the project.\n- **Old siding removal:** $1–$3 per sqft is standard for a clean tear-off and disposal.\n- **House wrap (WRB):** Essential for warranty compliance, adding $0.50–$1.50 per sqft for high-performance barriers like HardieWrap.`
       },
       {
         h2: 'James Hardie vs. Vinyl: The Long-Term ROI',
-        content: `While vinyl siding often costs $4–$8 per square foot installed, its lifespan in the intense Georgia heat is significantly shorter. Vinyl tends to warp or melt under UV exposure, whereas James Hardie is dimensionally stable. In the North Atlanta market—especially for homes valued between $400k and $900k—vinyl is often viewed as a "builder-grade" material that can negatively impact appraisal. According to the 2026 Cost vs. Value report, Hardie siding provides an 80% ROI at resale in Marietta, compared to just 60% for vinyl.`,
+        content: `While vinyl siding often costs $4–$8 per square foot installed, its lifespan in the intense Georgia heat is significantly shorter. Vinyl tends to warp or melt under UV exposure, whereas James Hardie is dimensionally stable. In the North Atlanta market—especially for homes valued between $400k and $900k—vinyl is often viewed as a "builder-grade" material that can negatively impact appraisal. According to the 2026 Cost vs. Value report, Hardie siding provides an 80% ROI at resale in Marietta, compared to just 60% for vinyl.`
       },
       {
         h2: "Does Homeowner's Insurance Cover Siding Replacement in Georgia?",
-        content: `Yes, in many cases. Georgia's hail season (March–June) frequently causes damage that qualifies for insurance claims. Many Cobb and Cherokee County homeowners have successfully had their entire siding replacement covered by documenting storm damage. We recommend documenting the storm date and having a professional contractor present during the adjuster visit to ensure all damage—including subtle "bruising" on fiber cement—is identified.`,
+        content: `Yes, in many cases. Georgia's hail season (March–June) frequently causes damage that qualifies for insurance claims. Many Cobb and Cherokee County homeowners have successfully had their entire siding replacement covered by documenting storm damage. We recommend documenting the storm date and having a professional contractor present during the adjuster visit to ensure all damage—including subtle "bruising" on fiber cement—is identified.`
       }
     ],
     faq: [
@@ -107,8 +98,6 @@ But the question remains: what is the actual investment required? In the North A
     metaDescription: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size and style.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
-
-
   {
     slug: '6-signs-time-replace-siding-georgia-home',
     title: "6 Signs It's Time to Replace the Siding on Your Georgia Home",
@@ -135,15 +124,15 @@ But the question remains: what is the actual investment required? In the North A
       },
       {
         h2: '2. Frequent Paint Failure or Fading',
-        content: `High-quality siding like James Hardie ColorPlus technology should hold its color for 15+ years. If you find yourself needing to repaint every 3-5 years, or if you notice significant fading on the southern exposure of your home in Marietta or Alpharetta, the protective finish of your siding has likely failed, leaving the core material vulnerable to water absorption.`,
+        content: `High-quality siding like James Hardie ColorPlus technology should hold its color for 15+ years. If you find yourself needing to repaint every 3-5 years, or if you notice significant fading on the southern exposure of your home in Marietta or Alpharetta, the protective finish of your siding has likely failed, leaving the core material vulnerable to water absorption.`
       },
       {
         h2: '3. Mold, Mildew, or Fungus Growth',
-        content: `While some surface mildew is common in the humid Georgia climate, growth that appears to be originating from *behind* the siding panels is a major red flag. This often occurs on north-facing walls in Cherokee or Cobb County where sunlight is limited. It indicates that moisture is trapped behind the cladding, potentially rotting the wooden sheathing.`,
+        content: `While some surface mildew is common in the humid Georgia climate, growth that appears to be originating from *behind* the siding panels is a major red flag. This often occurs on north-facing walls in Cherokee or Cobb County where sunlight is limited. It indicates that moisture is trapped behind the cladding, potentially rotting the wooden sheathing.`
       },
       {
         h2: '4. Rising Energy Bills',
-        content: `Siding serves as your home's second thermal envelope. If you've noticed a steady increase in your cooling costs during the Georgia summer, it may be due to gaps in your siding or a failed house wrap. Modern siding replacement includes high-performance weather barriers that significantly improve thermal efficiency.`,
+        content: `Siding serves as your home's second thermal envelope. If you've noticed a steady increase in your cooling costs during the Georgia summer, it may be due to gaps in your siding or a failed house wrap. Modern siding replacement includes high-performance weather barriers that significantly improve thermal efficiency.`
       },
       {
         h2: '5. Rotting Wood Around Windows and Doors',
@@ -156,7 +145,7 @@ But the question remains: what is the actual investment required? In the North A
       },
       {
         h2: '6. Storm or Hail Damage',
-        content: `Georgia's spring storm season can leave permanent damage. On vinyl siding, this often looks like cracks or "chips." On fiber cement, hail damage appears as subtle surface "bruising" or circular indentations that are often invisible from the ground but compromise the long-term integrity of the panel.`,
+        content: `Georgia's spring storm season can leave permanent damage. On vinyl siding, this often looks like cracks or "chips." On fiber cement, hail damage appears as subtle surface "bruising" or circular indentations that are often invisible from the ground but compromise the long-term integrity of the panel.`
       }
     ],
     faq: [
@@ -170,8 +159,6 @@ But the question remains: what is the actual investment required? In the North A
     metaDescription: 'Is your siding failing? Look for these 6 critical signs of damage in Georgia homes, from warping to hidden rot. Expert advice from Siding Depot.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
-
-
   {
     slug: 'james-hardie-vs-vinyl-siding-georgia-climate',
     title: 'James Hardie vs Vinyl Siding: The Honest Comparison for Georgia Homeowners',
@@ -188,9 +175,7 @@ But the question remains: what is the actual investment required? In the North A
     sections: [
       {
         h2: 'The Georgia Heat Factor: Why Vinyl Warps',
-        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted. 
-
-James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`,
+        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted. \n\nJames Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`,
         image: {
           url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900',
           alt: 'Close up of high quality fiber cement siding texture on a North Atlanta home',
@@ -232,7 +217,6 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     metaDescription: 'Honest comparison of James Hardie vs Vinyl for Georgia homes. Learn why fiber cement is the superior choice for the Atlanta climate.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', '6-signs-time-replace-siding-georgia-home']
   },
-
   {
     slug: 'board-batten-siding-guide-north-atlanta-2026',
     title: 'Board and Batten Siding in North Atlanta: Styles, Costs, and HOA Approval',
@@ -277,7 +261,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       }
     ],
     faq: [
-      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest (check our [2026 design trends](/blog/exterior-home-design-trends-north-atlanta-2026)).' },
+      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest.' },
       { q: 'What is the most popular color for Board and Batten in 2026?', a: 'Arctic White and Iron Gray are currently the top choices for Marietta and Milton homeowners.' }
     ],
     cta: { city: 'Milton', service: 'Siding' },
@@ -311,8 +295,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Atlanta Market Specifics',
-        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood (learn [how to spot siding failure here](/blog/6-signs-time-replace-siding-georgia-home)), they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
-
+        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'A well-maintained home ready for sale',
@@ -354,8 +337,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Identifying Hail Impact on Fiber Cement',
-        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to [hidden rot problems](/blog/rotten-wood-siding-replacement-georgia-homes). We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
-
+        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to hidden rot problems. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Close up of damage on an exterior wall',
@@ -491,8 +473,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     sections: [
       {
         h2: 'Why Georgia Homes Are Prone to Rot',
-        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons. (Check our [siding installation timeline](/blog/how-long-does-siding-installation-take-georgia) to see how we address this).`,
-
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`,
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Water damage on exterior building materials',
@@ -560,4 +541,3 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     internalLinks: ['hardie-siding-colors-2026-north-atlanta-homes', 'board-batten-siding-guide-north-atlanta-2026']
   }
 ];
-
