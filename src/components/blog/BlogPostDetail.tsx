@@ -260,7 +260,7 @@ export default function BlogPostDetail() {
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h3 className="text-lg font-bold text-sd-navy mb-6 border-b pb-2">In This Article</h3>
                 <ul className="space-y-4">
-                  {post.sections.map((section, idx) => {
+                  {post.sections.map((section: any, idx: number) => {
                     const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                     return (
                       <li key={idx}>
