@@ -59,23 +59,23 @@ export default function BlogListing() {
                     decoding="async"
                   />
                   <div className="absolute top-6 left-6">
-                    <span className="bg-[#BCD635] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+                    <span className="bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
                       {featuredPost.category}
                     </span>
                   </div>
                 </div>
                 <div className="md:w-[45%] p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-2xl md:text-3xl font-bold text-sd-black mb-5 leading-tight group-hover:text-[#BCD635] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sd-black mb-5 leading-tight group-hover:text-sd-green transition-colors">
                     {featuredPost.title}
                   </h2>
                   <p className="text-sd-gray-text line-clamp-3 mb-8 text-lg leading-relaxed">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex items-center gap-6 mb-10 text-[12px] font-bold uppercase tracking-wider text-sd-gray-text/60">
-                    <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#BCD635]" /> {featuredPost.readTime} min read</span>
-                    <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#BCD635]" /> {new Date(featuredPost.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-sd-green" /> {featuredPost.readTime} min read</span>
+                    <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-sd-green" /> {new Date(featuredPost.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                   </div>
-                  <Button asChild className="w-fit rounded-full bg-[#BCD635] text-sd-black hover:bg-[#BCD635]/90 px-8 py-6 h-auto text-base font-bold transition-all hover:translate-x-1">
+                  <Button asChild className="w-fit rounded-full bg-sd-green text-sd-black hover:bg-sd-green-hover px-8 py-6 h-auto text-base font-bold transition-all hover:translate-x-1">
                     <Link to="/blog/$slug" params={{ slug: featuredPost.slug }}>
                       Read Article <ArrowRight className="ml-2 w-5 h-5" />
                     </Link>
@@ -101,12 +101,12 @@ export default function BlogListing() {
                       height="338"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-[#BCD635] text-sd-black text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                      <span className="bg-sd-green text-sd-black text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
                         {post.category}
                       </span>
                     </div>
                   </Link>
-                  <h3 className="text-xl font-bold text-sd-black mb-3 group-hover:text-[#BCD635] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-sd-black mb-3 group-hover:text-sd-green transition-colors leading-snug">
                     <Link to="/blog/$slug" params={{ slug: post.slug }}>
                       {post.title}
                     </Link>
@@ -122,7 +122,7 @@ export default function BlogListing() {
                   <Link 
                     to="/blog/$slug" 
                     params={{ slug: post.slug }}
-                    className="text-sd-black font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-[#BCD635] transition-all"
+                    className="text-sd-black font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-sd-green transition-all"
                   >
                     Read More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -167,7 +167,7 @@ export default function BlogListing() {
                         />
                       </span>
                       <div className="flex flex-col gap-1">
-                        <span className="text-sm font-bold text-sd-black group-hover:text-[#BCD635] transition-colors leading-tight line-clamp-2">{p.title}</span>
+                        <span className="text-sm font-bold text-sd-black group-hover:text-sd-green transition-colors leading-tight line-clamp-2">{p.title}</span>
                         <span className="text-[10px] font-bold uppercase tracking-widest text-sd-gray-text/50">{p.category}</span>
                       </div>
                     </Link>
