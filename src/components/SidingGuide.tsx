@@ -12,7 +12,7 @@ const BrandHeader = ({ pageNum }: { pageNum: number }) => (
   <div className="absolute top-0 left-0 w-full">
     <div className="h-2 w-full bg-[#BCD635]" />
     <div className="flex justify-between items-center px-10 py-6">
-      <div className="font-display text-[28px] text-[#BCD635] leading-none tracking-tight">SIDING DEPOT</div>
+      <div className="font-display text-[28px] text-[#0A0A0A] leading-none tracking-tight bg-[#BCD635] px-2 py-1 rounded">SIDING DEPOT</div>
       <div className="text-[10px] font-bold text-[#2D3748] tracking-widest uppercase opacity-40">
         Page {pageNum} / 8
       </div>
@@ -54,7 +54,7 @@ export const SidingGuide = () => {
       {/* PAGE 1 - COVER */}
       <PageWrapper pageNum={1} className="bg-[#0A0A0A]">
         <div className="absolute top-10 left-10">
-          <div className="font-display text-[28px] text-[#BCD635] tracking-tight">SIDING DEPOT</div>
+          <div className="font-display text-[28px] text-[#0A0A0A] tracking-tight bg-[#BCD635] px-2 py-1 rounded">SIDING DEPOT</div>
         </div>
         <div className="absolute top-10 right-10">
           <div className="bg-[#BCD635]/15 border border-[#BCD635]/40 px-3 py-1 rounded-full text-[#BCD635] text-[10px] font-bold tracking-widest uppercase">
@@ -66,7 +66,7 @@ export const SidingGuide = () => {
           {/* Stylized House Illustration (SVG/CSS) */}
           <div className="relative w-[320px] h-[240px] mx-auto mb-16 opacity-90">
              <div className="absolute bottom-0 w-full h-[140px] bg-[#2D3748] border-b-8 border-[#BCD635]" />
-             <div className="absolute bottom-0 left-[20%] w-[25%] h-[90px] bg-[#1E2A38] border-t-4 border-x-4 border-[#BCD635]/20" />
+             <div className="absolute bottom-0 left-[20%] w-[25%] h-[90px] bg-[#0A0A0A] border-t-4 border-x-4 border-[#BCD635]/20" />
              <div className="absolute bottom-[90px] left-[15%] border-l-[110px] border-l-transparent border-r-[110px] border-r-transparent border-bottom-[80px] border-bottom-[#BCD635]" />
              <div className="absolute bottom-0 right-[15%] w-[35%] h-[120px] bg-[#3A4A5C] border-t-4 border-x-4 border-[#BCD635]/20" />
              <div className="absolute bottom-[120px] right-[10%] border-l-[90px] border-l-transparent border-r-[90px] border-r-transparent border-bottom-[60px] border-bottom-[#BCD635]" />
@@ -86,7 +86,7 @@ export const SidingGuide = () => {
         </div>
 
         <div className="absolute bottom-0 w-full h-[52px] bg-[#BCD635] flex items-center px-16">
-          <div className="text-white text-[12px] font-bold tracking-[0.2em] uppercase">
+          <div className="text-sd-black text-[12px] font-bold tracking-[0.2em] uppercase">
             2026 EDITION · FREE GUIDE · SIDINGDEPOT.COM
           </div>
         </div>
@@ -176,7 +176,7 @@ export const SidingGuide = () => {
             </table>
           </div>
 
-          <div className="mt-10 bg-[#BCD635] p-5 rounded-xl text-[#1E2A38] font-bold text-center">
+          <div className="mt-10 bg-[#BCD635] p-5 rounded-xl text-[#0A0A0A] font-bold text-center">
              James Hardie HZ10 is the only siding system engineered specifically for Georgia's climate zone — heat, humidity, and storm season combined.
           </div>
 
@@ -262,7 +262,7 @@ export const SidingGuide = () => {
             </div>
           </div>
 
-          <div className="mt-32 bg-[#1E2A38] p-8 rounded-2xl text-white text-center">
+          <div className="mt-32 bg-[#0A0A0A] p-8 rounded-2xl text-white text-center">
             <p className="text-lg leading-relaxed">
               At <span className="text-[#BCD635] font-bold">Siding Depot</span>, every project follows these 6 steps exactly — no shortcuts, no subcontracted crews, no surprise change orders.
             </p>
