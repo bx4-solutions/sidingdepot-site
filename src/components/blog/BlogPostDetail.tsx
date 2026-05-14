@@ -113,16 +113,22 @@ export default function BlogPostDetail() {
               </div>
             </header>
 
-            <div className="mb-12 rounded-2xl overflow-hidden shadow-lg">
+            <div className="mb-12 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
               <img 
-                src={post.heroImage.url} 
+                src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 })} 
+                srcSet={getUnsplashSrcSet(post.heroImage.url)}
+                sizes="(max-width: 1024px) 100vw, 800px"
                 alt={post.heroImage.alt}
                 className="w-full h-auto aspect-[16/9] object-cover"
+                width="1200"
+                height="675"
+                decoding="async"
               />
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
                 <p className="text-[13px] italic text-sd-gray-text text-center">{post.heroImage.caption}</p>
               </div>
             </div>
+
 
             <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:border-l-[3px] prose-h2:border-sd-green prose-h2:pl-4 prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg">
               {post.sections.map((section: any, idx: number) => {
