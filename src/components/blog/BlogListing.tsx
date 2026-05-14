@@ -6,8 +6,9 @@ import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { Star, ArrowRight, Clock, Calendar, User } from "lucide-react";
 
 export default function BlogListing() {
-  const featuredPost = BLOG_POSTS.find(p => p.featured) || BLOG_POSTS[0];
-  const otherPosts = BLOG_POSTS.filter(p => p.slug !== featuredPost.slug);
+  const publishedPosts = BLOG_POSTS.filter(p => p.status === 'published');
+  const featuredPost = publishedPosts.find(p => p.featured) || publishedPosts[0];
+  const otherPosts = publishedPosts.filter(p => p.slug !== featuredPost.slug);
 
   return (
     <div className="flex flex-col min-h-screen">
