@@ -21,6 +21,8 @@ function AdminDashboard() {
   // Filters state
   const [locationCityFilter, setLocationCityFilter] = useState("");
   const [locationServiceFilter, setLocationServiceFilter] = useState("");
+  const [routeSearch, setRouteSearch] = useState("");
+  const [pageTypeFilter, setPageTypeFilter] = useState("all");
   const [blogSearch, setBlogSearch] = useState("");
   const [blogStatusFilter, setBlogStatusFilter] = useState("all");
 
@@ -57,7 +59,17 @@ function AdminDashboard() {
   }, []);
 
   const locationPages = getAllLocationCombos();
-  const totalPages = STATIC_ROUTES.length + locationPages.length;
+  const allSitePages = [
+    ...STATIC_ROUTES.map(route => ({ route, type: 'static' as const, city: '—', service: '—' })),
+    ...locationPages.map(lp => ({ 
+      route: `/locations/${lp.city}/${lp.service}`, 
+      type: 'location' as const, 
+      city: lp.city.replace('-', ' '), 
+      service: lp.service 
+    }))
+  ];
+  
+  const totalPages = allSitePages.length;
   
   const blogStats = BLOG_POSTS.reduce((acc, post) => {
     const dbData = dbStatuses[post.slug];
@@ -72,11 +84,14 @@ function AdminDashboard() {
     return acc;
   }, { total: 0, published: 0, draft: 0, scheduled: 0 });
 
-  // Filtered Location Pages
-  const filteredLocationPages = locationPages.filter(lp => {
-    const matchesCity = !locationCityFilter || lp.city.toLowerCase().includes(locationCityFilter.toLowerCase());
-    const matchesService = !locationServiceFilter || lp.service.toLowerCase().includes(locationServiceFilter.toLowerCase());
-    return matchesCity && matchesService;
+  // Filtered Site Pages
+  const filteredSitePages = allSitePages.filter(page => {
+    const matchesCity = !locationCityFilter || page.city.toLowerCase().includes(locationCityFilter.toLowerCase());
+    const matchesService = !locationServiceFilter || page.service.toLowerCase().includes(locationServiceFilter.toLowerCase());
+    const matchesRoute = !routeSearch || page.route.toLowerCase().includes(routeSearch.toLowerCase());
+    const matchesType = pageTypeFilter === "all" || page.type === pageTypeFilter;
+    
+    return matchesCity && matchesService && matchesRoute && matchesType;
   });
 
   // Filtered Blog Posts
@@ -93,8 +108,8 @@ function AdminDashboard() {
   });
 
   // Paginated data
-  const paginatedLocations = filteredLocationPages.slice((locationPage - 1) * itemsPerPage, locationPage * itemsPerPage);
-  const totalLocationPagesCount = Math.ceil(filteredLocationPages.length / itemsPerPage);
+  const paginatedPages = filteredSitePages.slice((locationPage - 1) * itemsPerPage, locationPage * itemsPerPage);
+  const totalSitePagesCount = Math.ceil(filteredSitePages.length / itemsPerPage);
 
   const paginatedBlogs = filteredBlogPosts.slice((blogPage - 1) * itemsPerPage, blogPage * itemsPerPage);
   const totalBlogPagesCount = Math.ceil(filteredBlogPosts.length / itemsPerPage);
@@ -171,9 +186,21 @@ function AdminDashboard() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg font-bold text-sd-navy">Site Pages Architecture</CardTitle>
-                  <Badge variant="outline">{filteredLocationPages.length} Results</Badge>
+                  <Badge variant="outline">{filteredSitePages.length} Results</Badge>
                 </div>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="relative col-span-2">
+                    <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-sd-gray-text" />
+                    <Input 
+                      placeholder="Search route..." 
+                      className="h-8 pl-8 text-xs"
+                      value={routeSearch}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                        setRouteSearch(e.target.value);
+                        setLocationPage(1);
+                      }}
+                    />
+                  </div>
                   <Input 
                     placeholder="Filter city..." 
                     className="h-8 text-xs"
@@ -192,6 +219,22 @@ function AdminDashboard() {
                       setLocationPage(1);
                     }}
                   />
+                  <Select 
+                    value={pageTypeFilter} 
+                    onValueChange={(val: string) => {
+                      setPageTypeFilter(val);
+                      setLocationPage(1);
+                    }}
+                  >
+                    <SelectTrigger className="h-8 text-xs col-span-2">
+                      <SelectValue placeholder="Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Types</SelectItem>
+                      <SelectItem value="static">Static Only</SelectItem>
+                      <SelectItem value="location">Locations Only</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </CardHeader>
@@ -201,25 +244,30 @@ function AdminDashboard() {
                   <TableHeader>
                     <TableRow>
                       <TableHead className="font-bold">Page / Route</TableHead>
-                      <TableHead className="font-bold">City</TableHead>
-                      <TableHead className="font-bold">Service</TableHead>
+                      <TableHead className="font-bold">Type</TableHead>
+                      <TableHead className="font-bold">City / Service</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {paginatedLocations.map((lp, idx) => (
+                    {paginatedPages.map((page, idx) => (
                       <TableRow key={idx}>
                         <TableCell className="font-medium text-xs text-sd-navy">
-                          /locations/{lp.city}/{lp.service}
+                          {page.route}
                         </TableCell>
                         <TableCell>
-                          <Badge variant="secondary" className="capitalize text-[10px]">{lp.city.replace('-', ' ')}</Badge>
+                          <Badge variant={page.type === 'static' ? "secondary" : "outline"} className="capitalize text-[10px]">
+                            {page.type}
+                          </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="capitalize text-[10px]">{lp.service}</Badge>
+                          <div className="flex flex-col gap-1">
+                            <span className="capitalize text-[10px] text-sd-navy font-medium">{page.city}</span>
+                            <span className="capitalize text-[9px] text-sd-gray-text">{page.service}</span>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
-                    {paginatedLocations.length === 0 && (
+                    {paginatedPages.length === 0 && (
                       <TableRow>
                         <TableCell colSpan={3} className="text-center py-8 text-sd-gray-text text-sm">
                           No pages found matching filters.
@@ -231,10 +279,10 @@ function AdminDashboard() {
               </div>
               
               {/* Pagination Controls */}
-              {totalLocationPagesCount > 1 && (
+              {totalSitePagesCount > 1 && (
                 <div className="p-4 border-t border-gray-100 flex items-center justify-between">
                   <div className="text-xs text-sd-gray-text font-medium">
-                    Page {locationPage} of {totalLocationPagesCount}
+                    Page {locationPage} of {totalSitePagesCount}
                   </div>
                   <div className="flex gap-1">
                     <Button 
@@ -250,8 +298,8 @@ function AdminDashboard() {
                       variant="outline" 
                       size="sm" 
                       className="h-8 w-8 p-0"
-                      onClick={() => setLocationPage(p => Math.min(totalLocationPagesCount, p + 1))}
-                      disabled={locationPage === totalLocationPagesCount}
+                      onClick={() => setLocationPage(p => Math.min(totalSitePagesCount, p + 1))}
+                      disabled={locationPage === totalSitePagesCount}
                     >
                       &gt;
                     </Button>
