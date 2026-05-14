@@ -3,12 +3,26 @@ import { Link } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { Star, ArrowRight, Clock, Calendar, User } from "lucide-react";
+import { Star, ArrowRight, Clock, Calendar, User, Loader2 } from "lucide-react";
+import { useBlogPosts } from "@/hooks/use-blog-posts";
 
 export default function BlogListing() {
-  const publishedPosts = BLOG_POSTS.filter(p => p.status === 'published');
+  const { posts, loading } = useBlogPosts();
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-sd-navy text-white">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-8 h-8 animate-spin text-sd-green" />
+          <p className="font-bold tracking-widest uppercase text-xs">Loading Insights...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const publishedPosts = posts.filter(p => p.status === 'published');
   const featuredPost = publishedPosts.find(p => p.featured) || publishedPosts[0];
-  const otherPosts = publishedPosts.filter(p => p.slug !== featuredPost.slug);
+  const otherPosts = publishedPosts.filter(p => p.slug !== featuredPost?.slug);
 
   return (
     <div className="flex flex-col min-h-screen">
