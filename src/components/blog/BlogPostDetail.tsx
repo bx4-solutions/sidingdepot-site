@@ -1,8 +1,8 @@
-import { useParams, Link } from "@tanstack/react-router";
+import { useParams, Link, useSearch } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { ArrowRight, Clock, Calendar, User, ChevronRight } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function BlogPostDetail() {
@@ -11,6 +11,9 @@ export default function BlogPostDetail() {
   }, []);
 
   const { slug } = useParams({ from: "/blog/$slug" });
+  const search = useSearch({ from: "/blog/$slug" });
+  const isPreview = search.preview === true;
+  
   const post = BLOG_POSTS.find((p) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
@@ -27,7 +30,7 @@ export default function BlogPostDetail() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [post]);
 
   if (!post) {
     return (
