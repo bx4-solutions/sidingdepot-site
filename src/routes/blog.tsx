@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import BlogListing from "@/components/blog/BlogListing";
+import { BLOG_POSTS } from "@/data/blog-posts";
+
 
 export const Route = createFileRoute("/blog")({
   component: BlogListing,
