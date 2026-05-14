@@ -39,8 +39,8 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "twitter:title", content: post.metaTitle },
         { name: "twitter:description", content: post.metaDescription },
         { name: "twitter:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
-        { name: "twitter:image:alt", content: post.heroImage.alt },
-
+      ],
+      links: [
         { rel: "canonical", href: canonicalUrl },
       ],
       scripts: [
