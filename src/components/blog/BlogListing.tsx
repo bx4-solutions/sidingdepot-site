@@ -47,12 +47,18 @@ export default function BlogListing() {
             {/* Featured Post */}
             {featuredPost && (
               <div className="relative group overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 flex flex-col md:flex-row">
-                <div className="md:w-[55%] relative overflow-hidden h-[300px] md:h-auto">
+                <div className="md:w-[55%] relative overflow-hidden h-[300px] md:h-auto bg-gray-100">
                   <img 
-                    src={featuredPost.heroImage.url} 
+                    src={getOptimizedUnsplashUrl(featuredPost.heroImage.url, { width: 800 })} 
+                    srcSet={getUnsplashSrcSet(featuredPost.heroImage.url)}
+                    sizes="(max-width: 768px) 100vw, 600px"
                     alt={featuredPost.heroImage.alt}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    width="800"
+                    height="600"
+                    decoding="async"
                   />
+
                   <div className="absolute top-4 left-4">
                     <span className="bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
                       {featuredPost.category}
