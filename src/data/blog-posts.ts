@@ -27,62 +27,70 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'james-hardie-siding-cost-marietta-ga-2026',
     title: 'How Much Does James Hardie Siding Cost in Marietta, GA? (2026 Complete Guide)',
-    excerpt: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size, style, and neighborhood.',
+    excerpt: 'Detailed cost breakdown for James Hardie installation in Marietta, Georgia. Real-world pricing, neighborhood factors, and ROI for 2026.',
     category: 'Cost Guides',
-    readTime: 9,
+    readTime: 12,
     publishDate: '2026-05-14',
     featured: true,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200',
-      alt: 'James Hardie HardiePlank lap siding installation on a traditional two-story home in Marietta, Georgia',
-      caption: 'A completed James Hardie HardiePlank installation on a 2,600 sq ft home in East Cobb, Marietta — project value approximately $22,000.'
+      url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+      alt: 'Beautiful blue James Hardie siding installation on a luxury home in Marietta, GA',
+      caption: 'A professional James Hardie installation in the East Cobb area of Marietta, GA — providing a 50+ year solution.'
     },
     sections: [
       {
-        h2: 'What Does James Hardie Siding Cost Per Square Foot in North Atlanta in 2026?',
-        content: 'The cost of James Hardie siding installation varies based on the size of your home and the specific needs of your property. Below is a breakdown of estimated costs for 2026.',
+        h2: 'The 2026 Marietta Market: What Homeowners Are Paying',
+        content: `In 2026, the Marietta siding market has seen stabilization after the price volatility of the early 20s. For a standard 2,500 square foot home in neighborhoods like East Cobb or Kennesaw, a full James Hardie re-siding project typically ranges from $18,500 to $32,000 depending on complexity.
+
+Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl. When you factor in Georgia\'s intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
+
+We categorized the costs into three distinct tiers to help Marietta residents plan their budgets:`,
         table: {
-          headers: ['Home Size', 'Sq Ft Siding', 'Estimated Cost', 'Notes'],
+          headers: ['Home Tier', 'Average Sq Ft', 'Investment Range', 'Typical Components'],
           rows: [
-            ['1,500 sqft home', '~1,800 sqft siding', '$14,400–$25,200', 'Ranch/single story'],
-            ['2,000 sqft home', '~2,400 sqft siding', '$19,200–$33,600', 'Most common in Marietta'],
-            ['2,500 sqft home', '~3,000 sqft siding', '$24,000–$42,000', 'Typical East Cobb home'],
-            ['3,000 sqft home', '~3,600 sqft siding', '$28,800–$50,400', 'Milton/Alpharetta range'],
-            ['3,500+ sqft', '~4,200+ sqft siding', '$33,600–$58,800+', 'Custom/luxury tier']
+            ['Standard Ranch', '1,800', '$14,000 - $19,500', 'HardiePlank Lap Siding, basic trim'],
+            ['Traditional 2-Story', '2,600', '$22,000 - $28,500', 'HardiePlank, Accent Gables, HardieTrim'],
+            ['Custom Luxury', '3,500+', '$35,000+', 'Mixed profiles, HardieShingle, custom color matching']
           ]
-        },
-        pullQuote: 'The gap between the cheapest and most expensive bid in Marietta typically runs $8,000–$12,000. That gap is almost never about material quality — it\'s about who\'s doing the work.'
+        }
       },
       {
-        h2: 'Cost Breakdown by James Hardie Product Line',
-        content: 'James Hardie offers several product lines tailored for the Georgia climate. Here is a breakdown of the material and installation costs per square foot.',
-        table: {
-          headers: ['Produto', '$/sqft material', '$/sqft installed', 'Melhor para'],
-          rows: [
-            ['HardiePlank Lap Siding', '$2.50–$4.00', '$8–$11', 'Most homes, traditional look'],
-            ['HardieShingle', '$3.00–$5.00', '$10–$14', 'Cape Cod, craftsman, accent areas'],
-            ['HardiePanel (Vertical)', '$2.75–$4.25', '$9–$12', 'Modern farmhouse, board & batten'],
-            ['HardieTrim', '$1.50–$3.00', '$4–$7', 'Corners, windows, doors — always included']
-          ]
-        },
+        h2: 'Breaking Down the Square Foot Cost in Cobb County',
+        content: `Most professional siding contractors in North Atlanta quote James Hardie between $8.50 and $13.50 per square foot installed. This range exists because every home in Marietta is unique — a home with multiple steep gables in Indian Hills will require more labor and scaffolding than a flat ranch in Smyrna.
+
+Labor represents roughly 45% of your total quote. In Marietta, local labor rates are influenced by the high demand for Elite Preferred contractors who adhere to the strict HZ10 installation guidelines required for James Hardie\'s 30-year warranty. Using a "general" contractor who doesn\'t specialize in fiber cement might save you 15% today but cost you the entire warranty tomorrow.`,
+        pullQuote: "In Marietta, the difference between a good siding job and a great one is in the flashing and moisture barrier. In the Georgia humidity, what you don't see behind the siding is as important as the panels themselves."
+      },
+      {
+        h2: 'Material Deep-Dive: ColorPlus vs. Prime & Paint',
+        content: `Many Marietta homeowners ask if they should choose the factory-finished ColorPlus® technology or have the siding painted on-site. For the North Atlanta climate, we almost exclusively recommend ColorPlus. The factory-baked finish is engineered to resist UV fading in the Georgia sun much better than traditional field-applied paint.
+
+From a cost perspective, ColorPlus adds about $1.50 per square foot to the material cost, but it eliminates the $4,000 - $6,000 cost of a professional paint job. More importantly, it extends your next maintenance interval by 5-7 years.`,
         image: {
-          url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900',
-          alt: 'HardiePlank lap siding close-up showing fiber cement texture and ColorPlus factory finish in Cobblestone color',
-          caption: 'James Hardie ColorPlus® factory finish holds color for 12+ years without repainting — a major factor in long-term cost comparison with vinyl.'
+          url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1000&q=80',
+          alt: 'Close up of fiber cement siding texture and quality',
+          caption: 'The authentic wood grain texture of James Hardie fiber cement offers significantly higher curb appeal than vinyl or wood composite.'
         }
+      },
+      {
+        h2: 'Hidden Costs to Watch For in Older Marietta Neighborhoods',
+        content: `If your home was built between 1980 and 2005, there are two common "surprises" that can impact your final cost. First is the discovery of OSB sheathing rot once the old siding is removed. In East Cobb homes, we find that roughly 15% of projects require at least some sheathing replacement due to old moisture intrusion.
+
+Second is the upgrade of house wrap. Many older homes were built without a proper weather-resistive barrier. We always include the HardieWrap® system in our Marietta quotes because it is essential for the moisture management required by the James Hardie warranty.`
       }
     ],
     faq: [
-      { q: 'What is the average cost to reside a 2,000 sq ft house in Marietta in 2026?', a: 'Expect $19,000–$28,000 for James Hardie installed, including tear-off and house wrap.' },
-      { q: 'How long does James Hardie siding last in Georgia?', a: '50+ years when properly installed by a certified HZ10 contractor.' },
-      { q: 'Is James Hardie worth it over vinyl siding in North Atlanta?', a: 'Yes. At a $400k+ home value, vinyl signals builder-grade. Hardie adds resale value and lasts twice as long.' },
-      { q: 'How do I know if I need full replacement or just repair?', a: 'If more than 20% of panels are damaged, full replacement is more cost-effective. We\'ll tell you honestly.' }
+      { q: 'Is James Hardie siding non-combustible?', a: 'Yes, James Hardie fiber cement siding is non-combustible and recognized by many insurance companies in Georgia for premium discounts.' },
+      { q: 'How long does a typical installation take in Marietta?', a: 'A standard home takes 5-8 business days from tear-off to final cleanup, depending on weather.' },
+      { q: 'Do you offer financing for Marietta siding projects?', a: 'Yes, Siding Depot offers several financing options including 0% interest and low-monthly payment plans for qualified Cobb County homeowners.' },
+      { q: 'Does James Hardie increase my home resale value?', a: 'According to the Remodeling 2026 Cost vs. Value Report, siding replacement with fiber cement provides one of the highest ROIs for Atlanta area homes, typically recouping over 80% of the cost.' }
     ],
     cta: { city: 'Marietta', service: 'Siding' },
-    metaTitle: 'James Hardie Siding Cost in Marietta GA 2026 | Complete Price Guide',
-    metaDescription: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size, style, and neighborhood.',
+    metaTitle: 'James Hardie Siding Cost Marietta GA 2026 | Siding Depot',
+    metaDescription: 'Complete 2026 guide to James Hardie siding costs in Marietta, GA. Learn about pricing, installation factors, and why Marietta homeowners choose Siding Depot.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
+
   {
     slug: '6-signs-time-replace-siding-georgia-home',
     title: "6 Signs It's Time to Replace the Siding on Your Georgia Home",
