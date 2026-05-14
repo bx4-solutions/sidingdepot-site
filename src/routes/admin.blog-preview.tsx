@@ -485,7 +485,7 @@ function BlogAdminPreview() {
   );
 }
 
-function AuditLogViewer({ limit = 50, slug }: { limit?: number, slug?: string }) {
+export function AuditLogViewer({ limit = 50, slug }: { limit?: number, slug?: string }) {
   const [logs, setLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [dbStatuses, setDbStatuses] = useState<Record<string, string>>({});
