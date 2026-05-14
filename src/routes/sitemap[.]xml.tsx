@@ -4,6 +4,7 @@ import {
   getAllLocationCombos,
   SITE_ORIGIN,
 } from "@/data/locations";
+import { BLOG_POSTS } from "@/data/blog-posts";
 
 function buildSitemap(origin: string): string {
   const lastmod = new Date().toISOString().slice(0, 10);
