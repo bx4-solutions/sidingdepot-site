@@ -237,7 +237,7 @@ export function HeroQuoteForm({
                   <label
                     key={name}
                     className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
-                      checked ? "bg-sd-navy/5 text-sd-black" : "hover:bg-muted"
+                      checked ? "bg-sd-navy/5 text-sd-black" : "text-sd-black hover:bg-muted"
                     }`}
                   >
                     <input
@@ -246,7 +246,7 @@ export function HeroQuoteForm({
                       onChange={() => toggleService(name)}
                       className="h-4 w-4 accent-sd-navy"
                     />
-                    <span>{name}</span>
+                    <span className="text-sd-black">{name}</span>
                   </label>
                 );
               })}
