@@ -83,12 +83,14 @@ export default function BlogPostDetail() {
       )}
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs font-medium text-sd-gray-text mb-8">
-          <Link to="/" className="hover:text-sd-navy">Home</Link>
-          <ChevronRight className="w-3 h-3" />
-          <Link to="/blog" className="hover:text-sd-navy">Blog</Link>
-          <ChevronRight className="w-3 h-3" />
-          <span className="text-sd-navy">{post.category}</span>
+        <nav className="flex items-center flex-wrap gap-2 text-xs font-medium text-sd-gray-text mb-8" aria-label="Breadcrumb">
+          <Link to="/" className="hover:text-sd-navy transition-colors">Home</Link>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <Link to="/blog" className="hover:text-sd-navy transition-colors">Blog</Link>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <span className="text-sd-gray-text/70">{post.category}</span>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <span className="text-sd-navy font-bold truncate max-w-[200px] md:max-w-none">{post.title}</span>
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-12">
