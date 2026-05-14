@@ -2,7 +2,7 @@ import { useParams, Link, useSearch } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useBlogPosts } from "@/hooks/use-blog-posts";
 import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
@@ -19,7 +19,7 @@ export default function BlogPostDetail() {
   
   // Important: We use BLOG_POSTS directly for initial render to avoid flicker,
   // then use hook data to handle draft/published status from DB
-  const { posts, loading } = useBlogPosts();
+  const { posts } = useBlogPosts();
   const post = posts.find((p: BlogPost) => p.slug === slug) || BLOG_POSTS.find((p) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
@@ -38,14 +38,6 @@ export default function BlogPostDetail() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [post]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <Loader2 className="w-8 h-8 animate-spin text-sd-navy" />
-      </div>
-    );
-  }
 
   if (!post || (post.status === 'draft' && !isPreview)) {
     return (
