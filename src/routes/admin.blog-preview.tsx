@@ -458,9 +458,11 @@ function BlogAdminPreview() {
                             )}
                           </Button>
 
-                          <div className="ml-auto flex items-center gap-2 text-[10px] font-bold text-sd-gray-text/40">
-                            ID: {post.slug.slice(0, 8)}...
-                          </div>
+                          <Button asChild variant="ghost" size="sm" className="ml-auto rounded-full text-[10px] font-bold text-sd-gray-text/40 hover:text-sd-navy">
+                            <Link to="/admin/blog/$slug" params={{ slug: post.slug }}>
+                              View Details
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
