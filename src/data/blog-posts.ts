@@ -248,22 +248,37 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-11',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80',
-      alt: 'Modern farmhouse with white board and batten siding',
+      url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Modern farmhouse with white board and batten siding installation',
       caption: 'The vertical lines of board and batten create a height and modern feel that traditional lap siding cannot match.'
     },
     sections: [
       {
         h2: 'The Modern Farmhouse Explosion in Georgia',
-        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.`
+        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
+          alt: 'White modern farmhouse exterior with vertical siding',
+          caption: 'The Modern Farmhouse aesthetic remains a top choice for North Atlanta homeowners in 2026.'
+        }
       },
       {
         h2: 'Installation Complexity and Cost',
-        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.`
+        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Construction crew installing vertical siding panels',
+          caption: 'Precision is key when aligning vertical panels and battens for a clean, professional finish.'
+        }
       },
       {
         h2: 'Getting HOA Approval in North Atlanta',
-        content: `HOAs in communities like Windward or Seven Oaks can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples and technical data sheets to make the approval process seamless.`
+        content: `HOAs in communities like Windward or Seven Oaks can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples and technical data sheets to make the approval process seamless.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Suburban neighborhood homes with high quality siding',
+          caption: 'Premium siding helps maintain community standards and individual property values.'
+        }
       }
     ],
     faq: [
