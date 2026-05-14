@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 export function useBlogPosts() {
   const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function syncStatuses() {
@@ -53,11 +53,13 @@ export function useBlogPost(slug: string) {
   const [post, setPost] = useState<BlogPost | null>(
     BLOG_POSTS.find(p => p.slug === slug) || null
   );
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function syncStatus() {
       if (!slug) return;
+      const localPost = BLOG_POSTS.find(p => p.slug === slug) || null;
+      setPost(localPost);
       try {
         const { data, error } = await supabase
           .from('blog_posts')
