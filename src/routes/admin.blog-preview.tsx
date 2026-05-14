@@ -384,7 +384,9 @@ function BlogAdminPreview() {
                               <Clock className="w-3 h-3" /> {post.readTime} min read
                             </span>
                           </div>
-                          <h3 className="text-xl font-bold text-sd-navy mb-2 leading-tight">{post.title}</h3>
+                          <Link to="/admin/blog/$slug" params={{ slug: post.slug }} className="hover:opacity-80 transition-opacity">
+                            <h3 className="text-xl font-bold text-sd-navy mb-2 leading-tight">{post.title}</h3>
+                          </Link>
                           <p className="text-sm text-sd-gray-text line-clamp-2 mb-4 leading-relaxed font-medium">
                             {post.excerpt}
                           </p>
@@ -456,9 +458,11 @@ function BlogAdminPreview() {
                             )}
                           </Button>
 
-                          <div className="ml-auto flex items-center gap-2 text-[10px] font-bold text-sd-gray-text/40">
-                            ID: {post.slug.slice(0, 8)}...
-                          </div>
+                          <Button asChild variant="ghost" size="sm" className="ml-auto rounded-full text-[10px] font-bold text-sd-gray-text/40 hover:text-sd-navy">
+                            <Link to="/admin/blog/$slug" params={{ slug: post.slug }}>
+                              View Details
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -481,18 +485,25 @@ function BlogAdminPreview() {
   );
 }
 
-function AuditLogViewer() {
+export function AuditLogViewer({ limit = 50, slug }: { limit?: number, slug?: string }) {
   const [logs, setLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [dbStatuses, setDbStatuses] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const fetchLogs = async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('audit_logs')
         .select('*')
         .eq('entity_type', 'blog_post')
         .order('created_at', { ascending: false })
-        .limit(50);
+        .limit(limit);
+      
+      if (slug) {
+        query = query.eq('entity_id', slug);
+      }
+      
+      const { data, error } = await query;
       
       if (!error && data) {
         setLogs(data);
@@ -521,7 +532,7 @@ function AuditLogViewer() {
               </span>
             </div>
             <div className="text-sd-gray-text font-medium truncate">
-              Target: <span className="text-sd-navy">{log.entity_id}</span>
+              Target: <Link to="/admin/blog/$slug" params={{ slug: log.entity_id }} className="text-sd-navy hover:underline">{log.entity_id}</Link>
             </div>
             {log.details && (
               <div className="mt-1 text-[10px] text-gray-500 bg-gray-50 p-1 rounded">

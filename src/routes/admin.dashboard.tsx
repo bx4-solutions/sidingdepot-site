@@ -360,6 +360,7 @@ function AdminDashboard() {
                       <TableHead className="font-bold">Article Title</TableHead>
                       <TableHead className="font-bold text-center">Status</TableHead>
                       <TableHead className="font-bold">Schedule</TableHead>
+                      <TableHead className="font-bold text-right">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -372,9 +373,9 @@ function AdminDashboard() {
                       return (
                         <TableRow key={post.slug}>
                           <TableCell className="max-w-[200px]">
-                            <div className="font-bold text-sd-navy text-xs truncate" title={post.title}>
+                            <Link to="/admin/blog/$slug" params={{ slug: post.slug }} className="font-bold text-sd-navy text-xs truncate hover:text-sd-green transition-colors" title={post.title}>
                               {post.title}
-                            </div>
+                            </Link>
                             <div className="text-[10px] text-sd-gray-text">{post.category}</div>
                           </TableCell>
                           <TableCell className="text-center">
@@ -395,6 +396,11 @@ function AdminDashboard() {
                             ) : (
                               <span className="text-[10px] text-sd-gray-text/40">—</span>
                             )}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button asChild variant="ghost" size="sm" className="h-7 text-[10px] font-bold uppercase tracking-wider">
+                              <Link to="/admin/blog/$slug" params={{ slug: post.slug }}>Details</Link>
+                            </Button>
                           </TableCell>
                         </TableRow>
                       );
