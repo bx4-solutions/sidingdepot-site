@@ -61,7 +61,7 @@ export function useBlogPost(slug: string) {
       try {
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('status')
+          .select('status, scheduled_at')
           .eq('slug', slug)
           .single();
 
@@ -70,9 +70,18 @@ export function useBlogPost(slug: string) {
         if (data) {
           const basePost = BLOG_POSTS.find(p => p.slug === slug);
           if (basePost) {
+            let status = (data.status as 'published' | 'draft' | 'scheduled') || basePost.status;
+            const scheduledAt = data.scheduled_at;
+            const now = new Date();
+
+            if (status !== 'published' && scheduledAt && new Date(scheduledAt) <= now) {
+              status = 'published';
+            }
+
             setPost({
               ...basePost,
-              status: (data.status as 'published' | 'draft') || basePost.status
+              status,
+              scheduledAt: scheduledAt || undefined
             });
           }
         }
