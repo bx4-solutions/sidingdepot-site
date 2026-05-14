@@ -89,12 +89,19 @@ export default function BlogListing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {otherPosts.map((post) => (
                 <article key={post.slug} className="group flex flex-col">
-                  <Link to="/blog/$slug" params={{ slug: post.slug }} className="relative overflow-hidden rounded-xl aspect-[16/9] mb-6 block">
+                  <Link to="/blog/$slug" params={{ slug: post.slug }} className="relative overflow-hidden rounded-xl aspect-[16/9] mb-6 block bg-gray-100">
                     <img 
-                      src={post.heroImage.url} 
+                      src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 600 })} 
+                      srcSet={getUnsplashSrcSet(post.heroImage.url)}
+                      sizes="(max-width: 768px) 100vw, 400px"
                       alt={post.heroImage.alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="338"
                     />
+
                     <div className="absolute top-3 left-3">
                       <span className="bg-sd-green text-sd-black text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
                         {post.category}
