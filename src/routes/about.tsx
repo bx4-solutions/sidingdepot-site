@@ -333,34 +333,8 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* MOVING LOGO */}
-      <section className="py-12 bg-white overflow-hidden border-b border-sd-gray-border">
-        <div className="relative flex overflow-x-hidden">
-          <div className="animate-marquee whitespace-nowrap flex items-center py-4">
-            {[...Array(10)].map((_, i) => (
-              <img
-                key={`logo-1-${i}`}
-                src="/moving-logo.svg"
-                alt="Siding Depot Logo"
-                className="h-20 w-auto mx-12 object-contain"
-              />
-            ))}
-          </div>
-          <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center py-4">
-            {[...Array(10)].map((_, i) => (
-              <img
-                key={`logo-2-${i}`}
-                src="/moving-logo.svg"
-                alt="Siding Depot Logo"
-                className="h-20 w-auto mx-12 object-contain"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* PARTNERS / BRAND CAROUSEL */}
-      <section className="py-16 bg-sd-gray-bg border-b border-sd-gray-border">
+      <section className="py-16 bg-sd-gray-bg border-y border-sd-gray-border">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text">
             Trusted partners &amp; manufacturers
