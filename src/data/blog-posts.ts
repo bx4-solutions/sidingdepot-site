@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
         h2: 'The 2026 Marietta Market: What Homeowners Are Paying',
         content: `In 2026, the Marietta siding market has seen stabilization after the price volatility of the early 20s. For a standard 2,500 square foot home in neighborhoods like East Cobb or Kennesaw, a full James Hardie re-siding project typically ranges from $18,500 to $32,000 depending on complexity.
 
-Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl. When you factor in Georgia\'s intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
+Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl (see our [James Hardie vs Vinyl comparison](/blog/james-hardie-vs-vinyl-siding-georgia-climate)). When you factor in Georgia's intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
 
 We categorized the costs into three distinct tiers to help Marietta residents plan their budgets:`,
         image: {
@@ -122,7 +122,7 @@ Second is the upgrade of house wrap. Many older homes were built without a prope
     sections: [
       {
         h2: '1. Visible Cracking, Bubbling, or Blistering',
-        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot.
+        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot (read more about [hidden rot here](/blog/rotten-wood-siding-replacement-georgia-homes)).
 
 Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`,
         image: {
@@ -282,7 +282,7 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       }
     ],
     faq: [
-      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest.' },
+      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest (check our [2026 design trends](/blog/exterior-home-design-trends-north-atlanta-2026)).' },
       { q: 'What is the most popular color for Board and Batten in 2026?', a: 'Arctic White and Iron Gray are currently the top choices for Marietta and Milton homeowners.' }
     ],
     cta: { city: 'Milton', service: 'Siding' },
@@ -315,7 +315,8 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Atlanta Market Specifics',
-        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
+        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood (learn [how to spot siding failure here](/blog/6-signs-time-replace-siding-georgia-home)), they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
+
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'A well-maintained home ready for sale',
@@ -356,7 +357,8 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Identifying Hail Impact on Fiber Cement',
-        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to delamination. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
+        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to [hidden rot problems](/blog/rotten-wood-siding-replacement-georgia-homes). We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
+
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Close up of damage on an exterior wall',
@@ -489,7 +491,8 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     sections: [
       {
         h2: 'Why Georgia Homes Are Prone to Rot',
-        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`,
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons. (Check our [siding installation timeline](/blog/how-long-does-siding-installation-take-georgia) to see how we address this).`,
+
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Water damage on exterior building materials',
