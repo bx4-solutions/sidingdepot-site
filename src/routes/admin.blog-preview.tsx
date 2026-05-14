@@ -180,7 +180,9 @@ function BlogAdminPreview() {
 
         <div className="grid gap-6">
           {BLOG_POSTS.map((post) => {
-            const status = dbStatuses[post.slug] || post.status;
+            const dbData = dbStatuses[post.slug];
+            const status = dbData?.status || post.status;
+            const scheduledAt = dbData?.scheduledAt;
             const isPublished = status === 'published';
             const isSEOExpanded = expandedSEO[post.slug];
 
@@ -193,10 +195,16 @@ function BlogAdminPreview() {
                       alt={post.heroImage.alt}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-                    <div className="absolute top-3 left-3">
-                      <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
-                        {status}
+                    <div className="absolute top-3 left-3 flex flex-col gap-2">
+                      <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : scheduledAt ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
+                        {isPublished ? 'published' : scheduledAt ? 'scheduled' : status}
                       </Badge>
+                      {scheduledAt && (
+                        <Badge className="bg-white/90 text-sd-navy border-none text-[8px] font-bold py-0.5">
+                          <Calendar className="w-2.5 h-2.5 mr-1" />
+                          {new Date(scheduledAt).toLocaleDateString()}
+                        </Badge>
+                      )}
                     </div>
                   </div>
                   
@@ -219,6 +227,12 @@ function BlogAdminPreview() {
                           <div className="flex flex-wrap gap-4 text-[11px] font-bold text-sd-navy/50 uppercase tracking-wider">
                              <span className="flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> {post.sections.length} Sections</span>
                              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5" /> FAQ Complete</span>
+                             {scheduledAt && (
+                               <span className="flex items-center gap-1.5 text-blue-600">
+                                 <Calendar className="w-3.5 h-3.5" /> 
+                                 Scheduled: {new Date(scheduledAt).toLocaleString()}
+                               </span>
+                             )}
                           </div>
                         </div>
 
@@ -240,6 +254,20 @@ function BlogAdminPreview() {
                             SEO Preview
                             {isSEOExpanded ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
                           </Button>
+
+                          <div className="flex items-center gap-2">
+                            <div className="relative group/schedule">
+                              <input 
+                                type="datetime-local" 
+                                className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                                onChange={(e) => handleSchedule(post, e.target.value)}
+                              />
+                              <Button variant="outline" size="sm" className="rounded-full border-sd-navy/20 pointer-events-none group-hover/schedule:bg-gray-50">
+                                <Clock className="w-4 h-4 mr-2" />
+                                Schedule
+                              </Button>
+                            </div>
+                          </div>
                           
                           <Button 
                             onClick={() => toggleStatus(post)}
