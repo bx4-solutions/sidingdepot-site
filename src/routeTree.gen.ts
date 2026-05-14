@@ -41,6 +41,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminBlogPreviewRouteImport } from './routes/admin.blog-preview'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
+import { Route as AdminBlogSlugRouteImport } from './routes/admin.blog.$slug'
 
 const WindowsRoute = WindowsRouteImport.update({
   id: '/windows',
@@ -202,6 +203,11 @@ const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   path: '/locations/$city/$service',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBlogSlugRoute = AdminBlogSlugRouteImport.update({
+  id: '/admin/blog/$slug',
+  path: '/admin/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -235,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRoutesByTo {
@@ -269,6 +276,7 @@ export interface FileRoutesByTo {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRoutesById {
@@ -304,6 +312,7 @@ export interface FileRoutesById {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
 export interface FileRouteTypes {
@@ -340,6 +349,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/admin/blog/$slug'
     | '/locations/$city/$service'
   id:
     | '__root__'
@@ -408,6 +419,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesById: FileRoutesById
 }
@@ -440,6 +452,7 @@ export interface RootRouteChildren {
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
 
@@ -669,6 +682,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsCityServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/blog/$slug': {
+      id: '/admin/blog/$slug'
+      path: '/admin/blog/$slug'
+      fullPath: '/admin/blog/$slug'
+      preLoaderRoute: typeof AdminBlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -733,6 +753,7 @@ const rootRouteChildren: RootRouteChildren = {
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
