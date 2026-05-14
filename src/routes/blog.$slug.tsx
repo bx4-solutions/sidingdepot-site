@@ -43,7 +43,7 @@ export const Route = createFileRoute("/blog/$slug")({
             "@type": "Article",
             "headline": post.title,
             "description": post.excerpt,
-            "image": post.heroImage.url,
+            "image": getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
             "datePublished": post.publishDate,
             "dateModified": post.publishDate,
             "author": {
