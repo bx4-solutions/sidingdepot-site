@@ -94,6 +94,8 @@ function BlogAdminPreview() {
   const [dbStatuses, setDbStatuses] = useState<Record<string, { status: string; scheduledAt?: string }>>({});
   const [expandedSEO, setExpandedSEO] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPosts, setSelectedPosts] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchStatuses();
@@ -124,23 +126,32 @@ function BlogAdminPreview() {
 
   const updatePostStatus = async (post: BlogPost, newStatus: string, scheduledAt?: string) => {
     try {
+      const { data: userData } = await supabase.auth.getUser();
       const { error } = await supabase
         .from('blog_posts')
-        .upsert({ 
-          slug: post.slug, 
+        .update({ 
           status: newStatus,
-          title: post.title,
           scheduled_at: scheduledAt || null,
           updated_at: new Date().toISOString()
-        }, { onConflict: 'slug' });
+        })
+        .eq('slug', post.slug);
 
       if (error) throw error;
+
+      // Log the change
+      await supabase.from('audit_logs').insert({
+        user_id: userData.user?.id,
+        action: `status_change_to_${newStatus}`,
+        entity_type: 'blog_post',
+        entity_id: post.slug,
+        details: { oldStatus: dbStatuses[post.slug]?.status, newStatus, scheduledAt }
+      });
 
       setDbStatuses(prev => ({ 
         ...prev, 
         [post.slug]: { status: newStatus, scheduledAt: scheduledAt } 
       }));
-      toast.success(scheduledAt ? `Post scheduled for ${new Date(scheduledAt).toLocaleString()}` : `Post ${newStatus === 'published' ? 'published' : 'moved to drafts'}`);
+      toast.success(`Post updated to ${newStatus}`);
     } catch (error) {
       console.error('Error updating status:', error);
       toast.error('Failed to update status');
