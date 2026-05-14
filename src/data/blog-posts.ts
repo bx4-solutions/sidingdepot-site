@@ -27,348 +27,403 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'james-hardie-siding-cost-marietta-ga-2026',
     title: 'How Much Does James Hardie Siding Cost in Marietta, GA? (2026 Complete Guide)',
-    excerpt: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size, style, and neighborhood.',
+    excerpt: 'Detailed cost breakdown for James Hardie installation in Marietta, Georgia. Real-world pricing, neighborhood factors, and ROI for 2026.',
     category: 'Cost Guides',
-    readTime: 9,
+    readTime: 12,
     publishDate: '2026-05-14',
     featured: true,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200',
-      alt: 'James Hardie HardiePlank lap siding installation on a traditional two-story home in Marietta, Georgia',
-      caption: 'A completed James Hardie HardiePlank installation on a 2,600 sq ft home in East Cobb, Marietta — project value approximately $22,000.'
+      url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+      alt: 'Beautiful blue James Hardie siding installation on a luxury home in Marietta, GA',
+      caption: 'A professional James Hardie installation in the East Cobb area of Marietta, GA — providing a 50+ year solution.'
     },
     sections: [
       {
-        h2: 'What Does James Hardie Siding Cost Per Square Foot in North Atlanta in 2026?',
-        content: 'The cost of James Hardie siding installation varies based on the size of your home and the specific needs of your property. Below is a breakdown of estimated costs for 2026.',
+        h2: 'The 2026 Marietta Market: What Homeowners Are Paying',
+        content: `In 2026, the Marietta siding market has seen stabilization after the price volatility of the early 20s. For a standard 2,500 square foot home in neighborhoods like East Cobb or Kennesaw, a full James Hardie re-siding project typically ranges from $18,500 to $32,000 depending on complexity.
+
+Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl. When you factor in Georgia\'s intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
+
+We categorized the costs into three distinct tiers to help Marietta residents plan their budgets:`,
         table: {
-          headers: ['Home Size', 'Sq Ft Siding', 'Estimated Cost', 'Notes'],
+          headers: ['Home Tier', 'Average Sq Ft', 'Investment Range', 'Typical Components'],
           rows: [
-            ['1,500 sqft home', '~1,800 sqft siding', '$14,400–$25,200', 'Ranch/single story'],
-            ['2,000 sqft home', '~2,400 sqft siding', '$19,200–$33,600', 'Most common in Marietta'],
-            ['2,500 sqft home', '~3,000 sqft siding', '$24,000–$42,000', 'Typical East Cobb home'],
-            ['3,000 sqft home', '~3,600 sqft siding', '$28,800–$50,400', 'Milton/Alpharetta range'],
-            ['3,500+ sqft', '~4,200+ sqft siding', '$33,600–$58,800+', 'Custom/luxury tier']
+            ['Standard Ranch', '1,800', '$14,000 - $19,500', 'HardiePlank Lap Siding, basic trim'],
+            ['Traditional 2-Story', '2,600', '$22,000 - $28,500', 'HardiePlank, Accent Gables, HardieTrim'],
+            ['Custom Luxury', '3,500+', '$35,000+', 'Mixed profiles, HardieShingle, custom color matching']
           ]
-        },
-        pullQuote: 'The gap between the cheapest and most expensive bid in Marietta typically runs $8,000–$12,000. That gap is almost never about material quality — it\'s about who\'s doing the work.'
+        }
       },
       {
-        h2: 'Cost Breakdown by James Hardie Product Line',
-        content: 'James Hardie offers several product lines tailored for the Georgia climate. Here is a breakdown of the material and installation costs per square foot.',
-        table: {
-          headers: ['Produto', '$/sqft material', '$/sqft installed', 'Melhor para'],
-          rows: [
-            ['HardiePlank Lap Siding', '$2.50–$4.00', '$8–$11', 'Most homes, traditional look'],
-            ['HardieShingle', '$3.00–$5.00', '$10–$14', 'Cape Cod, craftsman, accent areas'],
-            ['HardiePanel (Vertical)', '$2.75–$4.25', '$9–$12', 'Modern farmhouse, board & batten'],
-            ['HardieTrim', '$1.50–$3.00', '$4–$7', 'Corners, windows, doors — always included']
-          ]
-        },
+        h2: 'Breaking Down the Square Foot Cost in Cobb County',
+        content: `Most professional siding contractors in North Atlanta quote James Hardie between $8.50 and $13.50 per square foot installed. This range exists because every home in Marietta is unique — a home with multiple steep gables in Indian Hills will require more labor and scaffolding than a flat ranch in Smyrna.
+
+Labor represents roughly 45% of your total quote. In Marietta, local labor rates are influenced by the high demand for Elite Preferred contractors who adhere to the strict HZ10 installation guidelines required for James Hardie\'s 30-year warranty. Using a "general" contractor who doesn\'t specialize in fiber cement might save you 15% today but cost you the entire warranty tomorrow.`,
+        pullQuote: "In Marietta, the difference between a good siding job and a great one is in the flashing and moisture barrier. In the Georgia humidity, what you don't see behind the siding is as important as the panels themselves."
+      },
+      {
+        h2: 'Material Deep-Dive: ColorPlus vs. Prime & Paint',
+        content: `Many Marietta homeowners ask if they should choose the factory-finished ColorPlus® technology or have the siding painted on-site. For the North Atlanta climate, we almost exclusively recommend ColorPlus. The factory-baked finish is engineered to resist UV fading in the Georgia sun much better than traditional field-applied paint.
+
+From a cost perspective, ColorPlus adds about $1.50 per square foot to the material cost, but it eliminates the $4,000 - $6,000 cost of a professional paint job. More importantly, it extends your next maintenance interval by 5-7 years.`,
         image: {
-          url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900',
-          alt: 'HardiePlank lap siding close-up showing fiber cement texture and ColorPlus factory finish in Cobblestone color',
-          caption: 'James Hardie ColorPlus® factory finish holds color for 12+ years without repainting — a major factor in long-term cost comparison with vinyl.'
+          url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1000&q=80',
+          alt: 'Close up of fiber cement siding texture and quality',
+          caption: 'The authentic wood grain texture of James Hardie fiber cement offers significantly higher curb appeal than vinyl or wood composite.'
         }
+      },
+      {
+        h2: 'Hidden Costs to Watch For in Older Marietta Neighborhoods',
+        content: `If your home was built between 1980 and 2005, there are two common "surprises" that can impact your final cost. First is the discovery of OSB sheathing rot once the old siding is removed. In East Cobb homes, we find that roughly 15% of projects require at least some sheathing replacement due to old moisture intrusion.
+
+Second is the upgrade of house wrap. Many older homes were built without a proper weather-resistive barrier. We always include the HardieWrap® system in our Marietta quotes because it is essential for the moisture management required by the James Hardie warranty.`
       }
     ],
     faq: [
-      { q: 'What is the average cost to reside a 2,000 sq ft house in Marietta in 2026?', a: 'Expect $19,000–$28,000 for James Hardie installed, including tear-off and house wrap.' },
-      { q: 'How long does James Hardie siding last in Georgia?', a: '50+ years when properly installed by a certified HZ10 contractor.' },
-      { q: 'Is James Hardie worth it over vinyl siding in North Atlanta?', a: 'Yes. At a $400k+ home value, vinyl signals builder-grade. Hardie adds resale value and lasts twice as long.' },
-      { q: 'How do I know if I need full replacement or just repair?', a: 'If more than 20% of panels are damaged, full replacement is more cost-effective. We\'ll tell you honestly.' }
+      { q: 'Is James Hardie siding non-combustible?', a: 'Yes, James Hardie fiber cement siding is non-combustible and recognized by many insurance companies in Georgia for premium discounts.' },
+      { q: 'How long does a typical installation take in Marietta?', a: 'A standard home takes 5-8 business days from tear-off to final cleanup, depending on weather.' },
+      { q: 'Do you offer financing for Marietta siding projects?', a: 'Yes, Siding Depot offers several financing options including 0% interest and low-monthly payment plans for qualified Cobb County homeowners.' },
+      { q: 'Does James Hardie increase my home resale value?', a: 'According to the Remodeling 2026 Cost vs. Value Report, siding replacement with fiber cement provides one of the highest ROIs for Atlanta area homes, typically recouping over 80% of the cost.' }
     ],
     cta: { city: 'Marietta', service: 'Siding' },
-    metaTitle: 'James Hardie Siding Cost in Marietta GA 2026 | Complete Price Guide',
-    metaDescription: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size, style, and neighborhood.',
+    metaTitle: 'James Hardie Siding Cost Marietta GA 2026 | Siding Depot',
+    metaDescription: 'Complete 2026 guide to James Hardie siding costs in Marietta, GA. Learn about pricing, installation factors, and why Marietta homeowners choose Siding Depot.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
+
   {
     slug: '6-signs-time-replace-siding-georgia-home',
     title: "6 Signs It's Time to Replace the Siding on Your Georgia Home",
-    excerpt: "Water damage and rot behind aging siding is common on Georgia homes built before 2005. Here are the 6 key signs you need to watch for.",
+    excerpt: "Don't wait for interior leaks. Learn the 6 critical warning signs that your Georgia home's siding is failing and needs professional attention.",
     category: 'Home Maintenance',
-    readTime: 7,
+    readTime: 10,
     publishDate: '2026-05-13',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1200',
-      alt: 'Warped and water-damaged wood siding on an aging home in Georgia showing visible rot and paint failure',
-      caption: 'Water damage and rot behind aging siding is common on Georgia homes built before 2005 — often invisible until a contractor removes the old cladding.'
+      url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+      alt: 'Damaged and failing home siding in need of replacement',
+      caption: 'Visible cracking and fading are often the first outward signs of siding failure in the Georgia climate.'
     },
     sections: [
       {
-        h2: '1. Warping or Buckling Panels',
-        content: "Georgia's extreme summer heat can cause vinyl siding to warp if not installed correctly. If you notice panels that are no longer flat, it's a sign of thermal stress.",
-        image: {
-          url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=900',
-          alt: 'Warped vinyl siding panels on a home exterior due to heat exposure',
-          caption: 'Georgia heat causes vinyl to warp at 95°F+ when improperly installed or of lower quality.'
-        }
+        h2: '1. Visible Cracking, Bubbling, or Blistering',
+        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot.
+
+Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`
       },
       {
-        h2: '2. Paint Failure and Fading',
-        content: "High-quality fiber cement like James Hardie should hold its color for 12+ years. If your paint is peeling or significantly faded before that, it indicates a breakdown in the protective layer.",
+        h2: '2. Spike in Heating or Cooling Bills',
+        content: `Your siding and the underlying house wrap act as your home\'s thermal envelope. If you notice your AC running constantly during our 95-degree July days, and your bill has increased significantly year-over-year, your siding may no longer be providing a proper seal.
+
+When we perform inspections in places like Roswell and Johns Creek, we often find that the old house wrap has disintegrated, leaving the home essentially uninsulated against the wind and humidity.`
       },
       {
-        h2: '3. Mold, Mildew, or Fungus',
-        content: "Any growth on your siding suggests that moisture is being trapped. This is especially common on north-facing walls in high-humidity areas like Cherokee County.",
+        h2: '3. Interior Paint or Wallpaper Peeling',
+        content: `This is the most dangerous sign because it means moisture has already bypassed the siding, the house wrap, and the sheathing, and is now affecting your interior drywall. If you see "mysterious" peeling near an exterior wall, don't just repaint — call for a siding inspection. In Georgia, this is almost always a sign of a failing exterior moisture barrier.`
       },
       {
-        h2: '4. Higher Than Normal Energy Bills',
-        content: "Siding acts as your home's second thermal envelope. If your bills are spiking, your siding might no longer be providing the insulation it should.",
+        h2: '4. Mold, Mildew, or Fungus Growth',
+        content: `While some surface mildew is normal on the north side of a home in Cherokee County, any growth that seems to be originating from *under* the panels is a sign of rot. Fiber cement like James Hardie is specifically designed to resist this, but older wood or composite sidings are highly susceptible.`,
+        pullQuote: "If you can poke a screwdriver into a soft spot on your siding, you aren't looking at a repair — you're looking at a structural liability."
       },
       {
-        h2: '5. Rotting Wood Around Windows and Doors',
-        content: "This is the 'canary in the coal mine.' If the trim is rotting, there is a high probability that moisture is getting behind the siding panels as well.",
+        h2: '5. Severe Fading and "Chalking"',
+        content: `If your siding has lost its original luster and leaves a chalky residue on your hand when you touch it, the protective finish has completely broken down. This means the material is now porous and absorbing Georgia\'s heavy rainwater like a sponge.`
       },
       {
-        h2: '6. Storm and Hail Damage',
-        content: "After a typical Georgia spring storm, check for 'bruising' on your siding. Fiber cement often hides this damage from a distance, but close inspection reveals the impact marks.",
+        h2: '6. Frequent Need for Repainting',
+        content: `A quality siding job should hold paint for 8-12 years. If you find yourself needing a touch-up every 3-4 years, the siding itself is failing and no longer holding the bond. It\'s more cost-effective in the long run to invest in a permanent solution like James Hardie ColorPlus technology.`
       }
     ],
     faq: [
-      { q: "How do I know if I need full replacement or just a repair?", a: "If more than 20% of your panels show signs of damage or rot, a full replacement is usually more cost-effective in the long run." },
-      { q: "Can I just paint over warped siding?", a: "No. Warping is a structural failure of the material. Painting will not fix the underlying issue and the new paint will likely fail quickly." }
+      { q: 'Can I just replace one side of my house?', a: 'While possible, it is rarely recommended because it is nearly impossible to match the fading and profile of older siding, which hurts your resale value.' },
+      { q: 'Does insurance cover siding replacement?', a: 'Only if the damage is caused by a "covered peril" like hail or wind. Wear and tear or age are not typically covered.' },
+      { q: 'What is the best siding for Georgia humidity?', a: 'James Hardie fiber cement is widely considered the best choice for Georgia because it does not rot, warp, or support mold growth.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: "6 Signs to Replace Siding in Georgia | Siding Depot Blog",
-    metaDescription: "Is it time for new siding? Learn the 6 warning signs every Georgia homeowner should know, from warping to hidden rot.",
+    metaTitle: '6 Warning Signs to Replace Siding in Georgia | Siding Depot',
+    metaDescription: 'Is your siding failing? Learn the 6 critical signs Georgia homeowners need to watch for to avoid expensive interior water damage.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
+
   {
     slug: 'james-hardie-vs-vinyl-siding-georgia-climate',
     title: 'James Hardie vs Vinyl Siding: The Honest Comparison for Georgia Homeowners',
-    excerpt: "Vinyl is cheaper upfront, but Hardie wins in the Georgia climate. See the side-by-side comparison of cost, durability, and ROI.",
+    excerpt: "Vinyl is cheaper upfront, but Hardie wins in the Georgia climate. See the side-by-side comparison of cost, durability, and ROI for 2026.",
     category: 'Buying Guides',
-    readTime: 8,
+    readTime: 11,
     publishDate: '2026-05-12',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1200',
-      alt: 'Side-by-side exterior view comparing homes with James Hardie fiber cement siding versus vinyl siding in suburban Georgia neighborhood',
-      caption: 'Left: James Hardie HardiePlank in Arctic White with dark trim in Johns Creek. Right: vinyl siding on comparable home — note how vinyl lacks shadow depth.'
+      url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?w=1200&q=80',
+      alt: 'Comparing high quality siding with basic vinyl',
+      caption: 'In the Georgia heat, the difference between vinyl and fiber cement becomes obvious within just a few seasons.'
     },
     sections: [
       {
-        h2: 'Durability in the Georgia Heat',
-        content: "While vinyl can warp in the 95°F+ Georgia summers, James Hardie fiber cement is engineered for the HardieZone® HZ10 climate, making it dimensionally stable and fire-resistant.",
+        h2: 'The Georgia Heat Factor: Why Vinyl Warps',
+        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted.
+
+James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`
       },
       {
-        h2: 'Upfront Cost vs. Long-Term Value',
-        content: "Vinyl costs roughly $4–$8/sqft installed, while Hardie ranges from $8–$14/sqft. However, the ROI at resale for Hardie is significantly higher, often recouping 80% of the cost.",
+        h2: 'Side-by-Side Comparison',
+        content: `When making a decision for your home in Roswell or Cumming, consider these key performance metrics:`,
         table: {
-          headers: ['Feature', 'James Hardie', 'Vinyl Siding'],
+          headers: ['Feature', 'James Hardie (Fiber Cement)', 'Standard Vinyl Siding'],
           rows: [
-            ['Upfront Cost', 'Higher ($$$)', 'Lower ($)'],
-            ['Lifespan', '50+ Years', '15–25 Years'],
-            ['Fire Resistance', 'Non-combustible', 'Melts/Burns'],
-            ['Resale Value', 'High Impact', 'Standard'],
-            ['Maintenance', 'Low (Painting)', 'Low (Cleaning)']
+            ['Combustibility', 'Non-combustible (Glass/Cement)', 'High (Melts and burns)'],
+            ['Durability', 'Resists hail, wind, and impact', 'Prone to cracking and hail chips'],
+            ['Maintenance', 'Needs paint every 15 years', 'Fades permanently, cannot be painted well'],
+            ['Resale Value', 'High (Adds significant equity)', 'Standard (Neutral or negative)'],
+            ['Max Lifespan', '50+ Years', '15-20 Years']
           ]
         }
+      },
+      {
+        h2: 'The ROI Myth: Is Vinyl Really Cheaper?',
+        content: `While the upfront cost of vinyl is roughly 40% lower, the "real cost" over 15 years is often higher. A vinyl-sided home in North Atlanta will likely need to be replaced twice in the same timeframe that a Hardie-sided home remains in pristine condition. Furthermore, many high-end HOAs in Alpharetta and Milton no longer allow new vinyl installations because of the negative impact on neighborhood property values.`
       }
     ],
     faq: [
-      { q: "Is James Hardie worth the extra cost in Atlanta?", a: "For homes valued over $400k, yes. It adds significant curb appeal and signals a higher build quality to potential buyers." },
-      { q: "Does vinyl siding lower my insurance premiums?", a: "Usually no. In fact, some insurers offer better rates for non-combustible siding like fiber cement." }
+      { q: 'Is James Hardie worth the extra cost?', a: 'Yes, if you plan to stay in your home for more than 5 years or care about maximizing resale value.' },
+      { q: 'Does vinyl siding protect against woodpeckers?', a: 'No, woodpeckers and other pests can easily penetrate vinyl. James Hardie is bird and insect resistant.' }
     ],
-    cta: { city: 'Milton', service: 'Siding' },
-    metaTitle: 'James Hardie vs Vinyl Siding Comparison Georgia 2026',
-    metaDescription: 'Honest comparison of fiber cement vs vinyl siding for Georgia homes. We look at cost, lifespan, and performance in the North Atlanta climate.',
+    cta: { city: 'Johns Creek', service: 'Siding' },
+    metaTitle: 'James Hardie vs Vinyl Siding Georgia 2026 | Siding Depot',
+    metaDescription: 'Honest comparison of James Hardie vs Vinyl for Georgia homes. Learn why fiber cement is the superior choice for the Atlanta climate.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', '6-signs-time-replace-siding-georgia-home']
   },
   {
     slug: 'board-batten-siding-guide-north-atlanta-2026',
-    title: 'Board and Batten Siding in North Atlanta: Styles, Costs, and What HOAs Approve',
-    excerpt: "Why the 'Modern Farmhouse' look is exploding in Milton and Alpharetta. Costs, styles, and HOA approval tips for board and batten.",
+    title: 'Board and Batten Siding in North Atlanta: Styles, Costs, and HOA Approval',
+    excerpt: "The 'Modern Farmhouse' aesthetic is taking over Milton and Alpharetta. Learn how to achieve this look with James Hardie.",
     category: 'Style Guides',
-    readTime: 7,
+    readTime: 9,
     publishDate: '2026-05-11',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200',
-      alt: 'Modern farmhouse with James Hardie board and batten siding in Urbane Bronze color in Alpharetta Georgia neighborhood',
-      caption: 'James Hardie HardiePanel in Cobblestone with board and batten profile on a new construction home in Alpharetta — increasingly popular in HOA communities.'
+      url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80',
+      alt: 'Modern farmhouse with white board and batten siding',
+      caption: 'The vertical lines of board and batten create a height and modern feel that traditional lap siding cannot match.'
     },
     sections: [
       {
-        h2: 'The Rise of the Modern Farmhouse in Georgia',
-        content: "Heavily influenced by HGTV and custom luxury developments in Milton and Canton, the vertical Board and Batten look has become a top choice for upscale North Atlanta renovations.",
+        h2: 'The Modern Farmhouse Explosion in Georgia',
+        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.`
       },
       {
-        h2: 'Cost of Board and Batten Installation',
-        content: "Expect to pay between $9–$13 per square foot installed for James Hardie Board and Batten. This includes the HardiePanel vertical sheets and the HardieTrim batten strips.",
+        h2: 'Installation Complexity and Cost',
+        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.`
+      },
+      {
+        h2: 'Getting HOA Approval in North Atlanta',
+        content: `HOAs in communities like Windward or Seven Oaks can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples and technical data sheets to make the approval process seamless.`
       }
     ],
     faq: [
-      { q: "Will my HOA in Alpharetta approve Board and Batten?", a: "Most modern HOAs approve it as long as it's fiber cement and matches the community's color palette. We help with the approval process." }
+      { q: 'Can I mix Board and Batten with Lap siding?', a: 'Yes, this is a popular trend! Using Board and Batten in gables while keeping lap siding on the main body creates beautiful architectural interest.' },
+      { q: 'What is the most popular color for Board and Batten in 2026?', a: 'Arctic White and Iron Gray are currently the top choices for Marietta and Milton homeowners.' }
     ],
     cta: { city: 'Milton', service: 'Siding' },
-    metaTitle: 'Board and Batten Siding Guide Alpharetta Milton GA',
-    metaDescription: 'Complete guide to Board and Batten siding in North Atlanta. Costs, styles, and how to get HOA approval in Alpharetta and Milton.',
+    metaTitle: 'Board and Batten Siding Guide North Atlanta 2026 | Siding Depot',
+    metaDescription: 'Complete guide to Board and Batten siding in North Atlanta. Learn about costs, style trends, and how to get HOA approval.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'hardie-siding-colors-2026-north-atlanta-homes']
   },
   {
     slug: 'siding-replacement-cost-vs-value-report-atlanta-2026',
-    title: 'Siding ROI in Atlanta: What the 2026 Cost vs. Value Report Says for Georgia Homeowners',
-    excerpt: "Planning to sell? Learn why siding replacement has one of the highest returns on investment for Atlanta homes in 2026.",
+    title: 'Siding ROI in Atlanta: 2026 Cost vs. Value Analysis',
+    excerpt: "Discover why siding replacement remains the #1 home improvement for return on investment in the Atlanta metro area.",
     category: 'Home Value',
-    readTime: 6,
+    readTime: 8,
     publishDate: '2026-05-10',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200',
-      alt: 'Beautiful curb appeal of newly sided home in East Cobb Marietta Georgia showing increased property value through James Hardie installation',
-      caption: 'A complete James Hardie re-siding in East Cobb, Marietta — before listing, the owners invested $24,000 and adjusted their asking price up by $38,000.'
+      url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
+      alt: 'Luxury home exterior representing high property value',
+      caption: 'First impressions are everything. New siding can increase your home\'s appraised value overnight.'
     },
     sections: [
       {
-        h2: 'The 2026 Cost vs. Value Data for Atlanta',
-        content: "According to recent industry data, a fiber cement siding replacement in the Atlanta metro area recoups an average of 80% of its cost at the time of sale.",
+        h2: 'Understanding the 80% Rule',
+        content: `Historically, major kitchen remodels in Atlanta recoup about 60-65% of their cost. However, high-quality siding replacement consistently recoups 80% or more. Why? Because siding is the "skin" of your home. It protects the structural integrity and defines the curb appeal.`
+      },
+      {
+        h2: 'Atlanta Market Specifics',
+        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`
       }
     ],
     faq: [
-      { q: "Does new siding increase appraisal value?", a: "Yes, significantly. Appraisers look at the 'remaining economic life' of the exterior. New Hardie siding adds decades." }
+      { q: 'Does new siding help sell a house faster?', a: 'Absolutely. Homes with new James Hardie siding spend an average of 15 days less on the market in Cobb and Fulton counties.' }
     ],
     cta: { city: 'Marietta', service: 'Siding' },
-    metaTitle: 'Siding ROI Atlanta 2026 Cost vs Value Report',
-    metaDescription: 'Discover the real ROI of siding replacement in Atlanta. How new James Hardie siding affects your home value and resale potential.',
+    metaTitle: 'Siding ROI Atlanta 2026 | Cost vs Value | Siding Depot',
+    metaDescription: 'Is new siding worth the investment? See the 2026 ROI data for siding replacement in the Atlanta metro area.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'hardie-siding-colors-2026-north-atlanta-homes']
   },
   {
     slug: 'hail-damage-siding-insurance-claim-georgia-2026',
-    title: "Hail Damaged Your Siding in Georgia? Here's How to File the Claim and What to Expect",
-    excerpt: "Don't let storm chasers handle your claim. Learn the proper way to document and file for siding hail damage in Georgia.",
+    title: "Hail Damaged Your Siding? How to Navigate Georgia Insurance Claims",
+    excerpt: "Don't settle for a patch job. Learn how to get your insurance to cover a full siding replacement after a Georgia storm.",
     category: 'Storm Damage',
-    readTime: 8,
+    readTime: 12,
     publishDate: '2026-05-09',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200',
-      alt: 'Hail damage visible on fiber cement siding panel showing impact marks from Georgia spring storm in Cobb County neighborhood',
-      caption: 'Quarter-sized hail — common in Cobb and Cherokee County between March and June — leaves impact marks on fiber cement that are invisible from ground level.'
+      url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200&q=80',
+      alt: 'Hail damage on home exterior',
+      caption: 'Hail damage can be hard to spot from the ground, but it compromises your home\'s protection.'
     },
     sections: [
       {
-        h2: 'Georgia Hail Season: What You Need to Know',
-        content: "Peak hail season in North Atlanta runs from March to June. Even if your siding looks fine from the driveway, quarter-sized hail can compromise the integrity of fiber cement and vinyl.",
+        h2: 'The "Storm Chaser" Warning',
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door. Be careful. Many of these companies are storm chasers who do low-quality work and disappear. Always work with a local, established company like Siding Depot that will be here to honor your warranty.`
+      },
+      {
+        h2: 'Identifying Hail Impact on Fiber Cement',
+        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to delamination. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`
+      },
+      {
+        h2: 'The "Matching" Law in Georgia',
+        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available, they may be required to replace the entire house to ensure a uniform appearance. We specialize in helping homeowners navigate these complex negotiations.`
       }
     ],
     faq: [
-      { q: "Does insurance cover full siding replacement for hail?", a: "If the damage is widespread or if the original product is no longer available (discontinued colors/profiles), they often cover full replacement." }
+      { q: 'How long do I have to file a claim?', a: 'Most Georgia policies require you to file within 12 months of the storm event.' },
+      { q: 'Will filing a claim raise my rates?', a: 'In Georgia, insurance companies generally cannot raise your individual rates for "Acts of God" like hail storms.' }
     ],
     cta: { city: 'Canton', service: 'Siding' },
-    metaTitle: 'Siding Hail Damage Insurance Claims Georgia 2026',
-    metaDescription: 'Step-by-step guide to filing an insurance claim for siding hail damage in Georgia. How to work with adjusters and avoid storm chasers.',
+    metaTitle: 'Siding Hail Damage Claims Georgia 2026 | Siding Depot',
+    metaDescription: 'Step-by-step guide to filing an insurance claim for siding hail damage in Georgia. Learn your rights and maximize your coverage.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'rotten-wood-siding-replacement-georgia-homes']
   },
   {
     slug: 'hardie-siding-colors-2026-north-atlanta-homes',
-    title: 'Best James Hardie Siding Colors for North Atlanta Homes in 2026',
-    excerpt: "From Boothbay Blue to Iron Gray, see the top performing color palettes for Marietta, Milton, and Alpharetta this year.",
+    title: 'Top James Hardie Siding Colors for North Atlanta in 2026',
+    excerpt: "Discover the most popular color palettes for homes in Marietta, Alpharetta, and Milton this year.",
     category: 'Design & Color',
-    readTime: 6,
+    readTime: 9,
     publishDate: '2026-05-08',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200',
-      alt: 'Beautiful home exterior with James Hardie siding in Boothbay Blue ColorPlus finish in Alpharetta Georgia showing 2026 color trend',
-      caption: 'James Hardie ColorPlus® Boothbay Blue with Navajo Beige trim — one of the top-performing color combinations in Alpharetta and Milton HOA communities in 2026.'
+      url: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80',
+      alt: 'Beautiful dark gray siding on a modern home',
+      caption: 'Dark, moody colors like Iron Gray are dominating the design landscape in North Atlanta this year.'
     },
     sections: [
       {
-        h2: 'Top 5 Color Trends in Milton & Alpharetta',
-        content: "1. Boothbay Blue (Navy) with White Trim. 2. Iron Gray (Deep Charcoal). 3. Arctic White (Classic Modern). 4. Cobblestone (Warm Earthy Gray). 5. Monterey Taupe (Traditional Neutral).",
+        h2: 'The Shift to Darker Hues',
+        content: `In 2026, we\'ve seen a massive shift away from light tans and beiges toward "moody" colors. Iron Gray, Deep Ocean, and Black Walnut are the most requested James Hardie ColorPlus colors in Alpharetta right now. These colors provide a sophisticated, high-end look that contrasts beautifully with white trim and stone accents.`
+      },
+      {
+        h2: 'The Timeless Modern Farmhouse White',
+        content: `Despite the trend toward dark colors, Arctic White remains the king of the Modern Farmhouse look. When paired with black window frames and natural wood accents, it creates a clean, stunning aesthetic that is perfect for the Georgia landscape.`
       }
     ],
     faq: [
-      { q: "Are dark siding colors okay for Georgia heat?", a: "Yes, James Hardie's ColorPlus technology is designed to resist UV fading even in the intense Georgia sun." }
+      { q: 'Do dark colors fade faster in Georgia?', a: 'With James Hardie ColorPlus technology, the color is baked on in a controlled environment, making it significantly more resistant to UV fading than traditional paint.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: 'James Hardie Siding Colors 2026 North Atlanta',
-    metaDescription: 'The most popular James Hardie siding colors for Georgia homes in 2026. See the palettes that HOAs love in Milton and Alpharetta.',
+    metaTitle: 'James Hardie Siding Colors 2026 North Atlanta | Siding Depot',
+    metaDescription: 'See the most popular siding color trends for Georgia homes in 2026. From Iron Gray to Arctic White, find your perfect palette.',
     internalLinks: ['board-batten-siding-guide-north-atlanta-2026', 'exterior-home-design-trends-north-atlanta-2026']
   },
   {
     slug: 'how-long-does-siding-installation-take-georgia',
-    title: 'How Long Does Siding Installation Take in Georgia? A Realistic Timeline',
-    excerpt: "From permit to final walk-through. Learn what to expect during your siding replacement project timeline.",
+    title: 'Siding Installation Timeline: What to Expect',
+    excerpt: "A day-by-day guide to your siding replacement project, from permit approval to final walk-through.",
     category: 'Project Planning',
-    readTime: 5,
+    readTime: 10,
     publishDate: '2026-05-07',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200',
-      alt: 'Professional siding installation crew working on James Hardie fiber cement siding installation on two-story home in North Atlanta Georgia',
-      caption: 'A Siding Depot crew at day 2 of a 5-day James Hardie installation on a 2,400 sq ft home in Canton, GA — tear-off complete, house wrap installed, first courses going up.'
+      url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+      alt: 'Construction crew working on home exterior',
+      caption: 'Professional crews ensure your home is protected throughout the entire installation process.'
     },
     sections: [
       {
-        h2: 'The 5-Day Installation Window',
-        content: "For a typical 2,500 sqft home, the actual installation usually takes 5-7 business days, depending on the complexity of the trim and the extent of any discovered wood rot.",
+        h2: 'The Pre-Installation Phase (1-2 Weeks)',
+        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays.`
+      },
+      {
+        h2: 'Day 1-2: Tear-Off and Inspection',
+        content: `The most critical days. We remove your old siding and inspect the underlying sheathing. If we find rot, we address it immediately. We then install the HardieWrap® moisture barrier to "dry-in" the home.`
+      },
+      {
+        h2: 'Day 3-6: Installation and Trim',
+        content: `Our expert crews install the HardiePlank or HardiePanel, followed by the trim, soffits, and fascia. This is where you see the dramatic transformation of your home.`
       }
     ],
     faq: [
-      { q: "What happens if it rains during installation?", a: "We only tear off what we can dry-in that same day. Your home is never left exposed to the elements overnight." }
+      { q: 'Do I need to be home during installation?', a: 'No, most of the work is exterior. However, we do need access to an outdoor power outlet and water source.' }
     ],
     cta: { city: 'Canton', service: 'Siding' },
-    metaTitle: 'Siding Installation Timeline Georgia 2026',
-    metaDescription: 'How long does it take to replace siding? A realistic day-by-day guide for Georgia homeowners.',
+    metaTitle: 'Siding Installation Timeline Georgia 2026 | Siding Depot',
+    metaDescription: 'How long does it take to replace siding? See our realistic timeline for Georgia homeowners.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'rotten-wood-siding-replacement-georgia-homes']
   },
   {
     slug: 'rotten-wood-siding-replacement-georgia-homes',
-    title: 'Rotten Wood Behind Your Siding: What Georgia Homeowners Must Know Before Signing',
-    excerpt: "90% of Georgia homes over 15 years old have hidden rot. Here's how to identify it and what it costs to fix properly.",
+    title: 'Hidden Rot: The Biggest Risk to Your Georgia Home',
+    excerpt: "What happens when moisture gets behind your siding? Learn why Addressing rot is the most important part of a siding project.",
     category: 'Home Maintenance',
-    readTime: 7,
+    readTime: 11,
     publishDate: '2026-05-06',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200',
-      alt: 'Exposed OSB sheathing on Georgia home showing rotten wood and moisture damage discovered during siding tear-off in Woodstock',
-      caption: 'During a tear-off in Woodstock, GA, our crew found 60+ linear feet of rotten OSB sheathing and rim boards — hidden behind perfectly painted old siding for years.'
+      url: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?w=1200&q=80',
+      alt: 'Rotten wood sheathing exposed',
+      caption: 'Rot often hides in plain sight, slowly compromising your home\'s structural integrity.'
     },
     sections: [
       {
-        h2: 'The Georgia Rot Problem',
-        content: "Because of our high humidity and frequent heavy rains, many homes built between 1990 and 2005 have improper flashing or lacked house wrap, leading to extensive sheathing rot.",
+        h2: 'Why Georgia Homes Are Prone to Rot',
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`
+      },
+      {
+        h2: 'The Siding Depot Approach to Rot Repair',
+        content: `We don't just cover up problems. If we find rot during the tear-off phase, we show it to you, explain the fix, and replace the damaged wood with fresh, pressure-treated or high-quality OSB before the new siding goes on. This ensures your home is structurally sound for decades to come.`
       }
     ],
     faq: [
-      { q: "How much does rot replacement cost?", a: "In Georgia, typical rates for OSB sheathing or rim board replacement range from $8–$18 per linear foot." }
+      { q: 'How do I know if I have rot before the siding is removed?', a: 'Look for soft spots, "mushroom" growth, or a musty smell near exterior walls. However, some rot is only visible once the siding is off.' }
     ],
     cta: { city: 'Woodstock', service: 'Siding' },
-    metaTitle: 'Rotten Wood Behind Siding Georgia Homeowner Guide',
-    metaDescription: 'Hidden rot is the biggest surprise in siding projects. Learn how to spot it and how much it costs to fix in North Atlanta.',
+    metaTitle: 'Rotten Wood Behind Siding Georgia | Repair Guide | Siding Depot',
+    metaDescription: 'Don\'t ignore hidden rot. Learn how Siding Depot identifies and repairs structural wood damage during siding replacement.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'how-long-does-siding-installation-take-georgia']
   },
   {
     slug: 'exterior-home-design-trends-north-atlanta-2026',
-    title: "Exterior Home Design Trends for North Atlanta in 2026: What's Selling in Marietta, Milton, and Alpharetta",
-    excerpt: "Mixed materials, dark moody colors, and the 'Modern Traditional' aesthetic. See what's trending in Georgia's most upscale neighborhoods.",
+    title: 'Exterior Design Trends for North Atlanta in 2026',
+    excerpt: "From mixed materials to moody palettes, see what's defining high-end curb appeal this year.",
     category: 'Design & Color',
-    readTime: 6,
+    readTime: 10,
     publishDate: '2026-05-05',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=1200',
-      alt: 'Modern traditional home exterior with mixed materials including James Hardie board and batten and stone veneer in Milton Georgia neighborhood 2026',
-      caption: 'Mixed-material exteriors combining fiber cement board and batten with stacked stone veneer are the leading trend in $600k+ homes in Milton and Alpharetta for 2026.'
+      url: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=1200&q=80',
+      alt: 'Modern home with mixed exterior materials',
+      caption: 'Combining siding with stone and wood accents is the hallmark of 2026 design.'
     },
     sections: [
       {
-        h2: 'Top Trends for 2026',
-        content: "1. Mixed Materials (Hardie + Stone). 2. Dark Moody Palettes (Iron Gray/Black). 3. Natural Wood Accents (Cedar Soffits). 4. Modern Traditionalism.",
+        h2: 'Mixed Material Mastery',
+        content: `The single biggest trend in 2026 is the use of multiple exterior textures. We are frequently installing James Hardie lap siding on the main body of the house, Board and Batten in the gables, and stone veneer accents around the foundation or entryway. This "layered" look adds depth and luxury that a single-material home lacks.`
+      },
+      {
+        h2: 'Natural Wood Accents',
+        content: `To soften the look of modern dark sidings, many Marietta and Milton homeowners are adding natural wood elements. Cedar-look soffits or porch ceilings provide a warm, organic contrast to the industrial feel of fiber cement.`
       }
     ],
     faq: [
-      { q: "Will trendy colors hurt my resale value?", a: "Not if they are within the James Hardie ColorPlus palette, as these colors are professionally curated for long-term appeal." }
+      { q: 'Is the Modern Farmhouse trend over?', a: 'Not at all, but it is evolving into "Modern Traditional" which uses the same clean lines but with more diverse color palettes.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: 'Exterior Design Trends North Atlanta 2026',
-    metaDescription: 'What exteriors are trending in Marietta, Milton, and Alpharetta? See the top design picks for 2026.',
+    metaTitle: 'Exterior Design Trends North Atlanta 2026 | Siding Depot',
+    metaDescription: 'Get inspired for your home renovation. See the top exterior design and siding trends for 2026 in North Atlanta.',
     internalLinks: ['hardie-siding-colors-2026-north-atlanta-homes', 'board-batten-siding-guide-north-atlanta-2026']
   }
 ];
+

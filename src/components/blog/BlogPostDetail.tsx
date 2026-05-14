@@ -6,6 +6,10 @@ import { ArrowRight, Clock, Calendar, User, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function BlogPostDetail() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { slug } = useParams({ from: "/blog/$slug" });
   const post = BLOG_POSTS.find((p) => p.slug === slug);
 
