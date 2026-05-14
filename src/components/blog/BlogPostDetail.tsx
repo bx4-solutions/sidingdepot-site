@@ -194,13 +194,24 @@ export default function BlogPostDetail() {
                     )}
 
                     {section.image && (
-                      <figure className="my-10 rounded-2xl overflow-hidden shadow-md">
-                        <img src={section.image.url} alt={section.image.alt} className="w-full h-auto" />
+                      <figure className="my-10 rounded-2xl overflow-hidden shadow-md bg-gray-100">
+                        <img 
+                          src={getOptimizedUnsplashUrl(section.image.url, { width: 1000 })} 
+                          srcSet={getUnsplashSrcSet(section.image.url)}
+                          sizes="(max-width: 1024px) 100vw, 800px"
+                          alt={section.image.alt} 
+                          className="w-full h-auto"
+                          loading="lazy"
+                          decoding="async"
+                          width="1000"
+                          height="667"
+                        />
                         <figcaption className="bg-gray-50 px-6 py-3 text-[13px] italic text-sd-gray-text text-center border-t border-gray-100">
                           {section.image.caption}
                         </figcaption>
                       </figure>
                     )}
+
 
                     {/* Inline CTA after 3rd section (or at least somewhere in the middle) */}
                     {idx === 1 && (
