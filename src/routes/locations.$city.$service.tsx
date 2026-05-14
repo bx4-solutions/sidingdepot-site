@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { ProofBar } from "@/components/site/ProofBar";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
+import { MapEmbed } from "@/components/site/MapEmbed";
 import {
   isValidLocation,
   getCityMeta,
