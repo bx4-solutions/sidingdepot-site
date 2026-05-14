@@ -1,5 +1,5 @@
 import { CheckCircle2, FileText } from "lucide-react";
-import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
 
 type Props = {
   /** City pre-tagged on the lead (e.g. "Marietta"). */
