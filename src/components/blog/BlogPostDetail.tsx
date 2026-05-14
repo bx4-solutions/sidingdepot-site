@@ -54,6 +54,19 @@ export default function BlogPostDetail() {
 
   return (
     <div className="bg-white min-h-screen">
+      {isPreview && (
+        <div className="bg-amber-50 border-b border-amber-200 py-3 px-4 sticky top-0 z-[60]">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-2 text-amber-800 font-medium">
+              <Eye className="w-4 h-4" />
+              <span>Preview Mode: Viewing "{post.status}" version</span>
+            </div>
+            <Button asChild variant="outline" size="sm" className="bg-white border-amber-200 text-amber-800 hover:bg-amber-100 h-8">
+              <Link to="/admin/blog-preview">Back to Admin</Link>
+            </Button>
+          </div>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-medium text-sd-gray-text mb-8">
