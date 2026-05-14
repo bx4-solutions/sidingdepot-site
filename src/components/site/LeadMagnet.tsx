@@ -42,9 +42,17 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
             </ul>
           </div>
 
-          {/* Right: Standardized lead form */}
+          {/* Right: Simple lead form (Name + Phone + Email → Download) */}
           <div className="p-6 lg:p-8 flex items-center">
-            <HeroQuoteForm source={source} tag="lead_magnet_request" />
+            <div className="w-full">
+              <h3 className="font-display text-xl text-sd-navy uppercase tracking-tight mb-1">
+                Get Instant Access
+              </h3>
+              <p className="text-sm text-sd-gray-text mb-5">
+                Leave your details and download the guide right away.
+              </p>
+              <SimpleLeadForm source={source} tag="lead_magnet_request" />
+            </div>
           </div>
         </div>
       </div>
