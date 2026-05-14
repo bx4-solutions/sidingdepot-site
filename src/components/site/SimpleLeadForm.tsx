@@ -41,6 +41,8 @@ export function SimpleLeadForm({
   source = "ebook_download",
   tag = "ebook_request",
   submitLabel = "Send My Free Guide →",
+  downloadUrl = "/downloads/5-mistakes-siding-georgia.pdf",
+  downloadLabel = "Download Your Ebook",
   onSuccess,
 }: Props) {
   const [submitting, setSubmitting] = useState(false);
