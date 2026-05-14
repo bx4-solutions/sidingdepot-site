@@ -262,16 +262,89 @@ function BlogAdminPreview() {
           </div>
         </div>
 
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-xl border shadow-sm">
+            <div className="relative w-full md:w-96">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-sd-gray-text" />
+              <Input 
+                placeholder="Search articles by title..." 
+                className="pl-10 rounded-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            <div className="flex items-center gap-2 w-full md:w-auto">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm" className="rounded-full">
+                    <History className="w-4 h-4 mr-2" />
+                    Audit Logs
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[400px] sm:w-[540px] overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle>Article Change History</SheetTitle>
+                  </SheetHeader>
+                  <AuditLogViewer />
+                </SheetContent>
+              </Sheet>
+
+              {selectedPosts.size > 0 && (
+                <div className="flex items-center gap-2 animate-in fade-in zoom-in duration-200">
+                  <Badge variant="secondary" className="px-3 py-1">{selectedPosts.size} selected</Badge>
+                  <Button 
+                    size="sm" 
+                    variant="default"
+                    className="bg-sd-green text-sd-black hover:bg-sd-green/90 rounded-full"
+                    onClick={() => handleBulkStatusChange("published")}
+                  >
+                    <Rocket className="w-3.5 h-3.5 mr-1.5" /> Publish
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => handleBulkStatusChange("draft")}
+                  >
+                    <CircleDashed className="w-3.5 h-3.5 mr-1.5" /> Move to Draft
+                  </Button>
+                  <Button 
+                    size="icon" 
+                    variant="ghost" 
+                    className="rounded-full h-8 w-8"
+                    onClick={() => setSelectedPosts(new Set())}
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 px-2">
+            <Checkbox 
+              checked={selectedPosts.size === filteredPosts.length && filteredPosts.length > 0}
+              onCheckedChange={() => toggleSelectAll(filteredPosts)}
+              id="select-all"
+            />
+            <label htmlFor="select-all" className="text-xs font-bold text-sd-navy/60 uppercase cursor-pointer">
+              Select All Visible ({filteredPosts.length})
+            </label>
+          </div>
+        </div>
+
         <div className="grid gap-6">
-          {BLOG_POSTS.map((post) => {
+          {filteredPosts.map((post) => {
             const dbData = dbStatuses[post.slug];
             const status = dbData?.status || post.status;
             const scheduledAt = dbData?.scheduledAt;
             const isPublished = status === 'published';
             const isSEOExpanded = expandedSEO[post.slug];
+            const isSelected = selectedPosts.has(post.slug);
 
             return (
-              <Card key={post.slug} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow bg-white ring-1 ring-black/5">
+              <Card key={post.slug} className={`overflow-hidden border-none shadow-md hover:shadow-lg transition-all bg-white ring-1 ${isSelected ? 'ring-sd-green ring-2' : 'ring-black/5'}`}>
                 <div className="flex flex-col md:flex-row">
                   <div className="md:w-64 h-48 md:h-auto relative shrink-0">
                     <img 
@@ -280,9 +353,16 @@ function BlogAdminPreview() {
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3 flex flex-col gap-2">
-                      <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : scheduledAt ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
-                        {isPublished ? 'published' : scheduledAt ? 'scheduled' : status}
-                      </Badge>
+                      <div className="flex items-center gap-2">
+                        <Checkbox 
+                          className="bg-white/90 border-none w-5 h-5"
+                          checked={isSelected}
+                          onCheckedChange={() => toggleSelectPost(post.slug)}
+                        />
+                        <Badge className={`${isPublished ? 'bg-sd-green text-sd-black' : scheduledAt ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'} border-none uppercase text-[9px] tracking-widest font-bold px-2 py-1`}>
+                          {isPublished ? 'published' : scheduledAt ? 'scheduled' : status}
+                        </Badge>
+                      </div>
                       {scheduledAt && (
                         <Badge className="bg-white/90 text-sd-navy border-none text-[8px] font-bold py-0.5">
                           <Calendar className="w-2.5 h-2.5 mr-1" />
@@ -397,6 +477,60 @@ function BlogAdminPreview() {
           })}
         </div>
       </div>
+    </div>
+  );
+}
+
+function AuditLogViewer() {
+  const [logs, setLogs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      const { data, error } = await supabase
+        .from('audit_logs')
+        .select('*')
+        .eq('entity_type', 'blog_post')
+        .order('created_at', { ascending: false })
+        .limit(50);
+      
+      if (!error && data) {
+        setLogs(data);
+      }
+      setLoading(false);
+    };
+
+    fetchLogs();
+  }, []);
+
+  if (loading) return <div className="p-4 text-center">Loading logs...</div>;
+
+  return (
+    <div className="mt-6 space-y-4">
+      {logs.length === 0 ? (
+        <p className="text-center text-sd-gray-text py-8">No history available yet.</p>
+      ) : (
+        logs.map((log) => (
+          <div key={log.id} className="p-3 bg-white rounded-lg border shadow-sm text-xs">
+            <div className="flex justify-between items-start mb-1">
+              <span className="font-bold text-sd-navy capitalize">
+                {log.action.replace(/_/g, ' ')}
+              </span>
+              <span className="text-gray-400">
+                {new Date(log.created_at).toLocaleString()}
+              </span>
+            </div>
+            <div className="text-sd-gray-text font-medium truncate">
+              Target: <span className="text-sd-navy">{log.entity_id}</span>
+            </div>
+            {log.details && (
+              <div className="mt-1 text-[10px] text-gray-500 bg-gray-50 p-1 rounded">
+                {JSON.stringify(log.details)}
+              </div>
+            )}
+          </div>
+        ))
+      )}
     </div>
   );
 }
