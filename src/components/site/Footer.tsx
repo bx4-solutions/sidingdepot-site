@@ -3,7 +3,6 @@ import { Mail, MapPin, Music2, Phone } from "lucide-react";
 import { SITE, SERVICES, CITIES } from "@/data/site";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/logo.png";
 
 const LucideFacebook = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -35,7 +34,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
-            <img src={logo} alt="Siding Depot" style={{ height: "44px", width: "auto" }} />
+            <div className="font-display text-3xl leading-none text-sd-green bg-sd-black p-2 rounded transform rotate-[-2deg] inline-block mb-2">
+              SIDING<br />DEPOT
+            </div>
             <p className="mt-3 text-sm text-white/50 max-w-xs">
               Georgia's trusted James Hardie Elite Preferred contractor. Serving
               North Atlanta since 2010.
