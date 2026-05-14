@@ -2,8 +2,9 @@ import { useParams, Link, useSearch } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useBlogPost } from "@/hooks/use-blog-posts";
 
 export default function BlogPostDetail() {
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function BlogPostDetail() {
   const search = useSearch({ from: "/blog/$slug" });
   const isPreview = search.preview === true;
   
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const { post, loading } = useBlogPost(slug);
 
   const [activeId, setActiveId] = useState<string>("");
 
