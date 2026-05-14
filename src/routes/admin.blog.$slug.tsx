@@ -66,7 +66,12 @@ function ArticleDetail() {
           throw error;
         }
       } else {
-        setDbData(data);
+        setDbData({
+          status: data.status || 'draft',
+          scheduled_at: data.scheduled_at || undefined,
+          updated_at: data.updated_at || undefined,
+          created_at: data.created_at || undefined
+        });
       }
     } catch (error) {
       console.error('Error fetching post data:', error);
