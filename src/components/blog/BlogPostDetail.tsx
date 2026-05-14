@@ -219,7 +219,7 @@ export default function BlogPostDetail() {
               <section className="mt-16 pt-16 border-t border-gray-100">
                 <h2 className="text-3xl font-bold text-sd-navy mb-8">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  {post.faq.map((item, idx) => (
+                  {post.faq.map((item: { q: string, a: string }, idx: number) => (
                     <div key={idx} className="bg-sd-gray-light/20 p-6 rounded-xl border border-gray-100">
                       <h4 className="font-bold text-lg text-sd-navy mb-3">{item.q}</h4>
                       <p className="text-sd-gray-text leading-relaxed">{item.a}</p>
