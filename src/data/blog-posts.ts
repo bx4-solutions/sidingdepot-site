@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
         h2: 'The 2026 Marietta Market: What Homeowners Are Paying',
         content: `In 2026, the Marietta siding market has seen stabilization after the price volatility of the early 20s. For a standard 2,500 square foot home in neighborhoods like East Cobb or Kennesaw, a full James Hardie re-siding project typically ranges from $18,500 to $32,000 depending on complexity.
 
-Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl. When you factor in Georgia\'s intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
+Fiber cement continues to be the primary choice for Marietta homeowners who value long-term durability over the temporary savings of vinyl (see our [James Hardie vs Vinyl comparison](/blog/james-hardie-vs-vinyl-siding-georgia-climate)). When you factor in Georgia's intense summer humidity and the occasional severe storm season, the dimensional stability of James Hardie becomes not just a luxury, but a necessity for home preservation.
 
 We categorized the costs into three distinct tiers to help Marietta residents plan their budgets:`,
         image: {
