@@ -315,7 +315,8 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Atlanta Market Specifics',
-        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
+        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood (learn [how to spot siding failure here](/blog/6-signs-time-replace-siding-georgia-home)), they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
+
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'A well-maintained home ready for sale',
