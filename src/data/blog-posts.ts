@@ -299,18 +299,28 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-10',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
-      alt: 'Luxury home exterior representing high property value',
+      url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Luxury real estate property representing high ROI',
       caption: 'First impressions are everything. New siding can increase your home\'s appraised value overnight.'
     },
     sections: [
       {
         h2: 'Understanding the 80% Rule',
-        content: `Historically, major kitchen remodels in Atlanta recoup about 60-65% of their cost. However, high-quality siding replacement consistently recoups 80% or more. Why? Because siding is the "skin" of your home. It protects the structural integrity and defines the curb appeal.`
+        content: `Historically, major kitchen remodels in Atlanta recoup about 60-65% of their cost. However, high-quality siding replacement consistently recoups 80% or more. Why? Because siding is the "skin" of your home. It protects the structural integrity and defines the curb appeal.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Luxury home exterior with fresh blue siding',
+          caption: 'Investing in high-quality exterior materials consistently yields a better return than many interior renovations.'
+        }
       },
       {
         h2: 'Atlanta Market Specifics',
-        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`
+        content: `In the competitive North Atlanta real estate market, buyers are savvy. They know how to spot failing siding. If a buyer sees warped vinyl or rotten wood, they immediately deduct the cost of a full replacement plus a "hassle factor" from their offer. By replacing it before listing, you control the quality and the price, often leading to multiple-offer situations.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
+          alt: 'A well-maintained home ready for sale',
+          caption: 'Curb appeal is a primary driver for property valuation in the Marietta and Alpharetta markets.'
+        }
       }
     ],
     faq: [
