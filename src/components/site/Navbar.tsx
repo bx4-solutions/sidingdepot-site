@@ -43,26 +43,11 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-sd-dark/95 backdrop-blur-sm border-b border-white/5">
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-[#E2E8EE] shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
-            <div style={{
-              background: '#BCD635',
-              padding: '6px 14px',
-              borderRadius: '8px',
-              fontWeight: 900,
-              color: '#fff',
-              WebkitTextStroke: '2px #000',
-              paintOrder: 'stroke fill',
-              transform: 'rotate(-4deg)',
-              display: 'inline-block',
-              lineHeight: 1.1,
-              fontFamily: 'var(--font-display)',
-              fontSize: '20px'
-            }}>
-              Siding<br/>Depot
-            </div>
+            <img src={logo} alt="Siding Depot" style={{ height: "52px", width: "auto" }} />
           </Link>
         </div>
 
