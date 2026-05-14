@@ -133,7 +133,7 @@ export default function BlogListing() {
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-sd-navy border-b pb-2">Popular Articles</h3>
               <ul className="space-y-4">
-                {BLOG_POSTS.slice(0, 5).map(p => (
+                {publishedPosts.slice(0, 5).map(p => (
                   <li key={p.slug}>
                     <Link 
                       to="/blog/$slug" 
