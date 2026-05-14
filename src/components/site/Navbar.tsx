@@ -94,13 +94,15 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/5 bg-sd-dark">
+        <div className="lg:hidden border-t border-[#E2E8EE] bg-white">
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="px-3 py-2 rounded-md text-sm text-white/80 hover:bg-white/5 hover:text-sd-green"
+                className="px-3 py-2 rounded-md text-sm font-semibold text-[#3A4800] hover:bg-[#F0F7C0]"
+                activeProps={{ className: "bg-[#BCD635] text-[#0A0A0A]" }}
+                activeOptions={{ exact: l.to === "/" }}
                 onClick={() => setOpen(false)}
               >
                 {l.label}
@@ -109,7 +111,7 @@ export function Navbar() {
             {session && (
               <Link
                 to="/seo-dashboard"
-                className="px-3 py-2 rounded-md text-sm font-bold text-sd-green hover:bg-white/5"
+                className="px-3 py-2 rounded-md text-sm font-bold text-[#BCD635] hover:bg-[#F0F7C0]"
                 onClick={() => setOpen(false)}
               >
                 SEO Dashboard
@@ -120,7 +122,7 @@ export function Navbar() {
                 <Phone /> Call {SITE.phone}
               </a>
             </Button>
-            <Button asChild variant="outlineWhite">
+            <Button asChild variant="outline">
               <Link to="/contact" onClick={() => setOpen(false)}>
                 Get Free Quote
               </Link>
