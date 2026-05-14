@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 Allow: /locations/
 
-Sitemap: https://sidingdepot.lovable.app/sitemap.xml
+Sitemap: https://sidingdepot.com/sitemap.xml
+Sitemap: https://sidingdepot.com/blog-sitemap.xml
