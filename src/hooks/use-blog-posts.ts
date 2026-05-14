@@ -11,7 +11,7 @@ export function useBlogPosts() {
       try {
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('slug, status');
+          .select('slug, status, scheduled_at');
 
         if (error) throw error;
 
