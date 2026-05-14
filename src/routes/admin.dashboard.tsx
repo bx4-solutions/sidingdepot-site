@@ -59,7 +59,17 @@ function AdminDashboard() {
   }, []);
 
   const locationPages = getAllLocationCombos();
-  const totalPages = STATIC_ROUTES.length + locationPages.length;
+  const allSitePages = [
+    ...STATIC_ROUTES.map(route => ({ route, type: 'static' as const, city: '—', service: '—' })),
+    ...locationPages.map(lp => ({ 
+      route: `/locations/${lp.city}/${lp.service}`, 
+      type: 'location' as const, 
+      city: lp.city.replace('-', ' '), 
+      service: lp.service 
+    }))
+  ];
+  
+  const totalPages = allSitePages.length;
   
   const blogStats = BLOG_POSTS.reduce((acc, post) => {
     const dbData = dbStatuses[post.slug];
@@ -74,11 +84,14 @@ function AdminDashboard() {
     return acc;
   }, { total: 0, published: 0, draft: 0, scheduled: 0 });
 
-  // Filtered Location Pages
-  const filteredLocationPages = locationPages.filter(lp => {
-    const matchesCity = !locationCityFilter || lp.city.toLowerCase().includes(locationCityFilter.toLowerCase());
-    const matchesService = !locationServiceFilter || lp.service.toLowerCase().includes(locationServiceFilter.toLowerCase());
-    return matchesCity && matchesService;
+  // Filtered Site Pages
+  const filteredSitePages = allSitePages.filter(page => {
+    const matchesCity = !locationCityFilter || page.city.toLowerCase().includes(locationCityFilter.toLowerCase());
+    const matchesService = !locationServiceFilter || page.service.toLowerCase().includes(locationServiceFilter.toLowerCase());
+    const matchesRoute = !routeSearch || page.route.toLowerCase().includes(routeSearch.toLowerCase());
+    const matchesType = pageTypeFilter === "all" || page.type === pageTypeFilter;
+    
+    return matchesCity && matchesService && matchesRoute && matchesType;
   });
 
   // Filtered Blog Posts
@@ -95,8 +108,8 @@ function AdminDashboard() {
   });
 
   // Paginated data
-  const paginatedLocations = filteredLocationPages.slice((locationPage - 1) * itemsPerPage, locationPage * itemsPerPage);
-  const totalLocationPagesCount = Math.ceil(filteredLocationPages.length / itemsPerPage);
+  const paginatedPages = filteredSitePages.slice((locationPage - 1) * itemsPerPage, locationPage * itemsPerPage);
+  const totalSitePagesCount = Math.ceil(filteredSitePages.length / itemsPerPage);
 
   const paginatedBlogs = filteredBlogPosts.slice((blogPage - 1) * itemsPerPage, blogPage * itemsPerPage);
   const totalBlogPagesCount = Math.ceil(filteredBlogPosts.length / itemsPerPage);
