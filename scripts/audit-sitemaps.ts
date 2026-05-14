@@ -3,7 +3,7 @@ import path from "path";
 import { XMLParser } from "fast-xml-parser";
 import { BLOG_POSTS } from "../src/data/blog-posts";
 
-const SITEMAPS = ["sitemap.xml", "blog-sitemap.xml"];
+const origin = 'https://sidingdepot.com'; // Consistent with generator
 const parser = new XMLParser();
 
 console.log("🚀 Starting Sitemap Audit...");
@@ -43,7 +43,7 @@ for (const sitemapFile of SITEMAPS) {
       if (sitemapFile === "blog-sitemap.xml") {
         const publishedSlugs = BLOG_POSTS.filter(p => p.status === "published").map(p => p.slug);
         for (const slug of publishedSlugs) {
-          const expectedUrl = `https://sidingdepotllc.com/blog/${slug}`;
+          const expectedUrl = `${origin}/blog/${slug}`;
           if (!urls.includes(expectedUrl)) {
             console.error(`❌ Error: Missing slug in blog-sitemap.xml: ${slug}`);
             hasError = true;
