@@ -29,7 +29,7 @@ function AdminDashboard() {
         data?.forEach(item => {
           statusMap[item.slug] = {
             status: item.status || 'draft',
-            scheduledAt: item.scheduled_at
+            scheduledAt: item.scheduled_at ?? undefined
           };
         });
         setDbStatuses(statusMap);
