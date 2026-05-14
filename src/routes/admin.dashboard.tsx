@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { STATIC_ROUTES, getAllLocationCombos } from "@/data/locations";
-import { FileText, MapPin, Layout, CheckCircle2, CircleDashed, Clock, Calendar } from "lucide-react";
-import { useState, useEffect } from "react";
+import { FileText, MapPin, Layout, CheckCircle2, CircleDashed, Clock, Calendar, Search } from "lucide-react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/dashboard")({
@@ -15,6 +17,17 @@ export const Route = createFileRoute("/admin/dashboard")({
 function AdminDashboard() {
   const [dbStatuses, setDbStatuses] = useState<Record<string, { status: string; scheduledAt?: string }>>({});
   const [loading, setLoading] = useState(true);
+
+  // Filters state
+  const [locationCityFilter, setLocationCityFilter] = useState("");
+  const [locationServiceFilter, setLocationServiceFilter] = useState("");
+  const [blogSearch, setBlogSearch] = useState("");
+  const [blogStatusFilter, setBlogStatusFilter] = useState("all");
+
+  // Pagination state
+  const [locationPage, setLocationPage] = useState(1);
+  const [blogPage, setBlogPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const fetchStatuses = async () => {
@@ -58,6 +71,33 @@ function AdminDashboard() {
     
     return acc;
   }, { total: 0, published: 0, draft: 0, scheduled: 0 });
+
+  // Filtered Location Pages
+  const filteredLocationPages = locationPages.filter(lp => {
+    const matchesCity = !locationCityFilter || lp.city.toLowerCase().includes(locationCityFilter.toLowerCase());
+    const matchesService = !locationServiceFilter || lp.service.toLowerCase().includes(locationServiceFilter.toLowerCase());
+    return matchesCity && matchesService;
+  });
+
+  // Filtered Blog Posts
+  const filteredBlogPosts = BLOG_POSTS.filter(post => {
+    const dbData = dbStatuses[post.slug];
+    const status = dbData?.status || post.status;
+    const scheduledAt = dbData?.scheduledAt;
+    const finalStatus = status === 'published' ? 'published' : scheduledAt ? 'scheduled' : 'draft';
+
+    const matchesSearch = !blogSearch || post.title.toLowerCase().includes(blogSearch.toLowerCase());
+    const matchesStatus = blogStatusFilter === "all" || finalStatus === blogStatusFilter;
+    
+    return matchesSearch && matchesStatus;
+  });
+
+  // Paginated data
+  const paginatedLocations = filteredLocationPages.slice((locationPage - 1) * itemsPerPage, locationPage * itemsPerPage);
+  const totalLocationPagesCount = Math.ceil(filteredLocationPages.length / itemsPerPage);
+
+  const paginatedBlogs = filteredBlogPosts.slice((blogPage - 1) * itemsPerPage, blogPage * itemsPerPage);
+  const totalBlogPagesCount = Math.ceil(filteredBlogPosts.length / itemsPerPage);
 
   return (
     <div className="min-h-screen bg-gray-50/50 p-8">
@@ -128,13 +168,35 @@ function AdminDashboard() {
           {/* Site Pages List */}
           <Card className="bg-white border-none shadow-md ring-1 ring-black/5 h-fit">
             <CardHeader className="border-b border-gray-100">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-bold text-sd-navy">Site Pages Architecture</CardTitle>
-                <Badge variant="outline">{locationPages.length} Location Pages</Badge>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-lg font-bold text-sd-navy">Site Pages Architecture</CardTitle>
+                  <Badge variant="outline">{filteredLocationPages.length} Results</Badge>
+                </div>
+                <div className="flex gap-2">
+                  <Input 
+                    placeholder="Filter city..." 
+                    className="h-8 text-xs"
+                    value={locationCityFilter}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                      setLocationCityFilter(e.target.value);
+                      setLocationPage(1);
+                    }}
+                  />
+                  <Input 
+                    placeholder="Filter service..." 
+                    className="h-8 text-xs"
+                    value={locationServiceFilter}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                      setLocationServiceFilter(e.target.value);
+                      setLocationPage(1);
+                    }}
+                  />
+                </div>
               </div>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="max-h-[600px] overflow-y-auto">
+              <div className="max-h-[500px] overflow-y-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -144,7 +206,7 @@ function AdminDashboard() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {locationPages.map((lp, idx) => (
+                    {paginatedLocations.map((lp, idx) => (
                       <TableRow key={idx}>
                         <TableCell className="font-medium text-xs text-sd-navy">
                           /locations/{lp.city}/{lp.service}
@@ -157,68 +219,177 @@ function AdminDashboard() {
                         </TableCell>
                       </TableRow>
                     ))}
+                    {paginatedLocations.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={3} className="text-center py-8 text-sd-gray-text text-sm">
+                          No pages found matching filters.
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableBody>
                 </Table>
               </div>
+              
+              {/* Pagination Controls */}
+              {totalLocationPagesCount > 1 && (
+                <div className="p-4 border-t border-gray-100 flex items-center justify-between">
+                  <div className="text-xs text-sd-gray-text font-medium">
+                    Page {locationPage} of {totalLocationPagesCount}
+                  </div>
+                  <div className="flex gap-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 p-0" 
+                      onClick={() => setLocationPage(p => Math.max(1, p - 1))}
+                      disabled={locationPage === 1}
+                    >
+                      &lt;
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 p-0"
+                      onClick={() => setLocationPage(p => Math.min(totalLocationPagesCount, p + 1))}
+                      disabled={locationPage === totalLocationPagesCount}
+                    >
+                      &gt;
+                    </Button>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 
           {/* Blog Status List */}
           <Card className="bg-white border-none shadow-md ring-1 ring-black/5 h-fit">
-            <CardHeader className="border-b border-gray-100 flex flex-row items-center justify-between">
-              <CardTitle className="text-lg font-bold text-sd-navy">Blog Content Status</CardTitle>
-              <Button asChild variant="outline" size="sm" className="rounded-full">
-                <Link to="/admin/blog-preview">Manage Blog</Link>
-              </Button>
+            <CardHeader className="border-b border-gray-100">
+              <div className="space-y-4">
+                <div className="flex flex-row items-center justify-between">
+                  <CardTitle className="text-lg font-bold text-sd-navy">Blog Content Status</CardTitle>
+                  <Button asChild variant="outline" size="sm" className="rounded-full">
+                    <Link to="/admin/blog-preview">Manage Blog</Link>
+                  </Button>
+                </div>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-sd-gray-text" />
+                    <Input 
+                      placeholder="Search articles..." 
+                      className="h-8 pl-8 text-xs"
+                      value={blogSearch}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                        setBlogSearch(e.target.value);
+                        setBlogPage(1);
+                      }}
+                    />
+                  </div>
+                  <Select 
+                    value={blogStatusFilter} 
+                    onValueChange={(val: string) => {
+                      setBlogStatusFilter(val);
+                      setBlogPage(1);
+                    }}
+                  >
+                    <SelectTrigger className="h-8 w-[120px] text-xs">
+                      <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="published">Published</SelectItem>
+                      <SelectItem value="draft">Draft</SelectItem>
+                      <SelectItem value="scheduled">Scheduled</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
             </CardHeader>
             <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="font-bold">Article Title</TableHead>
-                    <TableHead className="font-bold text-center">Status</TableHead>
-                    <TableHead className="font-bold">Schedule</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {BLOG_POSTS.map((post) => {
-                    const dbData = dbStatuses[post.slug];
-                    const status = dbData?.status || post.status;
-                    const scheduledAt = dbData?.scheduledAt;
-                    const isPublished = status === 'published';
-                    
-                    return (
-                      <TableRow key={post.slug}>
-                        <TableCell className="max-w-[200px]">
-                          <div className="font-bold text-sd-navy text-xs truncate" title={post.title}>
-                            {post.title}
-                          </div>
-                          <div className="text-[10px] text-sd-gray-text">{post.category}</div>
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <Badge className={`${
-                            isPublished ? 'bg-sd-green text-sd-black' : 
-                            scheduledAt ? 'bg-blue-100 text-blue-800' :
-                            'bg-amber-100 text-amber-800'
-                          } border-none uppercase text-[9px] tracking-widest font-bold px-2 py-0.5`}>
-                            {isPublished ? 'Published' : scheduledAt ? 'Scheduled' : 'Draft'}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          {scheduledAt ? (
-                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-sd-navy/60">
-                              <Calendar className="w-3 h-3" />
-                              {new Date(scheduledAt).toLocaleDateString()}
+              <div className="max-h-[500px] overflow-y-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="font-bold">Article Title</TableHead>
+                      <TableHead className="font-bold text-center">Status</TableHead>
+                      <TableHead className="font-bold">Schedule</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedBlogs.map((post) => {
+                      const dbData = dbStatuses[post.slug];
+                      const status = dbData?.status || post.status;
+                      const scheduledAt = dbData?.scheduledAt;
+                      const isPublished = status === 'published';
+                      
+                      return (
+                        <TableRow key={post.slug}>
+                          <TableCell className="max-w-[200px]">
+                            <div className="font-bold text-sd-navy text-xs truncate" title={post.title}>
+                              {post.title}
                             </div>
-                          ) : (
-                            <span className="text-[10px] text-sd-gray-text/40">—</span>
-                          )}
+                            <div className="text-[10px] text-sd-gray-text">{post.category}</div>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <Badge className={`${
+                              isPublished ? 'bg-sd-green text-sd-black' : 
+                              scheduledAt ? 'bg-blue-100 text-blue-800' :
+                              'bg-amber-100 text-amber-800'
+                            } border-none uppercase text-[9px] tracking-widest font-bold px-2 py-0.5`}>
+                              {isPublished ? 'Published' : scheduledAt ? 'Scheduled' : 'Draft'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            {scheduledAt ? (
+                              <div className="flex items-center gap-1.5 text-[10px] font-bold text-sd-navy/60">
+                                <Calendar className="w-3 h-3" />
+                                {new Date(scheduledAt).toLocaleDateString()}
+                              </div>
+                            ) : (
+                              <span className="text-[10px] text-sd-gray-text/40">—</span>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                    {paginatedBlogs.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={3} className="text-center py-8 text-sd-gray-text text-sm">
+                          No articles found.
                         </TableCell>
                       </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+
+              {/* Pagination Controls */}
+              {totalBlogPagesCount > 1 && (
+                <div className="p-4 border-t border-gray-100 flex items-center justify-between">
+                  <div className="text-xs text-sd-gray-text font-medium">
+                    Page {blogPage} of {totalBlogPagesCount}
+                  </div>
+                  <div className="flex gap-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 p-0" 
+                      onClick={() => setBlogPage(p => Math.max(1, p - 1))}
+                      disabled={blogPage === 1}
+                    >
+                      &lt;
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-8 w-8 p-0"
+                      onClick={() => setBlogPage(p => Math.min(totalBlogPagesCount, p + 1))}
+                      disabled={blogPage === totalBlogPagesCount}
+                    >
+                      &gt;
+                    </Button>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -226,5 +397,6 @@ function AdminDashboard() {
     </div>
   );
 }
+
 
 import { Button } from "@/components/ui/button";
