@@ -17,19 +17,19 @@ export const Route = createFileRoute("/guide/thank-you")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Thanks! Your Siding Guide Is on the Way — Siding Depot" },
+      { title: "Your Siding Guide Is Ready! Download Below — Siding Depot" },
       {
         name: "description",
         content:
-          "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next.",
+          "Your free guide to avoiding siding mistakes in Georgia is ready. Download it now and learn how to protect your home's exterior and your budget.",
       },
-      { property: "og:title", content: "Thanks! Your Siding Guide Is on the Way" },
-      { property: "og:description", content: "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next." },
+      { property: "og:title", content: "Your Siding Guide Is Ready! Download Now" },
+      { property: "og:description", content: "Grab your free 8-page siding guide and learn the 5 mistakes to avoid." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Thanks! Your Siding Guide Is on the Way" },
-      { name: "twitter:description", content: "Your free homeowner guide is ready. While you read, explore the exterior service that fits what your home needs next." },
+      { name: "twitter:title", content: "Your Siding Guide Is Ready! Download Now" },
+      { name: "twitter:description", content: "Grab your free 8-page siding guide and learn the 5 mistakes to avoid." },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       // Block this page from search results — it's a post-conversion thank-you.
       { name: "robots", content: "noindex, nofollow" },
