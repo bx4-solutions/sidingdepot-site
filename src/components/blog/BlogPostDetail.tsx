@@ -67,54 +67,6 @@ export default function BlogPostDetail() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* SEO Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": post.title,
-          "description": post.excerpt,
-          "image": [
-            getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
-            ...(post.sections.filter(s => s.image).map(s => getOptimizedUnsplashUrl(s.image!.url, { width: 1200 })))
-          ],
-          "datePublished": post.publishDate,
-          "author": [{
-            "@type": "Organization",
-            "name": "Siding Depot Team",
-            "url": "https://sidingdepot.com"
-          }],
-          "publisher": {
-            "@type": "Organization",
-            "name": "Siding Depot",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://sidingdepot.com/logo.png"
-            }
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `https://sidingdepot.com/blog/${post.slug}`
-          }
-        })}
-      </script>
-
-      {post.faq.length > 0 && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": post.faq.map(item => ({
-              "@type": "Question",
-              "name": item.q,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": item.a
-              }
-            }))
-          })}
-        </script>
-      )}
 
       {isPreview && (
         <div className="bg-amber-50 border-b border-amber-200 py-3 px-4 sticky top-0 z-[60]">
