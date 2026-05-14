@@ -38,6 +38,7 @@ import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminBlogPreviewRouteImport } from './routes/admin.blog-preview'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 
 const WindowsRoute = WindowsRouteImport.update({
@@ -185,6 +186,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminBlogPreviewRoute = AdminBlogPreviewRouteImport.update({
+  id: '/admin/blog-preview',
+  path: '/admin/blog-preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   id: '/locations/$city/$service',
   path: '/locations/$city/$service',
@@ -212,6 +218,7 @@ export interface FileRoutesByFullPath {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -244,6 +251,7 @@ export interface FileRoutesByTo {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -277,6 +285,7 @@ export interface FileRoutesById {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -311,6 +320,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/blog-preview'
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
@@ -343,6 +353,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/blog-preview'
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
@@ -375,6 +386,7 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/blog-preview'
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
@@ -408,6 +420,7 @@ export interface RootRouteChildren {
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WindowsRoute: typeof WindowsRoute
+  AdminBlogPreviewRoute: typeof AdminBlogPreviewRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminResetPasswordRoute: typeof AdminResetPasswordRoute
   LpSidingAlpharettaRoute: typeof LpSidingAlpharettaRoute
@@ -622,6 +635,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/blog-preview': {
+      id: '/admin/blog-preview'
+      path: '/admin/blog-preview'
+      fullPath: '/admin/blog-preview'
+      preLoaderRoute: typeof AdminBlogPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations/$city/$service': {
       id: '/locations/$city/$service'
       path: '/locations/$city/$service'
@@ -685,6 +705,7 @@ const rootRouteChildren: RootRouteChildren = {
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WindowsRoute: WindowsRoute,
+  AdminBlogPreviewRoute: AdminBlogPreviewRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminResetPasswordRoute: AdminResetPasswordRoute,
   LpSidingAlpharettaRoute: LpSidingAlpharettaRoute,
@@ -696,13 +717,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
