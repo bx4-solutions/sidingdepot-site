@@ -42,7 +42,7 @@ export function SimpleLeadForm({
   tag = "ebook_request",
   submitLabel = "Send My Free Guide →",
   downloadUrl = "/downloads/5-mistakes-siding-georgia.pdf",
-  downloadLabel = "Download Your Ebook",
+  downloadLabel = "Download Your Siding Guide",
   onSuccess,
 }: Props) {
   const [submitting, setSubmitting] = useState(false);
