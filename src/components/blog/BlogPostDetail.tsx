@@ -32,18 +32,25 @@ export default function BlogPostDetail() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [post]);
 
-  if (!post) {
+  if (!post || (post.status === 'draft' && !isPreview)) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Post not found</h1>
-        <Button asChild>
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-4 text-center">
+        <h1 className="text-3xl font-bold mb-4 text-sd-navy">
+          {!post ? "Post not found" : "This article is still a draft"}
+        </h1>
+        <p className="text-sd-gray-text mb-8 max-w-md">
+          {!post 
+            ? "The page you are looking for doesn't exist or has been moved." 
+            : "This article hasn't been published yet. Check back soon for expert siding insights!"}
+        </p>
+        <Button asChild className="bg-sd-navy hover:bg-sd-navy/90 text-white rounded-full px-8">
           <Link to="/blog">Back to Blog</Link>
         </Button>
       </div>
     );
   }
 
-  const relatedPosts = BLOG_POSTS.filter((p) => post.internalLinks.includes(p.slug));
+  const relatedPosts = BLOG_POSTS.filter((p) => post.internalLinks.includes(p.slug) && p.status === 'published');
 
   return (
     <div className="bg-white min-h-screen">
