@@ -25,6 +25,7 @@ import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -118,6 +119,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -183,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -213,6 +220,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -244,6 +252,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -276,6 +285,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -336,6 +347,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -367,6 +379,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
+  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DoorsRoute: typeof DoorsRoute
@@ -506,6 +519,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -619,6 +639,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
+  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DoorsRoute: DoorsRoute,
