@@ -29,7 +29,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'james-hardie-siding-cost-marietta-ga-2026',
     title: 'How Much Does James Hardie Siding Cost in Marietta, GA? (2026 Complete Guide)',
-    excerpt: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size, style, and neighborhood.',
+    excerpt: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. [Check our Marietta siding page](/lp/siding-marietta) for more details.',
     category: 'Cost Guides',
     readTime: 9,
     publishDate: '2026-05-14',
