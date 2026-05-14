@@ -52,7 +52,7 @@ export const SidingGuide = () => {
     <div className="guide-container py-10">
       
       {/* PAGE 1 - COVER */}
-      <PageWrapper pageNum={1} className="bg-[#1E2A38]">
+      <PageWrapper pageNum={1} className="bg-[#0A0A0A]">
         <div className="absolute top-10 left-10">
           <div className="font-display text-[28px] text-[#BCD635] tracking-tight">SIDING DEPOT</div>
         </div>
