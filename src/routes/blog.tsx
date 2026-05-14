@@ -9,16 +9,18 @@ export const Route = createFileRoute("/blog")({
     const publishedPosts = BLOG_POSTS.filter(p => p.status === 'published');
     
     return {
+      title: "Expert Siding Blog | Marietta & North Atlanta Siding Insights | Siding Depot",
       meta: [
-        { title: "Expert Siding Blog | Marietta & North Atlanta Siding Insights | Siding Depot" },
         { 
           name: "description", 
           content: "Expert advice on James Hardie siding installation, cost guides, and home exterior maintenance for Marietta, Alpharetta, and North Atlanta homeowners." 
         },
+        { name: "keywords", content: "siding marietta, james hardie siding atlanta, siding cost georgia, siding replacement marietta" },
         { property: "og:title", content: "Expert Siding Blog | Siding Depot" },
         { property: "og:description", content: "Expert advice on siding installation, cost guides, and maintenance for North Atlanta homeowners." },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://sidingdepot.com/blog" },
+        { property: "og:image", content: "https://sidingdepot.com/hero-home.webp" },
       ],
       scripts: [
         {

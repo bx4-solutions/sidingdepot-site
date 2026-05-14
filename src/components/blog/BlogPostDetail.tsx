@@ -83,12 +83,14 @@ export default function BlogPostDetail() {
       )}
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs font-medium text-sd-gray-text mb-8">
-          <Link to="/" className="hover:text-sd-navy">Home</Link>
-          <ChevronRight className="w-3 h-3" />
-          <Link to="/blog" className="hover:text-sd-navy">Blog</Link>
-          <ChevronRight className="w-3 h-3" />
-          <span className="text-sd-navy">{post.category}</span>
+        <nav className="flex items-center flex-wrap gap-2 text-xs font-medium text-sd-gray-text mb-8" aria-label="Breadcrumb">
+          <Link to="/" className="hover:text-sd-navy transition-colors">Home</Link>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <Link to="/blog" className="hover:text-sd-navy transition-colors">Blog</Link>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <span className="text-sd-gray-text/70">{post.category}</span>
+          <ChevronRight className="w-3 h-3 text-gray-300" />
+          <span className="text-sd-navy font-bold truncate max-w-[200px] md:max-w-none">{post.title}</span>
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-12">
@@ -113,6 +115,30 @@ export default function BlogPostDetail() {
                 <div className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {post.readTime} min read</div>
               </div>
             </header>
+            
+            {/* Mobile Table of Contents */}
+            <div className="lg:hidden mb-10 bg-sd-gray-light/30 rounded-2xl p-6 border border-gray-100">
+              <h3 className="text-lg font-bold text-sd-navy mb-4 flex items-center gap-2">
+                <div className="w-1.5 h-6 bg-sd-green rounded-full"></div>
+                In This Article
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {post.sections.map((section: any, idx: number) => {
+                  const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+                  return (
+                    <li key={idx}>
+                      <a 
+                        href={`#${sectionId}`}
+                        className="text-sm font-medium text-sd-gray-text hover:text-sd-navy transition-colors flex items-center gap-2"
+                      >
+                        <ChevronRight className="w-3 h-3 text-sd-green" />
+                        {section.h2}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
 
             <div className="mb-12 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
               <img 
@@ -124,6 +150,8 @@ export default function BlogPostDetail() {
                 width="1200"
                 height="675"
                 decoding="async"
+                fetchPriority="high"
+                loading="eager"
               />
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
                 <p className="text-[13px] italic text-sd-gray-text text-center">{post.heroImage.caption}</p>
