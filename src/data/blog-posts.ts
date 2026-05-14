@@ -122,7 +122,7 @@ Second is the upgrade of house wrap. Many older homes were built without a prope
     sections: [
       {
         h2: '1. Visible Cracking, Bubbling, or Blistering',
-        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot.
+        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot (read more about [hidden rot here](/blog/rotten-wood-siding-replacement-georgia-homes)).
 
 Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`,
         image: {
