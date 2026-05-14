@@ -15,7 +15,8 @@ export default function BlogPostDetail() {
   const search = useSearch({ from: "/blog/$slug" });
   const isPreview = search.preview === true;
   
-  const { post, loading } = useBlogPost(slug);
+  const { posts, loading } = useBlogPosts();
+  const post = posts.find((p) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
 
