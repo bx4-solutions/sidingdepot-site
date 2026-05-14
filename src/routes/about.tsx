@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Mail, MapPin, Music2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
+import { MapEmbed } from "@/components/site/MapEmbed";
 import { SITE } from "@/data/site";
 
 const LucideFacebook = ({ className }: { className?: string }) => (
