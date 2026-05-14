@@ -432,22 +432,37 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-07',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
-      alt: 'Construction crew working on home exterior',
+      url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Construction site showing siding installation',
       caption: 'Professional crews ensure your home is protected throughout the entire installation process.'
     },
     sections: [
       {
         h2: 'The Pre-Installation Phase (1-2 Weeks)',
-        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays.`
+        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1513584684374-8bdb7483fe8f?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Blueprint and project planning tools',
+          caption: 'Thorough planning is the foundation of a successful siding replacement project.'
+        }
       },
       {
         h2: 'Day 1-2: Tear-Off and Inspection',
-        content: `The most critical days. We remove your old siding and inspect the underlying sheathing. If we find rot, we address it immediately. We then install the HardieWrap® moisture barrier to "dry-in" the home.`
+        content: `The most critical days. We remove your old siding and inspect the underlying sheathing. If we find rot, we address it immediately. We then install the HardieWrap® moisture barrier to "dry-in" the home.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Exposed house framing during tear-off',
+          caption: 'The tear-off phase reveals the true condition of your home\'s structural elements.'
+        }
       },
       {
         h2: 'Day 3-6: Installation and Trim',
-        content: `Our expert crews install the HardiePlank or HardiePanel, followed by the trim, soffits, and fascia. This is where you see the dramatic transformation of your home.`
+        content: `Our expert crews install the HardiePlank or HardiePanel, followed by the trim, soffits, and fascia. This is where you see the dramatic transformation of your home.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Crew members installing siding trim',
+          caption: 'Expert craftsmanship is what sets a Siding Depot installation apart.'
+        }
       }
     ],
     faq: [
