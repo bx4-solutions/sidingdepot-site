@@ -84,7 +84,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-white"
+          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-[#3A4800]"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
