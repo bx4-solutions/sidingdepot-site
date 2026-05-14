@@ -304,6 +304,7 @@ function Field({
   type = "text",
   inputMode,
   autoComplete,
+  dark = false,
 }: {
   id: string;
   label: string;
@@ -313,10 +314,11 @@ function Field({
   type?: string;
   inputMode?: "tel" | "email" | "text";
   autoComplete?: string;
+  dark?: boolean;
 }) {
   return (
     <div className="grid gap-1.5">
-      <Label htmlFor={id} className="text-xs font-semibold text-sd-black">
+      <Label htmlFor={id} className={`text-xs font-semibold ${dark ? "text-white" : "text-sd-black"}`}>
         {label}
       </Label>
       <Input
@@ -328,7 +330,7 @@ function Field({
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-err` : undefined}
-        className="h-10"
+        className={`h-10 ${dark ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""}`}
       />
       {error && (
         <p id={`${id}-err`} className="text-[11px] text-destructive">
