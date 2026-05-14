@@ -98,6 +98,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/about" className="text-white/55 hover:text-sd-green">About</Link></li>
               <li><Link to="/projects" className="text-white/55 hover:text-sd-green">Gallery</Link></li>
+              <li><Link to="/blog" className="text-white/55 hover:text-sd-green">Blog</Link></li>
               <li><Link to="/guide" className="text-white/55 hover:text-sd-green">Free Guide</Link></li>
               <li><Link to="/contact" className="text-white/55 hover:text-sd-green">Contact</Link></li>
               {session ? (

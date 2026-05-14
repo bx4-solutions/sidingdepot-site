@@ -25,6 +25,7 @@ import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -34,6 +35,7 @@ import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-mariett
 import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
 import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
 import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
@@ -118,6 +120,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -163,6 +170,11 @@ const GuideThankYouRoute = GuideThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => GuideRoute,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
   id: '/admin/reset-password',
   path: '/admin/reset-password',
@@ -183,6 +195,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -201,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/windows': typeof WindowsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -213,6 +227,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -231,6 +246,7 @@ export interface FileRoutesByTo {
   '/windows': typeof WindowsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -244,6 +260,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -262,6 +279,7 @@ export interface FileRoutesById {
   '/windows': typeof WindowsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -276,6 +294,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -294,6 +313,7 @@ export interface FileRouteTypes {
     | '/windows'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/blog/$slug'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -306,6 +326,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -324,6 +345,7 @@ export interface FileRouteTypes {
     | '/windows'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/blog/$slug'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -336,6 +358,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -354,6 +377,7 @@ export interface FileRouteTypes {
     | '/windows'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/blog/$slug'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -367,6 +391,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DoorsRoute: typeof DoorsRoute
@@ -506,6 +531,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -569,6 +601,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuideThankYouRouteImport
       parentRoute: typeof GuideRoute
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/admin/reset-password': {
       id: '/admin/reset-password'
       path: '/admin/reset-password'
@@ -592,6 +631,16 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface GuideRouteChildren {
   GuideThankYouRoute: typeof GuideThankYouRoute
@@ -619,6 +668,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DoorsRoute: DoorsRoute,
