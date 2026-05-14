@@ -1,53 +1,50 @@
 import fs from 'fs';
-import path from 'path';
+import { BLOG_POSTS } from './src/data/blog-posts.ts';
 
-const BASE_URL = 'https://sidingdepot.com';
+const DOMAIN = 'https://sidingdepot.com';
 
-const SERVICES = [
-  'siding',
-  'painting',
-  'windows',
-  'doors',
-  'gutters',
-  'deck',
-  'roofing'
-];
-
-const CITIES = [
-  'marietta',
-  'alpharetta',
-  'milton',
-  'canton',
-  'woodstock',
-  'roswell',
-  'kennesaw',
-  'johns-creek',
-  'sandy-springs',
-  'acworth'
-];
-
-const ROUTES = [
-  '/',
+const staticRoutes = [
+  '',
+  '/blog',
   '/contact',
-  '/projects',
-  '/guide',
-  ...SERVICES.map(s => `/services/${s}`),
-  ...CITIES.flatMap(c => SERVICES.map(s => `/locations/${c}/${s}`))
+  '/services',
+  '/gallery',
+  '/reviews',
+  '/about',
 ];
 
-function generateSitemap() {
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ROUTES.map(route => `  <url>
-    <loc>${BASE_URL}${route}</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
-  </url>`).join('\n')}
-</urlset>`;
+const generateSitemap = () => {
+  const lastMod = new Date().toISOString().split('T')[0];
+  
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.4.5">\n';
 
-  fs.writeFileSync(path.join(process.cwd(), 'public/sitemap.xml'), xml);
-  console.log('Sitemap generated at public/sitemap.xml');
-}
+  // Add static routes
+  staticRoutes.forEach(route => {
+    xml += '  <url>\n';
+    xml += `    <loc>${DOMAIN}${route}</loc>\n`;
+    xml += `    <lastmod>${lastMod}</lastmod>\n`;
+    xml += '    <changefreq>monthly</changefreq>\n';
+    xml += '    <priority>0.8</priority>\n';
+    xml += '  </url>\n';
+  });
+
+  // Add blog posts
+  BLOG_POSTS.forEach(post => {
+    if (post.status === 'published') {
+      xml += '  <url>\n';
+      xml += `    <loc>${DOMAIN}/blog/${post.slug}</loc>\n`;
+      xml += `    <lastmod>${post.publishDate}</lastmod>\n`;
+      xml += '    <changefreq>weekly</changefreq>\n';
+      xml += '    <priority>0.7</priority>\n';
+      xml += '  </url>\n';
+    }
+  });
+
+  xml += '</urlset>';
+  
+  fs.writeFileSync('./public/sitemap.xml', xml);
+  console.log('Sitemap generated successfully at ./public/sitemap.xml');
+};
 
 generateSitemap();
