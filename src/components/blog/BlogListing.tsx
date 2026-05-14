@@ -3,11 +3,26 @@ import { Link } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { Star, ArrowRight, Clock, Calendar, User } from "lucide-react";
+import { Star, ArrowRight, Clock, Calendar, User, Loader2 } from "lucide-react";
+import { useBlogPosts } from "@/hooks/use-blog-posts";
 
 export default function BlogListing() {
-  const featuredPost = BLOG_POSTS.find(p => p.featured) || BLOG_POSTS[0];
-  const otherPosts = BLOG_POSTS.filter(p => p.slug !== featuredPost.slug);
+  const { posts, loading } = useBlogPosts();
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-sd-navy text-white">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-8 h-8 animate-spin text-sd-green" />
+          <p className="font-bold tracking-widest uppercase text-xs">Loading Insights...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const publishedPosts = posts.filter(p => p.status === 'published');
+  const featuredPost = publishedPosts.find(p => p.featured) || publishedPosts[0];
+  const otherPosts = publishedPosts.filter(p => p.slug !== featuredPost?.slug);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -118,7 +133,7 @@ export default function BlogListing() {
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-sd-navy border-b pb-2">Popular Articles</h3>
               <ul className="space-y-4">
-                {BLOG_POSTS.slice(0, 5).map(p => (
+                {publishedPosts.slice(0, 5).map(p => (
                   <li key={p.slug}>
                     <Link 
                       to="/blog/$slug" 

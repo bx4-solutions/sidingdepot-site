@@ -1,9 +1,10 @@
-import { useParams, Link } from "@tanstack/react-router";
+import { useParams, Link, useSearch } from "@tanstack/react-router";
 import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
-import { ArrowRight, Clock, Calendar, User, ChevronRight } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useBlogPosts } from "@/hooks/use-blog-posts";
 
 export default function BlogPostDetail() {
   useEffect(() => {
@@ -11,11 +12,16 @@ export default function BlogPostDetail() {
   }, []);
 
   const { slug } = useParams({ from: "/blog/$slug" });
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const search = useSearch({ from: "/blog/$slug" });
+  const isPreview = search.preview === true;
+  
+  const { posts, loading } = useBlogPosts();
+  const post = posts.find((p: BlogPost) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
+    if (!post) return;
     const handleScroll = () => {
       const headings = document.querySelectorAll("h2[id]");
       let currentId = "";
@@ -27,23 +33,51 @@ export default function BlogPostDetail() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [post]);
 
-  if (!post) {
+  if (loading) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Post not found</h1>
-        <Button asChild>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <Loader2 className="w-8 h-8 animate-spin text-sd-navy" />
+      </div>
+    );
+  }
+
+  if (!post || (post.status === 'draft' && !isPreview)) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-4 text-center">
+        <h1 className="text-3xl font-bold mb-4 text-sd-navy">
+          {!post ? "Post not found" : "This article is still a draft"}
+        </h1>
+        <p className="text-sd-gray-text mb-8 max-w-md">
+          {!post 
+            ? "The page you are looking for doesn't exist or has been moved." 
+            : "This article hasn't been published yet. Check back soon for expert siding insights!"}
+        </p>
+        <Button asChild className="bg-sd-navy hover:bg-sd-navy/90 text-white rounded-full px-8">
           <Link to="/blog">Back to Blog</Link>
         </Button>
       </div>
     );
   }
 
-  const relatedPosts = BLOG_POSTS.filter((p) => post.internalLinks.includes(p.slug));
+  const relatedPosts = BLOG_POSTS.filter((p) => post.internalLinks.includes(p.slug) && p.status === 'published');
 
   return (
     <div className="bg-white min-h-screen">
+      {isPreview && (
+        <div className="bg-amber-50 border-b border-amber-200 py-3 px-4 sticky top-0 z-[60]">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-2 text-amber-800 font-medium">
+              <Eye className="w-4 h-4" />
+              <span>Preview Mode: Viewing "{post.status}" version</span>
+            </div>
+            <Button asChild variant="outline" size="sm" className="bg-white border-amber-200 text-amber-800 hover:bg-amber-100 h-8">
+              <Link to="/admin/blog-preview">Back to Admin</Link>
+            </Button>
+          </div>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-medium text-sd-gray-text mb-8">
@@ -89,7 +123,7 @@ export default function BlogPostDetail() {
             </div>
 
             <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:border-l-[3px] prose-h2:border-sd-green prose-h2:pl-4 prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg">
-              {post.sections.map((section, idx) => {
+              {post.sections.map((section: any, idx: number) => {
                 const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                 
                 // Helper to render content with internal links
@@ -121,7 +155,7 @@ export default function BlogPostDetail() {
                         <table className="min-w-full divide-y divide-gray-200">
                           <thead className="bg-sd-navy text-white">
                             <tr>
-                              {section.table.headers.map((header, i) => (
+                              {section.table.headers.map((header: string, i: number) => (
                                 <th key={i} className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
                                   {header}
                                 </th>
@@ -129,9 +163,9 @@ export default function BlogPostDetail() {
                             </tr>
                           </thead>
                           <tbody className="bg-white divide-y divide-gray-100">
-                            {section.table.rows.map((row, i) => (
+                            {section.table.rows.map((row: string[], i: number) => (
                               <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-sd-gray-light/30"}>
-                                {row.map((cell, j) => (
+                                {row.map((cell: string, j: number) => (
                                   <th key={j} className="px-6 py-4 text-sm font-medium text-sd-gray-text">
                                     {cell}
                                   </th>
@@ -185,7 +219,7 @@ export default function BlogPostDetail() {
               <section className="mt-16 pt-16 border-t border-gray-100">
                 <h2 className="text-3xl font-bold text-sd-navy mb-8">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  {post.faq.map((item, idx) => (
+                  {post.faq.map((item: { q: string, a: string }, idx: number) => (
                     <div key={idx} className="bg-sd-gray-light/20 p-6 rounded-xl border border-gray-100">
                       <h4 className="font-bold text-lg text-sd-navy mb-3">{item.q}</h4>
                       <p className="text-sd-gray-text leading-relaxed">{item.a}</p>
@@ -226,7 +260,7 @@ export default function BlogPostDetail() {
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h3 className="text-lg font-bold text-sd-navy mb-6 border-b pb-2">In This Article</h3>
                 <ul className="space-y-4">
-                  {post.sections.map((section, idx) => {
+                  {post.sections.map((section: any, idx: number) => {
                     const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                     return (
                       <li key={idx}>
@@ -249,7 +283,7 @@ export default function BlogPostDetail() {
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-sd-navy border-b pb-2">Related Articles</h3>
                   <div className="space-y-6">
-                    {relatedPosts.map((p) => (
+                    {relatedPosts.map((p: BlogPost) => (
                       <Link 
                         key={p.slug} 
                         to="/blog/$slug" 
