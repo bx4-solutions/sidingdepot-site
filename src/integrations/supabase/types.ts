@@ -176,6 +176,7 @@ export type Database = {
           id: string
           keywords: string[] | null
           published_at: string | null
+          scheduled_at: string | null
           slug: string
           status: string | null
           suggested_date: string | null
@@ -191,6 +192,7 @@ export type Database = {
           id?: string
           keywords?: string[] | null
           published_at?: string | null
+          scheduled_at?: string | null
           slug: string
           status?: string | null
           suggested_date?: string | null
@@ -206,6 +208,7 @@ export type Database = {
           id?: string
           keywords?: string[] | null
           published_at?: string | null
+          scheduled_at?: string | null
           slug?: string
           status?: string | null
           suggested_date?: string | null
