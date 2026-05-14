@@ -283,7 +283,7 @@ export default function BlogPostDetail() {
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold text-sd-navy border-b pb-2">Related Articles</h3>
                   <div className="space-y-6">
-                    {relatedPosts.map((p) => (
+                    {relatedPosts.map((p: BlogPost) => (
                       <Link 
                         key={p.slug} 
                         to="/blog/$slug" 
