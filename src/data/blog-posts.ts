@@ -101,7 +101,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: '6-signs-time-replace-siding-georgia-home',
     title: "6 Signs It's Time to Replace the Siding on Your Georgia Home",
-    excerpt: "Water damage and rot behind aging siding is common on Georgia homes built before 2005 — often invisible until a contractor removes the old cladding.",
+    excerpt: "Water damage and rot behind aging siding is common on Georgia homes built before 2005. [Learn about our Alpharetta siding solutions](/lp/siding-alpharetta).",
     category: 'Home Maintenance',
     readTime: 12,
     publishDate: '2026-05-13',
@@ -356,7 +356,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'hail-damage-siding-insurance-claim-georgia-2026',
     title: "Hail Damaged Your Siding? How to Navigate Georgia Insurance Claims",
-    excerpt: "Don't settle for a patch job. Learn how to get your insurance to cover a full siding replacement after a Georgia storm.",
+    excerpt: "Don't settle for a patch job. [See our Canton siding replacement guide](/lp/siding-canton) to get your insurance to cover a full replacement.",
     category: 'Storm Damage',
     readTime: 12,
     publishDate: '2026-05-09',
