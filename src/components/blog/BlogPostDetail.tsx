@@ -9,18 +9,15 @@ import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimi
 
 
 export default function BlogPostDetail() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { slug } = useParams({ from: "/blog/$slug" });
   const search = useSearch({ from: "/blog/$slug" });
   const isPreview = search.preview === true;
   
-  // Important: We use BLOG_POSTS directly for initial render to avoid flicker,
-  // then use hook data to handle draft/published status from DB
-  const { posts } = useBlogPosts();
-  const post = posts.find((p: BlogPost) => p.slug === slug) || BLOG_POSTS.find((p) => p.slug === slug);
+  const { post, loading } = useBlogPost(slug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   const [activeId, setActiveId] = useState<string>("");
 
