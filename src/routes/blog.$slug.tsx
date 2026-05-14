@@ -22,16 +22,24 @@ export const Route = createFileRoute("/blog/$slug")({
       title: post.metaTitle,
       meta: [
         { name: "description", content: post.metaDescription },
+        // Open Graph / Facebook
         { property: "og:title", content: post.metaTitle },
         { property: "og:description", content: post.metaDescription },
         { property: "og:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
+        { property: "og:image:alt", content: post.heroImage.alt },
         { property: "og:url", content: canonicalUrl },
         { property: "og:type", content: "article" },
         { property: "og:site_name", content: "Siding Depot" },
+        { property: "article:published_time", content: post.publishDate },
+        { property: "article:author", content: "Siding Depot Team" },
+        { property: "article:section", content: post.category },
+        
+        // Twitter Card
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.metaTitle },
         { name: "twitter:description", content: post.metaDescription },
         { name: "twitter:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
+        { name: "twitter:image:alt", content: post.heroImage.alt },
 
         { rel: "canonical", href: canonicalUrl },
       ],
