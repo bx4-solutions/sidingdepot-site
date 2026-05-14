@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { BLOG_POSTS } from './src/data/blog-posts.ts';
+import { BLOG_POSTS } from '../src/data/blog-posts.ts';
 
 const DOMAIN = 'https://sidingdepot.com';
 
