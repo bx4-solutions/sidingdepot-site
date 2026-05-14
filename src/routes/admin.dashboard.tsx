@@ -372,9 +372,9 @@ function AdminDashboard() {
                       return (
                         <TableRow key={post.slug}>
                           <TableCell className="max-w-[200px]">
-                            <div className="font-bold text-sd-navy text-xs truncate" title={post.title}>
+                            <Link to="/admin/blog/$slug" params={{ slug: post.slug }} className="font-bold text-sd-navy text-xs truncate hover:text-sd-green transition-colors" title={post.title}>
                               {post.title}
-                            </div>
+                            </Link>
                             <div className="text-[10px] text-sd-gray-text">{post.category}</div>
                           </TableCell>
                           <TableCell className="text-center">
