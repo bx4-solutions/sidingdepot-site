@@ -115,26 +115,41 @@ Second is the upgrade of house wrap. Many older homes were built without a prope
     publishDate: '2026-05-13',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
-      alt: 'Damaged and failing home siding in need of replacement',
-      caption: 'Visible cracking and fading are often the first outward signs of siding failure in the Georgia climate.'
+      url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Aging residential home in Georgia showing signs of siding wear',
+      caption: 'In the North Atlanta suburbs, siding that was installed over 20 years ago is often reaching the end of its useful lifespan.'
     },
     sections: [
       {
         h2: '1. Visible Cracking, Bubbling, or Blistering',
         content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot.
 
-Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`
+Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Close up of cracked and peeling exterior wall',
+          caption: 'Small cracks can lead to major structural issues if water is allowed to penetrate the underlying wooden sheathing.'
+        }
       },
       {
         h2: '2. Spike in Heating or Cooling Bills',
         content: `Your siding and the underlying house wrap act as your home\'s thermal envelope. If you notice your AC running constantly during our 95-degree July days, and your bill has increased significantly year-over-year, your siding may no longer be providing a proper seal.
 
-When we perform inspections in places like Roswell and Johns Creek, we often find that the old house wrap has disintegrated, leaving the home essentially uninsulated against the wind and humidity.`
+When we perform inspections in places like Roswell and Johns Creek, we often find that the old house wrap has disintegrated, leaving the home essentially uninsulated against the wind and humidity.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1513584684374-8bdb7483fe8f?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Modern house exterior showing proper insulation and siding',
+          caption: 'Energy efficient siding can reduce your cooling costs during the intense Georgia summers.'
+        }
       },
       {
         h2: '3. Interior Paint or Wallpaper Peeling',
-        content: `This is the most dangerous sign because it means moisture has already bypassed the siding, the house wrap, and the sheathing, and is now affecting your interior drywall. If you see "mysterious" peeling near an exterior wall, don't just repaint — call for a siding inspection. In Georgia, this is almost always a sign of a failing exterior moisture barrier.`
+        content: `This is the most dangerous sign because it means moisture has already bypassed the siding, the house wrap, and the sheathing, and is now affecting your interior drywall. If you see "mysterious" peeling near an exterior wall, don't just repaint — call for a siding inspection. In Georgia, this is almost always a sign of a failing exterior moisture barrier.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1595841055318-47db9930f78c?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Interior wall with water damage signs',
+          caption: 'Interior damage is often a late-stage symptom of a long-standing exterior siding failure.'
+        }
       },
       {
         h2: '4. Mold, Mildew, or Fungus Growth',
