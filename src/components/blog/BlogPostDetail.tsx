@@ -239,9 +239,9 @@ export default function BlogPostDetail() {
                 </div>
                 <div className="space-y-6">
                   {post.faq.map((item: { q: string, a: string }, idx: number) => (
-                    <div key={idx} className="bg-[#F4F7FA] p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div key={idx} className="bg-sd-gray-bg p-8 rounded-2xl border border-sd-gray-border shadow-sm hover:shadow-md transition-shadow">
                       <h4 className="font-bold text-xl text-sd-black mb-4 leading-snug flex gap-4">
-                        <span className="text-[#BCD635]">Q.</span>
+                        <span className="text-sd-green">Q.</span>
                         {item.q}
                       </h4>
                       <p className="text-sd-gray-text leading-[1.8] text-lg pl-8">{item.a}</p>
