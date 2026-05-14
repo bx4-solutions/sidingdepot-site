@@ -24,14 +24,15 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "description", content: post.metaDescription },
         { property: "og:title", content: post.metaTitle },
         { property: "og:description", content: post.metaDescription },
-        { property: "og:image", content: post.heroImage.url },
+        { property: "og:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
         { property: "og:url", content: canonicalUrl },
         { property: "og:type", content: "article" },
         { property: "og:site_name", content: "Siding Depot" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.metaTitle },
         { name: "twitter:description", content: post.metaDescription },
-        { name: "twitter:image", content: post.heroImage.url },
+        { name: "twitter:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
+
         { rel: "canonical", href: canonicalUrl },
       ],
       scripts: [
