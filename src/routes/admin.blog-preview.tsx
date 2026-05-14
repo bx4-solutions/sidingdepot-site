@@ -91,7 +91,7 @@ function SEOPreview({ post }: { post: BlogPost }) {
 }
 
 function BlogAdminPreview() {
-  const [dbStatuses, setDbStatuses] = useState<Record<string, string>>({});
+  const [dbStatuses, setDbStatuses] = useState<Record<string, { status: string; scheduledAt?: string }>>({});
   const [expandedSEO, setExpandedSEO] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
 
@@ -103,13 +103,16 @@ function BlogAdminPreview() {
     try {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('slug, status');
+        .select('slug, status, scheduled_at');
       
       if (error) throw error;
       
-      const statusMap: Record<string, string> = {};
+      const statusMap: Record<string, { status: string; scheduledAt?: string }> = {};
       data?.forEach(item => {
-        statusMap[item.slug] = item.status || 'draft';
+        statusMap[item.slug] = {
+          status: item.status || 'draft',
+          scheduledAt: item.scheduled_at || undefined
+        };
       });
       setDbStatuses(statusMap);
     } catch (error) {
@@ -119,10 +122,7 @@ function BlogAdminPreview() {
     }
   };
 
-  const toggleStatus = async (post: BlogPost) => {
-    const currentStatus = dbStatuses[post.slug] || post.status;
-    const newStatus = currentStatus === 'published' ? 'draft' : 'published';
-    
+  const updatePostStatus = async (post: BlogPost, newStatus: string, scheduledAt?: string) => {
     try {
       const { error } = await supabase
         .from('blog_posts')
@@ -130,17 +130,32 @@ function BlogAdminPreview() {
           slug: post.slug, 
           status: newStatus,
           title: post.title,
+          scheduled_at: scheduledAt || null,
           updated_at: new Date().toISOString()
         }, { onConflict: 'slug' });
 
       if (error) throw error;
 
-      setDbStatuses(prev => ({ ...prev, [post.slug]: newStatus }));
-      toast.success(`Post ${newStatus === 'published' ? 'published' : 'moved to drafts'}`);
+      setDbStatuses(prev => ({ 
+        ...prev, 
+        [post.slug]: { status: newStatus, scheduledAt: scheduledAt } 
+      }));
+      toast.success(scheduledAt ? `Post scheduled for ${new Date(scheduledAt).toLocaleString()}` : `Post ${newStatus === 'published' ? 'published' : 'moved to drafts'}`);
     } catch (error) {
       console.error('Error updating status:', error);
       toast.error('Failed to update status');
     }
+  };
+
+  const toggleStatus = async (post: BlogPost) => {
+    const currentStatus = dbStatuses[post.slug]?.status || post.status;
+    const newStatus = currentStatus === 'published' ? 'draft' : 'published';
+    await updatePostStatus(post, newStatus);
+  };
+
+  const handleSchedule = async (post: BlogPost, dateStr: string) => {
+    if (!dateStr) return;
+    await updatePostStatus(post, 'draft', dateStr);
   };
 
   const toggleSEO = (slug: string) => {
