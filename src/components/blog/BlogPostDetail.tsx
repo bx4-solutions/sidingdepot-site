@@ -309,9 +309,17 @@ export default function BlogPostDetail() {
                         params={{ slug: p.slug }}
                         className="group flex gap-4"
                       >
-                        <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
-                          <img src={p.heroImage.url} alt={p.heroImage.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 shadow-sm bg-gray-100">
+                          <img 
+                            src={getOptimizedUnsplashUrl(p.heroImage.url, { width: 160, height: 160 })} 
+                            alt={p.heroImage.alt} 
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
+                            width="80"
+                            height="80"
+                          />
                         </div>
+
                         <div className="flex flex-col justify-center">
                           <h4 className="text-sm font-bold text-sd-navy group-hover:text-sd-green transition-colors leading-snug line-clamp-2">
                             {p.title}
