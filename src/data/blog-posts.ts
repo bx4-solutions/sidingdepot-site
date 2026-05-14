@@ -43,7 +43,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'What Does James Hardie Siding Cost Per Square Foot in North Atlanta in 2026?',
-        content: `Many Marietta homeowners are reaching a critical point where their original wood or builder-grade vinyl siding from the 1990s and early 2000s is failing. Especially after the severe hail season of 2025 that impacted much of Cobb County, the shift toward James Hardie fiber cement has accelerated.\n\nBut the question remains: what is the actual investment required? In the North Atlanta market for 2026, professional James Hardie installation typically ranges between $8 and $14 per square foot, depending on the complexity of the project and the specific product lines selected.`,
+        content: `Many Marietta homeowners are reaching a critical point where their original wood or builder-grade vinyl siding from the 1990s and early 2000s is failing. Especially after the severe hail season of 2025 that impacted much of Cobb County, the shift toward [James Hardie fiber cement](/siding) has accelerated.\n\nBut the question remains: what is the actual investment required? In the North Atlanta market for 2026, professional [James Hardie installation in Marietta](/locations/marietta/siding) typically ranges between $8 and $14 per square foot, depending on the complexity of the project and the specific product lines selected.`,
         table: {
           headers: ['Home Size', 'Sq Ft Siding', 'Estimated Cost', 'Notes'],
           rows: [
@@ -76,7 +76,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         h2: 'What Adds to the Final Cost in Georgia?',
-        content: `Beyond the siding itself, several regional factors influence the final quote for a Georgia home. \n\n- **Rotten wood replacement:** On 90% of Georgia homes over 15 years old, we find rot behind the existing siding. We typically charge $8–$18 per linear foot for replacement, which is always documented before we proceed.\n- **Second story premium:** Homes over 1.5 stories require additional scaffolding and safety measures, typically resulting in a 15–25% labor increase.\n- **Complex architecture:** Custom trim work, turrets, or intricate gables can add between $2,000 and $6,000 to the total.\n- **Permit fees:** Local municipalities like Cobb County ($250–$450) or Fulton County ($300–$500) have specific requirements that we handle as part of the project.\n- **Old siding removal:** $1–$3 per sqft is standard for a clean tear-off and disposal.\n- **House wrap (WRB):** Essential for warranty compliance, adding $0.50–$1.50 per sqft for high-performance barriers like HardieWrap.`
+        content: `Beyond the siding itself, several regional factors influence the final quote for a Georgia home. \n\n- **Rotten wood replacement:** On 90% of Georgia homes over 15 years old, we find rot behind the existing siding. We typically charge $8–$18 per linear foot for replacement, which is always documented before we proceed.\n- **Second story premium:** Homes over 1.5 stories require additional scaffolding and safety measures, typically resulting in a 15–25% labor increase.\n- **Complex architecture:** Custom trim work, turrets, or intricate gables can add between $2,000 and $6,000 to the total.\n- **Permit fees:** Local municipalities like Cobb County ($250–$450) or Fulton County ($300–$500) have specific requirements that we handle as part of the project.\n- **Old siding removal:** $1–$3 per sqft is standard for a clean tear-off and disposal.\n- **House wrap (WRB):** Essential for warranty compliance, adding $0.50–$1.50 per sqft for high-performance barriers like HardieWrap.\n\nNeed more than just siding? We also provide [professional roofing services](/roofing) and [exterior painting](/painting) to ensure your home's envelope is completely protected.`
       },
       {
         h2: 'James Hardie vs. Vinyl: The Long-Term ROI',
@@ -115,7 +115,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: '1. Warping or Buckling Panels: The Heat Distortion Point',
-        content: `Georgia's extreme summer heat can cause standard vinyl siding to reach its distortion point at just 95°F. In areas like Marietta and Alpharetta, where direct sun exposure is intense, vinyl panels often absorb enough thermal energy to exceed their structural limits. When you see panels that look "wavy" or are physically pulling away from the wall, it's a sign that the thermal expansion has exceeded the material's limits. This creates gaps where moisture can penetrate your home's envelope.\n\nUnlike vinyl, James Hardie fiber cement is engineered specifically for the HZ10 climate (high humidity and heat), meaning it won't warp, buckle, or melt regardless of how high the Georgia temperature climbs.`,
+        content: `Georgia's extreme summer heat can cause standard vinyl siding to reach its distortion point at just 95°F. In areas like Marietta and Alpharetta, where direct sun exposure is intense, vinyl panels often absorb enough thermal energy to exceed their structural limits. When you see panels that look "wavy" or are physically pulling away from the wall, it's a sign that the thermal expansion has exceeded the material's limits. This creates gaps where moisture can penetrate your home's envelope.\n\nUnlike vinyl, [James Hardie fiber cement](/siding) is engineered specifically for the HZ10 climate (high humidity and heat), meaning it won't warp, buckle, or melt regardless of how high the Georgia temperature climbs. If you're in the North Atlanta area, consider our [specialized siding services in Alpharetta](/locations/alpharetta/siding) to protect your investment.`,
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?w=900',
           alt: 'Warped vinyl siding panels showing heat damage and buckling on a Georgia home',
@@ -124,7 +124,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         h2: '2. Frequent Paint Failure or Fading',
-        content: `High-quality siding like James Hardie ColorPlus technology should hold its color for 15+ years. If you find yourself needing to repaint every 3-5 years, or if you notice significant fading on the southern exposure of your home in Marietta or Alpharetta, the protective finish of your siding has likely failed, leaving the core material vulnerable to water absorption.\n\nFading isn't just a cosmetic concern—it's an indicator that the material's protective UV-resistant layer has eroded. Once the finish is gone, moisture can begin to degrade the substrate, leading to rot that eventually spreads to your home's framing.`,
+        content: `High-quality siding like James Hardie ColorPlus technology should hold its color for 15+ years. If you find yourself needing to repaint every 3-5 years, or if you notice significant fading on the southern exposure of your home in Marietta or Alpharetta, the protective finish of your siding has likely failed, leaving the core material vulnerable to water absorption.\n\nFading isn't just a cosmetic concern—it's an indicator that the material's protective UV-resistant layer has eroded. Once the finish is gone, moisture can begin to degrade the substrate, leading to rot that eventually spreads to your home's framing. In many cases, a [fresh coat of premium exterior paint](/painting) can extend the life of your home, but if the siding itself is failing, replacement is the only permanent solution.`,
         pullQuote: "If you're painting your home every few years just to keep it looking decent, you're not fixing the problem—you're just masking a failure of the siding material itself."
       },
       {
@@ -192,7 +192,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Georgia Heat Factor: Why Vinyl Warps',
-        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted. \n\nJames Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August. For homeowners in Marietta or Alpharetta, this stability is the difference between a home that looks new for 20 years and one that looks "tired" after just five.`,
+        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted. \n\nJames Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August. For homeowners in Marietta or Alpharetta, this stability is the difference between a home that looks new for 20 years and one that looks "tired" after just five. Learn more about our [siding installation options in Marietta](/locations/marietta/siding).`,
         image: {
           url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900',
           alt: 'Close up of high quality fiber cement siding texture on a North Atlanta home',
@@ -262,7 +262,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Modern Farmhouse Explosion in Georgia',
-        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with James Hardie materials, it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home.`,
+        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with [James Hardie materials](/siding), it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home. We specialize in [Modern Farmhouse siding in Milton](/locations/milton/siding) and surrounding areas.`,
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'White modern farmhouse exterior with vertical siding',
@@ -328,7 +328,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'Understanding the 80% Rule',
-        content: `Historically, major kitchen remodels in Atlanta recoup about 60-65% of their cost. However, high-quality siding replacement consistently recoups 80% or more. Why? Because siding is the "skin" of your home. It protects the structural integrity and defines the curb appeal.`,
+        content: `Historically, major kitchen remodels in Atlanta recoup about 60-65% of their cost. However, high-quality [siding replacement](/siding) consistently recoups 80% or more. Why? Because siding is the "skin" of your home. It protects the structural integrity and defines the curb appeal. Many homeowners in East Cobb also see significant value in upgrading their [entry doors](/doors) and [windows](/windows) at the same time to maximize this return.`,
         image: {
           url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
           alt: 'Luxury home exterior with fresh blue siding',
@@ -370,7 +370,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The "Storm Chaser" Warning: Protecting Your Investment',
-        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties.`,
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties. We offer [emergency siding repair and replacement in Canton](/locations/canton/siding) and throughout the region.`,
         image: {
           url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1000&q=80',
           alt: 'Cloudy sky during a storm',
@@ -436,7 +436,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Shift to Darker Hues',
-        content: `In 2026, we\'ve seen a massive shift away from light tans and beiges toward "moody" colors. Iron Gray, Deep Ocean, and Black Walnut are the most requested James Hardie ColorPlus colors in Alpharetta right now. These colors provide a sophisticated, high-end look that contrasts beautifully with white trim and stone accents.`,
+        content: `In 2026, we\'ve seen a massive shift away from light tans and beiges toward "moody" colors. Iron Gray, Deep Ocean, and Black Walnut are the most requested James Hardie ColorPlus colors in Alpharetta right now. These colors provide a sophisticated, high-end look that contrasts beautifully with white trim and stone accents. Explore our [siding design services in Alpharetta](/locations/alpharetta/siding) to see these colors in person.`,
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'Modern house with dark siding and high contrast trim',
@@ -478,7 +478,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Pre-Installation Phase (1-2 Weeks)',
-        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays.`,
+        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays. This level of detail is why we're the top choice for [siding in Canton](/locations/canton/siding) and nearby communities.`,
         image: {
           url: 'https://images.unsplash.com/photo-1513584684374-8bdb7483fe8f?auto=format&fit=crop&w=1000&q=80',
           alt: 'Blueprint and project planning tools',
@@ -529,7 +529,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'Why Georgia Homes Are Prone to Rot',
-        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`,
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons. If you suspect damage, our [siding inspection team in Woodstock](/locations/woodstock/siding) can help identify issues before they become structural.`,
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Water damage on exterior building materials',
@@ -571,7 +571,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'Mixed Material Mastery',
-        content: `The single biggest trend in 2026 is the use of multiple exterior textures. We are frequently installing James Hardie lap siding on the main body of the house, Board and Batten in the gables, and stone veneer accents around the foundation or entryway. This "layered" look adds depth and luxury that a single-material home lacks.`,
+        content: `The single biggest trend in 2026 is the use of multiple exterior textures. We are frequently installing [James Hardie lap siding](/siding) on the main body of the house, Board and Batten in the gables, and stone veneer accents around the foundation or entryway. This "layered" look adds depth and luxury that a single-material home lacks. Check out our [latest siding projects in Alpharetta](/locations/alpharetta/siding) for inspiration.`,
         image: {
           url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
           alt: 'Home with stone and blue siding mixed materials',
@@ -580,7 +580,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         h2: 'Natural Wood Accents',
-        content: `To soften the look of modern dark sidings, many Marietta and Milton homeowners are adding natural wood elements. Cedar-look soffits or porch ceilings provide a warm, organic contrast to the industrial feel of fiber cement.`,
+        content: `To soften the look of modern dark sidings, many Marietta and Milton homeowners are adding natural wood elements. Cedar-look soffits or porch ceilings provide a warm, organic contrast to the industrial feel of fiber cement. We also see many homeowners pairing these with new [gutters](/gutters) and [window replacements](/windows) for a complete exterior overhaul.`,
         image: {
           url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
           alt: 'Natural wood accents on a modern porch ceiling',
