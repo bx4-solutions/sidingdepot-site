@@ -166,11 +166,11 @@ function GuidePage() {
                 Free 2026 Edition
              </div>
             <h1 className="font-display text-4xl sm:text-6xl text-sd-navy leading-[1.1] uppercase">
-              The Georgia Homeowner's<br />
-              <span className="text-sd-green">Siding Guide</span>
+              5 Siding Mistakes<br />
+              <span className="text-sd-green">You Can't Afford</span>
             </h1>
             <p className="mt-6 text-sd-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
-              Don't hire a contractor until you read this. 8 pages of expert advice covering Georgia climate risks, material comparisons, and the 5 fatal mistakes that ruin budgets.
+              Don't hire a contractor until you read this. 8 pages of expert advice covering the "fatal 5" mistakes that ruin siding budgets across Georgia every year.
             </p>
 
             <div className="mt-12 bg-white p-8 rounded-2xl shadow-xl border border-sd-gray-border max-w-md mx-auto relative isolate overflow-hidden">
