@@ -1,15 +1,79 @@
 import { createFileRoute } from "@tanstack/react-router";
 import BlogListing from "@/components/blog/BlogListing";
+import { BLOG_POSTS } from "@/data/blog-posts";
+
 
 export const Route = createFileRoute("/blog")({
   component: BlogListing,
-  head: () => ({
-    meta: [
-      { title: "Siding Depot Insights | Georgia's Trusted Siding Blog" },
-      { 
-        name: "description", 
-        content: "Expert siding, painting, and home exterior advice for homeowners in Marietta, Alpharetta, Milton, and across North Atlanta." 
-      },
-    ],
-  }),
+  head: () => {
+    const publishedPosts = BLOG_POSTS.filter(p => p.status === 'published');
+    
+    return {
+      meta: [
+        { title: "Expert Siding Blog | Marietta & North Atlanta Siding Insights | Siding Depot" },
+        { 
+          name: "description", 
+          content: "Expert advice on James Hardie siding installation, cost guides, and home exterior maintenance for Marietta, Alpharetta, and North Atlanta homeowners." 
+        },
+        { property: "og:title", content: "Expert Siding Blog | Siding Depot" },
+        { property: "og:description", content: "Expert advice on siding installation, cost guides, and maintenance for North Atlanta homeowners." },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://sidingdepot.com/blog" },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Siding Depot Insights",
+            "description": "Expert advice on James Hardie siding, painting, and home exterior projects in North Atlanta.",
+            "url": "https://sidingdepot.com/blog",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Siding Depot",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://sidingdepot.com/logo.png"
+              }
+            },
+            "blogPost": publishedPosts.map(post => ({
+              "@type": "BlogPosting",
+              "headline": post.title,
+              "description": post.excerpt,
+              "url": `https://sidingdepot.com/blog/${post.slug}`,
+              "datePublished": post.publishDate,
+              "author": {
+                "@type": "Organization",
+                "name": "Siding Depot Team"
+              }
+            }))
+          })
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sidingdepot.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://sidingdepot.com/blog"
+              }
+            ]
+          })
+        }
+      ]
+    };
+  },
+
+
 });

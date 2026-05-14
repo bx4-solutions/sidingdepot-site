@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { Star, ArrowRight, Clock, Calendar, User, Loader2 } from "lucide-react";
 import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
+
 
 export default function BlogListing() {
   const { posts, loading } = useBlogPosts();
@@ -26,6 +28,7 @@ export default function BlogListing() {
 
   return (
     <div className="flex flex-col min-h-screen">
+
       {/* Header */}
       <section className="bg-sd-navy py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
@@ -45,12 +48,18 @@ export default function BlogListing() {
             {/* Featured Post */}
             {featuredPost && (
               <div className="relative group overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 flex flex-col md:flex-row">
-                <div className="md:w-[55%] relative overflow-hidden h-[300px] md:h-auto">
+                <div className="md:w-[55%] relative overflow-hidden h-[300px] md:h-auto bg-gray-100">
                   <img 
-                    src={featuredPost.heroImage.url} 
+                    src={getOptimizedUnsplashUrl(featuredPost.heroImage.url, { width: 800 })} 
+                    srcSet={getUnsplashSrcSet(featuredPost.heroImage.url)}
+                    sizes="(max-width: 768px) 100vw, 600px"
                     alt={featuredPost.heroImage.alt}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    width="800"
+                    height="600"
+                    decoding="async"
                   />
+
                   <div className="absolute top-4 left-4">
                     <span className="bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
                       {featuredPost.category}
@@ -81,12 +90,19 @@ export default function BlogListing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {otherPosts.map((post) => (
                 <article key={post.slug} className="group flex flex-col">
-                  <Link to="/blog/$slug" params={{ slug: post.slug }} className="relative overflow-hidden rounded-xl aspect-[16/9] mb-6 block">
+                  <Link to="/blog/$slug" params={{ slug: post.slug }} className="relative overflow-hidden rounded-xl aspect-[16/9] mb-6 block bg-gray-100">
                     <img 
-                      src={post.heroImage.url} 
+                      src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 600 })} 
+                      srcSet={getUnsplashSrcSet(post.heroImage.url)}
+                      sizes="(max-width: 768px) 100vw, 400px"
                       alt={post.heroImage.alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="338"
                     />
+
                     <div className="absolute top-3 left-3">
                       <span className="bg-sd-green text-sd-black text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
                         {post.category}
@@ -140,9 +156,17 @@ export default function BlogListing() {
                       params={{ slug: p.slug }}
                       className="text-sm font-medium text-sd-gray-text hover:text-sd-green transition-colors flex gap-3"
                     >
-                      <span className="w-12 h-12 flex-shrink-0 rounded overflow-hidden">
-                        <img src={p.heroImage.url} alt={p.heroImage.alt} className="w-full h-full object-cover" />
+                      <span className="w-12 h-12 flex-shrink-0 rounded overflow-hidden bg-gray-100">
+                        <img 
+                          src={getOptimizedUnsplashUrl(p.heroImage.url, { width: 100, height: 100 })} 
+                          alt={p.heroImage.alt} 
+                          className="w-full h-full object-cover" 
+                          loading="lazy"
+                          width="48"
+                          height="48"
+                        />
                       </span>
+
                       <span className="line-clamp-2 leading-snug">{p.title}</span>
                     </Link>
                   </li>

@@ -5,6 +5,8 @@ import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { getOptimizedUnsplashUrl, getUnsplashSrcSet } from "@/utils/image-optimization";
+
 
 export default function BlogPostDetail() {
   useEffect(() => {
@@ -65,6 +67,7 @@ export default function BlogPostDetail() {
 
   return (
     <div className="bg-white min-h-screen">
+
       {isPreview && (
         <div className="bg-amber-50 border-b border-amber-200 py-3 px-4 sticky top-0 z-[60]">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -111,16 +114,22 @@ export default function BlogPostDetail() {
               </div>
             </header>
 
-            <div className="mb-12 rounded-2xl overflow-hidden shadow-lg">
+            <div className="mb-12 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
               <img 
-                src={post.heroImage.url} 
+                src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 })} 
+                srcSet={getUnsplashSrcSet(post.heroImage.url)}
+                sizes="(max-width: 1024px) 100vw, 800px"
                 alt={post.heroImage.alt}
                 className="w-full h-auto aspect-[16/9] object-cover"
+                width="1200"
+                height="675"
+                decoding="async"
               />
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
                 <p className="text-[13px] italic text-sd-gray-text text-center">{post.heroImage.caption}</p>
               </div>
             </div>
+
 
             <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:border-l-[3px] prose-h2:border-sd-green prose-h2:pl-4 prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg">
               {post.sections.map((section: any, idx: number) => {
@@ -186,13 +195,24 @@ export default function BlogPostDetail() {
                     )}
 
                     {section.image && (
-                      <figure className="my-10 rounded-2xl overflow-hidden shadow-md">
-                        <img src={section.image.url} alt={section.image.alt} className="w-full h-auto" />
+                      <figure className="my-10 rounded-2xl overflow-hidden shadow-md bg-gray-100">
+                        <img 
+                          src={getOptimizedUnsplashUrl(section.image.url, { width: 1000 })} 
+                          srcSet={getUnsplashSrcSet(section.image.url)}
+                          sizes="(max-width: 1024px) 100vw, 800px"
+                          alt={section.image.alt} 
+                          className="w-full h-auto"
+                          loading="lazy"
+                          decoding="async"
+                          width="1000"
+                          height="667"
+                        />
                         <figcaption className="bg-gray-50 px-6 py-3 text-[13px] italic text-sd-gray-text text-center border-t border-gray-100">
                           {section.image.caption}
                         </figcaption>
                       </figure>
                     )}
+
 
                     {/* Inline CTA after 3rd section (or at least somewhere in the middle) */}
                     {idx === 1 && (
@@ -290,9 +310,17 @@ export default function BlogPostDetail() {
                         params={{ slug: p.slug }}
                         className="group flex gap-4"
                       >
-                        <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
-                          <img src={p.heroImage.url} alt={p.heroImage.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 shadow-sm bg-gray-100">
+                          <img 
+                            src={getOptimizedUnsplashUrl(p.heroImage.url, { width: 160, height: 160 })} 
+                            alt={p.heroImage.alt} 
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
+                            width="80"
+                            height="80"
+                          />
                         </div>
+
                         <div className="flex flex-col justify-center">
                           <h4 className="text-sm font-bold text-sd-navy group-hover:text-sd-green transition-colors leading-snug line-clamp-2">
                             {p.title}
