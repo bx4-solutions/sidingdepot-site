@@ -396,6 +396,7 @@ function AdminDashboard() {
                             ) : (
                               <span className="text-[10px] text-sd-gray-text/40">—</span>
                             )}
+                          </TableCell>
                           <TableCell className="text-right">
                             <Button asChild variant="ghost" size="sm" className="h-7 text-[10px] font-bold uppercase tracking-wider">
                               <Link to="/admin/blog/$slug" params={{ slug: post.slug }}>Details</Link>
