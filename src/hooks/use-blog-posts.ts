@@ -16,11 +16,24 @@ export function useBlogPosts() {
         if (error) throw error;
 
         if (data) {
-          const statusMap = new Map(data.map(item => [item.slug, item.status]));
-          const updatedPosts = BLOG_POSTS.map(post => ({
-            ...post,
-            status: (statusMap.get(post.slug) as 'published' | 'draft') || post.status
-          }));
+          const statusMap = new Map(data.map(item => [item.slug, { status: item.status, scheduledAt: item.scheduled_at }]));
+          const now = new Date();
+          const updatedPosts = BLOG_POSTS.map(post => {
+            const dbItem = statusMap.get(post.slug);
+            let status = (dbItem?.status as 'published' | 'draft' | 'scheduled') || post.status;
+            const scheduledAt = dbItem?.scheduledAt;
+
+            // Automatic publication logic: if draft/scheduled and date passed, it's published
+            if (status !== 'published' && scheduledAt && new Date(scheduledAt) <= now) {
+              status = 'published';
+            }
+
+            return {
+              ...post,
+              status,
+              scheduledAt: scheduledAt || undefined
+            };
+          });
           setPosts(updatedPosts);
         }
       } catch (err) {
