@@ -1,8 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import BlogPostDetail from "@/components/blog/BlogPostDetail";
 import { BLOG_POSTS } from "@/data/blog-posts";
+import { z } from "zod";
+
+const blogSearchSchema = z.object({
+  preview: z.boolean().optional(),
+});
 
 export const Route = createFileRoute("/blog/$slug")({
+  validateSearch: (search) => blogSearchSchema.parse(search),
   component: BlogPostDetail,
   head: ({ params }) => {
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
