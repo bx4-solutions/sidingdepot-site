@@ -357,7 +357,8 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
       },
       {
         h2: 'Identifying Hail Impact on Fiber Cement',
-        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to delamination. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
+        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to [hidden rot problems](/blog/rotten-wood-siding-replacement-georgia-homes). We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
+
         image: {
           url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
           alt: 'Close up of damage on an exterior wall',
