@@ -26,6 +26,17 @@ function buildSitemap(origin: string): string {
     });
   }
 
+  for (const post of BLOG_POSTS) {
+    // Only include published posts in sitemap
+    if (post.status === 'published') {
+      urls.push({
+        loc: `${origin}/blog/${post.slug}`,
+        priority: "0.7",
+        changefreq: "monthly",
+      });
+    }
+  }
+
   const body = urls
     .map(
       (u) =>
