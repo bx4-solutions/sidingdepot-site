@@ -199,6 +199,27 @@ function LocationPage() {
           </div>
         </div>
       </section>
+
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
+              Service Area
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-sd-black tracking-tight">
+              Serving {city.name}, {city.county}
+            </h2>
+            <p className="mt-3 text-sd-gray-text max-w-xl mx-auto">
+              Crews dispatched from our Marietta showroom — typical arrival within North Atlanta same week.
+            </p>
+          </div>
+          <MapEmbed
+            className="h-[380px]"
+            title={`Service area for ${city.name}, GA`}
+            query={`${city.name}, ${city.county}, GA`}
+          />
+        </div>
+      </section>
     </>
   );
 }
