@@ -180,7 +180,7 @@ export default function BlogPostDetail() {
                 Our team is standing by to measure your home and provide a detailed written proposal.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="xl" className="w-full sm:w-auto rounded-full bg-sd-navy text-white hover:bg-sd-navy/90 text-lg px-10">
+                <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-sd-navy text-white hover:bg-sd-navy/90 text-lg px-10">
                   <Link to="/contact">Get Started Now</Link>
                 </Button>
                 <a href="tel:6784002012" className="text-xl font-bold text-sd-navy py-3 px-6">
