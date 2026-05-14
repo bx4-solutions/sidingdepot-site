@@ -188,7 +188,7 @@ export function HeroQuoteForm({
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="px-6 py-5 grid gap-3">
+        <form onSubmit={handleSubmit} noValidate className={bare ? "grid gap-3" : "px-6 py-5 grid gap-3"}>
           <Field
             id="hero-name"
             label="Full name"
@@ -196,6 +196,7 @@ export function HeroQuoteForm({
             onChange={(v) => update("name", v)}
             error={errors.name}
             autoComplete="name"
+            dark={bare}
           />
           <div className="grid grid-cols-2 gap-3">
             <Field
@@ -207,6 +208,7 @@ export function HeroQuoteForm({
               onChange={(v) => update("phone", v)}
               error={errors.phone}
               autoComplete="tel"
+              dark={bare}
             />
             <Field
               id="hero-city"
@@ -215,6 +217,7 @@ export function HeroQuoteForm({
               onChange={(v) => update("city", v)}
               error={errors.city}
               autoComplete="address-level2"
+              dark={bare}
             />
           </div>
           <Field
@@ -225,28 +228,31 @@ export function HeroQuoteForm({
             onChange={(v) => update("email", v)}
             error={errors.email}
             autoComplete="email"
+            dark={bare}
           />
           <div className="grid gap-1.5">
-            <Label className="text-xs font-semibold text-sd-black">
-              Services <span className="text-sd-gray-text font-normal">(select all that apply)</span>
+            <Label className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
+              Services <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(select all that apply)</span>
             </Label>
-            <div className="grid grid-cols-2 gap-1.5 rounded-md border border-input p-2">
+            <div className={`grid grid-cols-2 gap-1.5 rounded-md border p-2 ${bare ? "border-white/20 bg-white/5" : "border-input"}`}>
               {SERVICE_OPTIONS.map((name) => {
                 const checked = values.services.includes(name);
                 return (
                   <label
                     key={name}
                     className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
-                      checked ? "bg-sd-navy/5 text-sd-black" : "text-sd-black hover:bg-muted"
+                      bare
+                        ? checked ? "bg-white/10 text-white" : "text-white hover:bg-white/5"
+                        : checked ? "bg-sd-navy/5 text-sd-black" : "text-sd-black hover:bg-muted"
                     }`}
                   >
                     <input
                       type="checkbox"
                       checked={checked}
                       onChange={() => toggleService(name)}
-                      className="h-4 w-4 accent-sd-navy"
+                      className="h-4 w-4 accent-sd-green"
                     />
-                    <span className="text-sd-black">{name}</span>
+                    <span>{name}</span>
                   </label>
                 );
               })}
@@ -256,8 +262,8 @@ export function HeroQuoteForm({
             )}
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="hero-msg" className="text-xs font-semibold text-sd-black">
-              Project details <span className="text-sd-gray-text font-normal">(optional)</span>
+            <Label htmlFor="hero-msg" className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
+              Project details <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(optional)</span>
             </Label>
             <Textarea
               id="hero-msg"
@@ -265,7 +271,7 @@ export function HeroQuoteForm({
               maxLength={1000}
               value={values.message ?? ""}
               onChange={(e) => update("message", e.target.value)}
-              className="resize-none"
+              className={`resize-none ${bare ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""}`}
             />
           </div>
 
@@ -278,11 +284,12 @@ export function HeroQuoteForm({
               "Schedule FREE Quote"
             )}
           </Button>
-          <p className="text-[10px] leading-snug text-sd-gray-text text-center">
+          <p className={`text-[10px] leading-snug text-center ${bare ? "text-white/60" : "text-sd-gray-text"}`}>
             By submitting, you agree to be contacted by Siding Depot regarding
             your project. We never share your information.
           </p>
         </form>
+
       )}
     </div>
   );
@@ -297,6 +304,7 @@ function Field({
   type = "text",
   inputMode,
   autoComplete,
+  dark = false,
 }: {
   id: string;
   label: string;
@@ -306,10 +314,11 @@ function Field({
   type?: string;
   inputMode?: "tel" | "email" | "text";
   autoComplete?: string;
+  dark?: boolean;
 }) {
   return (
     <div className="grid gap-1.5">
-      <Label htmlFor={id} className="text-xs font-semibold text-sd-black">
+      <Label htmlFor={id} className={`text-xs font-semibold ${dark ? "text-white" : "text-sd-black"}`}>
         {label}
       </Label>
       <Input
@@ -321,7 +330,7 @@ function Field({
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-err` : undefined}
-        className="h-10"
+        className={`h-10 ${dark ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""}`}
       />
       {error && (
         <p id={`${id}-err`} className="text-[11px] text-destructive">
