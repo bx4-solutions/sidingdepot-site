@@ -115,6 +115,30 @@ export default function BlogPostDetail() {
                 <div className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {post.readTime} min read</div>
               </div>
             </header>
+            
+            {/* Mobile Table of Contents */}
+            <div className="lg:hidden mb-10 bg-sd-gray-light/30 rounded-2xl p-6 border border-gray-100">
+              <h3 className="text-lg font-bold text-sd-navy mb-4 flex items-center gap-2">
+                <div className="w-1.5 h-6 bg-sd-green rounded-full"></div>
+                In This Article
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {post.sections.map((section: any, idx: number) => {
+                  const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+                  return (
+                    <li key={idx}>
+                      <a 
+                        href={`#${sectionId}`}
+                        className="text-sm font-medium text-sd-gray-text hover:text-sd-navy transition-colors flex items-center gap-2"
+                      >
+                        <ChevronRight className="w-3 h-3 text-sd-green" />
+                        {section.h2}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
 
             <div className="mb-12 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
               <img 
