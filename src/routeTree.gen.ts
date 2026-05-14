@@ -25,10 +25,10 @@ import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DeckRouteImport } from './routes/deck'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-marietta'
@@ -123,11 +123,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -141,6 +136,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
@@ -213,7 +213,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -241,6 +240,7 @@ export interface FileRoutesByFullPath {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -248,7 +248,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -276,6 +275,7 @@ export interface FileRoutesByTo {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -284,7 +284,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/deck': typeof DeckRoute
   '/doors': typeof DoorsRoute
@@ -312,6 +311,7 @@ export interface FileRoutesById {
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
 }
@@ -321,7 +321,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -349,6 +348,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesByTo: FileRoutesByTo
@@ -356,7 +356,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -384,6 +383,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   id:
@@ -391,7 +391,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
-    | '/blog'
     | '/contact'
     | '/deck'
     | '/doors'
@@ -419,6 +418,7 @@ export interface FileRouteTypes {
     | '/lp/siding-marietta'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
   fileRoutesById: FileRoutesById
@@ -427,7 +427,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
-  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DeckRoute: typeof DeckRoute
   DoorsRoute: typeof DoorsRoute
@@ -452,6 +451,7 @@ export interface RootRouteChildren {
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
@@ -570,13 +570,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -596,6 +589,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -692,16 +692,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 interface GuideRouteChildren {
   GuideThankYouRoute: typeof GuideThankYouRoute
 }
@@ -728,7 +718,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
-  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DeckRoute: DeckRoute,
   DoorsRoute: DoorsRoute,
@@ -753,9 +742,20 @@ const rootRouteChildren: RootRouteChildren = {
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
