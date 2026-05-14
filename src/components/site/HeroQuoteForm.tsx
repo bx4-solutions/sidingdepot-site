@@ -157,7 +157,7 @@ export function HeroQuoteForm({
       }
     >
       {!bare && (
-        <div className="bg-sd-navy px-6 pt-6 pb-5 text-center text-white">
+        <div className="bg-sd-black px-6 pt-6 pb-5 text-center text-white">
           <h2 className="font-display text-2xl sm:text-3xl leading-tight">
             Get Your <span className="text-sd-green">FREE</span> Quote
           </h2>
@@ -243,7 +243,7 @@ export function HeroQuoteForm({
                     className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
                       bare
                         ? checked ? "bg-white/10 text-white" : "text-white hover:bg-white/5"
-                        : checked ? "bg-sd-navy/5 text-sd-black" : "text-sd-black hover:bg-muted"
+                        : checked ? "bg-sd-black/5 text-sd-black" : "text-sd-black hover:bg-muted"
                     }`}
                   >
                     <input

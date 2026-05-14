@@ -4,7 +4,7 @@ export function ProofBar() {
   return (
     <section
       aria-label="Trust signals"
-      className="bg-sd-navy border-t-[3px] border-sd-green"
+      className="bg-sd-black border-t-[3px] border-sd-green"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-5">
         <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/85 text-sm">

@@ -129,7 +129,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta, Alpharetta, Milton, Canton & North Atlanta." },
       { name: "author", content: "Siding Depot LLC" },
       { name: "google-site-verification", content: "Q3iqnEYQT-FjjpwrinYUm2LxJYgmuYrBgQDgPPcBiQ8" },
-      { name: "theme-color", content: "#1E2A38" },
+      { name: "theme-color", content: "#0A0A0A" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Siding Depot" },
       { property: "og:title", content: "Siding Depot — James Hardie Elite Preferred Contractor in North Atlanta GA" },

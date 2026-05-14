@@ -13,7 +13,7 @@ export default function BlogListing() {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-sd-navy text-sd-black">
+      <div className="min-h-screen flex items-center justify-center bg-sd-black text-sd-black">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-8 h-8 animate-spin text-sd-green" />
           <p className="font-bold tracking-widest uppercase text-xs">Loading Insights...</p>
@@ -29,7 +29,7 @@ export default function BlogListing() {
   return (
     <div className="flex flex-col min-h-screen font-sans">
       {/* Header Section */}
-      <section className="bg-[#1E2A38] py-24 px-4">
+      <section className="bg-sd-black py-24 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="font-display text-5xl md:text-7xl text-sd-black mb-4 tracking-tight uppercase">
             SIDING DEPOT <span className="text-sd-green">INSIGHTS</span>
@@ -65,7 +65,7 @@ export default function BlogListing() {
                   </div>
                 </div>
                 <div className="md:w-[45%] p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-2xl md:text-3xl font-bold text-sd-navy mb-5 leading-tight group-hover:text-[#BCD635] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sd-black mb-5 leading-tight group-hover:text-[#BCD635] transition-colors">
                     {featuredPost.title}
                   </h2>
                   <p className="text-sd-gray-text line-clamp-3 mb-8 text-lg leading-relaxed">
@@ -106,7 +106,7 @@ export default function BlogListing() {
                       </span>
                     </div>
                   </Link>
-                  <h3 className="text-xl font-bold text-sd-navy mb-3 group-hover:text-[#BCD635] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-sd-black mb-3 group-hover:text-[#BCD635] transition-colors leading-snug">
                     <Link to="/blog/$slug" params={{ slug: post.slug }}>
                       {post.title}
                     </Link>
@@ -122,7 +122,7 @@ export default function BlogListing() {
                   <Link 
                     to="/blog/$slug" 
                     params={{ slug: post.slug }}
-                    className="text-sd-navy font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-[#BCD635] transition-all"
+                    className="text-sd-black font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-[#BCD635] transition-all"
                   >
                     Read More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -134,7 +134,7 @@ export default function BlogListing() {
           {/* Sidebar */}
           <aside className="lg:w-[350px] space-y-12">
             {/* Lead Form - Agency Style */}
-            <div className="bg-[#1E2A38] p-8 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden">
+            <div className="bg-sd-black p-8 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
               <div className="relative z-10 text-sd-black">
                 <h3 className="text-2xl font-bold mb-2">Get a Free Estimate</h3>
@@ -147,7 +147,7 @@ export default function BlogListing() {
 
             {/* Popular Articles */}
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-sd-navy border-b-2 border-sd-green pb-3 inline-block">Popular Articles</h3>
+              <h3 className="text-xl font-bold text-sd-black border-b-2 border-sd-green pb-3 inline-block">Popular Articles</h3>
               <ul className="space-y-6">
                 {publishedPosts.slice(0, 5).map(p => (
                   <li key={p.slug} className="group">
@@ -167,7 +167,7 @@ export default function BlogListing() {
                         />
                       </span>
                       <div className="flex flex-col gap-1">
-                        <span className="text-sm font-bold text-sd-navy group-hover:text-[#BCD635] transition-colors leading-tight line-clamp-2">{p.title}</span>
+                        <span className="text-sm font-bold text-sd-black group-hover:text-[#BCD635] transition-colors leading-tight line-clamp-2">{p.title}</span>
                         <span className="text-[10px] font-bold uppercase tracking-widest text-sd-gray-text/50">{p.category}</span>
                       </div>
                     </Link>
@@ -181,15 +181,15 @@ export default function BlogListing() {
               <h3 className="text-[11px] font-bold text-sd-gray-text uppercase tracking-[0.2em] mb-6">Our Certifications</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                   <Star className="w-6 h-6 text-[#1E2A38] mb-2" />
+                   <Star className="w-6 h-6 text-sd-black mb-2" />
                    <span className="text-[10px] font-extrabold uppercase tracking-tight text-center">Elite Preferred</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
-                   <span className="text-lg font-black text-[#1E2A38] mb-1">GAF</span>
+                   <span className="text-lg font-black text-sd-black mb-1">GAF</span>
                    <span className="text-[10px] font-extrabold uppercase tracking-tight text-center">Certified</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100 col-span-2">
-                   <span className="text-lg font-black text-[#1E2A38] mb-1">BBB A+</span>
+                   <span className="text-lg font-black text-sd-black mb-1">BBB A+</span>
                    <span className="text-[10px] font-extrabold uppercase tracking-tight text-center">Accredited Business</span>
                 </div>
               </div>

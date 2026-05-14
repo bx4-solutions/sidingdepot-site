@@ -250,7 +250,7 @@ export function SidingLP({ city }: SidingLPProps) {
             ].map((c) => (
               <div key={c.title} className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm">
                 <div className="text-3xl">{c.icon}</div>
-                <h3 className="mt-3 text-lg font-bold text-sd-navy">{c.title}</h3>
+                <h3 className="mt-3 text-lg font-bold text-sd-black">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{c.desc}</p>
               </div>
             ))}
@@ -279,7 +279,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="h-1 w-10 rounded-full bg-sd-green" />
-                <h3 className="mt-4 text-lg font-bold text-sd-navy">{t.title}</h3>
+                <h3 className="mt-4 text-lg font-bold text-sd-black">{t.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{t.desc}</p>
               </div>
             ))}
@@ -294,11 +294,11 @@ export function SidingLP({ city }: SidingLPProps) {
             {REVIEWS.map((r) => (
               <div key={r.name} className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-black/5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sd-navy text-sm font-bold text-sd-green">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sd-black text-sm font-bold text-sd-green">
                     {r.initials}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-sd-navy">{r.name}</p>
+                    <p className="text-sm font-bold text-sd-black">{r.name}</p>
                     <p className="text-xs text-sd-gray-text">{r.location}</p>
                   </div>
                   <div className="ml-auto flex">
@@ -308,7 +308,7 @@ export function SidingLP({ city }: SidingLPProps) {
                   </div>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">{r.text}</p>
-                <span className="mt-2 inline-block rounded-pill bg-sd-green-pale px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sd-navy">
+                <span className="mt-2 inline-block rounded-pill bg-sd-green-pale px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sd-black">
                   Google Review
                 </span>
               </div>
@@ -317,7 +317,7 @@ export function SidingLP({ city }: SidingLPProps) {
           <div className="grid grid-cols-2 gap-4 self-center">
             {STATS.map((s) => (
               <div key={s.label} className="rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-black/5">
-                <div className="text-4xl font-extrabold text-sd-navy">{s.value}</div>
+                <div className="text-4xl font-extrabold text-sd-black">{s.value}</div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-sd-gray-text">
                   {s.label}
                 </div>
@@ -379,17 +379,17 @@ export function SidingLP({ city }: SidingLPProps) {
                 key={s.step}
                 className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-navy">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sd-green text-sm font-extrabold text-sd-black">
                   {s.step}
                 </div>
-                <h3 className="mt-4 text-base font-bold text-sd-navy">{s.title}</h3>
+                <h3 className="mt-4 text-base font-bold text-sd-black">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{s.desc}</p>
               </li>
             ))}
           </ol>
 
           <div className="mx-auto mt-10 max-w-3xl">
-            <h3 className="text-center text-xl font-bold text-sd-navy">
+            <h3 className="text-center text-xl font-bold text-sd-black">
               Quick Financing Questions
             </h3>
             <Accordion type="single" collapsible className="mt-5 space-y-3">
@@ -399,7 +399,7 @@ export function SidingLP({ city }: SidingLPProps) {
                   value={`gs-${i}`}
                   className="rounded-xl border border-sd-gray-border bg-white px-5"
                 >
-                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-navy hover:no-underline">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-sd-black hover:no-underline">
                     {item.q}
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-sd-gray-text leading-relaxed">
@@ -413,7 +413,7 @@ export function SidingLP({ city }: SidingLPProps) {
               <button
                 type="button"
                 onClick={() => scrollToLeadForm({ source: "greensky_section" })}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-black hover:opacity-90 transition-opacity"
               >
                 Get Pre-Approved With My Free Estimate →
               </button>
@@ -438,7 +438,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 value={`q-${i}`}
                 className="rounded-xl border border-sd-gray-border bg-white px-5"
               >
-                <AccordionTrigger className="text-left text-base font-semibold text-sd-navy hover:no-underline">
+                <AccordionTrigger className="text-left text-base font-semibold text-sd-black hover:no-underline">
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sd-gray-text leading-relaxed">
@@ -452,7 +452,7 @@ export function SidingLP({ city }: SidingLPProps) {
                         faq_question: item.q,
                       })
                     }
-                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-navy hover:opacity-90 transition-opacity"
+                    className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-pill bg-sd-green px-5 text-xs font-bold text-sd-black hover:opacity-90 transition-opacity"
                   >
                     Request My Free Estimate →
                   </button>

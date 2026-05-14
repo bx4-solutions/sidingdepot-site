@@ -43,7 +43,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-sd-navy/95 backdrop-blur-sm border-b border-white/5">
+    <header className="sticky top-0 z-50 w-full bg-sd-dark/95 backdrop-blur-sm border-b border-white/5">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
