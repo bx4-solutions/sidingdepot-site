@@ -340,22 +340,37 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-09',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200&q=80',
-      alt: 'Hail damage on home exterior',
+      url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Hailstones on a surface during a storm',
       caption: 'Hail damage can be hard to spot from the ground, but it compromises your home\'s protection.'
     },
     sections: [
       {
         h2: 'The "Storm Chaser" Warning',
-        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door. Be careful. Many of these companies are storm chasers who do low-quality work and disappear. Always work with a local, established company like Siding Depot that will be here to honor your warranty.`
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door. Be careful. Many of these companies are storm chasers who do low-quality work and disappear. Always work with a local, established company like Siding Depot that will be here to honor your warranty.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Cloudy sky during a storm',
+          caption: 'Georgia storm seasons can bring sudden and severe weather that impacts home exteriors.'
+        }
       },
       {
         h2: 'Identifying Hail Impact on Fiber Cement',
-        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to delamination. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`
+        content: `Unlike vinyl, which may crack or hole, James Hardie siding shows hail damage as small "bruises" or chips in the finish. Over time, these spots absorb moisture and lead to delamination. We use high-resolution photography and drone inspections to document this damage for your insurance adjuster.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Close up of damage on an exterior wall',
+          caption: 'Identifying subtle storm damage requires a professional eye and proper documentation.'
+        }
       },
       {
         h2: 'The "Matching" Law in Georgia',
-        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available, they may be required to replace the entire house to ensure a uniform appearance. We specialize in helping homeowners navigate these complex negotiations.`
+        content: `One of the biggest advantages for Georgia homeowners is the matching regulation. If your insurance agrees to replace damaged panels but the original color or profile is no longer available, they may be required to replace the entire house to ensure a uniform appearance. We specialize in helping homeowners navigate these complex negotiations.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'A house with perfectly matched siding after repair',
+          caption: 'Ensuring a consistent look across the entire home is essential for maintaining market value after a storm repair.'
+        }
       }
     ],
     faq: [
