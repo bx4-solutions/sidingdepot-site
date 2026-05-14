@@ -80,6 +80,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
     links: [
+      { rel: "canonical", href: "https://sidingdepot.com/" },
       { rel: "preconnect", href: "https://www.youtube.com" },
       { rel: "preconnect", href: "https://i.ytimg.com" },
     ],

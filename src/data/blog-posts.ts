@@ -94,7 +94,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'How do I know if I need full replacement or just repair?', a: 'If more than 20% of panels are damaged, full replacement is more cost-effective. We\'ll tell you honestly.' }
     ],
     cta: { city: 'Marietta', service: 'Siding' },
-    metaTitle: 'James Hardie Siding Cost in Marietta GA 2026 | Complete Price Guide',
+    metaTitle: 'James Hardie Siding Cost Marietta GA 2026 | Price Guide',
     metaDescription: 'How much does James Hardie siding cost in Marietta, GA in 2026? Real prices from $8–$14/sqft installed. Full breakdown by home size and style.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
@@ -171,7 +171,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'What is the best siding for the Georgia climate?', a: 'James Hardie fiber cement is widely considered the best choice because it resists rot, fire, and the intense Georgia humidity.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: '6 Signs It\'s Time to Replace Siding on Your Georgia Home | Siding Depot',
+    metaTitle: "6 Signs It's Time to Replace Siding in Georgia | Siding Depot",
     metaDescription: 'Is your siding failing? Look for these 6 critical signs of damage in Georgia homes, from warping to hidden rot. Expert advice from Siding Depot.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
@@ -307,7 +307,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'What is the most popular color for Board and Batten in 2026?', a: 'Arctic White and Iron Gray are currently the top choices for Marietta and Milton homeowners.' }
     ],
     cta: { city: 'Milton', service: 'Siding' },
-    metaTitle: 'Board and Batten Siding Guide North Atlanta 2026 | Siding Depot',
+    metaTitle: 'Board and Batten Siding Guide North Atlanta 2026',
     metaDescription: 'Complete guide to Board and Batten siding in North Atlanta. Learn about costs, style trends, and how to get HOA approval.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'hardie-siding-colors-2026-north-atlanta-homes']
   },
@@ -457,7 +457,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'Do dark colors fade faster in Georgia?', a: 'With James Hardie ColorPlus technology, the color is baked on in a controlled environment, making it significantly more resistant to UV fading than traditional paint.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: 'James Hardie Siding Colors 2026 North Atlanta | Siding Depot',
+    metaTitle: 'James Hardie Siding Colors 2026 North Atlanta',
     metaDescription: 'See the most popular siding color trends for Georgia homes in 2026. From Iron Gray to Arctic White, find your perfect palette.',
     internalLinks: ['board-batten-siding-guide-north-atlanta-2026', 'exterior-home-design-trends-north-atlanta-2026']
   },
@@ -508,7 +508,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'Do I need to be home during installation?', a: 'No, most of the work is exterior. However, we do need access to an outdoor power outlet and water source.' }
     ],
     cta: { city: 'Canton', service: 'Siding' },
-    metaTitle: 'Siding Installation Timeline Georgia 2026 | Siding Depot',
+    metaTitle: 'Siding Installation Timeline Georgia 2026',
     metaDescription: 'How long does it take to replace siding? See our realistic timeline for Georgia homeowners.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'rotten-wood-siding-replacement-georgia-homes']
   },
@@ -550,7 +550,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'How do I know if I have rot before the siding is removed?', a: 'Look for soft spots, "mushroom" growth, or a musty smell near exterior walls. However, some rot is only visible once the siding is off.' }
     ],
     cta: { city: 'Woodstock', service: 'Siding' },
-    metaTitle: 'Rotten Wood Behind Siding Georgia | Repair Guide | Siding Depot',
+    metaTitle: 'Rotten Wood Behind Siding Georgia | Repair Guide',
     metaDescription: 'Don\'t ignore hidden rot. Learn how Siding Depot identifies and repairs structural wood damage during siding replacement.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'how-long-does-siding-installation-take-georgia']
   },
@@ -592,7 +592,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'Is the Modern Farmhouse trend over?', a: 'Not at all, but it is evolving into "Modern Traditional" which uses the same clean lines but with more diverse color palettes.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: 'Exterior Design Trends North Atlanta 2026 | Siding Depot',
+    metaTitle: 'Exterior Design Trends North Atlanta 2026',
     metaDescription: 'Get inspired for your home renovation. See the top exterior design and siding trends for 2026 in North Atlanta.',
     internalLinks: ['hardie-siding-colors-2026-north-atlanta-homes', 'board-batten-siding-guide-north-atlanta-2026']
   }
