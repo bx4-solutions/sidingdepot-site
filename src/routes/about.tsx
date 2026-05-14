@@ -426,18 +426,7 @@ function AboutPage() {
             </div>
           </div>
           <div>
-            <div className="rounded-2xl overflow-hidden border border-white/10 h-[300px]">
-              <iframe
-                src={`https://www.google.com/maps?q=${encodeURIComponent(`${SITE.name}, ${SITE.address.full}`)}&z=15&output=embed`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Siding Depot Office Location"
-              ></iframe>
-            </div>
+            <MapEmbed className="h-[300px]" title="Siding Depot Office Location" />
           </div>
         </div>
       </section>
