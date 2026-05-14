@@ -391,18 +391,28 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-08',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80',
-      alt: 'Beautiful dark gray siding on a modern home',
+      url: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80',
+      alt: 'House with beautiful dark gray siding and white trim',
       caption: 'Dark, moody colors like Iron Gray are dominating the design landscape in North Atlanta this year.'
     },
     sections: [
       {
         h2: 'The Shift to Darker Hues',
-        content: `In 2026, we\'ve seen a massive shift away from light tans and beiges toward "moody" colors. Iron Gray, Deep Ocean, and Black Walnut are the most requested James Hardie ColorPlus colors in Alpharetta right now. These colors provide a sophisticated, high-end look that contrasts beautifully with white trim and stone accents.`
+        content: `In 2026, we\'ve seen a massive shift away from light tans and beiges toward "moody" colors. Iron Gray, Deep Ocean, and Black Walnut are the most requested James Hardie ColorPlus colors in Alpharetta right now. These colors provide a sophisticated, high-end look that contrasts beautifully with white trim and stone accents.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Modern house with dark siding and high contrast trim',
+          caption: 'High-contrast color palettes create a bold and modern aesthetic for contemporary Georgia homes.'
+        }
       },
       {
         h2: 'The Timeless Modern Farmhouse White',
-        content: `Despite the trend toward dark colors, Arctic White remains the king of the Modern Farmhouse look. When paired with black window frames and natural wood accents, it creates a clean, stunning aesthetic that is perfect for the Georgia landscape.`
+        content: `Despite the trend toward dark colors, Arctic White remains the king of the Modern Farmhouse look. When paired with black window frames and natural wood accents, it creates a clean, stunning aesthetic that is perfect for the Georgia landscape.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Classic white farmhouse exterior',
+          caption: 'Arctic White is a versatile and timeless choice that continues to be a favorite in Milton and Alpharetta.'
+        }
       }
     ],
     faq: [
