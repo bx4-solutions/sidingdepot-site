@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { STATIC_ROUTES, getAllLocationCombos } from "@/data/locations";
-import { FileText, MapPin, Layout, CheckCircle2, CircleDashed, Clock, Calendar } from "lucide-react";
-import { useState, useEffect } from "react";
+import { FileText, MapPin, Layout, CheckCircle2, CircleDashed, Clock, Calendar, Search } from "lucide-react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/dashboard")({
@@ -176,7 +178,7 @@ function AdminDashboard() {
                     placeholder="Filter city..." 
                     className="h-8 text-xs"
                     value={locationCityFilter}
-                    onChange={(e) => {
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setLocationCityFilter(e.target.value);
                       setLocationPage(1);
                     }}
@@ -185,7 +187,7 @@ function AdminDashboard() {
                     placeholder="Filter service..." 
                     className="h-8 text-xs"
                     value={locationServiceFilter}
-                    onChange={(e) => {
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setLocationServiceFilter(e.target.value);
                       setLocationPage(1);
                     }}
@@ -276,7 +278,7 @@ function AdminDashboard() {
                       placeholder="Search articles..." 
                       className="h-8 pl-8 text-xs"
                       value={blogSearch}
-                      onChange={(e) => {
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => {
                         setBlogSearch(e.target.value);
                         setBlogPage(1);
                       }}
@@ -284,7 +286,7 @@ function AdminDashboard() {
                   </div>
                   <Select 
                     value={blogStatusFilter} 
-                    onValueChange={(val) => {
+                    onValueChange={(val: string) => {
                       setBlogStatusFilter(val);
                       setBlogPage(1);
                     }}
