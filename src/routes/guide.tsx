@@ -17,14 +17,14 @@ export const Route = createFileRoute("/guide")({
   }),
   head: () => ({
     meta: [
-      { title: "Free Guide: Georgia Homeowner's Siding Guide 2026 | Siding Depot" },
+      { title: "Free Guide: 5 Fatal Siding Mistakes to Avoid in Georgia (2026) | Siding Depot" },
       {
         name: "description",
         content:
-          "Download our free guide before replacing your siding in Georgia. 8 pages of expert advice from James Hardie Elite Preferred contractors in Marietta, GA.",
+          "Download our free 8-page guide: 5 Fatal Siding Mistakes Georgia Homeowners Make. Expert advice on James Hardie installation, pricing traps, and climate risks.",
       },
-      { property: "og:title", content: "Free Guide: Georgia Homeowner's Siding Guide 2026" },
-      { property: "og:description", content: "8 pages of expert advice for siding replacement in North Atlanta." },
+      { property: "og:title", content: "Free Guide: 5 Fatal Siding Mistakes to Avoid in Georgia" },
+      { property: "og:description", content: "8 pages of expert advice to prevent siding budget overruns and install failures in North Atlanta." },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -166,11 +166,11 @@ function GuidePage() {
                 Free 2026 Edition
              </div>
             <h1 className="font-display text-4xl sm:text-6xl text-sd-navy leading-[1.1] uppercase">
-              The Georgia Homeowner's<br />
-              <span className="text-sd-green">Siding Guide</span>
+              5 Siding Mistakes<br />
+              <span className="text-sd-green">You Can't Afford</span>
             </h1>
             <p className="mt-6 text-sd-gray-text text-lg max-w-2xl mx-auto leading-relaxed">
-              Don't hire a contractor until you read this. 8 pages of expert advice covering Georgia climate risks, material comparisons, and the 5 fatal mistakes that ruin budgets.
+              Don't hire a contractor until you read this. 8 pages of expert advice covering the "fatal 5" mistakes that ruin siding budgets across Georgia every year.
             </p>
 
             <div className="mt-12 bg-white p-8 rounded-2xl shadow-xl border border-sd-gray-border max-w-md mx-auto relative isolate overflow-hidden">
