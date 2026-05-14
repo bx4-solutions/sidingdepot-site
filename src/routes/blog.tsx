@@ -5,11 +5,16 @@ export const Route = createFileRoute("/blog")({
   component: BlogListing,
   head: () => ({
     meta: [
-      { title: "Siding Depot Insights | Georgia's Trusted Siding Blog" },
+      { title: "Expert Siding Blog | Marietta & North Atlanta Siding Insights | Siding Depot" },
       { 
         name: "description", 
-        content: "Expert siding, painting, and home exterior advice for homeowners in Marietta, Alpharetta, Milton, and across North Atlanta." 
+        content: "Expert advice on James Hardie siding installation, cost guides, and home exterior maintenance for Marietta, Alpharetta, and North Atlanta homeowners." 
       },
+      { property: "og:title", content: "Expert Siding Blog | Siding Depot" },
+      { property: "og:description", content: "Expert advice on siding installation, cost guides, and maintenance for North Atlanta homeowners." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://sidingdepot.com/blog" },
     ],
   }),
+
 });
