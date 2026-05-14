@@ -21,6 +21,8 @@ function AdminDashboard() {
   // Filters state
   const [locationCityFilter, setLocationCityFilter] = useState("");
   const [locationServiceFilter, setLocationServiceFilter] = useState("");
+  const [routeSearch, setRouteSearch] = useState("");
+  const [pageTypeFilter, setPageTypeFilter] = useState("all");
   const [blogSearch, setBlogSearch] = useState("");
   const [blogStatusFilter, setBlogStatusFilter] = useState("all");
 
