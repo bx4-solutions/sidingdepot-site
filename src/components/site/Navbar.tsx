@@ -47,15 +47,22 @@ export function Navbar() {
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={SITE.name}>
-            <img
-              src={logoSidingDepot}
-              alt="Siding Depot"
-              width={224}
-              height={68}
-              className="h-11 w-auto sm:h-12 lg:h-14"
-              loading="eager"
-              decoding="async"
-            />
+            <div style={{
+              background: '#BCD635',
+              padding: '6px 14px',
+              borderRadius: '8px',
+              fontWeight: 900,
+              color: '#fff',
+              WebkitTextStroke: '2px #000',
+              paintOrder: 'stroke fill',
+              transform: 'rotate(-4deg)',
+              display: 'inline-block',
+              lineHeight: 1.1,
+              fontFamily: 'var(--font-display)',
+              fontSize: '20px'
+            }}>
+              Siding<br/>Depot
+            </div>
           </Link>
         </div>
 

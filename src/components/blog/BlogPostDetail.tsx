@@ -47,7 +47,7 @@ export default function BlogPostDetail() {
             ? "The page you are looking for doesn't exist or has been moved." 
             : "This article hasn't been published yet. Check back soon for expert siding insights!"}
         </p>
-        <Button asChild className="bg-sd-navy hover:bg-sd-navy/90 text-white rounded-full px-8">
+        <Button asChild className="bg-sd-navy hover:bg-sd-navy/90 text-sd-black rounded-full px-8">
           <Link to="/blog">Back to Blog</Link>
         </Button>
       </div>
@@ -86,26 +86,26 @@ export default function BlogPostDetail() {
           {/* Main Article Content */}
           <article className="lg:w-[65%]">
             <header className="mb-12">
-              <span className="inline-block bg-[#8DC63F] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 shadow-sm">
+              <span className="inline-block bg-[#BCD635] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 shadow-sm">
                 {post.category}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold text-sd-navy leading-tight mb-8">
                 {post.title}
               </h1>
-              <p className="text-xl italic text-sd-gray-text/80 leading-relaxed mb-10 border-l-4 border-[#8DC63F] pl-6 py-2">
+              <p className="text-xl italic text-sd-gray-text/80 leading-relaxed mb-10 border-l-4 border-[#BCD635] pl-6 py-2">
                 {post.excerpt}
               </p>
               
               <div className="flex items-center gap-8 text-[12px] font-bold uppercase tracking-wider text-sd-gray-text/60 border-y py-6 border-gray-100 mb-12">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-sd-navy flex items-center justify-center text-white text-[10px] font-black border-2 border-sd-green">SD</div>
+                  <div className="w-10 h-10 rounded-full bg-sd-navy flex items-center justify-center text-sd-black text-[10px] font-black border-2 border-sd-green">SD</div>
                   <div className="flex flex-col">
                     <span className="text-sd-navy font-black tracking-normal">Siding Depot Team</span>
                     <span className="text-[10px] lowercase font-medium tracking-normal opacity-70">Editorial Staff</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#8DC63F]" /> {new Date(post.publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#8DC63F]" /> {post.readTime} min read</div>
+                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#BCD635]" /> {new Date(post.publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#BCD635]" /> {post.readTime} min read</div>
               </div>
 
               {/* Hero Image with Semantic Caption */}
@@ -128,7 +128,7 @@ export default function BlogPostDetail() {
               </div>
             </header>
             
-            <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:text-[28px] prose-h2:font-bold prose-h2:border-l-[4px] prose-h2:border-[#8DC63F] prose-h2:pl-6 prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:rounded-xl prose-table:overflow-hidden prose-th:bg-sd-navy prose-th:text-white prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4">
+            <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:text-[28px] prose-h2:font-bold prose-h2:border-l-[4px] prose-h2:border-[#BCD635] prose-h2:pl-6 prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:rounded-xl prose-table:overflow-hidden prose-th:bg-sd-navy prose-th:text-sd-black prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4">
               {post.sections.map((section: any, idx: number) => {
                 const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                 
@@ -140,9 +140,9 @@ export default function BlogPostDetail() {
                       const [_, text, url] = match;
                       const isInternal = url.startsWith('/blog/');
                       if (isInternal) {
-                        return <Link key={i} to={url as any} className="text-[#8DC63F] font-bold hover:underline">{text}</Link>;
+                        return <Link key={i} to={url as any} className="text-[#BCD635] font-bold hover:underline">{text}</Link>;
                       }
-                      return <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-[#8DC63F] font-bold hover:underline">{text}</a>;
+                      return <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-[#BCD635] font-bold hover:underline">{text}</a>;
                     }
                     return part;
                   });
@@ -158,7 +158,7 @@ export default function BlogPostDetail() {
                     {section.table && (
                       <div className="overflow-x-auto my-12 rounded-xl border border-gray-200 shadow-xl bg-white">
                         <table className="min-w-full divide-y divide-gray-200">
-                          <thead className="bg-[#1E2A38] text-white">
+                          <thead className="bg-[#1E2A38] text-sd-black">
                             <tr>
                               {section.table.headers.map((header: string, i: number) => (
                                 <th key={i} className="px-6 py-5 text-left text-[11px] font-black uppercase tracking-[0.1em]">
@@ -183,7 +183,7 @@ export default function BlogPostDetail() {
                     )}
 
                     {section.pullQuote && (
-                      <div className="my-12 bg-[#F4F7FA] border-l-[6px] border-[#8DC63F] p-10 rounded-r-3xl shadow-sm">
+                      <div className="my-12 bg-[#F4F7FA] border-l-[6px] border-[#BCD635] p-10 rounded-r-3xl shadow-sm">
                         <p className="text-2xl font-bold text-sd-navy italic leading-relaxed">
                           "{section.pullQuote}"
                         </p>
@@ -211,15 +211,15 @@ export default function BlogPostDetail() {
 
                     {/* Inline CTA after 2nd section (roughly the middle) */}
                     {idx === 1 && (
-                      <div className="my-20 bg-[#1E2A38] p-12 rounded-3xl text-white text-center shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-[#8DC63F]"></div>
+                      <div className="my-20 bg-[#1E2A38] p-12 rounded-3xl text-sd-black text-center shadow-2xl relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-[#BCD635]"></div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Getting quotes for your home?</h3>
-                        <p className="text-lg text-white/70 mb-10 font-medium">We respond within 24 hours. No high-pressure sales.</p>
+                        <p className="text-lg text-sd-black/70 mb-10 font-medium">We respond within 24 hours. No high-pressure sales.</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                           <a href="tel:6784002012" className="text-3xl font-black text-[#8DC63F] hover:text-white transition-all transform hover:scale-105">
+                           <a href="tel:6784002012" className="text-3xl font-black text-[#BCD635] hover:text-sd-black transition-all transform hover:scale-105">
                              (678) 400-2012
                            </a>
-                           <Button asChild size="lg" className="bg-[#8DC63F] text-sd-black hover:bg-[#8DC63F]/90 rounded-full font-black px-10 py-7 h-auto text-base transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-[#8DC63F]/20">
+                           <Button asChild size="lg" className="bg-[#BCD635] text-sd-black hover:bg-[#BCD635]/90 rounded-full font-black px-10 py-7 h-auto text-base transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-[#BCD635]/20">
                              <Link to="/contact">Get Free Estimate</Link>
                            </Button>
                         </div>
@@ -234,14 +234,14 @@ export default function BlogPostDetail() {
             {post.faq.length > 0 && (
               <section className="mt-24 pt-24 border-t border-gray-100">
                 <div className="flex items-center gap-4 mb-12">
-                  <div className="w-2 h-10 bg-[#8DC63F] rounded-full"></div>
+                  <div className="w-2 h-10 bg-[#BCD635] rounded-full"></div>
                   <h2 className="text-3xl font-bold text-sd-navy m-0">Frequently Asked Questions</h2>
                 </div>
                 <div className="space-y-6">
                   {post.faq.map((item: { q: string, a: string }, idx: number) => (
                     <div key={idx} className="bg-[#F4F7FA] p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                       <h4 className="font-bold text-xl text-sd-navy mb-4 leading-snug flex gap-4">
-                        <span className="text-[#8DC63F]">Q.</span>
+                        <span className="text-[#BCD635]">Q.</span>
                         {item.q}
                       </h4>
                       <p className="text-sd-gray-text leading-[1.8] text-lg pl-8">{item.a}</p>
@@ -264,7 +264,7 @@ export default function BlogPostDetail() {
                       {prevPost && (
                         <Link to="/blog/$slug" params={{ slug: prevPost.slug }} className="group">
                           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Previous Article</span>
-                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors line-clamp-2">{prevPost.title}</span>
+                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#BCD635] transition-colors line-clamp-2">{prevPost.title}</span>
                         </Link>
                       )}
                     </div>
@@ -272,7 +272,7 @@ export default function BlogPostDetail() {
                       {nextPost && (
                         <Link to="/blog/$slug" params={{ slug: nextPost.slug }} className="group">
                           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sd-gray-text/40 block mb-4">Next Article</span>
-                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors line-clamp-2">{nextPost.title}</span>
+                          <span className="text-xl font-bold text-sd-navy group-hover:text-[#BCD635] transition-colors line-clamp-2">{nextPost.title}</span>
                         </Link>
                       )}
                     </div>
@@ -282,14 +282,14 @@ export default function BlogPostDetail() {
             </nav>
 
             {/* Final Conversion CTA */}
-            <div className="mt-24 bg-[#8DC63F] p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
+            <div className="mt-24 bg-[#BCD635] p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-black text-sd-black mb-6 leading-tight">Ready for Your Free Estimate?</h2>
                 <p className="text-xl text-sd-black/70 mb-12 max-w-2xl mx-auto font-bold leading-relaxed">
                   Join 1,000+ happy Georgia homeowners. Professional measurement and detailed written proposal within 48 hours.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-[#1E2A38] text-white hover:bg-sd-navy/90 text-lg px-12 py-8 h-auto font-black shadow-xl">
+                  <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-[#1E2A38] text-sd-black hover:bg-sd-navy/90 text-lg px-12 py-8 h-auto font-black shadow-xl">
                     <Link to="/contact">Get Started Now</Link>
                   </Button>
                   <a href="tel:6784002012" className="text-2xl font-black text-[#1E2A38] py-4 px-8 hover:opacity-80 transition-opacity">
@@ -306,15 +306,15 @@ export default function BlogPostDetail() {
               {/* Quote Form - High Impact */}
               <div className="bg-[#1E2A38] p-10 rounded-[32px] shadow-2xl border border-white/5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-                <h3 className="text-2xl font-bold text-white mb-2">Get Your Quote</h3>
-                <p className="text-white/50 text-sm mb-8 font-bold uppercase tracking-widest">Free Consultation</p>
+                <h3 className="text-2xl font-bold text-sd-black mb-2">Get Your Quote</h3>
+                <p className="text-sd-black/50 text-sm mb-8 font-bold uppercase tracking-widest">Free Consultation</p>
                 <HeroQuoteForm bare />
               </div>
 
               {/* Table of Contents - ScrollSpy Style */}
               <div className="bg-white p-10 rounded-[32px] shadow-sm border border-gray-100 ring-1 ring-black/[0.02]">
                 <h3 className="text-xl font-bold text-sd-navy mb-8 flex items-center gap-3">
-                   <div className="w-1.5 h-6 bg-[#8DC63F] rounded-full"></div>
+                   <div className="w-1.5 h-6 bg-[#BCD635] rounded-full"></div>
                    In This Article
                 </h3>
                 <ul className="space-y-6">
@@ -325,7 +325,7 @@ export default function BlogPostDetail() {
                         <a 
                           href={`#${sectionId}`}
                           className={`text-sm font-bold uppercase tracking-wider transition-all block border-l-2 pl-6 py-1 ${
-                            activeId === sectionId ? "text-[#8DC63F] border-[#8DC63F] translate-x-2" : "text-sd-gray-text/60 border-gray-100 hover:text-sd-navy hover:border-sd-navy"
+                            activeId === sectionId ? "text-[#BCD635] border-[#BCD635] translate-x-2" : "text-sd-gray-text/60 border-gray-100 hover:text-sd-navy hover:border-sd-navy"
                           }`}
                         >
                           {section.h2}
@@ -340,7 +340,7 @@ export default function BlogPostDetail() {
               {relatedPosts.length > 0 && (
                 <div className="space-y-8">
                   <h3 className="text-xl font-bold text-sd-navy flex items-center gap-3">
-                    <div className="w-1.5 h-6 bg-[#8DC63F] rounded-full"></div>
+                    <div className="w-1.5 h-6 bg-[#BCD635] rounded-full"></div>
                     Related Insights
                   </h3>
                   <div className="space-y-8">
@@ -363,7 +363,7 @@ export default function BlogPostDetail() {
                         </div>
 
                         <div className="flex flex-col justify-center gap-1">
-                          <h4 className="text-sm font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors leading-snug line-clamp-2">
+                          <h4 className="text-sm font-bold text-sd-navy group-hover:text-[#BCD635] transition-colors leading-snug line-clamp-2">
                             {p.title}
                           </h4>
                           <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-sd-gray-text/40 mt-1">

@@ -13,7 +13,7 @@ export default function BlogListing() {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-sd-navy text-white">
+      <div className="min-h-screen flex items-center justify-center bg-sd-navy text-sd-black">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-8 h-8 animate-spin text-sd-green" />
           <p className="font-bold tracking-widest uppercase text-xs">Loading Insights...</p>
@@ -31,10 +31,10 @@ export default function BlogListing() {
       {/* Header Section */}
       <section className="bg-[#1E2A38] py-24 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="font-display text-5xl md:text-7xl text-white mb-4 tracking-tight uppercase">
+          <h1 className="font-display text-5xl md:text-7xl text-sd-black mb-4 tracking-tight uppercase">
             SIDING DEPOT <span className="text-sd-green">INSIGHTS</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/65 max-w-2xl mx-auto font-medium">
+          <p className="text-lg md:text-xl text-sd-black/65 max-w-2xl mx-auto font-medium">
             Expert advice from Georgia's most trusted James Hardie contractor — free, no obligation.
           </p>
         </div>
@@ -59,23 +59,23 @@ export default function BlogListing() {
                     decoding="async"
                   />
                   <div className="absolute top-6 left-6">
-                    <span className="bg-[#8DC63F] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+                    <span className="bg-[#BCD635] text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
                       {featuredPost.category}
                     </span>
                   </div>
                 </div>
                 <div className="md:w-[45%] p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-2xl md:text-3xl font-bold text-sd-navy mb-5 leading-tight group-hover:text-[#8DC63F] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sd-navy mb-5 leading-tight group-hover:text-[#BCD635] transition-colors">
                     {featuredPost.title}
                   </h2>
                   <p className="text-sd-gray-text line-clamp-3 mb-8 text-lg leading-relaxed">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex items-center gap-6 mb-10 text-[12px] font-bold uppercase tracking-wider text-sd-gray-text/60">
-                    <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#8DC63F]" /> {featuredPost.readTime} min read</span>
-                    <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#8DC63F]" /> {new Date(featuredPost.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#BCD635]" /> {featuredPost.readTime} min read</span>
+                    <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#BCD635]" /> {new Date(featuredPost.publishDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                   </div>
-                  <Button asChild className="w-fit rounded-full bg-[#8DC63F] text-sd-black hover:bg-[#8DC63F]/90 px-8 py-6 h-auto text-base font-bold transition-all hover:translate-x-1">
+                  <Button asChild className="w-fit rounded-full bg-[#BCD635] text-sd-black hover:bg-[#BCD635]/90 px-8 py-6 h-auto text-base font-bold transition-all hover:translate-x-1">
                     <Link to="/blog/$slug" params={{ slug: featuredPost.slug }}>
                       Read Article <ArrowRight className="ml-2 w-5 h-5" />
                     </Link>
@@ -101,12 +101,12 @@ export default function BlogListing() {
                       height="338"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-[#8DC63F] text-sd-black text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                      <span className="bg-[#BCD635] text-sd-black text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
                         {post.category}
                       </span>
                     </div>
                   </Link>
-                  <h3 className="text-xl font-bold text-sd-navy mb-3 group-hover:text-[#8DC63F] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-sd-navy mb-3 group-hover:text-[#BCD635] transition-colors leading-snug">
                     <Link to="/blog/$slug" params={{ slug: post.slug }}>
                       {post.title}
                     </Link>
@@ -122,7 +122,7 @@ export default function BlogListing() {
                   <Link 
                     to="/blog/$slug" 
                     params={{ slug: post.slug }}
-                    className="text-sd-navy font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-[#8DC63F] transition-all"
+                    className="text-sd-navy font-black text-[13px] uppercase tracking-widest flex items-center gap-2 group-hover:text-[#BCD635] transition-all"
                   >
                     Read More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -136,9 +136,9 @@ export default function BlogListing() {
             {/* Lead Form - Agency Style */}
             <div className="bg-[#1E2A38] p-8 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-              <div className="relative z-10 text-white">
+              <div className="relative z-10 text-sd-black">
                 <h3 className="text-2xl font-bold mb-2">Get a Free Estimate</h3>
-                <p className="text-sm text-white/60 mb-8 leading-relaxed font-medium">Expert siding advice for Georgia homeowners. No obligation.</p>
+                <p className="text-sm text-sd-black/60 mb-8 leading-relaxed font-medium">Expert siding advice for Georgia homeowners. No obligation.</p>
                 <div className="space-y-4">
                   <HeroQuoteForm bare />
                 </div>
@@ -167,7 +167,7 @@ export default function BlogListing() {
                         />
                       </span>
                       <div className="flex flex-col gap-1">
-                        <span className="text-sm font-bold text-sd-navy group-hover:text-[#8DC63F] transition-colors leading-tight line-clamp-2">{p.title}</span>
+                        <span className="text-sm font-bold text-sd-navy group-hover:text-[#BCD635] transition-colors leading-tight line-clamp-2">{p.title}</span>
                         <span className="text-[10px] font-bold uppercase tracking-widest text-sd-gray-text/50">{p.category}</span>
                       </div>
                     </Link>
