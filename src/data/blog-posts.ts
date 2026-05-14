@@ -482,18 +482,28 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
     publishDate: '2026-05-06',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?w=1200&q=80',
-      alt: 'Rotten wood sheathing exposed',
+      url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
+      alt: 'Close up of rotten wood framing in a home',
       caption: 'Rot often hides in plain sight, slowly compromising your home\'s structural integrity.'
     },
     sections: [
       {
         h2: 'Why Georgia Homes Are Prone to Rot',
-        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Water damage on exterior building materials',
+          caption: 'Georgia\'s climate is unforgiving to homes with poor moisture protection.'
+        }
       },
       {
         h2: 'The Siding Depot Approach to Rot Repair',
-        content: `We don't just cover up problems. If we find rot during the tear-off phase, we show it to you, explain the fix, and replace the damaged wood with fresh, pressure-treated or high-quality OSB before the new siding goes on. This ensures your home is structurally sound for decades to come.`
+        content: `We don't just cover up problems. If we find rot during the tear-off phase, we show it to you, explain the fix, and replace the damaged wood with fresh, pressure-treated or high-quality OSB before the new siding goes on. This ensures your home is structurally sound for decades to come.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Newly installed OSB sheathing for moisture protection',
+          caption: 'Address problems at the source for a long-lasting, worry-free home exterior.'
+        }
       }
     ],
     faq: [
