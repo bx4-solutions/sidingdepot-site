@@ -91,12 +91,30 @@ export default function BlogPostDetail() {
             <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:border-l-[3px] prose-h2:border-sd-green prose-h2:pl-4 prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg">
               {post.sections.map((section, idx) => {
                 const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+                
+                // Helper to render content with internal links
+                const renderContent = (content: string) => {
+                  const parts = content.split(/(\[.*?\]\(.*?\))/g);
+                  return parts.map((part, i) => {
+                    const match = part.match(/\[(.*?)\]\((.*?)\)/);
+                    if (match) {
+                      const [_, text, url] = match;
+                      const isInternal = url.startsWith('/blog/');
+                      if (isInternal) {
+                        return <Link key={i} to={url as any} className="text-sd-green font-bold hover:underline">{text}</Link>;
+                      }
+                      return <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="text-sd-green font-bold hover:underline">{text}</a>;
+                    }
+                    return part;
+                  });
+                };
+
                 return (
                   <div key={idx} className="mb-12">
                     <h2 id={sectionId} className="text-2xl font-bold mb-6 pt-4">
                       {section.h2}
                     </h2>
-                    <div className="mb-6 whitespace-pre-wrap">{section.content}</div>
+                    <div className="mb-6 whitespace-pre-wrap">{renderContent(section.content)}</div>
 
                     {section.table && (
                       <div className="overflow-x-auto my-8 rounded-xl border border-gray-100 shadow-sm">
