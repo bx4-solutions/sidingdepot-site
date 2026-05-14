@@ -105,7 +105,6 @@ export const BLOG_POSTS_EXPANDED: Partial<BlogPost>[] = [
         }
       }
     ]
-  }
   },
   {
     slug: 'board-batten-siding-guide-north-atlanta-2026',
@@ -202,4 +201,3 @@ export const BLOG_POSTS_EXPANDED: Partial<BlogPost>[] = [
     ]
   }
 ];
-
