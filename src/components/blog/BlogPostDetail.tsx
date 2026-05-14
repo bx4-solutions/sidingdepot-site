@@ -123,7 +123,7 @@ export default function BlogPostDetail() {
             </div>
 
             <div className="prose prose-lg max-w-none prose-headings:text-sd-navy prose-h2:border-l-[3px] prose-h2:border-sd-green prose-h2:pl-4 prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg">
-              {post.sections.map((section, idx) => {
+              {post.sections.map((section: any, idx: number) => {
                 const sectionId = section.h2.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                 
                 // Helper to render content with internal links
