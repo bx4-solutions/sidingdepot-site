@@ -175,37 +175,31 @@ But the question remains: what is the actual investment required? In the North A
   {
     slug: 'james-hardie-vs-vinyl-siding-georgia-climate',
     title: 'James Hardie vs Vinyl Siding: The Honest Comparison for Georgia Homeowners',
-    excerpt: "Vinyl is cheaper upfront, but Hardie wins in the Georgia climate. See the side-by-side comparison of cost, durability, and ROI for 2026.",
     category: 'Buying Guides',
-    readTime: 11,
+    readTime: 8,
     publishDate: '2026-05-12',
     featured: false,
     status: "published",
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Comparing high quality fiber cement siding with standard vinyl siding',
-      caption: 'In the Georgia heat, the difference between vinyl and fiber cement becomes obvious within just a few seasons.'
+      url: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1200',
+      alt: 'Side-by-side exterior view comparing homes with James Hardie fiber cement siding versus vinyl siding in suburban Georgia neighborhood',
+      caption: 'Left: James Hardie HardiePlank in Arctic White with dark trim in Johns Creek. Right: vinyl siding on comparable home — note how vinyl lacks shadow depth.'
     },
     sections: [
       {
         h2: 'The Georgia Heat Factor: Why Vinyl Warps',
-        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted.
+        content: `Georgia summers are brutal. With surface temperatures on southern-facing walls often exceeding 140°F, standard vinyl siding reaches its heat distortion point quickly. This leads to the "oil-canning" effect where panels look wavy or distorted. 
 
 James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn't expand and contract like plastic (vinyl), which means your house stays looking crisp and straight regardless of whether it's 20°F in January or 100°F in August.`,
         image: {
-          url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Close up of high quality fiber cement siding texture',
+          url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900',
+          alt: 'Close up of high quality fiber cement siding texture on a North Atlanta home',
           caption: 'Fiber cement offers a natural wood grain look without the maintenance or durability issues of real wood or plastic.'
         }
       },
       {
-        h2: 'Side-by-Side Comparison',
-        content: `When making a decision for your home in Roswell or Cumming, consider these key performance metrics:`,
-        image: {
-          url: 'https://images.unsplash.com/photo-1595841055318-47db9930f78c?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Home exterior showcasing professional siding and trim',
-          caption: 'A professional installation ensures both aesthetics and performance for decades.'
-        },
+        h2: 'Durability and Storm Performance',
+        content: `In Marietta and Alpharetta, hail and high winds are a reality of spring. Vinyl siding is prone to cracking, chipping, or even being ripped off in high winds. James Hardie is engineered to resist impact and is non-combustible, which can even lead to lower insurance premiums in some Georgia municipalities.`,
         table: {
           headers: ['Feature', 'James Hardie (Fiber Cement)', 'Standard Vinyl Siding'],
           rows: [
@@ -221,21 +215,24 @@ James Hardie fiber cement, on the other hand, is dimensionally stable. It doesn'
         h2: 'The ROI Myth: Is Vinyl Really Cheaper?',
         content: `While the upfront cost of vinyl is roughly 40% lower, the "real cost" over 15 years is often higher. A vinyl-sided home in North Atlanta will likely need to be replaced twice in the same timeframe that a Hardie-sided home remains in pristine condition. Furthermore, many high-end HOAs in Alpharetta and Milton no longer allow new vinyl installations because of the negative impact on neighborhood property values.`,
         image: {
-          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Suburban home with premium siding installation',
-          caption: 'Investing in high-quality siding is one of the most effective ways to increase your home\'s market value.'
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=900',
+          alt: 'Comparing high quality fiber cement siding with standard vinyl siding on Georgia homes',
+          caption: 'In the Georgia heat, the difference between vinyl and fiber cement becomes obvious within just a few seasons.'
         }
       }
     ],
     faq: [
       { q: 'Is James Hardie worth the extra cost?', a: 'Yes, if you plan to stay in your home for more than 5 years or care about maximizing resale value.' },
-      { q: 'Does vinyl siding protect against woodpeckers?', a: 'No, woodpeckers and other pests can easily penetrate vinyl. James Hardie is bird and insect resistant.' }
+      { q: 'Does vinyl siding protect against woodpeckers?', a: 'No, woodpeckers and other pests can easily penetrate vinyl. James Hardie is bird and insect resistant.' },
+      { q: 'Which material is better for Georgia humidity?', a: 'Fiber cement is superior because it does not support mold growth and is not affected by moisture like wood or vinyl.' },
+      { q: 'How does the resale value compare?', a: 'Homes with James Hardie siding typically sell faster and for a higher price point in the North Atlanta market.' }
     ],
     cta: { city: 'Johns Creek', service: 'Siding' },
     metaTitle: 'James Hardie vs Vinyl Siding Georgia 2026 | Siding Depot',
     metaDescription: 'Honest comparison of James Hardie vs Vinyl for Georgia homes. Learn why fiber cement is the superior choice for the Atlanta climate.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', '6-signs-time-replace-siding-georgia-home']
   },
+
   {
     slug: 'board-batten-siding-guide-north-atlanta-2026',
     title: 'Board and Batten Siding in North Atlanta: Styles, Costs, and HOA Approval',
