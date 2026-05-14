@@ -171,6 +171,12 @@ function BlogAdminPreview() {
             <p className="text-sd-gray-text font-medium">Review, preview, and manage publication status for all 10 strategic articles.</p>
           </div>
           <div className="flex items-center gap-3">
+             <Button asChild variant="outline" className="rounded-full shadow-sm">
+                <Link to="/admin/dashboard">
+                  <LayoutDashboard className="w-4 h-4 mr-2" />
+                  Admin Dashboard
+                </Link>
+             </Button>
              <div className="bg-white px-4 py-2 rounded-lg border shadow-sm flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-sd-green animate-pulse" />
                 <span className="text-xs font-bold text-sd-navy uppercase tracking-wider">Sync Active</span>
