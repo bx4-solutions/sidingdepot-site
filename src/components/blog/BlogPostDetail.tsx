@@ -155,7 +155,7 @@ export default function BlogPostDetail() {
                         <table className="min-w-full divide-y divide-gray-200">
                           <thead className="bg-sd-navy text-white">
                             <tr>
-                              {section.table.headers.map((header, i) => (
+                              {section.table.headers.map((header: string, i: number) => (
                                 <th key={i} className="px-6 py-4 text-left text-sm font-bold uppercase tracking-wider">
                                   {header}
                                 </th>
@@ -163,9 +163,9 @@ export default function BlogPostDetail() {
                             </tr>
                           </thead>
                           <tbody className="bg-white divide-y divide-gray-100">
-                            {section.table.rows.map((row, i) => (
+                            {section.table.rows.map((row: string[], i: number) => (
                               <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-sd-gray-light/30"}>
-                                {row.map((cell, j) => (
+                                {row.map((cell: string, j: number) => (
                                   <th key={j} className="px-6 py-4 text-sm font-medium text-sd-gray-text">
                                     {cell}
                                   </th>
