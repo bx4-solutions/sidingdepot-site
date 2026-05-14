@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { ArrowRight, Clock, Calendar, User, ChevronRight, Eye, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useBlogPost } from "@/hooks/use-blog-posts";
+import { useBlogPosts } from "@/hooks/use-blog-posts";
 
 export default function BlogPostDetail() {
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function BlogPostDetail() {
   const isPreview = search.preview === true;
   
   const { posts, loading } = useBlogPosts();
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p: BlogPost) => p.slug === slug);
 
   const [activeId, setActiveId] = useState<string>("");
 
