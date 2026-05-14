@@ -94,56 +94,58 @@ Second is the upgrade of house wrap. Many older homes were built without a prope
   {
     slug: '6-signs-time-replace-siding-georgia-home',
     title: "6 Signs It's Time to Replace the Siding on Your Georgia Home",
-    excerpt: "Water damage and rot behind aging siding is common on Georgia homes built before 2005. Here are the 6 key signs you need to watch for.",
+    excerpt: "Don't wait for interior leaks. Learn the 6 critical warning signs that your Georgia home's siding is failing and needs professional attention.",
     category: 'Home Maintenance',
-    readTime: 7,
+    readTime: 10,
     publishDate: '2026-05-13',
     featured: false,
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1200',
-      alt: 'Warped and water-damaged wood siding on an aging home in Georgia showing visible rot and paint failure',
-      caption: 'Water damage and rot behind aging siding is common on Georgia homes built before 2005 — often invisible until a contractor removes the old cladding.'
+      url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+      alt: 'Damaged and failing home siding in need of replacement',
+      caption: 'Visible cracking and fading are often the first outward signs of siding failure in the Georgia climate.'
     },
     sections: [
       {
-        h2: '1. Warping or Buckling Panels',
-        content: "Georgia's extreme summer heat can cause vinyl siding to warp if not installed correctly. If you notice panels that are no longer flat, it's a sign of thermal stress.",
-        image: {
-          url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=900',
-          alt: 'Warped vinyl siding panels on a home exterior due to heat exposure',
-          caption: 'Georgia heat causes vinyl to warp at 95°F+ when improperly installed or of lower quality.'
-        }
+        h2: '1. Visible Cracking, Bubbling, or Blistering',
+        content: `In our North Atlanta humidity, siding failure often starts where you can see it. If you have vinyl siding, "bubbling" is a major red flag — it often means the siding is melting from reflected sunlight or that moisture is trapped and boiling beneath the surface. For wood or fiber cement, cracks allow water to seep into the wall cavity, leading to the silent killer of Georgia homes: internal rot.
+
+Check the corners and the areas around your windows specifically. These are the most common fail points in Marietta and Alpharetta homes built during the mid-90s building boom.`
       },
       {
-        h2: '2. Paint Failure and Fading',
-        content: "High-quality fiber cement like James Hardie should hold its color for 12+ years. If your paint is peeling or significantly faded before that, it indicates a breakdown in the protective layer.",
+        h2: '2. Spike in Heating or Cooling Bills',
+        content: `Your siding and the underlying house wrap act as your home\'s thermal envelope. If you notice your AC running constantly during our 95-degree July days, and your bill has increased significantly year-over-year, your siding may no longer be providing a proper seal.
+
+When we perform inspections in places like Roswell and Johns Creek, we often find that the old house wrap has disintegrated, leaving the home essentially uninsulated against the wind and humidity.`
       },
       {
-        h2: '3. Mold, Mildew, or Fungus',
-        content: "Any growth on your siding suggests that moisture is being trapped. This is especially common on north-facing walls in high-humidity areas like Cherokee County.",
+        h2: '3. Interior Paint or Wallpaper Peeling',
+        content: `This is the most dangerous sign because it means moisture has already bypassed the siding, the house wrap, and the sheathing, and is now affecting your interior drywall. If you see "mysterious" peeling near an exterior wall, don't just repaint — call for a siding inspection. In Georgia, this is almost always a sign of a failing exterior moisture barrier.`
       },
       {
-        h2: '4. Higher Than Normal Energy Bills',
-        content: "Siding acts as your home's second thermal envelope. If your bills are spiking, your siding might no longer be providing the insulation it should.",
+        h2: '4. Mold, Mildew, or Fungus Growth',
+        content: `While some surface mildew is normal on the north side of a home in Cherokee County, any growth that seems to be originating from *under* the panels is a sign of rot. Fiber cement like James Hardie is specifically designed to resist this, but older wood or composite sidings are highly susceptible.`,
+        pullQuote: "If you can poke a screwdriver into a soft spot on your siding, you aren't looking at a repair — you're looking at a structural liability."
       },
       {
-        h2: '5. Rotting Wood Around Windows and Doors',
-        content: "This is the 'canary in the coal mine.' If the trim is rotting, there is a high probability that moisture is getting behind the siding panels as well.",
+        h2: '5. Severe Fading and "Chalking"',
+        content: `If your siding has lost its original luster and leaves a chalky residue on your hand when you touch it, the protective finish has completely broken down. This means the material is now porous and absorbing Georgia\'s heavy rainwater like a sponge.`
       },
       {
-        h2: '6. Storm and Hail Damage',
-        content: "After a typical Georgia spring storm, check for 'bruising' on your siding. Fiber cement often hides this damage from a distance, but close inspection reveals the impact marks.",
+        h2: '6. Frequent Need for Repainting',
+        content: `A quality siding job should hold paint for 8-12 years. If you find yourself needing a touch-up every 3-4 years, the siding itself is failing and no longer holding the bond. It\'s more cost-effective in the long run to invest in a permanent solution like James Hardie ColorPlus technology.`
       }
     ],
     faq: [
-      { q: "How do I know if I need full replacement or just a repair?", a: "If more than 20% of your panels show signs of damage or rot, a full replacement is usually more cost-effective in the long run." },
-      { q: "Can I just paint over warped siding?", a: "No. Warping is a structural failure of the material. Painting will not fix the underlying issue and the new paint will likely fail quickly." }
+      { q: 'Can I just replace one side of my house?', a: 'While possible, it is rarely recommended because it is nearly impossible to match the fading and profile of older siding, which hurts your resale value.' },
+      { q: 'Does insurance cover siding replacement?', a: 'Only if the damage is caused by a "covered peril" like hail or wind. Wear and tear or age are not typically covered.' },
+      { q: 'What is the best siding for Georgia humidity?', a: 'James Hardie fiber cement is widely considered the best choice for Georgia because it does not rot, warp, or support mold growth.' }
     ],
     cta: { city: 'Alpharetta', service: 'Siding' },
-    metaTitle: "6 Signs to Replace Siding in Georgia | Siding Depot Blog",
-    metaDescription: "Is it time for new siding? Learn the 6 warning signs every Georgia homeowner should know, from warping to hidden rot.",
+    metaTitle: '6 Warning Signs to Replace Siding in Georgia | Siding Depot',
+    metaDescription: 'Is your siding failing? Learn the 6 critical signs Georgia homeowners need to watch for to avoid expensive interior water damage.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'james-hardie-vs-vinyl-siding-georgia-climate']
   },
+
   {
     slug: 'james-hardie-vs-vinyl-siding-georgia-climate',
     title: 'James Hardie vs Vinyl Siding: The Honest Comparison for Georgia Homeowners',
