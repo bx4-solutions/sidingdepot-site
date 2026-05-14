@@ -250,7 +250,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'Board and Batten Siding in North Atlanta: Styles, Costs, and HOA Approval',
     excerpt: "The 'Modern Farmhouse' aesthetic is taking over Milton and Alpharetta. Learn how to achieve this look with James Hardie.",
     category: 'Style Guides',
-    readTime: 9,
+    readTime: 12,
     publishDate: '2026-05-11',
     featured: false,
     status: "published",
@@ -262,7 +262,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Modern Farmhouse Explosion in Georgia',
-        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.`,
+        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with James Hardie materials, it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home.`,
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'White modern farmhouse exterior with vertical siding',
@@ -271,20 +271,34 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         h2: 'Installation Complexity and Cost',
-        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.`,
-        image: {
-          url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Construction crew installing vertical siding panels',
-          caption: 'Precision is key when aligning vertical panels and battens for a clean, professional finish.'
-        }
+        content: `Installing Board and Batten with James Hardie requires HardiePanel® vertical siding and HardieTrim® boards. Because there are more individual pieces to measure and cut, labor costs are typically 15-20% higher than traditional lap siding. In the Alpharetta market, expect to pay between $11 and $15 per square foot for a professional installation.\n\nThe process involves installing 4x8 or 4x10 panels first, then "battening" the seams with 2-inch or 3-inch trim boards. This multi-layered approach requires extreme precision; if the battens are even a quarter-inch out of plumb, the entire wall will look distorted.`,
+        table: {
+          headers: ['Component', 'Material Cost', 'Labor Intensity', 'Visual Impact'],
+          rows: [
+            ['HardiePanel', 'Medium', 'Standard', 'Base texture'],
+            ['HardieTrim (Battens)', 'Low-Medium', 'High', 'Defined vertical lines'],
+            ['Metal Flashing', 'Low', 'Medium', 'Waterproofing'],
+            ['Caulk/Sealant', 'Low', 'Very High', 'Seamless finish']
+          ]
+        },
+        pullQuote: "Board and Batten isn't just a siding choice—it's a precision trim project. The quality of the installation shows in every single vertical line."
       },
       {
         h2: 'Getting HOA Approval in North Atlanta',
-        content: `HOAs in communities like Windward or Seven Oaks can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples and technical data sheets to make the approval process seamless.`,
+        content: `HOAs in communities like Windward, Seven Oaks, or Sugarloaf can be strict about exterior changes. The good news is that James Hardie is almost universally approved because it is a premium material. We provide our clients with material samples, technical data sheets, and digital renderings to make the approval process seamless.\n\nMany HOAs in Milton and Alpharetta now actually *encourage* Board and Batten as a way to modernize aging neighborhoods and boost overall property values.`,
         image: {
           url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80',
           alt: 'Suburban neighborhood homes with high quality siding',
           caption: 'Premium siding helps maintain community standards and individual property values.'
+        }
+      },
+      {
+        h2: 'Vertical vs. Horizontal: The Moisture Advantage',
+        content: `While mostly chosen for aesthetics, vertical siding has a functional advantage in Georgia: it sheds water faster. In areas of your home that receive little sunlight, horizontal lap siding can sometimes hold moisture in the "lap" joints. Board and Batten allow water to run straight down the panel, reducing the risk of mildew buildup on the shady side of your house.`,
+        image: {
+          url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1000&q=80',
+          alt: 'Modern farmhouse with white board and batten siding installation',
+          caption: 'The vertical lines of board and batten create a height and modern feel that traditional lap siding cannot match.'
         }
       }
     ],
