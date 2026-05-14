@@ -289,35 +289,8 @@ function ArticleDetail() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="max-h-[600px] overflow-y-auto">
-                  {auditLogs.length === 0 ? (
-                    <div className="p-8 text-center text-sd-gray-text text-sm italic">
-                      No changes recorded yet.
-                    </div>
-                  ) : (
-                    <div className="divide-y">
-                      {auditLogs.map((log) => (
-                        <div key={log.id} className="p-4 hover:bg-gray-50 transition-colors">
-                          <div className="flex justify-between items-start mb-1">
-                            <Badge variant="outline" className="text-[9px] font-bold uppercase tracking-tighter h-4">
-                              {log.action.replace('status_change_to_', '')}
-                            </Badge>
-                            <span className="text-[10px] text-gray-400">
-                              {new Date(log.created_at).toLocaleDateString()}
-                            </span>
-                          </div>
-                          <p className="text-xs font-bold text-sd-navy">
-                            {log.action.includes('published') ? 'Article Published' : 
-                             log.action.includes('draft') ? 'Moved to Draft' : 
-                             'Status Updated'}
-                          </p>
-                          <p className="text-[10px] text-sd-gray-text mt-1">
-                            {new Date(log.created_at).toLocaleTimeString()}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                <div className="max-h-[600px] overflow-y-auto px-4 pb-4">
+                  <AuditLogViewer slug={slug} limit={20} />
                 </div>
               </CardContent>
             </Card>
