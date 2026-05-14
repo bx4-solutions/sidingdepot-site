@@ -31,8 +31,8 @@ export default defineConfig({
     { name: "desktop", use: { viewport: { width: 1280, height: 800 } } },
   ],
   webServer: {
-    // Build once, serve the production preview — fastest reliable mode for CI.
-    command: "bun run build && bun run preview --port 4173 --strictPort",
+    // Serve the TanStack Start dev server for route-level tests.
+    command: "bun run dev --host 127.0.0.1 --port 4173",
     url: "http://localhost:4173",
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
