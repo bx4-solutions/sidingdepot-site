@@ -73,7 +73,7 @@ export function BeforeAfterSlider({ before, after, beforeAlt, afterAlt }: Props)
         style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
         aria-hidden
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-14 w-14 sm:h-12 sm:w-12 rounded-full bg-sd-green flex items-center justify-center shadow-xl ring-4 ring-white/30 peer-focus-visible:ring-sd-navy peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-14 w-14 sm:h-12 sm:w-12 rounded-full bg-sd-green flex items-center justify-center shadow-xl ring-4 ring-white/60 peer-focus-visible:ring-sd-navy peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white">
           <svg viewBox="0 0 24 24" className="h-6 w-6 sm:h-5 sm:w-5 text-sd-black" fill="currentColor">
             <path d="M8 5l-7 7 7 7V5zm8 14l7-7-7-7v14z" />
           </svg>

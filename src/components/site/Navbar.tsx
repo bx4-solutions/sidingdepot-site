@@ -109,7 +109,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/5 bg-sd-dark">
+        <div className="lg:hidden border-t border-white/5 bg-sd-dark overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))]">
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link

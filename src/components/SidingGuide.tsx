@@ -403,11 +403,11 @@ export const SidingGuide = () => {
              </div>
           </div>
 
-          <p className="mt-12 text-white/40 text-[10px] uppercase tracking-[0.1em] italic max-w-lg leading-relaxed">
+          <p className="mt-12 text-white/70 text-[10px] uppercase tracking-[0.1em] italic max-w-lg leading-relaxed">
             Serving Marietta · Alpharetta · Milton · Canton · Woodstock · Roswell · Kennesaw · Johns Creek · Sandy Springs · Acworth
           </p>
           
-          <p className="mt-8 text-white/30 text-[9px] uppercase tracking-widest">
+          <p className="mt-8 text-white/60 text-[9px] uppercase tracking-widest">
             © 2026 Siding Depot LLC · All rights reserved · sidingdepot.com
           </p>
         </div>

@@ -32,7 +32,7 @@ export function Footer() {
   return (
     <footer className="bg-sd-black text-white">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
             <div className="font-display text-3xl leading-none text-sd-green bg-sd-black p-2 rounded transform rotate-[-2deg] inline-block mb-2">
               SIDING<br />DEPOT
@@ -104,19 +104,19 @@ export function Footer() {
               {session ? (
                 <li><Link to="/seo-dashboard" className="text-sd-green font-bold">SEO Dashboard</Link></li>
               ) : (
-                <li><Link to="/admin/login" className="text-white/30 hover:text-white/50">Admin</Link></li>
+                <li><Link to="/admin/login" className="text-white/60 hover:text-white/50">Admin</Link></li>
               )}
             </ul>
             <div className="flex gap-3 mt-5">
-              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><LucideFacebook className="h-5 w-5" /></a>
-              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/40 hover:text-sd-green"><LucideInstagram className="h-5 w-5" /></a>
-              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/40 hover:text-sd-green"><LucideYoutube className="h-5 w-5" /></a>
-              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/40 hover:text-sd-green"><Music2 className="h-5 w-5" /></a>
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/70 hover:text-sd-green"><LucideFacebook className="h-5 w-5" /></a>
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/70 hover:text-sd-green"><LucideInstagram className="h-5 w-5" /></a>
+              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/70 hover:text-sd-green"><LucideYoutube className="h-5 w-5" /></a>
+              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/70 hover:text-sd-green"><Music2 className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/40">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/70">
           <p>© {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</p>
           <p className="text-balance">James Hardie Elite Preferred Contractor · Licensed &amp; Insured · GA</p>
         </div>

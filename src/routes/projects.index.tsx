@@ -140,14 +140,14 @@ function ProjectsPage() {
                 </div>
 
                 <div className="absolute inset-x-0 bottom-0 p-6 lg:p-7">
-                  <div className="h-px w-full bg-white/30 mb-4" />
+                  <div className="h-px w-full bg-white/60 mb-4" />
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-sm font-semibold text-white">
                       {p.category ?? p.tags[0]}
                     </span>
                     <span
                       aria-hidden
-                      className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/40 text-white transition-colors group-hover:bg-sd-green group-hover:border-sd-green group-hover:text-sd-black"
+                      className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/70 text-white transition-colors group-hover:bg-sd-green group-hover:border-sd-green group-hover:text-sd-black"
                     >
                       <ArrowRight className="h-4 w-4" />
                     </span>
