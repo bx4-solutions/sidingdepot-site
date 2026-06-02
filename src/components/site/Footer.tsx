@@ -35,9 +35,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-28 lg:pb-14">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
-            <div className="font-display text-3xl leading-none text-sd-green bg-sd-black p-2 rounded transform rotate-[-2deg] inline-block mb-2">
-              SIDING<br />DEPOT
-            </div>
+            <img
+              src={logoSidingDepot.url}
+              alt={`${SITE.name} logo`}
+              className="h-16 w-auto mb-2"
+              loading="lazy"
+              decoding="async"
+            />
             <p className="mt-3 text-sm text-white/50 max-w-xs">
               Georgia's trusted James Hardie Elite Preferred contractor. Serving
               North Atlanta since 2010.
