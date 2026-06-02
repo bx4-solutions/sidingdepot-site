@@ -9,12 +9,12 @@ import {
 } from "lucide-react";
 import {
   ServiceLandingPage,
-  buildServiceMeta,
   faqJsonLd,
   serviceJsonLd,
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { buildServiceMeta } from "@/components/site/ServiceLandingPage";
 
 const PAGE_TITLE = "Entry & Patio Doors in Marietta, GA | Siding Depot — Secure & Stylish";
 const PAGE_DESC =

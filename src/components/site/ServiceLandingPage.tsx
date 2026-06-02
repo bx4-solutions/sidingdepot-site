@@ -28,6 +28,8 @@ import {
   trackCtaClick,
   trackCallClick,
 } from "@/lib/track";
+import { getServiceSchema, getFaqSchema } from "@/lib/schema";
+
 
 
 export type ChecklistItem = {
@@ -411,15 +413,7 @@ export function ServiceLandingPage({
 export function faqJsonLd(faqs: ReadonlyArray<FaqItem>) {
   return {
     type: "application/ld+json",
-    children: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqs.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
-      })),
-    }),
+    children: JSON.stringify(getFaqSchema(faqs)),
   };
 }
 
@@ -432,16 +426,10 @@ export function serviceJsonLd(
     serviceType?: string;
   }
 ) {
+  const path = options?.canonical ? new URL(options.canonical).pathname : "";
   return {
     type: "application/ld+json",
-    children: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name,
-      serviceType: options?.serviceType ?? name,
-      description,
-      image: options?.image,
-    }),
+    children: JSON.stringify(getServiceSchema(name, description, path, options?.image)),
   };
 }
 

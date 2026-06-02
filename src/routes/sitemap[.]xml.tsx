@@ -5,6 +5,8 @@ import {
   SITE_ORIGIN,
 } from "@/data/locations";
 import { BLOG_POSTS } from "@/data/blog-posts";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+
 
 function buildSitemap(origin: string): string {
   const lastmod = new Date().toISOString().slice(0, 10);
@@ -51,6 +53,12 @@ ${body}
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
+  head: () => ({
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
+    ],
+  }),
   server: {
     handlers: {
       GET: ({ request }) => {

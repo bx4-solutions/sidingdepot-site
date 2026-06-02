@@ -3,7 +3,9 @@ import { CheckCircle2, ArrowRight, ExternalLink, ShieldCheck, Clock, CreditCard,
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
+
 
 export const Route = createFileRoute("/finance")({
   head: () => {
@@ -19,36 +21,8 @@ export const Route = createFileRoute("/finance")({
           "description": "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
           "isPartOf": { "@id": "https://sidingdepot.com/#website" }
         },
-        {
-          "@type": ["Organization", "LocalBusiness"],
-          "@id": "https://sidingdepot.com/#organization",
-          "name": SITE.name,
-          "legalName": SITE.legalName,
-          "url": "https://sidingdepot.com",
-          "logo": "https://sidingdepot.com/logo.png",
-          "telephone": SITE.phone,
-          "email": SITE.email,
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": SITE.address.street,
-            "addressLocality": SITE.address.city,
-            "addressRegion": SITE.address.state,
-            "postalCode": SITE.address.zip,
-            "addressCountry": "US"
-          },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          "sameAs": [
-            SITE.social.facebook,
-            SITE.social.instagram,
-            SITE.social.youtube,
-            SITE.social.tiktok
-          ]
-        }
+        ORG_SCHEMA,
+        LOCAL_BUSINESS_SCHEMA
       ]
     };
 
@@ -67,7 +41,7 @@ export const Route = createFileRoute("/finance")({
       links: [
         { rel: "canonical", href: canonical }
       ],
-      script: [
+      scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify(schema)

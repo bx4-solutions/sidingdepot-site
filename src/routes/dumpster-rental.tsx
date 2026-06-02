@@ -5,6 +5,8 @@ import { Footer } from "@/components/site/Footer";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
+import { getServiceSchema } from "@/lib/schema";
+
 
 const HERO_IMAGE =
   "https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68cb2a4e8c4437153cdbaa3b.jpeg";
@@ -32,6 +34,19 @@ export const Route = createFileRoute("/dumpster-rental")({
       { name: "twitter:image", content: HERO_IMAGE },
     ],
     links: [{ rel: "canonical", href: "https://sidingdepot.lovable.app/dumpster-rental" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getServiceSchema(
+            "Dumpster Rental in Marietta, GA",
+            "Reserve a 10, 15 or 20-yard dumpster in Marietta, Canton, Alpharetta and across North Atlanta. Same-day / next-day drop-off, transparent pricing, no hidden fees.",
+            "/dumpster-rental",
+            HERO_IMAGE
+          )
+        ),
+      },
+    ],
   }),
   component: DumpsterRentalPage,
 });

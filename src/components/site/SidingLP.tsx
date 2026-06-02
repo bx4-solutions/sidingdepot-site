@@ -21,6 +21,8 @@ import {
   GREENSKY_STEPS,
   GREENSKY_FAQS,
 } from "@/data/lp-content";
+import { LOCAL_BUSINESS_SCHEMA, getFaqSchema, getServiceSchema } from "@/lib/schema";
+
 
 /**
  * Conversion-optimized landing page for Google Ads traffic.
@@ -532,36 +534,15 @@ export function lpHead({ city, path }: { city: string; path: string }) {
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Siding Depot",
-          telephone: "+16784002012",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "3036 Roswell Rd",
-            addressLocality: "Marietta",
-            addressRegion: "GA",
-            postalCode: "30062",
-          },
-          areaServed: ["Marietta", "Alpharetta", "Milton", "Canton", "Woodstock", "Roswell", "Kennesaw"],
-          priceRange: "$$$",
-        }),
+        children: JSON.stringify(LOCAL_BUSINESS_SCHEMA),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: [...buildFaqs(city), ...GREENSKY_FAQS].map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: f.a,
-            },
-          })),
-        }),
+        children: JSON.stringify(getServiceSchema(`James Hardie Siding Installation in ${city}`, description, path, image)),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(getFaqSchema([...buildFaqs(city), ...GREENSKY_FAQS])),
       },
     ],
   };
