@@ -69,7 +69,7 @@ export const Route = createFileRoute("/finance")({
       links: [
         { rel: "canonical", href: canonical }
       ],
-      script: [
+      scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify(schema)
