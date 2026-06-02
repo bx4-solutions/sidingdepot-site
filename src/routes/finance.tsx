@@ -21,36 +21,8 @@ export const Route = createFileRoute("/finance")({
           "description": "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
           "isPartOf": { "@id": "https://sidingdepot.com/#website" }
         },
-        {
-          "@type": ["Organization", "LocalBusiness"],
-          "@id": "https://sidingdepot.com/#organization",
-          "name": SITE.name,
-          "legalName": SITE.legalName,
-          "url": "https://sidingdepot.com",
-          "logo": "https://sidingdepot.com/logo.png",
-          "telephone": SITE.phone,
-          "email": SITE.email,
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": SITE.address.street,
-            "addressLocality": SITE.address.city,
-            "addressRegion": SITE.address.state,
-            "postalCode": SITE.address.zip,
-            "addressCountry": "US"
-          },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          "sameAs": [
-            SITE.social.facebook,
-            SITE.social.instagram,
-            SITE.social.youtube,
-            SITE.social.tiktok
-          ]
-        }
+        ORG_SCHEMA,
+        LOCAL_BUSINESS_SCHEMA
       ]
     };
 
