@@ -269,7 +269,7 @@ function HomePage() {
       <FinancingBlock />
 
       {/* QUOTE FORM TEASER */}
-      <section className="bg-sd-dark text-white py-20 lg:py-24">
+      <section className="section-dark-alt py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
@@ -328,13 +328,13 @@ function HomePage() {
       {/* GAF/HARDIE SEALS STRIP OR CTA */}
 
       {/* HARDIE SECTION */}
-      <section className="relative bg-gradient-to-br from-sd-navy via-sd-navy to-sd-dark text-white py-20 lg:py-24">
+      <section className="relative section-dark bg-gradient-to-br from-sd-navy via-sd-navy to-sd-dark py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
               James Hardie · Elite Preferred
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-white">
               Why James Hardie Is Built For Georgia
             </h2>
             <ul className="mt-6 space-y-3 text-white/80">
