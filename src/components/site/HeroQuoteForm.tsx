@@ -12,33 +12,33 @@ const schema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, { message: "Informe seu nome completo (mínimo 2 caracteres)" })
-    .max(100, { message: "Nome muito longo (máximo 100 caracteres)" }),
+    .min(2, { message: "Please enter your full name (minimum 2 characters)" })
+    .max(100, { message: "Name is too long (maximum 100 characters)" }),
   phone: z
     .string()
     .trim()
-    .min(7, { message: "Informe um telefone válido com DDD" })
-    .max(30, { message: "Telefone muito longo" })
+    .min(7, { message: "Please enter a valid phone number" })
+    .max(30, { message: "Phone number is too long" })
     .regex(/^[+\d\s().-]+$/, {
-      message: "Use apenas números, espaços e os caracteres + ( ) . -",
+      message: "Please use only numbers, spaces, and the characters + ( ) . -",
     }),
   email: z
     .string()
     .trim()
-    .email({ message: "Informe um e-mail válido (ex.: nome@dominio.com)" })
-    .max(255, { message: "E-mail muito longo" }),
+    .email({ message: "Please enter a valid email address (e.g., name@domain.com)" })
+    .max(255, { message: "Email is too long" }),
   city: z
     .string()
     .trim()
-    .min(2, { message: "Informe sua cidade" })
-    .max(80, { message: "Cidade muito longa" }),
+    .min(2, { message: "Please enter your city" })
+    .max(80, { message: "City name is too long" }),
   services: z
     .array(z.string())
-    .min(1, { message: "Selecione pelo menos um serviço" }),
+    .min(1, { message: "Please select at least one service" }),
   message: z
     .string()
     .trim()
-    .max(1000, { message: "Mensagem muito longa (máximo 1000 caracteres)" })
+    .max(1000, { message: "Message is too long (maximum 1000 characters)" })
     .optional()
     .or(z.literal("")),
 });
@@ -142,7 +142,7 @@ export function HeroQuoteForm({
       onSuccess?.();
     } catch {
       track("quote_form_error", { source: source });
-      setErrors({ message: "Não foi possível enviar agora. Tente novamente." });
+      setErrors({ message: "Unable to send right now. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -181,10 +181,10 @@ export function HeroQuoteForm({
         <div className="px-6 py-10 text-center">
           <CheckCircle2 className="mx-auto h-10 w-10 text-sd-green" />
           <h3 className="mt-3 font-display text-xl text-sd-black">
-            Pedido recebido!
+            Request Received!
           </h3>
           <p className="mt-2 text-sm text-sd-gray-text">
-            Nossa equipe entra em contato em até 24h.
+            Our team will contact you within 24 hours.
           </p>
         </div>
       ) : (
