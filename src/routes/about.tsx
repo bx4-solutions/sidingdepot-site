@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { SITE } from "@/data/site";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+
 
 const LucideFacebook = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -24,37 +26,11 @@ const ABOUT_VIDEO = {
   uploadDate: "2024-06-01",
 } as const;
 
-const LOCAL_BUSINESS_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "GeneralContractor", "HomeAndConstructionBusiness"],
-  "@id": "https://sidingdepot.com/#about",
-  name: "Siding Depot",
-  legalName: "Siding Depot LLC",
+const LOCAL_BUSINESS_ABOUT_JSONLD = {
+  ...LOCAL_BUSINESS_SCHEMA,
+  "@id": "https://sidingdepot.com/about/#localbusiness",
   alternateName: "Siding Depot Marietta",
-  url: "https://sidingdepot.com/about",
-  image: "https://sidingdepot.com/og-default.jpg",
-  logo: "https://sidingdepot.com/logo.png",
-  telephone: "+1-678-400-2012",
-  email: "info@sidingdepot.com",
-  description:
-    "James Hardie Elite Preferred siding contractor in Marietta, GA. Specialists in fiber cement siding installation, replacement windows, painting, decks, gutters and roofing across North Atlanta.",
   foundingDate: "2010",
-  priceRange: "$$",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "3036 Roswell Rd",
-    addressLocality: "Marietta",
-    addressRegion: "GA",
-    postalCode: "30062",
-    addressCountry: "US",
-  },
-  geo: { "@type": "GeoCoordinates", latitude: 33.9526, longitude: -84.5499 },
-  areaServed: [
-    "Marietta, GA", "Alpharetta, GA", "Milton, GA", "Canton, GA",
-    "Woodstock, GA", "Roswell, GA", "Kennesaw, GA", "Johns Creek, GA",
-    "Sandy Springs, GA", "Acworth, GA", "Cobb County, GA", "Cherokee County, GA",
-    "Fulton County, GA", "Forsyth County, GA",
-  ].map((n) => ({ "@type": "City", name: n })),
   hasCredential: [
     {
       "@type": "EducationalOccupationalCredential",
@@ -77,12 +53,6 @@ const LOCAL_BUSINESS_JSONLD = {
     "Exterior painting",
     "Replacement windows",
     "Gutters", "Decks", "Roofing",
-  ],
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "128" },
-  sameAs: [
-    "https://www.facebook.com/SidingDepot",
-    "https://www.instagram.com/sidingdepot/",
-    "https://www.youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
   ],
 };
 
@@ -166,7 +136,8 @@ export const Route = createFileRoute("/about")({
       { rel: "dns-prefetch", href: "https://www.youtube-nocookie.com" },
     ],
     scripts: [
-      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_JSONLD) },
+      { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_ABOUT_JSONLD) },
       { type: "application/ld+json", children: JSON.stringify(VIDEO_JSONLD) },
     ],
   }),

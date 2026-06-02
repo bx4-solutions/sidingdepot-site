@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Calendar, MapPin, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PROJECTS_SORTED, formatProjectDate, SITE } from "@/data/site";
+import { getProjectSchema } from "@/lib/schema";
+
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -64,24 +66,7 @@ export const Route = createFileRoute("/projects/$slug")({
 function ProjectDetailPage() {
   const { project: p, prev, next } = Route.useLoaderData();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: p.title ?? p.alt,
-    description: p.description ?? p.alt,
-    image: p.src.startsWith("http") ? p.src : `https://sidingdepot.com${p.src}`,
-    dateCreated: p.date,
-    locationCreated: p.city
-      ? { "@type": "Place", name: p.city }
-      : undefined,
-    creator: {
-      "@type": "LocalBusiness",
-      name: SITE.name,
-      telephone: SITE.phone,
-      address: SITE.address.full,
-    },
-    keywords: p.tags.join(", "),
-  };
+  const jsonLd = getProjectSchema(p);
 
   return (
     <article className="bg-background">
