@@ -178,11 +178,11 @@ export function SidingLP({ city }: SidingLPProps) {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
-      <section className="relative overflow-hidden text-white" style={{ background: "#1E2A38" }}>
+      <section className="relative overflow-hidden section-dark">
         <div className="absolute inset-0">
           <img 
             src={HERO_BG} 
@@ -190,14 +190,14 @@ export function SidingLP({ city }: SidingLPProps) {
             className="h-full w-full object-cover opacity-30" 
             loading="eager" 
           />
-          <div className="absolute inset-0" style={{ background: "rgba(30, 42, 56, 0.65)" }} />
+          <div className="absolute inset-0 bg-sd-navy/65" />
         </div>
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg">
           <div>
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               <Star className="h-3.5 w-3.5 fill-sd-green" aria-hidden="true" /> James Hardie Elite Preferred — Top 2% Nationwide
             </span>
-            <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]">
+            <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05] text-white">
               James Hardie® Siding Installation in {city}, GA
             </h1>
             <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
@@ -228,8 +228,7 @@ export function SidingLP({ city }: SidingLPProps) {
 
       {/* PROOF BAR */}
       <section
-        className="text-white"
-        style={{ background: "#1E2A38", borderTop: "3px solid #BCD635" }}
+        className="section-dark border-t-[3px] border-sd-green"
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
@@ -335,10 +334,10 @@ export function SidingLP({ city }: SidingLPProps) {
       </section>
 
       {/* URGENCY + CTA */}
-      <section className="text-white" style={{ background: "#1E2A38" }}>
+      <section className="section-dark">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
               Limited Project Slots Available
             </h2>
             <p className="mt-4 text-white/80 leading-relaxed">
@@ -346,8 +345,7 @@ export function SidingLP({ city }: SidingLPProps) {
               our busiest season — North Atlanta homeowners are scheduling now.
             </p>
             <div
-              className="mt-6 rounded-lg p-4 text-sm font-bold"
-              style={{ background: "#BCD635", color: "#1E2A38" }}
+              className="mt-6 rounded-lg p-4 text-sm font-bold bg-sd-green text-sd-navy"
             >
               ⚡ We&apos;re booking 3–4 weeks out. Request your estimate today to secure your spot.
             </div>

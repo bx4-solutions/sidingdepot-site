@@ -164,13 +164,13 @@ function HomePage() {
       </section>
 
       {/* WHY US */}
-      <section className="bg-sd-navy py-20 lg:py-24 text-white">
+      <section className="section-dark py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
               Why Siding Depot
             </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold">
+            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
               4 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-white/65 max-w-lg">
