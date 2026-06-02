@@ -11,6 +11,8 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
 import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 import { SERVICE_METADATA } from "@/data/seo-config";
+import { getFaqSchema } from "@/lib/schema";
+
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta";
@@ -54,15 +56,7 @@ export const Route = createFileRoute("/siding")({
       }),
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: FAQ_ITEMS.map((item) => ({
-            "@type": "Question",
-            name: item.q,
-            acceptedAnswer: { "@type": "Answer", text: item.a },
-          })),
-        }),
+        children: JSON.stringify(getFaqSchema(FAQ_ITEMS)),
       },
     ],
   }),

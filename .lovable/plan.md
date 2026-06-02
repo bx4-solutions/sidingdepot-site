@@ -1,28 +1,32 @@
-I will re-run a manual audit of the website's key pages to identify remaining accessibility, SEO, and performance issues, focusing on the inconsistencies found during initial exploration.
+## Structured Data (JSON-LD) Implementation Plan
 
-### 1. Accessibility & UX Audit
-- **Fix:** Translate all remaining Portuguese UI strings and validation messages to English in `HeroQuoteForm.tsx` and `SimpleLeadForm.tsx`.
-- **Fix:** Update `contact.tsx` to use English headings ("Get Your Free Quote" instead of "Solicitar Orçamento").
-- **Fix:** Ensure all interactive elements have sufficient touch targets and focus states.
+I will implement and validate comprehensive JSON-LD structured data for Organization, LocalBusiness, and Service across all key pages to ensure maximum visibility in Google Rich Results.
 
-### 2. SEO & Meta Content Audit
-- **Fix:** Update `/contact` meta title and description to English.
-- **Fix:** Audit all routes for missing or duplicate H1 tags.
-- **Improvement:** Verify canonical URLs and preconnect hints across all service pages to ensure they match the primary domain.
+### 1. Centralize Schema Utilities
+- Create a new utility `src/lib/schema.ts` to generate consistent JSON-LD payloads.
+- Define a master `ORG_SCHEMA` and `LOCAL_BUSINESS_SCHEMA` that other page-specific schemas (Service, FAQ) will reference via `@id` for proper semantic linking.
 
-### 3. Responsiveness Audit
-- **Test:** Use browser tools to test all key pages at 320px, 375px, 768px, 1024px, and 1440px.
-- **Fix:** Adjust any overflowing elements, especially in the `HeroQuoteForm` and `ServiceCard` grids on mobile.
+### 2. Global Schema Updates (`src/routes/__root.tsx`)
+- Enhance the global `LocalBusiness` and `Organization` schemas.
+- Add `contactPoint`, `sameAs` (social links), and `openingHoursSpecification`.
+- Ensure proper use of `@id` (e.g., `https://sidingdepot.com/#localbusiness`) to allow page-specific services to point back to the business.
 
-### 4. Performance Audit
-- **Improvement:** Audit `img` tags for `loading="lazy"` on non-critical images and ensure `loading="eager"` is used for LCP (Largest Contentful Paint) elements like Hero images.
-- **Improvement:** Verify image dimensions are set to prevent layout shifts (CLS).
+### 3. Service Page Enhancements
+Update all service routes to include robust `Service` schema using the new utility:
+- **Routes:** `siding.tsx`, `painting.tsx`, `windows.tsx`, `doors.tsx`, `gutters.tsx`, `roofing.tsx`, `dumpster-rental.tsx`.
+- **Schema Details:** Include `provider`, `areaServed`, `description`, `name`, and where applicable, `brand` (e.g., James Hardie for siding).
+- **ServiceLandingPage Component:** Update the `serviceJsonLd` helper in `src/components/site/ServiceLandingPage.tsx` to utilize the new centralized utility.
+
+### 4. Regional Landing Page Enhancements (`src/components/site/SidingLP.tsx`)
+- Update `lpHead` to include more detailed `LocalBusiness` and `Service` schema tailored to the specific city (e.g., "James Hardie Siding in Alpharetta").
+- Ensure `FAQPage` schema is correctly populated with both regional and general FAQs.
+
+### 5. Validation & Compatibility
+- Audit all generated JSON-LD against Schema.org and Google Search Central requirements.
+- Ensure all scripts use `type="application/ld+json"`.
+- Confirm that images, phone numbers, and addresses are consistently formatted (e.g., E.164 for telephone).
 
 ### Technical Details
-- **Files to Modify:**
-  - `src/routes/contact.tsx` (Meta and Heading)
-  - `src/components/site/HeroQuoteForm.tsx` (Validation messages)
-  - `src/components/site/SimpleLeadForm.tsx` (Validation messages)
-  - `src/components/site/Navbar.tsx` (Alt text/ARIA labels)
-- **Viewport Testing:** Focus on the 320px width (iPhone SE) to ensure the form remains usable.
-- **Contrast Check:** Verify `#596571` text on white background (WCAG AA compliant).
+- **Provider Linking:** Every `Service` schema will include `"provider": { "@id": "https://sidingdepot.com/#localbusiness" }`.
+- **Area Served:** Will be populated from the `CITIES` array in `src/data/site.ts`.
+- **Logo/Images:** Absolute URLs will be used for all image references to ensure Google can crawl them correctly.
