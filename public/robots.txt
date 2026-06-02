@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /locations/
+Disallow: /admin/
+Disallow: /seo-dashboard/
 
 Sitemap: https://sidingdepot.com/sitemap.xml
-Sitemap: https://sidingdepot.com/blog-sitemap.xml

@@ -1,32 +1,39 @@
-## Structured Data (JSON-LD) Implementation Plan
+Este plano detalha as etapas para consolidar e elevar o SEO do site Siding Depot, focando em SEO técnico, local, de conteúdo e monitoramento de performance.
 
-I will implement and validate comprehensive JSON-LD structured data for Organization, LocalBusiness, and Service across all key pages to ensure maximum visibility in Google Rich Results.
+### 1. SEO Técnico e Infraestrutura
+*   **Consolidação de Sitemaps:** Eliminar arquivos estáticos (`public/sitemap.xml`, `public/blog-sitemap.xml`) em favor de sitemaps dinâmicos que incluam automaticamente novas páginas de serviços, posts do blog e combinações regionais.
+*   **Otimização do robots.txt:** Atualizar o arquivo para apontar corretamente para os sitemaps dinâmicos e garantir que rotas administrativas (`/admin`, `/seo-dashboard`) permaneçam privadas.
+*   **Schema Markup Avançado:** 
+    *   Implementar `BreadcrumbList` em todas as páginas para melhorar a navegação e o entendimento estrutural pelo Google.
+    *   Expandir o `Review` schema em páginas de localização para destacar avaliações locais.
+*   **Monitoramento de Performance:** Configurar auditorias automáticas via Lighthouse para manter pontuações de Core Web Vitals (LCP, FID, CLS) otimizadas.
 
-### 1. Centralize Schema Utilities
-- Create a new utility `src/lib/schema.ts` to generate consistent JSON-LD payloads.
-- Define a master `ORG_SCHEMA` and `LOCAL_BUSINESS_SCHEMA` that other page-specific schemas (Service, FAQ) will reference via `@id` for proper semantic linking.
+### 2. SEO Local (Geo-Targeting)
+*   **Expansão de Landing Pages Regionais:** Automatizar a criação de páginas para cidades adicionais no Norte da Geórgia (Cobb, Cherokee, Fulton, Forsyth).
+*   **Sinais Locais:** Integrar dados do Google Business Profile (links de avaliações reais, mapas dinâmicos) em cada página de localização para fortalecer a relevância geográfica.
+*   **NAP Consistency:** Garantir que o Nome, Endereço e Telefone (NAP) estejam idênticos em todas as instâncias estruturadas (JSON-LD) e visuais.
 
-### 2. Global Schema Updates (`src/routes/__root.tsx`)
-- Enhance the global `LocalBusiness` and `Organization` schemas.
-- Add `contactPoint`, `sameAs` (social links), and `openingHoursSpecification`.
-- Ensure proper use of `@id` (e.g., `https://sidingdepot.com/#localbusiness`) to allow page-specific services to point back to the business.
+### 3. Estratégia de Conteúdo e Autoridade
+*   **Otimização do Blog:** Criar um calendário editorial focado em "Palavras-chave de Cauda Longa" (ex: "custo de siding James Hardie em Marietta GA 2026") para capturar tráfego de alta intenção.
+*   **E.E.A.T (Experiência, Especialidade, Autoridade, Confiança):** Reforçar as páginas de projetos com descrições ricas, localizações específicas e selos de certificação (Elite Preferred).
+*   **Linkagem Interna:** Implementar uma estrutura de links entre Blog -> Serviços -> Localizações para distribuir a autoridade da página (Link Equity).
 
-### 3. Service Page Enhancements
-Update all service routes to include robust `Service` schema using the new utility:
-- **Routes:** `siding.tsx`, `painting.tsx`, `windows.tsx`, `doors.tsx`, `gutters.tsx`, `roofing.tsx`, `dumpster-rental.tsx`.
-- **Schema Details:** Include `provider`, `areaServed`, `description`, `name`, and where applicable, `brand` (e.g., James Hardie for siding).
-- **ServiceLandingPage Component:** Update the `serviceJsonLd` helper in `src/components/site/ServiceLandingPage.tsx` to utilize the new centralized utility.
+### 4. Monitoramento e Testes A/B
+*   **SEO Dashboard:** Utilizar o painel existente para rastrear taxas de conversão por página e origem de tráfego.
+*   **Testes A/B de Metatags:** Utilizar a infraestrutura já criada em `src/data/seo-config.ts` para testar diferentes títulos e descrições, otimizando a taxa de clique (CTR) nos resultados de busca.
 
-### 4. Regional Landing Page Enhancements (`src/components/site/SidingLP.tsx`)
-- Update `lpHead` to include more detailed `LocalBusiness` and `Service` schema tailored to the specific city (e.g., "James Hardie Siding in Alpharetta").
-- Ensure `FAQPage` schema is correctly populated with both regional and general FAQs.
+---
 
-### 5. Validation & Compatibility
-- Audit all generated JSON-LD against Schema.org and Google Search Central requirements.
-- Ensure all scripts use `type="application/ld+json"`.
-- Confirm that images, phone numbers, and addresses are consistently formatted (e.g., E.164 for telephone).
+### Detalhes Técnicos para Implementação
 
-### Technical Details
-- **Provider Linking:** Every `Service` schema will include `"provider": { "@id": "https://sidingdepot.com/#localbusiness" }`.
-- **Area Served:** Will be populated from the `CITIES` array in `src/data/site.ts`.
-- **Logo/Images:** Absolute URLs will be used for all image references to ensure Google can crawl them correctly.
+**Arquivos Principais:**
+*   `src/routes/sitemap[.]xml.tsx`: Centralizar a lógica de sitemap dinâmico aqui.
+*   `src/lib/schema.ts`: Criar utilitários para Breadcrumbs e Reviews.
+*   `src/data/locations.ts`: Gerenciar a lista de cidades e serviços para geração automática de páginas.
+*   `src/data/seo-config.ts`: Configurar variantes de metadados para testes A/B.
+
+**Próximos Passos Imediatos:**
+1.  Remover os arquivos XML estáticos da pasta `public`.
+2.  Atualizar o `robots.txt` para referenciar apenas o sitemap dinâmico.
+3.  Implementar o Schema de Breadcrumbs globalmente no `src/routes/__root.tsx`.
+4.  Realizar uma auditoria de H-tags (H1, H2) em todas as rotas de serviço.
