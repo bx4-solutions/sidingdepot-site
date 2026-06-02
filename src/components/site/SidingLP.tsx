@@ -472,7 +472,7 @@ export function SidingLP({ city }: SidingLPProps) {
 
 
       {/* FOOTER */}
-      <footer className="text-sd-black/70 text-sm" style={{ background: "#07111A" }}>
+      <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex flex-col gap-1">
             <span className="text-base font-extrabold" style={{ color: "#BCD635" }}>
@@ -487,8 +487,8 @@ export function SidingLP({ city }: SidingLPProps) {
             <a href={`mailto:${SITE.email}`} className="hover:text-sd-green">
               {SITE.email}
             </a>
-            <span className="text-sd-black/55">{SITE.address.full}</span>
-            <a href="/privacy-policy" className="text-sd-black/55 hover:text-sd-green">
+            <span className="text-white/55">{SITE.address.full}</span>
+            <a href="/privacy-policy" className="text-white/55 hover:text-sd-green">
               Privacy Policy
             </a>
           </div>
