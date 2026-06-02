@@ -11,10 +11,10 @@ export function ProcessTimeline() {
           <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
             Our Process
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-foreground">
             It&apos;s Easy to Start Your Exterior Project
           </h2>
-          <p className="mt-3 text-sd-gray-text">
+          <p className="mt-3 text-muted-foreground">
             Three steps. Zero surprises. Total transparency from quote to handshake.
           </p>
         </div>
@@ -29,12 +29,12 @@ export function ProcessTimeline() {
             const Icon = ICONS[i];
             return (
               <div key={step.num} className="relative flex flex-col items-center text-center">
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-sd-green text-sd-black shadow-lg">
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-sd-green text-sd-navy shadow-lg">
                   <Icon className="h-7 w-7" />
                 </div>
                 <span className="mt-4 font-display text-2xl text-sd-green">{step.num}</span>
-                <h3 className="mt-1 text-lg font-semibold text-sd-black">{step.title}</h3>
-                <p className="mt-2 text-sm text-sd-gray-text max-w-xs">{step.desc}</p>
+                <h3 className="mt-1 text-lg font-semibold text-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground max-w-xs">{step.desc}</p>
               </div>
             );
           })}

@@ -20,7 +20,7 @@ type Props = {
 
 export function ServiceCard({ Icon, title, description, to, id, image, priority = false }: Props) {
   const inner = (
-    <div className="group relative h-full overflow-hidden rounded-lg border border-sd-gray-border bg-white transition-all hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
+    <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-background transition-all hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
       <div className="relative z-20 h-1.5 bg-sd-green" />
 
       {/* Background image (behind text). Hidden on hover by white overlay. */}
@@ -54,10 +54,10 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
         <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy transition-colors">
           <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
         </div>
-        <h3 className="mt-4 text-lg font-bold text-sd-black [text-shadow:0_1px_2px_rgba(255,255,255,0.6)] group-hover:[text-shadow:none]">
+        <h3 className="mt-4 text-lg font-bold text-foreground [text-shadow:0_1px_2px_rgba(255,255,255,0.6)] group-hover:[text-shadow:none]">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-sd-black/85 group-hover:text-sd-gray-text">
+        <p className="mt-2 text-sm leading-relaxed text-foreground/85 group-hover:text-muted-foreground">
           {description}
         </p>
         <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sd-green-text">
