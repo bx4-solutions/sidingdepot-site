@@ -17,6 +17,8 @@ import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SERVICES, CITIES, SITE } from "@/data/site";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+
 
 
 const HOME_VIDEOS = [
@@ -84,10 +86,14 @@ export const Route = createFileRoute("/")({
       { rel: "preconnect", href: "https://www.youtube.com" },
       { rel: "preconnect", href: "https://i.ytimg.com" },
     ],
-    scripts: VIDEO_JSONLD_LIST.map((data) => ({
-      type: "application/ld+json",
-      children: JSON.stringify(data),
-    })),
+    scripts: [
+      ...VIDEO_JSONLD_LIST.map((data) => ({
+        type: "application/ld+json",
+        children: JSON.stringify(data),
+      })),
+      { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
+    ],
   }),
   component: HomePage,
 });
