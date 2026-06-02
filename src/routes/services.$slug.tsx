@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -7,7 +6,6 @@ import {
   Star,
   Award,
 } from "lucide-react";
-import { seoAutomation } from "@/lib/seo-automation";
 import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
   PROJECTS_SORTED,
@@ -243,14 +241,6 @@ function ServicePage() {
   const data = Route.useLoaderData() as { slug: ServiceSlug; content: ServiceContent };
   const { slug, content } = data;
   const related = PROJECTS_SORTED.filter((p) => p.tags.includes(content.label)).slice(0, 3);
-
-  // Auto-schedule indexing inspection when a user (or bot) visits a service page
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const url = window.location.href;
-      seoAutomation.scheduleInspection(url).catch(console.error);
-    }
-  }, [slug]);
 
   return (
     <div className="bg-sd-gray-bg">
