@@ -182,7 +182,7 @@ export function SidingLP({ city }: SidingLPProps) {
       {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
-      <section className="relative overflow-hidden text-sd-black" style={{ background: "#1E2A38" }}>
+      <section className="relative overflow-hidden text-white" style={{ background: "#1E2A38" }}>
         <div className="absolute inset-0">
           <img 
             src={HERO_BG} 
@@ -200,10 +200,10 @@ export function SidingLP({ city }: SidingLPProps) {
             <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]">
               James Hardie® Siding Installation in {city}, GA
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-sd-black/75 leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
               Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
             </p>
-            <ul className="mt-6 grid gap-2.5 text-sm text-sd-black/85">
+            <ul className="mt-6 grid gap-2.5 text-sm text-white/90">
               {[
                 "Licensed & Insured in Georgia",
                 "Elite Preferred — Extended 30-Year Warranty",
@@ -335,13 +335,13 @@ export function SidingLP({ city }: SidingLPProps) {
       </section>
 
       {/* URGENCY + CTA */}
-      <section className="text-sd-black" style={{ background: "#1E2A38" }}>
+      <section className="text-white" style={{ background: "#1E2A38" }}>
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
           <div>
             <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
               Limited Project Slots Available
             </h2>
-            <p className="mt-4 text-sd-black/65 leading-relaxed">
+            <p className="mt-4 text-white/80 leading-relaxed">
               We limit the number of projects per month to guarantee quality on every job. Spring is
               our busiest season — North Atlanta homeowners are scheduling now.
             </p>
