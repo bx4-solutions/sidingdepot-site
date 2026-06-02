@@ -273,11 +273,20 @@ export function ServiceLandingPage({
           <h2 className="text-2xl font-display text-sd-dark mb-8">Related Services in {city}</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {relatedServices.map(s => (
-              <Button key={s.slug} asChild variant="outline" className="rounded-full">
+              <Button
+                key={s.slug}
+                asChild
+                variant="outline"
+                className="rounded-full border-2 border-sd-navy text-sd-navy font-semibold hover:bg-sd-green hover:text-sd-black hover:border-sd-green"
+              >
                 <Link to={`/${s.slug}`}>{s.title} Installation</Link>
               </Button>
             ))}
-            <Button asChild variant="outline" className="rounded-full">
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full border-2 border-sd-navy text-sd-navy font-semibold hover:bg-sd-green hover:text-sd-black hover:border-sd-green"
+            >
               <Link to="/contact">Free {city} Estimate</Link>
             </Button>
           </div>
