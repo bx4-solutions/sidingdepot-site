@@ -240,8 +240,6 @@ export function SidingLP({ city }: SidingLPProps) {
           ))}
         </div>
       </section>
-        </div>
-      </section>
 
       {/* WHY US */}
       <section className="bg-white py-16 lg:py-20">
