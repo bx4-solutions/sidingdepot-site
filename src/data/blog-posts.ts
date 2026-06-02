@@ -36,7 +36,7 @@ export const BLOG_POSTS: BlogPost[] = [
     featured: true,
     status: "published",
     heroImage: {
-      url: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200',
+      url: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=1200&auto=format&fit=crop&q=80',
       alt: 'James Hardie HardiePlank lap siding installation on a traditional two-story home in Marietta, Georgia',
       caption: 'A completed James Hardie HardiePlank installation on a 2,600 sq ft home in East Cobb, Marietta — project value approximately $22,000.'
     },
