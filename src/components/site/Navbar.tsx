@@ -43,19 +43,19 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-sd-dark/95 backdrop-blur-sm border-b border-white/5">
+    <header className="sticky top-0 z-50 w-full bg-sd-green border-b border-sd-navy/15 shadow-sm">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
             <div 
               aria-hidden="true"
               style={{
-                background: '#BCD635',
+                background: '#1E2A38',
                 padding: '6px 14px',
                 borderRadius: '8px',
                 fontWeight: 900,
-                color: '#fff',
-                WebkitTextStroke: '2px #000',
+                color: '#BCD635',
+                WebkitTextStroke: '1.5px #0A0A0A',
                 paintOrder: 'stroke fill',
                 transform: 'rotate(-4deg)',
                 display: 'inline-block',
@@ -74,8 +74,8 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className="text-[13px] font-medium tracking-wide text-white/70 hover:text-sd-green transition-colors"
-              activeProps={{ className: "text-sd-green" }}
+              className="text-[13px] font-semibold tracking-wide text-sd-navy hover:text-sd-black transition-colors"
+              activeProps={{ className: "text-sd-black underline underline-offset-4" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -84,8 +84,8 @@ export function Navbar() {
           {session && (
             <Link
               to="/seo-dashboard"
-              className="text-[13px] font-bold tracking-wide text-sd-green hover:text-sd-green-hover transition-colors"
-              activeProps={{ className: "text-white" }}
+              className="text-[13px] font-bold tracking-wide text-sd-navy hover:text-sd-black transition-colors"
+              activeProps={{ className: "text-sd-black" }}
             >
               SEO Dashboard
             </Link>
@@ -93,7 +93,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button asChild size="sm" variant="default" onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}>
+          <Button
+            asChild
+            size="sm"
+            className="bg-sd-navy text-white hover:bg-sd-black"
+            onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}
+          >
             <a href={SITE.phoneHref} aria-label={`Call ${SITE.phone}`}>
               <Phone aria-hidden="true" /> Call {SITE.phone}
             </a>
@@ -102,7 +107,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-white"
+          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-sd-navy"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -112,13 +117,13 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/5 bg-sd-dark overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))]">
+        <div className="lg:hidden border-t border-sd-navy/15 bg-sd-green overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))]">
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="px-3 py-2 rounded-md text-sm text-white/80 hover:bg-white/5 hover:text-sd-green"
+                className="px-3 py-2 rounded-md text-sm font-semibold text-sd-navy hover:bg-sd-navy/10 hover:text-sd-black"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
@@ -127,18 +132,22 @@ export function Navbar() {
             {session && (
               <Link
                 to="/seo-dashboard"
-                className="px-3 py-2 rounded-md text-sm font-bold text-sd-green hover:bg-white/5"
+                className="px-3 py-2 rounded-md text-sm font-bold text-sd-navy hover:bg-sd-navy/10"
                 onClick={() => setOpen(false)}
               >
                 SEO Dashboard
               </Link>
             )}
-            <Button asChild className="mt-3" onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}>
+            <Button
+              asChild
+              className="mt-3 bg-sd-navy text-white hover:bg-sd-black"
+              onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}
+            >
               <a href={SITE.phoneHref}>
                 <Phone aria-hidden="true" /> Call {SITE.phone}
               </a>
             </Button>
-            <Button asChild variant="outlineWhite">
+            <Button asChild variant="dark">
               <Link to="/contact" onClick={() => setOpen(false)}>
                 Get Free Quote
               </Link>
