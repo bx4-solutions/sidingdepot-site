@@ -220,6 +220,10 @@ export function SidingLP({ city }: SidingLPProps) {
               title="Get Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
+          </div>
+        </div>
+      </section>
+
       {/* PROOF BAR */}
       <section
         className="text-white"
