@@ -12,6 +12,8 @@ import {
   SITE_ORIGIN,
 } from "@/data/locations";
 import { SITE, HERO } from "@/data/site";
+import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+
 
 export const Route = createFileRoute("/locations/$city/$service")({
   loader: ({ params }) => {
@@ -30,56 +32,29 @@ export const Route = createFileRoute("/locations/$city/$service")({
     const url = `${SITE_ORIGIN}/locations/${city.slug}/${service.slug}`;
 
     const localBusiness = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      ...LOCAL_BUSINESS_SCHEMA,
       name: `Siding Depot — ${city.name}`,
       url,
-      telephone: SITE.phone,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: SITE.address.street,
-        addressLocality: SITE.address.city,
-        addressRegion: SITE.address.state,
-        postalCode: SITE.address.zip,
-        addressCountry: "US",
-      },
       areaServed: { "@type": "City", name: `${city.name}, GA` },
-      image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
     };
 
-    const serviceSchema = {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: service.title,
-      name: `${service.title} in ${city.name}`,
+    const serviceSchema = getServiceSchema(
+      `${service.title} in ${city.name}`,
       description,
-      provider: { "@type": "LocalBusiness", name: "Siding Depot", telephone: SITE.phone },
-      areaServed: { "@type": "City", name: `${city.name}, GA` },
-      url,
-    };
+      `/locations/${city.slug}/${service.slug}`,
+      "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835"
+    );
 
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `Do you provide ${service.title.toLowerCase()} estimates in ${city.name}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Yes, Siding Depot provides free, on-site estimates for ${service.title.toLowerCase()} projects throughout ${city.name} and the surrounding ${city.county} area.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `Is Siding Depot licensed to work in ${city.name}, GA?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Yes, we are a fully licensed Georgia General Contractor (#RBQA006789) and carry comprehensive insurance for all ${service.title.toLowerCase()} work in ${city.name}.`,
-          },
-        },
-      ],
-    };
+    const faqSchema = getFaqSchema([
+      {
+        q: `Do you provide ${service.title.toLowerCase()} estimates in ${city.name}?`,
+        a: `Yes, Siding Depot provides free, on-site estimates for ${service.title.toLowerCase()} projects throughout ${city.name} and the surrounding ${city.county} area.`,
+      },
+      {
+        q: `Is Siding Depot licensed to work in ${city.name}, GA?`,
+        a: `Yes, we are a fully licensed Georgia General Contractor (#RBQA006789) and carry comprehensive insurance for all ${service.title.toLowerCase()} work in ${city.name}.`,
+      },
+    ]);
 
     return {
       meta: [
