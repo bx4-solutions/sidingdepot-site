@@ -220,13 +220,9 @@ export function SidingLP({ city }: SidingLPProps) {
               title="Get Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
-          </div>
-        </div>
-      </section>
-
       {/* PROOF BAR */}
       <section
-        className="text-sd-black"
+        className="text-white"
         style={{ background: "#1E2A38", borderTop: "3px solid #BCD635" }}
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
@@ -236,8 +232,10 @@ export function SidingLP({ city }: SidingLPProps) {
             "🏠 1,500+ Homes in Georgia",
             "✓ Free Estimates · No Obligation",
           ].map((t) => (
-            <div key={t} className="text-center text-sm font-semibold text-sd-black/90">{t}</div>
+            <div key={t} className="text-center text-sm font-semibold text-white/90">{t}</div>
           ))}
+        </div>
+      </section>
         </div>
       </section>
 
