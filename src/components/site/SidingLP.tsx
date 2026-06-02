@@ -503,7 +503,7 @@ export function SidingLP({ city }: SidingLPProps) {
         style={{ background: "#BCD635", color: "#1E2A38" }}
         aria-hidden={hideStickyCall}
       >
-        <Phone className="h-5 w-5" /> TAP TO CALL {SITE.phone}
+        <Phone className="h-5 w-5" aria-hidden="true" /> TAP TO CALL {SITE.phone}
       </a>
     </main>
   );
