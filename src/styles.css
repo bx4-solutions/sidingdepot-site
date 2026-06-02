@@ -78,8 +78,8 @@
   --sd-green:        oklch(0.910 0.220 115.0);   /* More vibrant lime green */
   --sd-green-hover:  oklch(0.880 0.230 113.0);   /* Slightly deeper but still vibrant */
   --sd-green-dark:   oklch(0.850 0.230 113.0);
-  --sd-green-pale:   oklch(0.960 0.060 115.0);   /* #F0F7C0 */
-  --sd-green-text:   oklch(0.350 0.100 115.0);   /* #3A4800 */
+  --sd-green-pale:   oklch(0.970 0.080 115.0);   /* Brighter, more lime pale */
+  --sd-green-text:   oklch(0.300 0.120 115.0);   /* Deeper contrast for lime backgrounds */
   --sd-navy:         oklch(0.265 0.030 252.0);   /* #1E2A38 */
   --sd-dark:         oklch(0.180 0 0);           /* #1A1A1A */
   --sd-dark-mid:     oklch(0.250 0 0);           /* #2D2D2D */
