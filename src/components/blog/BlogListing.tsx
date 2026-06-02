@@ -13,7 +13,7 @@ export default function BlogListing() {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-sd-black text-sd-black">
+      <div className="min-h-screen flex items-center justify-center bg-sd-black text-white">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-8 h-8 animate-spin text-sd-green" />
           <p className="font-bold tracking-widest uppercase text-xs">Loading Insights...</p>
@@ -31,10 +31,10 @@ export default function BlogListing() {
       {/* Header Section */}
       <section className="bg-sd-black py-24 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="font-display text-5xl md:text-7xl text-sd-black mb-4 tracking-tight uppercase">
+          <h1 className="font-display text-5xl md:text-7xl text-white mb-4 tracking-tight uppercase">
             SIDING DEPOT <span className="text-sd-green">INSIGHTS</span>
           </h1>
-          <p className="text-lg md:text-xl text-sd-black/65 max-w-2xl mx-auto font-medium">
+          <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-medium">
             Expert advice from Georgia's most trusted James Hardie contractor — free, no obligation.
           </p>
         </div>
@@ -136,9 +136,9 @@ export default function BlogListing() {
             {/* Lead Form - Agency Style */}
             <div className="bg-sd-black p-8 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-              <div className="relative z-10 text-sd-black">
+              <div className="relative z-10 text-white">
                 <h3 className="text-2xl font-bold mb-2">Get a Free Estimate</h3>
-                <p className="text-sm text-sd-black/60 mb-8 leading-relaxed font-medium">Expert siding advice for Georgia homeowners. No obligation.</p>
+                <p className="text-sm text-white/60 mb-8 leading-relaxed font-medium">Expert siding advice for Georgia homeowners. No obligation.</p>
                 <div className="space-y-4">
                   <HeroQuoteForm bare />
                 </div>

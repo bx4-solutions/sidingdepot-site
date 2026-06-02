@@ -47,7 +47,7 @@ export default function BlogPostDetail() {
             ? "The page you are looking for doesn't exist or has been moved." 
             : "This article hasn't been published yet. Check back soon for expert siding insights!"}
         </p>
-        <Button asChild className="bg-sd-black hover:bg-sd-black/90 text-sd-black rounded-full px-8">
+        <Button asChild className="bg-sd-black hover:bg-sd-black/90 text-white rounded-full px-8">
           <Link to="/blog">Back to Blog</Link>
         </Button>
       </div>
@@ -98,7 +98,7 @@ export default function BlogPostDetail() {
               
               <div className="flex items-center gap-8 text-[12px] font-bold uppercase tracking-wider text-sd-gray-text/60 border-y py-6 border-gray-100 mb-12">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-sd-black flex items-center justify-center text-sd-black text-[10px] font-black border-2 border-sd-green">SD</div>
+                  <div className="w-10 h-10 rounded-full bg-sd-black flex items-center justify-center text-white text-[10px] font-black border-2 border-sd-green">SD</div>
                   <div className="flex flex-col">
                     <span className="text-sd-black font-black tracking-normal">Siding Depot Team</span>
                     <span className="text-[10px] lowercase font-medium tracking-normal opacity-70">Editorial Staff</span>
@@ -158,7 +158,7 @@ export default function BlogPostDetail() {
                     {section.table && (
                       <div className="overflow-x-auto my-12 rounded-xl border border-gray-200 shadow-xl bg-white">
                         <table className="min-w-full divide-y divide-gray-200">
-                          <thead className="bg-sd-black text-sd-black">
+                          <thead className="bg-sd-black text-white">
                             <tr>
                               {section.table.headers.map((header: string, i: number) => (
                                 <th key={i} className="px-6 py-5 text-left text-[11px] font-black uppercase tracking-[0.1em]">
@@ -211,10 +211,10 @@ export default function BlogPostDetail() {
 
                     {/* Inline CTA after 2nd section (roughly the middle) */}
                     {idx === 1 && (
-                      <div className="my-20 bg-sd-black p-12 rounded-3xl text-sd-black text-center shadow-2xl relative overflow-hidden group">
+                    <div className="my-20 bg-sd-black p-12 rounded-3xl text-white text-center shadow-2xl relative overflow-hidden group">
                         <div className="absolute top-0 left-0 w-full h-1 bg-sd-green"></div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Getting quotes for your home?</h3>
-                        <p className="text-lg text-sd-black/70 mb-10 font-medium">We respond within 24 hours. No high-pressure sales.</p>
+                        <p className="text-lg text-white/70 mb-10 font-medium">We respond within 24 hours. No high-pressure sales.</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
                            <a href="tel:6784002012" className="text-3xl font-black text-sd-green hover:text-sd-black transition-all transform hover:scale-105">
                              (678) 400-2012
@@ -289,7 +289,7 @@ export default function BlogPostDetail() {
                   Join 1,000+ happy Georgia homeowners. Professional measurement and detailed written proposal within 48 hours.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-sd-black text-sd-black hover:bg-sd-black/90 text-lg px-12 py-8 h-auto font-black shadow-xl">
+                  <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-sd-black text-white hover:bg-sd-black/90 text-lg px-12 py-8 h-auto font-black shadow-xl">
                     <Link to="/contact">Get Started Now</Link>
                   </Button>
                   <a href="tel:6784002012" className="text-2xl font-black text-sd-black py-4 px-8 hover:opacity-80 transition-opacity">
