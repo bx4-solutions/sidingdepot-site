@@ -75,9 +75,9 @@
   --radius: 0.625rem;
 
   /* Brand palette (HEX → oklch) */
-  --sd-green:        oklch(0.850 0.170 120.0);   /* #BCD635 */
-  --sd-green-hover:  oklch(0.780 0.175 118.0);   /* #A3BE1E */
-  --sd-green-dark:   oklch(0.780 0.175 118.0);   /* #A3BE1E */
+  --sd-green:        oklch(0.910 0.220 115.0);   /* More vibrant lime green */
+  --sd-green-hover:  oklch(0.880 0.230 113.0);   /* Slightly deeper but still vibrant */
+  --sd-green-dark:   oklch(0.850 0.230 113.0);
   --sd-green-pale:   oklch(0.960 0.060 115.0);   /* #F0F7C0 */
   --sd-green-text:   oklch(0.350 0.100 115.0);   /* #3A4800 */
   --sd-navy:         oklch(0.265 0.030 252.0);   /* #1E2A38 */
