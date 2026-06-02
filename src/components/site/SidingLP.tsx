@@ -518,7 +518,7 @@ export function lpHead({ city, path }: { city: string; path: string }) {
     meta: [
       { title },
       { name: "description", content: description },
-      { name: "robots", content: "noindex, nofollow" },
+      { name: "robots", content: "index, follow" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:image", content: image },
