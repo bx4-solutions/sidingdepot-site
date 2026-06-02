@@ -3,7 +3,9 @@ import { CheckCircle2, ArrowRight, ExternalLink, ShieldCheck, Clock, CreditCard,
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
+
 
 export const Route = createFileRoute("/finance")({
   head: () => {

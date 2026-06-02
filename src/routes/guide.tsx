@@ -8,6 +8,7 @@ import { Download, Loader2, ArrowLeft, Share2, Check, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 
 export const Route = createFileRoute("/guide")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -26,6 +27,10 @@ export const Route = createFileRoute("/guide")({
       { property: "og:title", content: "Free Guide: 5 Fatal Siding Mistakes to Avoid in Georgia" },
       { property: "og:description", content: "8 pages of expert advice to prevent siding budget overruns and install failures in North Atlanta." },
       { property: "og:type", content: "website" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
     ],
   }),
   component: GuidePage,
