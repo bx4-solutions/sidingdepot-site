@@ -141,3 +141,19 @@ export function getFaqSchema(faqs: ReadonlyArray<{ q: string; a: string }>) {
     })),
   };
 }
+
+export function getProjectSchema(project: any) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title ?? project.alt,
+    description: project.description ?? project.alt,
+    image: project.src.startsWith("http") ? project.src : `${BASE_URL}${project.src}`,
+    dateCreated: project.date,
+    locationCreated: project.city ? { "@type": "Place", name: project.city } : undefined,
+    creator: {
+      "@id": LOCAL_BUSINESS_ID,
+    },
+    keywords: project.tags.join(", "),
+  };
+}
