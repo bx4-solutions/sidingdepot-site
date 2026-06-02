@@ -104,19 +104,19 @@ export function Footer() {
               {session ? (
                 <li><Link to="/seo-dashboard" className="text-sd-green font-bold">SEO Dashboard</Link></li>
               ) : (
-                <li><Link to="/admin/login" className="text-white/30 hover:text-white/50">Admin</Link></li>
+                <li><Link to="/admin/login" className="text-white/60 hover:text-white/50">Admin</Link></li>
               )}
             </ul>
             <div className="flex gap-3 mt-5">
-              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-sd-green"><LucideFacebook className="h-5 w-5" /></a>
-              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/40 hover:text-sd-green"><LucideInstagram className="h-5 w-5" /></a>
-              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/40 hover:text-sd-green"><LucideYoutube className="h-5 w-5" /></a>
-              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/40 hover:text-sd-green"><Music2 className="h-5 w-5" /></a>
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/70 hover:text-sd-green"><LucideFacebook className="h-5 w-5" /></a>
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/70 hover:text-sd-green"><LucideInstagram className="h-5 w-5" /></a>
+              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/70 hover:text-sd-green"><LucideYoutube className="h-5 w-5" /></a>
+              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/70 hover:text-sd-green"><Music2 className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/40">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/70">
           <p>© {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</p>
           <p className="text-balance">James Hardie Elite Preferred Contractor · Licensed &amp; Insured · GA</p>
         </div>

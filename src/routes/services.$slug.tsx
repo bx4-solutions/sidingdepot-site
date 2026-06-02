@@ -265,7 +265,7 @@ function ServicePage() {
             </Link>
             <a
               href={SITE.phoneHref}
-              className="inline-flex items-center gap-2 rounded-pill border border-white/30 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 rounded-pill border border-white/60 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-white/10 transition-colors"
             >
               Call {SITE.phone}
             </a>
