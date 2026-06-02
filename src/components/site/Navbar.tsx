@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
-import logoSidingDepot from "@/assets/logo-sidingdepot.png";
+import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -47,25 +47,13 @@ export function Navbar() {
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
-            <div 
-              aria-hidden="true"
-              style={{
-                background: '#1E2A38',
-                padding: '6px 14px',
-                borderRadius: '8px',
-                fontWeight: 900,
-                color: '#BCD635',
-                WebkitTextStroke: '1.5px #0A0A0A',
-                paintOrder: 'stroke fill',
-                transform: 'rotate(-4deg)',
-                display: 'inline-block',
-                lineHeight: 1.1,
-                fontFamily: 'var(--font-display)',
-                fontSize: '20px'
-              }}
-            >
-              Siding<br/>Depot
-            </div>
+            <img
+              src={logoSidingDepot.url}
+              alt={`${SITE.name} logo`}
+              className="h-10 sm:h-12 lg:h-14 w-auto"
+              loading="eager"
+              decoding="async"
+            />
           </Link>
         </div>
 
