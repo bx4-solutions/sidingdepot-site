@@ -182,13 +182,18 @@ export function SidingLP({ city }: SidingLPProps) {
       {/* HERO + FORM */}
       <section className="relative overflow-hidden text-sd-black" style={{ background: "#1E2A38" }}>
         <div className="absolute inset-0">
-          <img src={HERO_BG} alt="" aria-hidden className="h-full w-full object-cover opacity-30" loading="eager" />
+          <img 
+            src={HERO_BG} 
+            alt="Siding Depot contractor installing James Hardie siding" 
+            className="h-full w-full object-cover opacity-30" 
+            loading="eager" 
+          />
           <div className="absolute inset-0" style={{ background: "rgba(30, 42, 56, 0.65)" }} />
         </div>
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg">
           <div>
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              <Star className="h-3.5 w-3.5 fill-sd-green" /> James Hardie Elite Preferred — Top 2% Nationwide
+              <Star className="h-3.5 w-3.5 fill-sd-green" aria-hidden="true" /> James Hardie Elite Preferred — Top 2% Nationwide
             </span>
             <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]">
               James Hardie® Siding Installation in {city}, GA
@@ -203,7 +208,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 "No Hidden Fees — Itemized Quote",
               ].map((b) => (
                 <li key={b} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-sd-green shrink-0" /> <span>{b}</span>
+                  <CheckCircle2 className="h-5 w-5 text-sd-green shrink-0" aria-hidden="true" /> <span>{b}</span>
                 </li>
               ))}
             </ul>
@@ -303,7 +308,7 @@ export function SidingLP({ city }: SidingLPProps) {
                   </div>
                   <div className="ml-auto flex">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" />
+                      <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" aria-hidden="true" />
                     ))}
                   </div>
                 </div>
@@ -415,7 +420,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 onClick={() => scrollToLeadForm({ source: "greensky_section" })}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-black hover:opacity-90 transition-opacity"
               >
-                Get Pre-Approved With My Free Estimate →
+                Get Pre-Approved With My Free Estimate <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
               <p className="mt-2 text-xs text-sd-gray-text">
                 Subject to credit approval. GreenSky® is a registered service mark of GreenSky, LLC.
