@@ -68,7 +68,7 @@ export function HeroSection({
         <div>
           {badge && (
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green">
-              <span aria-hidden>★</span> {badge}
+              <span aria-hidden="true">★</span> {badge}
             </span>
           )}
           <h1 className="font-display text-white leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl">
@@ -86,7 +86,7 @@ export function HeroSection({
                 const Icon = trustIcons[i % trustIcons.length];
                 return (
                   <li key={t} className="flex items-center gap-2 text-sm text-white/85">
-                    <Icon className="h-4 w-4 text-sd-green shrink-0" />
+                    <Icon className="h-4 w-4 text-sd-green shrink-0" aria-hidden="true" />
                     <span>{t}</span>
                   </li>
                 );
@@ -109,7 +109,7 @@ export function HeroSection({
             {showCallCta && (
               <Button asChild size="lg" variant="outlineWhite">
                 <a href={SITE.phoneHref}>
-                  <Phone /> Call {SITE.phone}
+                  <Phone aria-hidden="true" /> Call {SITE.phone}
                 </a>
               </Button>
             )}
