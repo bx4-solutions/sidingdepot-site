@@ -1,47 +1,35 @@
-## 1. Service Strip dedicado abaixo da navbar (`ServiceStrip.tsx`)
 
-Novo componente `src/components/site/ServiceStrip.tsx` montado no `__root.tsx` logo abaixo do `<Navbar />`, antes do `<main>`. Modelado pelo Dr. Roof: três títulos grandes em uma linha, divididos por separadores verticais, sobre fundo claro contrastando com a navbar escura.
+## Objetivo
+Eliminar completamente a dependência do Google Search Console (GSC) do projeto. Nenhuma tela, função ou fluxo deve mais exigir conexão com Google.
 
-- Fundo: `bg-sd-gray-bg` (claro, contrastando com a navbar `sd-navy`)
-- Tipografia: `font-display` (Bebas Neue) tamanho `text-2xl sm:text-3xl`, cor `text-sd-navy`, hover `text-sd-green`
-- Espaçamento: container `max-w-7xl px-4 lg:px-8 py-4 sm:py-5`, gap entre itens com separadores verticais `border-l border-sd-gray-border`
-- Cada item é um `<Link>` clicável (não mais texto plano)
-- Mobile: empilha em 3 linhas com separadores horizontais
-- Borda inferior `border-b border-sd-gray-border` para fechar o bloco
+## O que será feito
 
-## 2. Links clicáveis para cada serviço
+### 1. Desconectar a conexão GSC do projeto
+- Chamar `standard_connectors--disconnect` para a conexão "Ana's Google Search Console", removendo os secrets `GOOGLE_SEARCH_CONSOLE_API_KEY` do projeto (a conexão continua existindo no workspace, mas não é mais usada aqui).
 
-Cada um dos três (Siding, Painting, Windows) vira um `<Link to="/" hash="services-{slug}">` que rola até o card correspondente na seção "Our Services" da home. Aproveita `scroll-behavior: smooth` já configurado no `styles.css`.
+### 2. Remover código que depende do GSC
+- **`src/lib/gsc.functions.ts`** — deletar o arquivo inteiro (server functions `inspectURL`, `getIndexingStatus`, `getSearchAnalytics`).
+- **`src/lib/seo-automation.ts`** — deletar (usa `inspectURL` do GSC).
+- **`supabase/functions/sync-metrics/index.ts`** — deletar a edge function de sync que dependia do GSC.
 
-- Adicionar `id="services"` no `<section>` "Our Services" e `id="services-siding"`, `id="services-painting"`, `id="services-windows"` em cada `ServiceCard` correspondente (via prop `id` opcional no `ServiceCard`).
-- Cada Link no ServiceStrip dispara `track("service_strip_click", { service })`.
-- A tagline duplicada que existe agora **abaixo do logo** na Navbar é removida (substituída pela nova faixa).
+### 3. Ajustar o SEO Dashboard para funcionar sem GSC
+- **`src/routes/seo-dashboard.tsx`** — remover toda UI/lógica de "Indexing Status", "Inspect URL", "Request Indexing" e métricas vindas do GSC. Manter apenas:
+  - Métricas internas (vindas da tabela `ab_events` / `daily_metrics` do nosso próprio banco)
+  - Lighthouse (que é simulado e não depende do GSC)
+  - GA4 metrics (já roda em cima do nosso Supabase, sem GSC)
+- Substituir blocos de GSC por um aviso curto: "Indexação Google: gerenciada manualmente via Search Console externo".
 
-> Observação: como não existem rotas dedicadas `/siding`, `/painting`, `/windows` ainda, o padrão por enquanto é scroll-to-section. Quando essas páginas forem criadas, basta trocar `to="/"` + `hash` por `to="/siding"` etc.
+### 4. Limpar imports e referências residuais
+- Procurar (`rg`) por `gsc`, `GoogleSearchConsole`, `inspectURL`, `getIndexingStatus`, `seo-automation`, `GOOGLE_SEARCH_CONSOLE_API_KEY` em todo o projeto e remover qualquer import órfão.
+- Remover qualquer botão/link tipo "Connect Google Search Console" da UI.
 
-## 3. Padronização ao Design System
+### 5. Não tocar
+- Não vou mexer em design system, navbar, blog, cores — só na remoção do GSC.
+- Não vou desconectar o Supabase / Lovable Cloud (isso continua sendo a base de dados do site).
 
-Limpar usos ad-hoc nos elementos recém-criados:
+## Resultado esperado
+- Nada no app pede conexão com Google.
+- O SEO Dashboard continua abrindo e mostrando os dados internos (eventos, leads, Lighthouse simulado), só sem o pedaço de "indexação Google".
+- Nenhum erro de build por imports quebrados.
 
-- **Navbar logo block**: remover a sub-tagline inline (movida para o ServiceStrip), manter apenas `h-11 sm:h-12 w-auto`. Voltar `h-20` para `h-16` (espaçamento padrão pré-existente, evita header gigante).
-- **CTA card abaixo do slider** (`PainPointsSection`): trocar `bg-sd-black` por `bg-sd-navy` (token de seção escura usado em todo o site), `rounded-xl` mantido, padding já segue escala (`p-4 sm:p-5`), `gap-3 sm:gap-4` mantido.
-- **QuoteModal**: usar `text-destructive` em vez de `text-red-600` (token semântico shadcn).
-- **Slider labels**: já usam `bg-sd-black/75` e `bg-sd-green` — conferem com o sistema.
-
-Nenhuma alteração de palette, fonte ou raio (`rounded-pill` / `rounded-xl`) — apenas troca de cores hard-coded por tokens.
-
-## 4. Tracking adicional
-
-No `src/components/site/QuoteModal.tsx`:
-
-- `quote_form_validation_error` — disparado em `handleSubmit` quando `schema.safeParse` falha. Payload: `{ source, fields: "name,phone" }` (lista dos campos com erro).
-- `quote_modal_close` — disparado em `handleOpenChange(false)` **somente quando `done === false`** (fechamento sem envio). Payload: `{ source, had_input: boolean }` indicando se o usuário digitou algo.
-
-No novo `ServiceStrip`:
-
-- `service_strip_click` — disparado no clique de cada link com `{ service }`.
-
-## Arquivos afetados
-
-- **Criar**: `src/components/site/ServiceStrip.tsx`
-- **Editar**: `src/routes/__root.tsx` (montar ServiceStrip), `src/components/site/Navbar.tsx` (remover tagline duplicada, voltar `h-16`), `src/routes/index.tsx` (adicionar `id="services"` + ids por serviço), `src/components/site/ServiceCard.tsx` (aceitar prop `id` opcional), `src/components/site/PainPointsSection.tsx` (trocar `bg-sd-black` → `bg-sd-navy`), `src/components/site/QuoteModal.tsx` (tracking + tokens)
+Posso executar?
