@@ -11,13 +11,13 @@ export function TestimonialCard({ name, city, text, rating = 5 }: Props) {
     .toUpperCase();
 
   return (
-    <article className="rounded-lg border border-sd-gray-border bg-white p-6 h-full flex flex-col">
+    <article className="rounded-lg border border-border bg-background p-6 h-full flex flex-col">
       <div className="flex gap-0.5 text-sd-green">
         {Array.from({ length: rating }).map((_, i) => (
           <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
         ))}
       </div>
-      <p className="mt-4 text-sm text-sd-black leading-relaxed flex-1">
+      <p className="mt-4 text-sm text-foreground leading-relaxed flex-1">
         “{text}”
       </p>
       <div className="mt-5 flex items-center gap-3">
@@ -25,8 +25,8 @@ export function TestimonialCard({ name, city, text, rating = 5 }: Props) {
           {initials}
         </span>
         <div>
-          <div className="text-sm font-semibold text-sd-black">{name}</div>
-          <div className="text-xs text-sd-gray-text">{city}, GA</div>
+          <div className="text-sm font-semibold text-foreground">{name}</div>
+          <div className="text-xs text-muted-foreground">{city}, GA</div>
         </div>
       </div>
     </article>

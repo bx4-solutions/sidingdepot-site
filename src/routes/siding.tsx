@@ -131,7 +131,7 @@ function SidingTypesSection() {
   const active = SIDING_TYPES.find((t) => t.id === activeId) ?? null;
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Copy */}
@@ -139,11 +139,11 @@ function SidingTypesSection() {
             <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
               Siding Types
             </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-foreground">
               James Hardie® Siding:{" "}
               <span className="text-sd-green">Elite Installation & Protection.</span>
             </h2>
-            <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
               As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -279,17 +279,17 @@ function BeforeAfterCarousel() {
   if (!current) return null;
 
   return (
-    <section className="bg-sd-gray-bg py-20 lg:py-28">
+    <section className="bg-muted py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
           <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
             Before / After
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-foreground">
             Real projects.{" "}
             <span className="text-sd-green">Real transformations.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-sd-gray-text">
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             Drag the slider on each project to see exactly how new James Hardie
             siding, paint and trim transform a North Atlanta home.
           </p>

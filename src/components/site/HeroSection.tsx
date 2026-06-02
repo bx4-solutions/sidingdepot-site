@@ -43,7 +43,7 @@ export function HeroSection({
   const trustIcons = [Award, ShieldCheck, Clock];
 
   return (
-    <section className="relative isolate overflow-hidden bg-sd-dark">
+    <section className="relative isolate overflow-hidden section-dark">
       <picture>
         {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}
         <img
@@ -75,7 +75,7 @@ export function HeroSection({
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-5 text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
               {subtitle}
             </p>
           )}
@@ -85,7 +85,7 @@ export function HeroSection({
               {trustItems.map((t, i) => {
                 const Icon = trustIcons[i % trustIcons.length];
                 return (
-                  <li key={t} className="flex items-center gap-2 text-sm text-white/85">
+                  <li key={t} className="flex items-center gap-2 text-sm text-foreground/85">
                     <Icon className="h-4 w-4 text-sd-green shrink-0" aria-hidden="true" />
                     <span>{t}</span>
                   </li>

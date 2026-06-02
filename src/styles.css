@@ -53,19 +53,22 @@
   --color-sd-gray-border: var(--sd-gray-border);
   --color-sd-gray-text: var(--sd-gray-text);
 
+  /* Functional text tokens for contrast safety */
+  --color-text-primary: var(--foreground);
+  --color-text-secondary: var(--muted-foreground);
+  --color-text-on-dark: var(--sd-white);
+  --color-text-on-dark-muted: oklch(1 0 0 / 70%);
+
   /* Layout — sticky navbar height (single source of truth) */
   --spacing-nav-mobile: 91px;
   --spacing-nav-tablet: 110px;
   --spacing-nav-desktop: 91px;
 
-  /* Layout — hero (first block) vertical spacing tokens.
-     Used as `py-hero` (mobile) and `lg:py-hero-lg` (desktop) so every page
-     hero has consistent breathing room below the sticky navbar. */
-  --spacing-hero: 5rem;        /* 80px — mobile/tablet */
-  --spacing-hero-lg: 7rem;     /* 112px — desktop */
-  /* Compact hero (used when the hero contains a tall lead form) */
-  --spacing-hero-compact: 3rem;     /* 48px */
-  --spacing-hero-compact-lg: 4rem;  /* 64px */
+  /* Layout — hero vertical spacing tokens */
+  --spacing-hero: 5rem;
+  --spacing-hero-lg: 7rem;
+  --spacing-hero-compact: 3rem;
+  --spacing-hero-compact-lg: 4rem;
 }
 
 :root {
@@ -157,5 +160,23 @@
   .font-display {
     font-family: var(--font-display);
     letter-spacing: 0.02em;
+  }
+
+  /* Helper to force dark-section colors without relying on global .dark class */
+  .section-dark {
+    --background: var(--sd-navy);
+    --foreground: var(--sd-white);
+    --muted-foreground: oklch(1 0 0 / 70%);
+    --border: oklch(1 0 0 / 10%);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  .section-dark-alt {
+    --background: var(--sd-black);
+    --foreground: var(--sd-white);
+    --muted-foreground: oklch(1 0 0 / 65%);
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

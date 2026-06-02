@@ -106,10 +106,10 @@ export function SimpleLeadForm({
     return (
       <div className="px-2 py-6 text-center">
         <CheckCircle2 className="mx-auto h-12 w-12 text-sd-green" />
-        <h3 className="mt-3 font-display text-xl text-sd-black uppercase tracking-tight">
+        <h3 className="mt-3 font-display text-xl text-foreground uppercase tracking-tight">
           Thank you!
         </h3>
-        <p className="mt-2 text-sm text-sd-gray-text">
+        <p className="mt-2 text-sm text-muted-foreground">
           Your guide is ready. Click below to download your free copy.
         </p>
         <a
@@ -118,7 +118,7 @@ export function SimpleLeadForm({
           rel="noopener noreferrer"
           download
           onClick={() => track("ebook_download_click", { source })}
-          className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:opacity-90 transition-opacity"
+          className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-navy hover:bg-sd-green-hover transition-colors"
         >
           <Download className="h-4 w-4" /> {downloadLabel}
         </a>
@@ -129,7 +129,7 @@ export function SimpleLeadForm({
   return (
     <form onSubmit={handleSubmit} noValidate className="grid gap-3">
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-name" className="text-xs font-semibold text-sd-black">Full Name</Label>
+        <Label htmlFor="lead-name" className="text-xs font-semibold text-foreground">Full Name</Label>
         <Input
           id="lead-name"
           autoComplete="name"
@@ -141,7 +141,7 @@ export function SimpleLeadForm({
         {errors.name && <p className="text-[11px] text-destructive">{errors.name}</p>}
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-phone" className="text-xs font-semibold text-sd-black">Phone</Label>
+        <Label htmlFor="lead-phone" className="text-xs font-semibold text-foreground">Phone</Label>
         <Input
           id="lead-phone"
           type="tel"
@@ -155,7 +155,7 @@ export function SimpleLeadForm({
         {errors.phone && <p className="text-[11px] text-destructive">{errors.phone}</p>}
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-email" className="text-xs font-semibold text-sd-black">Email</Label>
+        <Label htmlFor="lead-email" className="text-xs font-semibold text-foreground">Email</Label>
         <Input
           id="lead-email"
           type="email"
@@ -174,7 +174,7 @@ export function SimpleLeadForm({
           submitLabel
         )}
       </Button>
-      <p className="text-[10px] leading-snug text-sd-gray-text text-center">
+      <p className="text-[10px] leading-snug text-muted-foreground text-center">
         By submitting, you agree to receive the guide and contacts from Siding Depot. We never share your data.
       </p>
     </form>

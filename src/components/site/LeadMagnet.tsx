@@ -13,11 +13,11 @@ type Props = {
 
 export function LeadMagnet({ source = "lead_magnet" }: Props) {
   return (
-    <section className="bg-sd-gray-bg py-16 lg:py-20">
+    <section className="bg-muted py-16 lg:py-20">
       <div className="mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="grid gap-8 overflow-hidden rounded-2xl border border-sd-gray-border bg-white shadow-sm lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-background shadow-sm lg:grid-cols-[1fr_1.1fr]">
           {/* Left: PDF preview / pitch */}
-          <div className="relative bg-sd-black p-8 text-white lg:p-10">
+          <div className="relative section-dark-alt p-8 text-white lg:p-10">
             <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
               <FileText className="h-3.5 w-3.5" /> Free Homeowner Guide
             </span>
@@ -45,10 +45,10 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
           {/* Right: Simple lead form (Name + Phone + Email → Download) */}
           <div className="p-6 lg:p-8 flex items-center">
             <div className="w-full">
-              <h3 className="font-display text-xl text-sd-navy uppercase tracking-tight mb-1">
+              <h3 className="font-display text-xl text-foreground uppercase tracking-tight mb-1">
                 Get Instant Access
               </h3>
-              <p className="text-sm text-sd-gray-text mb-5">
+              <p className="text-sm text-muted-foreground mb-5">
                 Leave your details and download the guide right away.
               </p>
               <SimpleLeadForm source={source} tag="lead_magnet_request" />

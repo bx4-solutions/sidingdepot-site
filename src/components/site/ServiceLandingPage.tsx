@@ -116,7 +116,7 @@ export function ServiceLandingPage({
   return (
     <main>
       {/* HERO */}
-      <section className="relative bg-sd-navy text-white overflow-hidden">
+      <section className="relative section-dark overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <img
             src={heroImage}
@@ -134,7 +134,7 @@ export function ServiceLandingPage({
               <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
                 {eyebrow}
               </span>
-              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
                 {title}{" "}
                 <span className="text-sd-green">{titleAccent}</span>
               </h1>
@@ -364,10 +364,10 @@ export function ServiceLandingPage({
       </section>
 
       {/* Closing CTA */}
-      <section className="bg-sd-navy py-20 text-white">
+      <section className="section-dark py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
           <div className="lg:col-span-2">
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
               Ready for work that lasts{" "}
               <span className="text-sd-green">{ctaAccent}</span>
             </h2>
