@@ -15,19 +15,19 @@ export const Route = createFileRoute("/contact")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Solicitar Orçamento — Siding Depot" },
+      { title: "Get a Free Quote — Siding Depot" },
       {
         name: "description",
         content:
-          "Peça seu orçamento gratuito de siding, pintura, janelas, decks ou roofing em North Atlanta. Resposta em 24h.",
+          "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours.",
       },
-      { property: "og:title", content: "Solicitar Orçamento — Siding Depot" },
-      { property: "og:description", content: "Peça seu orçamento gratuito de siding, pintura, janelas, decks ou roofing em North Atlanta. Resposta em 24h." },
+      { property: "og:title", content: "Get a Free Quote — Siding Depot" },
+      { property: "og:description", content: "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Solicitar Orçamento — Siding Depot" },
-      { name: "twitter:description", content: "Peça seu orçamento gratuito de siding, pintura, janelas, decks ou roofing em North Atlanta. Resposta em 24h." },
+      { name: "twitter:title", content: "Get a Free Quote — Siding Depot" },
+      { name: "twitter:description", content: "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours." },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
   }),
@@ -49,10 +49,10 @@ function ContactPage() {
             Free Quote · 24h Response
           </span>
           <h1 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
-            Solicitar Orçamento
+            Get Your Free Quote
           </h1>
           <p className="mt-3 text-sd-gray-text">
-            Conte sobre seu projeto e respondemos em até 24h com uma estimativa por escrito.
+            Tell us about your project and we'll respond within 24 hours with a written estimate.
           </p>
         </div>
 

@@ -15,7 +15,7 @@ const PAINS = [
   "You spend the money — and still hate the way your house looks.",
 ];
 
-const SLIDER_SOURCE = "Slider antes/depois";
+const SLIDER_SOURCE = "Before/After Slider";
 
 export function PainPointsSection() {
   const pair = BEFORE_AFTER_PAIRS[0];
@@ -38,10 +38,10 @@ export function PainPointsSection() {
           <div className="mt-5 rounded-xl bg-sd-navy p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white font-semibold text-sm sm:text-base">
-                Quer ver sua casa transformada assim?
+                Want to see your home transformed like this?
               </p>
               <p className="text-white/65 text-xs sm:text-sm mt-0.5">
-                Orçamento gratuito · resposta em 24h.
+                Free estimate · response within 24h.
               </p>
             </div>
             <QuoteModal
@@ -52,7 +52,7 @@ export function PainPointsSection() {
                   className="w-full sm:w-auto shrink-0"
                   onClick={() => track("quote_cta_click", { source: SLIDER_SOURCE })}
                 >
-                  Solicitar Orçamento
+                  Get Your Quote
                 </Button>
               }
             />
@@ -63,7 +63,7 @@ export function PainPointsSection() {
 
         <div>
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text">
-            <AlertTriangle className="h-3.5 w-3.5" /> The Hidden Cost
+            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Hidden Cost
           </span>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black leading-[1.05]">
             An Exterior Renovation Is a <span className="text-sd-green">Big Project.</span>

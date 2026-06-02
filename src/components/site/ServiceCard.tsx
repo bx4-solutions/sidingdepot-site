@@ -30,7 +30,7 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
           {image.webp && <source srcSet={image.webp} type="image/webp" />}
           <img
             src={image.src}
-            alt=""
+            alt={title}
             aria-hidden="true"
             loading={priority ? "eager" : "lazy"}
             decoding="async"

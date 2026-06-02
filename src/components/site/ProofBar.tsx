@@ -10,7 +10,7 @@ export function ProofBar() {
         <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/90 text-sm font-bold uppercase tracking-wider">
           {PROOF_BAR.map((p) => (
             <li key={p.label} className="flex items-center gap-2">
-              <span aria-hidden className="text-base">{p.icon}</span>
+              <span aria-hidden="true" className="text-base">{p.icon}</span>
               <span className="font-medium">{p.label}</span>
             </li>
           ))}

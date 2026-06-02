@@ -178,6 +178,7 @@ export function GoogleReviews() {
                   <Star 
                     key={s} 
                     className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.9) ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                    aria-hidden="true"
                   />
                 ))}
               </div>
@@ -192,12 +193,12 @@ export function GoogleReviews() {
               variant="outline" 
               className="border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white"
             >
-              <RefreshCw className={`mr-2 h-4 w-4 ${syncMutation.isPending ? "animate-spin" : ""}`} />
+              <RefreshCw className={`mr-2 h-4 w-4 ${syncMutation.isPending ? "animate-spin" : ""}`} aria-hidden="true" />
               {syncMutation.isPending ? "Syncing..." : "Sync Reviews"}
             </Button>
             <Button asChild variant="outline" className="border-sd-green text-sd-green hover:bg-sd-green hover:text-white">
               <a href={gmbUrl} target="_blank" rel="noopener noreferrer">
-                <MessageSquare className="mr-2 h-4 w-4" />
+                <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />
                 Write a Review
               </a>
             </Button>
@@ -208,7 +209,7 @@ export function GoogleReviews() {
         <div className="mb-8 flex flex-col sm:flex-row gap-4 items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-black/5">
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-sd-gray-text" />
+              <Filter className="h-4 w-4 text-sd-gray-text" aria-hidden="true" />
               <span className="text-sm font-medium text-sd-navy">Rating:</span>
             </div>
             <Select value={ratingFilter} onValueChange={(v) => { setRatingFilter(v); setCurrentPage(1); }}>
@@ -226,7 +227,7 @@ export function GoogleReviews() {
 
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-sd-gray-text" />
+              <Calendar className="h-4 w-4 text-sd-gray-text" aria-hidden="true" />
               <span className="text-sm font-medium text-sd-navy">Sort:</span>
             </div>
             <Select value={sortOrder} onValueChange={(v) => { setSortOrder(v); setCurrentPage(1); }}>
@@ -261,6 +262,7 @@ export function GoogleReviews() {
                     <Star 
                       key={i} 
                       className={`h-3 w-3 ${i < r.rating ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                      aria-hidden="true"
                     />
                   ))}
                 </div>
@@ -295,7 +297,7 @@ export function GoogleReviews() {
               onClick={() => handlePageChange(currentPage - 1)}
               className="h-9 w-9 rounded-full border-sd-navy/10"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             </Button>
             <div className="flex items-center gap-1">
               {[...Array(totalPages)].map((_, i) => (
@@ -320,7 +322,7 @@ export function GoogleReviews() {
               onClick={() => handlePageChange(currentPage + 1)}
               className="h-9 w-9 rounded-full border-sd-navy/10"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         )}

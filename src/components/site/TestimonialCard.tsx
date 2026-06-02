@@ -14,7 +14,7 @@ export function TestimonialCard({ name, city, text, rating = 5 }: Props) {
     <article className="rounded-lg border border-sd-gray-border bg-white p-6 h-full flex flex-col">
       <div className="flex gap-0.5 text-sd-green">
         {Array.from({ length: rating }).map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-current" />
+          <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
         ))}
       </div>
       <p className="mt-4 text-sm text-sd-black leading-relaxed flex-1">

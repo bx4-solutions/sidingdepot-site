@@ -12,7 +12,7 @@ const BrandHeader = ({ pageNum }: { pageNum: number }) => (
   <div className="absolute top-0 left-0 w-full">
     <div className="h-2 w-full bg-[#BCD635]" />
     <div className="flex justify-between items-center px-10 py-6">
-      <div className="font-display text-[28px] text-[#0A0A0A] leading-none tracking-tight bg-[#BCD635] px-2 py-1 rounded">SIDING DEPOT</div>
+      <div className="font-display text-[28px] text-[#0A0A0A] leading-none tracking-tight bg-[#BCD635] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
       <div className="text-[10px] font-bold text-[#2D3748] tracking-widest uppercase opacity-40">
         Page {pageNum} / 8
       </div>
@@ -54,7 +54,7 @@ export const SidingGuide = () => {
       {/* PAGE 1 - COVER */}
       <PageWrapper pageNum={1} className="bg-[#0A0A0A]">
         <div className="absolute top-10 left-10">
-          <div className="font-display text-[28px] text-[#0A0A0A] tracking-tight bg-[#BCD635] px-2 py-1 rounded">SIDING DEPOT</div>
+          <div className="font-display text-[28px] text-[#0A0A0A] tracking-tight bg-[#BCD635] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
         </div>
         <div className="absolute top-10 right-10">
           <div className="bg-[#BCD635]/15 border border-[#BCD635]/40 px-3 py-1 rounded-full text-[#BCD635] text-[10px] font-bold tracking-widest uppercase">
@@ -293,7 +293,7 @@ export const SidingGuide = () => {
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 bg-white p-4 rounded-xl shadow-sm border border-[#E2E8EE]">
                  <div className="mt-1 w-5 h-5 rounded border-2 border-[#BCD635] flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="h-4 w-4 text-[#BCD635]" />
+                    <CheckCircle2 className="h-4 w-4 text-[#BCD635]" aria-hidden="true" />
                  </div>
                  <div>
                     <div className="text-[13px] font-bold text-[#1E2A38] uppercase tracking-wide">
@@ -389,16 +389,16 @@ export const SidingGuide = () => {
              <h3 className="text-[#1E2A38] font-bold text-xl mb-6 uppercase tracking-tight">Get Your Free Estimate</h3>
              <div className="space-y-4">
                 <div className="flex items-center justify-center gap-3 text-[#1E2A38] font-display text-3xl leading-none">
-                   <Phone className="h-6 w-6 text-[#BCD635]" /> (678) 400-2012
+                   <Phone className="h-6 w-6 text-[#BCD635]" aria-hidden="true" /> (678) 400-2012
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[#6B7A8A] font-semibold text-sm">
-                   <Mail className="h-4 w-4 text-[#BCD635]" /> office@sidingdepot.com
+                   <Mail className="h-4 w-4 text-[#BCD635]" aria-hidden="true" /> office@sidingdepot.com
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[#6B7A8A] font-semibold text-sm">
-                   <ExternalLink className="h-4 w-4 text-[#BCD635]" /> sidingdepot.com/contact
+                   <ExternalLink className="h-4 w-4 text-[#BCD635]" aria-hidden="true" /> sidingdepot.com/contact
                 </div>
                 <div className="mt-6 pt-6 border-t border-[#E2E8EE] flex items-center justify-center gap-2 text-[#6B7A8A]/60 text-[10px] uppercase font-bold tracking-wide">
-                   <MapPin className="h-3 w-3" /> 3036 Roswell Rd, Marietta, GA 30062
+                   <MapPin className="h-3 w-3" aria-hidden="true" /> 3036 Roswell Rd, Marietta, GA 30062
                 </div>
              </div>
           </div>

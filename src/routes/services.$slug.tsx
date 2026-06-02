@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   Star,
   Award,
+  Phone,
 } from "lucide-react";
 import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
@@ -261,17 +262,17 @@ function ServicePage() {
               to="/contact"
               className="inline-flex items-center gap-2 rounded-pill bg-sd-green px-6 py-3 text-sm font-bold uppercase tracking-wide text-sd-black hover:bg-sd-green/90 transition-colors"
             >
-              Get Free Quote <ArrowRight className="h-4 w-4" />
+              Get Free Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <a
               href={SITE.phoneHref}
               className="inline-flex items-center gap-2 rounded-pill border border-white/60 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-white/10 transition-colors"
             >
-              Call {SITE.phone}
+              <Phone className="h-4 w-4" aria-hidden="true" /> Call {SITE.phone}
             </a>
           </div>
           <div className="mt-8 inline-flex items-center gap-2 text-sm text-white/80">
-            <Star className="h-4 w-4 fill-sd-green text-sd-green" />
+            <Star className="h-4 w-4 fill-sd-green text-sd-green" aria-hidden="true" />
             <span>4.9 · 128+ reviews · {content.partners}</span>
           </div>
         </div>
@@ -292,7 +293,7 @@ function ServicePage() {
               <ul className="mt-8 grid gap-3">
                 {content.benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-sd-green flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-5 w-5 text-sd-green flex-shrink-0 mt-0.5" aria-hidden="true" />
                     <span className="text-sd-black">{b}</span>
                   </li>
                 ))}
@@ -390,7 +391,7 @@ function ServicePage() {
             to="/contact"
             className="mt-6 inline-flex items-center gap-2 rounded-pill bg-sd-green px-6 py-3 text-sm font-bold uppercase tracking-wide text-sd-black hover:bg-sd-green/90 transition-colors"
           >
-            Get Free Quote <ArrowRight className="h-4 w-4" />
+            Get Free Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </section>
@@ -422,7 +423,7 @@ function ServicePage() {
 function TrustCard({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="rounded-xl border border-sd-gray-border bg-white p-4 flex items-center gap-3">
-      <div className="text-sd-navy">{icon}</div>
+      <div className="text-sd-navy" aria-hidden="true">{icon}</div>
       <span className="text-sm font-semibold text-sd-black">{label}</span>
     </div>
   );

@@ -8,14 +8,14 @@ import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 
 const schema = z.object({
-  name: z.string().trim().min(2, { message: "Informe seu nome" }).max(100),
+  name: z.string().trim().min(2, { message: "Please enter your name" }).max(100),
   phone: z
     .string()
     .trim()
-    .min(7, { message: "Telefone inválido" })
+    .min(7, { message: "Invalid phone number" })
     .max(30)
-    .regex(/^[+\d\s().-]+$/, { message: "Telefone inválido" }),
-  email: z.string().trim().email({ message: "E-mail inválido" }).max(255),
+    .regex(/^[+\d\s().-]+$/, { message: "Invalid phone number" }),
+  email: z.string().trim().email({ message: "Invalid email" }).max(255),
 });
 
 type FormState = z.infer<typeof schema>;
@@ -96,7 +96,7 @@ export function SimpleLeadForm({
       onSuccess?.();
     } catch {
       track("lead_form_error", { source });
-      setErrors({ email: "Não foi possível enviar agora. Tente novamente." });
+      setErrors({ email: "Unable to send right now. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -129,7 +129,7 @@ export function SimpleLeadForm({
   return (
     <form onSubmit={handleSubmit} noValidate className="grid gap-3">
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-name" className="text-xs font-semibold text-sd-black">Nome completo</Label>
+        <Label htmlFor="lead-name" className="text-xs font-semibold text-sd-black">Full Name</Label>
         <Input
           id="lead-name"
           autoComplete="name"
@@ -141,7 +141,7 @@ export function SimpleLeadForm({
         {errors.name && <p className="text-[11px] text-destructive">{errors.name}</p>}
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-phone" className="text-xs font-semibold text-sd-black">Telefone</Label>
+        <Label htmlFor="lead-phone" className="text-xs font-semibold text-sd-black">Phone</Label>
         <Input
           id="lead-phone"
           type="tel"
@@ -155,7 +155,7 @@ export function SimpleLeadForm({
         {errors.phone && <p className="text-[11px] text-destructive">{errors.phone}</p>}
       </div>
       <div className="grid gap-1.5">
-        <Label htmlFor="lead-email" className="text-xs font-semibold text-sd-black">E-mail</Label>
+        <Label htmlFor="lead-email" className="text-xs font-semibold text-sd-black">Email</Label>
         <Input
           id="lead-email"
           type="email"
@@ -169,13 +169,13 @@ export function SimpleLeadForm({
       </div>
       <Button type="submit" size="lg" disabled={submitting} className="mt-1">
         {submitting ? (
-          <><Loader2 className="h-4 w-4 animate-spin" /> Enviando…</>
+          <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
         ) : (
           submitLabel
         )}
       </Button>
       <p className="text-[10px] leading-snug text-sd-gray-text text-center">
-        Ao enviar, você concorda em receber o guia e contatos da Siding Depot. Nunca compartilhamos seus dados.
+        By submitting, you agree to receive the guide and contacts from Siding Depot. We never share your data.
       </p>
     </form>
   );
