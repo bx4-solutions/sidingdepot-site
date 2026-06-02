@@ -20,7 +20,7 @@ export const Route = createFileRoute("/blog/")({
         { property: "og:description", content: "Expert advice on siding installation, cost guides, and maintenance for North Atlanta homeowners." },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://sidingdepot.com/blog" },
-        { property: "og:image", content: "https://sidingdepot.com/hero-home.webp" },
+        { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       ],
       links: [
         { rel: "canonical", href: "https://sidingdepot.com/blog" },

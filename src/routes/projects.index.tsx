@@ -149,7 +149,7 @@ function ProjectsPage() {
                       aria-hidden
                       className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/70 text-white transition-colors group-hover:bg-sd-green group-hover:border-sd-green group-hover:text-sd-black"
                     >
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </span>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ function ProjectsPage() {
             to="/contact"
             className="inline-flex items-center gap-2 rounded-pill bg-sd-green px-6 py-3 text-sm font-bold uppercase tracking-wide text-sd-black hover:bg-sd-green/90 transition-colors"
           >
-            Get Your Free Quote <ArrowRight className="h-4 w-4" />
+            Get Your Free Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </div>
