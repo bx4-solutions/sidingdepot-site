@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   Star,
   Award,
+  Phone,
 } from "lucide-react";
 import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
