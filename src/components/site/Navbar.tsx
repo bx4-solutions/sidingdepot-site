@@ -1,19 +1,78 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { SITE, SERVICES } from "@/data/site";
+import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { to: "/siding", label: "SIDING" },
-  { to: "/roofing", label: "ROOFING" },
-  { to: "/deck", label: "DECKS" },
-  { to: "/windows", label: "WINDOWS" },
-  { to: "/gutters", label: "GUTTERS" },
-  { to: "/painting", label: "PAINTING" },
+  { 
+    to: "/siding", 
+    label: "SIDING",
+    sublinks: [
+      { to: "/siding", label: "James Hardie Siding" },
+      { to: "/siding", label: "Fiber Cement Siding" },
+      { to: "/siding", label: "Vinyl Siding" },
+      { to: "/siding", label: "Siding Repair" },
+    ]
+  },
+  { 
+    to: "/roofing", 
+    label: "ROOFING",
+    sublinks: [
+      { to: "/roofing", label: "Roof Replacement" },
+      { to: "/roofing", label: "Roof Repair" },
+      { to: "/roofing", label: "GAF Certified Roofing" },
+    ]
+  },
+  { 
+    to: "/deck", 
+    label: "DECKS",
+    sublinks: [
+      { to: "/deck", label: "Custom Deck Building" },
+      { to: "/deck", label: "Deck Repair & Staining" },
+      { to: "/deck", label: "Porches & Porticos" },
+    ]
+  },
+  { 
+    to: "/windows", 
+    label: "WINDOWS",
+    sublinks: [
+      { to: "/windows", label: "Window Replacement" },
+      { to: "/windows", label: "Energy Efficient Windows" },
+      { to: "/windows", label: "Vinyl Windows" },
+    ]
+  },
+  { 
+    to: "/gutters", 
+    label: "GUTTERS",
+    sublinks: [
+      { to: "/gutters", label: "Seamless Gutters" },
+      { to: "/gutters", label: "Gutter Guards" },
+      { to: "/gutters", label: "Gutter Repair" },
+    ]
+  },
+  { 
+    to: "/painting", 
+    label: "PAINTING",
+    sublinks: [
+      { to: "/painting", label: "Exterior Painting" },
+      { to: "/painting", label: "Trim & Detail Painting" },
+      { to: "/painting", label: "Siding Painting" },
+    ]
+  },
   { to: "/projects", label: "PROJECT GALLERY" },
   { to: "/about", label: "ABOUT" },
 ] as const;
