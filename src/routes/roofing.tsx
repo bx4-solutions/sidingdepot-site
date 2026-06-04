@@ -5,11 +5,11 @@ import { HeroSection } from "@/components/site/HeroSection";
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { AwardsStrip } from "@/components/site/AwardsStrip";
-import { CitiesGrid } from "@/components/site/CitiesGrid";
+import { CityCard } from "@/components/site/CityCard";
 import { MapSection } from "@/components/site/MapSection";
 import { GoogleReviews } from "@/components/site/GoogleReviews";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
-import { SITE } from "@/data/site";
+import { SITE, CITIES } from "@/data/site";
 import { SERVICE_METADATA } from "@/data/seo-config";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1632823471565-1ecdf5c6da03";
