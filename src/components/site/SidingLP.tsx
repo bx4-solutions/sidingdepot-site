@@ -144,7 +144,7 @@ export function SidingLP({ city }: SidingLPProps) {
       {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
-      <section className="relative overflow-hidden section-dark">
+      <section className="relative overflow-hidden bg-sd-navy text-white">
         <div className="absolute inset-0">
           <img 
             src={HERO_BG} 
