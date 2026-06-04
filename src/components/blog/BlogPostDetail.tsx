@@ -325,7 +325,7 @@ export default function BlogPostDetail() {
                         <a 
                           href={`#${sectionId}`}
                           className={`text-sm font-bold uppercase tracking-wider transition-all block border-l-2 pl-6 py-1 ${
-                            activeId === sectionId ? "text-[#BCD635] border-[#BCD635] translate-x-2" : "text-sd-gray-text/60 border-gray-100 hover:text-sd-black hover:border-sd-navy"
+                            activeId === sectionId ? "text-sd-green border-sd-green translate-x-2" : "text-sd-gray-text/60 border-gray-100 hover:text-sd-black hover:border-sd-navy"
                           }`}
                         >
                           {section.h2}
@@ -340,7 +340,7 @@ export default function BlogPostDetail() {
               {relatedPosts.length > 0 && (
                 <div className="space-y-8">
                   <h3 className="text-xl font-bold text-sd-black flex items-center gap-3">
-                    <div className="w-1.5 h-6 bg-[#BCD635] rounded-full"></div>
+                    <div className="w-1.5 h-6 bg-sd-green rounded-full"></div>
                     Related Insights
                   </h3>
                   <div className="space-y-8">
@@ -363,7 +363,7 @@ export default function BlogPostDetail() {
                         </div>
 
                         <div className="flex flex-col justify-center gap-1">
-                          <h4 className="text-sm font-bold text-sd-black group-hover:text-[#BCD635] transition-colors leading-snug line-clamp-2">
+                          <h4 className="text-sm font-bold text-sd-black group-hover:text-sd-green transition-colors leading-snug line-clamp-2">
                             {p.title}
                           </h4>
                           <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-sd-gray-text/40 mt-1">

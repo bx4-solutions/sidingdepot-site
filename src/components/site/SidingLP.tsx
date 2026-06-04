@@ -433,7 +433,7 @@ export function SidingLP({ city }: SidingLPProps) {
       <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex flex-col gap-1">
-            <span className="text-base font-extrabold" style={{ color: "#BCD635" }}>
+            <span className="text-base font-extrabold text-sd-green">
               Siding Depot
             </span>
             <span>© 2026 {SITE.legalName}</span>
@@ -457,10 +457,9 @@ export function SidingLP({ city }: SidingLPProps) {
       <a
         href={SITE.phoneHref}
         onClick={() => track("lp_phone_click", { location: "sticky_mobile" })}
-        className={`fixed inset-x-0 bottom-0 z-[9999] flex h-14 items-center justify-center gap-2 text-base font-extrabold lg:hidden transition-transform ${
+        className={`fixed inset-x-0 bottom-0 z-[9999] flex h-14 items-center justify-center gap-2 text-base font-extrabold lg:hidden transition-transform bg-sd-green text-sd-navy ${
           hideStickyCall ? "translate-y-full" : "translate-y-0"
         }`}
-        style={{ background: "#BCD635", color: "#1E2A38" }}
         aria-hidden={hideStickyCall}
       >
         <Phone className="h-5 w-5" aria-hidden="true" /> TAP TO CALL {SITE.phone}
