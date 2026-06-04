@@ -164,18 +164,18 @@
 
   /* Helper to force dark-section colors without relying on global .dark class */
   .section-dark {
-    --background: var(--sd-navy);
-    --foreground: var(--sd-white);
-    --muted-foreground: oklch(1 0 0 / 70%);
-    --border: oklch(1 0 0 / 10%);
+    --background: var(--sd-gray-bg);
+    --foreground: var(--sd-black);
+    --muted-foreground: var(--sd-gray-text);
+    --border: var(--sd-gray-border);
     background-color: var(--background);
     color: var(--foreground);
   }
 
   .section-dark-alt {
-    --background: var(--sd-black);
-    --foreground: var(--sd-white);
-    --muted-foreground: oklch(1 0 0 / 65%);
+    --background: oklch(0.955 0.004 247.0);
+    --foreground: var(--sd-black);
+    --muted-foreground: var(--sd-gray-text);
     background-color: var(--background);
     color: var(--foreground);
   }
