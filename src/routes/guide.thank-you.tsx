@@ -41,7 +41,7 @@ export const Route = createFileRoute("/guide/thank-you")({
 /**
  * Smart service CTAs: every card maps to a top-level route so a click takes
  * the user directly to the service they self-identified with — no extra hop.
- * Slugs match existing routes: /siding, /painting, /windows, /deck, /gutters,
+ * Slugs match existing routes: /siding, /painting, /windows, /decks, /gutters,
  * /roofing, /dumpster.
  */
 const SERVICE_ROUTE_BY_SLUG: Record<string, string> = {
@@ -58,7 +58,7 @@ const NEED_PROMPT_BY_SLUG: Record<string, string> = {
   siding: "My siding is faded, cracked, or rotting",
   painting: "I want a fresh exterior color & long-lasting finish",
   windows: "My energy bills are too high",
-  deck: "I want to add or rebuild outdoor living space",
+  decks: "I want to add or rebuild outdoor living space",
   gutters: "Water is overflowing or pooling near the foundation",
   roofing: "I see missing shingles or interior leaks",
   dumpster: "I need a roll-off for a remodel or clean-out",
