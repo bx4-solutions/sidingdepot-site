@@ -25,8 +25,8 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does roof replacement cost in Marietta, GA in 2026?",
-    a: "A full roof replacement in the Marietta and North Atlanta area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
+    q: "How much does roof replacement cost in Marietta e Região, GA in 2026?",
+    a: "A full roof replacement in the Marietta e Região area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
   },
   {
     q: "Does homeowner's insurance cover roof replacement in Georgia?",
