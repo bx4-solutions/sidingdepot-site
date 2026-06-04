@@ -98,7 +98,7 @@ function WindowsPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Window"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces windows across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth — covering Cobb County, Cherokee County and Fulton County in Metro Atlanta. We specify Energy Star double-pane Low-E windows for Atlanta's climate zone (3A/4A), where AC runs much of the year. Most full-home window replacements in our service area generally run $7,000–$18,000, and according to Energy Star, certified Low-E packages can meaningfully reduce summer cooling costs."
+      seoParagraph="Siding Depot replaces windows across Marietta e Região. We specify Energy Star double-pane Low-E windows for Atlanta's climate zone (3A/4A), where AC runs much of the year. Most full-home window replacements in our service area generally run $7,000–$18,000, and according to Energy Star, certified Low-E packages can meaningfully reduce summer cooling costs."
       ctaAccent="decades, not summers?"
       trustBadge={{ title: "Energy Star Partner", subtitle: "Low-E + Argon double-pane" }}
     />
