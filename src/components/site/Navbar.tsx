@@ -1,19 +1,84 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { SITE, SERVICES } from "@/data/site";
+import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const NAV_LINKS = [
-  { to: "/siding", label: "SIDING" },
-  { to: "/roofing", label: "ROOFING" },
-  { to: "/deck", label: "DECKS" },
-  { to: "/windows", label: "WINDOWS" },
-  { to: "/gutters", label: "GUTTERS" },
-  { to: "/painting", label: "PAINTING" },
+  { 
+    to: "/siding", 
+    label: "SIDING",
+    sublinks: [
+      { to: "/siding", label: "James Hardie Siding" },
+      { to: "/siding", label: "Fiber Cement Siding" },
+      { to: "/siding", label: "Vinyl Siding" },
+      { to: "/siding", label: "Siding Repair" },
+    ]
+  },
+  { 
+    to: "/roofing", 
+    label: "ROOFING",
+    sublinks: [
+      { to: "/roofing", label: "Roof Replacement" },
+      { to: "/roofing", label: "Roof Repair" },
+      { to: "/roofing", label: "GAF Certified Roofing" },
+    ]
+  },
+  { 
+    to: "/deck", 
+    label: "DECKS",
+    sublinks: [
+      { to: "/deck", label: "Custom Deck Building" },
+      { to: "/deck", label: "Deck Repair & Staining" },
+      { to: "/deck", label: "Porches & Porticos" },
+    ]
+  },
+  { 
+    to: "/windows", 
+    label: "WINDOWS",
+    sublinks: [
+      { to: "/windows", label: "Window Replacement" },
+      { to: "/windows", label: "Energy Efficient Windows" },
+      { to: "/windows", label: "Vinyl Windows" },
+    ]
+  },
+  { 
+    to: "/gutters", 
+    label: "GUTTERS",
+    sublinks: [
+      { to: "/gutters", label: "Seamless Gutters" },
+      { to: "/gutters", label: "Gutter Guards" },
+      { to: "/gutters", label: "Gutter Repair" },
+    ]
+  },
+  { 
+    to: "/painting", 
+    label: "PAINTING",
+    sublinks: [
+      { to: "/painting", label: "Exterior Painting" },
+      { to: "/painting", label: "Trim & Detail Painting" },
+      { to: "/painting", label: "Siding Painting" },
+    ]
+  },
   { to: "/projects", label: "PROJECT GALLERY" },
   { to: "/about", label: "ABOUT" },
 ] as const;
@@ -55,27 +120,60 @@ export function Navbar() {
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
-              activeProps={{ className: "text-sd-green-text underline underline-offset-4" }}
-              activeOptions={{ exact: true }}
-            >
-              {l.label}
-            </Link>
-          ))}
-          {session && (
-            <Link
-              to="/seo-dashboard"
-              className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
-              activeProps={{ className: "text-white" }}
-            >
-              SEO Dashboard
-            </Link>
-          )}
+        <nav className="hidden lg:flex items-center gap-2">
+          <NavigationMenu>
+            <NavigationMenuList className="gap-1">
+              {NAV_LINKS.map((l) => (
+                <NavigationMenuItem key={l.label}>
+                  {"sublinks" in l ? (
+                    <>
+                      <NavigationMenuTrigger className="bg-transparent text-[13px] font-semibold tracking-wide text-sd-black hover:text-sd-green-text h-auto py-2 px-3 data-[state=open]:bg-transparent data-[active]:bg-transparent">
+                        <Link to={l.to} className="hover:text-sd-green-text">
+                          {l.label}
+                        </Link>
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[200px] gap-1 p-3 bg-white border border-sd-navy/10 shadow-lg rounded-md">
+                          {l.sublinks.map((sub) => (
+                            <li key={sub.label}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  to={sub.to}
+                                  className="block select-none space-y-1 rounded-md p-3 text-[12px] font-medium leading-none no-underline outline-none transition-colors hover:bg-sd-green/10 hover:text-sd-green-text focus:bg-sd-green/10 focus:text-sd-green-text"
+                                >
+                                  {sub.label}
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <Link
+                      to={l.to}
+                      className={cn(
+                        "text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2",
+                        location.pathname === l.to && "text-sd-green-text underline underline-offset-4"
+                      )}
+                    >
+                      {l.label}
+                    </Link>
+                  )}
+                </NavigationMenuItem>
+              ))}
+              {session && (
+                <NavigationMenuItem>
+                  <Link
+                    to="/seo-dashboard"
+                    className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2"
+                  >
+                    SEO Dashboard
+                  </Link>
+                </NavigationMenuItem>
+              )}
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -105,16 +203,39 @@ export function Navbar() {
       {open && (
         <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-sd-gray-bg border-b border-sd-gray-border`}>
           <nav className="px-4 py-4 flex flex-col gap-1">
-            {NAV_LINKS.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="px-3 py-2 rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ))}
+            <Accordion type="single" collapsible className="w-full">
+              {NAV_LINKS.map((l) => (
+                <div key={l.label}>
+                  {"sublinks" in l ? (
+                    <AccordionItem value={l.label} className="border-none">
+                      <AccordionTrigger className="px-3 py-2 text-sm font-semibold text-sd-black hover:bg-sd-green/10 hover:no-underline rounded-md">
+                        {l.label}
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-1 pl-4 flex flex-col gap-1">
+                        {l.sublinks.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            to={sub.to}
+                            className="px-3 py-2 rounded-md text-xs font-medium text-sd-black/70 hover:bg-sd-green/10"
+                            onClick={() => setOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ) : (
+                    <Link
+                      to={l.to}
+                      className="px-3 py-2 flex items-center rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
+                      onClick={() => setOpen(false)}
+                    >
+                      {l.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </Accordion>
             {session && (
               <Link
                 to="/seo-dashboard"
