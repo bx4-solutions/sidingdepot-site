@@ -90,7 +90,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     y: 42,
     title: "Board & Batten Siding",
     image: "/projects/project-1.webp",
-    imageAlt: "James Hardie Board & Batten siding installed on a Marietta e Região home",
+    imageAlt: "James Hardie Board & Batten siding installed on a North Atlanta home",
     description:
       "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
   },
