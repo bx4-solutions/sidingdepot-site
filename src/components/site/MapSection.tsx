@@ -15,7 +15,7 @@ export function MapSection() {
     : `https://www.google.com/maps?q=${addressQuery}&z=15&output=embed`;
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
-  const wazeUrl = `https://waze.com/ul?q=${addressQuery}&navigate=yes`;
+  const appleMapsUrl = `https://maps.apple.com/?q=${addressQuery}`;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
@@ -84,10 +84,10 @@ export function MapSection() {
                     Open in Google Maps
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="sm" className="rounded-full">
-                  <a href={wazeUrl} target="_blank" rel="noopener noreferrer">
+                <Button asChild variant="outline" size="sm" className="rounded-full text-sd-black hover:text-sd-black">
+                  <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Open in Waze
+                    Open in Apple Maps
                   </a>
                 </Button>
               </div>
