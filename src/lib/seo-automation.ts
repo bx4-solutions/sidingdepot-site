@@ -13,25 +13,13 @@ export async function runPeriodicSeoAudit() {
     
     // In the dev environment, we write to a file via tool call.
     // In production, we could save this to a 'site_health' table in Supabase.
-    const { error } = await supabase.from("site_health_logs").insert({
-      check_type: "SEO_AUDIT",
-      status: "SUCCESS",
-      payload: { 
-        summary: "Audit completed successfully",
-        url_count: report.split("\n").filter(l => l.includes("| `/")).length
-      }
-    });
-
-    if (error) console.error("Error logging SEO audit to Supabase:", error);
+    // Using ab_events as a proxy for logs if site_health_logs doesn't exist in types yet
+    // or we can just console log for now until the user confirms the table.
+    console.log("Audit log would be saved to Supabase here.");
     
     return report;
   } catch (err) {
     console.error("SEO Audit failed:", err);
-    await supabase.from("site_health_logs").insert({
-      check_type: "SEO_AUDIT",
-      status: "FAILED",
-      payload: { error: String(err) }
-    });
     throw err;
   }
 }
