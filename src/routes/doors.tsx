@@ -29,7 +29,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "What is the best entry door material for Georgia's humidity?",
-    a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero maintenance and offer 4x the insulating R-value of a standard wood door.",
+    a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero durable and offer 4x the insulating R-value of a standard wood door.",
   },
   {
     q: "Do I need a permit to replace a front door in Cobb or Cherokee County?",
@@ -93,7 +93,7 @@ function DoorsPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Door"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces entry and patio doors across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
+      seoParagraph="Siding Depot replaces entry and patio doors across Marietta e Região, including Marietta e Região. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
       ctaAccent="security and efficiency?"
       trustBadge={{ title: "ProVia Authorized", subtitle: "Certified Entry Systems" }}
     />

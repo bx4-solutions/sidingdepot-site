@@ -19,7 +19,7 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-5.webp";
 const CANONICAL = "https://sidingdepot.com/painting";
 const SERVICE_KEY = "painting";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
@@ -98,7 +98,7 @@ function PaintingPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Painting"
       faqs={FAQS}
-      seoParagraph="Siding Depot provides professional exterior painting across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
+      seoParagraph="Siding Depot provides professional exterior painting across Marietta e Região. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
       ctaAccent="quality and durability?"
       trustBadge={{ title: "Sherwin-Williams PRO", subtitle: "Premium System Certified" }}
     />

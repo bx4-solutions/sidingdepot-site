@@ -19,7 +19,7 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-5.webp";
 const CANONICAL = "https://sidingdepot.com/gutters";
 const SERVICE_KEY = "gutters";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
@@ -34,7 +34,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "How often should gutters be cleaned in Georgia?",
-    a: "Twice a year minimum — spring (after pollen season) and fall (after leaves drop). Homes near pine trees in Cherokee or Cobb counties may need cleaning 3–4 times per year, as pine needles accumulate quickly and block downspouts. Clogged gutters cause fascia rot, foundation problems, and basement flooding — all expensive repairs.",
+    a: "Twice a year minimum — spring (after pollen season) and fall (after leaves drop). Homes near pine trees in Cherokee or Cobb counties may need cleaning 3–4 times per year, as pine needles accumulate quickly and block downspouts. Clogged gutters cause fascia rot, foundation problems, and basement flooding — all expensive replacements.",
   },
   {
     q: "Are gutter guards worth it in Atlanta?",
@@ -42,7 +42,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "Can clogged gutters damage my foundation in Georgia?",
-    a: "Yes — this is one of the most common and costly problems we see in Cobb and Cherokee counties. When gutters overflow, water pools at the foundation. Georgia's clay-heavy soil expands and contracts with moisture, accelerating foundation movement. We've seen $30,000+ foundation repairs that started with a $200 gutter cleaning that was skipped for years.",
+    a: "Yes — this is one of the most common and costly problems we see in Cobb and Cherokee counties. When gutters overflow, water pools at the foundation. Georgia's clay-heavy soil expands and contracts with moisture, accelerating foundation movement. We've seen $30,000+ foundation replacements that started with a $200 gutter cleaning that was skipped for years.",
   },
 ];
 
@@ -98,7 +98,7 @@ function GuttersPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Gutter"
       faqs={FAQS}
-      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly repairs."
+      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Marietta e Região, including Marietta e Região. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly replacements."
       ctaAccent="years, not seasons?"
       trustBadge={{ title: "LeafGuard Authorized", subtitle: "Lifetime no-clog warranty" }}
     />
