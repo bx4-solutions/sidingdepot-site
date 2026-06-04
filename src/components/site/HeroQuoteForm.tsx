@@ -214,7 +214,11 @@ export function HeroQuoteForm({
             <Label htmlFor="hero-details" className="text-xs font-semibold text-sd-black">Tell us about your project (optional)</Label>
             <Textarea id="hero-details" placeholder="Describe your project, home size, timeline, or any questions..." value={values.details} onChange={(e) => update("details", e.target.value)} className="resize-none min-h-[80px]" rows={3} />
           </div>
-          <div className="flex items-start gap-2.5 mt-1">
+          {errors.general && <p className="text-[11px] text-destructive text-center">{errors.general}</p>}
+          <Button type="submit" size="lg" disabled={submitting} className="mt-2 w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg">
+            {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : "Get My Free Quote →"}
+          </Button>
+          <div className="flex items-start gap-2.5 mt-2">
             <Checkbox id="hero-consent" checked={values.consent} onCheckedChange={(v: boolean) => update("consent", v)} className="mt-0.5" />
             <div className="grid gap-1">
               <Label htmlFor="hero-consent" className="text-[11px] leading-snug font-normal text-sd-gray-text cursor-pointer">
@@ -223,10 +227,6 @@ export function HeroQuoteForm({
               {errors.consent && <p className="text-[11px] text-destructive leading-none">{errors.consent}</p>}
             </div>
           </div>
-          {errors.general && <p className="text-[11px] text-destructive text-center">{errors.general}</p>}
-          <Button type="submit" size="lg" disabled={submitting} className="mt-2 w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg">
-            {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : "Get My Free Quote →"}
-          </Button>
           <p className="text-[9px] text-sd-gray-text text-center mt-1">🔒 Response within 24h · Your data is safe with us</p>
         </form>
       </div>
