@@ -69,8 +69,7 @@ function ThankYouPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="bg-sd-gray-bg">
+      <div className="bg-sd-gray-bg">
         {/* Confirmation hero */}
         <section className="bg-sd-navy text-white">
           <div className="mx-auto max-w-4xl px-4 py-14 text-center lg:px-8 lg:py-20">
@@ -180,8 +179,7 @@ function ThankYouPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

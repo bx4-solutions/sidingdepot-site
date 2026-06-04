@@ -21,41 +21,15 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { 
-    to: "/siding", 
-    label: "SIDING",
-    sublinks: [{ to: "/siding", label: "SIDING" }]
-  },
-  { 
-    to: "/roofing", 
-    label: "ROOFING",
-    sublinks: [{ to: "/roofing", label: "ROOFING" }]
-  },
-  { 
-    to: "/decks", 
-    label: "DECKS",
-    sublinks: [{ to: "/decks", label: "DECKS" }]
-  },
-  { 
-    to: "/windows", 
-    label: "WINDOWS",
-    sublinks: [{ to: "/windows", label: "WINDOWS" }]
-  },
-  { 
-    to: "/gutters", 
-    label: "GUTTERS",
-    sublinks: [{ to: "/gutters", label: "GUTTERS" }]
-  },
-  { 
-    to: "/painting", 
-    label: "PAINTING",
-    sublinks: [{ to: "/painting", label: "PAINTING" }]
-  },
-  { 
-    to: "/projects", 
-    label: "PROJECT GALLERY",
-    sublinks: [{ to: "/projects", label: "PROJECT GALLERY" }]
-  },
+  { to: "/siding", label: "SIDING" },
+  { to: "/roofing", label: "ROOFING" },
+  { to: "/decks", label: "DECKS" },
+  { to: "/windows", label: "WINDOWS" },
+  { to: "/doors", label: "DOORS" },
+  { to: "/gutters", label: "GUTTERS" },
+  { to: "/painting", label: "PAINTING" },
+  { to: "/dumpster", label: "DUMPSTER RENTAL" },
+  { to: "/projects", label: "PROJECT GALLERY" },
   { 
     to: "/about", 
     label: "ABOUT",

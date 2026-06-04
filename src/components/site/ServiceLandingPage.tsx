@@ -107,7 +107,7 @@ export function ServiceLandingPage({
   const ctx = { serviceKey, variation, city };
 
   return (
-    <main>
+    <div className="bg-sd-gray-bg">
       {/* HERO */}
       <section className="relative bg-sd-navy text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
@@ -369,7 +369,7 @@ export function ServiceLandingPage({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 
