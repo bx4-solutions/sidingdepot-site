@@ -63,8 +63,8 @@ const VIDEO_JSONLD_LIST = HOME_VIDEOS.map((v) => ({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "James Hardie Siding Contractor Greater Marietta GA | Siding Depot — Elite Preferred" },
-      { name: "description", content: "Elite Preferred James Hardie siding contractor in Greater Marietta, GA. 1,500+ homes. Highly specialized certified teams, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
+      { title: "North Atlanta's James Hardie Siding Experts | Siding Depot" },
+      { name: "description", content: "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite Preferred contractor in Marietta, Alpharetta & Canton. W-2 crews only. Free quote in 24h." },
       { name: "keywords", content: "siding contractor Greater Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
       { name: "geo.region", content: "US-GA" },
       { name: "geo.placename", content: "Greater Marietta" },
