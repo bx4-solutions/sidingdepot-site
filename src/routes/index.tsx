@@ -129,7 +129,7 @@ function HomePage() {
           "1,500+ homes in Cobb, Cherokee & Fulton County",
           "W-2 crews only — no subs, ever",
         ]}
-        formSlot={<HeroQuoteForm />}
+        formSlot={<HeroQuoteForm isHomepage />}
       />
 
       <ProofBar />
