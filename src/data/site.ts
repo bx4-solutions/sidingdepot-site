@@ -135,12 +135,12 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const AWARDS = [
-  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of US installers" },
-  { name: "GAF Factory Certified", subtitle: "Roofing system warranty" },
-  { name: "Google · 4.9★", subtitle: "128+ verified reviews" },
-  { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
-  { name: "BBB Accredited", subtitle: "A+ rating" },
-  { name: "GreenSky Financing", subtitle: "0% APR plans available" },
+  { name: "James Hardie Elite Preferred", subtitle: "Top 2% dos instaladores nos EUA" },
+  { name: "Certificação GAF Factory", subtitle: "Garantia de sistema de telhado" },
+  { name: "Google · 4.9★", subtitle: "158+ avaliações verificadas" },
+  { name: "Licenciado e Segurado", subtitle: "Georgia GC #RBQA006789" },
+  { name: "Acreditado pelo BBB", subtitle: "Classificação A+" },
+  { name: "Financiamento GreenSky", subtitle: "Planos de 0% de juros disponíveis" },
 ] as const;
 
 export const SERVICE_OPTIONS = [
