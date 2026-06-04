@@ -59,7 +59,10 @@ const NAV_LINKS: NavLink[] = [
   { 
     to: "/about", 
     label: "ABOUT",
-    sublinks: [{ to: "/about", label: "ABOUT" }]
+    sublinks: [
+      { to: "/about", label: "ABOUT" },
+      { to: "/blog", label: "BLOG" }
+    ]
   },
 ];
 
