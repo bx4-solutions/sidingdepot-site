@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
+import { supabase } from "@/integrations/supabase/client";
 
 // Standard schema (for other pages)
 const standardSchema = z.object({
@@ -29,8 +30,8 @@ const homepageSchema = z.object({
   phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
   email: z.string().trim().email("Please enter a valid email address"),
   city: z.string().trim().min(2, "Please enter your city").max(80),
-  service: z.string().min(1, "Please select a service"),
-  details: z.string().optional(),
+  services: z.array(z.string()).min(1, "Please select at least one service").max(20),
+  details: z.string().max(2000).optional(),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Consent is required" }),
   }),
@@ -45,15 +46,14 @@ type HeroQuoteFormProps = {
 };
 
 const SERVICES_OPTIONS = [
-  "James Hardie Siding",
-  "Exterior Painting",
-  "Window Replacement",
-  "Gutter Installation",
-  "Deck Construction",
-  "Roofing",
-  "Entry & Patio Doors",
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
   "Dumpster Rental",
-  "Multiple Services / Full Exterior",
 ] as const;
 
 export function HeroQuoteForm({
@@ -68,9 +68,17 @@ export function HeroQuoteForm({
   const [errors, setErrors] = useState<any>({});
   const [values, setValues] = useState<any>(
     isHomepage
-      ? { name: "", phone: "", email: "", city: "", service: "", details: "", consent: false }
+      ? { name: "", phone: "", email: "", city: "", services: [] as string[], details: "", consent: false }
       : { name: "", phone: "", city: "" }
   );
+
+  function toggleService(name: string, checked: boolean) {
+    setValues((v: any) => {
+      const current: string[] = Array.isArray(v.services) ? v.services : [];
+      const next = checked ? [...current, name] : current.filter((s) => s !== name);
+      return { ...v, services: next };
+    });
+  }
 
   function update(key: string, value: any) {
     setValues((v: any) => ({ ...v, [key]: value }));
@@ -96,20 +104,38 @@ export function HeroQuoteForm({
     setSubmitting(true);
     
     const data = parsed.data as any;
+    const services: string[] = Array.isArray(data.services) ? data.services : [];
     const payload = {
       first_name: data.name.split(" ")[0],
       last_name: data.name.split(" ").slice(1).join(" ") || " ",
       phone: data.phone,
       city: data.city,
       email: data.email || "",
-      service: data.service || "",
+      services,
+      service: services.join(", "),
       details: data.details || "",
       source: source,
       tag: tag,
       submittedAt: new Date().toISOString(),
     };
-    
+
     try {
+      // Save lead in the customer record (Lovable Cloud database)
+      if (isHomepage) {
+        const { error: dbError } = await supabase.from("leads").insert({
+          name: data.name,
+          phone: data.phone,
+          email: data.email || null,
+          city: data.city,
+          services,
+          details: data.details || null,
+          consent: true,
+          source,
+          tag,
+        });
+        if (dbError) throw dbError;
+      }
+
       if (SITE.ghlWebhookUrl) {
         const response = await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
