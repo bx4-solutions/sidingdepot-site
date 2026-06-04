@@ -607,7 +607,7 @@ function SEODashboard() {
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" />
-              {item.label}
+              {t(item.labelKey)}
             </button>
           ))}
         </nav>
