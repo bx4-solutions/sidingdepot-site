@@ -98,7 +98,7 @@ function DeckPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Deck"
       faqs={FAQS}
-      seoParagraph="Siding Depot designs and builds custom decks across Marietta e Região, including Marietta e Região. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits with Cobb, Cherokee or Fulton county on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
+      seoParagraph="Siding Depot designs and builds custom decks across Marietta e Região. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
       ctaAccent="decades, not seasons?"
       trustBadge={{ title: "Trex Pro Installer", subtitle: "Composite warranty unlocked" }}
     />
