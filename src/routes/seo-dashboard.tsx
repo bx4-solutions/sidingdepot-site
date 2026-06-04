@@ -350,8 +350,8 @@ function SEODashboard() {
 
         <Card className="bg-[#131921] border-white/10">
           <CardHeader>
-            <CardTitle className="text-lg font-bold">Fluxo de Leads em Tempo Real</CardTitle>
-            <CardDescription>Monitoramento instantâneo de formulários e CTAs</CardDescription>
+            <CardTitle className="text-lg font-bold">{t('leadStream')}</CardTitle>
+            <CardDescription>{t('instantMonitoring')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
