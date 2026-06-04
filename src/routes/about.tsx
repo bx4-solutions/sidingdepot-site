@@ -19,9 +19,9 @@ const LucideYoutube = ({ className }: { className?: string }) => (
 
 const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
-  title: "Meet Siding Depot — James Hardie Siding Installer in Marietta, GA",
+  title: "Meet Siding Depot — James Hardie Siding Installer in Marietta e Região, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Marietta e região and all of North Atlanta. 12+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta e Região. 12+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
@@ -29,7 +29,7 @@ const ABOUT_VIDEO = {
 const LOCAL_BUSINESS_ABOUT_JSONLD = {
   ...LOCAL_BUSINESS_SCHEMA,
   "@id": "https://sidingdepot.com/about/#localbusiness",
-  alternateName: "Siding Depot Marietta",
+  alternateName: "Siding Depot Marietta e Região",
   foundingDate: "2010",
   hasCredential: [
     {
@@ -81,17 +81,17 @@ export const Route = createFileRoute("/about")({
     meta: [
       {
         title:
-          "About Siding Depot — James Hardie Elite Preferred Siding Contractor in Marietta, GA",
+          "About Siding Depot — James Hardie Elite Preferred Siding Contractor in Marietta e Região, GA",
       },
       {
         name: "description",
         content:
-          "Local James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Marietta e região & North Atlanta. 12+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
+          "Local James Hardie Elite Preferred siding contractor serving Marietta e Região. 12+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
       {
         name: "keywords",
         content:
-          "siding contractor Marietta GA, James Hardie installer Atlanta, fiber cement siding Georgia, siding replacement North Atlanta, siding installation Cobb County, exterior remodeling Alpharetta",
+          "siding contractor Marietta e Região GA, James Hardie installer Atlanta, fiber cement siding Georgia, siding replacement North Atlanta, siding installation Cobb County",
       },
       {
         property: "og:title",
@@ -201,13 +201,13 @@ function AboutPage() {
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
               12 years installing{" "}
               <span className="text-sd-green">James Hardie siding</span> across
-              Marietta &amp; North Atlanta.
+              Marietta e Região.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
               Siding Depot is a James Hardie Elite Preferred contractor based in
-              Marietta, GA — specialists in fiber cement siding installation,
-              replacement, repair, painting, windows, decks, gutters and roofing
-              for homeowners in Cobb, Cherokee, Fulton and Forsyth counties.
+              Marietta e Região, GA — specialists in fiber cement siding installation,
+              replacement, painting, windows, decks, gutters and roofing
+              for homeowners in the area.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -221,7 +221,7 @@ function AboutPage() {
           <div>
             <YoutubeEmbed
               videoId="fgNhcGoEYmE"
-              title="Meet Siding Depot — Marietta, GA"
+              title="Meet Siding Depot — Marietta e Região, GA"
             />
             <nav
               aria-label="Related siding services"
@@ -232,7 +232,7 @@ function AboutPage() {
                 James Hardie siding installation
               </Link>
               <Link to="/painting" className="text-sd-green hover:underline">
-                exterior painting in Marietta
+                exterior painting in Marietta e Região
               </Link>
               <Link to="/windows" className="text-sd-green hover:underline">
                 replacement windows
@@ -258,7 +258,7 @@ function AboutPage() {
             <p className="mt-3 text-sd-gray-text">
               Siding Depot is one of the fastest-growing James Hardie Replacement
               Contractors in Georgia. Hiring a certified local installer matters —
-              here's why North Atlanta homeowners trust us with their siding project:
+              here's why Marietta e Região homeowners trust us with their siding project:
             </p>
           </div>
 

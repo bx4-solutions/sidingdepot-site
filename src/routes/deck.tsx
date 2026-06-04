@@ -19,14 +19,14 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-6.webp";
 const CANONICAL = "https://sidingdepot.com/deck";
 const SERVICE_KEY = "deck";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does a deck cost in Marietta or Marietta e região, GA in 2026?",
-    a: "A pressure-treated wood deck in North Atlanta runs $15–$25 per square foot installed, so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech) costs $30–$55 per square foot — so $9,000–$16,500 for the same deck — but lasts 25–30 years with virtually no maintenance. Elevated decks, screened porches, and multi-level designs increase cost.",
+    q: "How much does a deck cost in Marietta e Região, GA in 2026?",
+    a: "A pressure-treated wood deck in Marietta e Região runs $15–$25 per square foot installed, so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech) costs $30–$55 per square foot — so $9,000–$16,500 for the same deck — but lasts 25–30 years. Elevated decks, screened porches, and multi-level designs increase cost.",
   },
   {
     q: "Do I need a permit to build a deck in Cherokee or Cobb County?",
@@ -34,11 +34,11 @@ const FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "What's the best decking material for Georgia's heat and humidity?",
-    a: "For low-maintenance, composite decking (Trex Transcend or TimberTech AZEK) is the best choice for Georgia. Wood decks absorb moisture, warp in summer heat, and require sealing or staining every 2–3 years. Composite holds color, won't splinter, and handles Georgia's 50+ inches of annual rain without swelling. For budget projects, pressure-treated pine is still the most popular choice.",
+    a: "For long-lasting, composite decking (Trex Transcend or TimberTech AZEK) is the best choice for Georgia. Wood decks absorb moisture, warp in summer heat, and require sealing or staining every 2–3 years. Composite holds color, won't splinter, and handles Georgia's 50+ inches of annual rain without swelling. For budget projects, pressure-treated pine is still the most popular choice.",
   },
   {
-    q: "How long does deck construction take in North Atlanta?",
-    a: "A standard 300–400 sq ft deck takes 3–5 days to build once permits are approved. Permit approval in Cherokee and Cobb counties typically takes 5–15 business days. We recommend starting the permit process 3–4 weeks before your desired start date, especially in spring and summer when our schedule fills quickly.",
+    q: "How long does deck construction take in Marietta e Região?",
+    a: "A standard 300–400 sq ft deck takes 3–5 days to build once permits are approved. Permit approval typically takes 5–15 business days. We recommend starting the permit process 3–4 weeks before your desired start date, especially in spring and summer when our schedule fills quickly.",
   },
   {
     q: "Does a deck add value to a home in the Atlanta market?",
@@ -85,7 +85,7 @@ function DeckPage() {
       heroImage={HERO_IMAGE}
       eyebrow="Trex · TimberTech · Pressure-Treated"
       title="Custom Composite Decks:"
-      titleAccent="Low-Maintenance Luxury."
+      titleAccent="Long-lasting Luxury."
       intro="Maximize your outdoor living with a deck built for decades, not seasons. As Trex Pro® installers, we build moisture-proof spaces that resist the warping, rotting, and fading common in North Atlanta."
       benefits={[
         "Composite decking with 25–30 year material warranty",
@@ -98,7 +98,7 @@ function DeckPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Deck"
       faqs={FAQS}
-      seoParagraph="Siding Depot designs and builds custom decks across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits with Cobb, Cherokee or Fulton county on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
+      seoParagraph="Siding Depot designs and builds custom decks across Marietta e Região. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
       ctaAccent="decades, not seasons?"
       trustBadge={{ title: "Trex Pro Installer", subtitle: "Composite warranty unlocked" }}
     />

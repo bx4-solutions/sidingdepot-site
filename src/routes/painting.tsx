@@ -19,18 +19,18 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-5.webp";
 const CANONICAL = "https://sidingdepot.com/painting";
 const SERVICE_KEY = "painting";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does exterior house painting cost in Marietta or Alpharetta, GA?",
-    a: "Exterior painting in the North Atlanta area typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
+    q: "How much does exterior house painting cost in Marietta e Região, GA?",
+    a: "Exterior painting in Marietta e Região typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
   },
   {
-    q: "How often should I repaint the exterior of my home in Georgia?",
-    a: "In North Atlanta's heat and humidity, a quality repaint with premium Sherwin-Williams coatings lasts 8–12 years. If your home has wood siding, you may need a refresh every 5–7 years to prevent rot. Homes with James Hardie siding typically hold paint much longer. We recommend a 10-year cycle to protect your structural substrate from moisture intrusion.",
+    q: "How often should I repaint the exterior of my home in Marietta e Região?",
+    a: "In Georgia's heat and humidity, a quality repaint with premium Sherwin-Williams coatings lasts 8–12 years. If your home has wood siding, you may need a refresh every 5–7 years to prevent rot. Homes with James Hardie siding typically hold paint much longer. We recommend a 10-year cycle to protect your structural substrate from moisture intrusion.",
   },
   {
     q: "What kind of paint do you use for Georgia's climate?",
@@ -98,7 +98,7 @@ function PaintingPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Painting"
       faqs={FAQS}
-      seoParagraph="Siding Depot provides professional exterior painting across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
+      seoParagraph="Siding Depot provides professional exterior painting across Marietta e Região. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
       ctaAccent="quality and durability?"
       trustBadge={{ title: "Sherwin-Williams PRO", subtitle: "Premium System Certified" }}
     />

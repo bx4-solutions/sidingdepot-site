@@ -19,22 +19,22 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/windows";
 const SERVICE_KEY = "windows";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does window replacement cost in Marietta or Alpharetta, GA?",
-    a: "Window replacement in North Atlanta typically ranges from $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) generally falls in the $7,000–$18,000 range. According to Energy Star, certified Low-E windows can meaningfully reduce cooling costs in hot climates like Atlanta. Final pricing depends on your home's specifications and selected products.",
+    q: "How much does window replacement cost in Marietta e Região, GA?",
+    a: "Window replacement in Marietta e Região typically ranges from $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) generally falls in the $7,000–$18,000 range. According to Energy Star, certified Low-E windows can meaningfully reduce cooling costs in hot climates like Atlanta. Final pricing depends on your home's specifications and selected products.",
   },
   {
     q: "What's the best window for Georgia's hot and humid climate?",
     a: "Double-pane Low-E (low emissivity) windows with argon gas fill are widely recommended for Georgia. The Low-E coating reflects infrared heat, helping keep interiors cooler in summer without blocking natural light. Energy Star recommends a U-factor below 0.30 and Solar Heat Gain Coefficient (SHGC) below 0.25 for Atlanta's climate zone (3A/4A).",
   },
   {
-    q: "Do I need permits to replace windows in Cobb or Cherokee County?",
-    a: "Generally yes for structural changes (such as enlarging openings) and not for same-size replacements, but this varies by jurisdiction. Cobb and Cherokee counties typically require a permit if the opening size changes. We handle all applicable permit applications and inspections so homeowners don't deal with the county directly.",
+    q: "Do I need permits to replace windows in Marietta e Região?",
+    a: "Generally yes for structural changes (such as enlarging openings) and not for same-size replacements, but this varies by jurisdiction. We handle all applicable permit applications and inspections so homeowners don't deal with the county directly.",
   },
   {
     q: "How long do replacement windows last in Georgia?",
@@ -98,7 +98,7 @@ function WindowsPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Window"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces windows across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth — covering Cobb County, Cherokee County and Fulton County in Metro Atlanta. We specify Energy Star double-pane Low-E windows for Atlanta's climate zone (3A/4A), where AC runs much of the year. Most full-home window replacements in our service area generally run $7,000–$18,000, and according to Energy Star, certified Low-E packages can meaningfully reduce summer cooling costs."
+      seoParagraph="Siding Depot replaces windows across Marietta e Região. We specify Energy Star double-pane Low-E windows for Atlanta's climate zone (3A/4A), where AC runs much of the year. Most full-home window replacements in our service area generally run $7,000–$18,000, and according to Energy Star, certified Low-E packages can meaningfully reduce summer cooling costs."
       ctaAccent="decades, not summers?"
       trustBadge={{ title: "Energy Star Partner", subtitle: "Low-E + Argon double-pane" }}
     />

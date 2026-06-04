@@ -16,24 +16,24 @@ import {
 } from "@/components/site/ServiceLandingPage";
 import { buildServiceMeta } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Entry & Patio Doors in Marietta, GA | Siding Depot — Secure & Stylish";
+const PAGE_TITLE = "Entry & Patio Doors in Marietta e Região, GA | Siding Depot — Secure & Stylish";
 const PAGE_DESC =
-  "Upgrade your home with Energy Star® entry and patio doors. Serving Marietta, Alpharetta & North Atlanta. Therma-Tru® authorized installer. Free estimate in 24h. Call (678) 400-2012.";
+  "Upgrade your home with Energy Star® entry and patio doors in Marietta e Região. Therma-Tru® authorized installer. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/doors";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does a new entry door cost in Marietta, GA?",
-    a: "A professional entry door replacement in North Atlanta typically costs $1,500–$4,500 for fiberglass or steel doors, including installation. High-end custom wood doors or double-entry systems can range from $5,000–$10,000+. Factors affecting price include material, glass inserts, sidelights, and hardware. We recommend fiberglass for Georgia's humidity as it won't warp or rot like wood.",
+    q: "How much does a new entry door cost in Marietta e Região, GA?",
+    a: "A professional entry door replacement in Marietta e Região typically costs $1,500–$4,500 for fiberglass or steel doors, including installation. High-end custom wood doors or double-entry systems can range from $5,000–$10,000+. Factors affecting price include material, glass inserts, sidelights, and hardware. We recommend fiberglass for Georgia's humidity as it won't warp or rot like wood.",
   },
   {
     q: "What is the best entry door material for Georgia's humidity?",
     a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero maintenance and offer 4x the insulating R-value of a standard wood door.",
   },
   {
-    q: "Do I need a permit to replace a front door in Cobb or Cherokee County?",
-    a: "If you are replacing the door within the existing frame size, a building permit is usually not required in Cobb, Cherokee, or Fulton counties. However, if we are enlarging the opening or changing the structural header, a permit is mandatory. We handle all structural assessments and permit filings so you stay compliant with local Georgia building codes.",
+    q: "Do I need a permit to replace a front door in Marietta e Região?",
+    a: "If you are replacing the door within the existing frame size, a building permit is usually not required. However, if we are enlarging the opening or changing the structural header, a permit is mandatory. We handle all structural assessments and permit filings so you stay compliant with local Georgia building codes.",
   },
   {
     q: "Are sliding patio doors better than French doors for Atlanta homes?",
@@ -93,7 +93,7 @@ function DoorsPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Door"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces entry and patio doors across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
+      seoParagraph="Siding Depot replaces entry and patio doors across Marietta e Região, including Marietta e Região. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
       ctaAccent="security and efficiency?"
       trustBadge={{ title: "ProVia Authorized", subtitle: "Certified Entry Systems" }}
     />

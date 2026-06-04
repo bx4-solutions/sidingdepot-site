@@ -15,7 +15,7 @@ import { getFaqSchema } from "@/lib/schema";
 
 
 const SERVICE_KEY = "siding";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 /**
@@ -30,9 +30,9 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie® Siding in Marietta, GA | Siding Depot — Elite Preferred";
+const PAGE_TITLE = "James Hardie® Siding in Marietta e Região, GA | Siding Depot — Elite Preferred";
 const PAGE_DESC =
-  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Serving Marietta, Marietta e região & Alpharetta. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
+  "Top 2% Elite Preferred James Hardie® contractor in Marietta e Região. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -81,7 +81,7 @@ type SidingType = {
 
 const SHOWCASE_IMAGE = "/projects/project-1.webp";
 const SHOWCASE_ALT =
-  "Two-story Marietta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
+  "Two-story Marietta e Região home showcasing James Hardie Board & Batten siding, trim and shingle accents";
 
 const SIDING_TYPES: ReadonlyArray<SidingType> = [
   {
@@ -90,7 +90,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     y: 42,
     title: "Board & Batten Siding",
     image: "/projects/project-1.webp",
-    imageAlt: "James Hardie Board & Batten siding installed on a Marietta home",
+    imageAlt: "James Hardie Board & Batten siding installed on a Marietta e Região home",
     description:
       "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
   },
@@ -101,8 +101,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     title: "HardiePlank Lap Siding",
     image: "/projects/project-3.webp",
     imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
-    description:
-      "Long, narrow horizontal planks — the classic American siding look. Durable, low-maintenance and weather-resistant, making it our most popular choice across North Atlanta.",
+    description: "Long, narrow horizontal planks — the classic American siding look. Durable and weather-resistant, making it our most popular choice across Marietta e Região.",
   },
   {
     id: "shingle",
@@ -122,7 +121,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     image: "/projects/project-2.webp",
     imageAlt: "Crisp white soffit, fascia and trim detailing on a Cape Cod home",
     description:
-      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace and repaint to match your siding system.",
+      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace to match your siding system.",
   },
 ];
 
@@ -291,7 +290,7 @@ function BeforeAfterCarousel() {
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             Drag the slider on each project to see exactly how new James Hardie
-            siding, paint and trim transform a North Atlanta home.
+            siding, paint and trim transform a Marietta e Região home.
           </p>
         </div>
 
@@ -543,7 +542,7 @@ function SidingPage() {
         hiringChecklist={HIRING_CHECKLIST}
         faqLabel="Siding"
         faqs={FAQ_ITEMS}
-        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We serve Cobb County, Cherokee County and Fulton County with Elite Preferred expertise. In 2026, a full James Hardie replacement in North Atlanta typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
+        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta e Região. We serve Cobb County and the surrounding area with Elite Preferred expertise. In 2026, a full James Hardie replacement in Marietta e Região typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
         ctaAccent="quality and durability?"
       />
       
