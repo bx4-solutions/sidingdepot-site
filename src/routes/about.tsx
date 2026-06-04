@@ -221,7 +221,7 @@ function AboutPage() {
           <div>
             <YoutubeEmbed
               videoId="fgNhcGoEYmE"
-              title="Meet Siding Depot — Marietta, GA"
+              title="Meet Siding Depot — Marietta e Região, GA"
             />
             <nav
               aria-label="Related siding services"
