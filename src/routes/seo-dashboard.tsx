@@ -991,8 +991,8 @@ function SEODashboard() {
 
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold text-white">Origem de Leads</CardTitle>
-                          <CardDescription className="text-xs">Rastreamento de conversão por canal</CardDescription>
+                          <CardTitle className="text-lg font-bold text-white">{t('leadOrigin')}</CardTitle>
+                          <CardDescription className="text-xs">{t('trackingChannel')}</CardDescription>
                         </CardHeader>
                         <CardHeader className="flex flex-row items-center justify-between">
                           <div>
