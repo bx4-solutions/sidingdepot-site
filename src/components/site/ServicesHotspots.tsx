@@ -110,6 +110,9 @@ export function ServicesHotspots() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-[2fr_3fr] items-center">
         {/* LEFT */}
         <div>
+          <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded mb-4">
+            Our Services — Click to Explore
+          </span>
           <h2 className="font-display text-4xl sm:text-5xl text-sd-black leading-tight">
             Quality Craftsmanship. Professional Service.
           </h2>
