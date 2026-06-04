@@ -9,14 +9,14 @@ import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
-import { SERVICE_METADATA } from "@/data/seo-config";
+import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta, Canton & North Atlanta";
-const seo = SERVICE_METADATA[SERVICE_KEY];
+const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
