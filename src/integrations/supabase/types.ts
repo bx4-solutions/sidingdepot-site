@@ -438,6 +438,48 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          city: string
+          consent: boolean
+          created_at: string
+          details: string | null
+          email: string | null
+          id: string
+          name: string
+          phone: string
+          services: string[]
+          source: string | null
+          tag: string | null
+        }
+        Insert: {
+          city: string
+          consent?: boolean
+          created_at?: string
+          details?: string | null
+          email?: string | null
+          id?: string
+          name: string
+          phone: string
+          services?: string[]
+          source?: string | null
+          tag?: string | null
+        }
+        Update: {
+          city?: string
+          consent?: boolean
+          created_at?: string
+          details?: string | null
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string
+          services?: string[]
+          source?: string | null
+          tag?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
