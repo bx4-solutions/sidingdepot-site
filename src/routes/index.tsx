@@ -115,18 +115,18 @@ function HomePage() {
   return (
     <>
       <HeroSection
-        badge="Elite Preferred · Top 2% of US Installers · Marietta, GA"
+        badge="Elite Preferred · Top 2% of US Installers · Marietta e Região, GA"
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
             <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="We're the Elite Preferred James Hardie contractor your Marietta e região and Alpharetta neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
+        subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         trustItems={[
           "Elite Preferred · Top 2% of US installers",
-          "1,500+ homes in Cobb, Cherokee & Fulton County",
+          "1,500+ homes in Marietta e Região",
           "Highly specialized certified teams only — no subs, ever",
         ]}
         formSlot={<HeroQuoteForm isHomepage />}
