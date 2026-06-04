@@ -793,11 +793,11 @@ function SEODashboard() {
                   <div className="space-y-8 animate-in fade-in duration-500">
                     {/* KPI GRIDS */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                      <KPICard title="Total Conversões" value={metrics?.overview.totalConversions} icon={MousePointer2} color="sd-green" diff="+12% vs anterior" />
-                      <KPICard title="Taxa Conversão" value={`${metrics?.overview.conversionRate}%`} icon={TrendingUp} color="sd-green" diff="+0.5% vs anterior" />
-                      <KPICard title="Call Clicks" value={metrics?.clickEvents?.find((e: any) => e.button.toLowerCase().includes('call'))?.clicks || 0} icon={Phone} color="sd-green" diff="Leads por telefone" />
-                      <KPICard title="Agendamentos" value={metrics?.overview.appointments} icon={CalendarCheck2} color="sd-green" diff="3 novos hoje" />
-                      <KPICard title="Chat com Bia" value={metrics?.overview.chatInteractions} icon={MessageSquare} color="sd-green" diff="Interações 24h" />
+                      <KPICard title={t('totalConversions')} value={metrics?.overview.totalConversions} icon={MousePointer2} color="sd-green" diff={lang === 'pt' ? "+12% vs anterior" : "+12% vs previous"} />
+                      <KPICard title={t('conversionRate')} value={`${metrics?.overview.conversionRate}%`} icon={TrendingUp} color="sd-green" diff={lang === 'pt' ? "+0.5% vs anterior" : "+0.5% vs previous"} />
+                      <KPICard title={t('callClicks')} value={metrics?.clickEvents?.find((e: any) => e.button.toLowerCase().includes('call'))?.clicks || 0} icon={Phone} color="sd-green" diff={lang === 'pt' ? "Leads por telefone" : "Phone leads"} />
+                      <KPICard title={t('appointments')} value={metrics?.overview.appointments} icon={CalendarCheck2} color="sd-green" diff={lang === 'pt' ? "3 novos hoje" : "3 new today"} />
+                      <KPICard title={t('chatInteractions')} value={metrics?.overview.chatInteractions} icon={MessageSquare} color="sd-green" diff={lang === 'pt' ? "Interações 24h" : "24h interactions"} />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
