@@ -110,59 +110,52 @@ export function Navbar() {
         </div>
 
         <nav className="hidden lg:flex items-center gap-2">
-          <NavigationMenu className="max-w-none">
-            <NavigationMenuList className="gap-1">
-              {NAV_LINKS.map((l) => (
-                <NavigationMenuItem key={l.label}>
-                  {l.sublinks ? (
-                    <>
-                      <NavigationMenuTrigger className="bg-transparent text-[13px] font-semibold tracking-wide text-sd-black hover:text-sd-green-text h-auto py-2 px-3 data-[state=open]:bg-transparent data-[active]:bg-transparent">
-                        <Link to={l.to} className="hover:text-sd-green-text">
-                          {l.label}
-                        </Link>
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[200px] gap-1 p-3 bg-white border border-sd-navy/10 shadow-lg rounded-md">
-                          {l.sublinks.map((sub) => (
-                            <li key={sub.label}>
-                              <NavigationMenuLink asChild>
-                                <Link
-                                  to={sub.to}
-                                  className="block select-none space-y-1 rounded-md p-3 text-[12px] font-medium leading-none no-underline outline-none transition-colors hover:bg-sd-green/10 hover:text-sd-green-text focus:bg-sd-green/10 focus:text-sd-green-text"
-                                >
-                                  {sub.label}
-                                </Link>
-                              </NavigationMenuLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <Link
-                      to={l.to}
-                      className={cn(
-                        "text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2",
-                        location.pathname === l.to && "text-sd-green-text underline underline-offset-4"
-                      )}
-                    >
-                      {l.label}
-                    </Link>
-                  )}
-                </NavigationMenuItem>
-              ))}
-              {session && (
-                <NavigationMenuItem>
-                  <Link
-                    to="/seo-dashboard"
-                    className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2"
+          <ul className="flex items-center gap-1 list-none m-0 p-0">
+            {NAV_LINKS.map((l) => (
+              <li key={l.label} className="relative group">
+                <div className="flex items-center gap-1 py-2 px-3">
+                  <Link 
+                    to={l.to} 
+                    className={cn(
+                      "text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text",
+                      location.pathname === l.to && "text-sd-green-text underline underline-offset-4"
+                    )}
                   >
-                    SEO Dashboard
+                    {l.label}
                   </Link>
-                </NavigationMenuItem>
-              )}
-            </NavigationMenuList>
-          </NavigationMenu>
+                  {l.sublinks && (
+                    <ChevronDown className="h-3 w-3 text-sd-black group-hover:text-sd-green-text transition-transform group-hover:rotate-180" />
+                  )}
+                </div>
+                
+                {l.sublinks && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-md overflow-hidden py-2">
+                      {l.sublinks.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          to={sub.to}
+                          className="block px-4 py-3 text-[12px] font-bold tracking-wider transition-colors hover:bg-sd-green/10 hover:text-sd-green-text text-sd-black"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+            {session && (
+              <li>
+                <Link
+                  to="/seo-dashboard"
+                  className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2"
+                >
+                  SEO DASHBOARD
+                </Link>
+              </li>
+            )}
+          </ul>
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
