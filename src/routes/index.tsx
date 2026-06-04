@@ -103,6 +103,8 @@ const WHY_US = [
   { num: "02", title: "Built for Georgia's Climate", desc: "HardieZone HZ10 products and installation methods engineered specifically for Georgia's heat above 95°F, year-round humidity, and active storm season." },
   { num: "03", title: "Written Estimates — No Surprises", desc: "Detailed written estimates before any work starts. The price in the estimate is the price you pay. No last-minute change orders, ever." },
   { num: "04", title: "Highly Specialized Certified Teams", desc: "We never sub out installs. Every crew member is part of our highly specialized certified teams — trained, background-checked, insured, and accountable to us directly." },
+  { num: "05", title: "Payment at Completion", desc: "No large upfront deposits. You pay when the job is 100% complete to your satisfaction." },
+  { num: "06", title: "GuildQuality Verified — 256 Reviews", desc: "92% of our customers say they would recommend Siding Depot to a friend. Verified by GuildQuality since 2019." },
 ];
 
 const TESTIMONIALS = [
@@ -119,16 +121,18 @@ function HomePage() {
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
-            <span className="text-sd-green">1,500+ Homes in North Atlanta</span>
+            <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="We're the Elite Preferred James Hardie contractor your Greater Marietta neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
+        subtitle="We're the Elite Preferred James Hardie contractor your Marietta, Alpharetta and Canton neighbors call back to thank. W-2 crews only. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         showCallCta={false}
         trustItems={[
-          "Elite Preferred · Top 2% USA",
-          "1,500+ Homes Served",
-          "GreenSky 0% APR Financing",
+          "⭐ 4.5 · 158 Google Reviews",
+          "🏆 Elite Preferred · Top 2% US",
+          "🔨 4.7 · 256 GuildQuality Reviews",
+          "🏠 1,500+ North Atlanta Homes",
+          "💰 GreenSky 0% APR Financing",
         ]}
         ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
@@ -177,7 +181,7 @@ function HomePage() {
               Why Siding Depot
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              4 Reasons Georgia Homeowners Choose Us
+              6 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-sd-black/65 max-w-lg">
               We're not the cheapest contractor in Greater Marietta. We're the one your neighbors call back to thank.

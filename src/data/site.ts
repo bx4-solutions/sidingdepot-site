@@ -84,7 +84,7 @@ export const SERVICES: ReadonlyArray<{
   Icon: LucideIcon;
   image: ServiceImage;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation. HardieZone HZ10 engineered for Georgia's heat, humidity and storms.", Icon: PanelsTopLeft, image: { src: sidingImg } },
+  { slug: "siding", title: "James Hardie Siding", short: "HardieZone HZ10 engineered for Georgia's 95°F+ summers, year-round humidity and storm season. No subcontractors.", Icon: PanelsTopLeft, image: { src: sidingImg } },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
   { slug: "windows", title: "Windows", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
   { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
@@ -107,12 +107,9 @@ export const STATS = [
 
 export const PROOF_BAR = [
   { icon: "⭐", label: "4.5 · 158 Google Reviews" },
-  { icon: "🏆", label: "4.9 · 91 Thumbtack Reviews" },
+  { icon: "🏆", label: "Elite Preferred · Top 2% US" },
   { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
-  { icon: "🏠", label: "5.0 · Houzz Top Pro" },
-  { icon: "📋", label: "4.7 · 130 Best Pick Reports" },
-  { icon: "🏅", label: "Elite Preferred · Top 2% USA" },
-  { icon: "🏠", label: "1,500+ Homes in North Atlanta" },
+  { icon: "🏠", label: "1,500+ North Atlanta Homes" },
   { icon: "💰", label: "GreenSky 0% APR Financing" },
 ] as const;
 
