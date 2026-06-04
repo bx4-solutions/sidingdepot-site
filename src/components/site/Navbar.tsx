@@ -43,14 +43,14 @@ export function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-sd-navy/15 shadow-sm transition-colors duration-200 bg-sd-gray-bg border-b border-sd-gray-border`}>
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-sd-gray-bg/80 border-b border-sd-navy/10 shadow-sm transition-all duration-300">
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
             <img
               src={logoSidingDepot.url}
               alt={`${SITE.name} logo`}
-              className="h-10 sm:h-12 lg:h-14 w-auto"
+              className="h-10 sm:h-12 lg:h-14 w-auto" width="160" height="56"
               loading="eager"
               decoding="async"
             />
