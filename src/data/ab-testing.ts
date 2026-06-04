@@ -114,9 +114,11 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
 export const SOCIAL_PROOF: Record<string, SocialProof> = {
   siding: {
     stats: [
-      { value: "1,500+", label: "Installs in GA", icon: Users },
-      { value: "Top 2%", label: "Elite Preferred", icon: Award },
-      { value: "30 Years", label: "Material Warranty", icon: ShieldCheck },
+      { value: "⭐ 4.5", label: "158 Google Reviews", icon: Star },
+      { value: "🏆 Elite", label: "Preferred · Top 2% US", icon: Award },
+      { value: "🔨 4.7", label: "256 GuildQuality Reviews", icon: Users },
+      { value: "🏠 1,500+", label: "Homes in North Atlanta", icon: MapPin },
+      { value: "💰 GreenSky", label: "0% APR Financing", icon: ShieldCheck },
     ],
     seals: [
       { title: "James Hardie®", subtitle: "Elite Preferred", icon: BadgeCheck },
