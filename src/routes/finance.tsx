@@ -5,7 +5,7 @@ import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
-import greenSkyFinancing from "@/assets/greensky-financing.png.asset.json";
+import greenSkyFinancing from "@/assets/finance-banner.png.asset.json";
 
 
 
