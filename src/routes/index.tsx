@@ -276,8 +276,6 @@ function HomePage() {
 
       <GoogleReviews />
 
-      <ServicesHotspots />
-
       <FinancingBlock />
 
       {/* QUOTE FORM TEASER */}
