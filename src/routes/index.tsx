@@ -338,89 +338,109 @@ function HomePage() {
       {/* GAF/HARDIE SEALS STRIP OR CTA */}
 
       {/* HARDIE SECTION */}
-      <section className="relative section-dark bg-gradient-to-br from-sd-gray-bg via-sd-gray-bg to-white py-20 lg:py-24">
+      <section 
+        id="james-hardie-section" 
+        className="relative section-dark bg-gradient-to-br from-sd-gray-bg via-sd-gray-bg to-white py-20 lg:py-24"
+        aria-labelledby="hardie-section-title"
+      >
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
-            <div className="flex items-start justify-between">
-              <div>
+            <div className="flex items-start justify-between flex-wrap gap-4">
+              <div className="flex-1 min-w-[300px]">
                 <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
                   James Hardie · Elite Preferred
                 </span>
-                <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
+                <h2 id="hardie-section-title" className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
                   Why James Hardie Is Built For Georgia
                 </h2>
+                <p className="mt-4 text-sd-black/70 text-lg leading-relaxed">
+                  As a James Hardie Elite Preferred contractor, we install the highest quality fiber cement siding engineered specifically for Georgia's unique climate challenges.
+                </p>
               </div>
               <div className="hidden sm:block shrink-0">
                 <img 
                   src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
-                  alt="James Hardie Alliance Elite Preferred" 
-                  className="h-24 w-auto object-contain"
+                  alt="James Hardie Alliance Elite Preferred Contractor Certification Badge" 
+                  className="h-28 w-auto object-contain drop-shadow-sm"
+                  width={150}
+                  height={112}
+                  loading="lazy"
                 />
               </div>
             </div>
             
-            <ul className="mt-6 space-y-3 text-sd-black/80">
+            <ul className="mt-8 space-y-4 text-sd-black/80">
               {[
-                "Engineered for HardieZone HZ10 — Georgia's heat, humidity and storms.",
-                "Non-combustible fiber cement that won't warp, rot or buckle.",
-                "ColorPlus® Technology baked-on finish keeps color 30% longer than paint.",
-                "30-year limited transferable warranty on the product.",
-                "Resists pests, moisture and impact better than vinyl or wood.",
-                "Boosts resale value — top recouped exterior remodel ROI.",
-              ].map((b) => (
-                <li key={b} className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-sd-green shrink-0 mt-0.5" />
-                  <span className="text-sm leading-relaxed">{b}</span>
+                { title: "HardieZone® HZ10", desc: "Engineered specifically for Georgia's high heat, humidity, and intense storm seasons." },
+                { title: "Superior Durability", desc: "Non-combustible fiber cement that resists warping, rotting, and buckling better than wood or vinyl." },
+                { title: "ColorPlus® Technology", desc: "Baked-on finish provides a vibrant color that lasts up to 30% longer than field-applied paint." },
+                { title: "Industry-Leading Warranty", desc: "Peace of mind with a 30-year limited transferable product warranty." },
+                { title: "Maximum ROI", desc: "Fiber cement siding consistently ranks as one of the best investments for home resale value." },
+              ].map((item) => (
+                <li key={item.title} className="flex gap-4">
+                  <CheckCircle2 className="h-6 w-6 text-sd-green shrink-0 mt-0.5" aria-hidden="true" />
+                  <div>
+                    <strong className="text-sd-black block">{item.title}</strong>
+                    <span className="text-sm leading-relaxed">{item.desc}</span>
+                  </div>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-6 sm:hidden">
+            <div className="mt-8 sm:hidden flex justify-center">
               <img 
                 src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
-                alt="James Hardie Alliance Elite Preferred" 
-                className="h-20 w-auto object-contain mx-auto"
+                alt="James Hardie Elite Preferred Badge" 
+                className="h-24 w-auto object-contain"
+                loading="lazy"
               />
             </div>
 
-            <div className="mt-8">
-              <Button asChild size="lg">
-                <Link to="/siding">Explore James Hardie Siding</Link>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-all">
+                <Link to="/contact">Request Your Hardie Siding Quote</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-sd-black/20 text-sd-black hover:bg-sd-black/5">
+                <Link to="/siding">Explore All Siding Options</Link>
               </Button>
             </div>
           </div>
-          <div>
-            <YoutubeEmbed
-              videoId="tENqAaDFr9s"
-              title="Why James Hardie siding is built for Georgia"
-            />
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact">Get Your Free Quote</Link>
-              </Button>
-              <Button asChild size="lg" variant="outlineWhite">
-                <Link to="/siding">See Siding Services</Link>
-              </Button>
+          <div className="lg:pl-8">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-sd-green to-sd-green/20 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative">
+                <YoutubeEmbed
+                  videoId="tENqAaDFr9s"
+                  title="Video explaining why James Hardie siding is the best choice for Georgia homes"
+                />
+              </div>
             </div>
-            <nav
-              aria-label="Related Hardie siding pages"
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
-            >
-              <Link to="/siding" className="text-sd-green hover:underline">
-                Fiber cement siding services
-              </Link>
-              <Link to="/painting" className="text-sd-green hover:underline">
-                Exterior painting in North Atlanta
-              </Link>
-              <Link to="/contact" className="text-sd-green hover:underline">
-                Request a free Hardie siding quote
-              </Link>
-            </nav>
+            
+            <div className="mt-8 p-6 bg-white rounded-xl border border-sd-gray-border shadow-sm">
+              <h3 className="font-semibold text-sd-black mb-4">Certified Local Expertise</h3>
+              <nav
+                aria-label="James Hardie Siding Resources"
+                className="flex flex-col gap-3 text-sm"
+              >
+                <Link to="/siding" className="text-sd-green hover:underline flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" /> Fiber cement siding installation services
+                </Link>
+                <Link to="/lp/siding-marietta" className="text-sd-green hover:underline flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" /> Elite Preferred installation in Marietta & Atlanta
+                </Link>
+                <Link to="/projects" className="text-sd-green hover:underline flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" /> View our recent Hardie siding transformations
+                </Link>
+              </nav>
+            </div>
           </div>
         </div>
       </section>
 
-      <MapSection />
+      <section id="location-section" aria-labelledby="location-title">
+        <MapSection />
+      </section>
+
     </>
 
   );
