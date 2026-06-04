@@ -232,7 +232,7 @@ function HomePage() {
         </div>
       </section>
 
-      <ProcessTimeline />
+      <ProcessTimeline title="How It Works — From First Call to Final Walkthrough" />
 
       <AwardsStrip />
 
