@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "North Atlanta's James Hardie Siding Experts | Siding Depot" },
-      { name: "description", content: "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite Preferred contractor in Marietta, Alpharetta &  & North Atlanta, GA. W-2 crews only. Free quote in 24h." },
+      { name: "description", content: "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite Preferred contractor in Marietta, Alpharetta & Canton. W-2 crews only. Free quote in 24h." },
       { name: "keywords", content: "siding contractor Greater Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
       { name: "geo.region", content: "US-GA" },
       { name: "geo.placename", content: "Greater Marietta" },
