@@ -22,25 +22,11 @@ const schema = z.object({
     .regex(/^[+\d\s().-]+$/, {
       message: "Please use only numbers, spaces, and the characters + ( ) . -",
     }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email address (e.g., name@domain.com)" })
-    .max(255, { message: "Email is too long" }),
   city: z
     .string()
     .trim()
     .min(2, { message: "Please enter your city" })
     .max(80, { message: "City name is too long" }),
-  services: z
-    .array(z.string())
-    .min(1, { message: "Please select at least one service" }),
-  message: z
-    .string()
-    .trim()
-    .max(1000, { message: "Message is too long (maximum 1000 characters)" })
-    .optional()
-    .or(z.literal("")),
 });
 
 // SERVICE_OPTIONS is the single source of truth — see src/data/site.ts
