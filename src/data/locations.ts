@@ -13,15 +13,15 @@ export const SITE_ORIGIN =
  */
 export const LOCATION_MATRIX: Record<string, readonly string[]> = {
   marietta:        ["siding", "painting", "roofing", "doors"],
-  alpharetta:      ["siding", "painting", "windows", "doors"],
-  milton:          ["siding", "decks", "painting"],
+  alpharetta:      ["siding", "painting", "windows", "doors", "roofing"],
+  milton:          ["siding", "decks", "painting", "roofing"],
   canton:          ["siding", "roofing", "gutters"],
-  woodstock:       ["siding", "painting"],
-  roswell:         ["siding", "windows", "painting", "doors"],
+  woodstock:       ["siding", "painting", "roofing"],
+  roswell:         ["siding", "windows", "painting", "doors", "roofing"],
   kennesaw:        ["siding", "roofing"],
-  "johns-creek":   ["siding", "decks"],
-  "sandy-springs": ["siding", "painting"],
-  acworth:         ["siding", "gutters"],
+  "johns-creek":   ["siding", "decks", "roofing"],
+  "sandy-springs": ["siding", "painting", "roofing"],
+  acworth:         ["siding", "gutters", "roofing"],
 };
 
 export type LocationCombo = { city: string; service: string };
