@@ -86,7 +86,7 @@ export function HeroSection({
           )}
 
           {trustItems.length > 0 && (
-            <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-3 max-w-2xl">
+            <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-3 max-w-2xl justify-center sm:justify-start">
               {trustItems.map((t) => (
                 <li key={t} className="flex items-center gap-2 text-sm font-medium text-white/95">
                   <span>{t}</span>
