@@ -12,19 +12,19 @@ export type ServiceSeo = Record<ABVariation, SeoVariant>;
 export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
   siding: {
     A: {
-      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `James Hardie Siding Installation in Marietta,  & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
       metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
-      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `James Hardie Siding Installation in Marietta,  & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
       metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
-      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `James Hardie Siding Installation in Marietta,  & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
       metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
@@ -32,19 +32,19 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
   },
   painting: {
     A: {
-      h1: (c) => `Exterior Painting in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `Exterior Painting in Marietta,  & North Atlanta, GA`,
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Siding Depot — Sherwin-Williams Premium`,
       metaDesc: "Professional exterior painting in Marietta, Canton and North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
-      h1: (c) => `Exterior Painting in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `Exterior Painting in Marietta,  & North Atlanta, GA`,
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Siding Depot — Sherwin-Williams Premium`,
       metaDesc: "Professional exterior painting in Marietta, Canton and North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
-      h1: (c) => `Exterior Painting in Marietta, Canton & North Atlanta, GA`,
+      h1: (c) => `Exterior Painting in Marietta,  & North Atlanta, GA`,
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Siding Depot — Sherwin-Williams Premium`,
       metaDesc: "Professional exterior painting in Marietta, Canton and North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
