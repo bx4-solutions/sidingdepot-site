@@ -156,8 +156,8 @@ const PARTNER_LOGOS = [
   "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
 ] as const;
 
-const CERT_HERO =
-  "https://images.leadconnectorhq.com/image/f_webp/q_75/r_800/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/689f1907c6ba4e35d9b05691.png";
+import certHeroImg from "@/assets/certifications-hero.jpg";
+const CERT_HERO = certHeroImg;
 
 const DIFFERENTIATORS = [
   "You get a line-by-line itemized estimate with exact pricing up front.",
@@ -351,10 +351,10 @@ function AboutPage() {
           <div className="flex justify-center">
             <img
               src={CERT_HERO}
-              alt="James Hardie Elite Preferred Contractor certification"
-              width={800}
-              height={600}
-              className="max-w-full h-auto rounded-xl"
+              alt="James Hardie Elite Preferred siding installation on a North Atlanta home"
+              width={1280}
+              height={960}
+              className="max-w-full h-auto rounded-2xl shadow-xl ring-1 ring-black/5"
               loading="lazy"
               decoding="async"
             />
