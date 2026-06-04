@@ -241,7 +241,7 @@ export function HeroQuoteForm({
           <h2 className="font-display text-2xl sm:text-3xl leading-tight">
             Get Your Free <span className="text-sd-green">James Hardie</span> Quote
           </h2>
-          <p className="mt-1.5 text-xs text-white/75">Response within 24h · No pressure · Written estimate</p>
+          <p className="mt-1.5 text-xs text-white/75">Elite Preferred installers · Written estimate in 24h · No pressure</p>
           <div className="mt-3 inline-flex items-center gap-1.5">
             <div className="flex">
               {Array.from({ length: 5 }).map((_, i) => (
