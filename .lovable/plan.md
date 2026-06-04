@@ -1,39 +1,25 @@
-Este plano detalha as etapas para consolidar e elevar o SEO do site Siding Depot, focando em SEO técnico, local, de conteúdo e monitoramento de performance.
+I will refactor the forms to use `react-hook-form` and `zod`, centralize lead submissions, optimize images for performance, and modernize the UI.
 
-### 1. SEO Técnico e Infraestrutura
-*   **Consolidação de Sitemaps:** Eliminar arquivos estáticos (`public/sitemap.xml`, `public/blog-sitemap.xml`) em favor de sitemaps dinâmicos que incluam automaticamente novas páginas de serviços, posts do blog e combinações regionais.
-*   **Otimização do robots.txt:** Atualizar o arquivo para apontar corretamente para os sitemaps dinâmicos e garantir que rotas administrativas (`/admin`, `/seo-dashboard`) permaneçam privadas.
-*   **Schema Markup Avançado:** 
-    *   Implementar `BreadcrumbList` em todas as páginas para melhorar a navegação e o entendimento estrutural pelo Google.
-    *   Expandir o `Review` schema em páginas de localização para destacar avaliações locais.
-*   **Monitoramento de Performance:** Configurar auditorias automáticas via Lighthouse para manter pontuações de Core Web Vitals (LCP, FID, CLS) otimizadas.
+### 1. Form Refactoring & Centralization
+- **Created `src/lib/leads.ts`**: A centralized utility to handle lead submissions to both Supabase and the GHL webhook.
+- **Created `src/hooks/use-lead-form.ts`**: A custom hook combining `react-hook-form` with the centralized submission logic.
+- **Refactor `HeroQuoteForm`**: Update to use `useLeadForm`, improving validation and reducing code duplication.
+- **Refactor `SimpleLeadForm`**: Update to use `useLeadForm`.
 
-### 2. SEO Local (Geo-Targeting)
-*   **Expansão de Landing Pages Regionais:** Automatizar a criação de páginas para cidades adicionais no Norte da Geórgia (Cobb, Cherokee, Fulton, Forsyth).
-*   **Sinais Locais:** Integrar dados do Google Business Profile (links de avaliações reais, mapas dinâmicos) em cada página de localização para fortalecer a relevância geográfica.
-*   **NAP Consistency:** Garantir que o Nome, Endereço e Telefone (NAP) estejam idênticos em todas as instâncias estruturadas (JSON-LD) e visuais.
+### 2. Asset & Performance Optimization
+- **Image Audit**: Update `Navbar`, `Footer`, and `HeroSection` to include explicit `width` and `height` on images to prevent Layout Shift (CLS).
+- **Format**: Ensure all local assets are used via their `.asset.json` pointers which provide optimized CDN URLs.
 
-### 3. Estratégia de Conteúdo e Autoridade
-*   **Otimização do Blog:** Criar um calendário editorial focado em "Palavras-chave de Cauda Longa" (ex: "custo de siding James Hardie em Marietta GA 2026") para capturar tráfego de alta intenção.
-*   **E.E.A.T (Experiência, Especialidade, Autoridade, Confiança):** Reforçar as páginas de projetos com descrições ricas, localizações específicas e selos de certificação (Elite Preferred).
-*   **Linkagem Interna:** Implementar uma estrutura de links entre Blog -> Serviços -> Localizações para distribuir a autoridade da página (Link Equity).
+### 3. UI/UX Modernization
+- **Navbar**: Add glassmorphism effects and smoother hover transitions.
+- **HeroSection**: Modernize typography and add subtle entrance animations.
+- **Forms**: Enhance input focus states, button hover effects, and validation feedback.
+- **Accessibility**: Ensure all interactive elements have proper ARIA labels and contrast.
 
-### 4. Monitoramento e Testes A/B
-*   **SEO Dashboard:** Utilizar o painel existente para rastrear taxas de conversão por página e origem de tráfego.
-*   **Testes A/B de Metatags:** Utilizar a infraestrutura já criada em `src/data/seo-config.ts` para testar diferentes títulos e descrições, otimizando a taxa de clique (CTR) nos resultados de busca.
+### 4. Security Audit
+- **RLS Check**: Verified that `leads` and `ab_events` are `INSERT-only` for public access. No sensitive tables are exposed for unauthenticated writing.
 
----
-
-### Detalhes Técnicos para Implementação
-
-**Arquivos Principais:**
-*   `src/routes/sitemap[.]xml.tsx`: Centralizar a lógica de sitemap dinâmico aqui.
-*   `src/lib/schema.ts`: Criar utilitários para Breadcrumbs e Reviews.
-*   `src/data/locations.ts`: Gerenciar a lista de cidades e serviços para geração automática de páginas.
-*   `src/data/seo-config.ts`: Configurar variantes de metadados para testes A/B.
-
-**Próximos Passos Imediatos:**
-1.  Remover os arquivos XML estáticos da pasta `public`.
-2.  Atualizar o `robots.txt` para referenciar apenas o sitemap dinâmico.
-3.  Implementar o Schema de Breadcrumbs globalmente no `src/routes/__root.tsx`.
-4.  Realizar uma auditoria de H-tags (H1, H2) em todas as rotas de serviço.
+### Technical Details
+- Using `react-hook-form` for better performance and form state management.
+- Using `zod` for robust schema validation.
+- Implementing `shadcn/ui` components for a consistent design system.
