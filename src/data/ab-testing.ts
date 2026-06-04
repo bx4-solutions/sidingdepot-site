@@ -14,7 +14,7 @@ export type ServiceCopy = {
 };
 
 export type SocialProof = {
-  stats: { value: string; label: string; icon: LucideIcon }[];
+  stats: { value: string; label: string; description?: string; icon: LucideIcon }[];
   seals: { title: string; subtitle: string; icon: LucideIcon }[];
   reviews: { name: string; city: string; text: string; rating: number }[];
 };
