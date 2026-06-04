@@ -23,7 +23,7 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "roofing",
-    top: "12%",
+    top: "32%",
     left: "55%",
     label: "Roofing",
     title: "Roofing",
