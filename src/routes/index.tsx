@@ -119,15 +119,16 @@ function HomePage() {
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
-            <span className="text-sd-green">Mais de 1.500 Casas no Norte de Atlanta</span>
+            <span className="text-sd-green">1,500+ Homes in North Atlanta</span>
           </>
         }
         subtitle="We're the Elite Preferred James Hardie contractor your Greater Marietta neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         showCallCta={false}
         trustItems={[
-          "Elite Preferred · Top 2% EUA",
-          "Mais de 1.500 casas atendidas",
+          "Elite Preferred · Top 2% USA",
+          "1,500+ Homes Served",
+          "GreenSky 0% APR Financing",
         ]}
         ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
