@@ -19,11 +19,12 @@ import {
   trackCtaClick,
   trackCallClick,
 } from "@/lib/track";
-import { getFaqSchema } from "@/lib/schema";
+import { getFaqSchema, getServiceSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
 import { HiringChecklistItem } from "./HiringChecklist";
 import { FaqItem as GlobalFaqItem } from "./FaqSection";
+
 
 
 
