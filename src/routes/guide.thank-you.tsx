@@ -48,7 +48,7 @@ const SERVICE_ROUTE_BY_SLUG: Record<string, string> = {
   siding: "/siding",
   painting: "/painting",
   windows: "/windows",
-  deck: "/deck",
+  decks: "/decks",
   gutters: "/gutters",
   roofing: "/roofing",
   dumpster: "/dumpster",
