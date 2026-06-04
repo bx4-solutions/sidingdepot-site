@@ -179,7 +179,7 @@ function HomePage() {
               4 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-white/65 max-w-lg">
-              We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.
+              We're not the cheapest contractor in Marietta e Região. We're the one your neighbors call back to thank.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
