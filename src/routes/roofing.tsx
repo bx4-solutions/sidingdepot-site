@@ -44,10 +44,10 @@ function RoofingPage() {
       <HeroSection
         badge="ROOFING — NORTH ATLANTA"
         title={
-          <span className="text-white font-bold text-[48px] leading-tight">
+          <>
             Roofing Installation & Replacement in <br className="hidden sm:block" />
             Marietta, Canton & North Atlanta, GA
-          </span>
+          </>
         }
         bgImage={HERO_IMAGE}
         ctaSlot={
