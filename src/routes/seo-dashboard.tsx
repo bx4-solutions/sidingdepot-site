@@ -627,32 +627,59 @@ function SEODashboard() {
         {/* TOP BAR */}
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
-             <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
+             <h2 className="text-lg font-bold capitalize">
+               {activeView === 'dashboard' ? t('dashboard') : t(menuItems.find(i => i.id === activeView)?.labelKey || adminItems.find(i => i.id === activeView)?.labelKey || activeView.replace('-', ' '))}
+             </h2>
              <div className="flex flex-col">
                <span className="text-slate-300 text-[10px] flex items-center gap-2">
                  <Clock className="h-3 w-3" /> 
-                 {isFetching ? "Atualizando..." : "Sincronizado"}
+                 {isFetching ? t('updating') : t('synchronized')}
                  <button 
                    onClick={() => {
                      refetch();
-                     toast.success("Atualizando dados...");
+                     toast.success(t('refreshingData'));
                    }}
                    disabled={isFetching}
                    className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
-                   title="Atualizar agora"
+                   title={t('updateNow')}
                  >
                    <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
                  </button>
                </span>
                {metrics?.isSimulated && (
                  <span className="text-[9px] text-sd-green/70 font-bold uppercase tracking-widest">
-                   Modo Demonstração (Dados Simulados)
+                   {t('demoMode')}
                  </span>
                )}
              </div>
           </div>
 
           <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-lg border border-white/10 mr-2">
+              <button
+                onClick={() => setLang('pt')}
+                className={cn(
+                  "p-1.5 rounded transition-all flex items-center gap-2",
+                  lang === 'pt' ? "bg-sd-green text-sd-black" : "hover:bg-white/10 text-slate-400"
+                )}
+                title="Português"
+              >
+                <img src="https://flagcdn.com/w20/br.png" alt="PT" className="w-4 h-3 object-cover rounded-sm" />
+                <span className="text-[10px] font-bold">PT</span>
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={cn(
+                  "p-1.5 rounded transition-all flex items-center gap-2",
+                  lang === 'en' ? "bg-sd-green text-sd-black" : "hover:bg-white/10 text-slate-400"
+                )}
+                title="English"
+              >
+                <img src="https://flagcdn.com/w20/us.png" alt="EN" className="w-4 h-3 object-cover rounded-sm" />
+                <span className="text-[10px] font-bold">EN</span>
+              </button>
+            </div>
+
             <div className="flex flex-wrap items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
               <Calendar className="h-3 w-3 text-sd-green" />
               {DATE_RANGE_PRESETS.map((preset) => (
