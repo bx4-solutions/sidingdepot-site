@@ -27,6 +27,9 @@ type HeroQuoteFormProps = {
   tag?: string;
   bare?: boolean;
   onSuccess?: () => void;
+  submitLabel?: string;
+  title?: string;
+  subtitle?: string;
   /** @deprecated No longer used as this is now the standard form */
   isHomepage?: boolean;
 };
@@ -47,6 +50,9 @@ export function HeroQuoteForm({
   tag = "quote_request",
   bare = false,
   onSuccess,
+  submitLabel = "Get My Free Quote →",
+  title = "Get Your FREE Quote Today",
+  subtitle = "A specialist will contact you within 24 hours.",
 }: HeroQuoteFormProps = {}) {
   const { form, onSubmit, isSubmitting, isSuccess, error } = useLeadForm({
     schema: formSchema as any,
@@ -80,8 +86,8 @@ export function HeroQuoteForm({
     <div className={bare ? "w-full" : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-sd-green/5"}>
       {!bare && (
         <div className="bg-sd-navy px-6 pt-6 pb-5 text-center text-white border-b border-white/10">
-          <h2 className="font-display text-2xl sm:text-3xl leading-tight">Get Your FREE Quote Today</h2>
-          <p className="mt-1.5 text-xs text-white/75">A specialist will contact you within 24 hours.</p>
+          <h2 className="font-display text-2xl sm:text-3xl leading-tight">{title}</h2>
+          <p className="mt-1.5 text-xs text-white/75">{subtitle}</p>
           <div className="mt-4 text-[10px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
             ⭐ 4.9 Nota no Google · 🏠 1.500+ Casas · 💰 0% Juros
           </div>
@@ -174,7 +180,7 @@ export function HeroQuoteForm({
         {error && <p className="text-sm text-destructive text-center font-semibold">{error}</p>}
         
         <Button type="submit" size="lg" disabled={isSubmitting} className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 transition-all h-12">
-          {isSubmitting ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Sending…</> : "Get My Free Quote →"}
+          {isSubmitting ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Sending…</> : submitLabel}
         </Button>
         <p className="text-[10px] text-sd-gray-text text-center font-medium">🔒 Response within 24h · Trusted by 1,500+ homeowners</p>
       </form>
