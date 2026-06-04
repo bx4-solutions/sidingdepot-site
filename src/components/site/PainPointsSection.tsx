@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
-import { RelatedProjects } from "./RelatedProjects";
 import { QuoteModal } from "./QuoteModal";
 import { BEFORE_AFTER_PAIRS } from "@/data/site";
 import { track } from "@/lib/track";
@@ -58,7 +57,7 @@ export function PainPointsSection() {
             />
           </div>
 
-          <RelatedProjects />
+          
         </div>
 
         <div>
