@@ -89,7 +89,7 @@ export function HeroQuoteForm({
           <h2 className="font-display text-xl sm:text-2xl leading-tight">{title}</h2>
           <p className="mt-1 text-[11px] text-white/75">{subtitle}</p>
           <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
-            ⭐ 4.5 Nota no Google · 🏠 1.500+ Casas · 💰 0% Juros
+            ⭐ 4.5 Google Rating · 🏠 1,500+ Homes · 💰 0% APR
           </div>
         </div>
       )}

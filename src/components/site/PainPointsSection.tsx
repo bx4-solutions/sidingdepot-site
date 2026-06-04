@@ -37,7 +37,7 @@ export function PainPointsSection() {
           <div className="mt-5 rounded-xl section-dark p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-foreground font-semibold text-sm sm:text-base">
-                Want to see your home transformed like this? Our team has completed 1,500+ projects across Marietta e região, Alpharetta and North Atlanta.
+                Want to see your home transformed like this? Our team has completed 1,500+ projects across Greater Marietta, Alpharetta and North Atlanta.
               </p>
               <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                 Free estimate · response within 24h.

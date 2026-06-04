@@ -36,7 +36,7 @@ const CITIES = [
   "Marietta",
   "Alpharetta",
   "Milton",
-  "Marietta e região",
+  "Greater Marietta",
   "Woodstock",
   "Roswell",
   "Kennesaw",
@@ -71,7 +71,7 @@ const REVIEWS = [
   {
     initials: "DK",
     name: "David & Jennifer K.",
-    location: "Marietta e região, GA",
+    location: "Greater Marietta, GA",
     text: "They handled our hail damage insurance claim AND finished in under a week. Professional and fair.",
   },
   {

@@ -292,13 +292,13 @@ export function ServiceLandingPage({
               <span className="text-sd-green">{faqLabel.toLowerCase()}</span> project in {city}?
             </h2>
             <p className="mt-4 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              Conte sobre seu projeto e nossa equipe responde em até 24h com uma
-              estimativa por escrito — sem compromisso.
+              Tell us about your project and our team will respond within 24 hours
+              with a written estimate — no obligation.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-sd-gray-text">
               {[
-                "Resposta em 24h por equipe local",
-                "Orçamento detalhado por escrito",
+                "24-hour response from our local team",
+                "Detailed written estimate",
                 "Licensed & insured · GA GC #RBQA006789",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-2">

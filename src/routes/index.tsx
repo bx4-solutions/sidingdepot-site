@@ -26,7 +26,7 @@ const HOME_VIDEOS = [
     id: "898FBaW_VnI",
     name: "Siding Depot — Institutional video",
     description:
-      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Marietta e Região. 1,500+ homes resided.",
+      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Greater Marietta. 1,500+ homes resided.",
     duration: "PT2M",
     uploadDate: "2024-06-01",
   },
@@ -34,7 +34,7 @@ const HOME_VIDEOS = [
     id: "tENqAaDFr9s",
     name: "Why James Hardie fiber cement siding is built for Georgia",
     description:
-      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Marietta e Região, GA.",
+      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Greater Marietta, GA.",
     duration: "PT3M",
     uploadDate: "2024-04-15",
   },
@@ -63,22 +63,22 @@ const VIDEO_JSONLD_LIST = HOME_VIDEOS.map((v) => ({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "James Hardie Siding Contractor Marietta e Região GA | Siding Depot — Elite Preferred" },
-      { name: "description", content: "Elite Preferred James Hardie siding contractor in Marietta e Região, GA. 1,500+ homes. Highly specialized certified teams, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
-      { name: "keywords", content: "siding contractor Marietta e Região GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
+      { title: "James Hardie Siding Contractor Greater Marietta GA | Siding Depot — Elite Preferred" },
+      { name: "description", content: "Elite Preferred James Hardie siding contractor in Greater Marietta, GA. 1,500+ homes. Highly specialized certified teams, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
+      { name: "keywords", content: "siding contractor Greater Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
       { name: "geo.region", content: "US-GA" },
-      { name: "geo.placename", content: "Marietta e Região" },
+      { name: "geo.placename", content: "Greater Marietta" },
       { name: "geo.position", content: "33.9806;-84.4752" },
       { name: "ICBM", content: "33.9806, -84.4752" },
       { name: "address", content: SITE.address.full },
       { name: "telephone", content: SITE.phone },
-      { property: "og:title", content: "James Hardie Siding Contractor Marietta e Região GA | Siding Depot" },
-      { property: "og:description", content: "Elite Preferred James Hardie installer in Marietta e Região, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
+      { property: "og:title", content: "James Hardie Siding Contractor Greater Marietta GA | Siding Depot" },
+      { property: "og:description", content: "Elite Preferred James Hardie installer in Greater Marietta, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "James Hardie Siding Contractor Marietta e Região GA | Siding Depot" },
-      { name: "twitter:description", content: "Elite Preferred James Hardie installer in Marietta e Região, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
+      { name: "twitter:title", content: "James Hardie Siding Contractor Greater Marietta GA | Siding Depot" },
+      { name: "twitter:description", content: "Elite Preferred James Hardie installer in Greater Marietta, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
     links: [
@@ -106,28 +106,29 @@ const WHY_US = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Jennifer M.", city: "Marietta e Região", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
-  { name: "David & Susan R.", city: "Marietta e Região", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
-  { name: "Michael T.", city: "Marietta e Região", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
+  { name: "Jennifer M.", city: "Greater Marietta", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
+  { name: "David & Susan R.", city: "Greater Marietta", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
+  { name: "Michael T.", city: "Greater Marietta", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
 ];
 
 function HomePage() {
   return (
     <>
       <HeroSection
-        badge="Elite Preferred · Top 2% of US Installers · Marietta e Região, GA"
+        badge="Elite Preferred · Top 2% of US Installers · Greater Marietta, GA"
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
-            <span className="text-sd-green">Mais de 1.500 Casas no Norte de Atlanta</span>
+            <span className="text-sd-green">1,500+ Homes in North Atlanta</span>
           </>
         }
-        subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
+        subtitle="We're the Elite Preferred James Hardie contractor your Greater Marietta neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         showCallCta={false}
         trustItems={[
-          "Elite Preferred · Top 2% EUA",
-          "Mais de 1.500 casas atendidas",
+          "Elite Preferred · Top 2% USA",
+          "1,500+ Homes Served",
+          "GreenSky 0% APR Financing",
         ]}
         ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
@@ -147,7 +148,7 @@ function HomePage() {
               Complete Exterior Services — One Contractor, One Call
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta e Região and all of North Atlanta.
+              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Greater Marietta and all of North Atlanta.
             </p>
           </div>
 
@@ -179,7 +180,7 @@ function HomePage() {
               4 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-sd-black/65 max-w-lg">
-              We're not the cheapest contractor in Marietta e Região. We're the one your neighbors call back to thank.
+              We're not the cheapest contractor in Greater Marietta. We're the one your neighbors call back to thank.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -219,7 +220,7 @@ function HomePage() {
               className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
             >
               <Link to="/siding" className="text-sd-green hover:underline">
-                James Hardie siding installation in Marietta e Região
+                James Hardie siding installation in Greater Marietta
               </Link>
               <Link to="/lp/siding-marietta" className="text-sd-green hover:underline">
                 Service areas
@@ -244,10 +245,10 @@ function HomePage() {
               Service Areas
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Serving Marietta e Região & North Atlanta
+              Serving Greater Marietta & North Atlanta
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              James Hardie Elite Preferred installations in Marietta e Região. Free on-site quotes — we come to you.
+              James Hardie Elite Preferred installations in Greater Marietta. Free on-site quotes — we come to you.
             </p>
           </div>
 
@@ -298,7 +299,7 @@ function HomePage() {
               {[
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: CheckCircle2, t: "Free Estimates" },
-                { i: Users, t: "1.500+ Casas" },
+                { i: Users, t: "1,500+ Homes" },
                 { i: Sparkles, t: "Elite Preferred" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-sd-black/80">
