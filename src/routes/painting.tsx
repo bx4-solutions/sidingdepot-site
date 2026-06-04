@@ -25,8 +25,8 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does exterior house painting cost in Marietta or Alpharetta, GA?",
-    a: "Exterior painting in the North Atlanta area typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
+    q: "How much does exterior house painting cost in Marietta e Região, GA?",
+    a: "Exterior painting in Marietta e Região typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
   },
   {
     q: "How often should I repaint the exterior of my home in Georgia?",
