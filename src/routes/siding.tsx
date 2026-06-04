@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
 import {
   ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2,
-  Search, FileText, Wrench, Clock,
+  Search, FileText, Wrench, Clock, Users,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -15,7 +15,7 @@ import { getFaqSchema } from "@/lib/schema";
 
 
 const SERVICE_KEY = "siding";
-const CITY = "Marietta e Região";
+const CITY = "Marietta, Canton & North Atlanta";
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 /**
@@ -30,9 +30,9 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
  * This static route file takes precedence over the dynamic services.$slug.tsx.
  */
 
-const PAGE_TITLE = "James Hardie® Siding in Marietta e Região, GA | Siding Depot — Elite Preferred";
+const PAGE_TITLE = "James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred";
 const PAGE_DESC =
-  "Top 2% Elite Preferred James Hardie® contractor in Marietta e Região. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
+  "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -81,7 +81,7 @@ type SidingType = {
 
 const SHOWCASE_IMAGE = "/projects/project-1.webp";
 const SHOWCASE_ALT =
-  "Two-story Marietta e Região home showcasing James Hardie Board & Batten siding, trim and shingle accents";
+  "Two-story North Atlanta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
 
 const SIDING_TYPES: ReadonlyArray<SidingType> = [
   {
@@ -90,7 +90,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     y: 42,
     title: "Board & Batten Siding",
     image: "/projects/project-1.webp",
-    imageAlt: "James Hardie Board & Batten siding installed on a Marietta e Região home",
+    imageAlt: "James Hardie Board & Batten siding installed on a North Atlanta home",
     description:
       "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
   },
@@ -101,7 +101,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     title: "HardiePlank Lap Siding",
     image: "/projects/project-3.webp",
     imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
-    description: "Long, narrow horizontal planks — the classic American siding look. Durable and weather-resistant, making it our most popular choice across Marietta e Região.",
+    description: "Long, narrow horizontal planks — the classic American siding look. Durable and weather-resistant, making it our most popular choice across Marietta, Canton and North Atlanta.",
   },
   {
     id: "shingle",
@@ -139,11 +139,10 @@ function SidingTypesSection() {
               Siding Types
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-foreground">
-              James Hardie® Siding:{" "}
-              <span className="text-sd-green">Elite Installation & Protection.</span>
+              Why Marietta and Canton Homeowners Choose Siding Depot
             </h2>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
+              We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {SIDING_TYPES.map((t) => (
@@ -290,7 +289,7 @@ function BeforeAfterCarousel() {
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             Drag the slider on each project to see exactly how new James Hardie
-            siding, paint and trim transform a Marietta e Região home.
+            siding, paint and trim transform a Marietta, Canton or North Atlanta home.
           </p>
         </div>
 
@@ -381,33 +380,33 @@ function BeforeAfterCarousel() {
 const HIRING_CHECKLIST = [
   {
     Icon: Award,
-    title: "Manufacturer credentials",
-    desc: "Demand James Hardie Elite Preferred status — only the top 2% of US installers qualify, with installer training and warranty backing.",
+    title: "Elite Preferred — Top 2% in the US",
+    desc: "One of the few certified Elite Preferred James Hardie installers in Cherokee and Cobb County. This status qualifies your project for the extended 30-year non-prorated warranty — not available from standard installers.",
   },
   {
     Icon: ShieldCheck,
-    title: "License & insurance",
-    desc: "Verify a current Georgia GC license and proof of general liability + workers' comp before any contract is signed.",
+    title: "W-2 Crews Only — No Subcontractors",
+    desc: "Every crew member is a Siding Depot W-2 employee. Trained, background-checked, and insured. We never subcontract installs — period.",
+  },
+  {
+    Icon: CheckCircle2,
+    title: "Built for Georgia's Climate",
+    desc: "HardieZone® HZ10 products engineered for Georgia's heat above 95°F, year-round humidity, and storm season. Not a generic install — a Georgia-specific solution.",
   },
   {
     Icon: FileText,
-    title: "Written, itemized estimate",
-    desc: "Insist on a written quote that breaks out tear-off, weather barrier, profile, ColorPlus® finish, trim and clean-up — not a single lump sum.",
+    title: "Written Estimates — Zero Surprises",
+    desc: "Detailed written estimates before any work starts. The number in the estimate is the number you pay. No last-minute change orders. No 'wood rot discovered mid-project' price doubles.",
   },
   {
-    Icon: Wrench,
-    title: "Highly specialized certified teams, not subcontractors",
-    desc: "Ask who actually installs the siding. highly specialized certified professionals mean accountability, training and a single point of contact for warranty issues.",
+    Icon: Users,
+    title: "Dedicated On-Site Project Manager",
+    desc: "A Siding Depot project manager is on-site every day. You get a daily update — call or text — so you always know exactly what was done and what is next.",
   },
   {
-    Icon: Search,
-    title: "Verifiable local reviews",
-    desc: "Look for 50+ recent Google reviews from your county. Drive by completed jobs nearby — quality holds up after a few summers.",
-  },
-  {
-    Icon: Clock,
-    title: "Realistic timeline",
-    desc: "Average tear-off + reinstall on a single-family home is 5–10 working days. Anyone promising 2 days is cutting corners.",
+    Icon: ShieldCheck,
+    title: "30-Year Non-Prorated Warranty",
+    desc: "As Elite Preferred installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry — only available through Elite Preferred contractors.",
   },
 ] as const;
 
@@ -454,27 +453,27 @@ function WhatToConsiderSection() {
 const FAQ_ITEMS = [
   {
     q: "How much does James Hardie siding cost in Marietta, GA in 2026?",
-    a: "For most homes in the Marietta and North Atlanta area, James Hardie fiber cement siding costs between $15,000 and $30,000 for a full installation on a 2,500 sq ft home. Per square foot, expect $8–$14 installed, depending on the style (HardiePlank, HardieShingle, Board & Batten), trim work, and whether old siding removal is included. Homes in higher-end communities like Milton or Alpharetta with more complex architecture may run higher. We provide free, itemized estimates with no hidden fees.",
+    a: "Typical James Hardie installation costs in North Atlanta range from $10,000 for smaller homes under 1,500 sq ft, up to $55,000+ for large estates over 3,500 sq ft. This includes full tear-off, moisture barrier, HardiePlank installation, and professional project management. Financing is available with 0% interest through GreenSky.",
   },
   {
     q: "What is the best siding for Georgia's climate?",
-    a: "James Hardie fiber cement siding is widely considered the best choice for Georgia. It's engineered specifically for the Southeast's heat, humidity, and storm season through the HardieZone® HZ10 system. Unlike vinyl, it won't warp in 95°F summers. Unlike wood, it won't rot from moisture or attract termites — a real concern in Cherokee and Cobb counties. It also carries a 30-year non-prorated warranty.",
+    a: "James Hardie fiber cement siding is the top choice for Georgia. Specifically, the HardieZone® HZ10 system is engineered for the heat, humidity, and storm cycles common in Marietta, Canton, and North Atlanta. It resists rot, warping, and pests, ensuring your home stays protected for decades.",
   },
   {
-    q: "How long does siding installation take in Marietta or Alpharetta?",
-    a: "Most single-family homes in the North Atlanta area take 3 to 7 days from start to finish, depending on home size, number of stories, and siding style. We schedule projects so your home is never left exposed overnight. Weather delays are rare but we communicate proactively.",
+    q: "How long does siding installation take in Marietta or Canton?",
+    a: "A typical siding project takes 5–10 working days. This allows for a proper full tear-off, structural inspection, and precision installation of the James Hardie system by our W-2 crews. Every project is overseen by a dedicated on-site project manager.",
   },
   {
-    q: "Does James Hardie siding increase home value in Georgia?",
-    a: "Yes. According to national remodeling data, James Hardie fiber cement siding delivers up to 80% ROI on resale — one of the highest of any exterior renovation. In high-value markets like Milton, Johns Creek, and Alpharetta, new siding can directly impact appraisal value and days on market.",
+    q: "What does the 30-year non-prorated warranty cover?",
+    a: "As Elite Preferred installers, we can offer James Hardie's highest level of protection. The 30-year non-prorated warranty covers both materials and labor, giving you peace of mind that your investment is fully protected against manufacturer defects and installation issues.",
   },
   {
-    q: "Will my homeowner's insurance cover siding damage from a storm?",
-    a: "In most cases, yes — if the damage was caused by a covered peril like hail, wind, or a fallen tree. Georgia's hail season (March–May) causes thousands of siding claims across Cobb, Cherokee, and Fulton counties every year. We work directly with insurance adjusters and can document damage to help you get the coverage you deserve.",
+    q: "Are your crews subcontractors or employees?",
+    a: "Every crew member at Siding Depot is a W-2 employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are background-checked, insured, and trained specifically in James Hardie Best Practices.",
   },
   {
-    q: "What's the difference between James Hardie Elite Preferred and a regular contractor?",
-    a: "Elite Preferred is James Hardie's top certification, awarded to fewer than 2% of contractors nationwide. It requires passing installation training, maintaining high customer satisfaction scores, and completing a minimum volume of certified installs. Siding Depot holds this status — meaning your installation is backed by both our labor warranty and James Hardie's extended product warranty, which is only available through certified installers.",
+    q: "Do you provide written estimates?",
+    a: "Yes. We provide detailed, itemized written estimates within 24 hours of our site visit. The price quoted is the price you pay — no hidden fees or surprise change orders mid-project.",
   },
 ] as const;
 
@@ -527,27 +526,63 @@ function SidingPage() {
         serviceKey={SERVICE_KEY}
         city={CITY}
         heroImage="/projects/project-1.webp"
-        eyebrow="James Hardie · Elite Preferred"
-        title="Elite James Hardie Siding:"
-        titleAccent="Atlanta's Top 2% Choice."
-        intro="Transform your home with fiber cement siding engineered for Georgia's humidity. As an Elite Preferred contractor, we provide precision installation and the industry's best warranties."
+        eyebrow="James Hardie Siding — Elite Preferred Installation"
+        title="James Hardie Siding Installation in"
+        titleAccent="Marietta, Canton & North Atlanta, GA"
+        intro="Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.
+
+As an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.
+
+We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee."
         benefits={[
           "Top 2% Elite Preferred James Hardie status",
           "Engineered for Georgia heat & humidity (HZ10)",
           "30-year limited material warranty",
-          "highly specialized certified teams — no subcontractors",
+          "W-2 employee crews (never subcontractors)",
         ]}
         hiringRole="siding contractor"
-        hiringIntro="Choosing siding is a 30-year decision. Use this checklist to verify structural and moisture-barrier standards for Georgia homes."
+        hiringIntro="We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank."
         hiringChecklist={HIRING_CHECKLIST}
         faqLabel="Siding"
         faqs={FAQ_ITEMS}
-        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta e Região. We serve Cobb County and the surrounding area with Elite Preferred expertise. In 2026, a full James Hardie replacement in Marietta e Região typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
+        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Canton and North Atlanta. We serve Cobb County and the surrounding area with Elite Preferred expertise. In 2026, a full James Hardie replacement in Marietta typically runs $15,000–$55,000+, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
         ctaAccent="quality and durability?"
       />
       
       {/* Flagship-only interactive sections */}
       <SidingTypesSection />
+      
+      {/* Pricing Section */}
+      <section className="bg-[#1E2A38] py-20 lg:py-28 text-white">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-center">
+            How Much Does James Hardie Siding Cost in Marietta, GA? (2026)
+          </h2>
+          <div className="mt-10 space-y-6 text-lg text-white/90 leading-relaxed">
+            <p>Typical James Hardie installation costs in North Atlanta:</p>
+            <ul className="space-y-3 list-disc pl-6">
+              <li>Under 1,500 sq ft home: $10,000 – $16,000</li>
+              <li>1,500 – 2,500 sq ft home: $16,000 – $26,000</li>
+              <li>2,500 – 3,500 sq ft home: $26,000 – $38,000</li>
+              <li>3,500+ sq ft home: $38,000 – $55,000+</li>
+            </ul>
+            <p className="mt-8">
+              Price includes: full tear-off and disposal of old siding, moisture barrier installation, James Hardie HardiePlank installation, all caulking and sealing, project manager oversight, and final walkthrough inspection.
+            </p>
+            <p>
+              Financing available from $0 down through GreenSky — apply in 60 seconds, decisions in minutes.
+            </p>
+          </div>
+          <div className="mt-12 text-center">
+            <Button asChild size="lg" className="bg-sd-green text-sd-dark hover:bg-sd-green-hover font-bold px-8">
+              <Link to="/contact">
+                Get My Free Written Estimate <ArrowRight className="ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <BeforeAfterCarousel />
     </div>
   );

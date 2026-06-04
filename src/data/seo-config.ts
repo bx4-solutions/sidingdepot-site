@@ -12,22 +12,22 @@ export type ServiceSeo = Record<ABVariation, SeoVariant>;
 export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
   siding: {
     A: {
-      h1: (c) => `Elite James Hardie Siding Installation in ${c}, GA`,
-      h2: "Top 2% James Hardie Elite Preferred Contractor",
-      metaTitle: (c) => `James Hardie Siding in ${c}, GA | Siding Depot — Elite Preferred`,
-      metaDesc: "Top 2% Elite Preferred James Hardie installer for Marietta e Região. 50-year fiber cement durability. Free 24h quote — call Siding Depot.",
+      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
+      metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
+      metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
-      h1: (c) => `Moisture-Proof Fiber Cement Siding in ${c}, GA`,
-      h2: "Engineered for Georgia's HZ10 Climate Zone",
-      metaTitle: (c) => `Fiber Cement Siding ${c}, GA | Built for Georgia Humidity`,
-      metaDesc: "James Hardie fiber cement siding engineered for Georgia humidity, storms & UV. HZ10-rated install in Marietta e Região. Get a free written estimate.",
+      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
+      metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
+      metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
-      h1: (c) => `Fixed-Price Siding Installation in ${c}, GA`,
-      h2: "Transparent Quotes, Highly Specialized Certified Teams, On-Time Finish",
-      metaTitle: (c) => `Siding Installer ${c}, GA | Free 24h Quote — Siding Depot`,
-      metaDesc: "Same-day on-site visit, written quote in 24h, dedicated project manager. James Hardie siding installed in Marietta e Região with 0% APR financing.",
+      h1: (c) => `James Hardie Siding Installation in Marietta, Canton & North Atlanta, GA`,
+      h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
+      metaTitle: (c) => `James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred`,
+      metaDesc: "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.",
     },
   },
   painting: {
