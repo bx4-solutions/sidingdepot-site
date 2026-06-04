@@ -5,6 +5,7 @@ import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+import certHeroImg from "@/assets/certifications-hero.jpg";
 
 
 const LucideFacebook = ({ className }: { className?: string }) => (
@@ -156,7 +157,6 @@ const PARTNER_LOGOS = [
   "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
 ] as const;
 
-import certHeroImg from "@/assets/certifications-hero.jpg";
 const CERT_HERO = certHeroImg;
 
 const DIFFERENTIATORS = [
