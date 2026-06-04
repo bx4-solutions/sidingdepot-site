@@ -6,15 +6,6 @@ import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -76,7 +67,6 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState<any>(null);
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -89,10 +79,6 @@ export function Navbar() {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  const handleStripClick = (slug: string) => {
-    track("service_strip_click", { service: slug });
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-sd-gray-bg/80 border-b border-sd-navy/10 shadow-sm transition-all duration-300">
@@ -109,60 +95,51 @@ export function Navbar() {
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-2">
-          <NavigationMenu className="max-w-none">
-            <NavigationMenuList className="gap-1">
-              {NAV_LINKS.map((l) => (
-                <NavigationMenuItem key={l.label}>
-                  {l.sublinks ? (
-                    <>
-                      <NavigationMenuTrigger className="bg-transparent text-[13px] font-semibold tracking-wide text-sd-black hover:text-sd-green-text h-auto py-2 px-3 data-[state=open]:bg-transparent data-[active]:bg-transparent">
-                        <Link to={l.to} className="hover:text-sd-green-text">
-                          {l.label}
-                        </Link>
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent className="md:absolute md:left-1/2 md:-translate-x-1/2">
-                        <ul className="grid w-[200px] gap-1 p-3 bg-white border border-sd-navy/10 shadow-lg rounded-md">
-                          {l.sublinks.map((sub) => (
-                            <li key={sub.label}>
-                              <NavigationMenuLink asChild>
-                                <Link
-                                  to={sub.to}
-                                  className="block select-none space-y-1 rounded-md p-3 text-[12px] font-medium leading-none no-underline outline-none transition-colors hover:bg-sd-green/10 hover:text-sd-green-text focus:bg-sd-green/10 focus:text-sd-green-text"
-                                >
-                                  {sub.label}
-                                </Link>
-                              </NavigationMenuLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <Link
-                      to={l.to}
-                      className={cn(
-                        "text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2",
-                        location.pathname === l.to && "text-sd-green-text underline underline-offset-4"
-                      )}
-                    >
-                      {l.label}
-                    </Link>
+        <nav className="hidden lg:flex items-center gap-1">
+          {NAV_LINKS.map((l) => (
+            <div key={l.label} className="relative group py-2">
+              <div className="flex items-center gap-1 px-3">
+                <Link 
+                  to={l.to} 
+                  className={cn(
+                    "text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text",
+                    location.pathname === l.to && "text-sd-green-text border-b-2 border-sd-green-text"
                   )}
-                </NavigationMenuItem>
-              ))}
-              {session && (
-                <NavigationMenuItem>
-                  <Link
-                    to="/seo-dashboard"
-                    className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text px-3 py-2"
-                  >
-                    SEO Dashboard
-                  </Link>
-                </NavigationMenuItem>
+                >
+                  {l.label}
+                </Link>
+                {l.sublinks && (
+                  <ChevronDown className="h-3 w-3 text-sd-black group-hover:text-sd-green-text transition-transform group-hover:rotate-180" />
+                )}
+              </div>
+              
+              {l.sublinks && (
+                <div className="absolute left-0 top-[100%] pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-[200px]">
+                  <div className="bg-white border border-sd-navy/10 shadow-2xl rounded-md overflow-hidden py-2">
+                    {l.sublinks.map((sub) => (
+                      <Link
+                        key={sub.label}
+                        to={sub.to}
+                        className="block px-4 py-3 text-[12px] font-bold tracking-wider transition-colors hover:bg-sd-green/10 hover:text-sd-green-text text-sd-black border-b border-sd-navy/5 last:border-0"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               )}
-            </NavigationMenuList>
-          </NavigationMenu>
+            </div>
+          ))}
+          {session && (
+            <div className="flex items-center px-3">
+              <Link
+                to="/seo-dashboard"
+                className="text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text"
+              >
+                SEO DASHBOARD
+              </Link>
+            </div>
+          )}
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -231,7 +208,7 @@ export function Navbar() {
                 className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-sd-black hover:bg-sd-green/10"
                 onClick={() => setOpen(false)}
               >
-                SEO Dashboard
+                SEO DASHBOARD
               </Link>
             )}
             <Button
