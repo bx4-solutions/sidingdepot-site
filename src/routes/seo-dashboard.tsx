@@ -393,8 +393,8 @@ function SEODashboard() {
         <Card className="bg-[#131921] border-white/10">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
-              <CardTitle className="text-lg font-bold">Relatório de Auditoria de SEO</CardTitle>
-              <CardDescription>Verificação automática de metadados e indexabilidade</CardDescription>
+              <CardTitle className="text-lg font-bold">{t('auditReport')}</CardTitle>
+              <CardDescription>{t('auditDesc')}</CardDescription>
             </div>
             <Button 
               onClick={async () => {
