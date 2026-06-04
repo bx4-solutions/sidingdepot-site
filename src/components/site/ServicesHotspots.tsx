@@ -107,11 +107,13 @@ const MOBILE_ICONS: Record<string, typeof Hammer> = {
   gutters: CloudRain,
   windows: AppWindow,
   painting: PaintRoller,
+  deck: Hammer,
 };
 
 export function ServicesHotspots() {
   const [active, setActive] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
