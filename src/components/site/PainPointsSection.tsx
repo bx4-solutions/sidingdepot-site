@@ -8,11 +8,11 @@ import { BEFORE_AFTER_PAIRS } from "@/data/site";
 import { track } from "@/lib/track";
 
 const PAINS = [
-  "Crews cut corners because there's no on-site project manager.",
-  "They pad your invoice with work that wasn't actually done.",
-  "They stop returning your calls mid-project.",
-  "You get stuck with a half-finished home and a dead contractor.",
-  "You spend the money — and still hate the way your house looks.",
+  "Subcontractors your contractor never met show up at your door.",
+  "The final invoice has line items that weren't in the estimate.",
+  "Calls go unanswered once the deposit clears.",
+  "Wood rot is \"discovered\" mid-project and the price doubles.",
+  "You spend $20,000 — and still have to call someone else to fix it.",
 ];
 
 const SLIDER_SOURCE = "Before/After Slider";
