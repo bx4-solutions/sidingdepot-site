@@ -696,8 +696,8 @@ function SEODashboard() {
           <div className="max-w-[1400px] mx-auto space-y-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? 'Painel de Controle' : menuItems.find(i => i.id === activeView)?.label || adminItems.find(i => i.id === activeView)?.label}</h1>
-                <p className="text-slate-200 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
+                <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? t('dashboard') : t(menuItems.find(i => i.id === activeView)?.labelKey || adminItems.find(i => i.id === activeView)?.labelKey || '')}</h1>
+                <p className="text-slate-200 text-sm">{t('performanceRealtime')}</p>
               </div>
               <div className="flex items-center gap-2">
                 <Button 
