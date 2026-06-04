@@ -137,7 +137,7 @@ export const PROCESS_STEPS = [
 export const AWARDS = [
   { name: "James Hardie Elite Preferred", subtitle: "Top 2% dos instaladores nos EUA" },
   { name: "Certificação GAF Factory", subtitle: "Garantia de sistema de telhado" },
-  { name: "Google · 4.9★", subtitle: "158+ avaliações verificadas" },
+  { name: "Google · 4.5★", subtitle: "158 avaliações verificadas" },
   { name: "Licenciado e Segurado", subtitle: "Georgia GC #RBQA006789" },
   { name: "Acreditado pelo BBB", subtitle: "Classificação A+" },
   { name: "Financiamento GreenSky", subtitle: "Planos de 0% de juros disponíveis" },

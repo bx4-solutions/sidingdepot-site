@@ -85,7 +85,7 @@ const REVIEWS = [
 const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
   { value: "12+", label: "Years in Georgia" },
-  { value: "4.9★", label: "Google Rating" },
+  { value: "4.5★", label: "Google Rating" },
   { value: "98%", label: "Customer Satisfaction" },
 ] as const;
 
@@ -193,7 +193,7 @@ export function SidingLP({ city }: SidingLPProps) {
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
-            "⭐ 4.9/5 Google Rating",
+            "⭐ 4.5/5 Google Rating",
             "🏅 Elite Preferred — Top 2% in the U.S.",
             "🏠 1,500+ Homes in Georgia",
             "✓ Free Estimates · No Obligation",
