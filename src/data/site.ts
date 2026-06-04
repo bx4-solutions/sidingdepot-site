@@ -84,54 +84,27 @@ export const SERVICES: ReadonlyArray<{
   Icon: LucideIcon;
   image: ServiceImage;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation built for Georgia weather.", Icon: PanelsTopLeft, image: { src: sidingImg } },
+  { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation. HardieZone HZ10 engineered for Georgia's heat, humidity and storms.", Icon: PanelsTopLeft, image: { src: sidingImg } },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
-  { slug: "windows", title: "Windows", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
-  { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
-  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
-  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
-  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
-];
-
-export const CITIES = [
-  { slug: "marietta", name: "Marietta", county: "Cobb County" },
-  { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
-  { slug: "milton", name: "Milton", county: "Fulton County" },
-  { slug: "canton", name: "Canton", county: "Cherokee County" },
-  { slug: "woodstock", name: "Woodstock", county: "Cherokee County" },
-  { slug: "roswell", name: "Roswell", county: "Fulton County" },
-  { slug: "kennesaw", name: "Kennesaw", county: "Cobb County" },
-  { slug: "johns-creek", name: "Johns Creek", county: "Fulton County" },
-  { slug: "sandy-springs", name: "Sandy Springs", county: "Fulton County" },
-  { slug: "acworth", name: "Acworth", county: "Cobb County" },
-] as const;
-
-export const STATS = [
-  { value: "1,500+", label: "Homes Transformed" },
-  { value: "12+", label: "Years in Georgia" },
-  { value: "98%", label: "5-Star Reviews" },
-  { value: "4.9★", label: "Google Rating" },
-] as const;
-
+// ... keep existing code
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.9 Google Rating" },
-  { icon: "🏆", label: "Elite Preferred · Top 2%" },
-  { icon: "🏠", label: "1,500+ Homes" },
-  { icon: "✅", label: "Licensed & Insured" },
-  { icon: "💰", label: "Financing Available" },
+  { icon: "⭐", label: "4.9 · 128 Verified Reviews" },
+  { icon: "🏆", label: "Elite Preferred · Top 2% US" },
+  { icon: "✅", label: "GA License #RBQA006789" },
+  { icon: "🏠", label: "1,500+ North Atlanta Homes" },
+  { icon: "💰", label: "GreenSky 0% APR Financing" },
 ] as const;
 
 export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Consultation",
-    desc: "Free on-site visit. We listen to your vision, measure, and walk you through a written, no-pressure proposal — usually the same day.",
+    desc: "Free on-site visit in Marietta, Canton, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
   },
   {
     num: "02",
     title: "Renovation",
-    desc: "Your dedicated project manager runs daily check-ins. Our W-2 crews install James Hardie, paint, decks or roofing — never subcontracted.",
+    desc: "Your dedicated project manager is on-site daily. Our W-2 crews — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
   },
   {
     num: "03",
