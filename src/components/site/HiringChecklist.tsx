@@ -6,7 +6,7 @@ export interface HiringChecklistItem {
   desc: string;
 }
 
-export function HiringChecklist({ items }: { items: HiringChecklistItem[] }) {
+export function HiringChecklist({ items }: { items: readonly HiringChecklistItem[] }) {
   return (
     <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -41,3 +41,4 @@ export function HiringChecklist({ items }: { items: HiringChecklistItem[] }) {
     </section>
   );
 }
+
