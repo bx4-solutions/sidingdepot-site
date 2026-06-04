@@ -416,19 +416,19 @@ function SEODashboard() {
                 <div className="flex items-center justify-between mb-6">
                    <div className="flex gap-8">
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Páginas Auditadas</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('auditedPages')}</p>
                          <p className="text-2xl font-black">74</p>
                       </div>
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Indexáveis</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('indexable')}</p>
                          <p className="text-2xl font-black text-sd-green">100%</p>
                       </div>
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Avisos</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('warnings')}</p>
                          <p className="text-2xl font-black text-yellow-500">0</p>
                       </div>
                    </div>
-                   <Badge className="bg-sd-green text-sd-black">SAUDÁVEL</Badge>
+                   <Badge className="bg-sd-green text-sd-black">{t('healthy')}</Badge>
                 </div>
                 
                 <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
