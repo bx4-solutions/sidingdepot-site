@@ -203,16 +203,39 @@ export function Navbar() {
       {open && (
         <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-sd-gray-bg border-b border-sd-gray-border`}>
           <nav className="px-4 py-4 flex flex-col gap-1">
-            {NAV_LINKS.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="px-3 py-2 rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ))}
+            <Accordion type="single" collapsible className="w-full">
+              {NAV_LINKS.map((l) => (
+                <div key={l.label}>
+                  {"sublinks" in l ? (
+                    <AccordionItem value={l.label} className="border-none">
+                      <AccordionTrigger className="px-3 py-2 text-sm font-semibold text-sd-black hover:bg-sd-green/10 hover:no-underline rounded-md">
+                        {l.label}
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-1 pl-4 flex flex-col gap-1">
+                        {l.sublinks.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            to={sub.to}
+                            className="px-3 py-2 rounded-md text-xs font-medium text-sd-black/70 hover:bg-sd-green/10"
+                            onClick={() => setOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ) : (
+                    <Link
+                      to={l.to}
+                      className="px-3 py-2 flex items-center rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
+                      onClick={() => setOpen(false)}
+                    >
+                      {l.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </Accordion>
             {session && (
               <Link
                 to="/seo-dashboard"
