@@ -170,7 +170,7 @@ export function GoogleReviews() {
               Google My Business
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Recent Google Reviews
+              What North Atlanta Homeowners Say
             </h2>
             <div className="mt-4 flex items-center gap-2">
               <div className="flex">
