@@ -140,6 +140,8 @@ function HomePage() {
 
       <ProofBar />
 
+      <MultiRatingsStrip />
+
       <PainPointsSection />
 
       <ServicesHotspots />
