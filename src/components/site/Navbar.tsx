@@ -43,7 +43,7 @@ export function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-sd-navy/15 shadow-sm transition-colors duration-200 ${isHome ? "bg-sd-dark-mid" : "bg-sd-green"}`}>
+    <header className={`sticky top-0 z-50 w-full border-b border-sd-navy/15 shadow-sm transition-colors duration-200 bg-sd-dark-mid`}>
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
@@ -62,8 +62,8 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className={`text-[13px] font-semibold tracking-wide transition-colors ${isHome ? "text-white hover:text-white/80" : "text-sd-navy hover:text-sd-black"}`}
-              activeProps={{ className: isHome ? "text-white underline underline-offset-4" : "text-sd-black underline underline-offset-4" }}
+              className="text-[13px] font-semibold tracking-wide transition-colors text-white hover:text-white/80"
+              activeProps={{ className: "text-white underline underline-offset-4" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -72,8 +72,8 @@ export function Navbar() {
           {session && (
             <Link
               to="/seo-dashboard"
-              className={`text-[13px] font-bold tracking-wide transition-colors ${isHome ? "text-white hover:text-white/80" : "text-sd-navy hover:text-sd-black"}`}
-              activeProps={{ className: "text-sd-black" }}
+              className="text-[13px] font-bold tracking-wide transition-colors text-white hover:text-white/80"
+              activeProps={{ className: "text-white" }}
             >
               SEO Dashboard
             </Link>
@@ -95,7 +95,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className={`lg:hidden inline-flex items-center justify-center rounded-md p-2 ${isHome ? "text-white" : "text-sd-navy"}`}
+          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-white"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -105,13 +105,13 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] ${isHome ? "bg-sd-dark-mid" : "bg-sd-green"}`}>
+        <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-sd-dark-mid`}>
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className={`px-3 py-2 rounded-md text-sm font-semibold transition-colors ${isHome ? "text-white hover:bg-white/10" : "text-sd-navy hover:bg-sd-navy/10 hover:text-sd-black"}`}
+                className="px-3 py-2 rounded-md text-sm font-semibold transition-colors text-white hover:bg-white/10"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
@@ -120,7 +120,7 @@ export function Navbar() {
             {session && (
               <Link
                 to="/seo-dashboard"
-                className={`px-3 py-2 rounded-md text-sm font-bold transition-colors ${isHome ? "text-white hover:bg-white/10" : "text-sd-navy hover:bg-sd-navy/10"}`}
+                className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-white hover:bg-white/10"
                 onClick={() => setOpen(false)}
               >
                 SEO Dashboard
