@@ -381,33 +381,33 @@ function BeforeAfterCarousel() {
 const HIRING_CHECKLIST = [
   {
     Icon: Award,
-    title: "Manufacturer credentials",
-    desc: "Demand James Hardie Elite Preferred status — only the top 2% of US installers qualify, with installer training and warranty backing.",
+    title: "Elite Preferred — Top 2% in the US",
+    desc: "One of the few certified Elite Preferred James Hardie installers in Cherokee and Cobb County. This status qualifies your project for the extended 30-year non-prorated warranty — not available from standard installers.",
   },
   {
     Icon: ShieldCheck,
-    title: "License & insurance",
-    desc: "Verify a current Georgia GC license and proof of general liability + workers' comp before any contract is signed.",
+    title: "W-2 Crews Only — No Subcontractors",
+    desc: "Every crew member is a Siding Depot W-2 employee. Trained, background-checked, and insured. We never subcontract installs — period.",
+  },
+  {
+    Icon: CheckCircle2,
+    title: "Built for Georgia's Climate",
+    desc: "HardieZone® HZ10 products engineered for Georgia's heat above 95°F, year-round humidity, and storm season. Not a generic install — a Georgia-specific solution.",
   },
   {
     Icon: FileText,
-    title: "Written, itemized estimate",
-    desc: "Insist on a written quote that breaks out tear-off, weather barrier, profile, ColorPlus® finish, trim and clean-up — not a single lump sum.",
+    title: "Written Estimates — Zero Surprises",
+    desc: "Detailed written estimates before any work starts. The number in the estimate is the number you pay. No last-minute change orders. No 'wood rot discovered mid-project' price doubles.",
   },
   {
-    Icon: Wrench,
-    title: "Highly specialized certified teams, not subcontractors",
-    desc: "Ask who actually installs the siding. highly specialized certified professionals mean accountability, training and a single point of contact for warranty issues.",
+    Icon: Users,
+    title: "Dedicated On-Site Project Manager",
+    desc: "A Siding Depot project manager is on-site every day. You get a daily update — call or text — so you always know exactly what was done and what is next.",
   },
   {
-    Icon: Search,
-    title: "Verifiable local reviews",
-    desc: "Look for 50+ recent Google reviews from your county. Drive by completed jobs nearby — quality holds up after a few summers.",
-  },
-  {
-    Icon: Clock,
-    title: "Realistic timeline",
-    desc: "Average tear-off + reinstall on a single-family home is 5–10 working days. Anyone promising 2 days is cutting corners.",
+    Icon: ShieldCheck,
+    title: "30-Year Non-Prorated Warranty",
+    desc: "As Elite Preferred installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry — only available through Elite Preferred contractors.",
   },
 ] as const;
 
