@@ -60,7 +60,6 @@ const DUMPSTER_SIZES = [
 function DumpsterRentalPage() {
   return (
     <>
-      <Navbar />
       <main className="bg-sd-gray-bg">
         {/* Hero */}
         <section className="relative isolate overflow-hidden">
@@ -163,7 +162,6 @@ function DumpsterRentalPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

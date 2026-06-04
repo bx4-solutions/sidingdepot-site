@@ -69,7 +69,6 @@ function ThankYouPage() {
 
   return (
     <>
-      <Navbar />
       <main className="bg-sd-gray-bg">
         {/* Confirmation hero */}
         <section className="bg-sd-navy text-white">
@@ -181,7 +180,6 @@ function ThankYouPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

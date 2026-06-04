@@ -159,7 +159,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const isDev = import.meta.env.DEV || window.location.hostname === "localhost" || window.location.hostname.includes("lovable.app");
+  const isDev = import.meta.env.DEV || (typeof window !== 'undefined' && (window.location.hostname === "localhost" || window.location.hostname.includes("lovableproject.com")));
 
   return (
     <QueryClientProvider client={queryClient}>
