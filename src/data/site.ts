@@ -7,76 +7,13 @@ export const SITE = {
   email: "office@sidingdepot.com",
   address: {
     street: "3036 Roswell Rd",
-    city: "Marietta",
+    city: "Marietta e Região",
     state: "GA",
     zip: "30062",
-    full: "3036 Roswell Rd, Marietta, GA 30062",
+    full: "3036 Roswell Rd, Marietta e Região, GA 30062",
   },
   hours: "Mon–Sat: 8:00 AM – 6:00 PM",
-  greenSkyUrl:
-    "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03",
-  ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
-  social: {
-    facebook: "https://www.facebook.com/SidingDepot",
-    instagram: "https://www.instagram.com/sidingdepot/",
-    youtube: "https://www.youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
-    tiktok: "https://www.tiktok.com/@sidingdepot",
-  },
-} as const;
-
-/**
- * HERO config — change these paths to swap the homepage Hero background.
- * Drop your image into `public/` (e.g. `public/hero-home.webp`) and update the
- * paths below. No code changes required. The mobile variant is optional but
- * recommended for faster loads on phones.
- */
-export const HERO = {
-  bgImage: "/hero-home.webp",
-  bgImageMobile: "/hero-home-sm.webp",
-  bgAlt: "Newly renovated North Atlanta home with James Hardie siding by Siding Depot",
-} as const;
-
-import {
-  PanelsTopLeft,
-  PaintRoller,
-  AppWindow,
-  Hammer,
-  CloudRain,
-  Triangle,
-  Truck,
-  type LucideIcon,
-} from "lucide-react";
-
-import sidingImg from "@/assets/services/siding.webp";
-
-import paintingImg from "@/assets/services/painting.jpg";
-import paintingWebp from "@/assets/services/painting.webp";
-import paintingAvif from "@/assets/services/painting.avif";
-import windowsImg from "@/assets/services/windows.jpg";
-import windowsWebp from "@/assets/services/windows.webp";
-import windowsAvif from "@/assets/services/windows.avif";
-import deckImg from "@/assets/services/deck.jpg";
-import deckWebp from "@/assets/services/deck.webp";
-import deckAvif from "@/assets/services/deck.avif";
-import guttersImg from "@/assets/services/gutters.jpg";
-import guttersWebp from "@/assets/services/gutters.webp";
-import guttersAvif from "@/assets/services/gutters.avif";
-import roofingImg from "@/assets/services/roofing.jpg";
-import roofingWebp from "@/assets/services/roofing.webp";
-import roofingAvif from "@/assets/services/roofing.avif";
-import dumpsterImg from "@/assets/services/dumpster.jpg";
-import dumpsterWebp from "@/assets/services/dumpster.webp";
-import dumpsterAvif from "@/assets/services/dumpster.avif";
-
-export type ServiceImage = {
-  /** Fallback raster (JPEG/WebP) used as <img src>. */
-  src: string;
-  /** Optional WebP variant for <source type="image/webp">. */
-  webp?: string;
-  /** Optional AVIF variant for <source type="image/avif">. */
-  avif?: string;
-};
-
+...
 export const SERVICES: ReadonlyArray<{
   slug: string;
   title: string;
@@ -90,21 +27,12 @@ export const SERVICES: ReadonlyArray<{
   { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
   { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
-  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
+  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in Marietta e Região.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
 ];
 
 export const CITIES = [
-  { slug: "marietta", name: "Marietta", county: "Cobb County" },
-  { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
-  { slug: "milton", name: "Milton", county: "Fulton County" },
-  { slug: "canton", name: "Marietta e região", county: "Cherokee County" },
-  { slug: "woodstock", name: "Woodstock", county: "Cherokee County" },
-  { slug: "roswell", name: "Roswell", county: "Fulton County" },
-  { slug: "kennesaw", name: "Kennesaw", county: "Cobb County" },
-  { slug: "johns-creek", name: "Johns Creek", county: "Fulton County" },
-  { slug: "sandy-springs", name: "Sandy Springs", county: "Fulton County" },
-  { slug: "acworth", name: "Acworth", county: "Cobb County" },
+  { slug: "marietta", name: "Marietta e Região", county: "Cobb County" },
 ] as const;
 
 export const STATS = [
@@ -118,7 +46,7 @@ export const PROOF_BAR = [
   { icon: "⭐", label: "4.9 · 128 Verified Reviews" },
   { icon: "🏆", label: "Elite Preferred · Top 2% US" },
   { icon: "✅", label: "GA License #RBQA006789" },
-  { icon: "🏠", label: "1,500+ North Atlanta Homes" },
+  { icon: "🏠", label: "1,500+ Marietta e Região Homes" },
   { icon: "💰", label: "GreenSky 0% APR Financing" },
 ] as const;
 
@@ -126,7 +54,7 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Consultation",
-    desc: "Free on-site visit in Marietta e região, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
+    desc: "Free on-site visit in Marietta e Região. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
   },
   {
     num: "02",
@@ -136,9 +64,7 @@ export const PROCESS_STEPS = [
   {
     num: "03",
     title: "Celebration",
-    desc: "Final walk-through to make sure every detail meets your expectations. Then step back to the curb and admire your transformed home.",
-  },
-] as const;
+...
 
 export const AWARDS = [
   { name: "James Hardie Elite Preferred", subtitle: "Top 2% of US installers" },
