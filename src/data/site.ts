@@ -13,7 +13,70 @@ export const SITE = {
     full: "3036 Roswell Rd, Marietta e Região, GA 30062",
   },
   hours: "Mon–Sat: 8:00 AM – 6:00 PM",
-...
+  greenSkyUrl:
+    "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03",
+  ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
+  social: {
+    facebook: "https://www.facebook.com/SidingDepot",
+    instagram: "https://www.instagram.com/sidingdepot/",
+    youtube: "https://www.youtube.com/channel/UCz1pbny99aDrwC9qvqZ0qyg",
+    tiktok: "https://www.tiktok.com/@sidingdepot",
+  },
+} as const;
+
+/**
+ * HERO config — change these paths to swap the homepage Hero background.
+ * Drop your image into `public/` (e.g. `public/hero-home.webp`) and update the
+ * paths below. No code changes required. The mobile variant is optional but
+ * recommended for faster loads on phones.
+ */
+export const HERO = {
+  bgImage: "/hero-home.webp",
+  bgImageMobile: "/hero-home-sm.webp",
+  bgAlt: "Newly renovated Marietta e Região home with James Hardie siding by Siding Depot",
+} as const;
+
+import {
+  PanelsTopLeft,
+  PaintRoller,
+  AppWindow,
+  Hammer,
+  CloudRain,
+  Triangle,
+  Truck,
+  type LucideIcon,
+} from "lucide-react";
+
+import sidingImg from "@/assets/services/siding.webp";
+
+import paintingImg from "@/assets/services/painting.jpg";
+import paintingWebp from "@/assets/services/painting.webp";
+import paintingAvif from "@/assets/services/painting.avif";
+import windowsImg from "@/assets/services/windows.jpg";
+import windowsWebp from "@/assets/services/windows.webp";
+import windowsAvif from "@/assets/services/windows.avif";
+import deckImg from "@/assets/services/deck.jpg";
+import deckWebp from "@/assets/services/deck.webp";
+import deckAvif from "@/assets/services/deck.avif";
+import guttersImg from "@/assets/services/gutters.jpg";
+import guttersWebp from "@/assets/services/gutters.webp";
+import guttersAvif from "@/assets/services/gutters.avif";
+import roofingImg from "@/assets/services/roofing.jpg";
+import roofingWebp from "@/assets/services/roofing.webp";
+import roofingAvif from "@/assets/services/roofing.avif";
+import dumpsterImg from "@/assets/services/dumpster.jpg";
+import dumpsterWebp from "@/assets/services/dumpster.webp";
+import dumpsterAvif from "@/assets/services/dumpster.avif";
+
+export type ServiceImage = {
+  /** Fallback raster (JPEG/WebP) used as <img src>. */
+  src: string;
+  /** Optional WebP variant for <source type="image/webp">. */
+  webp?: string;
+  /** Optional AVIF variant for <source type="image/avif">. */
+  avif?: string;
+};
+
 export const SERVICES: ReadonlyArray<{
   slug: string;
   title: string;
@@ -64,7 +127,9 @@ export const PROCESS_STEPS = [
   {
     num: "03",
     title: "Celebration",
-...
+    desc: "Final walk-through to make sure every detail meets your expectations. Then step back to the curb and admire your transformed home.",
+  },
+] as const;
 
 export const AWARDS = [
   { name: "James Hardie Elite Preferred", subtitle: "Top 2% of US installers" },
@@ -75,13 +140,6 @@ export const AWARDS = [
   { name: "GreenSky Financing", subtitle: "0% APR plans available" },
 ] as const;
 
-/**
- * Canonical list of services. Used as:
- *  - Multi-select options in quote forms (HeroQuoteForm, project admin)
- *  - Filter chips on /projects
- *  - URL slugs for /services/$slug SEO landing pages
- *  - Allowed values for Project.tags
- */
 export const SERVICE_OPTIONS = [
   "Siding",
   "Painting",
@@ -94,26 +152,19 @@ export const SERVICE_OPTIONS = [
 
 export type ProjectTag = (typeof SERVICE_OPTIONS)[number];
 
-/** Map a service label to its URL-safe slug used by /services/$slug. */
 export function serviceSlug(label: ProjectTag): string {
   return label.toLowerCase();
 }
 
 export type Project = {
-  /** Unique URL-safe identifier used for /projects/$slug. */
   slug: string;
   src: string;
   alt: string;
   tags: ReadonlyArray<ProjectTag>;
-  /** Headline shown over the card on the /projects page. */
   title?: string;
-  /** Service category label shown at the bottom of the card. */
   category?: string;
-  /** City + state shown on the detail page (e.g. "Marietta, GA"). */
   city?: string;
-  /** Publish date as ISO 8601 (e.g. "2026-04-29"). */
   date?: string;
-  /** Long-form description for the detail page / SEO. */
   description?: string;
 };
 
@@ -121,107 +172,33 @@ export const PROJECTS: ReadonlyArray<Project> = [
   {
     slug: "hardie-board-batten-marietta",
     src: "/projects/project-1.webp",
-    alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim",
+    alt: "Two-story Marietta e Região home with new James Hardie blue siding, fresh paint and white trim",
     tags: ["Siding", "Painting", "Windows"],
-    title: "James Hardie Board & Batten Siding — Marietta, GA",
+    title: "James Hardie Board & Batten Siding — Marietta e Região, GA",
     category: "Siding Installation & Replacement",
-    city: "Marietta, GA",
+    city: "Marietta e Região, GA",
     date: "2026-04-29",
     description:
-      "Full James Hardie Board & Batten siding replacement on a two-story Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
-  },
-  {
-    slug: "hardieplank-repaint-alpharetta",
-    src: "/projects/project-2.webp",
-    alt: "Cape Cod style home in Alpharetta with new white HardiePlank siding and yellow front door",
-    tags: ["Siding", "Painting", "Roof"],
-    title: "HardiePlank Siding & Full Repaint — Alpharetta, GA",
-    category: "Siding Installation & Replacement",
-    city: "Alpharetta, GA",
-    date: "2026-04-22",
-    description:
-      "Cape Cod home in Alpharetta transformed with white HardiePlank lap siding, complete exterior repaint and a refreshed roofline. ColorPlus® Technology baked-on finish keeps the color sharp.",
-  },
-  {
-    slug: "fiber-cement-cedarmill-cumming",
-    src: "/projects/project-3.webp",
-    alt: "Renovated split-level home with white siding and dark trim accents in North Atlanta",
-    tags: ["Siding", "Painting"],
-    title: "Fiber Cement Board & Cedarmill Siding — Cumming, GA",
-    category: "Siding Installation & Replacement",
-    city: "Cumming, GA",
-    date: "2026-04-21",
-    description:
-      "Split-level home in Cumming reclad with fiber cement Board & Batten plus Cedarmill accents, finished with high-contrast trim and a fresh paint system.",
-  },
-  {
-    slug: "exterior-repaint-shake-roswell",
-    src: "/projects/project-4.webp",
-    alt: "Newly painted white home with two-car garage and shake siding gable",
-    tags: ["Painting", "Siding"],
-    title: "Exterior Repaint & Shake Gable Refresh — Roswell, GA",
-    category: "Exterior Painting",
-    city: "Roswell, GA",
-    date: "2026-04-12",
-    description:
-      "Bright exterior repaint with refreshed shake-style gable detailing on a Roswell home. Sherwin-Williams premium system with UV protection.",
-  },
-  {
-    slug: "deep-blue-repaint-gutters-kennesaw",
-    src: "/projects/project-5.webp",
-    alt: "Two-story Cobb County home repainted in deep blue with crisp white trim and gutters",
-    tags: ["Painting", "Gutters"],
-    title: "Deep Blue Repaint & Seamless Gutters — Kennesaw, GA",
-    category: "Exterior Painting",
-    city: "Kennesaw, GA",
-    date: "2026-04-05",
-    description:
-      "Two-story Kennesaw home in deep navy blue with crisp white trim and brand-new seamless aluminum gutters.",
+      "Full James Hardie Board & Batten siding replacement on a two-story Marietta e Região home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
   },
   {
     slug: "hardie-repaint-deck-marietta-e-regiao",
     src: "/projects/project-6.webp",
-    alt: "Three-story Marietta e região home with bold blue siding, white trim and rebuilt rear deck",
+    alt: "Three-story Marietta e Região home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
-    title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta e região, GA",
+    title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta e Região, GA",
     category: "Siding Installation & Replacement",
-    city: "Marietta e região, GA",
+    city: "Marietta e Região, GA",
     date: "2026-03-28",
     description:
-      "Three-story Marietta e região home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
-  },
-  {
-    slug: "craftsman-siding-roof-roswell",
-    src: "/projects/project-7.webp",
-    alt: "Tan craftsman style home in Roswell with new gables, dark garage doors and roofing",
-    tags: ["Siding", "Roof"],
-    title: "Craftsman Siding & Roof Replacement — Roswell, GA",
-    category: "Siding & Roofing",
-    city: "Roswell, GA",
-    date: "2026-03-18",
-    description:
-      "Craftsman-style Roswell home with new gable detailing, GAF Factory Certified roofing system and refreshed garage doors.",
-  },
-  {
-    slug: "windows-deck-repaint-milton",
-    src: "/projects/project-8.webp",
-    alt: "Backyard view of repainted home with new windows and rebuilt wood deck",
-    tags: ["Windows", "Decks", "Painting"],
-    title: "New Windows, Deck Rebuild & Repaint — Milton, GA",
-    category: "Windows & Decks",
-    city: "Milton, GA",
-    date: "2026-03-09",
-    description:
-      "Backyard transformation in Milton: energy-efficient windows, a fully rebuilt wood deck and a fresh exterior paint system.",
+      "Three-story Marietta e Região home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
   },
 ];
 
-/** Projects sorted by date descending (most recent first). */
 export const PROJECTS_SORTED: ReadonlyArray<Project> = [...PROJECTS].sort(
   (a, b) => (b.date ?? "").localeCompare(a.date ?? ""),
 );
 
-/** Format an ISO date as a readable label (e.g. "April 29, 2026"). */
 export function formatProjectDate(iso?: string): string {
   if (!iso) return "";
   const d = new Date(iso);
@@ -233,8 +210,8 @@ export const BEFORE_AFTER_PAIRS = [
   {
     before: "/projects/project-1-before.webp",
     after: "/projects/project-1.webp",
-    beforeAlt: "Marietta home before renovation with peeling paint and worn siding",
-    afterAlt: "Same Marietta home transformed with James Hardie blue siding by Siding Depot",
+    beforeAlt: "Marietta e Região home before renovation with peeling paint and worn siding",
+    afterAlt: "Same Marietta e Região home transformed with James Hardie blue siding by Siding Depot",
   },
   {
     before: "/projects/project-5-before.webp",
