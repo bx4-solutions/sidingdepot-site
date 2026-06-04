@@ -492,8 +492,8 @@ function SEODashboard() {
 
           <Card className="bg-[#131921] border-white/10">
             <CardHeader>
-              <CardTitle>Status da Integração</CardTitle>
-              <CardDescription>Conectividade com serviços de tracking</CardDescription>
+              <CardTitle>{t('integrationStatus')}</CardTitle>
+              <CardDescription>{t('trackingConnectivity')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {[
