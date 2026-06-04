@@ -950,10 +950,10 @@ function SEODashboard() {
                             <table className="w-full text-sm text-left">
                               <thead>
                                 <tr className="border-b border-white/5 text-slate-400 text-[10px] uppercase font-black tracking-widest">
-                                  <th className="pb-3 px-2">Página</th>
-                                  <th className="pb-3 text-right">Views</th>
-                                  <th className="pb-3 text-right">Tempo Médio</th>
-                                  <th className="pb-3 text-right">Bounce</th>
+                                  <th className="pb-3 px-2">{t('page')}</th>
+                                  <th className="pb-3 text-right">{t('views')}</th>
+                                  <th className="pb-3 text-right">{t('avgTime')}</th>
+                                  <th className="pb-3 text-right">{t('bounce')}</th>
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-white/5">
