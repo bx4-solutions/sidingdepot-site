@@ -197,3 +197,17 @@
 .animate-hotspot-fade {
   animation: hotspot-fade 200ms ease-out;
 }
+
+/* Inline Edit Mode Styles */
+.design-mode-active {
+  cursor: text !important;
+}
+.design-mode-active a, 
+.design-mode-active button {
+  pointer-events: none !important;
+}
+.design-mode-active *:focus {
+  outline: 2px solid var(--sd-green) !important;
+  outline-offset: 2px;
+}
+
