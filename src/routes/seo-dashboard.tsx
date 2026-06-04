@@ -996,8 +996,8 @@ function SEODashboard() {
                         </CardHeader>
                         <CardHeader className="flex flex-row items-center justify-between">
                           <div>
-                            <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Performance por CTA e Serviço</CardTitle>
-                            <CardDescription className="text-xs">Segmentação por texto, seção e categoria</CardDescription>
+                            <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">{t('ctaPerformance')}</CardTitle>
+                            <CardDescription className="text-xs">{t('segmentationDesc')}</CardDescription>
                           </div>
                           <div className="flex gap-2">
                             <Badge variant="outline" className="border-sd-green/30 text-sd-green">Top CTA: Hero</Badge>
