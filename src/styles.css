@@ -92,7 +92,7 @@
   /* shadcn semantic mapping → SD tokens */
   --background: var(--sd-white);
   --foreground: var(--sd-black);
-  --card: var(--sd-white);
+  --card: oklch(0.825 0.170 116.0 / 0.9);  /* Lime green @ 90% */
   --card-foreground: var(--sd-black);
   --popover: var(--sd-white);
   --popover-foreground: var(--sd-black);
