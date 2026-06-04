@@ -8,37 +8,29 @@ import {
   CheckCircle2,
   type LucideIcon,
   Star,
-  Users,
-  MapPin,
-  BadgeCheck,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SITE, SERVICES } from "@/data/site";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
-import { SERVICE_METADATA_AB, getSeoForVariation } from "@/data/seo-config";
+import { getSeoForVariation } from "@/data/seo-config";
 import {
   trackVariationView,
   trackCtaClick,
   trackCallClick,
 } from "@/lib/track";
-import { getServiceSchema, getFaqSchema } from "@/lib/schema";
+import { getFaqSchema } from "@/lib/schema";
+import { HiringChecklist } from "@/components/site/HiringChecklist";
+import { FaqSection } from "@/components/site/FaqSection";
+import { HiringChecklistItem } from "./HiringChecklist";
+import { FaqItem as GlobalFaqItem } from "./FaqSection";
 
 
 
-export type ChecklistItem = {
-  Icon: LucideIcon;
-  title: string;
-  desc: string;
-};
 
-export type FaqItem = { q: string; a: string };
+export type ChecklistItem = HiringChecklistItem;
+export type FaqItem = GlobalFaqItem;
+
 
 export type ServiceLandingProps = {
   eyebrow: string;
@@ -222,23 +214,22 @@ export function ServiceLandingPage({
       </section>
 
       {/* What to consider when hiring / Process */}
-      <section className="bg-sd-gray-bg py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-              Hire smart
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              {seo?.h2 || `Certified ${faqLabel} Experts in ${city}`}
-            </h2>
-            <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              {hiringIntro}
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {process ? (
-              process.map((step, i) => (
+      {process ? (
+        <section className="bg-sd-gray-bg py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
+                Hire smart
+              </span>
+              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
+                {seo?.h2 || `Certified ${faqLabel} Experts in ${city}`}
+              </h2>
+              <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
+                {hiringIntro}
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {process.map((step, i) => (
                 <div
                   key={i}
                   className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
@@ -253,28 +244,14 @@ export function ServiceLandingPage({
                     {step.desc}
                   </p>
                 </div>
-              ))
-            ) : (
-              hiringChecklist.map(({ Icon, title: itemTitle, desc }) => (
-                <div
-                  key={itemTitle}
-                  className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy">
-                    <Icon className="h-5 w-5" strokeWidth={2} />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-sd-black">
-                    {itemTitle}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
-                    {desc}
-                  </p>
-                </div>
-              ))
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <HiringChecklist items={hiringChecklist} />
+      )}
+
 
       {/* Internal Linking Section */}
       <section className="py-16 bg-white border-t border-sd-dark/5">
@@ -340,46 +317,13 @@ export function ServiceLandingPage({
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-20 lg:py-28">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-              FAQ
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-              {faqLabel} questions,{" "}
-              <span className="text-sd-green">answered.</span>
-            </h2>
-          </div>
+      <FaqSection 
+        items={faqs} 
+        eyebrow="FAQ" 
+        title={`${faqLabel} questions,`} 
+        titleAccent="answered." 
+      />
 
-          <Accordion type="single" collapsible className="mt-10 space-y-3">
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={item.q}
-                value={`item-${i}`}
-                className="rounded-xl border border-sd-gray-border bg-white px-5 sm:px-6"
-              >
-                <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-sd-navy hover:no-underline">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sd-gray-text leading-relaxed">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
-          <p className="mt-8 text-center text-sd-gray-text">
-            Still have questions?{" "}
-            <Link
-              to="/contact"
-              className="font-semibold text-sd-green hover:underline"
-            >
-              Talk to our team →
-            </Link>
-          </p>
-        </div>
-      </section>
 
       {/* Closing CTA */}
       <section className="section-dark py-20">
