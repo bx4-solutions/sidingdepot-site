@@ -17,8 +17,8 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "roofing",
-    top: "15%",
-    left: "55%",
+    top: "18%",
+    left: "50%",
     label: "Roofing",
     title: "Roofing",
     body: "GAF certified installation. Storm damage specialists. We work directly with insurance companies — and combine roof replacement with siding to save you $2,000–$5,000 on mobilization.",
@@ -27,31 +27,9 @@ const HOTSPOTS: Hotspot[] = [
     cta: "ROOFING SERVICES →",
   },
   {
-    id: "hardie",
-    top: "30%",
-    left: "20%",
-    label: "James Hardie Siding",
-    title: "James Hardie Siding",
-    body: "Elite Preferred installation — top 2% of US installers. HardieZone HZ10 engineered for Georgia's heat, humidity and storms. 30-year non-prorated warranty on materials and labor.",
-    image: "/projects/project-2.webp",
-    to: "/siding",
-    cta: "SIDING SERVICES →",
-  },
-  {
-    id: "board-batten",
-    top: "35%",
-    left: "45%",
-    label: "Board & Batten Siding",
-    title: "Board & Batten Siding",
-    body: "HardiePanel vertical siding — the modern farmhouse look trending across North Atlanta in 2026. Available in James Hardie ColorPlus finishes that never need repainting.",
-    image: "/projects/project-3.webp",
-    to: "/siding",
-    cta: "VIEW SIDING OPTIONS →",
-  },
-  {
     id: "gutters",
-    top: "45%",
-    left: "30%",
+    top: "32%",
+    left: "32%",
     label: "Seamless Gutters",
     title: "Seamless Gutters",
     body: "Custom-fabricated seamless aluminum gutters sized for Georgia's 50+ inches of annual rainfall. LeafGuard protection available. No joints means no leak points.",
@@ -60,9 +38,31 @@ const HOTSPOTS: Hotspot[] = [
     cta: "GUTTER SERVICES →",
   },
   {
+    id: "board-batten",
+    top: "30%",
+    left: "72%",
+    label: "Board & Batten Siding",
+    title: "Board & Batten Siding",
+    body: "HardiePanel vertical siding — the modern farmhouse look trending across North Atlanta in 2026. Available in James Hardie ColorPlus finishes that never need repainting.",
+    image: "/projects/project-3.webp",
+    to: "/siding",
+    cta: "VIEW SIDING OPTIONS →",
+  },
+  {
+    id: "hardie",
+    top: "52%",
+    left: "22%",
+    label: "James Hardie Siding",
+    title: "James Hardie Siding",
+    body: "Elite Preferred installation — top 2% of US installers. HardieZone HZ10 engineered for Georgia's heat, humidity and storms. 30-year non-prorated warranty on materials and labor.",
+    image: "/projects/project-2.webp",
+    to: "/siding",
+    cta: "SIDING SERVICES →",
+  },
+  {
     id: "windows",
-    top: "55%",
-    left: "60%",
+    top: "48%",
+    left: "48%",
     label: "Window Replacement",
     title: "Window Replacement",
     body: "Energy-efficient double and triple-pane windows rated for Georgia's climate zone. Reduce HVAC load by up to 45%. W-2 installation crews — perfect seal guaranteed.",
@@ -72,8 +72,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "painting",
-    top: "65%",
-    left: "25%",
+    top: "55%",
+    left: "78%",
     label: "Exterior Painting",
     title: "Exterior Painting",
     body: "Sherwin-Williams Duration and SuperPaint — premium exterior coatings with 15-year warranty against peeling and fading. Full prep: pressure wash, caulk, prime, paint.",
@@ -148,11 +148,16 @@ export function ServicesHotspots() {
 
           {HOTSPOTS.map((h) => {
             const isActive = active === h.id;
-            // Flip popup side if hotspot is on the right half
-            const leftNum = parseFloat(h.left);
-            const flipX = leftNum > 55;
             const topNum = parseFloat(h.top);
+            const leftNum = parseFloat(h.left);
             const flipY = topNum > 60;
+            const popupWidth = 280;
+            // Center popup under dot, clamp horizontally to keep inside image
+            const halfPctOfImage = (popupWidth / 2) / 6.4; // approx px->% on ~640px container
+            const minLeft = halfPctOfImage;
+            const maxLeft = 100 - halfPctOfImage;
+            const clampedLeft = Math.min(Math.max(leftNum, minLeft), maxLeft);
+            const popupLeftOffset = clampedLeft - leftNum; // in percent of container
 
             return (
               <div
@@ -190,14 +195,17 @@ export function ServicesHotspots() {
                     role="dialog"
                     className="absolute animate-hotspot-fade"
                     style={{
-                      width: 260,
+                      width: popupWidth,
                       background: "#1E2A38",
                       borderRadius: 12,
                       boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
                       padding: 20,
                       zIndex: 50,
-                      [flipX ? "right" : "left"]: 36,
-                      [flipY ? "bottom" : "top"]: -10,
+                      left: "50%",
+                      transform: `translateX(calc(-50% + ${popupLeftOffset}%))`,
+                      ...(flipY
+                        ? { bottom: 36 }
+                        : { top: 36 }),
                     } as React.CSSProperties}
                   >
                     <button
