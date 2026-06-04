@@ -582,7 +582,8 @@ function SEODashboard() {
               className={cn(
                 "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold transition-all",
                 activeView === item.id 
-                  ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(141,198,63,0.3)]" 
+                  ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(180,210,54,0.3)]" 
+
                   : "text-slate-200 hover:text-white hover:bg-white/5"
               )}
             >
@@ -602,7 +603,7 @@ function SEODashboard() {
               className={cn(
                 "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold transition-all",
                 activeView === item.id 
-                  ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(141,198,63,0.3)]" 
+                  ? "bg-sd-green text-sd-black shadow-[0_0_15px_rgba(180,210,54,0.3)]" 
                   : "text-slate-200 hover:text-white hover:bg-white/5"
               )}
             >
