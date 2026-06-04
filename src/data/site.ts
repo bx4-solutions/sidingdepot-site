@@ -106,11 +106,12 @@ export const STATS = [
 ] as const;
 
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.9 · 128 Verified Reviews" },
-  { icon: "🏆", label: "Elite Preferred · Top 2% US" },
-  { icon: "✅", label: "GA License #RBQA006789" },
-  { icon: "🏠", label: "1,500+ Marietta e Região Homes" },
-  { icon: "💰", label: "GreenSky 0% APR Financing" },
+  { icon: "⭐", label: "4.5 · 158 Google Reviews" },
+  { icon: "🏆", label: "4.9 · 91 Avaliações Thumbtack" },
+  { icon: "🔨", label: "4.7 · 256 Avaliações GuildQuality" },
+  { icon: "🏠", label: "5.0 · Houzz Top Pro" },
+  { icon: "📋", label: "4.7 · 130 Best Pick Reports" },
+  { icon: "🏅", label: "Elite Preferencial · Top 2% EUA" },
 ] as const;
 
 export const PROCESS_STEPS = [
