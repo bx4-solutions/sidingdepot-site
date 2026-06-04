@@ -140,7 +140,7 @@ export function SidingLP({ city }: SidingLPProps) {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {/* HEADER removed — global Navbar already renders the brand + phone */}
 
       {/* HERO + FORM */}
@@ -464,7 +464,7 @@ export function SidingLP({ city }: SidingLPProps) {
       >
         <Phone className="h-5 w-5" aria-hidden="true" /> TAP TO CALL {SITE.phone}
       </a>
-    </main>
+    </div>
   );
 }
 
