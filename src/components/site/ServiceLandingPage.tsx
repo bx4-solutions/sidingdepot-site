@@ -186,7 +186,12 @@ export function ServiceLandingPage({
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-sd-navy">{s.value}</div>
-                    <div className="text-sm text-sd-gray-text">{s.label}</div>
+                    <div className="text-sm font-bold text-sd-gray-text">{s.label}</div>
+                    {s.description && (
+                      <div className="mt-1 text-xs text-sd-gray-text/80 leading-snug">
+                        {s.description}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
