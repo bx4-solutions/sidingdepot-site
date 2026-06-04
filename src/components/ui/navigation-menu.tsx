@@ -15,7 +15,7 @@ const NavigationMenu = React.forwardRef<
     {...props}
   >
     {children}
-    {/* Viewport removed to allow local positioning */}
+    <NavigationMenuViewport />
   </NavigationMenuPrimitive.Root>
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
