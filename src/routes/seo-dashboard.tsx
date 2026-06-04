@@ -841,8 +841,8 @@ function SEODashboard() {
 
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold text-white">Fontes de Aquisição</CardTitle>
-                          <CardDescription className="text-xs">Principais canais de entrada</CardDescription>
+                          <CardTitle className="text-lg font-bold text-white">{t('acquisitionSources')}</CardTitle>
+                          <CardDescription className="text-xs">{t('mainChannels')}</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-col items-center justify-center pt-0">
                            <div className="h-[200px] w-full">
