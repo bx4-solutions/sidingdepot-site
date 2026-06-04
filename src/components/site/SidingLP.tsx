@@ -95,12 +95,14 @@ const STATS = [
 
 type LeadFormProps = {
   source: string;
+  title?: string;
+  subtitle?: string;
 };
 
-function LeadForm({ source }: LeadFormProps) {
+function LeadForm({ source, title, subtitle }: LeadFormProps) {
   return (
     <div data-lead-form>
-      <HeroQuoteForm source={source} tag="lp_quote_request" />
+      <HeroQuoteForm source={source} tag="lp_quote_request" title={title} subtitle={subtitle} />
     </div>
   );
 }
@@ -178,7 +180,6 @@ export function SidingLP({ city }: SidingLPProps) {
           <div className="lg:pl-2">
             <LeadForm
               source="lp_hero"
-              defaultCity={city}
               title="Get Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
@@ -313,7 +314,6 @@ export function SidingLP({ city }: SidingLPProps) {
           <div>
             <LeadForm
               source="lp_urgency"
-              defaultCity={city}
               title="Schedule Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
