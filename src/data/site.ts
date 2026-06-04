@@ -86,7 +86,34 @@ export const SERVICES: ReadonlyArray<{
 }> = [
   { slug: "siding", title: "James Hardie Siding", short: "Elite Preferred installation. HardieZone HZ10 engineered for Georgia's heat, humidity and storms.", Icon: PanelsTopLeft, image: { src: sidingImg } },
   { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
-// ... keep existing code
+  { slug: "windows", title: "Windows", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
+  { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
+  { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
+  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
+  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement & repair.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in North Atlanta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
+];
+
+export const CITIES = [
+  { slug: "marietta", name: "Marietta", county: "Cobb County" },
+  { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
+  { slug: "milton", name: "Milton", county: "Fulton County" },
+  { slug: "canton", name: "Canton", county: "Cherokee County" },
+  { slug: "woodstock", name: "Woodstock", county: "Cherokee County" },
+  { slug: "roswell", name: "Roswell", county: "Fulton County" },
+  { slug: "kennesaw", name: "Kennesaw", county: "Cobb County" },
+  { slug: "johns-creek", name: "Johns Creek", county: "Fulton County" },
+  { slug: "sandy-springs", name: "Sandy Springs", county: "Fulton County" },
+  { slug: "acworth", name: "Acworth", county: "Cobb County" },
+] as const;
+
+export const STATS = [
+  { value: "1,500+", label: "Homes Transformed" },
+  { value: "12+", label: "Years in Georgia" },
+  { value: "98%", label: "5-Star Reviews" },
+  { value: "4.9★", label: "Google Rating" },
+] as const;
+
 export const PROOF_BAR = [
   { icon: "⭐", label: "4.9 · 128 Verified Reviews" },
   { icon: "🏆", label: "Elite Preferred · Top 2% US" },
