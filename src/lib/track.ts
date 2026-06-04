@@ -132,11 +132,31 @@ export function track(event: string, payload: TrackPayload = {}): void {
     // 1. DataLayer for GA4/GTM
     const w = window as any;
     w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push(enriched);
+    
+    // Standard GA4 event naming convention
+    const ga4Event = {
+      event: event,
+      visitor_id: visitorId,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      ...attribution,
+      ...payload 
+    };
+    
+    w.dataLayer.push(ga4Event);
 
-    // 2. Supabase for A/B Dashboard
-    const abEvents = ["ab_variation_view", "cta_click", "qualified_lead", "call_click", "finance_apply", "finance_qualified"];
-    if (abEvents.includes(event)) {
+    // 2. Supabase for Dashboard (Clicks, Leads, Conversions)
+    const trackedEvents = [
+      "cta_click", 
+      "lead_submit", 
+      "qualified_lead", 
+      "whatsapp_click", 
+      "quote_request",
+      "finance_apply",
+      "call_click"
+    ];
+    
+    if (trackedEvents.includes(event) || event.includes("click") || event.includes("submit")) {
       supabase.from("ab_events").insert({
         event_type: event,
         visitor_id: visitorId,
