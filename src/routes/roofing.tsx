@@ -74,7 +74,7 @@ export const Route = createFileRoute("/roofing")({
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Roof Replacement & Repair", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "RoofingContractor" }),
+      serviceJsonLd("Roof Replacement", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "RoofingContractor" }),
       faqJsonLd(FAQS),
     ],
   }),
