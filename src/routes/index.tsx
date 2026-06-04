@@ -108,7 +108,7 @@ const WHY_US = [
 const TESTIMONIALS = [
   { name: "Jennifer M.", city: "Marietta", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
   { name: "David & Susan R.", city: "Alpharetta", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
-  { name: "Michael T.", city: "Canton", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
+  { name: "Michael T.", city: "Marietta e região", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
 ];
 
 function HomePage() {
@@ -122,12 +122,12 @@ function HomePage() {
             <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="We're the Elite Preferred James Hardie contractor your Marietta, Alpharetta and Canton neighbors call back to thank. W-2 crews only — no subcontractors. Written quote within 24 hours, guaranteed."
+        subtitle="We're the Elite Preferred James Hardie contractor your Marietta e região and Alpharetta neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         trustItems={[
           "Elite Preferred · Top 2% of US installers",
           "1,500+ homes in Cobb, Cherokee & Fulton County",
-          "W-2 crews only — no subs, ever",
+          "Highly specialized certified teams only — no subs, ever",
         ]}
         formSlot={<HeroQuoteForm isHomepage />}
       />
@@ -147,7 +147,7 @@ function HomePage() {
               Complete Exterior Services — One Contractor, One Call
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta, Canton, Alpharetta and all of North Atlanta.
+              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta e região, Alpharetta and all of North Atlanta.
             </p>
           </div>
 
@@ -244,7 +244,7 @@ function HomePage() {
               Service Areas
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Serving North Atlanta — Marietta, Canton, Alpharetta & 10+ Communities Across Cherokee, Cobb & Fulton County
+              Serving North Atlanta — Marietta e região, Alpharetta & 10+ Communities Across Cherokee, Cobb & Fulton County
             </h2>
             <p className="mt-3 text-sd-gray-text">
               James Hardie Elite Preferred installations across Cobb, Cherokee, Fulton and Forsyth counties. Free on-site quotes — we come to you.

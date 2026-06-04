@@ -126,7 +126,7 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Consultation",
-    desc: "Free on-site visit in Marietta, Canton, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
+    desc: "Free on-site visit in Marietta e região, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
   },
   {
     num: "02",

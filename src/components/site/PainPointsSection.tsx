@@ -38,7 +38,7 @@ export function PainPointsSection() {
           <div className="mt-5 rounded-xl section-dark p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-foreground font-semibold text-sm sm:text-base">
-                Want to see your home transformed like this? Our team has completed 1,500+ projects across Marietta, Canton, Alpharetta and North Atlanta.
+                Want to see your home transformed like this? Our team has completed 1,500+ projects across Marietta e região, Alpharetta and North Atlanta.
               </p>
               <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                 Free estimate · response within 24h.
@@ -83,7 +83,8 @@ export function PainPointsSection() {
           <p className="mt-6 text-muted-foreground max-w-lg">
             Don&apos;t put yourself in that situation.{" "}
             <span className="font-semibold text-foreground">Siding Depot</span> uses only 
-            W-2 in-house crews — trained, insured, and accountable to us 
+            highly specialized certified teams — trained, insured, and accountable to us 
+
             directly. Every project has a dedicated manager on-site. Every 
             estimate is written, itemized, and guaranteed. No surprises. 
             No strangers at your door.
