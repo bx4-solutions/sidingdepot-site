@@ -109,7 +109,7 @@ export function ServiceLandingPage({
   return (
     <main>
       {/* HERO */}
-      <section className="relative section-dark overflow-hidden">
+      <section className="relative bg-sd-navy text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <img
             src={heroImage}
