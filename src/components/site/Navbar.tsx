@@ -119,7 +119,7 @@ export function Navbar() {
               </div>
               
               {l.sublinks && (
-                <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style={{ position: 'absolute', left: 0, top: '100%' }}>
+                <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style={{ position: 'absolute', left: '200px', top: '100%' }}>
                   <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-b-md overflow-hidden py-2">
                     {l.sublinks.map((sub) => (
                       <Link
