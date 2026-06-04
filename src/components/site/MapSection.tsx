@@ -15,7 +15,7 @@ export function MapSection() {
     : `https://www.google.com/maps?q=${addressQuery}&z=15&output=embed`;
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
-  const wazeUrl = `https://waze.com/ul?q=${addressQuery}&navigate=yes`;
+  const appleMapsUrl = `https://maps.apple.com/?q=${addressQuery}`;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
