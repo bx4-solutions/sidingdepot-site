@@ -15,7 +15,7 @@ import { getFaqSchema } from "@/lib/schema";
 
 
 const SERVICE_KEY = "siding";
-const CITY = "Marietta e Região";
+const CITY = "Marietta, Canton & North Atlanta";
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 /**
