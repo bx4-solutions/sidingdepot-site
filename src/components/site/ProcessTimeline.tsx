@@ -3,7 +3,7 @@ import { PROCESS_STEPS } from "@/data/site";
 
 const ICONS = [ClipboardCheck, Hammer, PartyPopper];
 
-export function ProcessTimeline() {
+export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Project" }: { title?: string }) {
   return (
     <section className="py-20 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
