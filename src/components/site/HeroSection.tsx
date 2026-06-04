@@ -38,6 +38,7 @@ export function HeroSection({
   primaryCta = { label: "Schedule FREE Quote", to: "/contact" },
   showCallCta = true,
   formSlot,
+  ctaSlot,
   trustItems = DEFAULT_TRUST,
   children,
 }: HeroProps) {
