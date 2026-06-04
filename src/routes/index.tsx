@@ -247,7 +247,7 @@ function HomePage() {
               Serving Marietta e Região & North Atlanta
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              James Hardie Elite Preferred installations across Cobb, Cherokee, Fulton and Forsyth counties. Free on-site quotes — we come to you.
+              James Hardie Elite Preferred installations in Marietta e Região. Free on-site quotes — we come to you.
             </p>
           </div>
 
