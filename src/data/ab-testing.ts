@@ -115,7 +115,7 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
   siding: {
     stats: [
       { value: "⭐ 4.5", label: "158 Google Reviews", icon: Star },
-      { value: "🏆 Elite", label: "Preferred · Top 2% US", icon: Award },
+      { value: "🏆 Elite Preferred", label: "Top 2% US", icon: Award },
       { value: "🔨 4.7", label: "256 GuildQuality Reviews", icon: Users },
       { value: "🏠 1,500+", label: "Homes in North Atlanta", icon: MapPin },
       { value: "💰 GreenSky", label: "0% APR Financing", icon: ShieldCheck },
