@@ -275,7 +275,7 @@ function HomePage() {
 
       <GoogleReviews />
 
-      <ProjectGallery />
+      <ServicesHotspots />
 
       <FinancingBlock />
 
