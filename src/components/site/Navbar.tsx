@@ -23,7 +23,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const NAV_LINKS = [
+interface NavLink {
+  to: string;
+  label: string;
+  sublinks?: { to: string; label: string }[];
+}
+
+const NAV_LINKS: NavLink[] = [
   { 
     to: "/siding", 
     label: "SIDING",
@@ -64,7 +70,7 @@ const NAV_LINKS = [
     label: "ABOUT",
     sublinks: [{ to: "/about", label: "ABOUT" }]
   },
-] as const;
+];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
