@@ -101,17 +101,17 @@ export const getGoogleReviews = createServerFn({ method: "GET" })
 
       if (error) {
         console.error("Error fetching reviews:", error);
-        return { reviews: [], overallRating: 4.9, totalReviews: 128, shouldSync: false };
+        return { reviews: [], overallRating: 4.5, totalReviews: 158, shouldSync: false };
       }
 
       return {
         reviews: data || [],
-        overallRating: 4.9,
-        totalReviews: 128,
+        overallRating: 4.5,
+        totalReviews: 158,
         shouldSync: (now - lastSync) > oneDay,
       };
     } catch (err: any) {
       console.error("getGoogleReviews failed (likely missing server env):", err?.message);
-      return { reviews: [], overallRating: 4.9, totalReviews: 128, shouldSync: false };
+      return { reviews: [], overallRating: 4.5, totalReviews: 158, shouldSync: false };
     }
   });
