@@ -5,6 +5,8 @@ import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
+import greenSkyFinancing from "@/assets/greensky-financing.png.asset.json";
+
 
 
 export const Route = createFileRoute("/finance")({
@@ -126,15 +128,13 @@ function FinancePage() {
           <div className="mx-auto w-full rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 sm:p-12 lg:p-16">
             {/* Big GreenSky logo */}
             <header className="flex flex-col items-center">
-              <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-sd-gray-text">
-                Financing options from
-              </h2>
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/GreenSky_logo.svg/2560px-GreenSky_logo.svg.png"
-                alt="GreenSky logo"
-                className="mt-6 h-auto w-full max-w-[480px]"
+                src={greenSkyFinancing.url}
+                alt="Financing options from GreenSky"
+                className="h-auto w-full max-w-[480px]"
               />
             </header>
+
 
             {/* House photo */}
             <div className="mt-10 overflow-hidden rounded-xl">
