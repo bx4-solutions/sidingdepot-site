@@ -16,7 +16,7 @@ const PAGE_SIZE = 6;
 
 type Search = { page: number; tag: "All" | ProjectTag };
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/projects/")({
   validateSearch: (raw: Record<string, unknown>): Search => {
     const pageNum = Number(raw.page);
     const page = Number.isFinite(pageNum) && pageNum >= 1 ? Math.floor(pageNum) : 1;
