@@ -121,7 +121,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     image: "/projects/project-2.webp",
     imageAlt: "Crisp white soffit, fascia and trim detailing on a Cape Cod home",
     description:
-      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace and repaint to match your siding system.",
+      "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace to match your siding system.",
   },
 ];
 
