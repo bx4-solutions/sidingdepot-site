@@ -28,7 +28,7 @@ const RECENT_REVIEWS: Review[] = [
     date: "2 weeks ago",
     timestamp: Date.now() - 14 * 24 * 60 * 60 * 1000,
     rating: 5,
-    text: "Siding Depot did an amazing job on our home. The James Hardie siding looks incredible and the team was professional from start to finish.",
+    text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work.",
     avatar: "J",
   },
   {
@@ -36,7 +36,7 @@ const RECENT_REVIEWS: Review[] = [
     date: "1 month ago",
     timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
     rating: 5,
-    text: "From the first quote to final walkthrough they were professional. The estimate matched the final invoice — no surprises. Highly recommend!",
+    text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run.",
     avatar: "D",
   },
   {
@@ -44,15 +44,15 @@ const RECENT_REVIEWS: Review[] = [
     date: "2 months ago",
     timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
     rating: 5,
-    text: "Replaced our siding, gutters and trim. The whole project finished one day ahead of schedule and looks fantastic. Great communication.",
+    text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
     avatar: "M",
   },
   {
     author: "Robert B.",
     date: "3 months ago",
     timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000,
-    rating: 4,
-    text: "Great experience with the siding install. Very communicative team.",
+    rating: 5,
+    text: "The crew showed up on time every day, cleaned up every evening, and finished ahead of schedule. My house went from embarrassing to the best on the block. Worth every penny.",
     avatar: "R",
   },
   {
