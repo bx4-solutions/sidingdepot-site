@@ -159,6 +159,7 @@ function SEODashboard() {
   const [dateRange, setDateRange] = useState(getInitialDateRange);
   const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
   const [selectedBlogArticle, setSelectedBlogArticle] = useState<any | null>(null);
+  const [isAuditRunning, setIsAuditRunning] = useState(false);
   const userProfile = loaderData?.profile;
 
   useEffect(() => {
@@ -265,6 +266,8 @@ function SEODashboard() {
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { id: "leads-realtime", label: "Leads Real-time", icon: Activity },
+    { id: "seo-audit", label: "Auditoria de SEO", icon: FileText },
     { id: "campaigns", label: "Campanhas", icon: Target },
     { id: "ab-testing", label: "Testes A/B", icon: Split },
     { id: "visao-geral", label: "Visão Geral", icon: BarChart3 },
