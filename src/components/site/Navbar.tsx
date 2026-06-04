@@ -23,65 +23,54 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const NAV_LINKS = [
+interface NavLink {
+  to: string;
+  label: string;
+  sublinks?: { to: string; label: string }[];
+}
+
+const NAV_LINKS: NavLink[] = [
   { 
     to: "/siding", 
     label: "SIDING",
-    sublinks: [
-      { to: "/siding", label: "James Hardie Siding" },
-      { to: "/siding", label: "Fiber Cement Siding" },
-      { to: "/siding", label: "Vinyl Siding" },
-      { to: "/siding", label: "Siding Repair" },
-    ]
+    sublinks: [{ to: "/siding", label: "SIDING" }]
   },
   { 
     to: "/roofing", 
     label: "ROOFING",
-    sublinks: [
-      { to: "/roofing", label: "Roof Replacement" },
-      { to: "/roofing", label: "Roof Repair" },
-      { to: "/roofing", label: "GAF Certified Roofing" },
-    ]
+    sublinks: [{ to: "/roofing", label: "ROOFING" }]
   },
   { 
     to: "/deck", 
     label: "DECKS",
-    sublinks: [
-      { to: "/deck", label: "Custom Deck Building" },
-      { to: "/deck", label: "Deck Repair & Staining" },
-      { to: "/deck", label: "Porches & Porticos" },
-    ]
+    sublinks: [{ to: "/deck", label: "DECKS" }]
   },
   { 
     to: "/windows", 
     label: "WINDOWS",
-    sublinks: [
-      { to: "/windows", label: "Window Replacement" },
-      { to: "/windows", label: "Energy Efficient Windows" },
-      { to: "/windows", label: "Vinyl Windows" },
-    ]
+    sublinks: [{ to: "/windows", label: "WINDOWS" }]
   },
   { 
     to: "/gutters", 
     label: "GUTTERS",
-    sublinks: [
-      { to: "/gutters", label: "Seamless Gutters" },
-      { to: "/gutters", label: "Gutter Guards" },
-      { to: "/gutters", label: "Gutter Repair" },
-    ]
+    sublinks: [{ to: "/gutters", label: "GUTTERS" }]
   },
   { 
     to: "/painting", 
     label: "PAINTING",
-    sublinks: [
-      { to: "/painting", label: "Exterior Painting" },
-      { to: "/painting", label: "Trim & Detail Painting" },
-      { to: "/painting", label: "Siding Painting" },
-    ]
+    sublinks: [{ to: "/painting", label: "PAINTING" }]
   },
-  { to: "/projects", label: "PROJECT GALLERY" },
-  { to: "/about", label: "ABOUT" },
-] as const;
+  { 
+    to: "/projects", 
+    label: "PROJECT GALLERY",
+    sublinks: [{ to: "/projects", label: "PROJECT GALLERY" }]
+  },
+  { 
+    to: "/about", 
+    label: "ABOUT",
+    sublinks: [{ to: "/about", label: "ABOUT" }]
+  },
+];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -125,7 +114,7 @@ export function Navbar() {
             <NavigationMenuList className="gap-1">
               {NAV_LINKS.map((l) => (
                 <NavigationMenuItem key={l.label}>
-                  {"sublinks" in l ? (
+                  {l.sublinks ? (
                     <>
                       <NavigationMenuTrigger className="bg-transparent text-[13px] font-semibold tracking-wide text-sd-black hover:text-sd-green-text h-auto py-2 px-3 data-[state=open]:bg-transparent data-[active]:bg-transparent">
                         <Link to={l.to} className="hover:text-sd-green-text">
@@ -206,7 +195,7 @@ export function Navbar() {
             <Accordion type="single" collapsible className="w-full">
               {NAV_LINKS.map((l) => (
                 <div key={l.label}>
-                  {"sublinks" in l ? (
+                  {l.sublinks ? (
                     <AccordionItem value={l.label} className="border-none">
                       <AccordionTrigger className="px-3 py-2 text-sm font-semibold text-sd-black hover:bg-sd-green/10 hover:no-underline rounded-md">
                         {l.label}
