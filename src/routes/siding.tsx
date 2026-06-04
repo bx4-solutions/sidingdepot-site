@@ -1,38 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
 import {
-  ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2,
-  Search, FileText, Wrench, Clock, Users,
+  ArrowRight, ArrowLeft, ShieldCheck, Award, CheckCircle2,
+  FileText, Users,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
-import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
+import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 import { SERVICE_METADATA } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
-
+import { HiringChecklist } from "@/components/site/HiringChecklist";
+import { FaqSection } from "@/components/site/FaqSection";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta, Canton & North Atlanta";
 const seo = SERVICE_METADATA[SERVICE_KEY];
-
-/**
- * /services/siding — flagship service landing page.
- *
- * Sections (after hero):
- *  - "Siding types" interactive house: clickable hotspots open a dialog with
- *     a zoomed reference photo + description for each siding profile.
- *  - "Real projects" before/after carousel: navigate through the studio's
- *     own BEFORE_AFTER_PAIRS using the existing BeforeAfterSlider component.
- *
- * This static route file takes precedence over the dynamic services.$slug.tsx.
- */
-
-const PAGE_TITLE = "James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred";
-const PAGE_DESC =
-  "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -62,6 +46,7 @@ export const Route = createFileRoute("/siding")({
   }),
   component: SidingPage,
 });
+
 
 /* ---------------------------------------------------------------- */
 /* Siding-type hotspots (Section 2)                                  */
@@ -410,47 +395,12 @@ const HIRING_CHECKLIST = [
   },
 ] as const;
 
-function WhatToConsiderSection() {
-  return (
-    <section className="bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-            Hire smart
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            What to consider when hiring a{" "}
-            <span className="text-sd-green">siding contractor.</span>
-          </h2>
-          <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            Choosing the right siding is a 30-year decision. Use this checklist to verify your contractor meets the highest industry standards for Georgia installations.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {HIRING_CHECKLIST.map(({ Icon, title, desc }) => (
-            <div
-              key={title}
-              className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy">
-                <Icon className="h-5 w-5" strokeWidth={2} />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-sd-black">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------------------------------------------------------- */
 /* FAQ (Section 5)                                                   */
 /* ---------------------------------------------------------------- */
 
 const FAQ_ITEMS = [
+
   {
     q: "How much does James Hardie siding cost in Marietta, GA in 2026?",
     a: "Typical James Hardie installation costs in North Atlanta range from $10,000 for smaller homes under 1,500 sq ft, up to $55,000+ for large estates over 3,500 sq ft. This includes full tear-off, moisture barrier, HardiePlank installation, and professional project management. Financing is available with 0% interest through GreenSky.",
@@ -477,47 +427,7 @@ const FAQ_ITEMS = [
   },
 ] as const;
 
-function SidingFaqSection() {
-  return (
-    <section className="bg-sd-gray-bg py-20 lg:py-28">
-      <div className="mx-auto max-w-4xl px-4 lg:px-8">
-        <div className="text-center">
-          <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
-            FAQ
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            Siding questions,{" "}
-            <span className="text-sd-green">answered.</span>
-          </h2>
-        </div>
 
-        <Accordion type="single" collapsible className="mt-10 space-y-3">
-          {FAQ_ITEMS.map((item, i) => (
-            <AccordionItem
-              key={item.q}
-              value={`item-${i}`}
-              className="rounded-xl border border-sd-gray-border bg-white px-5 sm:px-6"
-            >
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-sd-navy hover:no-underline">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sd-gray-text leading-relaxed">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-
-        <p className="mt-8 text-center text-sd-gray-text">
-          Still have questions?{" "}
-          <Link to="/contact" className="font-semibold text-sd-green hover:underline">
-            Talk to our team →
-          </Link>
-        </p>
-      </div>
-    </section>
-  );
-}
 
 function SidingPage() {
   return (
@@ -583,7 +493,12 @@ We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alphar
         </div>
       </section>
 
+      <HiringChecklist items={HIRING_CHECKLIST} />
+      
+      <FaqSection items={FAQ_ITEMS} title="Siding questions," />
+
       <BeforeAfterCarousel />
     </div>
   );
+
 }
