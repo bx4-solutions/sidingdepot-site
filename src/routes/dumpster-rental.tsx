@@ -60,7 +60,7 @@ const DUMPSTER_SIZES = [
 function DumpsterRentalPage() {
   return (
     <>
-      <main className="bg-sd-gray-bg">
+      <div className="bg-sd-gray-bg">
         {/* Hero */}
         <section className="relative isolate overflow-hidden">
           <img
@@ -161,7 +161,7 @@ function DumpsterRentalPage() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }
