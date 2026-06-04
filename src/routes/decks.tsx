@@ -18,7 +18,7 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 
 const HERO_IMAGE = "/projects/project-6.webp";
 const CANONICAL = "https://sidingdepot.com/decks";
-const SERVICE_KEY = "deck";
+const SERVICE_KEY = "decks";
 const CITY = "Greater Marietta";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
