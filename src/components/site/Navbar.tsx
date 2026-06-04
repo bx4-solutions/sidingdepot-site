@@ -102,7 +102,7 @@ export function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-1 h-full">
           {NAV_LINKS.map((l) => (
-            <div key={l.label} className="relative h-full flex items-center group">
+            <div key={l.label} className="h-full flex items-center group" style={{ position: 'relative' }}>
               <div className="flex items-center gap-1 py-2 px-3">
                 <Link 
                   to={l.to} 
@@ -119,7 +119,7 @@ export function Navbar() {
               </div>
               
               {l.sublinks && (
-                <div className="absolute left-0 top-full pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50" style={{ position: 'absolute', left: 0, top: '100%' }}>
                   <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-b-md overflow-hidden py-2">
                     {l.sublinks.map((sub) => (
                       <Link
