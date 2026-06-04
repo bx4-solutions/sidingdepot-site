@@ -95,10 +95,10 @@ export function Navbar() {
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-1 h-full">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((l) => (
-            <div key={l.label} className="h-full flex items-center group relative">
-              <div className="flex items-center gap-1 py-2 px-3">
+            <div key={l.label} className="relative group py-2">
+              <div className="flex items-center gap-1 px-3">
                 <Link 
                   to={l.to} 
                   className={cn(
@@ -114,8 +114,8 @@ export function Navbar() {
               </div>
               
               {l.sublinks && (
-                <div className="absolute left-0 top-full pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-b-md overflow-hidden py-2">
+                <div className="absolute left-0 top-[100%] pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-[200px]">
+                  <div className="bg-white border border-sd-navy/10 shadow-2xl rounded-md overflow-hidden py-2">
                     {l.sublinks.map((sub) => (
                       <Link
                         key={sub.label}
@@ -131,7 +131,7 @@ export function Navbar() {
             </div>
           ))}
           {session && (
-            <div className="flex items-center h-full px-3">
+            <div className="flex items-center px-3">
               <Link
                 to="/seo-dashboard"
                 className="text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text"
