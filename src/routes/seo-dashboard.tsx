@@ -752,28 +752,28 @@ function SEODashboard() {
                 <div className="bg-sd-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                   <AlertTriangle className="h-8 w-8 text-sd-green" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Sessão Expirada ou Desconectado</h3>
+                <h3 className="text-xl font-bold mb-2">{t('sessionExpired')}</h3>
                 <p className="text-slate-200 mb-8 max-w-sm mx-auto">
-                  Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.
+                  {lang === 'pt' ? 'Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.' : 'Unable to detect your session. Please reconnect to view metrics.'}
                 </p>
                 <Button 
                   onClick={() => navigate({ to: "/admin/login" })}
                   className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-black"
                 >
-                  <RefreshCcw className="h-4 w-4 mr-2" /> RECONECTAR AGORA
+                  <RefreshCcw className="h-4 w-4 mr-2" /> {t('reconnectNow')}
                 </Button>
               </Card>
             ) : error ? (
               <Card className="bg-[#131921] border-red-500/20 p-12 text-center animate-in fade-in duration-500">
                 <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold">Erro ao buscar métricas</h3>
-                <p className="text-slate-200 mt-2">Ocorreu uma falha intermitente na conexão com o servidor.</p>
+                <h3 className="text-xl font-bold">{t('fetchingError')}</h3>
+                <p className="text-slate-200 mt-2">{lang === 'pt' ? 'Ocorreu uma falha intermitente na conexão com o servidor.' : 'An intermittent server connection failure occurred.'}</p>
                 <Button 
                   onClick={() => refetch()}
                   variant="outline"
                   className="mt-6 border-white/10 hover:bg-white/5"
                 >
-                  TENTAR NOVAMENTE
+                  {t('tryAgain')}
                 </Button>
               </Card>
             ) : isLoading ? (
