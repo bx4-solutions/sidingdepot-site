@@ -84,7 +84,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="bg-sd-black text-white hover:bg-sd-dark-mid"
+            className="bg-sd-black text-white hover:bg-sd-green-text"
             onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}
           >
             <a href={SITE.phoneHref} aria-label={`Call ${SITE.phone}`}>
@@ -128,7 +128,7 @@ export function Navbar() {
             )}
             <Button
               asChild
-              className="mt-3 bg-sd-black text-white hover:bg-sd-dark-mid"
+              className="mt-3 bg-sd-black text-white hover:bg-sd-green-text"
               onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}
             >
               <a href={SITE.phoneHref}>
