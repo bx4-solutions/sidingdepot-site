@@ -84,10 +84,10 @@ export function MapSection() {
                     Open in Google Maps
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="sm" className="rounded-full">
-                  <a href={wazeUrl} target="_blank" rel="noopener noreferrer">
+                <Button asChild variant="outline" size="sm" className="rounded-full text-sd-black hover:text-sd-black">
+                  <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Open in Waze
+                    Open in Apple Maps
                   </a>
                 </Button>
               </div>
