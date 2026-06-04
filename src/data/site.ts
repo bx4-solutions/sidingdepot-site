@@ -112,6 +112,8 @@ export const PROOF_BAR = [
   { icon: "🏠", label: "5.0 · Houzz Top Pro" },
   { icon: "📋", label: "4.7 · 130 Best Pick Reports" },
   { icon: "🏅", label: "Elite Preferencial · Top 2% EUA" },
+  { icon: "🏠", label: "Mais de 1.500 casas no norte de Atlanta" },
+  { icon: "💰", label: "Financiamento GreenSky com 0% de juros" },
 ] as const;
 
 export const PROCESS_STEPS = [
