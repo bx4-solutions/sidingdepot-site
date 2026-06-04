@@ -288,26 +288,26 @@ function SEODashboard() {
   };
 
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "leads-realtime", label: "Leads Real-time", icon: Activity },
-    { id: "seo-audit", label: "Auditoria de SEO", icon: FileText },
-    { id: "campaigns", label: "Campanhas", icon: Target },
-    { id: "ab-testing", label: "Testes A/B", icon: Split },
-    { id: "visao-geral", label: "Visão Geral", icon: BarChart3 },
-    { id: "site", label: "Site", icon: Globe },
-    { id: "audiencia", label: "Audiência", icon: Users },
-    { id: "aquisicao", label: "Aquisição", icon: TrendingUp },
-    { id: "blog-analytics", label: "Analytics do Blog", icon: Zap },
-    { id: "alertas", label: "Alertas", icon: Bell },
-    { id: "gtm-debug", label: "GTM/GA4 Debugger", icon: Activity },
+    { id: "dashboard", labelKey: "dashboard", icon: LayoutDashboard },
+    { id: "leads-realtime", labelKey: "leadsRealtime", icon: Activity },
+    { id: "seo-audit", labelKey: "seoAudit", icon: FileText },
+    { id: "campaigns", labelKey: "campaigns", icon: Target },
+    { id: "ab-testing", labelKey: "abTesting", icon: Split },
+    { id: "visao-geral", labelKey: "overview", icon: BarChart3 },
+    { id: "site", labelKey: "site", icon: Globe },
+    { id: "audiencia", labelKey: "audience", icon: Users },
+    { id: "aquisicao", labelKey: "acquisition", icon: TrendingUp },
+    { id: "blog-analytics", labelKey: "blogAnalytics", icon: Zap },
+    { id: "alertas", labelKey: "alerts", icon: Bell },
+    { id: "gtm-debug", labelKey: "gtmDebugger", icon: Activity },
   ];
 
   const adminItems = [
-    { id: "blog", label: "Gerenciar Blog", icon: FileText },
-    { id: "calendar", label: "Calendário", icon: Calendar },
-    { id: "users", label: "Usuários", icon: Users },
-    { id: "integrations", label: "Integrações", icon: Settings },
-    { id: "profile", label: "Meu Perfil", icon: User },
+    { id: "blog", labelKey: "manageBlog", icon: FileText },
+    { id: "calendar", labelKey: "calendar", icon: Calendar },
+    { id: "users", labelKey: "users", icon: Users },
+    { id: "integrations", labelKey: "integrations", icon: Settings },
+    { id: "profile", labelKey: "profile", icon: User },
   ];
 
   const [newPassword, setNewPassword] = useState("");
