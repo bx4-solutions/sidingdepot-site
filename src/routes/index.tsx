@@ -125,9 +125,9 @@ function HomePage() {
         subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         trustItems={[
-          "Elite Preferred · Top 2% of US installers",
-          "1,500+ homes in Marietta e Região",
-          "Highly specialized certified teams only — no subs, ever",
+          "Elite Preferred · Top 2% EUA",
+          "Mais de 1.500 casas no norte de Atlanta",
+          "Financiamento GreenSky com 0% de juros",
         ]}
         formSlot={<HeroQuoteForm isHomepage />}
       />
