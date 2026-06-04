@@ -219,10 +219,10 @@ function HomePage() {
               className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
             >
               <Link to="/siding" className="text-sd-green hover:underline">
-                James Hardie siding installation in Marietta
+                James Hardie siding installation in Marietta e Região
               </Link>
               <Link to="/lp/siding-marietta" className="text-sd-green hover:underline">
-                North Atlanta service areas
+                Service areas
               </Link>
               <Link to="/projects" className="text-sd-green hover:underline">
                 See recent siding projects
