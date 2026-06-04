@@ -99,10 +99,10 @@ export const CITIES = [
 ] as const;
 
 export const STATS = [
-  { value: "1,500+", label: "Homes Transformed" },
-  { value: "12+", label: "Years in Georgia" },
-  { value: "98%", label: "5-Star Reviews" },
-  { value: "4.9★", label: "Google Rating" },
+  { value: "1.500+", label: "Casas no Norte de Atlanta" },
+  { value: "12+", label: "Anos na Geórgia" },
+  { value: "98%", label: "Avaliações 5 Estrelas" },
+  { value: "4.9★", label: "Nota no Google" },
 ] as const;
 
 export const PROOF_BAR = [
