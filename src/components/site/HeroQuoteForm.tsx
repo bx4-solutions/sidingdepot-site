@@ -185,22 +185,31 @@ export function HeroQuoteForm({
             <Field id="hero-phone" label="Phone" type="tel" placeholder="(678) 000-0000" value={values.phone} onChange={(v: string) => update("phone", v)} error={errors.phone} required />
             <Field id="hero-email" label="Email" type="email" placeholder="your@email.com" value={values.email} onChange={(v: string) => update("email", v)} error={errors.email} required />
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <Field id="hero-city" label="City" placeholder="Your city" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} required />
-            <div className="grid gap-1.5">
-              <Label htmlFor="hero-service" className="text-xs font-semibold text-sd-black">What service do you need?</Label>
-              <Select value={values.service} onValueChange={(v: string) => update("service", v)}>
-                <SelectTrigger id="hero-service" className={`h-10 ${errors.service ? "border-destructive" : ""}`}>
-                  <SelectValue placeholder="-- Select a service --" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none" disabled>-- Select a service --</SelectItem>
-                  {SERVICES_OPTIONS.map((opt) => <SelectItem key={opt} value={opt}>{opt}</SelectItem>)}
-                </SelectContent>
-              </Select>
-              {errors.service && <p className="text-[11px] text-destructive">{errors.service}</p>}
+          <Field id="hero-city" label="City" placeholder="Your city" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} required />
+
+          <div className="grid gap-2">
+            <Label className="text-xs font-semibold text-sd-black">
+              Services<span className="text-destructive ml-0.5">*</span>
+            </Label>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {SERVICES_OPTIONS.map((opt) => {
+                const id = `hero-svc-${opt.replace(/\s+/g, "-").toLowerCase()}`;
+                const checked = (values.services as string[])?.includes(opt) ?? false;
+                return (
+                  <label key={opt} htmlFor={id} className="flex items-center gap-2 cursor-pointer text-sm text-sd-black">
+                    <Checkbox
+                      id={id}
+                      checked={checked}
+                      onCheckedChange={(v: boolean) => toggleService(opt, Boolean(v))}
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
             </div>
+            {errors.services && <p className="text-[11px] text-destructive">{errors.services}</p>}
           </div>
+
           <div className="grid gap-1.5">
             <Label htmlFor="hero-details" className="text-xs font-semibold text-sd-black">Tell us about your project (optional)</Label>
             <Textarea id="hero-details" placeholder="Describe your project, home size, timeline, or any questions..." value={values.details} onChange={(e) => update("details", e.target.value)} className="resize-none min-h-[80px]" rows={3} />
@@ -208,8 +217,8 @@ export function HeroQuoteForm({
           <div className="flex items-start gap-2.5 mt-1">
             <Checkbox id="hero-consent" checked={values.consent} onCheckedChange={(v: boolean) => update("consent", v)} className="mt-0.5" />
             <div className="grid gap-1">
-              <Label htmlFor="hero-consent" className="text-[10px] leading-snug font-normal text-sd-gray-text cursor-pointer">
-                By checking this box, I agree to receive SMS text messages and emails from Siding Depot LLC. Text STOP to opt out at any time.
+              <Label htmlFor="hero-consent" className="text-[11px] leading-snug font-normal text-sd-gray-text cursor-pointer">
+                By checking this box, I agree to receive SMS text messages and emails from Siding Depot LLC. Message frequency varies. Standard message and data rates may apply. Text STOP to opt out at anytime.
               </Label>
               {errors.consent && <p className="text-[11px] text-destructive leading-none">{errors.consent}</p>}
             </div>
