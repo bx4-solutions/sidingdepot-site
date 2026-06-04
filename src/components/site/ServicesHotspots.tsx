@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { X, Hammer, PanelsTopLeft, CloudRain, AppWindow, PaintRoller, Triangle } from "lucide-react";
 import sidingImg from "@/assets/services/siding.webp";
-import paintingImg from "@/assets/services/painting.jpg";
-import windowsImg from "@/assets/services/windows.jpg";
-import deckImg from "@/assets/services/deck.jpg";
-import guttersImg from "@/assets/services/gutters.jpg";
-import roofingImg from "@/assets/services/roofing.jpg";
+import paintingImg from "@/assets/services/painting.webp";
+import windowsImg from "@/assets/services/windows.webp";
+import deckImg from "@/assets/services/deck.webp";
+import guttersImg from "@/assets/services/gutters.webp";
+import roofingImg from "@/assets/services/roofing.webp";
 
 type Hotspot = {
   id: string;
@@ -87,6 +87,17 @@ const HOTSPOTS: Hotspot[] = [
     to: "/painting",
     cta: "PAINTING SERVICES →",
   },
+  {
+    id: "deck",
+    top: "85%",
+    left: "65%",
+    label: "Decking",
+    title: "Decking & Porches",
+    body: "Custom deck builder specializing in pressure-treated wood and composite decking (Trex/TimberTech). From basic repairs to complete outdoor living transformations.",
+    image: deckImg,
+    to: "/decks",
+    cta: "DECK SERVICES →",
+  },
 ];
 
 const MOBILE_ICONS: Record<string, typeof Hammer> = {
@@ -96,11 +107,13 @@ const MOBILE_ICONS: Record<string, typeof Hammer> = {
   gutters: CloudRain,
   windows: AppWindow,
   painting: PaintRoller,
+  deck: Hammer,
 };
 
 export function ServicesHotspots() {
   const [active, setActive] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
