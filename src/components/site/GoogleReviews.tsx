@@ -271,6 +271,8 @@ export function GoogleReviews() {
                   <img 
                     src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png" 
                     alt="Google" 
+                    width="46"
+                    height="15"
                     className="h-3 w-auto opacity-70"
                   />
                   <span>Verified Review</span>
