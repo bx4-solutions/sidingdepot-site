@@ -142,7 +142,7 @@ function SidingTypesSection() {
               Why Marietta and Canton Homeowners Choose Siding Depot
             </h2>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
+              We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {SIDING_TYPES.map((t) => (
