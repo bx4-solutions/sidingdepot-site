@@ -592,7 +592,7 @@ function SEODashboard() {
           ))}
 
           <div className="pt-6 pb-2">
-            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-300">Administração</span>
+            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-300">{t('administration')}</span>
           </div>
 
           {adminItems.map((item) => (
