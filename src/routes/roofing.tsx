@@ -33,8 +33,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "Yes, if the damage was caused by a covered event — hail, wind, fallen tree, or fire. Georgia's storm season creates thousands of roof insurance claims annually across Cobb, Cherokee, and Fulton counties. We inspect for storm damage, document it with photos, provide an insurance-grade estimate, and can meet your adjuster on-site. You pay only your deductible.",
   },
   {
-    q: "How do I know if I need a roof repair or full replacement in Atlanta?",
-    a: "Repairs are appropriate for isolated damage — a few missing shingles, a small leak, or flashing issues. If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is more cost-effective long-term. We offer free inspections and give you an honest recommendation — we don't push replacements when repairs will do.",
+    q: "When should I replace my roof in Marietta e Região?",
+    a: "If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is the most cost-effective long-term solution. We offer free inspections and give you an honest recommendation for a full system replacement.",
   },
   {
     q: "How long does a roof replacement take in Cherokee or Cobb County?",
