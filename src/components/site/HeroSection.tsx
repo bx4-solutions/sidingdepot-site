@@ -61,7 +61,7 @@ export function HeroSection({
       </picture>
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/80"
+        className="absolute inset-0 bg-gradient-to-r from-sd-navy/90 via-sd-navy/80 to-sd-navy/60"
       />
 
       <div
