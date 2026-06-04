@@ -114,7 +114,7 @@ export function Navbar() {
             <NavigationMenuList className="gap-1">
               {NAV_LINKS.map((l) => (
                 <NavigationMenuItem key={l.label}>
-                  {"sublinks" in l ? (
+                  {l.sublinks ? (
                     <>
                       <NavigationMenuTrigger className="bg-transparent text-[13px] font-semibold tracking-wide text-sd-black hover:text-sd-green-text h-auto py-2 px-3 data-[state=open]:bg-transparent data-[active]:bg-transparent">
                         <Link to={l.to} className="hover:text-sd-green-text">
@@ -195,7 +195,7 @@ export function Navbar() {
             <Accordion type="single" collapsible className="w-full">
               {NAV_LINKS.map((l) => (
                 <div key={l.label}>
-                  {"sublinks" in l ? (
+                  {l.sublinks ? (
                     <AccordionItem value={l.label} className="border-none">
                       <AccordionTrigger className="px-3 py-2 text-sm font-semibold text-sd-black hover:bg-sd-green/10 hover:no-underline rounded-md">
                         {l.label}
