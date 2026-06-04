@@ -4,18 +4,11 @@ import { CheckCircle2, Loader2, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
-import { supabase } from "@/integrations/supabase/client";
+import { useLeadForm } from "@/hooks/use-lead-form";
+import { Controller } from "react-hook-form";
 
 // Standard schema (for other pages)
 const standardSchema = z.object({
@@ -63,221 +56,181 @@ export function HeroQuoteForm({
   onSuccess,
   isHomepage = false,
 }: HeroQuoteFormProps = {}) {
-  const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
-  const [errors, setErrors] = useState<any>({});
-  const [values, setValues] = useState<any>(
-    isHomepage
-      ? { name: "", phone: "", email: "", city: "", services: [] as string[], details: "", consent: false }
-      : { name: "", phone: "", city: "" }
-  );
+  const schema = isHomepage ? homepageSchema : standardSchema;
+  const defaultValues = isHomepage
+    ? { name: "", phone: "", email: "", city: "", services: [], details: "", consent: false }
+    : { name: "", phone: "", city: "" };
 
-  function toggleService(name: string, checked: boolean) {
-    setValues((v: any) => {
-      const current: string[] = Array.isArray(v.services) ? v.services : [];
-      const next = checked ? [...current, name] : current.filter((s) => s !== name);
-      return { ...v, services: next };
-    });
-  }
+  const { form, onSubmit, isSubmitting, isSuccess, error } = useLeadForm({
+    schema: schema as any,
+    defaultValues: defaultValues as any,
+    source,
+    tag,
+    onSuccess,
+  });
 
-  function update(key: string, value: any) {
-    setValues((v: any) => ({ ...v, [key]: value }));
-  }
+  const { register, control, formState: { errors } } = form as any;
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const schema = isHomepage ? homepageSchema : standardSchema;
-    const parsed = schema.safeParse(values);
-    
-    if (!parsed.success) {
-      const fe: any = {};
-      for (const issue of parsed.error.issues) {
-        const k = issue.path[0] as string;
-        if (!fe[k]) fe[k] = issue.message;
-      }
-      setErrors(fe);
-      track("quote_form_validation_error", { source, fields: Object.keys(fe).join(",") });
-      return;
-    }
-    
-    setErrors({});
-    setSubmitting(true);
-    
-    const data = parsed.data as any;
-    const services: string[] = Array.isArray(data.services) ? data.services : [];
-    const payload = {
-      first_name: data.name.split(" ")[0],
-      last_name: data.name.split(" ").slice(1).join(" ") || " ",
-      phone: data.phone,
-      city: data.city,
-      email: data.email || "",
-      services,
-      service: services.join(", "),
-      details: data.details || "",
-      source: source,
-      tag: tag,
-      submittedAt: new Date().toISOString(),
-    };
-
-    try {
-      // Save lead in the customer record (Lovable Cloud database)
-      if (isHomepage) {
-        const { error: dbError } = await supabase.from("leads").insert({
-          name: data.name,
-          phone: data.phone,
-          email: data.email || null,
-          city: data.city,
-          services,
-          details: data.details || null,
-          consent: true,
-          source,
-          tag,
-        });
-        if (dbError) throw dbError;
-      }
-
-      if (SITE.ghlWebhookUrl) {
-        const response = await fetch(SITE.ghlWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!response.ok) throw new Error("Webhook failed");
-      }
-      track("quote_form_submit", { source });
-      setDone(true);
-      onSuccess?.();
-    } catch {
-      track("quote_form_error", { source });
-      setErrors({ general: "Unable to send right now. Please try again." });
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  if (done) {
+  if (isSuccess) {
     return (
-      <div className={`${bare ? "" : "bg-white rounded-2xl shadow-2xl ring-1 ring-black/5"} px-6 py-10 text-center`}>
-        <CheckCircle2 className="mx-auto h-10 w-10 text-sd-green" />
-        <h3 className="mt-3 font-display text-xl text-sd-black">Request Received!</h3>
-        <p className="mt-2 text-sm text-sd-gray-text">Our team will contact you within 24 hours.</p>
+      <div className={`${bare ? "" : "bg-white rounded-2xl shadow-2xl ring-1 ring-black/5"} px-6 py-10 text-center animate-in fade-in zoom-in duration-300`}>
+        <CheckCircle2 className="mx-auto h-12 w-12 text-sd-green" />
+        <h3 className="mt-3 font-display text-2xl text-sd-black">Request Received!</h3>
+        <p className="mt-2 text-sd-gray-text">Our team will contact you within 24 hours.</p>
       </div>
     );
   }
 
   if (isHomepage) {
     return (
-      <div className={bare ? "w-full" : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden"}>
+      <div className={bare ? "w-full" : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-sd-green/5"}>
         {!bare && (
           <div className="bg-sd-navy px-6 pt-6 pb-5 text-center text-white border-b border-white/10">
             <h2 className="font-display text-2xl sm:text-3xl leading-tight">Get Your FREE Quote Today</h2>
-            <p className="mt-1.5 text-xs text-white/75">
-              A specialist will contact you within 24 hours to schedule your free in-person estimate.
-            </p>
-            <div className="mt-4 text-[10px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5">
-              ⭐ 4.9 Nota no Google · 🏠 1.500+ Casas no Norte de Atlanta · 💰 Financiamento 0% Juros
+            <p className="mt-1.5 text-xs text-white/75">A specialist will contact you within 24 hours.</p>
+            <div className="mt-4 text-[10px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
+              ⭐ 4.9 Nota no Google · 🏠 1.500+ Casas · 💰 0% Juros
             </div>
           </div>
         )}
-        <form onSubmit={handleSubmit} noValidate className={bare ? "grid gap-3" : "px-6 py-5 grid gap-3.5"}>
-          <Field id="hero-name" label="Full Name" placeholder="Your full name" value={values.name} onChange={(v: string) => update("name", v)} error={errors.name} required />
-          <div className="grid grid-cols-2 gap-3">
-            <Field id="hero-phone" label="Phone" type="tel" placeholder="(678) 000-0000" value={values.phone} onChange={(v: string) => update("phone", v)} error={errors.phone} required />
-            <Field id="hero-email" label="Email" type="email" placeholder="your@email.com" value={values.email} onChange={(v: string) => update("email", v)} error={errors.email} required />
+        <form onSubmit={onSubmit} className={bare ? "grid gap-3" : "px-6 py-6 grid gap-4"}>
+          <div className="grid gap-1.5">
+            <Label htmlFor="hero-name" className="text-xs font-bold text-sd-black uppercase tracking-wider">Full Name *</Label>
+            <Input {...register("name")} id="hero-name" placeholder="Your full name" className="h-11 border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
+            {errors.name && <p className="text-[11px] text-destructive font-medium">{errors.name.message as string}</p>}
           </div>
-          <Field id="hero-city" label="City" placeholder="Your city" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} required />
 
-          <div className="grid gap-2">
-            <Label className="text-xs font-semibold text-sd-black">
-              Services<span className="text-destructive ml-0.5">*</span>
-            </Label>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {SERVICES_OPTIONS.map((opt) => {
-                const id = `hero-svc-${opt.replace(/\s+/g, "-").toLowerCase()}`;
-                const checked = (values.services as string[])?.includes(opt) ?? false;
-                return (
-                  <label key={opt} htmlFor={id} className="flex items-center gap-2 cursor-pointer text-sm text-sd-black">
-                    <Checkbox
-                      id={id}
-                      checked={checked}
-                      onCheckedChange={(v: boolean) => toggleService(opt, Boolean(v))}
-                    />
-                    <span>{opt}</span>
-                  </label>
-                );
-              })}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="grid gap-1.5">
+              <Label htmlFor="hero-phone" className="text-xs font-bold text-sd-black uppercase tracking-wider">Phone *</Label>
+              <Input {...register("phone")} id="hero-phone" type="tel" placeholder="(678) 000-0000" className="h-11 border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
+              {errors.phone && <p className="text-[11px] text-destructive font-medium">{errors.phone.message as string}</p>}
             </div>
-            {errors.services && <p className="text-[11px] text-destructive">{errors.services}</p>}
+            <div className="grid gap-1.5">
+              <Label htmlFor="hero-email" className="text-xs font-bold text-sd-black uppercase tracking-wider">Email *</Label>
+              <Input {...register("email")} id="hero-email" type="email" placeholder="your@email.com" className="h-11 border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
+              {errors.email && <p className="text-[11px] text-destructive font-medium">{errors.email.message as string}</p>}
+            </div>
           </div>
 
           <div className="grid gap-1.5">
-            <Label htmlFor="hero-details" className="text-xs font-semibold text-sd-black">Tell us about your project (optional)</Label>
-            <Textarea id="hero-details" placeholder="Describe your project, home size, timeline, or any questions..." value={values.details} onChange={(e) => update("details", e.target.value)} className="resize-none min-h-[80px]" rows={3} />
+            <Label htmlFor="hero-city" className="text-xs font-bold text-sd-black uppercase tracking-wider">City *</Label>
+            <Input {...register("city")} id="hero-city" placeholder="Your city" className="h-11 border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
+            {errors.city && <p className="text-[11px] text-destructive font-medium">{errors.city.message as string}</p>}
           </div>
-          {errors.general && <p className="text-[11px] text-destructive text-center">{errors.general}</p>}
-          <Button type="submit" size="lg" disabled={submitting} className="mt-2 w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg">
-            {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : "Get My Free Quote →"}
-          </Button>
-          <div className="flex items-start gap-2.5 mt-2">
-            <Checkbox id="hero-consent" checked={values.consent} onCheckedChange={(v: boolean) => update("consent", v)} className="mt-0.5" />
+
+          <div className="grid gap-2">
+            <Label className="text-xs font-bold text-sd-black uppercase tracking-wider">Services *</Label>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mt-1">
+              {SERVICES_OPTIONS.map((opt) => (
+                <div key={opt} className="flex items-center gap-2">
+                  <Controller
+                    name="services"
+                    control={control}
+                    render={({ field }) => {
+                      const currentServices = (field.value as string[]) || [];
+                      return (
+                        <Checkbox
+                          id={`svc-${opt}`}
+                          checked={currentServices.includes(opt)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              field.onChange([...currentServices, opt]);
+                            } else {
+                              field.onChange(currentServices.filter((s) => s !== opt));
+                            }
+                          }}
+                        />
+                      );
+                    }}
+                  />
+                  <Label htmlFor={`svc-${opt}`} className="text-sm text-sd-black cursor-pointer">{opt}</Label>
+                </div>
+              ))}
+            </div>
+            {errors.services && <p className="text-[11px] text-destructive font-medium">{errors.services.message as string}</p>}
+          </div>
+
+          <div className="grid gap-1.5">
+            <Label htmlFor="hero-details" className="text-xs font-bold text-sd-black uppercase tracking-wider">Project Details</Label>
+            <Textarea {...register("details")} id="hero-details" placeholder="Describe your project..." className="resize-none min-h-[90px] border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" rows={3} />
+          </div>
+
+          <div className="flex items-start gap-3 p-3 bg-sd-gray-bg/50 rounded-lg border border-sd-navy/5">
+            <Controller
+              name="consent"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  id="hero-consent"
+                  checked={field.value as boolean}
+                  onCheckedChange={field.onChange}
+                  className="mt-0.5"
+                />
+              )}
+            />
             <div className="grid gap-1">
-              <Label htmlFor="hero-consent" className="text-[11px] leading-snug font-normal text-sd-gray-text cursor-pointer">
-                By checking this box, I agree to receive SMS text messages and emails from Siding Depot LLC. Message frequency varies. Standard message and data rates may apply. Text STOP to opt out at anytime.
+              <Label htmlFor="hero-consent" className="text-[11px] leading-relaxed text-sd-gray-text cursor-pointer">
+                I agree to receive SMS and emails from Siding Depot LLC. Message frequency varies. Msg & data rates apply. Text STOP to opt out.
               </Label>
-              {errors.consent && <p className="text-[11px] text-destructive leading-none">{errors.consent}</p>}
+              {errors.consent && <p className="text-[11px] text-destructive font-medium">{errors.consent.message as string}</p>}
             </div>
           </div>
-          <p className="text-[9px] text-sd-gray-text text-center mt-1">🔒 Response within 24h · Your data is safe with us</p>
+
+          {error && <p className="text-sm text-destructive text-center font-semibold">{error}</p>}
+          
+          <Button type="submit" size="lg" disabled={isSubmitting} className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 transition-all h-12">
+            {isSubmitting ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Sending…</> : "Get My Free Quote →"}
+          </Button>
+          <p className="text-[10px] text-sd-gray-text text-center font-medium">🔒 Response within 24h · Trusted by 1,500+ homeowners</p>
         </form>
       </div>
     );
   }
 
-  // Standard Form (for other pages)
+  // Standard Form
   return (
-    <div className={bare ? "w-full" : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden"}>
+    <div className={bare ? "w-full" : "w-full max-w-md mx-auto rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-sd-green/5"}>
       {!bare && (
-        <div className="bg-sd-black px-6 pt-6 pb-5 text-center text-white">
+        <div className="bg-sd-black px-6 pt-7 pb-6 text-center text-white">
           <h2 className="font-display text-2xl sm:text-3xl leading-tight">
-            Get Your Free <span className="text-sd-green">James Hardie</span> Quote
+            Get Your Free <span className="text-sd-green">Quote</span>
           </h2>
-          <p className="mt-1.5 text-xs text-white/75">Elite Preferred installers · Written estimate in 24h · No pressure</p>
-          <div className="mt-3 inline-flex items-center gap-1.5">
+          <p className="mt-2 text-xs text-white/70">Elite Preferred installers · 24h Written estimate</p>
+          <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
             <div className="flex">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" />
-              ))}
+              {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-sd-green text-sd-green" />)}
             </div>
-            <span className="text-[11px] font-semibold text-white/80">4.9 · 128+ reviews</span>
+            <span className="text-[10px] font-bold text-white/90">4.9/5 Rating</span>
           </div>
         </div>
       )}
-      <form onSubmit={handleSubmit} noValidate className={bare ? "grid gap-3" : "px-6 py-5 grid gap-3"}>
-        <Field id="hero-name" label="Full name" value={values.name} onChange={(v: string) => update("name", v)} error={errors.name} autoComplete="name" dark={bare} />
-        <div className="grid grid-cols-2 gap-3">
-          <Field id="hero-phone" label="Phone" type="tel" value={values.phone} onChange={(v: string) => update("phone", v)} error={errors.phone} autoComplete="tel" dark={bare} />
-          <Field id="hero-city" label="City" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} autoComplete="address-level2" dark={bare} />
+      <form onSubmit={onSubmit} className={bare ? "grid gap-4" : "px-6 py-7 grid gap-4"}>
+        <div className="grid gap-1.5">
+          <Label htmlFor="name" className={`text-xs font-bold uppercase tracking-wider ${bare ? "text-white/80" : "text-sd-black"}`}>Full Name</Label>
+          <Input {...register("name")} id="name" className={`h-11 ${bare ? "bg-white/10 border-white/20 text-white" : "border-sd-navy/10"} focus:ring-2 focus:ring-sd-green/20`} />
+          {errors.name && <p className="text-[11px] text-destructive font-medium">{errors.name.message as string}</p>}
         </div>
-        {errors.general && <p className="text-[11px] text-destructive text-center">{errors.general}</p>}
-        <Button type="submit" size="lg" disabled={submitting} className="mt-1">
-          {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : "Get My Free Quote →"}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-1.5">
+            <Label htmlFor="phone" className={`text-xs font-bold uppercase tracking-wider ${bare ? "text-white/80" : "text-sd-black"}`}>Phone</Label>
+            <Input {...register("phone")} id="phone" type="tel" className={`h-11 ${bare ? "bg-white/10 border-white/20 text-white" : "border-sd-navy/10"} focus:ring-2 focus:ring-sd-green/20`} />
+            {errors.phone && <p className="text-[11px] text-destructive font-medium">{errors.phone.message as string}</p>}
+          </div>
+          <div className="grid gap-1.5">
+            <Label htmlFor="city" className={`text-xs font-bold uppercase tracking-wider ${bare ? "text-white/80" : "text-sd-black"}`}>City</Label>
+            <Input {...register("city")} id="city" className={`h-11 ${bare ? "bg-white/10 border-white/20 text-white" : "border-sd-navy/10"} focus:ring-2 focus:ring-sd-green/20`} />
+            {errors.city && <p className="text-[11px] text-destructive font-medium">{errors.city.message as string}</p>}
+          </div>
+        </div>
+        {error && <p className="text-sm text-destructive text-center font-semibold">{error}</p>}
+        <Button type="submit" size="lg" disabled={isSubmitting} className="h-12 w-full font-bold shadow-xl shadow-sd-green/10">
+          {isSubmitting ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Sending…</> : "Get My Free Quote →"}
         </Button>
-        <p className={`text-[10px] leading-snug text-center ${bare ? "text-white/60" : "text-sd-gray-text"}`}>
-          🔒 We respond within 24 hours. No pressure, ever.
+        <p className={`text-[10px] text-center font-medium ${bare ? "text-white/60" : "text-sd-gray-text"}`}>
+          🔒 Secure 24h Response · No Pressure Consultation
         </p>
       </form>
-    </div>
-  );
-}
-
-function Field({ id, label, placeholder, value, onChange, error, type = "text", autoComplete, required = false, dark = false }: any) {
-  return (
-    <div className="grid gap-1.5">
-      <Label htmlFor={id} className={`text-xs font-semibold ${dark ? "text-white" : "text-sd-black"}`}>
-        {label}{required && <span className="text-destructive ml-0.5">*</span>}
-      </Label>
-      <Input id={id} type={type} placeholder={placeholder} autoComplete={autoComplete} value={value} onChange={(e) => onChange(e.target.value)} aria-invalid={Boolean(error)} className={`h-10 ${dark ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""} ${error ? "border-destructive focus-visible:ring-destructive" : ""}`} />
-      {error && <p className="text-[11px] text-destructive">{error}</p>}
     </div>
   );
 }

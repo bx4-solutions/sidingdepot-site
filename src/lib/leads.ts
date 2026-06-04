@@ -23,7 +23,7 @@ export async function submitLead(payload: LeadPayload) {
       name,
       phone,
       email: email || null,
-      city: city || null,
+      city: city || "",
       services: services || [],
       details: details || null,
       consent: consent || false,

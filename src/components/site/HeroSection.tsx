@@ -43,7 +43,7 @@ export function HeroSection({
   const trustIcons = [Award, ShieldCheck, Clock];
 
   return (
-    <section className="relative isolate overflow-hidden section-dark">
+    <section className="relative isolate overflow-hidden min-h-[600px] flex items-center">
       <picture>
         {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}
         <img
@@ -51,12 +51,14 @@ export function HeroSection({
           alt={bgAlt}
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover"
+          width="1920"
+          height="1080"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
         />
       </picture>
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70"
+        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/80"
       />
 
       <div
