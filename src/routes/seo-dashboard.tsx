@@ -732,17 +732,17 @@ function SEODashboard() {
                   onClick={() => handleExport('csv')}
                   className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
                 >
-                  <Download className="h-4 w-4 mr-2" /> CSV
+                  <Download className="h-4 w-4 mr-2" /> {t('export')} CSV
                 </Button>
                 <Button 
                   variant="outline"
                   onClick={() => {
-                    toast.success("Gerando Relatório Semanal consolidado...");
+                    toast.success(t('generatingWeeklyReport'));
                     handleExport('pdf');
                   }}
                   className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
                 >
-                  <FileText className="h-4 w-4 mr-2" /> RELATÓRIO SEMANAL (PDF)
+                  <FileText className="h-4 w-4 mr-2" /> {t('weeklyReport')}
                 </Button>
               </div>
             </div>
