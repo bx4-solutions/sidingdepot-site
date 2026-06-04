@@ -112,7 +112,7 @@ export function Navbar() {
         <nav className="hidden lg:flex items-center gap-2">
           <ul className="flex items-center gap-1 list-none m-0 p-0">
             {NAV_LINKS.map((l) => (
-              <li key={l.label} className="relative group">
+              <li key={l.label} className="relative group bg-red-100/20">
                 <div className="flex items-center gap-1 py-2 px-3">
                   <Link 
                     to={l.to} 
