@@ -26,7 +26,7 @@ const HOME_VIDEOS = [
     id: "898FBaW_VnI",
     name: "Siding Depot — Institutional video",
     description:
-      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta and all of North Atlanta. 1,500+ homes resided.",
+      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Marietta e Região. 1,500+ homes resided.",
     duration: "PT2M",
     uploadDate: "2024-06-01",
   },
@@ -34,7 +34,7 @@ const HOME_VIDEOS = [
     id: "tENqAaDFr9s",
     name: "Why James Hardie fiber cement siding is built for Georgia",
     description:
-      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Marietta, GA.",
+      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Marietta e Região, GA.",
     duration: "PT3M",
     uploadDate: "2024-04-15",
   },
