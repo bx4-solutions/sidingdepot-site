@@ -32,9 +32,9 @@ const NAV_LINKS: NavLink[] = [
     sublinks: [{ to: "/roofing", label: "ROOFING" }]
   },
   { 
-    to: "/deck", 
+    to: "/decks", 
     label: "DECKS",
-    sublinks: [{ to: "/deck", label: "DECKS" }]
+    sublinks: [{ to: "/decks", label: "DECKS" }]
   },
   { 
     to: "/windows", 
