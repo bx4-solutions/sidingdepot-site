@@ -8,16 +8,14 @@ import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
 
 const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/siding", label: "Siding" },
-  { to: "/painting", label: "Painting" },
-  { to: "/windows", label: "Windows" },
-  { to: "/blog", label: "Blog" },
-  { to: "/lp/siding-marietta", label: "Service Areas" },
-  { to: "/about", label: "About" },
-  { to: "/projects", label: "Projects" },
-  { to: "/contact", label: "Contact" },
-  { to: "/finance", label: "Finance" },
+  { to: "/siding", label: "SIDING" },
+  { to: "/roofing", label: "ROOFING" },
+  { to: "/deck", label: "DECKS" },
+  { to: "/windows", label: "WINDOWS" },
+  { to: "/gutters", label: "GUTTERS" },
+  { to: "/painting", label: "PAINTING" },
+  { to: "/projects", label: "PROJECT GALLERY" },
+  { to: "/about", label: "ABOUT" },
 ] as const;
 
 export function Navbar() {
@@ -64,7 +62,7 @@ export function Navbar() {
               to={l.to}
               className="text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
               activeProps={{ className: "text-sd-green-text underline underline-offset-4" }}
-              activeOptions={{ exact: l.to === "/" }}
+              activeOptions={{ exact: true }}
             >
               {l.label}
             </Link>
