@@ -37,8 +37,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is the most cost-effective long-term solution. We offer free inspections and give you an honest recommendation for a full system replacement.",
   },
   {
-    q: "How long does a roof replacement take in Cherokee or Cobb County?",
-    a: "Most residential roof replacements in North Atlanta take 1–2 days. We start early, complete in one day when possible, and leave your property clean. You won't have an exposed roof overnight. We pull all required permits with Cobb, Cherokee, or Fulton county before starting work.",
+    q: "How long does a roof replacement take in Marietta e Região?",
+    a: "Most residential roof replacements take 1–2 days. We start early, complete in one day when possible, and leave your property clean. You won't have an exposed roof overnight. We pull all required permits before starting work.",
   },
   {
     q: "What roofing brands do you use and what warranties are offered?",
