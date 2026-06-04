@@ -387,13 +387,13 @@ function HomePage() {
             </div>
           </div>
           <div className="lg:pl-8 flex flex-col items-center">
-            <div className="relative w-full max-w-md mx-auto">
+            <div className="relative w-full max-w-[450px] mx-auto">
               <img 
-                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
-                alt="James Hardie Alliance Elite Preferred Contractor Certification Badge" 
-                className="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
-                width={400}
-                height={300}
+                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780612555995-c8d6c508-3cb6-41e2-814c-0411b0c5da55.png" 
+                alt="James Hardie Elite Preferred Contractor Certification Badge" 
+                className="w-full h-auto object-contain"
+                width={600}
+                height={450}
                 loading="lazy"
               />
             </div>
