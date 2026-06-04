@@ -357,11 +357,11 @@ function SEODashboard() {
             <Table>
               <TableHeader>
                 <TableRow className="border-white/10">
-                  <TableHead className="text-slate-400">Hora</TableHead>
-                  <TableHead className="text-slate-400">Evento</TableHead>
-                  <TableHead className="text-slate-400">Localização</TableHead>
-                  <TableHead className="text-slate-400">Origem/CTA</TableHead>
-                  <TableHead className="text-slate-400">Canal</TableHead>
+                  <TableHead className="text-slate-400">{t('time')}</TableHead>
+                  <TableHead className="text-slate-400">{t('event')}</TableHead>
+                  <TableHead className="text-slate-400">{t('location')}</TableHead>
+                  <TableHead className="text-slate-400">{t('originCTA')}</TableHead>
+                  <TableHead className="text-slate-400">{t('channel')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
