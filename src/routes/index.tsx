@@ -244,7 +244,7 @@ function HomePage() {
               Service Areas
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Serving North Atlanta — Marietta e região, Alpharetta & 10+ Communities Across Cherokee, Cobb & Fulton County
+              Serving Marietta e Região & North Atlanta
             </h2>
             <p className="mt-3 text-sd-gray-text">
               James Hardie Elite Preferred installations across Cobb, Cherokee, Fulton and Forsyth counties. Free on-site quotes — we come to you.
