@@ -203,7 +203,33 @@ function RoofingPage() {
       
       <AwardsStrip />
       
-      <CitiesGrid />
+      <section className="py-20 lg:py-24 bg-sd-gray-bg">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
+              Service Areas
+            </span>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
+              Roofing Services in Greater Marietta & North Atlanta
+            </h2>
+            <p className="mt-3 text-sd-gray-text">
+              GAF Factory Certified installations. Free on-site quotes — we come to you.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {CITIES.map((c) => (
+              <CityCard key={c.slug} slug={c.slug} name={c.name} county={c.county} />
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button asChild variant="dark">
+              <Link to="/contact">View All Service Areas</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
       
       <MapSection />
       
