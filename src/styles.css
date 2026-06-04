@@ -80,14 +80,14 @@
   --sd-green-dark:   oklch(0.740 0.170 116.0);
   --sd-green-pale:   oklch(0.960 0.070 116.0);   /* Pale tint of brand green */
   --sd-green-text:   oklch(0.330 0.110 116.0);   /* Deep brand green for text on light bg */
-  --sd-navy:         oklch(0.265 0.030 252.0);   /* #1E2A38 */
-  --sd-dark:         oklch(0.180 0 0);           /* #1A1A1A */
-  --sd-dark-mid:     oklch(0.250 0 0);           /* #2D2D2D */
-  --sd-black:        oklch(0.120 0 0);           /* #0A0A0A */
+  --sd-navy:         oklch(0.970 0.004 247.0);   /* Light gray (was navy) — palette unified */
+  --sd-dark:         oklch(0.970 0.004 247.0);   /* Light gray (was dark) */
+  --sd-dark-mid:     oklch(0.955 0.004 247.0);   /* Slightly deeper light gray */
+  --sd-black:        oklch(0.120 0 0);           /* #0A0A0A — kept for text */
   --sd-white:        oklch(1 0 0);
   --sd-gray-bg:      oklch(0.973 0.005 247.0);   /* #F4F7FA */
   --sd-gray-border:  oklch(0.918 0.008 247.0);   /* #E2E8EE */
-  --sd-gray-text:    oklch(0.485 0.022 250.0);   /* #596571 - High contrast replacement for #6B7A8A */
+  --sd-gray-text:    oklch(0.485 0.022 250.0);   /* #596571 */
 
   /* shadcn semantic mapping → SD tokens */
   --background: var(--sd-white);
