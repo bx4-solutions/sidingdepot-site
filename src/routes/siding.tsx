@@ -81,7 +81,7 @@ type SidingType = {
 
 const SHOWCASE_IMAGE = "/projects/project-1.webp";
 const SHOWCASE_ALT =
-  "Two-story Marietta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
+  "Two-story Marietta e Região home showcasing James Hardie Board & Batten siding, trim and shingle accents";
 
 const SIDING_TYPES: ReadonlyArray<SidingType> = [
   {
