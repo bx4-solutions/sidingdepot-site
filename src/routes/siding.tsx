@@ -527,27 +527,63 @@ function SidingPage() {
         serviceKey={SERVICE_KEY}
         city={CITY}
         heroImage="/projects/project-1.webp"
-        eyebrow="James Hardie · Elite Preferred"
-        title="Elite James Hardie Siding:"
-        titleAccent="Atlanta's Top 2% Choice."
-        intro="Transform your home with fiber cement siding engineered for Georgia's humidity. As an Elite Preferred contractor, we provide precision installation and the industry's best warranties."
+        eyebrow="James Hardie Siding — Elite Preferred Installation"
+        title="James Hardie Siding Installation in"
+        titleAccent="Marietta, Canton & North Atlanta, GA"
+        intro="Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.
+
+As an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.
+
+We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee."
         benefits={[
           "Top 2% Elite Preferred James Hardie status",
           "Engineered for Georgia heat & humidity (HZ10)",
           "30-year limited material warranty",
-          "highly specialized certified teams — no subcontractors",
+          "W-2 employee crews (never subcontractors)",
         ]}
         hiringRole="siding contractor"
-        hiringIntro="Choosing siding is a 30-year decision. Use this checklist to verify structural and moisture-barrier standards for Georgia homes."
+        hiringIntro="We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank."
         hiringChecklist={HIRING_CHECKLIST}
         faqLabel="Siding"
         faqs={FAQ_ITEMS}
-        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta e Região. We serve Cobb County and the surrounding area with Elite Preferred expertise. In 2026, a full James Hardie replacement in Marietta e Região typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
+        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Canton and North Atlanta. We serve Cobb County and the surrounding area with Elite Preferred expertise. In 2026, a full James Hardie replacement in Marietta typically runs $15,000–$55,000+, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
         ctaAccent="quality and durability?"
       />
       
       {/* Flagship-only interactive sections */}
       <SidingTypesSection />
+      
+      {/* Pricing Section */}
+      <section className="bg-[#1E2A38] py-20 lg:py-28 text-white">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-center">
+            How Much Does James Hardie Siding Cost in Marietta, GA? (2026)
+          </h2>
+          <div className="mt-10 space-y-6 text-lg text-white/90 leading-relaxed">
+            <p>Typical James Hardie installation costs in North Atlanta:</p>
+            <ul className="space-y-3 list-disc pl-6">
+              <li>Under 1,500 sq ft home: $10,000 – $16,000</li>
+              <li>1,500 – 2,500 sq ft home: $16,000 – $26,000</li>
+              <li>2,500 – 3,500 sq ft home: $26,000 – $38,000</li>
+              <li>3,500+ sq ft home: $38,000 – $55,000+</li>
+            </ul>
+            <p className="mt-8">
+              Price includes: full tear-off and disposal of old siding, moisture barrier installation, James Hardie HardiePlank installation, all caulking and sealing, project manager oversight, and final walkthrough inspection.
+            </p>
+            <p>
+              Financing available from $0 down through GreenSky — apply in 60 seconds, decisions in minutes.
+            </p>
+          </div>
+          <div className="mt-12 text-center">
+            <Button asChild size="xl" className="bg-sd-green text-sd-dark hover:bg-sd-green-hover font-bold px-8">
+              <Link to="/contact">
+                Get My Free Written Estimate <ArrowRight className="ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <BeforeAfterCarousel />
     </div>
   );
