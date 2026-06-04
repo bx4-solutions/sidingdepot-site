@@ -82,8 +82,11 @@ export function PainPointsSection() {
           </ul>
           <p className="mt-6 text-muted-foreground max-w-lg">
             Don&apos;t put yourself in that situation.{" "}
-            <span className="font-semibold text-foreground">Siding Depot</span> delivers professional
-            renovation and restoration services Georgia homeowners actually trust.
+            <span className="font-semibold text-foreground">Siding Depot</span> uses only 
+            W-2 in-house crews — trained, insured, and accountable to us 
+            directly. Every project has a dedicated manager on-site. Every 
+            estimate is written, itemized, and guaranteed. No surprises. 
+            No strangers at your door.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
