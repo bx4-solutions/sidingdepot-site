@@ -98,7 +98,7 @@ function GuttersPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Gutter"
       faqs={FAQS}
-      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Marietta e Região, including Marietta e Região. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly replacements."
+      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Marietta e Região. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for Marietta e Região rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly replacements."
       ctaAccent="years, not seasons?"
       trustBadge={{ title: "LeafGuard Authorized", subtitle: "Lifetime no-clog warranty" }}
     />
