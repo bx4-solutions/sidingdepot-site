@@ -273,7 +273,7 @@ function ServicePage() {
           </div>
           <div className="mt-8 inline-flex items-center gap-2 text-sm text-white/80">
             <Star className="h-4 w-4 fill-sd-green text-sd-green" aria-hidden="true" />
-            <span>4.9 · 128+ reviews · {content.partners}</span>
+            <span>4.5 · 158 reviews · {content.partners}</span>
           </div>
         </div>
       </section>
@@ -302,7 +302,7 @@ function ServicePage() {
             <div className="grid grid-cols-2 gap-3">
               <TrustCard icon={<Award className="h-5 w-5" />} label={content.partners} />
               <TrustCard icon={<ShieldCheck className="h-5 w-5" />} label="Licensed & insured" />
-              <TrustCard icon={<Star className="h-5 w-5" />} label="4.9★ Google" />
+              <TrustCard icon={<Star className="h-5 w-5" />} label="4.5★ Google" />
               <TrustCard icon={<CheckCircle2 className="h-5 w-5" />} label="Written warranty" />
             </div>
           </div>
