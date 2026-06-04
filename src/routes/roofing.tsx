@@ -1,31 +1,71 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ArrowRight, Star, Award, Hammer, CloudRain, CircleDollarSign } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { HeroSection } from "@/components/site/HeroSection";
-import { PainPointsSection } from "@/components/site/PainPointsSection";
-import { ProcessTimeline } from "@/components/site/ProcessTimeline";
-import { AwardsStrip } from "@/components/site/AwardsStrip";
-import { CityCard } from "@/components/site/CityCard";
-import { MapSection } from "@/components/site/MapSection";
-import { GoogleReviews } from "@/components/site/GoogleReviews";
-import { FinancingBlock } from "@/components/site/FinancingBlock";
-import { SITE, CITIES } from "@/data/site";
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  Award,
+  ShieldCheck,
+  FileText,
+  Wrench,
+  Search,
+  Clock,
+} from "lucide-react";
+import {
+  ServiceLandingPage,
+  faqJsonLd,
+  serviceJsonLd,
+  type FaqItem,
+  type ChecklistItem,
+} from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1632823471565-1ecdf5c6da03";
+const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 const SERVICE_KEY = "roofing";
 const CITY = "Greater Marietta";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
+const FAQS: ReadonlyArray<FaqItem> = [
+  {
+    q: "How much does roof replacement cost in Greater Marietta, GA in 2026?",
+    a: "A full roof replacement in the Greater Marietta area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
+  },
+  {
+    q: "Does homeowner's insurance cover roof replacement in Georgia?",
+    a: "Yes, if the damage was caused by a covered event — hail, wind, fallen tree, or fire. Georgia's storm season creates thousands of roof insurance claims annually across Cobb, Cherokee, and Fulton counties. We inspect for storm damage, document it with photos, provide an insurance-grade estimate, and can meet your adjuster on-site. You pay only your deductible.",
+  },
+  {
+    q: "When should I replace my roof in Greater Marietta?",
+    a: "If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is the most cost-effective long-term solution. We offer free inspections and give you an honest recommendation for a full system replacement.",
+  },
+  {
+    q: "How long does a roof replacement take in Greater Marietta?",
+    a: "Most residential roof replacements take 1–2 days. We start early, complete in one day when possible, and leave your property clean. You won't have an exposed roof overnight. We pull all required permits before starting work.",
+  },
+  {
+    q: "What roofing brands do you use and what warranties are offered?",
+    a: "We install GAF Timberline HDZ shingles as our primary product — GAF is North America's largest roofing manufacturer. As a GAF Factory Certified contractor, we offer the Golden Pledge warranty (50 years on product, 25 years on labor), which is only available through certified installers. We also install Owens Corning Duration series.",
+  },
+  {
+    q: "Should I be worried about roof damage after a hail storm in Greater Marietta?",
+    a: "Yes. Georgia's hail season (March through June) causes significant roof damage that isn't always visible from the ground. Even quarter-sized hail can bruise asphalt shingles, reducing their lifespan by years. After any storm, we recommend a free inspection for full replacement — there's no obligation and no cost.",
+  },
+];
+
+const CHECKLIST: ReadonlyArray<ChecklistItem> = [
+  { Icon: Award, title: "GAF Factory Certified", desc: "Only certified contractors can offer the GAF Golden Pledge warranty (50-year product, 25-year labor)." },
+  { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit." },
+  { Icon: FileText, title: "Itemized written estimate", desc: "Insist on tear-off, decking inspection, underlayment, drip edge, ice & water shield, ridge vent, flashing — not a single lump sum." },
+  { Icon: Wrench, title: "Highly specialized certified teams, not day labor", desc: "Roofing is dangerous and warranty-critical. highly specialized certified professionals are trained, insured and accountable." },
+  { Icon: Search, title: "Recent local reviews", desc: "Look for 50+ recent Google reviews from Cobb, Cherokee or Fulton county — and drive past completed jobs after one storm season." },
+  { Icon: Clock, title: "Realistic timeline", desc: "A standard tear-off and reinstall is 1–2 days. Anyone promising same-day on a complex roof is cutting corners on prep or cleanup." },
+];
+
 export const Route = createFileRoute("/roofing")({
   head: () => ({
     meta: [
-      { title: "Roofing Installation & Replacement | Marietta & North Atlanta" },
-      { name: "description", content: "Georgia's storm season causes more roof damage than most realize. Siding Depot installs GAF & Owens Corning roofing systems. Free estimates in 24h." },
-      { property: "og:title", content: "Roofing Installation & Replacement | Marietta & North Atlanta" },
-      { property: "og:description", content: "Georgia's storm season causes more roof damage than most realize. Siding Depot installs GAF & Owens Corning roofing systems. Free estimates in 24h." },
+      { title: seo.metaTitle(CITY) },
+      { name: "description", content: seo.metaDesc },
+      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:description", content: seo.metaDesc },
       { property: "og:image", content: HERO_IMAGE },
       { property: "og:type", content: "website" },
     ],
@@ -33,230 +73,38 @@ export const Route = createFileRoute("/roofing")({
       { rel: "canonical", href: CANONICAL },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
+    scripts: [
+      serviceJsonLd("Roof Replacement", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "RoofingContractor" }),
+      faqJsonLd(FAQS),
+    ],
   }),
   component: RoofingPage,
 });
 
 function RoofingPage() {
   return (
-    <div className="flex flex-col">
-      {/* HERO SECTION */}
-      <HeroSection
-        badge="ROOFING — NORTH ATLANTA"
-        title={
-          <>
-            Roofing Installation & Replacement in <br className="hidden sm:block" />
-            Marietta, Canton & North Atlanta, GA
-          </>
-        }
-        bgImage={HERO_IMAGE}
-        ctaSlot={
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-[#8DC63F] text-[#1A1A1A] hover:bg-[#8DC63F]/90 font-bold px-8 py-6 text-lg rounded-none"
-            >
-              <Link to="/contact">
-                Get My Free Roof Estimate <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button 
-              asChild 
-              size="lg" 
-              variant="outline" 
-              className="border-[#8DC63F] text-[#8DC63F] hover:bg-[#8DC63F]/10 font-bold px-8 py-6 text-lg rounded-none bg-transparent"
-            >
-              <a href={SITE.phoneHref}>
-                Call (678) 400-2012
-              </a>
-            </Button>
-          </div>
-        }
-        trustItems={[]} // We'll use the Trust Bar below instead
-      >
-        <div className="mt-6 space-y-6 max-w-2xl text-white/90">
-          <p className="text-lg leading-relaxed">
-            Georgia's storm season runs March through October. 
-            Hail, 70+ mph wind gusts and heavy rain cause more 
-            roof damage in North Atlanta than most homeowners 
-            realize — until the ceiling starts leaking.
-          </p>
-          <p className="text-lg leading-relaxed">
-            Siding Depot installs GAF and Owens Corning roofing 
-            systems using manufacturer-certified methods. 
-            Every project is managed by a dedicated on-site 
-            supervisor. Every crew member is a W-2 Siding Depot 
-            employee — not a storm chaser from out of state.
-          </p>
-          <p className="text-lg font-semibold text-sd-green bg-sd-navy/40 p-4 border-l-4 border-sd-green italic">
-            "When you replace your roof and siding together 
-            in one project, you save $2,000–$5,000 on 
-            mobilization and finish with a completely 
-            transformed home exterior."
-          </p>
-        </div>
-      </HeroSection>
-
-      {/* TRUST BAR (ProofBar style) */}
-      <section className="bg-sd-black border-t-[3px] border-sd-green py-6">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <ul className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-white/90 text-sm font-bold uppercase tracking-wider">
-            <li className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-sd-green fill-sd-green" />
-              <span>4.5 · 158 Google Reviews</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Award className="h-5 w-5 text-sd-green" />
-              <span>GAF Certified · Owens Corning</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Hammer className="h-5 w-5 text-sd-green" />
-              <span>4.7 · 256 GuildQuality Reviews</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CloudRain className="h-5 w-5 text-sd-green" />
-              <span>48h Storm Damage Response</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CircleDollarSign className="h-5 w-5 text-sd-green" />
-              <span>GreenSky 0% APR Financing</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* PHOTO GALLERY SECTION */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-sd-black">Recent Roofing Projects — North Atlanta</h2>
-          <p className="mt-2 text-sd-gray-text text-xl">Marietta · Canton · Kennesaw · Alpharetta</p>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Project 1 */}
-            <div className="group relative overflow-hidden rounded-lg shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1604177091072-8f6c4e577427" 
-                alt="Full Roof Replacement Marietta GA" 
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-sd-green text-sd-black px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                  GAF Timberline HDZ
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white font-bold">Full Roof Replacement — Marietta, GA</p>
-              </div>
-              <div className="bg-sd-gray-bg p-4 text-left border-t border-sd-gray-border">
-                <p className="text-sd-black font-semibold">Full Roof Replacement — Marietta, GA</p>
-              </div>
-            </div>
-
-            {/* Project 2 */}
-            <div className="group relative overflow-hidden rounded-lg shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64" 
-                alt="Storm Damage Replacement Canton GA" 
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-sd-green text-sd-black px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                  Owens Corning Duration
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white font-bold">Storm Damage Replacement — Canton, GA</p>
-              </div>
-              <div className="bg-sd-gray-bg p-4 text-left border-t border-sd-gray-border">
-                <p className="text-sd-black font-semibold">Storm Damage Replacement — Canton, GA</p>
-              </div>
-            </div>
-
-            {/* Project 3 */}
-            <div className="group relative overflow-hidden rounded-lg shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" 
-                alt="Roof + Siding Package Kennesaw GA" 
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-sd-green text-sd-black px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                  GAF + James Hardie
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white font-bold">Roof + Siding Package — Kennesaw, GA</p>
-              </div>
-              <div className="bg-sd-gray-bg p-4 text-left border-t border-sd-gray-border">
-                <p className="text-sd-black font-semibold">Roof + Siding Package — Kennesaw, GA</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ADDITIONAL SECTIONS FROM HOMEPAGE */}
-      <PainPointsSection />
-      
-      <ProcessTimeline title="Our Roofing Process — From Inspection to Protection" />
-      
-      <AwardsStrip />
-      
-      <section className="py-20 lg:py-24 bg-sd-gray-bg">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-              Service Areas
-            </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Roofing Services in Greater Marietta & North Atlanta
-            </h2>
-            <p className="mt-3 text-sd-gray-text">
-              GAF Factory Certified installations. Free on-site quotes — we come to you.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {CITIES.map((c) => (
-              <CityCard key={c.slug} slug={c.slug} name={c.name} county={c.county} />
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Button asChild variant="dark">
-              <Link to="/contact">View All Service Areas</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-      
-      <MapSection />
-      
-      <GoogleReviews />
-      
-      <FinancingBlock />
-
-      {/* QUOTE FORM TEASER */}
-      <section className="bg-sd-black py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-sd-green/10 to-transparent" />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight max-w-3xl mx-auto">
-            Ready to Protect Your Home with a <span className="text-sd-green">Certified Roofing System?</span>
-          </h2>
-          <p className="mt-6 text-xl text-white/80 max-w-2xl mx-auto">
-            Get your free, no-pressure roofing estimate within 24 hours. We handle all documentation for storm damage claims.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg" className="bg-sd-green text-sd-black hover:bg-sd-green-hover font-bold px-10 py-7 text-xl rounded-none">
-              <Link to="/contact">Get My Free Quote</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold px-10 py-7 text-xl rounded-none">
-              <a href={SITE.phoneHref}>Call {SITE.phone}</a>
-            </Button>
-          </div>
-        </div>
-      </section>
-    </div>
+    <ServiceLandingPage
+      serviceKey={SERVICE_KEY}
+      city={CITY}
+      heroImage={HERO_IMAGE}
+      eyebrow="GAF Factory Certified · Top Roofer"
+      title="GAF Factory-Certified Roofing:"
+      titleAccent="North Atlanta's Shield."
+      intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
+      benefits={[
+        "GAF Factory Certified — Golden Pledge warranty available",
+        "Hail and wind storm damage specialists (March–June season)",
+        "Insurance claim documentation and adjuster meetings",
+        "1–2 day install on standard 2,000 sq ft homes",
+      ]}
+      hiringRole="roofing contractor"
+      hiringIntro="Your roof is your home's most critical structural barrier. Use this checklist to verify factory certifications and system-wide warranty protections before signing."
+      hiringChecklist={CHECKLIST}
+      faqLabel="Roofing"
+      faqs={FAQS}
+      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Greater Marietta, GA. We replace asphalt shingle and metal roofs in Greater Marietta — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
+      ctaAccent="decades, not seasons?"
+      trustBadge={{ title: "GAF Factory Certified", subtitle: "Golden Pledge Warranty" }}
+    />
   );
 }
