@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { X, Hammer, PanelsTopLeft, CloudRain, AppWindow, PaintRoller, Triangle } from "lucide-react";
+import sidingImg from "@/assets/services/siding.webp";
+import paintingImg from "@/assets/services/painting.jpg";
+import windowsImg from "@/assets/services/windows.jpg";
+import deckImg from "@/assets/services/deck.jpg";
+import guttersImg from "@/assets/services/gutters.jpg";
+import roofingImg from "@/assets/services/roofing.jpg";
 
 type Hotspot = {
   id: string;
