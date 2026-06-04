@@ -85,7 +85,7 @@ export function HeroQuoteForm({
   return (
     <div className={bare ? "w-full" : "w-full max-w-[420px] mx-auto rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-sd-green/5"}>
       {!bare && (
-        <div className="bg-sd-navy px-5 pt-5 pb-4 text-center text-white border-b border-white/10">
+        <div className="bg-sd-black px-5 pt-5 pb-4 text-center text-white border-b border-white/10">
           <h2 className="font-display text-xl sm:text-2xl leading-tight">{title}</h2>
           <p className="mt-1 text-[11px] text-white/75">{subtitle}</p>
           <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
