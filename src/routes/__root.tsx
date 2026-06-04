@@ -159,6 +159,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isDev = import.meta.env.DEV || window.location.hostname === "localhost" || window.location.hostname.includes("lovable.app");
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
@@ -168,9 +170,8 @@ function RootComponent() {
         </main>
         <Footer />
         <FloatingCTA />
-        <VisualEditToggle />
+        {isDev && <VisualEditToggle />}
       </div>
-
     </QueryClientProvider>
   );
 }
