@@ -127,7 +127,7 @@ function HomePage() {
         showCallCta={false}
         trustItems={[
           "Elite Preferred · Top 2% EUA",
-          "Mais de 1.500 casas no norte de Atlanta",
+          "Mais de 1.500 casas atendidas",
         ]}
         ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
