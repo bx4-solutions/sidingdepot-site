@@ -575,7 +575,7 @@ We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alphar
             </p>
           </div>
           <div className="mt-12 text-center">
-            <Button asChild size="xl" className="bg-sd-green text-sd-dark hover:bg-sd-green-hover font-bold px-8">
+            <Button asChild size="lg" className="bg-sd-green text-sd-dark hover:bg-sd-green-hover font-bold px-8">
               <Link to="/contact">
                 Get My Free Written Estimate <ArrowRight className="ml-2" />
               </Link>
