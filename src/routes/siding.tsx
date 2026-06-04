@@ -101,8 +101,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     title: "HardiePlank Lap Siding",
     image: "/projects/project-3.webp",
     imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
-    description:
-      "Long, narrow horizontal planks — the classic American siding look. Durable, low-maintenance and weather-resistant, making it our most popular choice across North Atlanta.",
+    description: "Long, narrow horizontal planks — the classic American siding look. Durable and weather-resistant, making it our most popular choice across Marietta e Região.",
   },
   {
     id: "shingle",
