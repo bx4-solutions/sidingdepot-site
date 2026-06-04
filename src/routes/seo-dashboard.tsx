@@ -408,7 +408,7 @@ function SEODashboard() {
               className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold"
             >
               {isAuditRunning ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <Search className="h-4 w-4 mr-2" />}
-              EXECUTAR AUDITORIA AGORA
+              {t('runAudit')}
             </Button>
           </CardHeader>
           <CardContent>
