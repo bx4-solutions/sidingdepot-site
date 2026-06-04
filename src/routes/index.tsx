@@ -119,15 +119,15 @@ function HomePage() {
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
-            <span className="text-sd-green">1,500+ Homes Transformed</span>
+            <span className="text-sd-green">Mais de 1.500 Casas no Norte de Atlanta</span>
           </>
         }
         subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         trustItems={[
-          "Elite Preferred · Top 2% of US installers",
-          "1,500+ homes in Marietta e Região",
-          "Highly specialized certified teams only — no subs, ever",
+          "Elite Preferred · Top 2% EUA",
+          "Mais de 1.500 casas no norte de Atlanta",
+          "Financiamento GreenSky com 0% de juros",
         ]}
         formSlot={<HeroQuoteForm isHomepage />}
       />
@@ -298,7 +298,7 @@ function HomePage() {
               {[
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: CheckCircle2, t: "Free Estimates" },
-                { i: Users, t: "1,500+ Homes" },
+                { i: Users, t: "1.500+ Casas" },
                 { i: Sparkles, t: "Elite Preferred" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-white/80">

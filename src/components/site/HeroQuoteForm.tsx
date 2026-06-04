@@ -175,7 +175,7 @@ export function HeroQuoteForm({
               A specialist will contact you within 24 hours to schedule your free in-person estimate.
             </p>
             <div className="mt-4 text-[10px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5">
-              ⭐ 4.9 Google Rating · 1,500+ Homes Transformed · James Hardie Elite Preferred
+              ⭐ 4.9 Nota no Google · 🏠 1.500+ Casas no Norte de Atlanta · 💰 Financiamento 0% Juros
             </div>
           </div>
         )}

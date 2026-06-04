@@ -99,10 +99,10 @@ export const CITIES = [
 ] as const;
 
 export const STATS = [
-  { value: "1,500+", label: "Homes Transformed" },
-  { value: "12+", label: "Years in Georgia" },
-  { value: "98%", label: "5-Star Reviews" },
-  { value: "4.9★", label: "Google Rating" },
+  { value: "1.500+", label: "Casas no Norte de Atlanta" },
+  { value: "12+", label: "Anos na Geórgia" },
+  { value: "98%", label: "Avaliações 5 Estrelas" },
+  { value: "4.9★", label: "Nota no Google" },
 ] as const;
 
 export const PROOF_BAR = [
@@ -112,6 +112,8 @@ export const PROOF_BAR = [
   { icon: "🏠", label: "5.0 · Houzz Top Pro" },
   { icon: "📋", label: "4.7 · 130 Best Pick Reports" },
   { icon: "🏅", label: "Elite Preferencial · Top 2% EUA" },
+  { icon: "🏠", label: "Mais de 1.500 casas no norte de Atlanta" },
+  { icon: "💰", label: "Financiamento GreenSky com 0% de juros" },
 ] as const;
 
 export const PROCESS_STEPS = [
@@ -133,12 +135,12 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const AWARDS = [
-  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of US installers" },
-  { name: "GAF Factory Certified", subtitle: "Roofing system warranty" },
-  { name: "Google · 4.9★", subtitle: "128+ verified reviews" },
-  { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
-  { name: "BBB Accredited", subtitle: "A+ rating" },
-  { name: "GreenSky Financing", subtitle: "0% APR plans available" },
+  { name: "James Hardie Elite Preferred", subtitle: "Top 2% dos instaladores nos EUA" },
+  { name: "Certificação GAF Factory", subtitle: "Garantia de sistema de telhado" },
+  { name: "Google · 4.9★", subtitle: "158+ avaliações verificadas" },
+  { name: "Licenciado e Segurado", subtitle: "Georgia GC #RBQA006789" },
+  { name: "Acreditado pelo BBB", subtitle: "Classificação A+" },
+  { name: "Financiamento GreenSky", subtitle: "Planos de 0% de juros disponíveis" },
 ] as const;
 
 export const SERVICE_OPTIONS = [
