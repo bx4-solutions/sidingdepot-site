@@ -111,6 +111,16 @@ const resolveDateRange = (days: number) => {
   };
 };
 
+const getInitialDateRange = () => {
+  if (typeof window === "undefined") return resolveDateRange(30);
+  try {
+    const stored = window.localStorage.getItem("seo-dashboard-date-range");
+    return stored ? JSON.parse(stored) : resolveDateRange(30);
+  } catch {
+    return resolveDateRange(30);
+  }
+};
+
 const getInitialLanguage = (): Language => {
   if (typeof window === "undefined") return "pt";
   const stored = window.localStorage.getItem("seo-dashboard-lang");
