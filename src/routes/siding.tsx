@@ -15,7 +15,7 @@ import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
 
 const SERVICE_KEY = "siding";
-const CITY = "Marietta, Canton & North Atlanta";
+const CITY = "Marietta,  & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 
 export const Route = createFileRoute("/siding")({

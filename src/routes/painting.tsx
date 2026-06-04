@@ -108,7 +108,7 @@ function PaintingPage() {
       city={CITY}
       heroImage={HERO_IMAGE}
       eyebrow="Exterior Painting — North Atlanta"
-      title="Exterior Painting in Marietta, Canton &"
+      title="Exterior Painting in Marietta,  &"
       titleAccent="North Atlanta, GA"
       intro={"Georgia's heat and humidity are relentless. UV exposure, temperature swings from 20°F in January to 100°F in August, and year-round moisture cause cheap exterior paint to crack, peel, and fade within 2–3 years.\n\nSiding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium exterior coatings engineered specifically for hot, humid climates like Marietta and Cherokee County. These paints carry a 15-year warranty against peeling and fading.\n\nEvery Siding Depot painting project starts with a thorough prep: pressure washing, scraping, caulking every gap and crack, and a full primer coat. The paint goes on last. This is why our results look better at year 5 than most competitors' results look at year 1.\n\nOur W-2 crews — never subcontractors — handle every exterior painting project in North Atlanta. A dedicated project manager oversees every stage. You receive a written, itemized estimate before a single brush touches your house. The price in the estimate is the price you pay."}
       benefits={[
