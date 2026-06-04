@@ -6,40 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { TRANSLATIONS, type Language } from "@/lib/translations";
 import { 
   Gauge, 
   LogOut, 
   Download, 
   Search,
-  BarChart3,
-  Activity,
-  TrendingUp,
-  Clock,
-  LayoutDashboard,
-  Target,
-  Split,
-  Eye,
-  Globe,
-  Users,
-  Zap,
-  Bell,
-  FileText,
-  Calendar,
-  Settings,
-  ChevronRight,
-  MousePointer2,
-  CalendarCheck2,
-  MessageSquare,
-  AlertTriangle,
-  RefreshCcw,
-  User,
-  Key,
-  RefreshCw,
-  ArrowUpRight,
-  ArrowDownRight,
-  ExternalLink,
-  ChevronDown,
-  Info,
+...
   Phone,
   CheckCircle2
 } from "lucide-react";
