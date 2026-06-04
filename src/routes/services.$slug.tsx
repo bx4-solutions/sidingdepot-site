@@ -46,7 +46,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Top 2% Elite Preferred James Hardie status",
       "Engineered specifically for Georgia's heat & humidity",
       "30-year limited material & 15-year finish warranty",
-      "W-2 certified installers — no subcontractors",
+      "highly specialized certified teams — no subcontractors",
     ],
     process: [
       { title: "Precision Measurement", desc: "We perform a forensic inspection of your current siding and provide a detailed, itemized quote within 24 hours." },

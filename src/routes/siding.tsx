@@ -536,7 +536,7 @@ function SidingPage() {
           "Top 2% Elite Preferred James Hardie status",
           "Engineered for Georgia heat & humidity (HZ10)",
           "30-year limited material warranty",
-          "W-2 certified crews — no subcontractors",
+          "highly specialized certified teams — no subcontractors",
         ]}
         hiringRole="siding contractor"
         hiringIntro="Choosing siding is a 30-year decision. Use this checklist to verify structural and moisture-barrier standards for Georgia homes."

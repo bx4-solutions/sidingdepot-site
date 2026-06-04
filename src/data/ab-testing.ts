@@ -30,7 +30,7 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
         "Top 2% Elite Preferred James Hardie status",
         "Engineered specifically for Georgia's heat & humidity",
         "30-year limited material & 15-year finish warranty",
-        "W-2 certified installers — no subcontractors",
+        "highly specialized certified teams — no subcontractors",
       ],
       process: [
         { title: "Precision Measurement", desc: "Forensic inspection of current siding with a detailed, itemized quote within 24 hours." },
@@ -114,10 +114,10 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       hiringIntro: "The cost of a repaint is 70% labor and prep. This checklist helps you verify the quality of what's under the finish.",
     },
     C: {
-      eyebrow: "W-2 Professional Crews · 5-Day Completion",
+      eyebrow: "Highly Specialized Certified Teams · 5-Day Completion",
       title: "Better House Painting,",
       titleAccent: "Without the Mess or Delays.",
-      intro: "Tired of ghosting contractors? Our W-2 painting crews show up on time, communicate daily, and finish most North Atlanta homes in 4-8 working days. Professional results without the typical renovation headache.",
+      intro: "Tired of ghosting contractors? Our highly specialized certified painting teams show up on time, communicate daily, and finish most North Atlanta homes in 4-8 working days. Professional results without the typical renovation headache.",
       benefits: [
         "Punctual, uniformed highly specialized certified professionals (not subbed)",
         "Daily progress updates from your project manager",
