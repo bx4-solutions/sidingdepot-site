@@ -16,12 +16,6 @@ type Hotspot = {
   title: string;
   body: string;
   image: string;
-};
-
-const _placeholder = "";
-
-type _Unused = {
-  _: string;
   to: string;
   cta: string;
 };
