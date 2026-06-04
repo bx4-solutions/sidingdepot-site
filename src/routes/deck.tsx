@@ -37,8 +37,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "For long-lasting, composite decking (Trex Transcend or TimberTech AZEK) is the best choice for Georgia. Wood decks absorb moisture, warp in summer heat, and require sealing or staining every 2–3 years. Composite holds color, won't splinter, and handles Georgia's 50+ inches of annual rain without swelling. For budget projects, pressure-treated pine is still the most popular choice.",
   },
   {
-    q: "How long does deck construction take in North Atlanta?",
-    a: "A standard 300–400 sq ft deck takes 3–5 days to build once permits are approved. Permit approval in Cherokee and Cobb counties typically takes 5–15 business days. We recommend starting the permit process 3–4 weeks before your desired start date, especially in spring and summer when our schedule fills quickly.",
+    q: "How long does deck construction take in Marietta e Região?",
+    a: "A standard 300–400 sq ft deck takes 3–5 days to build once permits are approved. Permit approval typically takes 5–15 business days. We recommend starting the permit process 3–4 weeks before your desired start date, especially in spring and summer when our schedule fills quickly.",
   },
   {
     q: "Does a deck add value to a home in the Atlanta market?",
