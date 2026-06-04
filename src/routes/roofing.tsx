@@ -19,7 +19,7 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 const SERVICE_KEY = "roofing";
-const CITY = "Marietta";
+const CITY = "Marietta e Região";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
