@@ -106,9 +106,9 @@ const WHY_US = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Jennifer M.", city: "Marietta", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
-  { name: "David & Susan R.", city: "Alpharetta", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
-  { name: "Michael T.", city: "Marietta e região", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
+  { name: "Jennifer M.", city: "Marietta e Região", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
+  { name: "David & Susan R.", city: "Marietta e Região", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
+  { name: "Michael T.", city: "Marietta e Região", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
 ];
 
 function HomePage() {
