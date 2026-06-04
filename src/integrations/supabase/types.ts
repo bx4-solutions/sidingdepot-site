@@ -507,6 +507,30 @@ export type Database = {
         }
         Relationships: []
       }
+      site_health_logs: {
+        Row: {
+          check_type: string
+          created_at: string
+          id: string
+          payload: Json
+          status: string
+        }
+        Insert: {
+          check_type: string
+          created_at?: string
+          id?: string
+          payload?: Json
+          status: string
+        }
+        Update: {
+          check_type?: string
+          created_at?: string
+          id?: string
+          payload?: Json
+          status?: string
+        }
+        Relationships: []
+      }
       sync_jobs: {
         Row: {
           details: Json | null
