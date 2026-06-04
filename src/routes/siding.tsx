@@ -493,7 +493,12 @@ We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alphar
         </div>
       </section>
 
+      <HiringChecklist items={HIRING_CHECKLIST} />
+      
+      <FaqSection items={FAQ_ITEMS} title="Siding questions," />
+
       <BeforeAfterCarousel />
     </div>
   );
+
 }
