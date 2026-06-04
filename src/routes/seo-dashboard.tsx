@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { TRANSLATIONS, type Language } from "@/lib/translations";
 import { 
   Gauge, 
   LogOut, 
@@ -95,9 +96,9 @@ const FALLBACK_METRICS = {
 };
 
 const DATE_RANGE_PRESETS = [
-  { label: "7 dias", days: 7 },
-  { label: "30 dias", days: 30 },
-  { label: "90 dias", days: 90 },
+  { label: "7 dias", days: 7, labelKey: "7 dias" },
+  { label: "30 dias", days: 30, labelKey: "30 dias" },
+  { label: "90 dias", days: 90, labelKey: "90 dias" },
 ];
 
 const resolveDateRange = (days: number) => {
@@ -118,6 +119,12 @@ const getInitialDateRange = () => {
   } catch {
     return resolveDateRange(30);
   }
+};
+
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") return "pt";
+  const stored = window.localStorage.getItem("seo-dashboard-lang");
+  return (stored === "en" || stored === "pt") ? stored : "pt";
 };
 
 export const Route = createFileRoute("/seo-dashboard")({
@@ -158,14 +165,29 @@ function SEODashboard() {
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
   const [dateRange, setDateRange] = useState(getInitialDateRange);
+  const [lang, setLang] = useState<Language>(getInitialLanguage);
   const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
   const [selectedBlogArticle, setSelectedBlogArticle] = useState<any | null>(null);
   const [isAuditRunning, setIsAuditRunning] = useState(false);
   const userProfile = loaderData?.profile;
 
+  const t = (key: string) => {
+    const keys = key.split('.');
+    let current: any = TRANSLATIONS[lang];
+    for (const k of keys) {
+      if (!current || current[k] === undefined) return key;
+      current = current[k];
+    }
+    return current;
+  };
+
   useEffect(() => {
     window.localStorage.setItem("seo-dashboard-date-range", JSON.stringify(dateRange));
   }, [dateRange]);
+
+  useEffect(() => {
+    window.localStorage.setItem("seo-dashboard-lang", lang);
+  }, [lang]);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -266,26 +288,26 @@ function SEODashboard() {
   };
 
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "leads-realtime", label: "Leads Real-time", icon: Activity },
-    { id: "seo-audit", label: "Auditoria de SEO", icon: FileText },
-    { id: "campaigns", label: "Campanhas", icon: Target },
-    { id: "ab-testing", label: "Testes A/B", icon: Split },
-    { id: "visao-geral", label: "Visão Geral", icon: BarChart3 },
-    { id: "site", label: "Site", icon: Globe },
-    { id: "audiencia", label: "Audiência", icon: Users },
-    { id: "aquisicao", label: "Aquisição", icon: TrendingUp },
-    { id: "blog-analytics", label: "Analytics do Blog", icon: Zap },
-    { id: "alertas", label: "Alertas", icon: Bell },
-    { id: "gtm-debug", label: "GTM/GA4 Debugger", icon: Activity },
+    { id: "dashboard", labelKey: "dashboard", icon: LayoutDashboard },
+    { id: "leads-realtime", labelKey: "leadsRealtime", icon: Activity },
+    { id: "seo-audit", labelKey: "seoAudit", icon: FileText },
+    { id: "campaigns", labelKey: "campaigns", icon: Target },
+    { id: "ab-testing", labelKey: "abTesting", icon: Split },
+    { id: "visao-geral", labelKey: "overview", icon: BarChart3 },
+    { id: "site", labelKey: "site", icon: Globe },
+    { id: "audiencia", labelKey: "audience", icon: Users },
+    { id: "aquisicao", labelKey: "acquisition", icon: TrendingUp },
+    { id: "blog-analytics", labelKey: "blogAnalytics", icon: Zap },
+    { id: "alertas", labelKey: "alerts", icon: Bell },
+    { id: "gtm-debug", labelKey: "gtmDebugger", icon: Activity },
   ];
 
   const adminItems = [
-    { id: "blog", label: "Gerenciar Blog", icon: FileText },
-    { id: "calendar", label: "Calendário", icon: Calendar },
-    { id: "users", label: "Usuários", icon: Users },
-    { id: "integrations", label: "Integrações", icon: Settings },
-    { id: "profile", label: "Meu Perfil", icon: User },
+    { id: "blog", labelKey: "manageBlog", icon: FileText },
+    { id: "calendar", labelKey: "calendar", icon: Calendar },
+    { id: "users", labelKey: "users", icon: Users },
+    { id: "integrations", labelKey: "integrations", icon: Settings },
+    { id: "profile", labelKey: "profile", icon: User },
   ];
 
   const [newPassword, setNewPassword] = useState("");
@@ -321,25 +343,25 @@ function SEODashboard() {
     return (
       <div className="space-y-8 animate-in fade-in duration-500">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <KPICard title="Envios Hoje" value="4" icon={Activity} color="sd-green" diff="+2 vs ontem" />
-          <KPICard title="Taxa Real-time" value="3.2%" icon={Zap} color="sd-green" diff="Conversão da sessão" />
-          <KPICard title="Origem Principal" value="Google Ads" icon={Target} color="sd-green" diff="Campanha Siding 2026" />
+          <KPICard title={lang === 'pt' ? "Envios Hoje" : "Submissions Today"} value="4" icon={Activity} color="sd-green" diff={lang === 'pt' ? "+2 vs ontem" : "+2 vs yesterday"} />
+          <KPICard title={lang === 'pt' ? "Taxa Real-time" : "Real-time Rate"} value="3.2%" icon={Zap} color="sd-green" diff={lang === 'pt' ? "Conversão da sessão" : "Session conversion"} />
+          <KPICard title={lang === 'pt' ? "Origem Principal" : "Primary Source"} value="Google Ads" icon={Target} color="sd-green" diff={lang === 'pt' ? "Campanha Siding 2026" : "Siding 2026 Campaign"} />
         </div>
 
         <Card className="bg-[#131921] border-white/10">
           <CardHeader>
-            <CardTitle className="text-lg font-bold">Fluxo de Leads em Tempo Real</CardTitle>
-            <CardDescription>Monitoramento instantâneo de formulários e CTAs</CardDescription>
+            <CardTitle className="text-lg font-bold">{t('leadStream')}</CardTitle>
+            <CardDescription>{t('instantMonitoring')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow className="border-white/10">
-                  <TableHead className="text-slate-400">Hora</TableHead>
-                  <TableHead className="text-slate-400">Evento</TableHead>
-                  <TableHead className="text-slate-400">Localização</TableHead>
-                  <TableHead className="text-slate-400">Origem/CTA</TableHead>
-                  <TableHead className="text-slate-400">Canal</TableHead>
+                  <TableHead className="text-slate-400">{t('time')}</TableHead>
+                  <TableHead className="text-slate-400">{t('event')}</TableHead>
+                  <TableHead className="text-slate-400">{t('location')}</TableHead>
+                  <TableHead className="text-slate-400">{t('originCTA')}</TableHead>
+                  <TableHead className="text-slate-400">{t('channel')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -371,8 +393,8 @@ function SEODashboard() {
         <Card className="bg-[#131921] border-white/10">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
-              <CardTitle className="text-lg font-bold">Relatório de Auditoria de SEO</CardTitle>
-              <CardDescription>Verificação automática de metadados e indexabilidade</CardDescription>
+              <CardTitle className="text-lg font-bold">{t('auditReport')}</CardTitle>
+              <CardDescription>{t('auditDesc')}</CardDescription>
             </div>
             <Button 
               onClick={async () => {
@@ -386,7 +408,7 @@ function SEODashboard() {
               className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-bold"
             >
               {isAuditRunning ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <Search className="h-4 w-4 mr-2" />}
-              EXECUTAR AUDITORIA AGORA
+              {t('runAudit')}
             </Button>
           </CardHeader>
           <CardContent>
@@ -394,19 +416,19 @@ function SEODashboard() {
                 <div className="flex items-center justify-between mb-6">
                    <div className="flex gap-8">
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Páginas Auditadas</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('auditedPages')}</p>
                          <p className="text-2xl font-black">74</p>
                       </div>
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Indexáveis</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('indexable')}</p>
                          <p className="text-2xl font-black text-sd-green">100%</p>
                       </div>
                       <div>
-                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">Avisos</p>
+                         <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('warnings')}</p>
                          <p className="text-2xl font-black text-yellow-500">0</p>
                       </div>
                    </div>
-                   <Badge className="bg-sd-green text-sd-black">SAUDÁVEL</Badge>
+                   <Badge className="bg-sd-green text-sd-black">{t('healthy')}</Badge>
                 </div>
                 
                 <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
@@ -470,8 +492,8 @@ function SEODashboard() {
 
           <Card className="bg-[#131921] border-white/10">
             <CardHeader>
-              <CardTitle>Status da Integração</CardTitle>
-              <CardDescription>Conectividade com serviços de tracking</CardDescription>
+              <CardTitle>{t('integrationStatus')}</CardTitle>
+              <CardDescription>{t('trackingConnectivity')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {[
@@ -491,9 +513,9 @@ function SEODashboard() {
                 </div>
               ))}
               <div className="p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl">
-                <p className="text-xs text-sd-green font-bold mb-2">Dica de Debug:</p>
+                <p className="text-xs text-sd-green font-bold mb-2">{t('debugTip')}</p>
                 <p className="text-[11px] text-slate-300 leading-relaxed">
-                  Abra o console do navegador e digite <code className="bg-sd-black px-1 rounded">window.dataLayer</code> para ver o histórico completo de eventos brutos capturados nesta sessão.
+                  {t('debugDesc')}
                 </p>
               </div>
             </CardContent>
@@ -510,9 +532,9 @@ function SEODashboard() {
           <CardHeader>
             <CardTitle className="text-red-500 flex items-center gap-2">
               <AlertTriangle className="h-5 w-5" />
-              Alertas de SEO e Indexação
+              {t('alertsTitle')}
             </CardTitle>
-            <CardDescription>Inconsistências detectadas na última auditoria automática</CardDescription>
+            <CardDescription>{t('alertsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -565,12 +587,12 @@ function SEODashboard() {
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" />
-              {item.label}
+              {t(item.labelKey)}
             </button>
           ))}
 
           <div className="pt-6 pb-2">
-            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-300">Administração</span>
+            <span className="px-3 text-[10px] font-black uppercase tracking-widest text-slate-300">{t('administration')}</span>
           </div>
 
           {adminItems.map((item) => (
@@ -585,7 +607,7 @@ function SEODashboard() {
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" />
-              {item.label}
+              {t(item.labelKey)}
             </button>
           ))}
         </nav>
@@ -596,7 +618,7 @@ function SEODashboard() {
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-slate-200 hover:text-white hover:bg-white/5 transition-all"
           >
             <LogOut className="h-4 w-4" />
-            Sair do Painel
+            {t('logout')}
           </button>
         </div>
       </aside>
@@ -605,32 +627,59 @@ function SEODashboard() {
         {/* TOP BAR */}
         <header className="h-16 border-b border-white/10 bg-[#131921] px-8 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <div className="flex items-center gap-4">
-             <h2 className="text-lg font-bold capitalize">{activeView.replace('-', ' ')}</h2>
+             <h2 className="text-lg font-bold capitalize">
+               {activeView === 'dashboard' ? t('dashboard') : t(menuItems.find(i => i.id === activeView)?.labelKey || adminItems.find(i => i.id === activeView)?.labelKey || activeView.replace('-', ' '))}
+             </h2>
              <div className="flex flex-col">
                <span className="text-slate-300 text-[10px] flex items-center gap-2">
                  <Clock className="h-3 w-3" /> 
-                 {isFetching ? "Atualizando..." : "Sincronizado"}
+                 {isFetching ? t('updating') : t('synchronized')}
                  <button 
                    onClick={() => {
                      refetch();
-                     toast.success("Atualizando dados...");
+                     toast.success(t('refreshingData'));
                    }}
                    disabled={isFetching}
                    className="p-1 hover:bg-white/5 rounded-md transition-colors disabled:opacity-50"
-                   title="Atualizar agora"
+                   title={t('updateNow')}
                  >
                    <RefreshCw className={cn("h-3 w-3", isFetching && "animate-spin")} />
                  </button>
                </span>
                {metrics?.isSimulated && (
                  <span className="text-[9px] text-sd-green/70 font-bold uppercase tracking-widest">
-                   Modo Demonstração (Dados Simulados)
+                   {t('demoMode')}
                  </span>
                )}
              </div>
           </div>
 
           <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-lg border border-white/10 mr-2">
+              <button
+                onClick={() => setLang('pt')}
+                className={cn(
+                  "p-1.5 rounded transition-all flex items-center gap-2",
+                  lang === 'pt' ? "bg-sd-green text-sd-black" : "hover:bg-white/10 text-slate-400"
+                )}
+                title="Português"
+              >
+                <img src="https://flagcdn.com/w20/br.png" alt="PT" className="w-4 h-3 object-cover rounded-sm" />
+                <span className="text-[10px] font-bold">PT</span>
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={cn(
+                  "p-1.5 rounded transition-all flex items-center gap-2",
+                  lang === 'en' ? "bg-sd-green text-sd-black" : "hover:bg-white/10 text-slate-400"
+                )}
+                title="English"
+              >
+                <img src="https://flagcdn.com/w20/us.png" alt="EN" className="w-4 h-3 object-cover rounded-sm" />
+                <span className="text-[10px] font-bold">EN</span>
+              </button>
+            </div>
+
             <div className="flex flex-wrap items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
               <Calendar className="h-3 w-3 text-sd-green" />
               {DATE_RANGE_PRESETS.map((preset) => (
@@ -640,7 +689,7 @@ function SEODashboard() {
                   onClick={() => setDateRange(resolveDateRange(preset.days))}
                   className="rounded-md px-2 py-1 text-[10px] font-black uppercase text-slate-200 hover:bg-white/10 hover:text-white"
                 >
-                  {preset.label}
+                  {t(`datePresets.${preset.labelKey}`)}
                 </button>
               ))}
               <Input
@@ -674,8 +723,8 @@ function SEODashboard() {
           <div className="max-w-[1400px] mx-auto space-y-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? 'Painel de Controle' : menuItems.find(i => i.id === activeView)?.label || adminItems.find(i => i.id === activeView)?.label}</h1>
-                <p className="text-slate-200 text-sm">Acompanhe seus indicadores de performance e conversão em tempo real.</p>
+                <h1 className="text-3xl font-black tracking-tight">{activeView === 'dashboard' ? t('dashboard') : t(menuItems.find(i => i.id === activeView)?.labelKey || adminItems.find(i => i.id === activeView)?.labelKey || '')}</h1>
+                <p className="text-slate-200 text-sm">{t('performanceRealtime')}</p>
               </div>
               <div className="flex items-center gap-2">
                 <Button 
@@ -683,17 +732,17 @@ function SEODashboard() {
                   onClick={() => handleExport('csv')}
                   className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
                 >
-                  <Download className="h-4 w-4 mr-2" /> CSV
+                  <Download className="h-4 w-4 mr-2" /> {t('export')} CSV
                 </Button>
                 <Button 
                   variant="outline"
                   onClick={() => {
-                    toast.success("Gerando Relatório Semanal consolidado...");
+                    toast.success(t('generatingWeeklyReport'));
                     handleExport('pdf');
                   }}
                   className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
                 >
-                  <FileText className="h-4 w-4 mr-2" /> RELATÓRIO SEMANAL (PDF)
+                  <FileText className="h-4 w-4 mr-2" /> {t('weeklyReport')}
                 </Button>
               </div>
             </div>
@@ -703,28 +752,28 @@ function SEODashboard() {
                 <div className="bg-sd-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                   <AlertTriangle className="h-8 w-8 text-sd-green" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Sessão Expirada ou Desconectado</h3>
+                <h3 className="text-xl font-bold mb-2">{t('sessionExpired')}</h3>
                 <p className="text-slate-200 mb-8 max-w-sm mx-auto">
-                  Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.
+                  {lang === 'pt' ? 'Não foi possível detectar sua sessão. Por favor, reconecte-se para visualizar as métricas.' : 'Unable to detect your session. Please reconnect to view metrics.'}
                 </p>
                 <Button 
                   onClick={() => navigate({ to: "/admin/login" })}
                   className="bg-sd-green hover:bg-sd-green-hover text-sd-black font-black"
                 >
-                  <RefreshCcw className="h-4 w-4 mr-2" /> RECONECTAR AGORA
+                  <RefreshCcw className="h-4 w-4 mr-2" /> {t('reconnectNow')}
                 </Button>
               </Card>
             ) : error ? (
               <Card className="bg-[#131921] border-red-500/20 p-12 text-center animate-in fade-in duration-500">
                 <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold">Erro ao buscar métricas</h3>
-                <p className="text-slate-200 mt-2">Ocorreu uma falha intermitente na conexão com o servidor.</p>
+                <h3 className="text-xl font-bold">{t('fetchingError')}</h3>
+                <p className="text-slate-200 mt-2">{lang === 'pt' ? 'Ocorreu uma falha intermitente na conexão com o servidor.' : 'An intermittent server connection failure occurred.'}</p>
                 <Button 
                   onClick={() => refetch()}
                   variant="outline"
                   className="mt-6 border-white/10 hover:bg-white/5"
                 >
-                  TENTAR NOVAMENTE
+                  {t('tryAgain')}
                 </Button>
               </Card>
             ) : isLoading ? (
@@ -744,28 +793,28 @@ function SEODashboard() {
                   <div className="space-y-8 animate-in fade-in duration-500">
                     {/* KPI GRIDS */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                      <KPICard title="Total Conversões" value={metrics?.overview.totalConversions} icon={MousePointer2} color="sd-green" diff="+12% vs anterior" />
-                      <KPICard title="Taxa Conversão" value={`${metrics?.overview.conversionRate}%`} icon={TrendingUp} color="sd-green" diff="+0.5% vs anterior" />
-                      <KPICard title="Call Clicks" value={metrics?.clickEvents?.find((e: any) => e.button.toLowerCase().includes('call'))?.clicks || 0} icon={Phone} color="sd-green" diff="Leads por telefone" />
-                      <KPICard title="Agendamentos" value={metrics?.overview.appointments} icon={CalendarCheck2} color="sd-green" diff="3 novos hoje" />
-                      <KPICard title="Chat com Bia" value={metrics?.overview.chatInteractions} icon={MessageSquare} color="sd-green" diff="Interações 24h" />
+                      <KPICard title={t('totalConversions')} value={metrics?.overview.totalConversions} icon={MousePointer2} color="sd-green" diff={lang === 'pt' ? "+12% vs anterior" : "+12% vs previous"} />
+                      <KPICard title={t('conversionRate')} value={`${metrics?.overview.conversionRate}%`} icon={TrendingUp} color="sd-green" diff={lang === 'pt' ? "+0.5% vs anterior" : "+0.5% vs previous"} />
+                      <KPICard title={t('callClicks')} value={metrics?.clickEvents?.find((e: any) => e.button.toLowerCase().includes('call'))?.clicks || 0} icon={Phone} color="sd-green" diff={lang === 'pt' ? "Leads por telefone" : "Phone leads"} />
+                      <KPICard title={t('appointments')} value={metrics?.overview.appointments} icon={CalendarCheck2} color="sd-green" diff={lang === 'pt' ? "3 novos hoje" : "3 new today"} />
+                      <KPICard title={t('chatInteractions')} value={metrics?.overview.chatInteractions} icon={MessageSquare} color="sd-green" diff={lang === 'pt' ? "Interações 24h" : "24h interactions"} />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      <MiniKPICard title="Total Visitantes" value="12.4k" diff="+5%" />
-                      <MiniKPICard title="Únicos" value="8.9k" diff="+3%" />
-                      <MiniKPICard title="Visualizações" value="32.1k" diff="+8%" />
-                      <MiniKPICard title="Pág/Visita" value="2.6" diff="+1%" />
-                      <MiniKPICard title="Bounce" value="42%" diff="-2%" />
-                      <MiniKPICard title="Tempo Médio" value="2m 45s" diff="+15s" />
+                      <MiniKPICard title={t('totalVisitors')} value="12.4k" diff="+5%" />
+                      <MiniKPICard title={t('uniqueVisitors')} value="8.9k" diff="+3%" />
+                      <MiniKPICard title={t('pageViews')} value="32.1k" diff="+8%" />
+                      <MiniKPICard title={t('pagesPerVisit')} value="2.6" diff="+1%" />
+                      <MiniKPICard title={t('bounceRate')} value="42%" diff="-2%" />
+                      <MiniKPICard title={t('avgSessionDuration')} value="2m 45s" diff="+15s" />
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       <Card className="lg:col-span-2 bg-[#131921] border-white/10">
                         <CardHeader className="flex flex-row items-center justify-between pb-8">
                           <div>
-                            <CardTitle className="text-lg font-bold text-white">Evolução de Tráfego</CardTitle>
-                            <CardDescription className="text-xs">Visualizações e visitantes únicos nos últimos 30 dias</CardDescription>
+                            <CardTitle className="text-lg font-bold text-white">{t('trafficEvolution')}</CardTitle>
+                            <CardDescription className="text-xs">{t('trafficEvolutionDesc')}</CardDescription>
                           </div>
                         </CardHeader>
                         <CardContent className="h-[300px] p-0 pr-6">
@@ -792,8 +841,8 @@ function SEODashboard() {
 
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold text-white">Fontes de Aquisição</CardTitle>
-                          <CardDescription className="text-xs">Principais canais de entrada</CardDescription>
+                          <CardTitle className="text-lg font-bold text-white">{t('acquisitionSources')}</CardTitle>
+                          <CardDescription className="text-xs">{t('mainChannels')}</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-col items-center justify-center pt-0">
                            <div className="h-[200px] w-full">
@@ -901,10 +950,10 @@ function SEODashboard() {
                             <table className="w-full text-sm text-left">
                               <thead>
                                 <tr className="border-b border-white/5 text-slate-400 text-[10px] uppercase font-black tracking-widest">
-                                  <th className="pb-3 px-2">Página</th>
-                                  <th className="pb-3 text-right">Views</th>
-                                  <th className="pb-3 text-right">Tempo Médio</th>
-                                  <th className="pb-3 text-right">Bounce</th>
+                                  <th className="pb-3 px-2">{t('page')}</th>
+                                  <th className="pb-3 text-right">{t('views')}</th>
+                                  <th className="pb-3 text-right">{t('avgTime')}</th>
+                                  <th className="pb-3 text-right">{t('bounce')}</th>
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-white/5">
@@ -942,13 +991,13 @@ function SEODashboard() {
 
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader>
-                          <CardTitle className="text-lg font-bold text-white">Origem de Leads</CardTitle>
-                          <CardDescription className="text-xs">Rastreamento de conversão por canal</CardDescription>
+                          <CardTitle className="text-lg font-bold text-white">{t('leadOrigin')}</CardTitle>
+                          <CardDescription className="text-xs">{t('trackingChannel')}</CardDescription>
                         </CardHeader>
                         <CardHeader className="flex flex-row items-center justify-between">
                           <div>
-                            <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Performance por CTA e Serviço</CardTitle>
-                            <CardDescription className="text-xs">Segmentação por texto, seção e categoria</CardDescription>
+                            <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">{t('ctaPerformance')}</CardTitle>
+                            <CardDescription className="text-xs">{t('segmentationDesc')}</CardDescription>
                           </div>
                           <div className="flex gap-2">
                             <Badge variant="outline" className="border-sd-green/30 text-sd-green">Top CTA: Hero</Badge>
