@@ -25,8 +25,8 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does a deck cost in Marietta or Marietta e região, GA in 2026?",
-    a: "A pressure-treated wood deck in North Atlanta runs $15–$25 per square foot installed, so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech) costs $30–$55 per square foot — so $9,000–$16,500 for the same deck — but lasts 25–30 years with virtually no durable. Elevated decks, screened porches, and multi-level designs increase cost.",
+    q: "How much does a deck cost in Marietta e Região, GA in 2026?",
+    a: "A pressure-treated wood deck in Marietta e Região runs $15–$25 per square foot installed, so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech) costs $30–$55 per square foot — so $9,000–$16,500 for the same deck — but lasts 25–30 years. Elevated decks, screened porches, and multi-level designs increase cost.",
   },
   {
     q: "Do I need a permit to build a deck in Cherokee or Cobb County?",
