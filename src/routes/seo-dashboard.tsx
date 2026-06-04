@@ -96,9 +96,9 @@ const FALLBACK_METRICS = {
 };
 
 const DATE_RANGE_PRESETS = [
-  { label: "7 dias", days: 7 },
-  { label: "30 dias", days: 30 },
-  { label: "90 dias", days: 90 },
+  { label: "7 dias", days: 7, labelKey: "7 dias" },
+  { label: "30 dias", days: 30, labelKey: "30 dias" },
+  { label: "90 dias", days: 90, labelKey: "90 dias" },
 ];
 
 const resolveDateRange = (days: number) => {
