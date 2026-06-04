@@ -15,6 +15,8 @@ type HeroProps = {
   showCallCta?: boolean;
   /** Right-column slot (typically a quote form). When provided, layout becomes 2-col on lg+. */
   formSlot?: ReactNode;
+  /** When provided, replaces the default primary + call CTA buttons. */
+  ctaSlot?: ReactNode;
   /** Trust bullets shown under the subtitle. */
   trustItems?: ReadonlyArray<string>;
   children?: ReactNode;
@@ -36,6 +38,7 @@ export function HeroSection({
   primaryCta = { label: "Schedule FREE Quote", to: "/contact" },
   showCallCta = true,
   formSlot,
+  ctaSlot,
   trustItems = DEFAULT_TRUST,
   children,
 }: HeroProps) {
@@ -99,21 +102,27 @@ export function HeroSection({
           {children && <div className="mt-8">{children}</div>}
 
           <div className="mt-9 flex flex-wrap gap-3">
-            {primaryCta.to ? (
-              <Button asChild size="lg">
-                <Link to={primaryCta.to}>{primaryCta.label}</Link>
-              </Button>
+            {ctaSlot ? (
+              ctaSlot
             ) : (
-              <Button asChild size="lg">
-                <a href={primaryCta.href}>{primaryCta.label}</a>
-              </Button>
-            )}
-            {showCallCta && (
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
-                  <Phone aria-hidden="true" /> Call {SITE.phone}
-                </a>
-              </Button>
+              <>
+                {primaryCta.to ? (
+                  <Button asChild size="lg">
+                    <Link to={primaryCta.to}>{primaryCta.label}</Link>
+                  </Button>
+                ) : (
+                  <Button asChild size="lg">
+                    <a href={primaryCta.href}>{primaryCta.label}</a>
+                  </Button>
+                )}
+                {showCallCta && (
+                  <Button asChild size="lg" variant="outlineWhite">
+                    <a href={SITE.phoneHref}>
+                      <Phone aria-hidden="true" /> Call {SITE.phone}
+                    </a>
+                  </Button>
+                )}
+              </>
             )}
           </div>
         </div>

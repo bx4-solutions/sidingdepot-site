@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck, Sparkles, Users, ListChecks } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
-import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { HeroCtaButtons } from "@/components/site/HeroCtaButtons";
 import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
@@ -124,12 +124,13 @@ function HomePage() {
         }
         subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
+        showCallCta={false}
         trustItems={[
           "Elite Preferred · Top 2% EUA",
           "Mais de 1.500 casas no norte de Atlanta",
           "Financiamento GreenSky com 0% de juros",
         ]}
-        formSlot={<HeroQuoteForm />}
+        ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
 
       <ProofBar />
