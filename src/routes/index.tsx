@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { HeroCtaButtons } from "@/components/site/HeroCtaButtons";
 import { ProofBar } from "@/components/site/ProofBar";
+import { MultiRatingsStrip } from "@/components/site/MultiRatingsStrip";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { CityCard } from "@/components/site/CityCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
@@ -138,6 +139,8 @@ function HomePage() {
       />
 
       <ProofBar />
+
+      <MultiRatingsStrip />
 
       <PainPointsSection />
 
