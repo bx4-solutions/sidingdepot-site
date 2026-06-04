@@ -157,7 +157,7 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
       { title: "HomeAdvisor", subtitle: "Top Rated", icon: Star },
     ],
     reviews: [
-      { name: "David K.", city: "Marietta e região", text: "They used high-end Emerald paint and the finish is flawless. My house looks brand new after 10 years of neglect.", rating: 5 },
+      { name: "David K.", city: "Greater Marietta", text: "They used high-end Emerald paint and the finish is flawless. My house looks brand new after 10 years of neglect.", rating: 5 },
       { name: "Jennifer L.", city: "Marietta", text: "The prep work was amazing. They spent 2 days just scraping and caulking before a single drop of paint touched the wall.", rating: 5 },
     ],
   },

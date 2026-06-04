@@ -404,7 +404,7 @@ export const SidingGuide = () => {
           </div>
 
           <p className="mt-12 text-white/70 text-[10px] uppercase tracking-[0.1em] italic max-w-lg leading-relaxed">
-            Serving Marietta · Alpharetta · Milton · Marietta e região · Woodstock · Roswell · Kennesaw · Johns Creek · Sandy Springs · Acworth
+            Serving Marietta · Alpharetta · Milton · Greater Marietta · Woodstock · Roswell · Kennesaw · Johns Creek · Sandy Springs · Acworth
           </p>
           
           <p className="mt-8 text-white/60 text-[9px] uppercase tracking-widest">

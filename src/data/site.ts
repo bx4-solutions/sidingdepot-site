@@ -7,10 +7,10 @@ export const SITE = {
   email: "office@sidingdepot.com",
   address: {
     street: "3036 Roswell Rd",
-    city: "Marietta e Região",
+    city: "Greater Marietta",
     state: "GA",
     zip: "30062",
-    full: "3036 Roswell Rd, Marietta e Região, GA 30062",
+    full: "3036 Roswell Rd, Greater Marietta, GA 30062",
   },
   hours: "Mon–Sat: 8:00 AM – 6:00 PM",
   greenSkyUrl:
@@ -33,7 +33,7 @@ export const SITE = {
 export const HERO = {
   bgImage: "/hero-home.webp",
   bgImageMobile: "/hero-home-sm.webp",
-  bgAlt: "Newly renovated Marietta e Região home with James Hardie siding by Siding Depot",
+  bgAlt: "Newly renovated Greater Marietta home with James Hardie siding by Siding Depot",
 } as const;
 
 import {
@@ -91,11 +91,11 @@ export const SERVICES: ReadonlyArray<{
   { slug: "deck", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
   { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
   { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in Marietta e Região.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
+  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in Greater Marietta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
 ];
 
 export const CITIES = [
-  { slug: "marietta", name: "Marietta e Região", county: "Cobb County" },
+  { slug: "marietta", name: "Greater Marietta", county: "Cobb County" },
 ] as const;
 
 export const STATS = [
@@ -120,7 +120,7 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Consultation",
-    desc: "Free on-site visit in Marietta e Região. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
+    desc: "Free on-site visit in Greater Marietta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
   },
   {
     num: "02",
@@ -175,26 +175,26 @@ export const PROJECTS: ReadonlyArray<Project> = [
   {
     slug: "hardie-board-batten-marietta",
     src: "/projects/project-1.webp",
-    alt: "Two-story Marietta e Região home with new James Hardie blue siding, fresh paint and white trim",
+    alt: "Two-story Greater Marietta home with new James Hardie blue siding, fresh paint and white trim",
     tags: ["Siding", "Painting", "Windows"],
-    title: "James Hardie Board & Batten Siding — Marietta e Região, GA",
+    title: "James Hardie Board & Batten Siding — Greater Marietta, GA",
     category: "Siding Installation & Replacement",
-    city: "Marietta e Região, GA",
+    city: "Greater Marietta, GA",
     date: "2026-04-29",
     description:
-      "Full James Hardie Board & Batten siding replacement on a two-story Marietta e Região home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
+      "Full James Hardie Board & Batten siding replacement on a two-story Greater Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
   },
   {
     slug: "hardie-repaint-deck-marietta-e-regiao",
     src: "/projects/project-6.webp",
-    alt: "Three-story Marietta e Região home with bold blue siding, white trim and rebuilt rear deck",
+    alt: "Three-story Greater Marietta home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
-    title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta e Região, GA",
+    title: "Hardie Siding, Repaint & Rebuilt Deck — Greater Marietta, GA",
     category: "Siding Installation & Replacement",
-    city: "Marietta e Região, GA",
+    city: "Greater Marietta, GA",
     date: "2026-03-28",
     description:
-      "Three-story Marietta e Região home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
+      "Three-story Greater Marietta home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
   },
 ];
 
@@ -213,8 +213,8 @@ export const BEFORE_AFTER_PAIRS = [
   {
     before: "/projects/project-1-before.webp",
     after: "/projects/project-1.webp",
-    beforeAlt: "Marietta e Região home before renovation with peeling paint and worn siding",
-    afterAlt: "Same Marietta e Região home transformed with James Hardie blue siding by Siding Depot",
+    beforeAlt: "Greater Marietta home before renovation with peeling paint and worn siding",
+    afterAlt: "Same Greater Marietta home transformed with James Hardie blue siding by Siding Depot",
   },
   {
     before: "/projects/project-5-before.webp",

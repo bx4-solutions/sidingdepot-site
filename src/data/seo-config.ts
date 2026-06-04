@@ -55,19 +55,19 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Energy-Efficient Window Replacement in ${c}, GA`,
       h2: "Energy Star® Certified Low-E Double-Pane Windows",
       metaTitle: (c) => `Energy Star Windows in ${c}, GA | Siding Depot`,
-      metaDesc: "Energy Star certified Simonton & PGT windows installed in Marietta e Região. Low-E double-pane built for Georgia summers. Free 24h quote.",
+      metaDesc: "Energy Star certified Simonton & PGT windows installed in Greater Marietta. Low-E double-pane built for Georgia summers. Free 24h quote.",
     },
     B: {
       h1: (c) => `Lower Cooling Bills with New Windows in ${c}, GA`,
       h2: "Low-E Windows Sized for Atlanta Climate Zone (3A/4A)",
       metaTitle: (c) => `Window Replacement ${c}, GA | Cut Cooling Costs`,
-      metaDesc: "According to Energy Star, certified Low-E windows can meaningfully cut summer cooling costs in Marietta e Região. Free home assessment from Siding Depot.",
+      metaDesc: "According to Energy Star, certified Low-E windows can meaningfully cut summer cooling costs in Greater Marietta. Free home assessment from Siding Depot.",
     },
     C: {
       h1: (c) => `Window Installation Experts in ${c}, GA`,
       h2: "Permits Handled · Manufacturer-Trained Crews",
-      metaTitle: (c) => `Window Installers ${c}, GA | Marietta e Região`,
-      metaDesc: "We handle Marietta e Região permits and install Simonton/PGT windows by manufacturer-trained crews. Free written quote in 24h.",
+      metaTitle: (c) => `Window Installers ${c}, GA | Greater Marietta`,
+      metaDesc: "We handle Greater Marietta permits and install Simonton/PGT windows by manufacturer-trained crews. Free written quote in 24h.",
     },
   },
   doors: {
@@ -75,7 +75,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Entry & Patio Door Installation in ${c}, GA`,
       h2: "Therma-Tru® & ProVia® Authorized Installer",
       metaTitle: (c) => `Entry & Patio Doors in ${c}, GA | Therma-Tru · ProVia`,
-      metaDesc: "Custom Therma-Tru & ProVia entry and patio doors installed in Marietta e Região. Energy Star options. Multi-point security. Free 24h quote.",
+      metaDesc: "Custom Therma-Tru & ProVia entry and patio doors installed in Greater Marietta. Energy Star options. Multi-point security. Free 24h quote.",
     },
     B: {
       h1: (c) => `Secure Fiberglass Entry Doors in ${c}, GA`,
@@ -87,7 +87,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Custom Door Replacement in ${c}, GA`,
       h2: "Same-Day Quotes · Precision Sill Alignment",
       metaTitle: (c) => `Door Replacement ${c}, GA | Free Quote — Siding Depot`,
-      metaDesc: "Custom entry & patio door replacement in Marietta e Região. Authorized dealer. Precision install. Get a free written quote in 24 hours.",
+      metaDesc: "Custom entry & patio door replacement in Greater Marietta. Authorized dealer. Precision install. Get a free written quote in 24 hours.",
     },
   },
   gutters: {
@@ -107,7 +107,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Gutter Installers in ${c}, GA`,
       h2: "Hidden Hangers · Same-Day Install",
       metaTitle: (c) => `Gutter Installers ${c}, GA | Same-Day — Siding Depot`,
-      metaDesc: "Most homes installed in 4–8 hours. Hidden-hanger seamless aluminum gutters. Licensed & insured in Marietta e Região. Free quote.",
+      metaDesc: "Most homes installed in 4–8 hours. Hidden-hanger seamless aluminum gutters. Licensed & insured in Greater Marietta. Free quote.",
     },
   },
   deck: {
@@ -115,7 +115,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Custom Deck Construction in ${c}, GA`,
       h2: "Composite, Hardwood & Pressure-Treated Decks",
       metaTitle: (c) => `Custom Decks in ${c}, GA | Trex Pro — Siding Depot`,
-      metaDesc: "Trex Pro & TimberTech composite decks built in Marietta e Região. Permit-ready engineered plans. Free estimate in 24h.",
+      metaDesc: "Trex Pro & TimberTech composite decks built in Greater Marietta. Permit-ready engineered plans. Free estimate in 24h.",
     },
     B: {
       h1: (c) => `Low-Maintenance Composite Decks in ${c}, GA`,
@@ -127,7 +127,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `Deck Builders in ${c}, GA`,
       h2: "Permits Handled · Stamped Engineered Plans",
       metaTitle: (c) => `Deck Builders ${c}, GA | Permit-Ready Plans`,
-      metaDesc: "We handle Marietta e Região permits and deliver stamped engineered plans on every deck. Free quote in 24h.",
+      metaDesc: "We handle Greater Marietta permits and deliver stamped engineered plans on every deck. Free quote in 24h.",
     },
   },
   roofing: {
@@ -135,13 +135,13 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h1: (c) => `GAF Certified Roofing in ${c}, GA`,
       h2: "GAF Factory Certified Replacement",
       metaTitle: (c) => `Roofing in ${c}, GA | GAF Factory Certified`,
-      metaDesc: "GAF Factory Certified roof replacement in Marietta e Região. Golden Pledge® warranties available. Free 24h quote from Siding Depot.",
+      metaDesc: "GAF Factory Certified roof replacement in Greater Marietta. Golden Pledge® warranties available. Free 24h quote from Siding Depot.",
     },
     B: {
       h1: (c) => `Storm-Ready Roof Replacement in ${c}, GA`,
       h2: "Hail & Wind Damage Specialists · Insurance Documentation",
       metaTitle: (c) => `Storm Damage Roofing ${c}, GA | Insurance Help`,
-      metaDesc: "Hail & wind storm damage specialists. Free inspection and full insurance claim documentation in Marietta e Região. Call today.",
+      metaDesc: "Hail & wind storm damage specialists. Free inspection and full insurance claim documentation in Greater Marietta. Call today.",
     },
     C: {
       h1: (c) => `Roof Replacement in ${c}, GA`,

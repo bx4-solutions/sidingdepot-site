@@ -19,25 +19,25 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 const SERVICE_KEY = "roofing";
-const CITY = "Marietta e Região";
+const CITY = "Greater Marietta";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does roof replacement cost in Marietta e Região, GA in 2026?",
-    a: "A full roof replacement in the Marietta e Região area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
+    q: "How much does roof replacement cost in Greater Marietta, GA in 2026?",
+    a: "A full roof replacement in the Greater Marietta area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
   },
   {
     q: "Does homeowner's insurance cover roof replacement in Georgia?",
     a: "Yes, if the damage was caused by a covered event — hail, wind, fallen tree, or fire. Georgia's storm season creates thousands of roof insurance claims annually across Cobb, Cherokee, and Fulton counties. We inspect for storm damage, document it with photos, provide an insurance-grade estimate, and can meet your adjuster on-site. You pay only your deductible.",
   },
   {
-    q: "When should I replace my roof in Marietta e Região?",
+    q: "When should I replace my roof in Greater Marietta?",
     a: "If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is the most cost-effective long-term solution. We offer free inspections and give you an honest recommendation for a full system replacement.",
   },
   {
-    q: "How long does a roof replacement take in Marietta e Região?",
+    q: "How long does a roof replacement take in Greater Marietta?",
     a: "Most residential roof replacements take 1–2 days. We start early, complete in one day when possible, and leave your property clean. You won't have an exposed roof overnight. We pull all required permits before starting work.",
   },
   {
@@ -45,7 +45,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "We install GAF Timberline HDZ shingles as our primary product — GAF is North America's largest roofing manufacturer. As a GAF Factory Certified contractor, we offer the Golden Pledge warranty (50 years on product, 25 years on labor), which is only available through certified installers. We also install Owens Corning Duration series.",
   },
   {
-    q: "Should I be worried about roof damage after a hail storm in Marietta e Região?",
+    q: "Should I be worried about roof damage after a hail storm in Greater Marietta?",
     a: "Yes. Georgia's hail season (March through June) causes significant roof damage that isn't always visible from the ground. Even quarter-sized hail can bruise asphalt shingles, reducing their lifespan by years. After any storm, we recommend a free inspection for full replacement — there's no obligation and no cost.",
   },
 ];
@@ -102,7 +102,7 @@ function RoofingPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Roofing"
       faqs={FAQS}
-      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Marietta e Região, GA. We replace asphalt shingle and metal roofs in Marietta e Região — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
+      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Greater Marietta, GA. We replace asphalt shingle and metal roofs in Greater Marietta — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
       ctaAccent="decades, not seasons?"
       trustBadge={{ title: "GAF Factory Certified", subtitle: "Golden Pledge Warranty" }}
     />
