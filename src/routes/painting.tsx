@@ -47,12 +47,36 @@ const FAQS: ReadonlyArray<FaqItem> = [
 ];
 
 const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "Premium paint system", desc: "Insist on Sherwin-Williams Emerald or Duration grade — not contractor-grade builder paint that fades inside 3 summers." },
-  { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit changes hands." },
-  { Icon: FileText, title: "Itemized scope of work", desc: "Demand a written scope: power-wash, scrape, sand, prime, caulk, two finish coats. A vague single price hides corner-cutting." },
-  { Icon: Wrench, title: "Highly specialized certified teams, not day labor", desc: "Ask who actually paints. highly specialized certified professionals are trained, insured, and accountable for the warranty." },
-  { Icon: Search, title: "Recent local reviews", desc: "50+ recent Google reviews from your county, with photos. Drive past completed jobs after 2 summers — that is the real test." },
-  { Icon: Clock, title: "Honest timeline", desc: "A typical full exterior repaint runs 4–8 working days depending on prep. Anything faster is skipping prep — the step that actually makes paint last." },
+  { 
+    Icon: Award, 
+    title: "Sherwin-Williams Duration® & SuperPaint®", 
+    desc: "We only use Sherwin-Williams premium exterior lines — never cheap builder-grade paint. Duration® carries a 15-year warranty against peeling and fading in Georgia's climate." 
+  },
+  { 
+    Icon: ShieldCheck, 
+    title: "Full Prep — Not Just Paint", 
+    desc: "Pressure washing, scraping, caulking, wood rot repair and primer coat — every time. Skipping prep is why other companies' work fails in 2 years. We don't skip steps." 
+  },
+  { 
+    Icon: FileText, 
+    title: "Color Consultation Included", 
+    desc: "Our project managers bring Sherwin-Williams color samples to your home. We help you choose colors that complement your siding, trim and neighborhood. No extra charge." 
+  },
+  { 
+    Icon: Wrench, 
+    title: "Written Estimate — Price Guaranteed", 
+    desc: "You receive an itemized written estimate before work starts. The price in the estimate is the price you pay. No 'discovered' issues that double the invoice mid-project." 
+  },
+  { 
+    Icon: Search, 
+    title: "W-2 Crews — Not Day Labor", 
+    desc: "Every painter on your property is a Siding Depot W-2 employee. Trained, background-checked, insured, and accountable to us — not a temporary hire you've never met." 
+  },
+  { 
+    Icon: Clock, 
+    title: "Combination Projects — Save More", 
+    desc: "Most of our painting projects are combined with siding or other exterior work. When you do multiple services together, you save on setup, prep and project management costs." 
+  },
 ];
 
 export const Route = createFileRoute("/painting")({
@@ -83,22 +107,22 @@ function PaintingPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
-      eyebrow="Sherwin-Williams · PRO Preferred"
-      title="Exterior Painting,"
-      titleAccent="High-Performance Systems."
-      intro="A repaint should last a decade, not a few seasons. We utilize Sherwin-Williams® Emerald and Duration systems to create a UV-resistant thermal barrier that handles North Atlanta's extreme temperature swings."
+      eyebrow="Exterior Painting — North Atlanta"
+      title="Exterior Painting in Marietta, Canton &"
+      titleAccent="North Atlanta, GA"
+      intro={"Georgia's heat and humidity are relentless. UV exposure, temperature swings from 20°F in January to 100°F in August, and year-round moisture cause cheap exterior paint to crack, peel, and fade within 2–3 years.\n\nSiding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium exterior coatings engineered specifically for hot, humid climates like Marietta and Cherokee County. These paints carry a 15-year warranty against peeling and fading.\n\nEvery Siding Depot painting project starts with a thorough prep: pressure washing, scraping, caulking every gap and crack, and a full primer coat. The paint goes on last. This is why our results look better at year 5 than most competitors' results look at year 1.\n\nOur W-2 crews — never subcontractors — handle every exterior painting project in North Atlanta. A dedicated project manager oversees every stage. You receive a written, itemized estimate before a single brush touches your house. The price in the estimate is the price you pay."}
       benefits={[
-        "Sherwin-Williams Emerald® UV-shield coatings",
-        "Multi-stage prep: wash, scrape, sand, and prime",
-        "Self-cleaning technology resists dirt and mildew",
-        "5-year workmanship warranty on all full repaints",
+        "Sherwin-Williams Duration® & SuperPaint®",
+        "Full multi-stage surface preparation",
+        "W-2 employee crews (never subcontractors)",
+        "Written itemized estimates guaranteed",
       ]}
       hiringRole="exterior painter"
-      hiringIntro="A repaint is your home's primary line of defense against moisture. Use this checklist to ensure your painting partner doesn't skip critical surface preparation."
+      hiringIntro="Premium paint. Proper prep. Professionals who show up on time and clean up when they leave."
       hiringChecklist={CHECKLIST}
       faqLabel="Painting"
       faqs={FAQS}
-      seoParagraph="Siding Depot provides professional exterior painting across Marietta e Região. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
+      seoParagraph="Professional exterior painting in Marietta, Canton and North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012."
       ctaAccent="quality and durability?"
       trustBadge={{ title: "Sherwin-Williams PRO", subtitle: "Premium System Certified" }}
     />

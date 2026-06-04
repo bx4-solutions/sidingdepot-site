@@ -138,7 +138,11 @@ export function ServiceLandingPage({
                 {title}{" "}
                 <span className="text-sd-green">{titleAccent}</span>
               </h1>
-              <p className="mt-6 text-lg text-white/80 leading-relaxed">{intro}</p>
+              <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
+                {intro.split("\n\n").map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
@@ -182,7 +186,12 @@ export function ServiceLandingPage({
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-sd-navy">{s.value}</div>
-                    <div className="text-sm text-sd-gray-text">{s.label}</div>
+                    <div className="text-sm font-bold text-sd-gray-text">{s.label}</div>
+                    {s.description && (
+                      <div className="mt-1 text-xs text-sd-gray-text/80 leading-snug">
+                        {s.description}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
