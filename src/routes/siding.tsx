@@ -1,38 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
 import {
-  ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2,
-  Search, FileText, Wrench, Clock, Users,
+  ArrowRight, ArrowLeft, ShieldCheck, Award, CheckCircle2,
+  FileText, Users,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
-import { SITE, BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
+import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
 import { SERVICE_METADATA } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
-
+import { HiringChecklist } from "@/components/site/HiringChecklist";
+import { FaqSection } from "@/components/site/FaqSection";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta, Canton & North Atlanta";
 const seo = SERVICE_METADATA[SERVICE_KEY];
-
-/**
- * /services/siding — flagship service landing page.
- *
- * Sections (after hero):
- *  - "Siding types" interactive house: clickable hotspots open a dialog with
- *     a zoomed reference photo + description for each siding profile.
- *  - "Real projects" before/after carousel: navigate through the studio's
- *     own BEFORE_AFTER_PAIRS using the existing BeforeAfterSlider component.
- *
- * This static route file takes precedence over the dynamic services.$slug.tsx.
- */
-
-const PAGE_TITLE = "James Hardie Siding Installation Marietta GA | Siding Depot — Elite Preferred";
-const PAGE_DESC =
-  "Elite Preferred James Hardie siding installation in Marietta, Canton and North Atlanta, GA. W-2 crews, 30-year warranty, written estimates. Free quote: (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -62,6 +46,7 @@ export const Route = createFileRoute("/siding")({
   }),
   component: SidingPage,
 });
+
 
 /* ---------------------------------------------------------------- */
 /* Siding-type hotspots (Section 2)                                  */
@@ -408,11 +393,6 @@ const HIRING_CHECKLIST = [
     title: "30-Year Non-Prorated Warranty",
     desc: "As Elite Preferred installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry — only available through Elite Preferred contractors.",
   },
-] as const;
-
-import { HiringChecklist } from "@/components/site/HiringChecklist";
-
-// Removed inline section here
 
 
 /* ---------------------------------------------------------------- */
@@ -446,9 +426,6 @@ const FAQ_ITEMS = [
   },
 ] as const;
 
-import { FaqSection } from "@/components/site/FaqSection";
-
-// Removed inline section here
 
 
 function SidingPage() {
