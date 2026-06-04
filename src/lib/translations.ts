@@ -88,6 +88,8 @@ export const TRANSLATIONS = {
     pdfExportSuccess: "PDF pronto para salvar/compartilhar.",
     popupsError: "Permita pop-ups para exportar PDF.",
     generatingWeeklyReport: "Gerando Relatório Semanal consolidado...",
+    acquisitionSources: "Fontes de Aquisição",
+    mainChannels: "Principais canais de entrada",
   },
   en: {
     dashboard: "Dashboard",
@@ -100,7 +102,7 @@ export const TRANSLATIONS = {
     audience: "Audience",
     acquisition: "Acquisition",
     blogAnalytics: "Blog Analytics",
-    alerts: "Alertas", // User usually says Alerts
+    alerts: "Alerts",
     gtmDebugger: "GTM/GA4 Debugger",
     manageBlog: "Manage Blog",
     calendar: "Calendar",
@@ -175,5 +177,7 @@ export const TRANSLATIONS = {
     pdfExportSuccess: "PDF ready to save/share.",
     popupsError: "Please allow pop-ups to export PDF.",
     generatingWeeklyReport: "Generating consolidated Weekly Report...",
+    acquisitionSources: "Acquisition Sources",
+    mainChannels: "Main acquisition channels",
   }
 };
