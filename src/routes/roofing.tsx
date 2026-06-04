@@ -102,7 +102,7 @@ function RoofingPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Roofing"
       faqs={FAQS}
-      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Marietta, GA, serving Cobb County, Cherokee County and Fulton County across Metro Atlanta. We replace and repair asphalt shingle and metal roofs in Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
+      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Marietta e Região, GA. We replace asphalt shingle and metal roofs in Marietta e Região — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
       ctaAccent="decades, not seasons?"
       trustBadge={{ title: "GAF Factory Certified", subtitle: "Golden Pledge Warranty" }}
     />
