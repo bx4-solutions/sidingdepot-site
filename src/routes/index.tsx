@@ -244,10 +244,10 @@ function HomePage() {
               Service Areas
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Serving North Atlanta — From Marietta to Canton
+              Serving North Atlanta — Marietta, Canton, Alpharetta & 10+ Communities Across Cherokee, Cobb & Fulton County
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              We cover Cobb, Cherokee, Fulton and Forsyth counties.
+              James Hardie Elite Preferred installations across Cobb, Cherokee, Fulton and Forsyth counties. Free on-site quotes — we come to you.
             </p>
           </div>
 
