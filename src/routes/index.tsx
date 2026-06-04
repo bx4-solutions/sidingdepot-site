@@ -175,10 +175,10 @@ function HomePage() {
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
               Why Siding Depot
             </span>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
               4 Reasons Georgia Homeowners Choose Us
             </h2>
-            <p className="mt-3 text-white/65 max-w-lg">
+            <p className="mt-3 text-sd-black/65 max-w-lg">
               We're not the cheapest contractor in Marietta e Região. We're the one your neighbors call back to thank.
             </p>
 
@@ -188,7 +188,7 @@ function HomePage() {
                   <span className="font-display text-3xl text-sd-green leading-none shrink-0">{f.num}</span>
                   <div>
                     <h3 className="text-base font-semibold">{f.title}</h3>
-                    <p className="mt-1 text-sm text-white/60">{f.desc}</p>
+                    <p className="mt-1 text-sm text-sd-black/60">{f.desc}</p>
                   </div>
                 </div>
               ))}
@@ -216,7 +216,7 @@ function HomePage() {
             </div>
             <nav
               aria-label="Related siding pages"
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
             >
               <Link to="/siding" className="text-sd-green hover:underline">
                 James Hardie siding installation in Marietta e Região
@@ -280,15 +280,15 @@ function HomePage() {
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
               Free Quote · 24h Response
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-white leading-tight">
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black leading-tight">
               Get Your Free Quote Today
             </h2>
-            <p className="mt-4 text-white/65 max-w-lg">
+            <p className="mt-4 text-sd-black/65 max-w-lg">
               Tell us about your project and we'll get back within 24 hours with a no-pressure, written estimate.
             </p>
             <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-sd-green/30 bg-sd-green/5 p-4">
               <Sparkles className="h-5 w-5 text-sd-green shrink-0" />
-              <p className="text-sm text-white/80">
+              <p className="text-sm text-sd-black/80">
                 <span className="text-sd-green font-semibold">Limited slots this month.</span>{" "}
                 Book your consultation before the calendar fills up.
               </p>
@@ -301,16 +301,16 @@ function HomePage() {
                 { i: Users, t: "1.500+ Casas" },
                 { i: Sparkles, t: "Elite Preferred" },
               ].map(({ i: Icon, t }) => (
-                <li key={t} className="flex items-center gap-2 text-white/80">
+                <li key={t} className="flex items-center gap-2 text-sd-black/80">
                   <Icon className="h-4 w-4 text-sd-green" /> {t}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-xl bg-sd-navy border border-white/5 p-6 lg:p-8">
+          <div className="rounded-xl bg-sd-gray-bg border border-sd-gray-border p-6 lg:p-8">
             <h3 className="text-lg font-semibold">Request Your Free Estimate</h3>
-            <p className="text-sm text-white/55 mt-1">It takes less than 60 seconds.</p>
+            <p className="text-sm text-sd-black/55 mt-1">It takes less than 60 seconds.</p>
 
             <div className="mt-5 grid gap-3">
               <Button asChild size="lg">
@@ -319,7 +319,7 @@ function HomePage() {
               <Button asChild size="lg" variant="outlineWhite">
                 <a href={SITE.phoneHref}>Call {SITE.phone}</a>
               </Button>
-              <p className="text-xs text-white/45 text-center mt-2">
+              <p className="text-xs text-sd-black/45 text-center mt-2">
                 Or email us at{" "}
                 <a href={`mailto:${SITE.email}`} className="text-sd-green hover:underline">
                   {SITE.email}
@@ -333,16 +333,16 @@ function HomePage() {
       {/* GAF/HARDIE SEALS STRIP OR CTA */}
 
       {/* HARDIE SECTION */}
-      <section className="relative section-dark bg-gradient-to-br from-sd-navy via-sd-navy to-sd-dark py-20 lg:py-24">
+      <section className="relative section-dark bg-gradient-to-br from-sd-gray-bg via-sd-gray-bg to-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
               James Hardie · Elite Preferred
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-white">
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
               Why James Hardie Is Built For Georgia
             </h2>
-            <ul className="mt-6 space-y-3 text-white/80">
+            <ul className="mt-6 space-y-3 text-sd-black/80">
               {[
                 "Engineered for HardieZone HZ10 — Georgia's heat, humidity and storms.",
                 "Non-combustible fiber cement that won't warp, rot or buckle.",
@@ -378,7 +378,7 @@ function HomePage() {
             </div>
             <nav
               aria-label="Related Hardie siding pages"
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/70"
+              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
             >
               <Link to="/siding" className="text-sd-green hover:underline">
                 Fiber cement siding services
