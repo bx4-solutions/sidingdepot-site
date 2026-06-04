@@ -139,8 +139,7 @@ function SidingTypesSection() {
               Siding Types
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-foreground">
-              James Hardie® Siding:{" "}
-              <span className="text-sd-green">Elite Installation & Protection.</span>
+              Why Marietta and Canton Homeowners Choose Siding Depot
             </h2>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
               As a Top 2% Elite Preferred contractor, we install siding systems engineered specifically for Georgia's HZ10 zone. Tap a hotspot to explore the profiles that protect your home.
