@@ -47,12 +47,36 @@ const FAQS: ReadonlyArray<FaqItem> = [
 ];
 
 const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "Premium paint system", desc: "Insist on Sherwin-Williams Emerald or Duration grade — not contractor-grade builder paint that fades inside 3 summers." },
-  { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit changes hands." },
-  { Icon: FileText, title: "Itemized scope of work", desc: "Demand a written scope: power-wash, scrape, sand, prime, caulk, two finish coats. A vague single price hides corner-cutting." },
-  { Icon: Wrench, title: "Highly specialized certified teams, not day labor", desc: "Ask who actually paints. highly specialized certified professionals are trained, insured, and accountable for the warranty." },
-  { Icon: Search, title: "Recent local reviews", desc: "50+ recent Google reviews from your county, with photos. Drive past completed jobs after 2 summers — that is the real test." },
-  { Icon: Clock, title: "Honest timeline", desc: "A typical full exterior repaint runs 4–8 working days depending on prep. Anything faster is skipping prep — the step that actually makes paint last." },
+  { 
+    Icon: Award, 
+    title: "Sherwin-Williams Duration® & SuperPaint®", 
+    desc: "We only use Sherwin-Williams premium exterior lines — never cheap builder-grade paint. Duration® carries a 15-year warranty against peeling and fading in Georgia's climate." 
+  },
+  { 
+    Icon: ShieldCheck, 
+    title: "Full Prep — Not Just Paint", 
+    desc: "Pressure washing, scraping, caulking, wood rot repair and primer coat — every time. Skipping prep is why other companies' work fails in 2 years. We don't skip steps." 
+  },
+  { 
+    Icon: FileText, 
+    title: "Color Consultation Included", 
+    desc: "Our project managers bring Sherwin-Williams color samples to your home. We help you choose colors that complement your siding, trim and neighborhood. No extra charge." 
+  },
+  { 
+    Icon: Wrench, 
+    title: "Written Estimate — Price Guaranteed", 
+    desc: "You receive an itemized written estimate before work starts. The price in the estimate is the price you pay. No 'discovered' issues that double the invoice mid-project." 
+  },
+  { 
+    Icon: Search, 
+    title: "W-2 Crews — Not Day Labor", 
+    desc: "Every painter on your property is a Siding Depot W-2 employee. Trained, background-checked, insured, and accountable to us — not a temporary hire you've never met." 
+  },
+  { 
+    Icon: Clock, 
+    title: "Combination Projects — Save More", 
+    desc: "Most of our painting projects are combined with siding or other exterior work. When you do multiple services together, you save on setup, prep and project management costs." 
+  },
 ];
 
 export const Route = createFileRoute("/painting")({
