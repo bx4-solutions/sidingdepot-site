@@ -43,6 +43,7 @@
   /* Brand semantic tokens */
   --color-sd-green: var(--sd-green);
   --color-sd-green-hover: var(--sd-green-hover);
+  --color-sd-green-active: var(--sd-green-active);
   --color-sd-green-pale: var(--sd-green-pale);
   --color-sd-green-text: var(--sd-green-text);
   --color-sd-navy: var(--sd-navy);
@@ -75,11 +76,12 @@
   --radius: 0.625rem;
 
   /* Brand palette (HEX → oklch) */
-  --sd-green:        oklch(0.825 0.170 116.0);   /* Brand green from Siding Depot logo (#B4D236) */
-  --sd-green-hover:  oklch(0.790 0.175 116.0);   /* Slightly darker for hover */
-  --sd-green-dark:   oklch(0.740 0.170 116.0);
-  --sd-green-pale:   oklch(0.960 0.070 116.0);   /* Pale tint of brand green */
-  --sd-green-text:   oklch(0.330 0.110 116.0);   /* Deep brand green for text on light bg */
+  --sd-green:        #B4D236;
+  --sd-green-hover:  #A2BD31; /* Slightly darker for hover */
+  --sd-green-active: #91A92C; /* Even darker for active */
+  --sd-green-dark:   #7FA62F;
+  --sd-green-pale:   #F4F9E6; /* Pale tint of brand green */
+  --sd-green-text:   #3B4612; /* Deep brand green for text on light bg */
   --sd-navy:         oklch(0.265 0.030 252.0);   /* kept dark for text */
   --sd-dark:         oklch(0.180 0 0);
   --sd-dark-mid:     oklch(0.250 0 0);
@@ -92,7 +94,7 @@
   /* shadcn semantic mapping → SD tokens */
   --background: var(--sd-white);
   --foreground: var(--sd-black);
-  --card: oklch(0.825 0.170 116.0 / 0.9);  /* Lime green @ 90% */
+  --card: #B4D236E6; /* Lime green @ 90% */
   --card-foreground: var(--sd-black);
   --popover: var(--sd-white);
   --popover-foreground: var(--sd-black);
