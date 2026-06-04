@@ -17,8 +17,8 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "roofing",
-    top: "18%",
-    left: "50%",
+    top: "25%",
+    left: "45%",
     label: "Roofing",
     title: "Roofing",
     body: "GAF certified installation. Storm damage specialists. We work directly with insurance companies — and combine roof replacement with siding to save you $2,000–$5,000 on mobilization.",
@@ -28,8 +28,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "gutters",
-    top: "32%",
-    left: "32%",
+    top: "34%",
+    left: "78%",
     label: "Seamless Gutters",
     title: "Seamless Gutters",
     body: "Custom-fabricated seamless aluminum gutters sized for Georgia's 50+ inches of annual rainfall. LeafGuard protection available. No joints means no leak points.",
@@ -39,8 +39,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "board-batten",
-    top: "30%",
-    left: "72%",
+    top: "42%",
+    left: "70%",
     label: "Board & Batten Siding",
     title: "Board & Batten Siding",
     body: "HardiePanel vertical siding — the modern farmhouse look trending across North Atlanta in 2026. Available in James Hardie ColorPlus finishes that never need repainting.",
@@ -50,7 +50,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hardie",
-    top: "52%",
+    top: "55%",
     left: "22%",
     label: "James Hardie Siding",
     title: "James Hardie Siding",
@@ -61,8 +61,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "windows",
-    top: "48%",
-    left: "48%",
+    top: "45%",
+    left: "44%",
     label: "Window Replacement",
     title: "Window Replacement",
     body: "Energy-efficient double and triple-pane windows rated for Georgia's climate zone. Reduce HVAC load by up to 45%. W-2 installation crews — perfect seal guaranteed.",
@@ -72,8 +72,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "painting",
-    top: "55%",
-    left: "78%",
+    top: "70%",
+    left: "35%",
     label: "Exterior Painting",
     title: "Exterior Painting",
     body: "Sherwin-Williams Duration and SuperPaint — premium exterior coatings with 15-year warranty against peeling and fading. Full prep: pressure wash, caulk, prime, paint.",
@@ -148,22 +148,11 @@ export function ServicesHotspots() {
 
           {HOTSPOTS.map((h) => {
             const isActive = active === h.id;
-            const topNum = parseFloat(h.top);
-            const leftNum = parseFloat(h.left);
-            const flipY = topNum > 60;
-            const popupWidth = 280;
-            // Center popup under dot, clamp horizontally to keep inside image
-            const halfPctOfImage = (popupWidth / 2) / 6.4; // approx px->% on ~640px container
-            const minLeft = halfPctOfImage;
-            const maxLeft = 100 - halfPctOfImage;
-            const clampedLeft = Math.min(Math.max(leftNum, minLeft), maxLeft);
-            const popupLeftOffset = clampedLeft - leftNum; // in percent of container
-
             return (
               <div
                 key={h.id}
                 className="absolute"
-                style={{ top: h.top, left: h.left, transform: "translate(-50%, -50%)" }}
+                style={{ top: h.top, left: h.left, transform: "translate(-50%, -50%)", zIndex: 20 }}
               >
                 <button
                   type="button"
@@ -189,61 +178,63 @@ export function ServicesHotspots() {
                     />
                   )}
                 </button>
-
-                {isActive && (
-                  <div
-                    role="dialog"
-                    className="absolute animate-hotspot-fade"
-                    style={{
-                      width: popupWidth,
-                      background: "#1E2A38",
-                      borderRadius: 12,
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                      padding: 20,
-                      zIndex: 50,
-                      left: "50%",
-                      transform: `translateX(calc(-50% + ${popupLeftOffset}%))`,
-                      ...(flipY
-                        ? { bottom: 36 }
-                        : { top: 36 }),
-                    } as React.CSSProperties}
-                  >
-                    <button
-                      type="button"
-                      aria-label="Close"
-                      onClick={() => setActive(null)}
-                      className="absolute text-white/80 hover:text-white transition-colors"
-                      style={{ top: 12, right: 12, zIndex: 10 }}
-                    >
-                      <X size={20} />
-                    </button>
-                    <div className="overflow-hidden rounded-md mb-4 h-28">
-                      <img
-                        src={h.image}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-lg" style={{ color: "#8DC63F", fontWeight: 600 }}>{h.title}</h3>
-                    <div style={{ height: 2, width: 32, background: "#8DC63F", margin: "8px 0" }} />
-                    <p className="text-sm" style={{ color: "#fff", lineHeight: 1.6 }}>{h.body}</p>
-                    <Link
-                      to={h.to}
-                      className="mt-5 block text-center font-bold text-sm uppercase tracking-wider"
-                      style={{
-                        background: "#8DC63F",
-                        color: "#1A1A1A",
-                        borderRadius: 6,
-                        padding: "12px",
-                      }}
-                    >
-                      {h.cta}
-                    </Link>
-                  </div>
-                )}
               </div>
             );
           })}
+
+          {/* Single popup docked inside image — like competitor pattern */}
+          {(() => {
+            const h = HOTSPOTS.find((x) => x.id === active);
+            if (!h) return null;
+            const leftNum = parseFloat(h.left);
+            const dockRight = leftNum < 50; // dot on left half → popup docks right side
+            return (
+              <div
+                role="dialog"
+                className="absolute animate-hotspot-fade"
+                style={{
+                  width: "44%",
+                  maxWidth: 340,
+                  background: "#1E2A38",
+                  borderRadius: 12,
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+                  padding: 20,
+                  zIndex: 40,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  ...(dockRight ? { right: "3%" } : { left: "3%" }),
+                }}
+              >
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={() => setActive(null)}
+                  className="absolute text-white/80 hover:text-white transition-colors"
+                  style={{ top: 12, right: 12, zIndex: 10 }}
+                >
+                  <X size={20} />
+                </button>
+                <div className="overflow-hidden rounded-md mb-4 h-28">
+                  <img src={h.image} alt="" className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-lg" style={{ color: "#8DC63F", fontWeight: 600 }}>{h.title}</h3>
+                <div style={{ height: 2, width: 32, background: "#8DC63F", margin: "8px 0" }} />
+                <p className="text-sm" style={{ color: "#fff", lineHeight: 1.6 }}>{h.body}</p>
+                <Link
+                  to={h.to}
+                  className="mt-5 block text-center font-bold text-sm uppercase tracking-wider"
+                  style={{
+                    background: "#8DC63F",
+                    color: "#1A1A1A",
+                    borderRadius: 6,
+                    padding: "12px",
+                  }}
+                >
+                  {h.cta}
+                </Link>
+              </div>
+            );
+          })()}
         </div>
 
         {/* MOBILE — service cards grid */}
