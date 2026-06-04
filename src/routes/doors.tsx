@@ -24,12 +24,12 @@ const CANONICAL = "https://sidingdepot.com/doors";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does a new entry door cost in Marietta, GA?",
-    a: "A professional entry door replacement in North Atlanta typically costs $1,500–$4,500 for fiberglass or steel doors, including installation. High-end custom wood doors or double-entry systems can range from $5,000–$10,000+. Factors affecting price include material, glass inserts, sidelights, and hardware. We recommend fiberglass for Georgia's humidity as it won't warp or rot like wood.",
+    q: "How much does a new entry door cost in Marietta e Região, GA?",
+    a: "A professional entry door replacement in Marietta e Região typically costs $1,500–$4,500 for fiberglass or steel doors, including installation. High-end custom wood doors or double-entry systems can range from $5,000–$10,000+. Factors affecting price include material, glass inserts, sidelights, and hardware. We recommend fiberglass for Georgia's humidity as it won't warp or rot like wood.",
   },
   {
     q: "What is the best entry door material for Georgia's humidity?",
-    a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero durable and offer 4x the insulating R-value of a standard wood door.",
+    a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero maintenance and offer 4x the insulating R-value of a standard wood door.",
   },
   {
     q: "Do I need a permit to replace a front door in Cobb or Cherokee County?",
