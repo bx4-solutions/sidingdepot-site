@@ -13,7 +13,6 @@ import { GoogleReviews } from "@/components/site/GoogleReviews";
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { AwardsStrip } from "@/components/site/AwardsStrip";
-import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { ServicesHotspots } from "@/components/site/ServicesHotspots";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
