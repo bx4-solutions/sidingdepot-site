@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
+import { supabase } from "@/integrations/supabase/client";
 
 // Standard schema (for other pages)
 const standardSchema = z.object({
@@ -29,8 +30,8 @@ const homepageSchema = z.object({
   phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
   email: z.string().trim().email("Please enter a valid email address"),
   city: z.string().trim().min(2, "Please enter your city").max(80),
-  service: z.string().min(1, "Please select a service"),
-  details: z.string().optional(),
+  services: z.array(z.string()).min(1, "Please select at least one service").max(20),
+  details: z.string().max(2000).optional(),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Consent is required" }),
   }),
@@ -45,15 +46,14 @@ type HeroQuoteFormProps = {
 };
 
 const SERVICES_OPTIONS = [
-  "James Hardie Siding",
-  "Exterior Painting",
-  "Window Replacement",
-  "Gutter Installation",
-  "Deck Construction",
-  "Roofing",
-  "Entry & Patio Doors",
+  "Siding",
+  "Painting",
+  "Windows",
+  "Doors",
+  "Gutters",
+  "Decks",
+  "Roof",
   "Dumpster Rental",
-  "Multiple Services / Full Exterior",
 ] as const;
 
 export function HeroQuoteForm({
@@ -68,9 +68,17 @@ export function HeroQuoteForm({
   const [errors, setErrors] = useState<any>({});
   const [values, setValues] = useState<any>(
     isHomepage
-      ? { name: "", phone: "", email: "", city: "", service: "", details: "", consent: false }
+      ? { name: "", phone: "", email: "", city: "", services: [] as string[], details: "", consent: false }
       : { name: "", phone: "", city: "" }
   );
+
+  function toggleService(name: string, checked: boolean) {
+    setValues((v: any) => {
+      const current: string[] = Array.isArray(v.services) ? v.services : [];
+      const next = checked ? [...current, name] : current.filter((s) => s !== name);
+      return { ...v, services: next };
+    });
+  }
 
   function update(key: string, value: any) {
     setValues((v: any) => ({ ...v, [key]: value }));
@@ -96,20 +104,38 @@ export function HeroQuoteForm({
     setSubmitting(true);
     
     const data = parsed.data as any;
+    const services: string[] = Array.isArray(data.services) ? data.services : [];
     const payload = {
       first_name: data.name.split(" ")[0],
       last_name: data.name.split(" ").slice(1).join(" ") || " ",
       phone: data.phone,
       city: data.city,
       email: data.email || "",
-      service: data.service || "",
+      services,
+      service: services.join(", "),
       details: data.details || "",
       source: source,
       tag: tag,
       submittedAt: new Date().toISOString(),
     };
-    
+
     try {
+      // Save lead in the customer record (Lovable Cloud database)
+      if (isHomepage) {
+        const { error: dbError } = await supabase.from("leads").insert({
+          name: data.name,
+          phone: data.phone,
+          email: data.email || null,
+          city: data.city,
+          services,
+          details: data.details || null,
+          consent: true,
+          source,
+          tag,
+        });
+        if (dbError) throw dbError;
+      }
+
       if (SITE.ghlWebhookUrl) {
         const response = await fetch(SITE.ghlWebhookUrl, {
           method: "POST",
@@ -159,22 +185,31 @@ export function HeroQuoteForm({
             <Field id="hero-phone" label="Phone" type="tel" placeholder="(678) 000-0000" value={values.phone} onChange={(v: string) => update("phone", v)} error={errors.phone} required />
             <Field id="hero-email" label="Email" type="email" placeholder="your@email.com" value={values.email} onChange={(v: string) => update("email", v)} error={errors.email} required />
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <Field id="hero-city" label="City" placeholder="Your city" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} required />
-            <div className="grid gap-1.5">
-              <Label htmlFor="hero-service" className="text-xs font-semibold text-sd-black">What service do you need?</Label>
-              <Select value={values.service} onValueChange={(v: string) => update("service", v)}>
-                <SelectTrigger id="hero-service" className={`h-10 ${errors.service ? "border-destructive" : ""}`}>
-                  <SelectValue placeholder="-- Select a service --" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none" disabled>-- Select a service --</SelectItem>
-                  {SERVICES_OPTIONS.map((opt) => <SelectItem key={opt} value={opt}>{opt}</SelectItem>)}
-                </SelectContent>
-              </Select>
-              {errors.service && <p className="text-[11px] text-destructive">{errors.service}</p>}
+          <Field id="hero-city" label="City" placeholder="Your city" value={values.city} onChange={(v: string) => update("city", v)} error={errors.city} required />
+
+          <div className="grid gap-2">
+            <Label className="text-xs font-semibold text-sd-black">
+              Services<span className="text-destructive ml-0.5">*</span>
+            </Label>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {SERVICES_OPTIONS.map((opt) => {
+                const id = `hero-svc-${opt.replace(/\s+/g, "-").toLowerCase()}`;
+                const checked = (values.services as string[])?.includes(opt) ?? false;
+                return (
+                  <label key={opt} htmlFor={id} className="flex items-center gap-2 cursor-pointer text-sm text-sd-black">
+                    <Checkbox
+                      id={id}
+                      checked={checked}
+                      onCheckedChange={(v: boolean) => toggleService(opt, Boolean(v))}
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
             </div>
+            {errors.services && <p className="text-[11px] text-destructive">{errors.services}</p>}
           </div>
+
           <div className="grid gap-1.5">
             <Label htmlFor="hero-details" className="text-xs font-semibold text-sd-black">Tell us about your project (optional)</Label>
             <Textarea id="hero-details" placeholder="Describe your project, home size, timeline, or any questions..." value={values.details} onChange={(e) => update("details", e.target.value)} className="resize-none min-h-[80px]" rows={3} />
@@ -182,8 +217,8 @@ export function HeroQuoteForm({
           <div className="flex items-start gap-2.5 mt-1">
             <Checkbox id="hero-consent" checked={values.consent} onCheckedChange={(v: boolean) => update("consent", v)} className="mt-0.5" />
             <div className="grid gap-1">
-              <Label htmlFor="hero-consent" className="text-[10px] leading-snug font-normal text-sd-gray-text cursor-pointer">
-                By checking this box, I agree to receive SMS text messages and emails from Siding Depot LLC. Text STOP to opt out at any time.
+              <Label htmlFor="hero-consent" className="text-[11px] leading-snug font-normal text-sd-gray-text cursor-pointer">
+                By checking this box, I agree to receive SMS text messages and emails from Siding Depot LLC. Message frequency varies. Standard message and data rates may apply. Text STOP to opt out at anytime.
               </Label>
               {errors.consent && <p className="text-[11px] text-destructive leading-none">{errors.consent}</p>}
             </div>
