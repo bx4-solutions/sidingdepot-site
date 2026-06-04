@@ -15,7 +15,7 @@ import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
 
 const SERVICE_KEY = "siding";
-const CITY = "Marietta, Canton & North Atlanta";
+const CITY = "Marietta,  & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 
 export const Route = createFileRoute("/siding")({
@@ -438,7 +438,7 @@ function SidingPage() {
         heroImage="/projects/project-1.webp"
         eyebrow="James Hardie Siding — Elite Preferred Installation"
         title="James Hardie Siding Installation in"
-        titleAccent="Marietta, Canton & North Atlanta, GA"
+        titleAccent="Marietta,  & North Atlanta, GA"
         intro={`Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.
 
 As an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.
