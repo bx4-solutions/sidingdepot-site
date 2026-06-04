@@ -25,12 +25,12 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does gutter installation cost in Marietta or Marietta e região, GA?",
-    a: "Seamless aluminum gutter installation in North Atlanta typically costs $1,200–$3,500 for a standard home, depending on linear footage, gutter size (5\" vs 6\"), and whether gutter guards are included. 6-inch gutters are strongly recommended for Georgia — our rainfall averages 50+ inches per year, and standard 5-inch gutters frequently overflow during summer storms.",
+    q: "How much does gutter installation cost in Marietta e Região, GA?",
+    a: "Seamless aluminum gutter installation in Marietta e Região typically costs $1,200–$3,500 for a standard home, depending on linear footage, gutter size (5\" vs 6\"), and whether gutter guards are included. 6-inch gutters are strongly recommended for Georgia — our rainfall averages 50+ inches per year, and standard 5-inch gutters frequently overflow during summer storms.",
   },
   {
-    q: "What size gutters does a home in North Atlanta need?",
-    a: "We recommend 6-inch K-style gutters for most homes in Marietta, Marietta e região, and surrounding areas. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
+    q: "What size gutters does a home in Marietta e Região need?",
+    a: "We recommend 6-inch K-style gutters for most homes in Marietta e Região. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
   },
   {
     q: "How often should gutters be cleaned in Georgia?",
