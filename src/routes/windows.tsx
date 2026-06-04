@@ -25,8 +25,8 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does window replacement cost in Marietta or Alpharetta, GA?",
-    a: "Window replacement in North Atlanta typically ranges from $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) generally falls in the $7,000–$18,000 range. According to Energy Star, certified Low-E windows can meaningfully reduce cooling costs in hot climates like Atlanta. Final pricing depends on your home's specifications and selected products.",
+    q: "How much does window replacement cost in Marietta e Região, GA?",
+    a: "Window replacement in Marietta e Região typically ranges from $400–$900 per window installed, depending on size, style, and brand. A full-home replacement (15–20 windows) generally falls in the $7,000–$18,000 range. According to Energy Star, certified Low-E windows can meaningfully reduce cooling costs in hot climates like Atlanta. Final pricing depends on your home's specifications and selected products.",
   },
   {
     q: "What's the best window for Georgia's hot and humid climate?",
