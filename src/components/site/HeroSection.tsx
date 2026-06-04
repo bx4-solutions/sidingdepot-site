@@ -22,8 +22,8 @@ type HeroProps = {
 
 const DEFAULT_TRUST = [
   "James Hardie Elite Preferred",
-  "1,500+ homes transformed",
-  "Written 24h quote · No pressure",
+  "Mais de 1.500 casas no norte de Atlanta",
+  "Financiamento GreenSky 0% Juros",
 ] as const;
 
 export function HeroSection({
