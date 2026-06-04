@@ -22,7 +22,7 @@ import { Route as FinanceRouteImport } from './routes/finance'
 import { Route as DumpsterRentalRouteImport } from './routes/dumpster-rental'
 import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
-import { Route as DeckRouteImport } from './routes/deck'
+import { Route as DecksRouteImport } from './routes/decks'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
@@ -108,9 +108,9 @@ const DoorsRoute = DoorsRouteImport.update({
   path: '/doors',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeckRoute = DeckRouteImport.update({
-  id: '/deck',
-  path: '/deck',
+const DecksRoute = DecksRouteImport.update({
+  id: '/decks',
+  path: '/decks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -214,7 +214,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
-  '/deck': typeof DeckRoute
+  '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
@@ -249,7 +249,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
-  '/deck': typeof DeckRoute
+  '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
@@ -285,7 +285,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/contact': typeof ContactRoute
-  '/deck': typeof DeckRoute
+  '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
@@ -322,7 +322,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/contact'
-    | '/deck'
+    | '/decks'
     | '/doors'
     | '/dumpster'
     | '/dumpster-rental'
@@ -357,7 +357,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/contact'
-    | '/deck'
+    | '/decks'
     | '/doors'
     | '/dumpster'
     | '/dumpster-rental'
@@ -392,7 +392,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/contact'
-    | '/deck'
+    | '/decks'
     | '/doors'
     | '/dumpster'
     | '/dumpster-rental'
@@ -428,7 +428,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
   ContactRoute: typeof ContactRoute
-  DeckRoute: typeof DeckRoute
+  DecksRoute: typeof DecksRoute
   DoorsRoute: typeof DoorsRoute
   DumpsterRoute: typeof DumpsterRoute
   DumpsterRentalRoute: typeof DumpsterRentalRoute
@@ -551,11 +551,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DoorsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/deck': {
-      id: '/deck'
-      path: '/deck'
-      fullPath: '/deck'
-      preLoaderRoute: typeof DeckRouteImport
+    '/decks': {
+      id: '/decks'
+      path: '/decks'
+      fullPath: '/decks'
+      preLoaderRoute: typeof DecksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -709,7 +709,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
   ContactRoute: ContactRoute,
-  DeckRoute: DeckRoute,
+  DecksRoute: DecksRoute,
   DoorsRoute: DoorsRoute,
   DumpsterRoute: DumpsterRoute,
   DumpsterRentalRoute: DumpsterRentalRoute,

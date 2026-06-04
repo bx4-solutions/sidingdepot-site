@@ -17,8 +17,8 @@ import {
 import { SERVICE_METADATA } from "@/data/seo-config";
 
 const HERO_IMAGE = "/projects/project-6.webp";
-const CANONICAL = "https://sidingdepot.com/deck";
-const SERVICE_KEY = "deck";
+const CANONICAL = "https://sidingdepot.com/decks";
+const SERVICE_KEY = "decks";
 const CITY = "Greater Marietta";
 
 const seo = SERVICE_METADATA[SERVICE_KEY];
@@ -55,7 +55,7 @@ const CHECKLIST: ReadonlyArray<ChecklistItem> = [
   { Icon: Clock, title: "Realistic timeline", desc: "Standard 300–400 sq ft deck is 3–5 build days plus 5–15 business days for Cobb / Cherokee / Fulton permit approval." },
 ];
 
-export const Route = createFileRoute("/deck")({
+export const Route = createFileRoute("/decks")({
   head: () => ({
     meta: [
       { title: seo.metaTitle(CITY) },

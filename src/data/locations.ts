@@ -14,12 +14,12 @@ export const SITE_ORIGIN =
 export const LOCATION_MATRIX: Record<string, readonly string[]> = {
   marietta:        ["siding", "painting", "roofing", "doors"],
   alpharetta:      ["siding", "painting", "windows", "doors"],
-  milton:          ["siding", "deck", "painting"],
+  milton:          ["siding", "decks", "painting"],
   canton:          ["siding", "roofing", "gutters"],
   woodstock:       ["siding", "painting"],
   roswell:         ["siding", "windows", "painting", "doors"],
   kennesaw:        ["siding", "roofing"],
-  "johns-creek":   ["siding", "deck"],
+  "johns-creek":   ["siding", "decks"],
   "sandy-springs": ["siding", "painting"],
   acworth:         ["siding", "gutters"],
 };
@@ -55,7 +55,7 @@ export const STATIC_ROUTES = [
   "/gutters",
   "/windows",
   "/doors",
-  "/deck",
+  "/decks",
   "/dumpster",
   "/dumpster-rental",
   "/contact",

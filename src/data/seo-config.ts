@@ -110,7 +110,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       metaDesc: "Most homes installed in 4–8 hours. Hidden-hanger seamless aluminum gutters. Licensed & insured in Greater Marietta. Free quote.",
     },
   },
-  deck: {
+  decks: {
     A: {
       h1: (c) => `Custom Deck Construction in ${c}, GA`,
       h2: "Composite, Hardwood & Pressure-Treated Decks",

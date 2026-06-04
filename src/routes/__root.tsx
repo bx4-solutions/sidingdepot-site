@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
@@ -22,6 +23,19 @@ const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 
 
 function NotFoundComponent() {
+  const router = useRouter();
+  const location = router.state.location;
+
+  useEffect(() => {
+    // Basic case-insensitivity redirect
+    if (location.pathname !== location.pathname.toLowerCase()) {
+      router.navigate({
+        to: location.pathname.toLowerCase() as any,
+        replace: true,
+      });
+    }
+  }, [location.pathname, router]);
+
   return (
     <div className="flex min-h-[60vh] items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
