@@ -258,7 +258,7 @@ function AboutPage() {
             <p className="mt-3 text-sd-gray-text">
               Siding Depot is one of the fastest-growing James Hardie Replacement
               Contractors in Georgia. Hiring a certified local installer matters —
-              here's why North Atlanta homeowners trust us with their siding project:
+              here's why Marietta e Região homeowners trust us with their siding project:
             </p>
           </div>
 
