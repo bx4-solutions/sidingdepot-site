@@ -131,7 +131,7 @@ export const PROCESS_STEPS = [
   {
     num: "02",
     title: "Renovation",
-    desc: "Your dedicated project manager is on-site daily. Our W-2 crews — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
+    desc: "Your dedicated project manager is on-site daily. Our highly specialized certified teams — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
   },
   {
     num: "03",
@@ -255,7 +255,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
   {
     slug: "hardie-repaint-deck-canton",
     src: "/projects/project-6.webp",
-    alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck",
+    alt: "Three-story Marietta e região home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
     title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta e região, GA",
     category: "Siding Installation & Replacement",

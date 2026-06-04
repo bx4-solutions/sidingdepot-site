@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "James Hardie Siding Contractor Marietta GA | Siding Depot — Elite Preferred" },
-      { name: "description", content: "Elite Preferred James Hardie siding contractor in Marietta, GA. 1,500+ homes in North Atlanta. W-2 crews, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
+      { name: "description", content: "Elite Preferred James Hardie siding contractor in Marietta, GA. 1,500+ homes in North Atlanta. Highly specialized certified teams, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
       { name: "keywords", content: "siding contractor Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
       { name: "geo.region", content: "US-GA" },
       { name: "geo.placename", content: "Marietta" },
@@ -73,12 +73,12 @@ export const Route = createFileRoute("/")({
       { name: "address", content: SITE.address.full },
       { name: "telephone", content: SITE.phone },
       { property: "og:title", content: "James Hardie Siding Contractor Marietta GA | Siding Depot" },
-      { property: "og:description", content: "Elite Preferred James Hardie installer in Marietta, GA. W-2 crews, 30-year warranty, 1,500+ homes. Free quote in 24h." },
+      { property: "og:description", content: "Elite Preferred James Hardie installer in Marietta, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "James Hardie Siding Contractor Marietta GA | Siding Depot" },
-      { name: "twitter:description", content: "Elite Preferred James Hardie installer in Marietta, GA. W-2 crews, 30-year warranty, 1,500+ homes. Free quote in 24h." },
+      { name: "twitter:description", content: "Elite Preferred James Hardie installer in Marietta, GA. Highly specialized certified teams, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
     links: [
