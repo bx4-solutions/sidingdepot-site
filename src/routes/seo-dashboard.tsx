@@ -111,14 +111,10 @@ const resolveDateRange = (days: number) => {
   };
 };
 
-const getInitialDateRange = () => {
-  if (typeof window === "undefined") return resolveDateRange(30);
-  try {
-    const stored = window.localStorage.getItem("seo-dashboard-date-range");
-    return stored ? JSON.parse(stored) : resolveDateRange(30);
-  } catch {
-    return resolveDateRange(30);
-  }
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") return "pt";
+  const stored = window.localStorage.getItem("seo-dashboard-lang");
+  return (stored === "en" || stored === "pt") ? stored : "pt";
 };
 
 export const Route = createFileRoute("/seo-dashboard")({
@@ -159,10 +155,21 @@ function SEODashboard() {
   const [activeView, setActiveView] = useState("dashboard");
   const [sessionExists, setSessionExists] = useState(true);
   const [dateRange, setDateRange] = useState(getInitialDateRange);
+  const [lang, setLang] = useState<Language>(getInitialLanguage);
   const [selectedPageForLeads, setSelectedPageForLeads] = useState<string | null>(null);
   const [selectedBlogArticle, setSelectedBlogArticle] = useState<any | null>(null);
   const [isAuditRunning, setIsAuditRunning] = useState(false);
   const userProfile = loaderData?.profile;
+
+  const t = (key: string) => {
+    const keys = key.split('.');
+    let current: any = TRANSLATIONS[lang];
+    for (const k of keys) {
+      if (!current || current[k] === undefined) return key;
+      current = current[k];
+    }
+    return current;
+  };
 
   useEffect(() => {
     window.localStorage.setItem("seo-dashboard-date-range", JSON.stringify(dateRange));
