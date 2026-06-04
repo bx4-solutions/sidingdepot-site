@@ -272,7 +272,7 @@ function HomePage() {
         </div>
       </section>
 
-      <MapSection />
+      
 
       <GoogleReviews />
 
@@ -341,12 +341,24 @@ function HomePage() {
       <section className="relative section-dark bg-gradient-to-br from-sd-gray-bg via-sd-gray-bg to-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
-              James Hardie · Elite Preferred
-            </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
-              Why James Hardie Is Built For Georgia
-            </h2>
+            <div className="flex items-start justify-between">
+              <div>
+                <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
+                  James Hardie · Elite Preferred
+                </span>
+                <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black">
+                  Why James Hardie Is Built For Georgia
+                </h2>
+              </div>
+              <div className="hidden sm:block shrink-0">
+                <img 
+                  src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
+                  alt="James Hardie Alliance Elite Preferred" 
+                  className="h-24 w-auto object-contain"
+                />
+              </div>
+            </div>
+            
             <ul className="mt-6 space-y-3 text-sd-black/80">
               {[
                 "Engineered for HardieZone HZ10 — Georgia's heat, humidity and storms.",
@@ -362,6 +374,15 @@ function HomePage() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-6 sm:hidden">
+              <img 
+                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
+                alt="James Hardie Alliance Elite Preferred" 
+                className="h-20 w-auto object-contain mx-auto"
+              />
+            </div>
+
             <div className="mt-8">
               <Button asChild size="lg">
                 <Link to="/siding">Explore James Hardie Siding</Link>
@@ -398,6 +419,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <MapSection />
     </>
+
   );
 }
