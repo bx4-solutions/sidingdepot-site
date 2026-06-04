@@ -289,7 +289,7 @@ function BeforeAfterCarousel() {
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">
             Drag the slider on each project to see exactly how new James Hardie
-            siding, paint and trim transform a Marietta e Região home.
+            siding, paint and trim transform a Marietta, Canton or North Atlanta home.
           </p>
         </div>
 
