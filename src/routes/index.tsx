@@ -147,7 +147,7 @@ function HomePage() {
               Complete Exterior Services — One Contractor, One Call
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta e região, Alpharetta and all of North Atlanta.
+              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta e Região and all of North Atlanta.
             </p>
           </div>
 
