@@ -19,9 +19,9 @@ const LucideYoutube = ({ className }: { className?: string }) => (
 
 const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
-  title: "Meet Siding Depot — James Hardie Siding Installer in Marietta, GA",
+  title: "Meet Siding Depot — James Hardie Siding Installer in Marietta e Região, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta, Alpharetta, Milton, Marietta e região and all of North Atlanta. 12+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta e Região. 12+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
