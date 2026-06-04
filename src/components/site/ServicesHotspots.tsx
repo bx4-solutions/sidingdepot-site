@@ -17,8 +17,8 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "roofing",
-    top: "18%",
-    left: "50%",
+    top: "25%",
+    left: "45%",
     label: "Roofing",
     title: "Roofing",
     body: "GAF certified installation. Storm damage specialists. We work directly with insurance companies — and combine roof replacement with siding to save you $2,000–$5,000 on mobilization.",
@@ -28,8 +28,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "gutters",
-    top: "32%",
-    left: "32%",
+    top: "34%",
+    left: "78%",
     label: "Seamless Gutters",
     title: "Seamless Gutters",
     body: "Custom-fabricated seamless aluminum gutters sized for Georgia's 50+ inches of annual rainfall. LeafGuard protection available. No joints means no leak points.",
@@ -39,8 +39,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "board-batten",
-    top: "30%",
-    left: "72%",
+    top: "42%",
+    left: "70%",
     label: "Board & Batten Siding",
     title: "Board & Batten Siding",
     body: "HardiePanel vertical siding — the modern farmhouse look trending across North Atlanta in 2026. Available in James Hardie ColorPlus finishes that never need repainting.",
@@ -50,7 +50,7 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hardie",
-    top: "52%",
+    top: "55%",
     left: "22%",
     label: "James Hardie Siding",
     title: "James Hardie Siding",
@@ -61,8 +61,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "windows",
-    top: "48%",
-    left: "48%",
+    top: "45%",
+    left: "44%",
     label: "Window Replacement",
     title: "Window Replacement",
     body: "Energy-efficient double and triple-pane windows rated for Georgia's climate zone. Reduce HVAC load by up to 45%. W-2 installation crews — perfect seal guaranteed.",
@@ -72,8 +72,8 @@ const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "painting",
-    top: "55%",
-    left: "78%",
+    top: "70%",
+    left: "35%",
     label: "Exterior Painting",
     title: "Exterior Painting",
     body: "Sherwin-Williams Duration and SuperPaint — premium exterior coatings with 15-year warranty against peeling and fading. Full prep: pressure wash, caulk, prime, paint.",
