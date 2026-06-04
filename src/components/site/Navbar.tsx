@@ -67,7 +67,6 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState<any>(null);
   const location = useLocation();
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -80,10 +79,6 @@ export function Navbar() {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  const handleStripClick = (slug: string) => {
-    track("service_strip_click", { service: slug });
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-sd-gray-bg/80 border-b border-sd-navy/10 shadow-sm transition-all duration-300">
@@ -102,7 +97,7 @@ export function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-1 h-full">
           {NAV_LINKS.map((l) => (
-            <div key={l.label} className="h-full flex items-center group force-relative">
+            <div key={l.label} className="h-full flex items-center group relative">
               <div className="flex items-center gap-1 py-2 px-3">
                 <Link 
                   to={l.to} 
@@ -119,7 +114,7 @@ export function Navbar() {
               </div>
               
               {l.sublinks && (
-                <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 absolute left-0 top-full pt-0">
+                <div className="absolute left-0 top-full pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-b-md overflow-hidden py-2">
                     {l.sublinks.map((sub) => (
                       <Link
@@ -213,7 +208,7 @@ export function Navbar() {
                 className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-sd-black hover:bg-sd-green/10"
                 onClick={() => setOpen(false)}
               >
-                SEO Dashboard
+                SEO DASHBOARD
               </Link>
             )}
             <Button
