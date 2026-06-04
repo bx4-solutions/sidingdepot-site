@@ -129,7 +129,7 @@ export function Navbar() {
                 </div>
                 
                 {l.sublinks && (
-                  <div className="absolute left-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute right-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="w-[200px] bg-white border border-sd-navy/10 shadow-xl rounded-md overflow-hidden py-2">
                       {l.sublinks.map((sub) => (
                         <Link
