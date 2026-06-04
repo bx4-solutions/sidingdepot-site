@@ -287,7 +287,7 @@ function ServicePage() {
                 Why homeowners choose Siding Depot for {content.label.toLowerCase()}
               </h2>
               <p className="mt-4 text-sd-gray-text leading-relaxed">
-                Backed by industry-leading partners and W-2 crews. Every project includes
+                Backed by industry-leading partners and Highly specialized certified teams. Every project includes
                 a dedicated project manager and a written warranty.
               </p>
               <ul className="mt-8 grid gap-3">

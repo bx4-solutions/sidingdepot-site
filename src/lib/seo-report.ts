@@ -12,7 +12,7 @@ export type SeoReportEntry = {
 
 export function generateSeoReport(): SeoReportEntry[] {
   const entries: SeoReportEntry[] = [];
-  const cities = ["Marietta", "Alpharetta", "Canton", "Milton", "Woodstock"];
+  const cities = ["Marietta", "Alpharetta", "Marietta e região", "Milton", "Woodstock"];
   const services = Object.keys(SERVICE_METADATA_AB);
 
   // Home
@@ -21,7 +21,7 @@ export function generateSeoReport(): SeoReportEntry[] {
     service: "Home",
     variation: "Default",
     title: "Siding Depot — James Hardie Elite Preferred Contractor in North Atlanta GA",
-    description: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta, Alpharetta, Milton, Canton & North Atlanta.",
+    description: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta, Alpharetta, Milton, Marietta e região & North Atlanta.",
     isIndexable: true,
   });
 

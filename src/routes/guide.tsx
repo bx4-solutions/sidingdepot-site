@@ -212,7 +212,7 @@ function GuidePage() {
                  <span>Marietta</span>
                  <span>Alpharetta</span>
                  <span>Milton</span>
-                 <span>Canton</span>
+                 <span>Marietta e região</span>
                  <span>Woodstock</span>
                  <span>Roswell</span>
               </div>

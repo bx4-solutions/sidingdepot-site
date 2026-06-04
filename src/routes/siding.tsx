@@ -32,7 +32,7 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const PAGE_TITLE = "James Hardie® Siding in Marietta, GA | Siding Depot — Elite Preferred";
 const PAGE_DESC =
-  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Serving Marietta, Canton & Alpharetta. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
+  "Top 2% Elite Preferred James Hardie® contractor in North Atlanta. Serving Marietta, Marietta e região & Alpharetta. Engineered for Georgia humidity. Free estimate in 24h. Call (678) 400-2012.";
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -397,8 +397,8 @@ const HIRING_CHECKLIST = [
   },
   {
     Icon: Wrench,
-    title: "W-2 crews, not subcontractors",
-    desc: "Ask who actually installs the siding. W-2 employees mean accountability, training and a single point of contact for warranty issues.",
+    title: "Highly specialized certified teams, not subcontractors",
+    desc: "Ask who actually installs the siding. highly specialized certified professionals mean accountability, training and a single point of contact for warranty issues.",
   },
   {
     Icon: Search,
@@ -543,7 +543,7 @@ function SidingPage() {
         hiringChecklist={HIRING_CHECKLIST}
         faqLabel="Siding"
         faqs={FAQ_ITEMS}
-        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We serve Cobb County, Cherokee County and Fulton County with Elite Preferred expertise. In 2026, a full James Hardie replacement in North Atlanta typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
+        seoParagraph="Siding Depot provides James Hardie siding installation across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We serve Cobb County, Cherokee County and Fulton County with Elite Preferred expertise. In 2026, a full James Hardie replacement in North Atlanta typically runs $15,000–$30,000, and our fiber cement systems are specifically rated for HardieZone 10 — the highest level of protection against Georgia's intense humidity, rain, and UV exposure."
         ctaAccent="quality and durability?"
       />
       

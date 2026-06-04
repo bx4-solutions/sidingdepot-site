@@ -18,7 +18,7 @@ export const Route = createFileRoute("/dumpster-rental")({
       {
         name: "description",
         content:
-          "Reserve a 10, 15 or 20-yard dumpster in Marietta, Canton, Alpharetta and across North Atlanta. Same-day / next-day drop-off, transparent pricing, no hidden fees.",
+          "Reserve a 10, 15 or 20-yard dumpster in Marietta, Marietta e região, Alpharetta and across North Atlanta. Same-day / next-day drop-off, transparent pricing, no hidden fees.",
       },
       { property: "og:title", content: "Reserve Your Dumpster — North Atlanta" },
       {
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/dumpster-rental")({
         children: JSON.stringify(
           getServiceSchema(
             "Dumpster Rental in Marietta, GA",
-            "Reserve a 10, 15 or 20-yard dumpster in Marietta, Canton, Alpharetta and across North Atlanta. Same-day / next-day drop-off, transparent pricing, no hidden fees.",
+            "Reserve a 10, 15 or 20-yard dumpster in Marietta, Marietta e região, Alpharetta and across North Atlanta. Same-day / next-day drop-off, transparent pricing, no hidden fees.",
             "/dumpster-rental",
             HERO_IMAGE
           )
@@ -143,7 +143,7 @@ function DumpsterRentalPage() {
 
               <ul className="mt-6 space-y-2 text-sm text-sd-gray-text">
                 {[
-                  "Same-day or next-day delivery in Marietta, Canton, Alpharetta",
+                  "Same-day or next-day delivery in Marietta, Marietta e região, Alpharetta",
                   "Driveway-safe drop with plywood protection on request",
                   "7-day standard rental, early pickup available",
                   "Licensed & insured Georgia GC #RBQA006789",

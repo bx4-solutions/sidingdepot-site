@@ -25,12 +25,12 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does gutter installation cost in Marietta or Canton, GA?",
+    q: "How much does gutter installation cost in Marietta or Marietta e região, GA?",
     a: "Seamless aluminum gutter installation in North Atlanta typically costs $1,200–$3,500 for a standard home, depending on linear footage, gutter size (5\" vs 6\"), and whether gutter guards are included. 6-inch gutters are strongly recommended for Georgia — our rainfall averages 50+ inches per year, and standard 5-inch gutters frequently overflow during summer storms.",
   },
   {
     q: "What size gutters does a home in North Atlanta need?",
-    a: "We recommend 6-inch K-style gutters for most homes in Marietta, Canton, and surrounding areas. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
+    a: "We recommend 6-inch K-style gutters for most homes in Marietta, Marietta e região, and surrounding areas. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
   },
   {
     q: "How often should gutters be cleaned in Georgia?",
@@ -98,7 +98,7 @@ function GuttersPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Gutter"
       faqs={FAQS}
-      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly repairs."
+      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for North Atlanta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly repairs."
       ctaAccent="years, not seasons?"
       trustBadge={{ title: "LeafGuard Authorized", subtitle: "Lifetime no-clog warranty" }}
     />
