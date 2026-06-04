@@ -13,6 +13,7 @@ import { GoogleReviews } from "@/components/site/GoogleReviews";
 import { PainPointsSection } from "@/components/site/PainPointsSection";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { AwardsStrip } from "@/components/site/AwardsStrip";
+import { Checklist } from "lucide-react";
 import { ProjectGallery } from "@/components/site/ProjectGallery";
 import { FinancingBlock } from "@/components/site/FinancingBlock";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
