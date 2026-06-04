@@ -16,9 +16,9 @@ import {
 } from "@/components/site/ServiceLandingPage";
 import { buildServiceMeta } from "@/components/site/ServiceLandingPage";
 
-const PAGE_TITLE = "Entry & Patio Doors in Marietta, GA | Siding Depot — Secure & Stylish";
+const PAGE_TITLE = "Entry & Patio Doors in Marietta e Região, GA | Siding Depot — Secure & Stylish";
 const PAGE_DESC =
-  "Upgrade your home with Energy Star® entry and patio doors. Serving Marietta, Alpharetta & North Atlanta. Therma-Tru® authorized installer. Free estimate in 24h. Call (678) 400-2012.";
+  "Upgrade your home with Energy Star® entry and patio doors in Marietta e Região. Therma-Tru® authorized installer. Free estimate in 24h. Call (678) 400-2012.";
 const HERO_IMAGE = "/projects/project-8.webp";
 const CANONICAL = "https://sidingdepot.com/doors";
 
