@@ -453,27 +453,27 @@ function WhatToConsiderSection() {
 const FAQ_ITEMS = [
   {
     q: "How much does James Hardie siding cost in Marietta, GA in 2026?",
-    a: "For most homes in the Marietta and North Atlanta area, James Hardie fiber cement siding costs between $15,000 and $30,000 for a full installation on a 2,500 sq ft home. Per square foot, expect $8–$14 installed, depending on the style (HardiePlank, HardieShingle, Board & Batten), trim work, and whether old siding removal is included. Homes in higher-end communities like Milton or Alpharetta with more complex architecture may run higher. We provide free, itemized estimates with no hidden fees.",
+    a: "Typical James Hardie installation costs in North Atlanta range from $10,000 for smaller homes under 1,500 sq ft, up to $55,000+ for large estates over 3,500 sq ft. This includes full tear-off, moisture barrier, HardiePlank installation, and professional project management. Financing is available with 0% interest through GreenSky.",
   },
   {
     q: "What is the best siding for Georgia's climate?",
-    a: "James Hardie fiber cement siding is widely considered the best choice for Georgia. It's engineered specifically for the Southeast's heat, humidity, and storm season through the HardieZone® HZ10 system. Unlike vinyl, it won't warp in 95°F summers. Unlike wood, it won't rot from moisture or attract termites — a real concern in Cherokee and Cobb counties. It also carries a 30-year non-prorated warranty.",
+    a: "James Hardie fiber cement siding is the top choice for Georgia. Specifically, the HardieZone® HZ10 system is engineered for the heat, humidity, and storm cycles common in Marietta, Canton, and North Atlanta. It resists rot, warping, and pests, ensuring your home stays protected for decades.",
   },
   {
-    q: "How long does siding installation take in Marietta or Alpharetta?",
-    a: "Most single-family homes in the North Atlanta area take 3 to 7 days from start to finish, depending on home size, number of stories, and siding style. We schedule projects so your home is never left exposed overnight. Weather delays are rare but we communicate proactively.",
+    q: "How long does siding installation take in Marietta or Canton?",
+    a: "A typical siding project takes 5–10 working days. This allows for a proper full tear-off, structural inspection, and precision installation of the James Hardie system by our W-2 crews. Every project is overseen by a dedicated on-site project manager.",
   },
   {
-    q: "Does James Hardie siding increase home value in Georgia?",
-    a: "Yes. According to national remodeling data, James Hardie fiber cement siding delivers up to 80% ROI on resale — one of the highest of any exterior renovation. In high-value markets like Milton, Johns Creek, and Alpharetta, new siding can directly impact appraisal value and days on market.",
+    q: "What does the 30-year non-prorated warranty cover?",
+    a: "As Elite Preferred installers, we can offer James Hardie's highest level of protection. The 30-year non-prorated warranty covers both materials and labor, giving you peace of mind that your investment is fully protected against manufacturer defects and installation issues.",
   },
   {
-    q: "Will my homeowner's insurance cover siding damage from a storm?",
-    a: "In most cases, yes — if the damage was caused by a covered peril like hail, wind, or a fallen tree. Georgia's hail season (March–May) causes thousands of siding claims across Cobb, Cherokee, and Fulton counties every year. We work directly with insurance adjusters and can document damage to help you get the coverage you deserve.",
+    q: "Are your crews subcontractors or employees?",
+    a: "Every crew member at Siding Depot is a W-2 employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are background-checked, insured, and trained specifically in James Hardie Best Practices.",
   },
   {
-    q: "What's the difference between James Hardie Elite Preferred and a regular contractor?",
-    a: "Elite Preferred is James Hardie's top certification, awarded to fewer than 2% of contractors nationwide. It requires passing installation training, maintaining high customer satisfaction scores, and completing a minimum volume of certified installs. Siding Depot holds this status — meaning your installation is backed by both our labor warranty and James Hardie's extended product warranty, which is only available through certified installers.",
+    q: "Do you provide written estimates?",
+    a: "Yes. We provide detailed, itemized written estimates within 24 hours of our site visit. The price quoted is the price you pay — no hidden fees or surprise change orders mid-project.",
   },
 ] as const;
 
