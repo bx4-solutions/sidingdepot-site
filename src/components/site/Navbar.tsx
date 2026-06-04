@@ -43,7 +43,7 @@ export function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-sd-navy/15 shadow-sm transition-colors duration-200 bg-sd-dark-mid`}>
+    <header className={`sticky top-0 z-50 w-full border-b border-sd-navy/15 shadow-sm transition-colors duration-200 bg-sd-gray-bg border-b border-sd-gray-border`}>
       <div className="mx-auto flex h-nav-mobile sm:h-nav-tablet lg:h-nav-desktop max-w-7xl items-center justify-between gap-3 px-4 lg:px-8">
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
@@ -105,7 +105,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-sd-dark-mid`}>
+        <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-sd-gray-bg border-b border-sd-gray-border`}>
           <nav className="px-4 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <Link
