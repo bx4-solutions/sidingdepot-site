@@ -41,8 +41,11 @@ function RoofingPage() {
   return (
     <div className="flex flex-col">
       {/* HERO SECTION */}
-      <HeroSection
-        badge="ROOFING — NORTH ATLANTA"
+      <div className="relative">
+        {/* Custom Overlay for Roofing Page */}
+        <div className="absolute inset-0 bg-[#1E2A38]/85 z-10" aria-hidden="true" />
+        <HeroSection
+          badge="ROOFING — NORTH ATLANTA"
         title={
           <span className="text-white font-bold text-[48px] leading-tight">
             Roofing Installation & Replacement in <br className="hidden sm:block" />
