@@ -62,14 +62,14 @@ export function HeroQuoteForm({
     : { name: "", phone: "", city: "" };
 
   const { form, onSubmit, isSubmitting, isSuccess, error } = useLeadForm({
-    schema,
-    defaultValues,
+    schema: schema as any,
+    defaultValues: defaultValues as any,
     source,
     tag,
     onSuccess,
   });
 
-  const { register, control, formState: { errors } } = form;
+  const { register, control, formState: { errors } } = form as any;
 
   if (isSuccess) {
     return (
