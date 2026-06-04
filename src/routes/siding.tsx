@@ -393,13 +393,14 @@ const HIRING_CHECKLIST = [
     title: "30-Year Non-Prorated Warranty",
     desc: "As Elite Preferred installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry — only available through Elite Preferred contractors.",
   },
-
+] as const;
 
 /* ---------------------------------------------------------------- */
 /* FAQ (Section 5)                                                   */
 /* ---------------------------------------------------------------- */
 
 const FAQ_ITEMS = [
+
   {
     q: "How much does James Hardie siding cost in Marietta, GA in 2026?",
     a: "Typical James Hardie installation costs in North Atlanta range from $10,000 for smaller homes under 1,500 sq ft, up to $55,000+ for large estates over 3,500 sq ft. This includes full tear-off, moisture barrier, HardiePlank installation, and professional project management. Financing is available with 0% interest through GreenSky.",
