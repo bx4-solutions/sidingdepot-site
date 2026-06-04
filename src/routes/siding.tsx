@@ -344,7 +344,7 @@ function BeforeAfterCarousel() {
                 type="button"
                 onClick={prev}
                 aria-label="Previous project"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-colors"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-gray-bg hover:text-sd-black transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
               </button>
@@ -352,7 +352,7 @@ function BeforeAfterCarousel() {
                 type="button"
                 onClick={next}
                 aria-label="Next project"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-colors"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-sd-navy text-sd-navy hover:bg-sd-gray-bg hover:text-sd-black transition-colors"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -553,12 +553,12 @@ We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alphar
       <SidingTypesSection />
       
       {/* Pricing Section */}
-      <section className="bg-[#1E2A38] py-20 lg:py-28 text-white">
+      <section className="bg-sd-gray-bg py-20 lg:py-28 text-sd-black">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-center">
             How Much Does James Hardie Siding Cost in Marietta, GA? (2026)
           </h2>
-          <div className="mt-10 space-y-6 text-lg text-white/90 leading-relaxed">
+          <div className="mt-10 space-y-6 text-lg text-sd-black/90 leading-relaxed">
             <p>Typical James Hardie installation costs in North Atlanta:</p>
             <ul className="space-y-3 list-disc pl-6">
               <li>Under 1,500 sq ft home: $10,000 – $16,000</li>

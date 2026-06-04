@@ -56,7 +56,7 @@ export function HeroSection({
       </picture>
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-sd-dark/90 via-sd-dark/75 to-sd-dark/60"
+        className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70"
       />
 
       <div
@@ -67,15 +67,15 @@ export function HeroSection({
         {/* Left column */}
         <div>
           {badge && (
-            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green">
+            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/20 border border-sd-green/50 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green-text">
               <span aria-hidden="true">★</span> {badge}
             </span>
           )}
-          <h1 className="font-display text-white leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl">
+          <h1 className="font-display text-sd-black leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-sd-gray-text max-w-2xl leading-relaxed">
               {subtitle}
             </p>
           )}
@@ -85,8 +85,8 @@ export function HeroSection({
               {trustItems.map((t, i) => {
                 const Icon = trustIcons[i % trustIcons.length];
                 return (
-                  <li key={t} className="flex items-center gap-2 text-sm text-foreground/85">
-                    <Icon className="h-4 w-4 text-sd-green shrink-0" aria-hidden="true" />
+                  <li key={t} className="flex items-center gap-2 text-sm text-sd-black/85">
+                    <Icon className="h-4 w-4 text-sd-green-text shrink-0" aria-hidden="true" />
                     <span>{t}</span>
                   </li>
                 );
