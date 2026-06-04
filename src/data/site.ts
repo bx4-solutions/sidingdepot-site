@@ -253,7 +253,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Two-story Kennesaw home in deep navy blue with crisp white trim and brand-new seamless aluminum gutters.",
   },
   {
-    slug: "hardie-repaint-deck-canton",
+    slug: "hardie-repaint-deck-marietta-e-regiao",
     src: "/projects/project-6.webp",
     alt: "Three-story Marietta e região home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],

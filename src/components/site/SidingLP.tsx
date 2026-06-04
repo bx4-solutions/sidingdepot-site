@@ -36,7 +36,7 @@ const CITIES = [
   "Marietta",
   "Alpharetta",
   "Milton",
-  "Canton",
+  "Marietta e região",
   "Woodstock",
   "Roswell",
   "Kennesaw",
@@ -71,7 +71,7 @@ const REVIEWS = [
   {
     initials: "DK",
     name: "David & Jennifer K.",
-    location: "Canton, GA",
+    location: "Marietta e região, GA",
     text: "They handled our hail damage insurance claim AND finished in under a week. Professional and fair.",
   },
   {
