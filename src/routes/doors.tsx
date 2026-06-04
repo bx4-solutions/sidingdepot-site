@@ -32,8 +32,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "Fiberglass is the #1 recommendation for Georgia homes. Unlike wood, fiberglass won't swell or rot in 100% humidity, and unlike steel, it doesn't conduct heat as much in the summer. Brands like Therma-Tru offer fiberglass doors that mimic real wood grain perfectly but require zero maintenance and offer 4x the insulating R-value of a standard wood door.",
   },
   {
-    q: "Do I need a permit to replace a front door in Cobb or Cherokee County?",
-    a: "If you are replacing the door within the existing frame size, a building permit is usually not required in Cobb, Cherokee, or Fulton counties. However, if we are enlarging the opening or changing the structural header, a permit is mandatory. We handle all structural assessments and permit filings so you stay compliant with local Georgia building codes.",
+    q: "Do I need a permit to replace a front door in Marietta e Região?",
+    a: "If you are replacing the door within the existing frame size, a building permit is usually not required. However, if we are enlarging the opening or changing the structural header, a permit is mandatory. We handle all structural assessments and permit filings so you stay compliant with local Georgia building codes.",
   },
   {
     q: "Are sliding patio doors better than French doors for Atlanta homes?",
