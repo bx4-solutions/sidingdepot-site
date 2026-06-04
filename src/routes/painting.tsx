@@ -29,8 +29,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "Exterior painting in Marietta e Região typically costs $3,500–$8,000 for a standard 2,000–2,500 sq ft home, depending on stories, surface condition, and paint quality. Homes with hardboard or fiber cement siding may require additional prep. We use Sherwin-Williams Duration or Emerald exterior — both rated for Georgia's UV exposure and humidity.",
   },
   {
-    q: "How often should I repaint the exterior of my home in Georgia?",
-    a: "In North Atlanta's heat and humidity, a quality repaint with premium Sherwin-Williams coatings lasts 8–12 years. If your home has wood siding, you may need a refresh every 5–7 years to prevent rot. Homes with James Hardie siding typically hold paint much longer. We recommend a 10-year cycle to protect your structural substrate from moisture intrusion.",
+    q: "How often should I repaint the exterior of my home in Marietta e Região?",
+    a: "In Georgia's heat and humidity, a quality repaint with premium Sherwin-Williams coatings lasts 8–12 years. If your home has wood siding, you may need a refresh every 5–7 years to prevent rot. Homes with James Hardie siding typically hold paint much longer. We recommend a 10-year cycle to protect your structural substrate from moisture intrusion.",
   },
   {
     q: "What kind of paint do you use for Georgia's climate?",
