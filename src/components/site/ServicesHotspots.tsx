@@ -23,8 +23,8 @@ type Hotspot = {
 const HOTSPOTS: Hotspot[] = [
   {
     id: "roofing",
-    top: "25%",
-    left: "45%",
+    top: "15%",
+    left: "58%",
     label: "Roofing",
     title: "Roofing",
     body: "GAF certified installation. Storm damage specialists. We work directly with insurance companies — and combine roof replacement with siding to save you $2,000–$5,000 on mobilization.",
