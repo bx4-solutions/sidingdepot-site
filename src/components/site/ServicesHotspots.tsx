@@ -146,8 +146,7 @@ export function ServicesHotspots() {
           </p>
           <Link
             to="/contact"
-            className="mt-6 inline-block font-bold"
-            style={{ color: "#8DC63F" }}
+            className="mt-6 inline-block font-bold text-sd-green hover:text-sd-green-hover active:text-sd-green-active transition-colors"
           >
             Contact us for a free inspection →
           </Link>
@@ -181,19 +180,19 @@ export function ServicesHotspots() {
                   style={{
                     width: 28,
                     height: 28,
-                    border: "2px solid #8DC63F",
-                    background: isActive ? "#8DC63F" : "rgba(141,198,63,0.2)",
+                    border: "2px solid var(--sd-green)",
+                    background: isActive ? "var(--sd-green)" : "rgba(180, 210, 54, 0.2)",
                   }}
                 >
                   <span
                     className="rounded-full block"
-                    style={{ width: 12, height: 12, background: isActive ? "#1A1A1A" : "#8DC63F" }}
+                    style={{ width: 12, height: 12, background: isActive ? "var(--sd-black)" : "var(--sd-green)" }}
                   />
                   {!isActive && (
                     <span
                       aria-hidden
                       className="absolute inset-0 rounded-full animate-hotspot-pulse"
-                      style={{ background: "rgba(141,198,63,0.6)" }}
+                      style={{ background: "rgba(180, 210, 54, 0.6)" }}
                     />
                   )}
                 </button>
@@ -236,18 +235,12 @@ export function ServicesHotspots() {
                 <div className="overflow-hidden rounded-md mb-4 h-28">
                   <img src={h.image} alt="" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-lg" style={{ color: "#8DC63F", fontWeight: 600 }}>{h.title}</h3>
-                <div style={{ height: 2, width: 32, background: "#8DC63F", margin: "8px 0" }} />
+                <h3 className="text-lg font-semibold text-sd-green">{h.title}</h3>
+                <div className="h-0.5 w-8 bg-sd-green my-2" />
                 <p className="text-sm" style={{ color: "#fff", lineHeight: 1.6 }}>{h.body}</p>
                 <Link
                   to={h.to}
-                  className="mt-5 block text-center font-bold text-sm uppercase tracking-wider"
-                  style={{
-                    background: "#8DC63F",
-                    color: "#1A1A1A",
-                    borderRadius: 6,
-                    padding: "12px",
-                  }}
+                  className="mt-5 block text-center font-bold text-sm uppercase tracking-wider bg-sd-green text-sd-black hover:bg-sd-green-hover active:bg-sd-green-active rounded-md py-3 transition-colors"
                 >
                   {h.cta}
                 </Link>
@@ -267,12 +260,12 @@ export function ServicesHotspots() {
                 className="rounded-xl p-4 flex flex-col gap-2 shadow-lg"
                 style={{ background: "#1E2A38", color: "#fff" }}
               >
-                <Icon className="h-6 w-6" style={{ color: "#8DC63F" }} />
-                <h3 className="text-sm font-semibold" style={{ color: "#8DC63F" }}>
+                <Icon className="h-6 w-6 text-sd-green" />
+                <h3 className="text-sm font-semibold text-sd-green">
                   {h.title}
                 </h3>
                 <p className="text-[11px] text-white/80 line-clamp-2 leading-relaxed">{h.body}</p>
-                <span className="text-[11px] font-bold mt-1" style={{ color: "#8DC63F" }}>
+                <span className="text-[11px] font-bold mt-1 text-sd-green">
                   View More →
                 </span>
               </Link>
