@@ -25,7 +25,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
     },
     C: {
       h1: (c) => `Fixed-Price Siding Installation in ${c}, GA`,
-      h2: "Transparent Quotes, W-2 Crews, On-Time Finish",
+      h2: "Transparent Quotes, Highly Specialized Certified Teams, On-Time Finish",
       metaTitle: (c) => `Siding Installer ${c}, GA | Free 24h Quote — Siding Depot`,
       metaDesc: "Same-day on-site visit, written quote in 24h, dedicated project manager. James Hardie siding installed in North Atlanta with 0% APR financing.",
     },
@@ -45,9 +45,9 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
     },
     C: {
       h1: (c) => `Professional House Painters in ${c}, GA`,
-      h2: "W-2 Crews · 5-Day Completion · 5-Year Warranty",
-      metaTitle: (c) => `House Painters ${c}, GA | W-2 Crews — Siding Depot`,
-      metaDesc: "Punctual W-2 painting crews. Daily progress updates, full property protection, and a 5-year workmanship warranty. Free quote.",
+      h2: "Highly Specialized Certified Teams · 5-Day Completion · 5-Year Warranty",
+      metaTitle: (c) => `House Painters ${c}, GA | Highly Specialized Certified Teams — Siding Depot`,
+      metaDesc: "Punctual highly specialized certified painting teams. Daily progress updates, full property protection, and a 5-year workmanship warranty. Free quote.",
     },
   },
   windows: {

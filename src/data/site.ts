@@ -98,7 +98,7 @@ export const CITIES = [
   { slug: "marietta", name: "Marietta", county: "Cobb County" },
   { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
   { slug: "milton", name: "Milton", county: "Fulton County" },
-  { slug: "canton", name: "Canton", county: "Cherokee County" },
+  { slug: "canton", name: "Marietta e região", county: "Cherokee County" },
   { slug: "woodstock", name: "Woodstock", county: "Cherokee County" },
   { slug: "roswell", name: "Roswell", county: "Fulton County" },
   { slug: "kennesaw", name: "Kennesaw", county: "Cobb County" },
@@ -126,12 +126,12 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Consultation",
-    desc: "Free on-site visit in Marietta, Canton, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
+    desc: "Free on-site visit in Marietta e região, Alpharetta or anywhere in North Atlanta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
   },
   {
     num: "02",
     title: "Renovation",
-    desc: "Your dedicated project manager is on-site daily. Our W-2 crews — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
+    desc: "Your dedicated project manager is on-site daily. Our highly specialized certified teams — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
   },
   {
     num: "03",
@@ -253,16 +253,16 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Two-story Kennesaw home in deep navy blue with crisp white trim and brand-new seamless aluminum gutters.",
   },
   {
-    slug: "hardie-repaint-deck-canton",
+    slug: "hardie-repaint-deck-marietta-e-regiao",
     src: "/projects/project-6.webp",
-    alt: "Three-story Canton home with bold blue siding, white trim and rebuilt rear deck",
+    alt: "Three-story Marietta e região home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
-    title: "Hardie Siding, Repaint & Rebuilt Deck — Canton, GA",
+    title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta e região, GA",
     category: "Siding Installation & Replacement",
-    city: "Canton, GA",
+    city: "Marietta e região, GA",
     date: "2026-03-28",
     description:
-      "Three-story Canton home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
+      "Three-story Marietta e região home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
   },
   {
     slug: "craftsman-siding-roof-roswell",

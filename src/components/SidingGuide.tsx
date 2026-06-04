@@ -284,7 +284,7 @@ export const SidingGuide = () => {
             {[
               { q: "Are you James Hardie Elite Preferred?", a: "Ask for ID number. Verify at jameshardie.com/contractor-locator." },
               { q: "Are you licensed in Georgia with liability + workers' comp?", a: "Ask for the COI. Call and verify it is current." },
-              { q: "Do you use W-2 employees or subcontractors?", a: "Subcontracted crews have no loyalty to quality. In-house crews do." },
+              { q: "Do you use highly specialized certified professionals or subcontractors?", a: "Subcontracted crews have no loyalty to quality. In-house crews do." },
               { q: "What is your per-linear-foot price for wood replacement?", a: "If they hesitate or say 'we will figure it out,' walk away." },
               { q: "Will you do a full tear-off and new house wrap?", a: "Any answer other than 'yes' disqualifies them immediately." },
               { q: "What does your payment schedule look like?", a: "You want milestone-based. No more than 30% upfront." },
@@ -404,7 +404,7 @@ export const SidingGuide = () => {
           </div>
 
           <p className="mt-12 text-white/70 text-[10px] uppercase tracking-[0.1em] italic max-w-lg leading-relaxed">
-            Serving Marietta · Alpharetta · Milton · Canton · Woodstock · Roswell · Kennesaw · Johns Creek · Sandy Springs · Acworth
+            Serving Marietta · Alpharetta · Milton · Marietta e região · Woodstock · Roswell · Kennesaw · Johns Creek · Sandy Springs · Acworth
           </p>
           
           <p className="mt-8 text-white/60 text-[9px] uppercase tracking-widest">

@@ -37,8 +37,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "We specify Sherwin-Williams® Emerald and Duration exterior systems. These are high-performance acrylic coatings engineered with UV-inhibitors and mildewcides specifically designed for the humidity of the Southeast. These paints form a breathable but moisture-proof thermal barrier that resists the fading and peeling common in Georgia summers.",
   },
   {
-    q: "Do you use subcontractors or W-2 employees for painting?",
-    a: "We use professional W-2 crews who are trained in our specific multi-stage preparation process. Unlike many painting companies that use day laborers or rotating subcontractors, our teams are consistent, insured, and accountable for the final finish. This ensures your warranty is backed by Siding Depot directly.",
+    q: "Do you use subcontractors or highly specialized certified professionals for painting?",
+    a: "We use professional Highly specialized certified teams who are trained in our specific multi-stage preparation process. Unlike many painting companies that use day laborers or rotating subcontractors, our teams are consistent, insured, and accountable for the final finish. This ensures your warranty is backed by Siding Depot directly.",
   },
   {
     q: "What is your exterior painting preparation process?",
@@ -50,7 +50,7 @@ const CHECKLIST: ReadonlyArray<ChecklistItem> = [
   { Icon: Award, title: "Premium paint system", desc: "Insist on Sherwin-Williams Emerald or Duration grade — not contractor-grade builder paint that fades inside 3 summers." },
   { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit changes hands." },
   { Icon: FileText, title: "Itemized scope of work", desc: "Demand a written scope: power-wash, scrape, sand, prime, caulk, two finish coats. A vague single price hides corner-cutting." },
-  { Icon: Wrench, title: "W-2 crews, not day labor", desc: "Ask who actually paints. W-2 employees are trained, insured, and accountable for the warranty." },
+  { Icon: Wrench, title: "Highly specialized certified teams, not day labor", desc: "Ask who actually paints. highly specialized certified professionals are trained, insured, and accountable for the warranty." },
   { Icon: Search, title: "Recent local reviews", desc: "50+ recent Google reviews from your county, with photos. Drive past completed jobs after 2 summers — that is the real test." },
   { Icon: Clock, title: "Honest timeline", desc: "A typical full exterior repaint runs 4–8 working days depending on prep. Anything faster is skipping prep — the step that actually makes paint last." },
 ];
@@ -98,7 +98,7 @@ function PaintingPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Painting"
       faqs={FAQS}
-      seoParagraph="Siding Depot provides professional exterior painting across Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
+      seoParagraph="Siding Depot provides professional exterior painting across Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in high-performance Sherwin-Williams systems engineered for North Atlanta's UV exposure and high humidity. In 2026, a full exterior repaint in our service area typically runs $3,500–$8,000, and our multi-stage preparation process ensures your home's substrate is stabilized and protected for 8–12 years."
       ctaAccent="quality and durability?"
       trustBadge={{ title: "Sherwin-Williams PRO", subtitle: "Premium System Certified" }}
     />

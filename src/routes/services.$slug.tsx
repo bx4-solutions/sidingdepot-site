@@ -46,7 +46,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Top 2% Elite Preferred James Hardie status",
       "Engineered specifically for Georgia's heat & humidity",
       "30-year limited material & 15-year finish warranty",
-      "W-2 certified installers — no subcontractors",
+      "highly specialized certified teams — no subcontractors",
     ],
     process: [
       { title: "Precision Measurement", desc: "We perform a forensic inspection of your current siding and provide a detailed, itemized quote within 24 hours." },
@@ -287,7 +287,7 @@ function ServicePage() {
                 Why homeowners choose Siding Depot for {content.label.toLowerCase()}
               </h2>
               <p className="mt-4 text-sd-gray-text leading-relaxed">
-                Backed by industry-leading partners and W-2 crews. Every project includes
+                Backed by industry-leading partners and Highly specialized certified teams. Every project includes
                 a dedicated project manager and a written warranty.
               </p>
               <ul className="mt-8 grid gap-3">

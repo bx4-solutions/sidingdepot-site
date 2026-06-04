@@ -41,7 +41,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "How long does a door replacement take?",
-    a: "Most single-door replacements are completed in 4–6 hours by our W-2 crews. Patio doors or entry systems with sidelights may take a full day. We ensure the home is secure and weather-tight before we leave, and we handle all disposal of your old door. Our process includes a final 20-point inspection of locks, seals, and threshold alignment.",
+    a: "Most single-door replacements are completed in 4–6 hours by our Highly specialized certified teams. Patio doors or entry systems with sidelights may take a full day. We ensure the home is secure and weather-tight before we leave, and we handle all disposal of your old door. Our process includes a final 20-point inspection of locks, seals, and threshold alignment.",
   },
 ];
 
@@ -93,7 +93,7 @@ function DoorsPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Door"
       faqs={FAQS}
-      seoParagraph="Siding Depot replaces entry and patio doors across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
+      seoParagraph="Siding Depot replaces entry and patio doors across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in fiberglass entry systems that handle North Atlanta's high humidity without the swelling or rotting common to wood doors. In 2026, most residential door replacements in our service area run $1,500–$4,500, and we specify Energy Star double-pane glass packages that reflect Georgia's summer heat while maintaining clear curb appeal."
       ctaAccent="security and efficiency?"
       trustBadge={{ title: "ProVia Authorized", subtitle: "Certified Entry Systems" }}
     />

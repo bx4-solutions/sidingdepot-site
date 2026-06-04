@@ -25,7 +25,7 @@ const seo = SERVICE_METADATA[SERVICE_KEY];
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
-    q: "How much does a deck cost in Marietta or Canton, GA in 2026?",
+    q: "How much does a deck cost in Marietta or Marietta e região, GA in 2026?",
     a: "A pressure-treated wood deck in North Atlanta runs $15–$25 per square foot installed, so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech) costs $30–$55 per square foot — so $9,000–$16,500 for the same deck — but lasts 25–30 years with virtually no maintenance. Elevated decks, screened porches, and multi-level designs increase cost.",
   },
   {
@@ -98,7 +98,7 @@ function DeckPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Deck"
       faqs={FAQS}
-      seoParagraph="Siding Depot designs and builds custom decks across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Canton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits with Cobb, Cherokee or Fulton county on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
+      seoParagraph="Siding Depot designs and builds custom decks across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Marietta e região, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. We specialize in composite systems (Trex Transcend, TimberTech AZEK) that hold up to Georgia's heat, humidity and 50+ inches of annual rainfall — and we handle all building permits with Cobb, Cherokee or Fulton county on every deck above 30 inches. In 2026, pressure-treated decks in our service area run $15–$25 per square foot installed, while composite runs $30–$55 per square foot."
       ctaAccent="decades, not seasons?"
       trustBadge={{ title: "Trex Pro Installer", subtitle: "Composite warranty unlocked" }}
     />

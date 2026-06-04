@@ -30,7 +30,7 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
         "Top 2% Elite Preferred James Hardie status",
         "Engineered specifically for Georgia's heat & humidity",
         "30-year limited material & 15-year finish warranty",
-        "W-2 certified installers — no subcontractors",
+        "highly specialized certified teams — no subcontractors",
       ],
       process: [
         { title: "Precision Measurement", desc: "Forensic inspection of current siding with a detailed, itemized quote within 24 hours." },
@@ -61,7 +61,7 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       eyebrow: "Transparent Pricing · Expert Crews",
       title: "Fixed-Price Siding,",
       titleAccent: "Installed Without the Stress.",
-      intro: "Get a comprehensive, no-pressure siding estimate the same day. Our W-2 crews specialize in James Hardie installation, ensuring a fast, clean, and professional process from tear-off to final celebration.",
+      intro: "Get a comprehensive, no-pressure siding estimate the same day. Our Highly specialized certified teams specialize in James Hardie installation, ensuring a fast, clean, and professional process from tear-off to final celebration.",
       benefits: [
         "Written estimates delivered within 24 hours",
         "Dedicated project manager on-site daily",
@@ -114,12 +114,12 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       hiringIntro: "The cost of a repaint is 70% labor and prep. This checklist helps you verify the quality of what's under the finish.",
     },
     C: {
-      eyebrow: "W-2 Professional Crews · 5-Day Completion",
+      eyebrow: "Highly Specialized Certified Teams · 5-Day Completion",
       title: "Better House Painting,",
       titleAccent: "Without the Mess or Delays.",
-      intro: "Tired of ghosting contractors? Our W-2 painting crews show up on time, communicate daily, and finish most North Atlanta homes in 4-8 working days. Professional results without the typical renovation headache.",
+      intro: "Tired of ghosting contractors? Our highly specialized certified painting teams show up on time, communicate daily, and finish most North Atlanta homes in 4-8 working days. Professional results without the typical renovation headache.",
       benefits: [
-        "Punctual, uniformed W-2 employees (not subbed)",
+        "Punctual, uniformed highly specialized certified professionals (not subbed)",
         "Daily progress updates from your project manager",
         "Comprehensive property protection (masking/tarping)",
         "Fully licensed and workers-comp insured",
@@ -164,7 +164,7 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
       { title: "HomeAdvisor", subtitle: "Top Rated", icon: Star },
     ],
     reviews: [
-      { name: "David K.", city: "Canton", text: "They used high-end Emerald paint and the finish is flawless. My house looks brand new after 10 years of neglect.", rating: 5 },
+      { name: "David K.", city: "Marietta e região", text: "They used high-end Emerald paint and the finish is flawless. My house looks brand new after 10 years of neglect.", rating: 5 },
       { name: "Jennifer L.", city: "Marietta", text: "The prep work was amazing. They spent 2 days just scraping and caulking before a single drop of paint touched the wall.", rating: 5 },
     ],
   },

@@ -262,7 +262,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Modern Farmhouse Explosion in Georgia',
-        content: `From the horse farms of Milton to the new developments in Canton, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with [James Hardie materials](/siding), it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home. We specialize in [Modern Farmhouse siding in Milton](/locations/milton/siding) and surrounding areas.`,
+        content: `From the horse farms of Milton to the new developments in Marietta e região, the Board and Batten look (vertical siding with raised strips) has become the defining architectural trend of 2026. This style offers a clean, modern aesthetic while maintaining a connection to traditional southern architecture.\n\nOriginally found on barn structures, this vertical orientation was designed to shed water efficiently. Today, North Atlanta homeowners are adopting it for its ability to add height and character to standard suburban silhouettes. When executed with [James Hardie materials](/siding), it provides a high-performance exterior that stands up to Georgia\'s humidity while looking like a custom designer home. We specialize in [Modern Farmhouse siding in Milton](/locations/milton/siding) and surrounding areas.`,
         image: {
           url: 'https://images.unsplash.com/photo-1510627889119-1ad0f16af501?auto=format&fit=crop&w=1000&q=80',
           alt: 'White modern farmhouse exterior with vertical siding',
@@ -356,7 +356,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'hail-damage-siding-insurance-claim-georgia-2026',
     title: "Hail Damaged Your Siding? How to Navigate Georgia Insurance Claims",
-    excerpt: "Don't settle for a patch job. [See our Canton siding replacement guide](/lp/siding-canton) to get your insurance to cover a full replacement.",
+    excerpt: "Don't settle for a patch job. [See our Marietta e região siding replacement guide](/lp/siding-canton) to get your insurance to cover a full replacement.",
     category: 'Storm Damage',
     readTime: 12,
     publishDate: '2026-05-09',
@@ -370,7 +370,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The "Storm Chaser" Warning: Protecting Your Investment',
-        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties. We offer [emergency siding repair and replacement in Canton](/locations/canton/siding) and throughout the region.`,
+        content: `After a major hail event in Marietta or Woodstock, you\'ll likely have "contractors" knocking on your door within 24 hours. Be careful. Many of these companies are storm chasers who do low-quality work, use sub-standard materials, and disappear as soon as the check clears. \n\nAlways work with a local, established company like Siding Depot that has a physical office in North Atlanta and will be here to honor your warranty long after the storm season ends. A true local contractor knows the specific building codes for Cobb, Fulton, and Cherokee counties. We offer [emergency siding repair and replacement in Marietta e região](/locations/canton/siding) and throughout the region.`,
         image: {
           url: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1000&q=80',
           alt: 'Cloudy sky during a storm',
@@ -414,7 +414,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: 'How long do I have to file a claim?', a: 'Most Georgia policies require you to file within 12 months of the storm event.' },
       { q: 'Will filing a claim raise my rates?', a: 'In Georgia, insurance companies generally cannot raise your individual rates for "Acts of God" like hail storms.' }
     ],
-    cta: { city: 'Canton', service: 'Siding' },
+    cta: { city: 'Marietta e região', service: 'Siding' },
     metaTitle: 'Siding Hail Damage Claims Georgia 2026 | Siding Depot',
     metaDescription: 'Step-by-step guide to filing an insurance claim for siding hail damage in Georgia. Learn your rights and maximize your coverage.',
     internalLinks: ['6-signs-time-replace-siding-georgia-home', 'rotten-wood-siding-replacement-georgia-homes']
@@ -478,7 +478,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: 'The Pre-Installation Phase (1-2 Weeks)',
-        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays. This level of detail is why we're the top choice for [siding in Canton](/locations/canton/siding) and nearby communities.`,
+        content: `Before the first panel is removed, we handle the logistics. This includes ordering materials, securing local permits (required in most North Atlanta municipalities), and coordinating with your HOA. We ensure everything is staged and ready to go so the actual work proceeds without delays. This level of detail is why we're the top choice for [siding in Marietta e região](/locations/canton/siding) and nearby communities.`,
         image: {
           url: 'https://images.unsplash.com/photo-1513584684374-8bdb7483fe8f?auto=format&fit=crop&w=1000&q=80',
           alt: 'Blueprint and project planning tools',
@@ -507,7 +507,7 @@ export const BLOG_POSTS: BlogPost[] = [
     faq: [
       { q: 'Do I need to be home during installation?', a: 'No, most of the work is exterior. However, we do need access to an outdoor power outlet and water source.' }
     ],
-    cta: { city: 'Canton', service: 'Siding' },
+    cta: { city: 'Marietta e região', service: 'Siding' },
     metaTitle: 'Siding Installation Timeline Georgia 2026',
     metaDescription: 'How long does it take to replace siding? See our realistic timeline for Georgia homeowners.',
     internalLinks: ['james-hardie-siding-cost-marietta-ga-2026', 'rotten-wood-siding-replacement-georgia-homes']
