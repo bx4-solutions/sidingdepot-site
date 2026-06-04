@@ -62,8 +62,8 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className="text-[13px] font-semibold tracking-wide transition-colors text-white hover:text-white/80"
-              activeProps={{ className: "text-white underline underline-offset-4" }}
+              className="text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
+              activeProps={{ className: "text-sd-green-text underline underline-offset-4" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -72,7 +72,7 @@ export function Navbar() {
           {session && (
             <Link
               to="/seo-dashboard"
-              className="text-[13px] font-bold tracking-wide transition-colors text-white hover:text-white/80"
+              className="text-[13px] font-bold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
               activeProps={{ className: "text-white" }}
             >
               SEO Dashboard
@@ -84,7 +84,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="bg-sd-navy text-white hover:bg-sd-black"
+            className="bg-sd-black text-white hover:bg-sd-dark-mid"
             onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}
           >
             <a href={SITE.phoneHref} aria-label={`Call ${SITE.phone}`}>
@@ -95,7 +95,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-white"
+          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-sd-black"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -111,7 +111,7 @@ export function Navbar() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="px-3 py-2 rounded-md text-sm font-semibold transition-colors text-white hover:bg-white/10"
+                className="px-3 py-2 rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
@@ -120,7 +120,7 @@ export function Navbar() {
             {session && (
               <Link
                 to="/seo-dashboard"
-                className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-white hover:bg-white/10"
+                className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-sd-black hover:bg-sd-green/10"
                 onClick={() => setOpen(false)}
               >
                 SEO Dashboard
@@ -128,7 +128,7 @@ export function Navbar() {
             )}
             <Button
               asChild
-              className="mt-3 bg-sd-navy text-white hover:bg-sd-black"
+              className="mt-3 bg-sd-black text-white hover:bg-sd-dark-mid"
               onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}
             >
               <a href={SITE.phoneHref}>
