@@ -106,25 +106,25 @@ export function ServicesHotspots() {
   }, []);
 
   return (
-    <section className="py-20 lg:py-24 bg-background">
+    <section className="py-20 lg:py-24 bg-background scroll-mt-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-[2fr_3fr] items-center">
         {/* LEFT */}
         <div>
-          <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-            Our Services — Click to Explore
-          </span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl text-sd-black leading-tight">
+          <h2 className="font-display text-4xl sm:text-5xl text-sd-black leading-tight">
             Quality Craftsmanship. Professional Service.
           </h2>
-          <p className="mt-4 text-sd-gray-text">
-            We've transformed 1,500+ homes across Marietta, Canton, Alpharetta and North Atlanta. As Elite Preferred James Hardie installers, our W-2 crews handle every exterior service — siding, painting, windows, gutters, decks and roofing.
+          <p className="mt-6 text-sd-gray-text leading-relaxed">
+            We've transformed 1,500+ homes across Marietta, Canton, Alpharetta and North Atlanta. 
+            As Elite Preferred James Hardie installers, our W-2 crews handle every exterior service 
+            — siding, painting, windows, gutters, decks and roofing.
           </p>
-          <p className="mt-3 text-sd-gray-text">
-            Family-owned and based in Marietta, GA. We use only the best products and stand behind every project with a written guarantee.
+          <p className="mt-4 text-sd-gray-text leading-relaxed">
+            Family-owned and based in Marietta, GA. We use only the best products 
+            and stand behind every project with a written guarantee.
           </p>
           <Link
             to="/contact"
-            className="mt-5 inline-block font-semibold underline underline-offset-4"
+            className="mt-6 inline-block font-bold"
             style={{ color: "#8DC63F" }}
           >
             Contact us for a free inspection →
@@ -134,11 +134,11 @@ export function ServicesHotspots() {
         {/* RIGHT — desktop image with hotspots */}
         <div
           ref={containerRef}
-          className="relative hidden md:block overflow-hidden rounded-xl shadow-lg"
+          className="relative hidden md:block overflow-hidden rounded-xl shadow-2xl"
         >
           <img
             src="/projects/project-1.webp"
-            alt="Greater Marietta home featuring James Hardie siding, gutters, windows and roofing by Siding Depot"
+            alt="Greater Marietta home project by Siding Depot"
             className="w-full h-auto block"
             loading="lazy"
           />
@@ -150,6 +150,7 @@ export function ServicesHotspots() {
             const flipX = leftNum > 55;
             const topNum = parseFloat(h.top);
             const flipY = topNum > 60;
+
             return (
               <div
                 key={h.id}
@@ -160,7 +161,7 @@ export function ServicesHotspots() {
                   type="button"
                   aria-label={`Open ${h.label} details`}
                   onClick={() => setActive(isActive ? null : h.id)}
-                  className="relative grid place-items-center rounded-full cursor-pointer"
+                  className="relative grid place-items-center rounded-full cursor-pointer transition-colors duration-300"
                   style={{
                     width: 28,
                     height: 28,
@@ -170,7 +171,7 @@ export function ServicesHotspots() {
                 >
                   <span
                     className="rounded-full block"
-                    style={{ width: 12, height: 12, background: "#8DC63F" }}
+                    style={{ width: 12, height: 12, background: isActive ? "#1A1A1A" : "#8DC63F" }}
                   />
                   {!isActive && (
                     <span
@@ -193,34 +194,36 @@ export function ServicesHotspots() {
                       padding: 20,
                       zIndex: 50,
                       [flipX ? "right" : "left"]: 36,
-                      [flipY ? "bottom" : "top"]: -8,
+                      [flipY ? "bottom" : "top"]: -10,
                     } as React.CSSProperties}
                   >
                     <button
                       type="button"
                       aria-label="Close"
                       onClick={() => setActive(null)}
-                      className="absolute text-white/80 hover:text-white"
-                      style={{ top: 8, right: 8 }}
+                      className="absolute text-white/80 hover:text-white transition-colors"
+                      style={{ top: 12, right: 12, zIndex: 10 }}
                     >
                       <X size={20} />
                     </button>
-                    <img
-                      src={h.image}
-                      alt=""
-                      className="w-full h-24 object-cover rounded-md mb-3"
-                    />
-                    <h3 style={{ color: "#8DC63F", fontWeight: 600 }}>{h.title}</h3>
+                    <div className="overflow-hidden rounded-md mb-4 h-28">
+                      <img
+                        src={h.image}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-lg" style={{ color: "#8DC63F", fontWeight: 600 }}>{h.title}</h3>
                     <div style={{ height: 2, width: 32, background: "#8DC63F", margin: "8px 0" }} />
-                    <p style={{ color: "#fff", fontSize: 13, lineHeight: 1.6 }}>{h.body}</p>
+                    <p className="text-sm" style={{ color: "#fff", lineHeight: 1.6 }}>{h.body}</p>
                     <Link
                       to={h.to}
-                      className="mt-4 block text-center font-bold"
+                      className="mt-5 block text-center font-bold text-sm uppercase tracking-wider"
                       style={{
                         background: "#8DC63F",
                         color: "#1A1A1A",
                         borderRadius: 6,
-                        padding: "10px",
+                        padding: "12px",
                       }}
                     >
                       {h.cta}
@@ -240,15 +243,15 @@ export function ServicesHotspots() {
               <Link
                 key={h.id}
                 to={h.to}
-                className="rounded-xl p-4 flex flex-col gap-2"
+                className="rounded-xl p-4 flex flex-col gap-2 shadow-lg"
                 style={{ background: "#1E2A38", color: "#fff" }}
               >
                 <Icon className="h-6 w-6" style={{ color: "#8DC63F" }} />
                 <h3 className="text-sm font-semibold" style={{ color: "#8DC63F" }}>
                   {h.title}
                 </h3>
-                <p className="text-xs text-white/80 line-clamp-2">{h.body}</p>
-                <span className="text-xs font-bold mt-1" style={{ color: "#8DC63F" }}>
+                <p className="text-[11px] text-white/80 line-clamp-2 leading-relaxed">{h.body}</p>
+                <span className="text-[11px] font-bold mt-1" style={{ color: "#8DC63F" }}>
                   View More →
                 </span>
               </Link>
