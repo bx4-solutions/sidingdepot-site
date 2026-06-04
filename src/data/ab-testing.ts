@@ -154,9 +154,24 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
   },
   painting: {
     stats: [
-      { value: "12 Years", label: "Average Lifespan", icon: Clock },
-      { value: "5 Years", label: "Labor Warranty", icon: ShieldCheck },
-      { value: "850+", label: "Homes Painted", icon: MapPin },
+      { 
+        value: "15+", 
+        label: "Years Painting North Atlanta Homes", 
+        description: "Exterior painting across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock since 2009.",
+        icon: Clock 
+      },
+      { 
+        value: "1,500+", 
+        label: "Homes Transformed", 
+        description: "Exterior painting, siding, windows and full renovation projects across Cherokee, Cobb, Fulton and Forsyth counties.",
+        icon: MapPin 
+      },
+      { 
+        value: "15yr", 
+        label: "Paint Warranty", 
+        description: "Sherwin-Williams Duration® carries a 15-year warranty against peeling and fading — the longest in the industry for exterior paint.",
+        icon: ShieldCheck 
+      },
     ],
     seals: [
       { title: "Sherwin-Williams®", subtitle: "PRO Preferred", icon: BadgeCheck },
