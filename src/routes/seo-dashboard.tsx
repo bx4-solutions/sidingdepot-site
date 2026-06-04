@@ -689,7 +689,7 @@ function SEODashboard() {
                   onClick={() => setDateRange(resolveDateRange(preset.days))}
                   className="rounded-md px-2 py-1 text-[10px] font-black uppercase text-slate-200 hover:bg-white/10 hover:text-white"
                 >
-                  {preset.label}
+                  {t(`datePresets.${preset.labelKey}`)}
                 </button>
               ))}
               <Input
