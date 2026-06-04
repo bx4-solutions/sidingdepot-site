@@ -813,8 +813,8 @@ function SEODashboard() {
                       <Card className="lg:col-span-2 bg-[#131921] border-white/10">
                         <CardHeader className="flex flex-row items-center justify-between pb-8">
                           <div>
-                            <CardTitle className="text-lg font-bold text-white">Evolução de Tráfego</CardTitle>
-                            <CardDescription className="text-xs">Visualizações e visitantes únicos nos últimos 30 dias</CardDescription>
+                            <CardTitle className="text-lg font-bold text-white">{t('trafficEvolution')}</CardTitle>
+                            <CardDescription className="text-xs">{t('trafficEvolutionDesc')}</CardDescription>
                           </div>
                         </CardHeader>
                         <CardContent className="h-[300px] p-0 pr-6">
