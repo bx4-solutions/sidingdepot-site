@@ -12,8 +12,10 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
+import { VisualEditToggle } from "@/components/VisualEditToggle";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+
 
 const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
