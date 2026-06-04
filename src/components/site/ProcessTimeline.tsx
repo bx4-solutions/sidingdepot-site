@@ -12,7 +12,7 @@ export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Proj
             Our Process
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-foreground">
-            It&apos;s Easy to Start Your Exterior Project
+            {title}
           </h2>
           <p className="mt-3 text-muted-foreground">
             Three steps. Zero surprises. Total transparency from quote to handshake.
