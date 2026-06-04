@@ -119,7 +119,7 @@ function HomePage() {
         title={
           <>
             North Atlanta's James Hardie Siding Experts —{" "}
-            <span className="text-sd-green">1,500+ Homes Transformed</span>
+            <span className="text-sd-green">Mais de 1.500 Casas no Norte de Atlanta</span>
           </>
         }
         subtitle="We're the Elite Preferred James Hardie contractor your Marietta e Região neighbors call back to thank. Highly specialized certified teams only — no subcontractors. Written quote within 24 hours, guaranteed."
