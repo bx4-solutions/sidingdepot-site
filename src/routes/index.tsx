@@ -128,7 +128,6 @@ function HomePage() {
         trustItems={[
           "Elite Preferred · Top 2% EUA",
           "Mais de 1.500 casas no norte de Atlanta",
-          "Financiamento GreenSky com 0% de juros",
         ]}
         ctaSlot={<HeroCtaButtons source="home_hero" />}
       />
