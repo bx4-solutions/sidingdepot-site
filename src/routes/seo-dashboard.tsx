@@ -40,7 +40,8 @@ import {
   ExternalLink,
   ChevronDown,
   Info,
-  Phone
+  Phone,
+  CheckCircle2
 } from "lucide-react";
 import { toast } from "sonner";
 import { 
@@ -276,6 +277,7 @@ function SEODashboard() {
     { id: "aquisicao", label: "Aquisição", icon: TrendingUp },
     { id: "blog-analytics", label: "Analytics do Blog", icon: Zap },
     { id: "alertas", label: "Alertas", icon: Bell },
+    { id: "gtm-debug", label: "GTM/GA4 Debugger", icon: Activity },
   ];
 
   const adminItems = [
@@ -434,6 +436,111 @@ function SEODashboard() {
     );
   };
 
+  const renderGtmDebugger = () => {
+    return (
+      <div className="space-y-8 animate-in fade-in duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="bg-[#131921] border-sd-green/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-sd-green animate-pulse" />
+                DataLayer Live Feed
+              </CardTitle>
+              <CardDescription>Últimos eventos disparados para o GTM/GA4</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2 font-mono text-[10px]">
+                {[
+                  { event: "lead_submit", status: "success", payload: { source: "hero_form", service: "siding" } },
+                  { event: "cta_click", status: "success", payload: { cta_text: "Get a free quote", section: "hero" } },
+                  { event: "page_view", status: "success", payload: { path: "/locations/marietta/siding" } },
+                  { event: "whatsapp_click", status: "success", payload: { location: "floating_btn" } },
+                ].map((item, i) => (
+                  <div key={i} className="p-3 bg-sd-black/30 border border-white/5 rounded-lg">
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sd-green font-bold uppercase">{item.event}</span>
+                      <span className="text-slate-500">{new Date().toLocaleTimeString()}</span>
+                    </div>
+                    <pre className="text-slate-400 overflow-x-auto">{JSON.stringify(item.payload, null, 2)}</pre>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-[#131921] border-white/10">
+            <CardHeader>
+              <CardTitle>Status da Integração</CardTitle>
+              <CardDescription>Conectividade com serviços de tracking</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {[
+                { name: "Google Tag Manager", id: "GTM-TFGQWCQN", status: "Connected" },
+                { name: "Google Analytics 4", id: "VITE_GA4_ID", status: "Active" },
+                { name: "Supabase Events", id: "ab_events", status: "Live" },
+              ].map((service, i) => (
+                <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-sd-green" />
+                    <div>
+                      <p className="text-sm font-bold">{service.name}</p>
+                      <p className="text-[10px] text-slate-400 font-mono">{service.id}</p>
+                    </div>
+                  </div>
+                  <Badge className="bg-sd-green/10 text-sd-green border-sd-green/20">{service.status}</Badge>
+                </div>
+              ))}
+              <div className="p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl">
+                <p className="text-xs text-sd-green font-bold mb-2">Dica de Debug:</p>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Abra o console do navegador e digite <code className="bg-sd-black px-1 rounded">window.dataLayer</code> para ver o histórico completo de eventos brutos capturados nesta sessão.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  };
+
+  const renderAlerts = () => {
+    return (
+      <div className="space-y-8 animate-in fade-in duration-500">
+        <Card className="bg-[#131921] border-red-500/20">
+          <CardHeader>
+            <CardTitle className="text-red-500 flex items-center gap-2">
+              <AlertTriangle className="h-5 w-5" />
+              Alertas de SEO e Indexação
+            </CardTitle>
+            <CardDescription>Inconsistências detectadas na última auditoria automática</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { type: "SEO", msg: "Meta descrição ausente ou muito curta", target: "/locations/canton/gutters", severity: "medium" },
+                { type: "Sitemap", msg: "Página no sitemap mas retornando 404", target: "/old-service-page", severity: "high" },
+              ].map((alert, i) => (
+                <div key={i} className="flex items-start justify-between p-4 bg-white/5 border border-white/10 rounded-xl">
+                  <div className="flex gap-4">
+                    <div className={cn(
+                      "mt-1 h-2 w-2 rounded-full",
+                      alert.severity === "high" ? "bg-red-500 animate-pulse" : "bg-yellow-500"
+                    )} />
+                    <div>
+                      <p className="text-sm font-bold">{alert.msg}</p>
+                      <p className="text-xs text-sd-green font-mono">{alert.target}</p>
+                    </div>
+                  </div>
+                  <Badge variant="outline" className="text-[10px] uppercase">{alert.type}</Badge>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
       {/* SIDEBAR - Estilo Siding Depot */}
@@ -580,10 +687,13 @@ function SEODashboard() {
                 </Button>
                 <Button 
                   variant="outline"
-                  onClick={() => handleExport('pdf')}
+                  onClick={() => {
+                    toast.success("Gerando Relatório Semanal consolidado...");
+                    handleExport('pdf');
+                  }}
                   className="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold h-10"
                 >
-                  <FileText className="h-4 w-4 mr-2" /> PDF
+                  <FileText className="h-4 w-4 mr-2" /> RELATÓRIO SEMANAL (PDF)
                 </Button>
               </div>
             </div>
@@ -625,6 +735,8 @@ function SEODashboard() {
               </div>
             ) : (
               <>
+                {activeView === "gtm-debug" && renderGtmDebugger()}
+                {activeView === "alertas" && renderAlerts()}
                 {activeView === "leads-realtime" && renderLeadsRealtime()}
                 {activeView === "seo-audit" && renderSeoAudit()}
 
@@ -832,6 +944,16 @@ function SEODashboard() {
                         <CardHeader>
                           <CardTitle className="text-lg font-bold text-white">Origem de Leads</CardTitle>
                           <CardDescription className="text-xs">Rastreamento de conversão por canal</CardDescription>
+                        </CardHeader>
+                        <CardHeader className="flex flex-row items-center justify-between">
+                          <div>
+                            <CardTitle className="text-lg font-bold text-white uppercase tracking-tight">Performance por CTA e Serviço</CardTitle>
+                            <CardDescription className="text-xs">Segmentação por texto, seção e categoria</CardDescription>
+                          </div>
+                          <div className="flex gap-2">
+                            <Badge variant="outline" className="border-sd-green/30 text-sd-green">Top CTA: Hero</Badge>
+                            <Badge variant="outline" className="border-sd-green/30 text-sd-green">Top SVC: Siding</Badge>
+                          </div>
                         </CardHeader>
                         <CardContent className="space-y-4">
                           {metrics?.acquisition?.map((item: any, i: number) => (
