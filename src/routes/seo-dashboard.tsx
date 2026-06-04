@@ -532,9 +532,9 @@ function SEODashboard() {
           <CardHeader>
             <CardTitle className="text-red-500 flex items-center gap-2">
               <AlertTriangle className="h-5 w-5" />
-              Alertas de SEO e Indexação
+              {t('alertsTitle')}
             </CardTitle>
-            <CardDescription>Inconsistências detectadas na última auditoria automática</CardDescription>
+            <CardDescription>{t('alertsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
