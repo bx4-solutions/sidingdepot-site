@@ -102,21 +102,27 @@ export function HeroSection({
           {children && <div className="mt-8">{children}</div>}
 
           <div className="mt-9 flex flex-wrap gap-3">
-            {primaryCta.to ? (
-              <Button asChild size="lg">
-                <Link to={primaryCta.to}>{primaryCta.label}</Link>
-              </Button>
+            {ctaSlot ? (
+              ctaSlot
             ) : (
-              <Button asChild size="lg">
-                <a href={primaryCta.href}>{primaryCta.label}</a>
-              </Button>
-            )}
-            {showCallCta && (
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref}>
-                  <Phone aria-hidden="true" /> Call {SITE.phone}
-                </a>
-              </Button>
+              <>
+                {primaryCta.to ? (
+                  <Button asChild size="lg">
+                    <Link to={primaryCta.to}>{primaryCta.label}</Link>
+                  </Button>
+                ) : (
+                  <Button asChild size="lg">
+                    <a href={primaryCta.href}>{primaryCta.label}</a>
+                  </Button>
+                )}
+                {showCallCta && (
+                  <Button asChild size="lg" variant="outlineWhite">
+                    <a href={SITE.phoneHref}>
+                      <Phone aria-hidden="true" /> Call {SITE.phone}
+                    </a>
+                  </Button>
+                )}
+              </>
             )}
           </div>
         </div>
