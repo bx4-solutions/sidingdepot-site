@@ -357,16 +357,6 @@ function HomePage() {
                   As a James Hardie Elite Preferred contractor, we install the highest quality fiber cement siding engineered specifically for Georgia's unique climate challenges.
                 </p>
               </div>
-              <div className="hidden sm:block shrink-0">
-                <img 
-                  src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
-                  alt="James Hardie Alliance Elite Preferred Contractor Certification Badge" 
-                  className="h-28 w-auto object-contain drop-shadow-sm"
-                  width={150}
-                  height={112}
-                  loading="lazy"
-                />
-              </div>
             </div>
             
             <ul className="mt-8 space-y-4 text-sd-black/80">
@@ -387,15 +377,6 @@ function HomePage() {
               ))}
             </ul>
 
-            <div className="mt-8 sm:hidden flex justify-center">
-              <img 
-                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
-                alt="James Hardie Elite Preferred Badge" 
-                className="h-24 w-auto object-contain"
-                loading="lazy"
-              />
-            </div>
-
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-all">
                 <Link to="/contact">Request Your Hardie Siding Quote</Link>
@@ -405,18 +386,19 @@ function HomePage() {
               </Button>
             </div>
           </div>
-          <div className="lg:pl-8">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-sd-green to-sd-green/20 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative">
-                <YoutubeEmbed
-                  videoId="tENqAaDFr9s"
-                  title="Video explaining why James Hardie siding is the best choice for Georgia homes"
-                />
-              </div>
+          <div className="lg:pl-8 flex flex-col items-center">
+            <div className="relative w-full max-w-md mx-auto">
+              <img 
+                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780611894575-482bc3f5-005d-40c9-95a8-388817ce03c1.png" 
+                alt="James Hardie Alliance Elite Preferred Contractor Certification Badge" 
+                className="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
+                width={400}
+                height={300}
+                loading="lazy"
+              />
             </div>
             
-            <div className="mt-8 p-6 bg-white rounded-xl border border-sd-gray-border shadow-sm">
+            <div className="mt-12 w-full p-6 bg-white rounded-xl border border-sd-gray-border shadow-sm">
               <h3 className="font-semibold text-sd-black mb-4">Certified Local Expertise</h3>
               <nav
                 aria-label="James Hardie Siding Resources"
@@ -440,6 +422,7 @@ function HomePage() {
       <section id="location-section" aria-labelledby="location-title">
         <MapSection />
       </section>
+
 
     </>
 
