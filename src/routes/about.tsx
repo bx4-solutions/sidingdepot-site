@@ -232,7 +232,7 @@ function AboutPage() {
                 James Hardie siding installation
               </Link>
               <Link to="/painting" className="text-sd-green hover:underline">
-                exterior painting in Marietta
+                exterior painting in Marietta e Região
               </Link>
               <Link to="/windows" className="text-sd-green hover:underline">
                 replacement windows
