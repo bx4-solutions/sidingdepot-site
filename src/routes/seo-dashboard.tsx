@@ -513,9 +513,9 @@ function SEODashboard() {
                 </div>
               ))}
               <div className="p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl">
-                <p className="text-xs text-sd-green font-bold mb-2">Dica de Debug:</p>
+                <p className="text-xs text-sd-green font-bold mb-2">{t('debugTip')}</p>
                 <p className="text-[11px] text-slate-300 leading-relaxed">
-                  Abra o console do navegador e digite <code className="bg-sd-black px-1 rounded">window.dataLayer</code> para ver o histórico completo de eventos brutos capturados nesta sessão.
+                  {t('debugDesc')}
                 </p>
               </div>
             </CardContent>
