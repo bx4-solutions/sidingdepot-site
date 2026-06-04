@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useCallback, useEffect } from "react";
 import {
   ArrowRight, ArrowLeft, Phone, ShieldCheck, Award, CheckCircle2,
-  Search, FileText, Wrench, Clock,
+  Search, FileText, Wrench, Clock, Users,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
