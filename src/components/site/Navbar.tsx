@@ -62,7 +62,7 @@ export function Navbar() {
               to={l.to}
               className="text-[13px] font-semibold tracking-wide transition-colors text-sd-black hover:text-sd-green-text"
               activeProps={{ className: "text-sd-green-text underline underline-offset-4" }}
-              activeOptions={{ exact: l.to === "/" }}
+              activeOptions={{ exact: true }}
             >
               {l.label}
             </Link>
