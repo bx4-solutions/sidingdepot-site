@@ -211,3 +211,7 @@
   outline-offset: 2px;
 }
 
+.force-relative {
+  position: relative !important;
+}
+
