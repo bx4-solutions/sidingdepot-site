@@ -110,7 +110,7 @@ export function Navbar() {
         </div>
 
         <nav className="hidden lg:flex items-center gap-2">
-          <NavigationMenu>
+          <NavigationMenu className="max-w-none">
             <NavigationMenuList className="gap-1">
               {NAV_LINKS.map((l) => (
                 <NavigationMenuItem key={l.label}>
@@ -121,7 +121,7 @@ export function Navbar() {
                           {l.label}
                         </Link>
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent>
+                      <NavigationMenuContent className="md:absolute md:left-1/2 md:-translate-x-1/2">
                         <ul className="grid w-[200px] gap-1 p-3 bg-white border border-sd-navy/10 shadow-lg rounded-md">
                           {l.sublinks.map((sub) => (
                             <li key={sub.label}>
