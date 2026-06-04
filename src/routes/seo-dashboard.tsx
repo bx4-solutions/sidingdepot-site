@@ -343,9 +343,9 @@ function SEODashboard() {
     return (
       <div className="space-y-8 animate-in fade-in duration-500">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <KPICard title="Envios Hoje" value="4" icon={Activity} color="sd-green" diff="+2 vs ontem" />
-          <KPICard title="Taxa Real-time" value="3.2%" icon={Zap} color="sd-green" diff="Conversão da sessão" />
-          <KPICard title="Origem Principal" value="Google Ads" icon={Target} color="sd-green" diff="Campanha Siding 2026" />
+          <KPICard title={lang === 'pt' ? "Envios Hoje" : "Submissions Today"} value="4" icon={Activity} color="sd-green" diff={lang === 'pt' ? "+2 vs ontem" : "+2 vs yesterday"} />
+          <KPICard title={lang === 'pt' ? "Taxa Real-time" : "Real-time Rate"} value="3.2%" icon={Zap} color="sd-green" diff={lang === 'pt' ? "Conversão da sessão" : "Session conversion"} />
+          <KPICard title={lang === 'pt' ? "Origem Principal" : "Primary Source"} value="Google Ads" icon={Target} color="sd-green" diff={lang === 'pt' ? "Campanha Siding 2026" : "Siding 2026 Campaign"} />
         </div>
 
         <Card className="bg-[#131921] border-white/10">
