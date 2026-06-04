@@ -195,14 +195,17 @@ export function ServicesHotspots() {
                     role="dialog"
                     className="absolute animate-hotspot-fade"
                     style={{
-                      width: 260,
+                      width: popupWidth,
                       background: "#1E2A38",
                       borderRadius: 12,
                       boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
                       padding: 20,
                       zIndex: 50,
-                      [flipX ? "right" : "left"]: 36,
-                      [flipY ? "bottom" : "top"]: -10,
+                      left: "50%",
+                      transform: `translateX(calc(-50% + ${popupLeftOffset}%))`,
+                      ...(flipY
+                        ? { bottom: 36 }
+                        : { top: 36 }),
                     } as React.CSSProperties}
                   >
                     <button
