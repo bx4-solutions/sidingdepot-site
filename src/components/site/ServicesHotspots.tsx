@@ -148,11 +148,16 @@ export function ServicesHotspots() {
 
           {HOTSPOTS.map((h) => {
             const isActive = active === h.id;
-            // Flip popup side if hotspot is on the right half
-            const leftNum = parseFloat(h.left);
-            const flipX = leftNum > 55;
             const topNum = parseFloat(h.top);
+            const leftNum = parseFloat(h.left);
             const flipY = topNum > 60;
+            const popupWidth = 280;
+            // Center popup under dot, clamp horizontally to keep inside image
+            const halfPctOfImage = (popupWidth / 2) / 6.4; // approx px->% on ~640px container
+            const minLeft = halfPctOfImage;
+            const maxLeft = 100 - halfPctOfImage;
+            const clampedLeft = Math.min(Math.max(leftNum, minLeft), maxLeft);
+            const popupLeftOffset = clampedLeft - leftNum; // in percent of container
 
             return (
               <div
