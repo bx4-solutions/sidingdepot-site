@@ -99,21 +99,21 @@ export const CITIES = [
 ] as const;
 
 export const STATS = [
-  { value: "1.500+", label: "Casas no Norte de Atlanta" },
-  { value: "12+", label: "Anos na Geórgia" },
-  { value: "98%", label: "Avaliações 5 Estrelas" },
-  { value: "4.9★", label: "Nota no Google" },
+  { value: "1,500+", label: "Homes in North Atlanta" },
+  { value: "12+", label: "Years in Georgia" },
+  { value: "98%", label: "5-Star Reviews" },
+  { value: "4.5★", label: "Google Rating" },
 ] as const;
 
 export const PROOF_BAR = [
   { icon: "⭐", label: "4.5 · 158 Google Reviews" },
-  { icon: "🏆", label: "4.9 · 91 Avaliações Thumbtack" },
-  { icon: "🔨", label: "4.7 · 256 Avaliações GuildQuality" },
+  { icon: "🏆", label: "4.9 · 91 Thumbtack Reviews" },
+  { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
   { icon: "🏠", label: "5.0 · Houzz Top Pro" },
   { icon: "📋", label: "4.7 · 130 Best Pick Reports" },
-  { icon: "🏅", label: "Elite Preferencial · Top 2% EUA" },
-  { icon: "🏠", label: "Mais de 1.500 casas no norte de Atlanta" },
-  { icon: "💰", label: "Financiamento GreenSky com 0% de juros" },
+  { icon: "🏅", label: "Elite Preferred · Top 2% USA" },
+  { icon: "🏠", label: "1,500+ Homes in North Atlanta" },
+  { icon: "💰", label: "GreenSky 0% APR Financing" },
 ] as const;
 
 export const PROCESS_STEPS = [
@@ -135,12 +135,12 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const AWARDS = [
-  { name: "James Hardie Elite Preferred", subtitle: "Top 2% dos instaladores nos EUA" },
-  { name: "Certificação GAF Factory", subtitle: "Garantia de sistema de telhado" },
-  { name: "Google · 4.5★", subtitle: "158 avaliações verificadas" },
-  { name: "Licenciado e Segurado", subtitle: "Georgia GC #RBQA006789" },
-  { name: "Acreditado pelo BBB", subtitle: "Classificação A+" },
-  { name: "Financiamento GreenSky", subtitle: "Planos de 0% de juros disponíveis" },
+  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of installers in the USA" },
+  { name: "GAF Factory Certified", subtitle: "Roof system warranty" },
+  { name: "Google · 4.5★", subtitle: "158 verified reviews" },
+  { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
+  { name: "BBB Accredited", subtitle: "A+ Rating" },
+  { name: "GreenSky Financing", subtitle: "0% APR plans available" },
 ] as const;
 
 export const SERVICE_OPTIONS = [
