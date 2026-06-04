@@ -15,6 +15,8 @@ type HeroProps = {
   showCallCta?: boolean;
   /** Right-column slot (typically a quote form). When provided, layout becomes 2-col on lg+. */
   formSlot?: ReactNode;
+  /** When provided, replaces the default primary + call CTA buttons. */
+  ctaSlot?: ReactNode;
   /** Trust bullets shown under the subtitle. */
   trustItems?: ReadonlyArray<string>;
   children?: ReactNode;
