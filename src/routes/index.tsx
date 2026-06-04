@@ -102,7 +102,7 @@ const WHY_US = [
   { num: "01", title: "Elite Preferred · Top 2%", desc: "James Hardie's highest contractor tier — fewer than 2% of US installers qualify." },
   { num: "02", title: "Built for Georgia's Climate", desc: "HardieZone HZ10 products and installation methods engineered specifically for Georgia's heat above 95°F, year-round humidity, and active storm season." },
   { num: "03", title: "Written Estimates — No Surprises", desc: "Detailed written estimates before any work starts. The price in the estimate is the price you pay. No last-minute change orders, ever." },
-  { num: "04", title: "W-2 Crews Only — No Subcontractors", desc: "We never sub out installs. Every crew member is a Siding Depot W-2 employee — trained, background-checked, insured, and accountable to us directly." },
+  { num: "04", title: "Highly Specialized Certified Teams", desc: "We never sub out installs. Every crew member is part of our highly specialized certified teams — trained, background-checked, insured, and accountable to us directly." },
 ];
 
 const TESTIMONIALS = [
