@@ -299,7 +299,7 @@ function HomePage() {
               {[
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: CheckCircle2, t: "Free Estimates" },
-                { i: Users, t: "1.500+ Casas" },
+                { i: Users, t: "1,500+ Homes" },
                 { i: Sparkles, t: "Elite Preferred" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-sd-black/80">
