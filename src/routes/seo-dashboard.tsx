@@ -542,7 +542,7 @@ function SEODashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0e14] flex text-white font-sans">
+    <div className="dark min-h-screen bg-[#0a0e14] flex text-white font-sans">
       {/* SIDEBAR - Estilo Siding Depot */}
       <aside className="w-64 bg-[#131921] border-r border-white/10 flex flex-col h-screen sticky top-0 shrink-0">
         <div className="p-6 flex items-center gap-3">
