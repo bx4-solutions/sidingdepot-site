@@ -33,8 +33,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "Double-pane Low-E (low emissivity) windows with argon gas fill are widely recommended for Georgia. The Low-E coating reflects infrared heat, helping keep interiors cooler in summer without blocking natural light. Energy Star recommends a U-factor below 0.30 and Solar Heat Gain Coefficient (SHGC) below 0.25 for Atlanta's climate zone (3A/4A).",
   },
   {
-    q: "Do I need permits to replace windows in Cobb or Cherokee County?",
-    a: "Generally yes for structural changes (such as enlarging openings) and not for same-size replacements, but this varies by jurisdiction. Cobb and Cherokee counties typically require a permit if the opening size changes. We handle all applicable permit applications and inspections so homeowners don't deal with the county directly.",
+    q: "Do I need permits to replace windows in Marietta e Região?",
+    a: "Generally yes for structural changes (such as enlarging openings) and not for same-size replacements, but this varies by jurisdiction. We handle all applicable permit applications and inspections so homeowners don't deal with the county directly.",
   },
   {
     q: "How long do replacement windows last in Georgia?",
