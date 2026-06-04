@@ -29,7 +29,7 @@ const ABOUT_VIDEO = {
 const LOCAL_BUSINESS_ABOUT_JSONLD = {
   ...LOCAL_BUSINESS_SCHEMA,
   "@id": "https://sidingdepot.com/about/#localbusiness",
-  alternateName: "Siding Depot Marietta",
+  alternateName: "Siding Depot Marietta e Região",
   foundingDate: "2010",
   hasCredential: [
     {
