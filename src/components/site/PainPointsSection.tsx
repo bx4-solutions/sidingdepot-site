@@ -63,10 +63,10 @@ export function PainPointsSection() {
 
         <div>
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text">
-            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Hidden Cost
+            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Risk of Getting It Wrong
           </span>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl text-foreground leading-[1.05]">
-            An Exterior Renovation Is a <span className="text-sd-green">Big Project.</span>
+            Choosing the Wrong Contractor Is a <span className="text-sd-green">$20,000 Mistake.</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg">
             Choosing the wrong North Atlanta exterior contractor is a costly mistake. Ask yourself
