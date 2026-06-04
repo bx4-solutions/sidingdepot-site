@@ -1,5 +1,5 @@
 import { CheckCircle2, FileText } from "lucide-react";
-import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 
 type Props = {
   /** City pre-tagged on the lead (e.g. "Marietta"). */
@@ -51,7 +51,7 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
               <p className="text-sm text-muted-foreground mb-5">
                 Leave your details and download the guide right away.
               </p>
-              <SimpleLeadForm source={source} tag="lead_magnet_request" />
+              <HeroQuoteForm source={source} tag="lead_magnet_request" bare />
             </div>
           </div>
         </div>

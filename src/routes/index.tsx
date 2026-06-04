@@ -129,7 +129,7 @@ function HomePage() {
           "Mais de 1.500 casas no norte de Atlanta",
           "Financiamento GreenSky com 0% de juros",
         ]}
-        formSlot={<HeroQuoteForm isHomepage />}
+        formSlot={<HeroQuoteForm />}
       />
 
       <ProofBar />

@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { SimpleLeadForm } from "@/components/site/SimpleLeadForm";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { SidingGuide } from "@/components/SidingGuide";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -186,7 +186,7 @@ function GuidePage() {
               <p className="text-sd-gray-text text-sm mb-8 italic">Sent directly to your inbox and available for download.</p>
               
               <div className="text-left">
-                <SimpleLeadForm
+                <HeroQuoteForm
                   source={src || "guide_page"}
                   tag="guide_request"
                   submitLabel="Send My Free Guide →"

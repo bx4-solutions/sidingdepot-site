@@ -93,54 +93,16 @@ const STATS = [
 /* Form                                                                */
 /* ------------------------------------------------------------------ */
 
-const schema = z.object({
-  firstName: z.string().trim().min(1, "Required").max(60),
-  lastName: z.string().trim().min(1, "Required").max(60),
-  phone: z
-    .string()
-    .trim()
-    .min(10, "Phone is required")
-    .max(20)
-    .regex(/^[\d\s().+-]+$/, "Invalid phone"),
-  email: z.string().trim().email("Invalid email").max(255),
-  city: z.string().trim().min(1, "Select a city"),
-  service: z.string().trim().min(1, "Select a service"),
-  notes: z.string().trim().max(1000).optional().or(z.literal("")),
-});
-type FormState = z.infer<typeof schema>;
-type FieldErrors = Partial<Record<keyof FormState, string>>;
-
-function formatPhone(raw: string): string {
-  const d = raw.replace(/\D/g, "").slice(0, 10);
-  if (d.length === 0) return "";
-  if (d.length < 4) return `(${d}`;
-  if (d.length < 7) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
-  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
-}
-
-function readUtm(): Record<string, string> {
-  if (typeof window === "undefined") return {};
-  const sp = new URLSearchParams(window.location.search);
-  const out: Record<string, string> = {};
-  for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_keyword", "utm_term", "utm_content"]) {
-    const v = sp.get(k);
-    if (v) out[k] = v;
-  }
-  return out;
-}
-
 type LeadFormProps = {
   source: string;
-  defaultCity?: string;
-  defaultService?: string;
   title?: string;
   subtitle?: string;
 };
 
-function LeadForm({ source }: LeadFormProps) {
+function LeadForm({ source, title, subtitle }: LeadFormProps) {
   return (
     <div data-lead-form>
-      <HeroQuoteForm source={source} tag="lp_quote_request" />
+      <HeroQuoteForm source={source} tag="lp_quote_request" title={title} subtitle={subtitle} />
     </div>
   );
 }
@@ -218,7 +180,6 @@ export function SidingLP({ city }: SidingLPProps) {
           <div className="lg:pl-2">
             <LeadForm
               source="lp_hero"
-              defaultCity={city}
               title="Get Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
@@ -353,7 +314,6 @@ export function SidingLP({ city }: SidingLPProps) {
           <div>
             <LeadForm
               source="lp_urgency"
-              defaultCity={city}
               title="Schedule Your Free Estimate"
               subtitle="We respond within 24 hours · No obligation"
             />
