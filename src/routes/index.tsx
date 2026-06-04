@@ -144,10 +144,10 @@ function HomePage() {
               Our Services
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Complete Exterior Solutions for Your Home
+              Complete Exterior Services — One Contractor, One Call
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              One contractor. Every exterior service. Backed by 12+ years of work in North Atlanta.
+              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta, Canton, Alpharetta and all of North Atlanta.
             </p>
           </div>
 
