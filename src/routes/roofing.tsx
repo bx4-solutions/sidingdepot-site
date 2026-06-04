@@ -45,8 +45,8 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "We install GAF Timberline HDZ shingles as our primary product — GAF is North America's largest roofing manufacturer. As a GAF Factory Certified contractor, we offer the Golden Pledge warranty (50 years on product, 25 years on labor), which is only available through certified installers. We also install Owens Corning Duration series.",
   },
   {
-    q: "Should I be worried about roof damage after a hail storm in Marietta?",
-    a: "Yes. Georgia's hail season (March through June) causes significant roof damage that isn't always visible from the ground. Even quarter-sized hail can bruise asphalt shingles, reducing their lifespan by years. Most insurance policies require you to file a claim within 1 year of the storm date. After any storm, we recommend a free inspection — there's no obligation and no cost.",
+    q: "Should I be worried about roof damage after a hail storm in Marietta e Região?",
+    a: "Yes. Georgia's hail season (March through June) causes significant roof damage that isn't always visible from the ground. Even quarter-sized hail can bruise asphalt shingles, reducing their lifespan by years. After any storm, we recommend a free inspection for full replacement — there's no obligation and no cost.",
   },
 ];
 
