@@ -96,8 +96,7 @@ function RoofingPage() {
             transformed home exterior."
           </p>
         </div>
-        </HeroSection>
-      </div>
+      </HeroSection>
 
       {/* TRUST BAR (ProofBar style) */}
       <section className="bg-sd-black border-t-[3px] border-sd-green py-6">
