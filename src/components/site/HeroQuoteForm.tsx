@@ -4,8 +4,7 @@ import { CheckCircle2, Loader2, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { SITE, SERVICE_OPTIONS } from "@/data/site";
+import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 
 const schema = z.object({
@@ -22,28 +21,12 @@ const schema = z.object({
     .regex(/^[+\d\s().-]+$/, {
       message: "Please use only numbers, spaces, and the characters + ( ) . -",
     }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email address (e.g., name@domain.com)" })
-    .max(255, { message: "Email is too long" }),
   city: z
     .string()
     .trim()
     .min(2, { message: "Please enter your city" })
     .max(80, { message: "City name is too long" }),
-  services: z
-    .array(z.string())
-    .min(1, { message: "Please select at least one service" }),
-  message: z
-    .string()
-    .trim()
-    .max(1000, { message: "Message is too long (maximum 1000 characters)" })
-    .optional()
-    .or(z.literal("")),
 });
-
-// SERVICE_OPTIONS is the single source of truth — see src/data/site.ts
 
 type FormState = z.infer<typeof schema>;
 type FieldErrors = Partial<Record<keyof FormState, string>>;
@@ -67,27 +50,15 @@ export function HeroQuoteForm({
 }: HeroQuoteFormProps = {}) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
-  const [errors, setErrors] = useState<FieldErrors>({});
+  const [errors, setErrors] = useState<FieldErrors & { general?: string }>({});
   const [values, setValues] = useState<FormState>({
     name: "",
     phone: "",
-    email: "",
     city: "",
-    services: [],
-    message: "",
   });
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
-  }
-
-  function toggleService(name: string) {
-    setValues((v) => ({
-      ...v,
-      services: v.services.includes(name)
-        ? v.services.filter((s) => s !== name)
-        : [...v.services, name],
-    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -111,11 +82,8 @@ export function HeroQuoteForm({
     const payload = {
       first_name: parsed.data.name.split(" ")[0],
       last_name: parsed.data.name.split(" ").slice(1).join(" ") || " ",
-      email: parsed.data.email,
       phone: parsed.data.phone,
       city: parsed.data.city,
-      services: parsed.data.services.join(", "),
-      message: parsed.data.message,
       source: source,
       tag: tag,
       submittedAt: new Date().toISOString(),
@@ -135,14 +103,12 @@ export function HeroQuoteForm({
       }
       track("quote_form_submit", {
         source: source,
-        services: parsed.data.services.join(","),
-        services_count: parsed.data.services.length,
       });
       setDone(true);
       onSuccess?.();
     } catch {
       track("quote_form_error", { source: source });
-      setErrors({ message: "Unable to send right now. Please try again." });
+      setErrors({ general: "Unable to send right now. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -159,10 +125,10 @@ export function HeroQuoteForm({
       {!bare && (
         <div className="bg-sd-black px-6 pt-6 pb-5 text-center text-white">
           <h2 className="font-display text-2xl sm:text-3xl leading-tight">
-            Get Your <span className="text-sd-green">FREE</span> Quote
+            Get Your Free <span className="text-sd-green">James Hardie</span> Quote
           </h2>
           <p className="mt-1.5 text-xs text-white/75">
-            24h response · No obligation · Written estimate
+            Response within 24h · No pressure · Written estimate
           </p>
           <div className="mt-3 inline-flex items-center gap-1.5">
             <div className="flex">
@@ -220,60 +186,10 @@ export function HeroQuoteForm({
               dark={bare}
             />
           </div>
-          <Field
-            id="hero-email"
-            label="Email"
-            type="email"
-            value={values.email}
-            onChange={(v) => update("email", v)}
-            error={errors.email}
-            autoComplete="email"
-            dark={bare}
-          />
-          <div className="grid gap-1.5">
-            <Label className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
-              Services <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(select all that apply)</span>
-            </Label>
-            <div className={`grid grid-cols-2 gap-1.5 rounded-md border p-2 ${bare ? "border-white/20 bg-white/5" : "border-input"}`}>
-              {SERVICE_OPTIONS.map((name) => {
-                const checked = values.services.includes(name);
-                return (
-                  <label
-                    key={name}
-                    className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm cursor-pointer transition-colors ${
-                      bare
-                        ? checked ? "bg-white/10 text-white" : "text-white hover:bg-white/5"
-                        : checked ? "bg-sd-black/5 text-sd-black" : "text-sd-black hover:bg-muted"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggleService(name)}
-                      className="h-4 w-4 accent-sd-green"
-                    />
-                    <span>{name}</span>
-                  </label>
-                );
-              })}
-            </div>
-            {errors.services && (
-              <p className="text-[11px] text-destructive">{errors.services}</p>
-            )}
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="hero-msg" className={`text-xs font-semibold ${bare ? "text-white" : "text-sd-black"}`}>
-              Project details <span className={`font-normal ${bare ? "text-white/60" : "text-sd-gray-text"}`}>(optional)</span>
-            </Label>
-            <Textarea
-              id="hero-msg"
-              rows={3}
-              maxLength={1000}
-              value={values.message ?? ""}
-              onChange={(e) => update("message", e.target.value)}
-              className={`resize-none ${bare ? "bg-white/10 border-white/20 text-white placeholder:text-white/50" : ""}`}
-            />
-          </div>
+
+          {errors.general && (
+            <p className="text-[11px] text-destructive text-center">{errors.general}</p>
+          )}
 
           <Button type="submit" size="lg" disabled={submitting} className="mt-1">
             {submitting ? (
@@ -281,12 +197,11 @@ export function HeroQuoteForm({
                 <Loader2 className="h-4 w-4 animate-spin" /> Sending…
               </>
             ) : (
-              "Schedule FREE Quote"
+              "Get My Free Quote →"
             )}
           </Button>
           <p className={`text-[10px] leading-snug text-center ${bare ? "text-white/60" : "text-sd-gray-text"}`}>
-            By submitting, you agree to be contacted by Siding Depot regarding
-            your project. We never share your information.
+            🔒 We respond within 24 hours. No pressure, ever.
           </p>
         </form>
 

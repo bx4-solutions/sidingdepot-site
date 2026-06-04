@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Sparkles, Users, ListChecks } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
@@ -63,8 +63,8 @@ const VIDEO_JSONLD_LIST = HOME_VIDEOS.map((v) => ({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Siding Depot — Georgia's Most Trusted Siding Experts | Marietta GA" },
-      { name: "description", content: "James Hardie Elite Preferred contractor serving Marietta, Alpharetta, Milton, Canton & North Atlanta. 1,500+ homes transformed. Free quote in 24h." },
+      { title: "James Hardie Siding Contractor Marietta GA | Siding Depot — Elite Preferred" },
+      { name: "description", content: "Elite Preferred James Hardie siding contractor in Marietta, GA. 1,500+ homes in North Atlanta. W-2 crews, written estimates, 30-year warranty. Free quote in 24h — call (678) 400-2012." },
       { name: "keywords", content: "siding contractor Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot" },
       { name: "geo.region", content: "US-GA" },
       { name: "geo.placename", content: "Marietta" },
@@ -72,13 +72,13 @@ export const Route = createFileRoute("/")({
       { name: "ICBM", content: "33.9806, -84.4752" },
       { name: "address", content: SITE.address.full },
       { name: "telephone", content: SITE.phone },
-      { property: "og:title", content: "Siding Depot — Georgia's Most Trusted Siding Experts" },
-      { property: "og:description", content: "James Hardie Elite Preferred. 1,500+ homes. Free quote in 24h across North Atlanta." },
+      { property: "og:title", content: "James Hardie Siding Contractor Marietta GA | Siding Depot" },
+      { property: "og:description", content: "Elite Preferred James Hardie installer in Marietta, GA. W-2 crews, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Siding Depot — Georgia's Most Trusted Siding Experts" },
-      { name: "twitter:description", content: "James Hardie Elite Preferred. 1,500+ homes. Free quote in 24h across North Atlanta." },
+      { name: "twitter:title", content: "James Hardie Siding Contractor Marietta GA | Siding Depot" },
+      { name: "twitter:description", content: "Elite Preferred James Hardie installer in Marietta, GA. W-2 crews, 30-year warranty, 1,500+ homes. Free quote in 24h." },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
     ],
     links: [
@@ -100,30 +100,35 @@ export const Route = createFileRoute("/")({
 
 const WHY_US = [
   { num: "01", title: "Elite Preferred · Top 2%", desc: "James Hardie's highest contractor tier — fewer than 2% of US installers qualify." },
-  { num: "02", title: "Built for HardieZone Georgia", desc: "Products and install methods engineered for Georgia's heat, humidity and storms." },
-  { num: "03", title: "Transparent Pricing", desc: "Detailed written estimates. No surprises, no last-minute change orders." },
-  { num: "04", title: "In-House Crews", desc: "We never sub out installs. Our W-2 crews are trained, insured and accountable." },
+  { num: "02", title: "Built for Georgia's Climate", desc: "HardieZone HZ10 products and installation methods engineered specifically for Georgia's heat above 95°F, year-round humidity, and active storm season." },
+  { num: "03", title: "Written Estimates — No Surprises", desc: "Detailed written estimates before any work starts. The price in the estimate is the price you pay. No last-minute change orders, ever." },
+  { num: "04", title: "W-2 Crews Only — No Subcontractors", desc: "We never sub out installs. Every crew member is a Siding Depot W-2 employee — trained, background-checked, insured, and accountable to us directly." },
 ];
 
 const TESTIMONIALS = [
-  { name: "Jennifer M.", city: "Marietta", text: "Best contractor we've worked with. Crew was on time every day and the new HardiePlank looks incredible." },
-  { name: "David & Susan R.", city: "Alpharetta", text: "From the first quote to final walkthrough they were professional. The estimate matched the final invoice — no surprises." },
-  { name: "Michael T.", city: "Canton", text: "Replaced our siding, gutters and trim. The whole project finished one day ahead of schedule and looks fantastic." },
+  { name: "Jennifer M.", city: "Marietta", text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work." },
+  { name: "David & Susan R.", city: "Alpharetta", text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run." },
+  { name: "Michael T.", city: "Canton", text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner." },
 ];
 
 function HomePage() {
   return (
     <>
       <HeroSection
-        badge="James Hardie Elite Preferred"
+        badge="Elite Preferred · Top 2% of US Installers · Marietta, GA"
         title={
           <>
-            Elevate Your Home's Exterior with{" "}
-            <span className="text-sd-green">Precision &amp; Craftsmanship</span>
+            North Atlanta's James Hardie Siding Experts —{" "}
+            <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="Certified James Hardie installers serving Marietta, Alpharetta, Milton & all of North Atlanta — backed by 1,500+ transformations and a written 24-hour quote guarantee."
+        subtitle="We're the Elite Preferred James Hardie contractor your Marietta, Alpharetta and Canton neighbors call back to thank. W-2 crews only — no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
+        trustItems={[
+          "Elite Preferred · Top 2% of US installers",
+          "1,500+ homes in Cobb, Cherokee & Fulton County",
+          "W-2 crews only — no subs, ever",
+        ]}
         formSlot={<HeroQuoteForm />}
       />
 
@@ -139,10 +144,10 @@ function HomePage() {
               Our Services
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Complete Exterior Solutions for Your Home
+              Complete Exterior Services — One Contractor, One Call
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              One contractor. Every exterior service. Backed by 12+ years of work in North Atlanta.
+              From James Hardie siding to painting, windows, decks and gutters — Siding Depot handles every exterior service in Marietta, Canton, Alpharetta and all of North Atlanta.
             </p>
           </div>
 
@@ -174,7 +179,7 @@ function HomePage() {
               4 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-white/65 max-w-lg">
-              We're not the cheapest. We're the contractor your neighbors trust to do it right the first time.
+              We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -227,7 +232,7 @@ function HomePage() {
         </div>
       </section>
 
-      <ProcessTimeline />
+      <ProcessTimeline title="How It Works — From First Call to Final Walkthrough" />
 
       <AwardsStrip />
 
@@ -239,10 +244,10 @@ function HomePage() {
               Service Areas
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Serving North Atlanta — From Marietta to Canton
+              Serving North Atlanta — Marietta, Canton, Alpharetta & 10+ Communities Across Cherokee, Cobb & Fulton County
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              We cover Cobb, Cherokee, Fulton and Forsyth counties.
+              James Hardie Elite Preferred installations across Cobb, Cherokee, Fulton and Forsyth counties. Free on-site quotes — we come to you.
             </p>
           </div>
 

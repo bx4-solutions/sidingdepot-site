@@ -3,7 +3,7 @@ import { PROCESS_STEPS } from "@/data/site";
 
 const ICONS = [ClipboardCheck, Hammer, PartyPopper];
 
-export function ProcessTimeline() {
+export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Project" }: { title?: string }) {
   return (
     <section className="py-20 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -12,7 +12,7 @@ export function ProcessTimeline() {
             Our Process
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-foreground">
-            It&apos;s Easy to Start Your Exterior Project
+            {title}
           </h2>
           <p className="mt-3 text-muted-foreground">
             Three steps. Zero surprises. Total transparency from quote to handshake.

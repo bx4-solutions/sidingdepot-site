@@ -8,11 +8,11 @@ import { BEFORE_AFTER_PAIRS } from "@/data/site";
 import { track } from "@/lib/track";
 
 const PAINS = [
-  "Crews cut corners because there's no on-site project manager.",
-  "They pad your invoice with work that wasn't actually done.",
-  "They stop returning your calls mid-project.",
-  "You get stuck with a half-finished home and a dead contractor.",
-  "You spend the money — and still hate the way your house looks.",
+  "Subcontractors your contractor never met show up at your door.",
+  "The final invoice has line items that weren't in the estimate.",
+  "Calls go unanswered once the deposit clears.",
+  "Wood rot is \"discovered\" mid-project and the price doubles.",
+  "You spend $20,000 — and still have to call someone else to fix it.",
 ];
 
 const SLIDER_SOURCE = "Before/After Slider";
@@ -38,7 +38,7 @@ export function PainPointsSection() {
           <div className="mt-5 rounded-xl section-dark p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-foreground font-semibold text-sm sm:text-base">
-                Want to see your home transformed like this?
+                Want to see your home transformed like this? Our team has completed 1,500+ projects across Marietta, Canton, Alpharetta and North Atlanta.
               </p>
               <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                 Free estimate · response within 24h.
@@ -63,10 +63,10 @@ export function PainPointsSection() {
 
         <div>
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text">
-            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Hidden Cost
+            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Risk of Getting It Wrong
           </span>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl text-foreground leading-[1.05]">
-            An Exterior Renovation Is a <span className="text-sd-green">Big Project.</span>
+            Choosing the Wrong Contractor Is a <span className="text-sd-green">$20,000 Mistake.</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg">
             Choosing the wrong North Atlanta exterior contractor is a costly mistake. Ask yourself
@@ -82,8 +82,11 @@ export function PainPointsSection() {
           </ul>
           <p className="mt-6 text-muted-foreground max-w-lg">
             Don&apos;t put yourself in that situation.{" "}
-            <span className="font-semibold text-foreground">Siding Depot</span> delivers professional
-            renovation and restoration services Georgia homeowners actually trust.
+            <span className="font-semibold text-foreground">Siding Depot</span> uses only 
+            W-2 in-house crews — trained, insured, and accountable to us 
+            directly. Every project has a dedicated manager on-site. Every 
+            estimate is written, itemized, and guaranteed. No surprises. 
+            No strangers at your door.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
