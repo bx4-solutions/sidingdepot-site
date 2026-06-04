@@ -10,9 +10,9 @@ export const PAGE_HEIGHT = 1056;
 
 const BrandHeader = ({ pageNum }: { pageNum: number }) => (
   <div className="absolute top-0 left-0 w-full">
-    <div className="h-2 w-full bg-[#B4D236]" />
+    <div className="h-2 w-full bg-[var(--sd-green)]" />
     <div className="flex justify-between items-center px-10 py-6">
-      <div className="font-display text-[28px] text-[#0A0A0A] leading-none tracking-tight bg-[#B4D236] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
+      <div className="font-display text-[28px] text-[#0A0A0A] leading-none tracking-tight bg-[var(--sd-green)] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
       <div className="text-[10px] font-bold text-[#2D3748] tracking-widest uppercase opacity-40">
         Page {pageNum} / 8
       </div>
@@ -54,10 +54,10 @@ export const SidingGuide = () => {
       {/* PAGE 1 - COVER */}
       <PageWrapper pageNum={1} className="bg-[#0A0A0A]">
         <div className="absolute top-10 left-10">
-          <div className="font-display text-[28px] text-[#0A0A0A] tracking-tight bg-[#B4D236] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
+          <div className="font-display text-[28px] text-[#0A0A0A] tracking-tight bg-[var(--sd-green)] px-2 py-1 rounded" aria-hidden="true">SIDING DEPOT</div>
         </div>
         <div className="absolute top-10 right-10">
-          <div className="bg-[#B4D236]/15 border border-[#B4D236]/40 px-3 py-1 rounded-full text-[#B4D236] text-[10px] font-bold tracking-widest uppercase">
+          <div className="bg-[var(--sd-green)]/15 border border-[var(--sd-green)]/40 px-3 py-1 rounded-full text-[var(--sd-green)] text-[10px] font-bold tracking-widest uppercase">
             ★ JAMES HARDIE ELITE PREFERRED
           </div>
         </div>
@@ -65,18 +65,18 @@ export const SidingGuide = () => {
         <div className="flex flex-col h-full justify-center px-16 pt-20">
           {/* Stylized House Illustration (SVG/CSS) */}
           <div className="relative w-[320px] h-[240px] mx-auto mb-16 opacity-90">
-             <div className="absolute bottom-0 w-full h-[140px] bg-[#2D3748] border-b-8 border-[#B4D236]" />
-             <div className="absolute bottom-0 left-[20%] w-[25%] h-[90px] bg-[#0A0A0A] border-t-4 border-x-4 border-[#B4D236]/20" />
-             <div className="absolute bottom-[90px] left-[15%] border-l-[110px] border-l-transparent border-r-[110px] border-r-transparent border-bottom-[80px] border-bottom-[#B4D236]" />
-             <div className="absolute bottom-0 right-[15%] w-[35%] h-[120px] bg-[#3A4A5C] border-t-4 border-x-4 border-[#B4D236]/20" />
-             <div className="absolute bottom-[120px] right-[10%] border-l-[90px] border-l-transparent border-r-[90px] border-r-transparent border-bottom-[60px] border-bottom-[#B4D236]" />
+             <div className="absolute bottom-0 w-full h-[140px] bg-[#2D3748] border-b-8 border-[var(--sd-green)]" />
+             <div className="absolute bottom-0 left-[20%] w-[25%] h-[90px] bg-[#0A0A0A] border-t-4 border-x-4 border-[var(--sd-green)]/20" />
+             <div className="absolute bottom-[90px] left-[15%] border-l-[110px] border-l-transparent border-r-[110px] border-r-transparent border-bottom-[80px] border-bottom-[var(--sd-green)]" />
+             <div className="absolute bottom-0 right-[15%] w-[35%] h-[120px] bg-[#3A4A5C] border-t-4 border-x-4 border-[var(--sd-green)]/20" />
+             <div className="absolute bottom-[120px] right-[10%] border-l-[90px] border-l-transparent border-r-[90px] border-r-transparent border-bottom-[60px] border-bottom-[var(--sd-green)]" />
           </div>
 
           <div className="space-y-1">
             <h1 className="font-display text-[64px] leading-[1.05] text-white tracking-[0.05em] uppercase">
               THE GEORGIA<br />
               HOMEOWNER'S<br />
-              <span className="text-[#B4D236]">SIDING GUIDE</span>
+              <span className="text-[var(--sd-green)]">SIDING GUIDE</span>
             </h1>
           </div>
           
@@ -85,7 +85,7 @@ export const SidingGuide = () => {
           </p>
         </div>
 
-        <div className="absolute bottom-0 w-full h-[52px] bg-[#B4D236] flex items-center px-16">
+        <div className="absolute bottom-0 w-full h-[52px] bg-[var(--sd-green)] flex items-center px-16">
           <div className="text-sd-black text-[12px] font-bold tracking-[0.2em] uppercase">
             2026 EDITION · FREE GUIDE · SIDINGDEPOT.COM
           </div>
@@ -96,9 +96,9 @@ export const SidingGuide = () => {
       <PageWrapper pageNum={2}>
         <div className="pt-32 px-16">
           <h2 className="font-display text-[36px] text-[#1E2A38] leading-tight uppercase">
-            YOUR SIDING IS A <span className="text-[#B4D236]">$25,000</span> DECISION.
+            YOUR SIDING IS A <span className="text-[var(--sd-green)]">$25,000</span> DECISION.
           </h2>
-          <p className="text-[#B4D236] font-bold text-sm tracking-widest uppercase mt-1">
+          <p className="text-[var(--sd-green)] font-bold text-sm tracking-widest uppercase mt-1">
             Make it with the right information.
           </p>
 
@@ -110,7 +110,7 @@ export const SidingGuide = () => {
                 { val: "50+ years", label: "Expected lifespan of properly installed James Hardie siding" },
               ].map((stat, i) => (
                 <div key={i} className={i !== 0 ? "mt-8 pt-8 border-t border-white/10" : ""}>
-                   <div className="text-[#B4D236] font-display text-4xl">{stat.val}</div>
+                   <div className="text-[var(--sd-green)] font-display text-4xl">{stat.val}</div>
                    <div className="text-white/70 text-[11px] mt-1 font-semibold tracking-wide leading-relaxed uppercase">{stat.label}</div>
                 </div>
               ))}
@@ -126,7 +126,7 @@ export const SidingGuide = () => {
               <p>
                 Choosing the wrong material or, more importantly, the wrong installation method can lead to hidden rot, voided warranties, and a total loss of ROI.
               </p>
-              <p className="text-[#B4D236] font-bold">
+              <p className="text-[var(--sd-green)] font-bold">
                 This guide was written to help you make the right call — regardless of who you hire.
               </p>
             </div>
@@ -146,8 +146,8 @@ export const SidingGuide = () => {
               <thead className="bg-[#1E2A38] text-white">
                 <tr className="text-[10px] font-bold uppercase tracking-widest">
                   <th className="p-4 border-r border-white/10">Criteria</th>
-                  <th className="p-4 border-r border-[#B4D236] relative bg-[#1E2A38]">
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#B4D236] text-white px-2 py-0.5 rounded text-[8px]">RECOMMENDED</span>
+                  <th className="p-4 border-r border-[var(--sd-green)] relative bg-[#1E2A38]">
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--sd-green)] text-white px-2 py-0.5 rounded text-[8px]">RECOMMENDED</span>
                     James Hardie
                   </th>
                   <th className="p-4 border-r border-white/10">Vinyl</th>
@@ -166,7 +166,7 @@ export const SidingGuide = () => {
                 ].map((row, i) => (
                   <tr key={i} className="border-t border-[#E2E8EE]">
                     <td className="p-4 font-bold bg-[#F4F7FA] text-[#1E2A38] w-[25%]">{row[0]}</td>
-                    <td className="p-4 font-bold text-[#1E2A38] border-x-2 border-[#B4D236] bg-[#B4D236]/5 text-center">{row[1]}</td>
+                    <td className="p-4 font-bold text-[#1E2A38] border-x-2 border-[var(--sd-green)] bg-[var(--sd-green)]/5 text-center">{row[1]}</td>
                     <td className="p-4 text-[#6B7A8A] text-center">{row[2]}</td>
                     <td className="p-4 text-[#6B7A8A] text-center">{row[3]}</td>
                     <td className="p-4 text-[#6B7A8A] text-center">{row[4]}</td>
@@ -176,7 +176,7 @@ export const SidingGuide = () => {
             </table>
           </div>
 
-          <div className="mt-10 bg-[#B4D236] p-5 rounded-xl text-[#0A0A0A] font-bold text-center">
+          <div className="mt-10 bg-[var(--sd-green)] p-5 rounded-xl text-[#0A0A0A] font-bold text-center">
              James Hardie HZ10 is the only siding system engineered specifically for Georgia's climate zone — heat, humidity, and storm season combined.
           </div>
 
@@ -192,7 +192,7 @@ export const SidingGuide = () => {
           <h2 className="font-display text-[40px] text-[#1E2A38] leading-tight uppercase">
             5 MISTAKES GEORGIA HOMEOWNERS MAKE
           </h2>
-          <div className="h-1 w-24 bg-[#B4D236] mt-2 mb-12" />
+          <div className="h-1 w-24 bg-[var(--sd-green)] mt-2 mb-12" />
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-12">
             {[
@@ -222,9 +222,9 @@ export const SidingGuide = () => {
                 desc: "Standard is 25-30% to lock schedule. Any contractor asking for 50-100% upfront is likely using your deposit to finish another job. This is the #1 cause of abandoned projects."
               }
             ].map((err, i) => (
-              <div key={i} className="relative bg-[#F4F7FA] p-6 rounded-xl border-l-4 border-[#B4D236]">
+              <div key={i} className="relative bg-[#F4F7FA] p-6 rounded-xl border-l-4 border-[var(--sd-green)]">
                 <div className="absolute top-4 right-4 bg-red-100 text-red-600 text-[8px] font-bold px-1.5 py-0.5 rounded tracking-widest uppercase">MISTAKE</div>
-                <div className="font-display text-[48px] text-[#B4D236] leading-none mb-3">{err.id}</div>
+                <div className="font-display text-[48px] text-[var(--sd-green)] leading-none mb-3">{err.id}</div>
                 <div className="font-bold text-[#1E2A38] text-[14px] leading-tight mb-2 uppercase">{err.title}</div>
                 <div className="text-[#6B7A8A] text-[11px] leading-relaxed">{err.desc}</div>
               </div>
@@ -241,7 +241,7 @@ export const SidingGuide = () => {
           </h2>
 
           <div className="mt-20 relative">
-            <div className="absolute top-[40px] left-0 w-full h-0.5 border-t-2 border-dashed border-[#B4D236] -z-10" />
+            <div className="absolute top-[40px] left-0 w-full h-0.5 border-t-2 border-dashed border-[var(--sd-green)] -z-10" />
             <div className="grid grid-cols-3 gap-y-20 gap-x-12">
                {[
                  { step: "Step 1", title: "Free Estimate", desc: "Itemized quote, no pressure. Review every line and ask about rot pricing." },
@@ -252,7 +252,7 @@ export const SidingGuide = () => {
                  { step: "Step 6", title: "Final Walk-Through", desc: "Detailed inspection with crew. Warranty documentation provided." }
                ].map((item, i) => (
                  <div key={i} className="text-center group">
-                    <div className="w-20 h-20 bg-white border-2 border-[#B4D236] rounded-full mx-auto flex items-center justify-center font-display text-2xl text-[#1E2A38] mb-4 group-hover:bg-[#B4D236] group-hover:text-white transition-colors">
+                    <div className="w-20 h-20 bg-white border-2 border-[var(--sd-green)] rounded-full mx-auto flex items-center justify-center font-display text-2xl text-[#1E2A38] mb-4 group-hover:bg-[var(--sd-green)] group-hover:text-white transition-colors">
                       {i + 1}
                     </div>
                     <div className="font-bold text-[#1E2A38] text-[13px] uppercase tracking-wide mb-1">{item.title}</div>
@@ -264,7 +264,7 @@ export const SidingGuide = () => {
 
           <div className="mt-32 bg-[#0A0A0A] p-8 rounded-2xl text-white text-center">
             <p className="text-lg leading-relaxed">
-              At <span className="text-[#B4D236] font-bold">Siding Depot</span>, every project follows these 6 steps exactly — no shortcuts, no subcontracted crews, no surprise change orders.
+              At <span className="text-[var(--sd-green)] font-bold">Siding Depot</span>, every project follows these 6 steps exactly — no shortcuts, no subcontracted crews, no surprise change orders.
             </p>
           </div>
         </div>
@@ -292,12 +292,12 @@ export const SidingGuide = () => {
               { q: "Can I see 3 recent projects within 10 miles?", a: "Driving to see real work is worth 30 minutes of your time." }
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 bg-white p-4 rounded-xl shadow-sm border border-[#E2E8EE]">
-                 <div className="mt-1 w-5 h-5 rounded border-2 border-[#B4D236] flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="h-4 w-4 text-[#B4D236]" aria-hidden="true" />
+                 <div className="mt-1 w-5 h-5 rounded border-2 border-[var(--sd-green)] flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-4 w-4 text-[var(--sd-green)]" aria-hidden="true" />
                  </div>
                  <div>
                     <div className="text-[13px] font-bold text-[#1E2A38] uppercase tracking-wide">
-                      <span className="text-[#B4D236] mr-1">{i + 1}.</span> {item.q}
+                      <span className="text-[var(--sd-green)] mr-1">{i + 1}.</span> {item.q}
                     </div>
                     <div className="text-[11px] text-[#6B7A8A] leading-relaxed mt-0.5">{item.a}</div>
                  </div>
@@ -305,9 +305,9 @@ export const SidingGuide = () => {
             ))}
           </div>
 
-          <div className="mt-10 border-2 border-dashed border-[#B4D236] p-4 rounded-xl text-center">
+          <div className="mt-10 border-2 border-dashed border-[var(--sd-green)] p-4 rounded-xl text-center">
             <p className="text-[12px] text-[#1E2A38]">
-              <span className="font-bold">Bonus:</span> Email any quote to <span className="text-[#B4D236] font-bold">office@sidingdepot.com</span> with subject <span className="italic">"Quote Review"</span> — we'll flag anything unusual. No obligation.
+              <span className="font-bold">Bonus:</span> Email any quote to <span className="text-[var(--sd-green)] font-bold">office@sidingdepot.com</span> with subject <span className="italic">"Quote Review"</span> — we'll flag anything unusual. No obligation.
             </p>
           </div>
         </div>
@@ -364,13 +364,13 @@ export const SidingGuide = () => {
       {/* PAGE 8 - FINAL CTA */}
       <PageWrapper pageNum={8} className="bg-[#1E2A38]">
         <div className="flex flex-col h-full justify-center items-center text-center px-16">
-          <div className="bg-[#B4D236] text-white px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase mb-12">
+          <div className="bg-[var(--sd-green)] text-white px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase mb-12">
             ★ JAMES HARDIE ELITE PREFERRED · TOP 2% NATIONWIDE
           </div>
 
           <h2 className="font-display text-[52px] leading-[1] text-white tracking-[0.05em] uppercase mb-4">
             READY FOR AN<br />
-            <span className="text-[#B4D236]">HONEST ESTIMATE?</span>
+            <span className="text-[var(--sd-green)]">HONEST ESTIMATE?</span>
           </h2>
 
           <p className="text-white/65 text-lg mb-12 max-w-sm">
@@ -380,7 +380,7 @@ export const SidingGuide = () => {
           <div className="flex gap-6 mb-16">
              {["Licensed & Insured", "In-house crews", "Fixed price"].map((text, i) => (
                <div key={i} className="text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
-                  <div className="text-[#B4D236]">✓</div> {text}
+                  <div className="text-[var(--sd-green)]">✓</div> {text}
                </div>
              ))}
           </div>
@@ -389,13 +389,13 @@ export const SidingGuide = () => {
              <h3 className="text-[#1E2A38] font-bold text-xl mb-6 uppercase tracking-tight">Get Your Free Estimate</h3>
              <div className="space-y-4">
                 <div className="flex items-center justify-center gap-3 text-[#1E2A38] font-display text-3xl leading-none">
-                   <Phone className="h-6 w-6 text-[#B4D236]" aria-hidden="true" /> (678) 400-2012
+                   <Phone className="h-6 w-6 text-[var(--sd-green)]" aria-hidden="true" /> (678) 400-2012
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[#6B7A8A] font-semibold text-sm">
-                   <Mail className="h-4 w-4 text-[#B4D236]" aria-hidden="true" /> office@sidingdepot.com
+                   <Mail className="h-4 w-4 text-[var(--sd-green)]" aria-hidden="true" /> office@sidingdepot.com
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[#6B7A8A] font-semibold text-sm">
-                   <ExternalLink className="h-4 w-4 text-[#B4D236]" aria-hidden="true" /> sidingdepot.com/contact
+                   <ExternalLink className="h-4 w-4 text-[var(--sd-green)]" aria-hidden="true" /> sidingdepot.com/contact
                 </div>
                 <div className="mt-6 pt-6 border-t border-[#E2E8EE] flex items-center justify-center gap-2 text-[#6B7A8A]/60 text-[10px] uppercase font-bold tracking-wide">
                    <MapPin className="h-3 w-3" aria-hidden="true" /> 3036 Roswell Rd, Marietta, GA 30062
