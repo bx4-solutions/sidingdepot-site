@@ -44,6 +44,19 @@ export const LOCAL_BUSINESS_SCHEMA = {
   "@id": LOCAL_BUSINESS_ID,
   name: SITE.name,
   image: `${BASE_URL}/og-default.jpg`,
+  aggregateRating: {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "158"
+  },
+  review: [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Jennifer M." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work."
+    }
+  ],
   telePhone: SITE.phone,
   url: BASE_URL,
   address: {

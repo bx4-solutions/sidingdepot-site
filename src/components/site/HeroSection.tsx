@@ -86,16 +86,12 @@ export function HeroSection({
           )}
 
           {trustItems.length > 0 && (
-            <ul className="mt-7 grid gap-2.5 sm:grid-cols-3 max-w-2xl">
-              {trustItems.map((t, i) => {
-                const Icon = trustIcons[i % trustIcons.length];
-                return (
-                  <li key={t} className="flex items-center gap-2 text-sm text-white/90">
-                    <Icon className="h-4 w-4 text-sd-green shrink-0" aria-hidden="true" />
-                    <span>{t}</span>
-                  </li>
-                );
-              })}
+            <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-3 max-w-2xl justify-center sm:justify-start">
+              {trustItems.map((t) => (
+                <li key={t} className="flex items-center gap-2 text-sm font-medium text-white/95">
+                  <span>{t}</span>
+                </li>
+              ))}
             </ul>
           )}
 
