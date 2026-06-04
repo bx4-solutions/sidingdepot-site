@@ -801,12 +801,12 @@ function SEODashboard() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      <MiniKPICard title="Total Visitantes" value="12.4k" diff="+5%" />
-                      <MiniKPICard title="Únicos" value="8.9k" diff="+3%" />
-                      <MiniKPICard title="Visualizações" value="32.1k" diff="+8%" />
-                      <MiniKPICard title="Pág/Visita" value="2.6" diff="+1%" />
-                      <MiniKPICard title="Bounce" value="42%" diff="-2%" />
-                      <MiniKPICard title="Tempo Médio" value="2m 45s" diff="+15s" />
+                      <MiniKPICard title={t('totalVisitors')} value="12.4k" diff="+5%" />
+                      <MiniKPICard title={t('uniqueVisitors')} value="8.9k" diff="+3%" />
+                      <MiniKPICard title={t('pageViews')} value="32.1k" diff="+8%" />
+                      <MiniKPICard title={t('pagesPerVisit')} value="2.6" diff="+1%" />
+                      <MiniKPICard title={t('bounceRate')} value="42%" diff="-2%" />
+                      <MiniKPICard title={t('avgSessionDuration')} value="2m 45s" diff="+15s" />
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
