@@ -154,7 +154,9 @@ function RootComponent() {
         </main>
         <Footer />
         <FloatingCTA />
+        <VisualEditToggle />
       </div>
+
     </QueryClientProvider>
   );
 }
