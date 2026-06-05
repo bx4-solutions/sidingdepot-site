@@ -350,16 +350,10 @@ export function ServiceLandingPage({
               dedicated project manager from start to finish.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "footer_quote" })}>
-                  Get a free estimate <ArrowRight />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outlineWhite">
-                <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
-                  <Phone /> Call {SITE.phone}
-                </a>
-              </Button>
+              <ServiceFormModal 
+                source={`service_${serviceKey}_footer`}
+                tag={`service_${serviceKey}_quote`}
+              />
             </div>
           </div>
           <div className="grid gap-3">
