@@ -15,8 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
+import paintingHeroAsset from "@/assets/painting-hero.png.asset.json";
 
-const HERO_IMAGE = "/projects/project-5.webp";
+const HERO_IMAGE = paintingHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/painting";
 const SERVICE_KEY = "painting";
 const CITY = "Greater Marietta";
