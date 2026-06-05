@@ -176,7 +176,7 @@ export function Navbar() {
                 SEO DASHBOARD
               </Link>
             )}
-            {/* Mobile menu CTA removed to keep UI clean and consistent with desktop */}
+            
           </nav>
         </div>
       )}
