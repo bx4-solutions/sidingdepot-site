@@ -149,37 +149,70 @@ export function ServiceLandingPage({
     <div className="bg-sd-gray-bg">
       {/* HERO */}
       <section className="relative bg-sd-navy text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-25">
-          <img
-            src={heroImage}
-            alt=""
-            aria-hidden
-            className="h-full w-full object-cover"
-            fetchPriority="high"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
-        </div>
+        {!heroImageSide && (
+          <div className="absolute inset-0 opacity-25">
+            <img
+              src={heroImage}
+              alt=""
+              aria-hidden
+              className="h-full w-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
+          </div>
+        )}
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
-            <div className="max-w-2xl">
-              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                {title}{" "}
-                <span className="text-sd-green">{titleAccent}</span>
-              </h1>
-              <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
-                {intro.split("\n\n").map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+          {heroImageSide ? (
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div className="max-w-2xl">
+                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
+                  {title}{" "}
+                  <span className="text-sd-green">{titleAccent}</span>
+                </h1>
+                <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
+                  {intro.split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <ServiceFormModal
+                    source={`service_${serviceKey}_hero`}
+                    tag={`service_${serviceKey}_quote`}
+                  />
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={heroImage}
+                  alt={heroImageAlt}
+                  className="w-full h-auto max-h-[520px] object-cover rounded-2xl shadow-2xl ring-1 ring-white/10"
+                  fetchPriority="high"
+                  loading="eager"
+                />
               </div>
             </div>
-            <div className="lg:sticky lg:top-24 flex justify-center">
-              <ServiceFormModal 
-                source={`service_${serviceKey}_hero`}
-                tag={`service_${serviceKey}_quote`}
-              />
+          ) : (
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
+              <div className="max-w-2xl">
+                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
+                  {title}{" "}
+                  <span className="text-sd-green">{titleAccent}</span>
+                </h1>
+                <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
+                  {intro.split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </div>
+              <div className="lg:sticky lg:top-24 flex justify-center">
+                <ServiceFormModal
+                  source={`service_${serviceKey}_hero`}
+                  tag={`service_${serviceKey}_quote`}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
