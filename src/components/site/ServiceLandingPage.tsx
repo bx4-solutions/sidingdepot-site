@@ -114,6 +114,10 @@ export function ServiceLandingPage({
 
   const [heroModalOpen, setHeroModalOpen] = useState(false);
   const [midModalOpen, setMidModalOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  const fallbackImage = "https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&q=80&w=1200";
+
   
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
@@ -152,12 +156,14 @@ export function ServiceLandingPage({
         {!heroImageSide && (
           <div className="absolute inset-0 opacity-25">
             <img
-              src={heroImage}
+              src={imgError ? fallbackImage : heroImage}
               alt=""
               aria-hidden
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-center"
               fetchPriority="high"
-              loading="eager"
+              loading="lazy"
+              onError={() => setImgError(true)}
+
             />
             <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
           </div>
@@ -184,11 +190,13 @@ export function ServiceLandingPage({
               </div>
               <div className="relative">
                 <img
-                  src={heroImage}
+                  src={imgError ? fallbackImage : heroImage}
                   alt={heroImageAlt}
-                  className="w-full h-auto max-h-[520px] object-cover rounded-2xl shadow-2xl ring-1 ring-white/10"
+                  className="w-full aspect-[4/3] lg:aspect-[4/5] object-cover object-center rounded-2xl shadow-2xl ring-1 ring-white/10"
                   fetchPriority="high"
-                  loading="eager"
+                  loading="lazy"
+                  onError={() => setImgError(true)}
+
                 />
               </div>
             </div>
