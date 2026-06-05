@@ -305,7 +305,7 @@ function AboutPage() {
       </section>
 
       {/* PARTNERS / BRAND CAROUSEL */}
-      <section className="py-16 bg-sd-gray-bg border-y border-sd-gray-border">
+      <section className="py-16 bg-white border-y border-sd-gray-border">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text">
             Trusted partners &amp; manufacturers

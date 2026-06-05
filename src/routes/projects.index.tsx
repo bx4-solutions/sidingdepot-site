@@ -70,7 +70,7 @@ function ProjectsPage() {
   const modalProject = modalIdx != null ? filtered[modalIdx] : null;
 
   return (
-    <section className="bg-sd-gray-bg py-hero lg:py-hero-lg min-h-screen">
+    <section className="bg-white py-hero lg:py-hero-lg min-h-screen">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">

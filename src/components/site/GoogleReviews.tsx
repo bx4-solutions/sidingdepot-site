@@ -162,7 +162,7 @@ export function GoogleReviews() {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-sd-gray-bg">
+    <section className="py-20 lg:py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
