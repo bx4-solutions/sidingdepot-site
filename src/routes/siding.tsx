@@ -437,7 +437,9 @@ function SidingPage() {
       <ServiceLandingPage
         serviceKey={SERVICE_KEY}
         city={CITY}
-        heroImage="/projects/project-1.webp"
+        heroImage={HERO_IMAGE}
+        heroImageSide
+        heroImageAlt="Beautiful home with new James Hardie siding installed by Siding Depot"
         eyebrow="James Hardie Siding — Elite Preferred Installation"
         title="James Hardie Siding Installation in"
         titleAccent="Marietta & North Atlanta, GA"
