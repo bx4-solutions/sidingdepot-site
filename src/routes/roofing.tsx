@@ -18,6 +18,7 @@ import { SERVICE_METADATA } from "@/data/seo-config";
 
 const HERO_IMAGE = "/projects/project-7.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
+const SIDE_IMAGE = "https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780622431188-61fb60f9-276d-47fe-84c7-b42ddec2262c.png";
 const SERVICE_KEY = "roofing";
 const CITY = "Greater Marietta";
 
@@ -87,6 +88,7 @@ function RoofingPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      sideImage={SIDE_IMAGE}
       eyebrow="GAF Factory Certified · Top Roofer"
       title="GAF Factory-Certified Roofing:"
       titleAccent="North Atlanta's Shield."
