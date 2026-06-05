@@ -79,6 +79,8 @@ function DumpsterPage() {
       titleAccent="ready when your project is."
       intro="Marietta's trusted dumpster rental partner for siding, roofing and renovation projects. 10, 15 and 20-yard roll-offs with same-day or next-day delivery across North Atlanta — and a written, transparent quote before we drop."
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="Dumpster for rental from Siding Depot"
       benefits={[
         "10, 15 and 20-yard roll-off sizes",
         "Same-day or next-day delivery in North Atlanta",
