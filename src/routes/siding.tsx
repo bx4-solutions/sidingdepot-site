@@ -32,7 +32,7 @@ export const Route = createFileRoute("/siding")({
     ],
     links: [
       { rel: "canonical", href: "https://sidingdepot.com/siding" },
-      { rel: "preload", as: "image", href: "/projects/project-1.webp", fetchPriority: "high" as any },
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
