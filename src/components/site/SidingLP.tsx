@@ -181,14 +181,26 @@ export function SidingLP({ city }: SidingLPProps) {
           />
           <div className="absolute inset-0 bg-sd-navy/65" />
         </div>
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg">
-          <div>
-            <h1 className="font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05] text-white">
-              James Hardie® Siding Installation in {city}, GA
-            </h1>
-            <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
-              Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
-            </p>
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[60%_40%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg items-center">
+          <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-12 text-left">
+            <div className="flex-1">
+              <h1 className="font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05] text-white">
+                James Hardie® Siding Installation in {city}, GA
+              </h1>
+              <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
+                Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
+              </p>
+            </div>
+            <div className="hidden md:block w-full max-w-[200px] lg:max-w-[280px] shrink-0">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-sd-green/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <img 
+                  src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780663807517-6231247b-0c9b-4a94-bd0d-0bb161cd8625.png"
+                  alt="James Hardie Siding Project Portfolio"
+                  className="relative rounded-2xl shadow-2xl border-4 border-white/10 w-full object-cover aspect-[4/5] transform hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
           </div>
           <div className="lg:pl-2">
             <LeadForm
