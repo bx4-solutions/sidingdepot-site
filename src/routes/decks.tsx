@@ -15,9 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import decksHero from "@/assets/decks-hero.png";
+import decksHeroAsset from "@/assets/decks-hero.png.asset.json";
 
-const HERO_IMAGE = decksHero;
+const HERO_IMAGE = decksHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/decks";
 const SERVICE_KEY = "decks";
 const CITY = "Greater Marietta";

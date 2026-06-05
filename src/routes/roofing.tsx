@@ -15,9 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import roofingHero from "@/assets/roofing-hero.png";
+import roofingHeroAsset from "@/assets/roofing-hero.png.asset.json";
 
-const HERO_IMAGE = roofingHero;
+const HERO_IMAGE = roofingHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/roofing";
 const SERVICE_KEY = "roofing";
 const CITY = "Greater Marietta";

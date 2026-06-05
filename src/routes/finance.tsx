@@ -5,7 +5,7 @@ import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
-import greenSkyFinancing from "@/assets/finance-banner.png";
+import greenSkyFinancing from "@/assets/finance-banner.png.asset.json";
 
 
 
@@ -129,7 +129,7 @@ function FinancePage() {
             {/* Big GreenSky logo */}
             <header className="flex flex-col items-center">
               <img
-                src={greenSkyFinancing}
+                src={greenSkyFinancing.url}
                 alt="Financing options from GreenSky"
                 className="h-auto w-full max-w-[480px]"
               />
