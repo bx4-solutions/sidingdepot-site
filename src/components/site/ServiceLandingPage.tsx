@@ -107,6 +107,9 @@ export function ServiceLandingPage({
   const abContent = AB_CONTENT[serviceKey]?.[variation];
   const seo = getSeoForVariation(serviceKey, variation);
 
+  const [heroModalOpen, setHeroModalOpen] = useState(false);
+  const [midModalOpen, setMidModalOpen] = useState(false);
+  
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
   const title = abContent?.title ?? manualTitle;

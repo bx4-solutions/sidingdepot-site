@@ -109,6 +109,8 @@ function LocationPage() {
   const router = useRouter();
   const location = router.state.location;
 
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     if (location.pathname !== location.pathname.toLowerCase()) {
       router.navigate({
