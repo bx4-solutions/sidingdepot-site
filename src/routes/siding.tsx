@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { serviceJsonLd, ServiceLandingPage } from "@/components/site/ServiceLandingPage";
-import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED } from "@/data/site";
+import { PROJECTS_SORTED } from "@/data/site";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
