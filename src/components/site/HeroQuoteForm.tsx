@@ -179,7 +179,7 @@ export function HeroQuoteForm({
         <Button type="submit" disabled={isSubmitting} className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg shadow-sd-green/20 transition-all h-10 text-sm">
           {isSubmitting ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending…</> : submitLabel}
         </Button>
-        <p className="text-[10px] text-sd-gray-text text-center font-medium">🔒 Response within 24h · Trusted by 1,500+ homeowners</p>
+        
       </form>
     </div>
   );
