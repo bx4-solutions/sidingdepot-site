@@ -124,9 +124,6 @@ export function ServiceLandingPage({
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
             <div className="max-w-2xl">
-              <span className="inline-block rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-                {eyebrow}
-              </span>
               <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
                 {title}{" "}
                 <span className="text-sd-green">{titleAccent}</span>
@@ -148,14 +145,6 @@ export function ServiceLandingPage({
                   </a>
                 </Button>
               </div>
-              <ul className="mt-10 grid gap-3 sm:grid-cols-2 text-sm text-white/85">
-                {benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 text-sd-green shrink-0" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="lg:sticky lg:top-24">
               <HeroQuoteForm
