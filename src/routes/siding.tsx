@@ -37,7 +37,7 @@ export const Route = createFileRoute("/siding")({
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
         canonical: "https://sidingdepot.com/siding",
-        image: "/projects/project-1.webp",
+        image: HERO_IMAGE,
         serviceType: "James Hardie Siding Installation",
       }),
       {
