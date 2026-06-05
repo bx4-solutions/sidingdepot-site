@@ -15,8 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
+import paintingHeroAsset from "@/assets/painting-hero.png.asset.json";
 
-const HERO_IMAGE = "/projects/project-5.webp";
+const HERO_IMAGE = paintingHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/painting";
 const SERVICE_KEY = "painting";
 const CITY = "Greater Marietta";
@@ -107,6 +108,8 @@ function PaintingPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="Beautifully painted home exterior in North Atlanta using Sherwin-Williams premium paint"
       eyebrow="Exterior Painting — North Atlanta"
       title="Exterior Painting in Marietta &"
       titleAccent="North Atlanta, GA"
