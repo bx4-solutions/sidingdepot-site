@@ -172,11 +172,6 @@ function LocationPage() {
                 />
               </DialogContent>
             </Dialog>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-10 py-7 text-lg font-bold border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-all">
-              <a href={SITE.phoneHref}>
-                <Phone className="mr-2 h-5 w-5" /> Call {SITE.phone}
-              </a>
-            </Button>
           </div>
         </div>
       </section>
