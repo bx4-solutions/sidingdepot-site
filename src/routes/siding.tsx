@@ -13,10 +13,12 @@ import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
+import sidingHeroAsset from "@/assets/siding-hero.png.asset.json";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
+const HERO_IMAGE = sidingHeroAsset.url;
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
@@ -25,17 +27,17 @@ export const Route = createFileRoute("/siding")({
       { name: "description", content: seo.metaDesc },
       { property: "og:title", content: seo.metaTitle(CITY) },
       { property: "og:description", content: seo.metaDesc },
-      { property: "og:image", content: "/projects/project-1.webp" },
+      { property: "og:image", content: HERO_IMAGE },
       { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "canonical", href: "https://sidingdepot.com/siding" },
-      { rel: "preload", as: "image", href: "/projects/project-1.webp", fetchPriority: "high" as any },
+      { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
         canonical: "https://sidingdepot.com/siding",
-        image: "/projects/project-1.webp",
+        image: HERO_IMAGE,
         serviceType: "James Hardie Siding Installation",
       }),
       {
@@ -435,7 +437,9 @@ function SidingPage() {
       <ServiceLandingPage
         serviceKey={SERVICE_KEY}
         city={CITY}
-        heroImage="/projects/project-1.webp"
+        heroImage={HERO_IMAGE}
+        heroImageSide
+        heroImageAlt="Beautiful home with new James Hardie siding installed by Siding Depot"
         eyebrow="James Hardie Siding — Elite Preferred Installation"
         title="James Hardie Siding Installation in"
         titleAccent="Marietta & North Atlanta, GA"
