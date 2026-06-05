@@ -105,6 +105,8 @@ export function ServiceLandingPage({
   socialProof: manualSocialProof,
   serviceKey = "siding",
   city = "Marietta",
+  heroImageSide = false,
+  heroImageAlt = "",
 }: ServiceLandingProps) {
   const variation = getServiceVariation(serviceKey);
   const abContent = AB_CONTENT[serviceKey]?.[variation];
