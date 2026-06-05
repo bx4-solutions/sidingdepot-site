@@ -120,16 +120,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button
-            asChild
-            size="sm"
-            className="bg-sd-green text-sd-black hover:brightness-90"
-            onClick={() => track("call_click", { button: "Navbar Call", source: "navbar" })}
-          >
-            <a href={SITE.phoneHref} aria-label={`Call ${SITE.phone}`}>
-              <Phone aria-hidden="true" /> Call {SITE.phone}
-            </a>
-          </Button>
+          {/* Global CTA buttons removed — using internal navigation only */}
         </div>
 
         <button
@@ -188,20 +179,7 @@ export function Navbar() {
                 SEO DASHBOARD
               </Link>
             )}
-            <Button
-              asChild
-              className="mt-3 bg-sd-black text-white hover:bg-sd-green-text"
-              onClick={() => track("call_click", { button: "Mobile Menu Call", source: "mobile_menu" })}
-            >
-              <a href={SITE.phoneHref}>
-                <Phone aria-hidden="true" /> Call {SITE.phone}
-              </a>
-            </Button>
-            <Button asChild variant="dark">
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                Get Free Quote
-              </Link>
-            </Button>
+            {/* Mobile menu CTA removed to keep UI clean and consistent with desktop */}
           </nav>
         </div>
       )}

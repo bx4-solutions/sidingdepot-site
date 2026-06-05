@@ -458,17 +458,7 @@ export function SidingLP({ city }: SidingLPProps) {
         </div>
       </footer>
 
-      {/* Sticky mobile call CTA */}
-      <a
-        href={SITE.phoneHref}
-        onClick={() => track("lp_phone_click", { location: "sticky_mobile" })}
-        className={`fixed inset-x-0 bottom-0 z-[9999] flex h-14 items-center justify-center gap-2 text-base font-extrabold lg:hidden transition-transform bg-sd-green text-sd-navy ${
-          hideStickyCall ? "translate-y-full" : "translate-y-0"
-        }`}
-        aria-hidden={hideStickyCall}
-      >
-        <Phone className="h-5 w-5" aria-hidden="true" /> TAP TO CALL {SITE.phone}
-      </a>
+      {/* Sticky mobile call CTA removed as requested */}
     </div>
   );
 }
