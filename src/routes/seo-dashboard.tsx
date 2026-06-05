@@ -128,35 +128,26 @@ const getInitialLanguage = (): Language => {
 };
 
 export const Route = createFileRoute("/seo-dashboard")({
+  ssr: false,
   beforeLoad: async ({ location }) => {
-    // Try to get session, but allow some grace for refreshing
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    // If no session, try one more time or just let the component handle it
-    // to avoid flickering redirects during background refreshes
-    if (!session) {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        throw redirect({
-          to: "/admin/login",
-          search: {
-            redirect: location.href,
-          },
-        });
-      }
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      throw redirect({
+        to: "/admin/login",
+        search: { redirect: location.href },
+      });
     }
   },
   loader: async () => {
-     const { data: { session } } = await supabase.auth.getSession();
-     const user = session?.user;
-     
-     if (!user) return null;
-     
-     const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
-     return { session, profile };
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user;
+    if (!user) return null;
+    const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+    return { session, profile };
   },
   component: SEODashboard,
 });
+
 
 function SEODashboard() {
   const navigate = useNavigate();
@@ -190,34 +181,23 @@ function SEODashboard() {
   }, [lang]);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("Auth event:", event, !!session);
-      
-      if (event === 'TOKEN_REFRESHED') {
-        setSessionExists(true);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      // Ignore noisy events that don't change identity to prevent flicker
+      if (event === 'INITIAL_SESSION' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
+        if (session) setSessionExists(true);
         return;
       }
-      
       if (event === 'SIGNED_OUT') {
-        // Double check if we really have no session
-        const { data } = await supabase.auth.getSession();
-        if (!data.session) {
-          setSessionExists(false);
-          toast.error("Sessão encerrada");
-        }
-      } else if (session) {
+        setSessionExists(false);
+        toast.error("Sessão encerrada");
+      } else if (event === 'SIGNED_IN' && session) {
         setSessionExists(true);
       }
     });
 
-    const checkCurrent = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSessionExists(!!session);
-    };
-    checkCurrent();
-
     return () => subscription.unsubscribe();
   }, []);
+
 
   const { data: metrics, isLoading, error, refetch, isFetching } = useQuery({
     queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
