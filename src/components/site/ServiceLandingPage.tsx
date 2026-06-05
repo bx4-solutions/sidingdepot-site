@@ -164,7 +164,7 @@ export function ServiceLandingPage({
         )}
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
           {heroImageSide ? (
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 lg:items-center">
               <div className="max-w-2xl">
                 <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
                   {title}{" "}
@@ -175,7 +175,7 @@ export function ServiceLandingPage({
                     <p key={i}>{p}</p>
                   ))}
                 </div>
-                <div className="mt-8">
+                <div className="mt-8 mb-4 lg:mb-0">
                   <ServiceFormModal
                     source={`service_${serviceKey}_hero`}
                     tag={`service_${serviceKey}_quote`}
