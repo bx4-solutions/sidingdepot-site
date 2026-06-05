@@ -27,7 +27,7 @@ export const Route = createFileRoute("/siding")({
       { name: "description", content: seo.metaDesc },
       { property: "og:title", content: seo.metaTitle(CITY) },
       { property: "og:description", content: seo.metaDesc },
-      { property: "og:image", content: "/projects/project-1.webp" },
+      { property: "og:image", content: HERO_IMAGE },
       { property: "og:type", content: "website" },
     ],
     links: [
