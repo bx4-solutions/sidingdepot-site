@@ -60,6 +60,30 @@ export type ServiceLandingProps = {
   city?: string;
 };
 
+const ServiceFormModal = ({ source, tag }: { source: string, tag: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button 
+          size="lg" 
+          className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
+        >
+          Get My Free Quote →
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+        <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
+        <HeroQuoteForm 
+          source={source} 
+          tag={tag} 
+          onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+        />
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 export function ServiceLandingPage({
   eyebrow: manualEyebrow,
   title: manualTitle,

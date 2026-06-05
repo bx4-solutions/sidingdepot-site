@@ -1,6 +1,14 @@
 import { createFileRoute, notFound, Link, useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Phone, CheckCircle2 } from "lucide-react";
+import { Phone, CheckCircle2, Calendar } from "lucide-react";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { ProofBar } from "@/components/site/ProofBar";
@@ -145,22 +153,26 @@ function LocationPage() {
             ))}
           </ul>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-sd-green hover:bg-sd-green/90 text-white border-none shadow-md hover:shadow-lg transition-all duration-200">
-              <Link
-                to="/contact"
-                search={{ 
-                  city: city.slug, 
-                  service: service.slug,
-                  source: `location_page_${city.slug}_${service.slug}` 
-                } as any}
-              >
-                Get a free {city.name} quote
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button size="lg" className="px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Get a free {city.name} quote
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+                <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
+                <HeroQuoteForm 
+                  source={`location_page_${city.slug}_${service.slug}`} 
+                  tag={`location_page_${city.slug}_${service.slug}_quote`}
+                  onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+                />
+              </DialogContent>
+            </Dialog>
+            <Button asChild size="lg" variant="outline" className="rounded-full px-10 py-7 text-lg font-bold border-2 border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white transition-all">
               <a href={SITE.phoneHref}>
-                <Phone /> Call {SITE.phone}
+                <Phone className="mr-2 h-5 w-5" /> Call {SITE.phone}
               </a>
             </Button>
           </div>
