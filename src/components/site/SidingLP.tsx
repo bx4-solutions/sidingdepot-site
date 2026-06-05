@@ -387,18 +387,16 @@ export function SidingLP({ city }: SidingLPProps) {
               ))}
             </Accordion>
 
-            <div className="mt-6 text-center">
-              <button
-                type="button"
-                onClick={() => scrollToLeadForm({ source: "greensky_section" })}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-sd-green px-6 text-sm font-bold text-sd-black hover:opacity-90 transition-opacity"
-              >
-                Get Pre-Approved With My Free Estimate <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
-              <p className="mt-2 text-xs text-sd-gray-text">
-                Subject to credit approval. GreenSky® is a registered service mark of GreenSky, LLC.
-              </p>
+            <div className="mt-6 flex justify-center">
+              <LeadForm
+                source="greensky_section"
+                title="Get Pre-Approved"
+                subtitle="GreenSky® Financing available"
+              />
             </div>
+            <p className="mt-2 text-xs text-sd-gray-text text-center">
+              Subject to credit approval. GreenSky® is a registered service mark of GreenSky, LLC.
+            </p>
           </div>
         </div>
       </section>
