@@ -108,6 +108,8 @@ function PaintingPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="Beautifully painted home exterior in North Atlanta using Sherwin-Williams premium paint"
       eyebrow="Exterior Painting — North Atlanta"
       title="Exterior Painting in Marietta &"
       titleAccent="North Atlanta, GA"
