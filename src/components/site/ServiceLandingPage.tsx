@@ -10,8 +10,15 @@ import {
   Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SITE, SERVICES } from "@/data/site";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { useState } from "react";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
 import { getSeoForVariation } from "@/data/seo-config";
 import {
@@ -53,6 +60,30 @@ export type ServiceLandingProps = {
   city?: string;
 };
 
+const ServiceFormModal = ({ source, tag }: { source: string, tag: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button 
+          size="lg" 
+          className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
+        >
+          Get My Free Quote →
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+        <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
+        <HeroQuoteForm 
+          source={source} 
+          tag={tag} 
+          onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+        />
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 export function ServiceLandingPage({
   eyebrow: manualEyebrow,
   title: manualTitle,
@@ -76,6 +107,9 @@ export function ServiceLandingPage({
   const abContent = AB_CONTENT[serviceKey]?.[variation];
   const seo = getSeoForVariation(serviceKey, variation);
 
+  const [heroModalOpen, setHeroModalOpen] = useState(false);
+  const [midModalOpen, setMidModalOpen] = useState(false);
+  
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
   const title = abContent?.title ?? manualTitle;
@@ -146,8 +180,8 @@ export function ServiceLandingPage({
                 </Button>
               </div>
             </div>
-            <div className="lg:sticky lg:top-24">
-              <HeroQuoteForm
+            <div className="lg:sticky lg:top-24 flex justify-center">
+              <ServiceFormModal 
                 source={`service_${serviceKey}_hero`}
                 tag={`service_${serviceKey}_quote`}
               />
@@ -297,8 +331,8 @@ export function ServiceLandingPage({
               ))}
             </ul>
           </div>
-          <div>
-            <HeroQuoteForm
+          <div className="flex justify-center">
+            <ServiceFormModal
               source={`service_${serviceKey}_midpage`}
               tag={`service_${serviceKey}_quote`}
             />
