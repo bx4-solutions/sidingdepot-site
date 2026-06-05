@@ -119,9 +119,6 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
-          {/* Global CTA buttons removed — using internal navigation only */}
-        </div>
 
         <button
           type="button"
