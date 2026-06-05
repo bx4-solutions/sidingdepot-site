@@ -88,6 +88,8 @@ function RoofingPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="Siding Depot roofing crew installing new shingles on a North Atlanta home"
       eyebrow="GAF Factory Certified · Top Roofer"
       title="GAF Factory-Certified Roofing:"
       titleAccent="North Atlanta's Shield."
