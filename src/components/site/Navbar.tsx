@@ -119,9 +119,6 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
-          {/* Global CTA buttons removed — using internal navigation only */}
-        </div>
 
         <button
           type="button"
@@ -179,7 +176,7 @@ export function Navbar() {
                 SEO DASHBOARD
               </Link>
             )}
-            {/* Mobile menu CTA removed to keep UI clean and consistent with desktop */}
+            
           </nav>
         </div>
       )}

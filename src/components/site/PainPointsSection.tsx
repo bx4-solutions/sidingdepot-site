@@ -88,14 +88,6 @@ export function PainPointsSection() {
             estimate is written, itemized, and guaranteed. No surprises. 
             No strangers at your door.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link to="/">Get Free Quote</Link>
-            </Button>
-            <Button asChild size="lg" variant="dark">
-              <Link to="/">See Our Process</Link>
-            </Button>
-          </div>
         </div>
       </div>
     </section>
