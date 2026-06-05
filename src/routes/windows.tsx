@@ -14,6 +14,7 @@ import {
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
+import { SERVICE_METADATA } from "@/data/seo-config";
 import windowsHeroAsset from "@/assets/windows-hero.png.asset.json";
 
 const HERO_IMAGE = windowsHeroAsset.url;
