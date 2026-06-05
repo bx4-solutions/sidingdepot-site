@@ -110,7 +110,7 @@ function LeadForm({ source, title, subtitle }: LeadFormProps) {
   
   return (
     <div data-lead-form className="flex flex-col items-center justify-center">
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={(v) => setOpen(v)}>
         <DialogTrigger asChild>
           <Button 
             size="lg" 
