@@ -1,4 +1,5 @@
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link, useRouter } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
@@ -97,6 +98,17 @@ export const Route = createFileRoute("/locations/$city/$service")({
 
 function LocationPage() {
   const { city, service } = Route.useLoaderData();
+  const router = useRouter();
+  const location = router.state.location;
+
+  useEffect(() => {
+    if (location.pathname !== location.pathname.toLowerCase()) {
+      router.navigate({
+        to: location.pathname.toLowerCase() as any,
+        replace: true,
+      });
+    }
+  }, [location.pathname, router]);
 
   return (
     <>

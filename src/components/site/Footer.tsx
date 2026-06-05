@@ -69,7 +69,7 @@ export function Footer() {
               {SERVICES.map((s) => (
                 <li key={s.slug}>
                   <Link
-                    to={`/${s.slug}` as string}
+                    to={`/${s.slug}`}
                     className="text-sm text-white/55 hover:text-sd-green"
                   >
                     {s.title}
@@ -87,8 +87,7 @@ export function Footer() {
               {CITIES.slice(0, 8).map((c) => (
                 <li key={c.slug}>
                   <Link
-                    to="/locations/$city/$service"
-                    params={{ city: c.slug, service: "siding" }}
+                    to={`/locations/${c.slug}/siding`}
                     className="text-sm text-white/55 hover:text-sd-green"
                   >
                     {c.name}, GA

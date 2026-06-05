@@ -28,8 +28,8 @@ const NAV_LINKS: NavLink[] = [
   { to: "/doors", label: "DOORS" },
   { to: "/gutters", label: "GUTTERS" },
   { to: "/painting", label: "PAINTING" },
-  { to: "/dumpster", label: "DUMPSTER RENTAL" },
-  { to: "/projects", label: "PROJECT GALLERY" },
+  { to: "/dumpster", label: "DUMPSTER" },
+  { to: "/projects", label: "GALLERY" },
   { 
     to: "/about", 
     label: "ABOUT",
