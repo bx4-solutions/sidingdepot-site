@@ -1,3 +1,4 @@
+// GitHub sync test commit — sidingdepot-dfab98cb
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck, Sparkles, Users, ListChecks } from "lucide-react";
 import { Button } from "@/components/ui/button";
