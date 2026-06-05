@@ -25,20 +25,14 @@ export function HeroCtaButtons({ source = "hero_cta" }: Props = {}) {
 
   return (
     <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-      <Button asChild size="lg" variant="outlineWhite" className="rounded-full font-bold">
-        <a href={SITE.phoneHref} onClick={() => track("hero_call_click", { source })}>
-          <Phone aria-hidden="true" className="h-5 w-5" />
-          Call: {SITE.phone}
-        </a>
-      </Button>
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
           <Button
             size="lg"
-            className="rounded-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg shadow-sd-green/20"
+            className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
           >
-            <Calendar aria-hidden="true" className="h-5 w-5" />
-            Free Quote
+            <Calendar aria-hidden="true" className="h-5 w-5 mr-2" />
+            Get My Free Quote →
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">

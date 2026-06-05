@@ -167,18 +167,6 @@ export function ServiceLandingPage({
                   <p key={i}>{p}</p>
                 ))}
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link to="/contact" onClick={() => trackCtaClick({ ...ctx, cta: "hero_quote" })}>
-                    Get a free estimate <ArrowRight />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outlineWhite">
-                  <a href={SITE.phoneHref} onClick={() => trackCallClick(ctx)}>
-                    <Phone /> Call {SITE.phone}
-                  </a>
-                </Button>
-              </div>
             </div>
             <div className="lg:sticky lg:top-24 flex justify-center">
               <ServiceFormModal 
