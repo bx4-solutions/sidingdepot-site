@@ -46,6 +46,7 @@ export type ServiceLandingProps = {
   titleAccent: string;
   intro: string;
   heroImage: string;
+  sideImage?: string;
   benefits: ReadonlyArray<string>;
   hiringRole: string;
   hiringIntro: string;
@@ -90,6 +91,7 @@ export function ServiceLandingPage({
   titleAccent: manualAccent,
   intro: manualIntro,
   heroImage,
+  sideImage,
   benefits: manualBenefits,
   hiringRole,
   hiringIntro: manualHiringIntro,
@@ -156,7 +158,7 @@ export function ServiceLandingPage({
           <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
+          <div className={`grid gap-10 ${sideImage ? "lg:grid-cols-2 lg:items-center" : "lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start"}`}>
             <div className="max-w-2xl">
               <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
                 {title}{" "}
@@ -167,13 +169,41 @@ export function ServiceLandingPage({
                   <p key={i}>{p}</p>
                 ))}
               </div>
+              
+              {!sideImage && (
+                <div className="mt-8">
+                  <ServiceFormModal 
+                    source={`service_${serviceKey}_hero`}
+                    tag={`service_${serviceKey}_quote`}
+                  />
+                </div>
+              )}
             </div>
-            <div className="lg:sticky lg:top-24 flex justify-center">
-              <ServiceFormModal 
-                source={`service_${serviceKey}_hero`}
-                tag={`service_${serviceKey}_quote`}
-              />
-            </div>
+
+            {sideImage ? (
+              <div className="flex flex-col gap-8">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                  <img 
+                    src={sideImage} 
+                    alt="Our recent work" 
+                    className="w-full h-auto object-cover aspect-[4/3]"
+                  />
+                </div>
+                <div className="flex justify-start">
+                  <ServiceFormModal 
+                    source={`service_${serviceKey}_hero`}
+                    tag={`service_${serviceKey}_quote`}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="lg:sticky lg:top-24 flex justify-center">
+                <ServiceFormModal 
+                  source={`service_${serviceKey}_hero`}
+                  tag={`service_${serviceKey}_quote`}
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>
