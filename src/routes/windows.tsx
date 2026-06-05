@@ -14,9 +14,9 @@ import {
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
-import { SERVICE_METADATA } from "@/data/seo-config";
+import windowsHeroAsset from "@/assets/windows-hero.png.asset.json";
 
-const HERO_IMAGE = "/projects/project-8.webp";
+const HERO_IMAGE = windowsHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/windows";
 const SERVICE_KEY = "windows";
 const CITY = "Greater Marietta";
@@ -83,6 +83,8 @@ function WindowsPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="New energy-efficient windows installed in a North Atlanta home"
       eyebrow="Energy Star · Low-E Double Pane"
       title="Energy-Efficient Windows:"
       titleAccent="Atlanta's Thermal Barrier."
