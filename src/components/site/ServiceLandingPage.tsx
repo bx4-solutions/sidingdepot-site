@@ -58,6 +58,9 @@ export type ServiceLandingProps = {
   socialProof?: SocialProof;
   serviceKey?: string;
   city?: string;
+  /** When true, hero displays the image as a side visual (right column) and places the CTA button below the text. */
+  heroImageSide?: boolean;
+  heroImageAlt?: string;
 };
 
 const ServiceFormModal = ({ source, tag }: { source: string, tag: string }) => {
