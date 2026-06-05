@@ -87,7 +87,7 @@
   --sd-dark-mid:     oklch(0.250 0 0);
   --sd-black:        oklch(0.120 0 0);
   --sd-white:        oklch(1 0 0);
-  --sd-gray-bg:      oklch(0.973 0.005 247.0);   /* #F4F7FA */
+  --sd-gray-bg:      var(--sd-white);   /* Changed from #F4F7FA to white as requested */
   --sd-gray-border:  oklch(0.918 0.008 247.0);   /* #E2E8EE */
   --sd-gray-text:    oklch(0.485 0.022 250.0);   /* #596571 */
 

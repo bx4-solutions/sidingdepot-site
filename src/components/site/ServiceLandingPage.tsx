@@ -146,7 +146,7 @@ export function ServiceLandingPage({
   const ctx = { serviceKey, variation, city };
 
   return (
-    <div className="bg-sd-gray-bg">
+    <div className="bg-white">
       {/* HERO */}
       <section className="relative bg-sd-navy text-white overflow-hidden">
         {!heroImageSide && (
@@ -218,7 +218,7 @@ export function ServiceLandingPage({
 
       {/* SOCIAL PROOF SECTION */}
       {socialProof && (
-        <section className="bg-sd-gray-bg py-12 lg:py-16">
+        <section className="bg-white py-12 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-3">
               {socialProof.stats.map((s) => (
@@ -265,7 +265,7 @@ export function ServiceLandingPage({
 
       {/* What to consider when hiring / Process */}
       {process ? (
-        <section className="bg-sd-gray-bg py-20 lg:py-28">
+        <section className="bg-white py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="max-w-3xl">
               <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
@@ -332,7 +332,7 @@ export function ServiceLandingPage({
       </section>
 
       {/* Mid-page quote form (below the fold) */}
-      <section className="bg-sd-gray-bg py-20 lg:py-24 border-t border-sd-gray-border">
+      <section className="bg-white py-20 lg:py-24 border-t border-sd-gray-border">
         <div className="mx-auto max-w-5xl px-4 lg:px-8 grid gap-10 lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center">
           <div>
             <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
