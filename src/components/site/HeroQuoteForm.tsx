@@ -88,9 +88,6 @@ export function HeroQuoteForm({
         <div className="bg-sd-black px-5 pt-5 pb-4 text-center text-white border-b border-white/10">
           <h2 className="font-display text-xl sm:text-2xl leading-tight">{title}</h2>
           <p className="mt-1 text-[11px] text-white/75">{subtitle}</p>
-          <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
-            ⭐ 4.5 Google Rating · 🏠 1,500+ Homes · 💰 0% APR
-          </div>
         </div>
       )}
       <form onSubmit={onSubmit} className={bare ? "grid gap-2.5" : "px-5 py-5 grid gap-3"}>
@@ -182,7 +179,7 @@ export function HeroQuoteForm({
         <Button type="submit" disabled={isSubmitting} className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg shadow-sd-green/20 transition-all h-10 text-sm">
           {isSubmitting ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending…</> : submitLabel}
         </Button>
-        <p className="text-[10px] text-sd-gray-text text-center font-medium">🔒 Response within 24h · Trusted by 1,500+ homeowners</p>
+        
       </form>
     </div>
   );

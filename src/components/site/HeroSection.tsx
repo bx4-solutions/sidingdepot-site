@@ -71,11 +71,6 @@ export function HeroSection({
       >
         {/* Left column */}
         <div>
-          {badge && (
-            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/20 border border-sd-green/50 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] uppercase text-sd-green">
-              <span aria-hidden="true">★</span> {badge}
-            </span>
-          )}
           <h1 className="font-display text-white leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg">
             {title}
           </h1>
@@ -83,16 +78,6 @@ export function HeroSection({
             <p className="mt-5 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
               {subtitle}
             </p>
-          )}
-
-          {trustItems.length > 0 && (
-            <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-3 max-w-2xl justify-center sm:justify-start">
-              {trustItems.map((t) => (
-                <li key={t} className="flex items-center gap-2 text-sm font-medium text-white/95">
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
           )}
 
           {children && <div className="mt-8">{children}</div>}

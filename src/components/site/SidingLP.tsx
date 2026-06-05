@@ -156,26 +156,12 @@ export function SidingLP({ city }: SidingLPProps) {
         </div>
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-hero-compact lg:grid-cols-[55%_45%] lg:gap-12 lg:px-8 lg:py-hero-compact-lg">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
-              <Star className="h-3.5 w-3.5 fill-sd-green" aria-hidden="true" /> James Hardie Elite Preferred — Top 2% Nationwide
-            </span>
-            <h1 className="mt-5 font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05] text-white">
+            <h1 className="font-display text-[36px] leading-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05] text-white">
               James Hardie® Siding Installation in {city}, GA
             </h1>
             <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
               Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
             </p>
-            <ul className="mt-6 grid gap-2.5 text-sm text-white/90">
-              {[
-                "Licensed & Insured in Georgia",
-                "Elite Preferred — Extended 30-Year Warranty",
-                "No Hidden Fees — Itemized Quote",
-              ].map((b) => (
-                <li key={b} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-sd-green shrink-0" aria-hidden="true" /> <span>{b}</span>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="lg:pl-2">
             <LeadForm
@@ -189,7 +175,7 @@ export function SidingLP({ city }: SidingLPProps) {
 
       {/* PROOF BAR */}
       <section
-        className="section-dark border-t-[3px] border-sd-green"
+        className="bg-sd-black text-white border-t-[3px] border-sd-green"
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
