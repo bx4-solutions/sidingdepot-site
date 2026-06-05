@@ -87,9 +87,9 @@ function DeckPage() {
       heroImageSide
       heroImageAlt="Beautiful new custom composite deck in Greater Marietta, North Atlanta"
       eyebrow="Trex · TimberTech · Pressure-Treated"
-      title="Custom Composite Decks:"
-      titleAccent="Long-lasting Luxury."
-      intro="Maximize your outdoor living with a deck built for decades, not seasons. As Trex Pro® installers, we build moisture-proof spaces that resist the warping, rotting, and fading common in North Atlanta."
+      title="Transform Your Outdoor Space with"
+      titleAccent="Siding Depot Decks"
+      intro="Create a stylish and functional living area with our deck construction services. Using durable, high-quality materials, we ensure safety, longevity, and low maintenance—delivering a tailored design that perfectly matches your lifestyle."
       benefits={[
         "Composite decking with 25–30 year material warranty",
         "Permit-ready engineered plans, every project",
