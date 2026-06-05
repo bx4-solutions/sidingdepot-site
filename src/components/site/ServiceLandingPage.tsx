@@ -278,21 +278,23 @@ export function ServiceLandingPage({
                 {hiringIntro}
               </p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {process.map((step, i) => (
                 <div
                   key={i}
-                  className="group rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
+                  className="group flex flex-col h-full rounded-xl border border-sd-gray-border bg-white p-6 transition-all hover:border-sd-green hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy font-bold text-xl">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy font-bold text-xl shrink-0">
                     {i + 1}
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold text-sd-black">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
-                    {step.desc}
-                  </p>
+                  <div className="mt-4 flex flex-col flex-grow">
+                    <h3 className="text-lg font-semibold text-sd-black leading-tight">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
