@@ -175,7 +175,7 @@ export function SidingLP({ city }: SidingLPProps) {
 
       {/* PROOF BAR */}
       <section
-        className="section-dark border-t-[3px] border-sd-green"
+        className="bg-sd-black text-white border-t-[3px] border-sd-green"
       >
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
