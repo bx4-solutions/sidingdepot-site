@@ -15,9 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import windowsHeroAsset from "@/assets/windows-hero.png.asset.json";
+import windowsHero from "@/assets/windows-hero.png";
 
-const HERO_IMAGE = windowsHeroAsset.url;
+const HERO_IMAGE = windowsHero;
 const CANONICAL = "https://sidingdepot.com/windows";
 const SERVICE_KEY = "windows";
 const CITY = "Greater Marietta";
