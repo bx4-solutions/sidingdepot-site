@@ -10,8 +10,15 @@ import {
   Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SITE, SERVICES } from "@/data/site";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
+import { useState } from "react";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
 import { getSeoForVariation } from "@/data/seo-config";
 import {
@@ -146,8 +153,8 @@ export function ServiceLandingPage({
                 </Button>
               </div>
             </div>
-            <div className="lg:sticky lg:top-24">
-              <HeroQuoteForm
+            <div className="lg:sticky lg:top-24 flex justify-center">
+              <ServiceFormModal 
                 source={`service_${serviceKey}_hero`}
                 tag={`service_${serviceKey}_quote`}
               />
@@ -297,8 +304,8 @@ export function ServiceLandingPage({
               ))}
             </ul>
           </div>
-          <div>
-            <HeroQuoteForm
+          <div className="flex justify-center">
+            <ServiceFormModal
               source={`service_${serviceKey}_midpage`}
               tag={`service_${serviceKey}_quote`}
             />

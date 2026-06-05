@@ -11,6 +11,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
@@ -100,9 +106,30 @@ type LeadFormProps = {
 };
 
 function LeadForm({ source, title, subtitle }: LeadFormProps) {
+  const [open, setOpen] = useState(false);
+  
   return (
-    <div data-lead-form>
-      <HeroQuoteForm source={source} tag="lp_quote_request" title={title} subtitle={subtitle} />
+    <div data-lead-form className="flex flex-col items-center justify-center">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button 
+            size="lg" 
+            className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
+          >
+            Get My Free Estimate →
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+          <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
+          <HeroQuoteForm 
+            source={source} 
+            tag="lp_quote_request" 
+            title={title} 
+            subtitle={subtitle} 
+            onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
