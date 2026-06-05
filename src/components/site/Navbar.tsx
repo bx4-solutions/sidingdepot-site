@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
-import logoSidingDepot from "@/assets/siding-depot-logo.png.asset.json";
+import logoSidingDepot from "@/assets/siding-depot-logo.png";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -63,7 +63,7 @@ export function Navbar() {
         <div className="flex items-center min-w-0 py-2">
           <Link to="/" className="flex items-center" aria-label={`${SITE.name} Home`}>
             <img
-              src={logoSidingDepot.url}
+              src={logoSidingDepot}
               alt={`${SITE.name} logo`}
               className="h-10 sm:h-12 lg:h-14 w-auto" width="160" height="56"
               loading="eager"
