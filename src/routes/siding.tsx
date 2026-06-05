@@ -14,6 +14,14 @@ import { getFaqSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
 import sidingHero from "@/assets/siding-hero.png";
+import project1 from "/projects/project-1.webp";
+import project2 from "/projects/project-2.webp";
+import project3 from "/projects/project-3.webp";
+import project4 from "/projects/project-4.webp";
+import project5 from "/projects/project-5.webp";
+import project6 from "/projects/project-6.webp";
+import project1Before from "/projects/project-1-before.webp";
+import project5Before from "/projects/project-5-before.webp";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta & North Atlanta";
@@ -66,7 +74,7 @@ type SidingType = {
   description: string;
 };
 
-const SHOWCASE_IMAGE = "/projects/project-1.webp";
+const SHOWCASE_IMAGE = project1;
 const SHOWCASE_ALT =
   "Two-story North Atlanta home showcasing James Hardie Board & Batten siding, trim and shingle accents";
 
@@ -76,7 +84,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     x: 38,
     y: 42,
     title: "Board & Batten Siding",
-    image: "/projects/project-1.webp",
+    image: project1,
     imageAlt: "James Hardie Board & Batten siding installed on a North Atlanta home",
     description:
       "Long vertical boards joined by narrow battens. A traditional, rustic profile that adds vertical drama and works beautifully on gables, accent walls or full elevations.",
@@ -86,7 +94,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     x: 60,
     y: 58,
     title: "HardiePlank Lap Siding",
-    image: "/projects/project-3.webp",
+    image: project3,
     imageAlt: "HardiePlank Cedarmill lap siding on a North Atlanta home",
     description: "Long, narrow horizontal planks — the classic American siding look. Durable and weather-resistant, making it our most popular choice across Marietta, Canton and North Atlanta.",
   },
@@ -95,7 +103,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     x: 26,
     y: 22,
     title: "Shingle / Shake Siding",
-    image: "/projects/project-4.webp",
+    image: project4,
     imageAlt: "Cedar-style shingle siding accenting a gable",
     description:
       "Overlapping rectangular shingles inspired by cedar shake roofing. Adds warmth and craftsman character — perfect for gables, dormers and entryways.",
@@ -105,7 +113,7 @@ const SIDING_TYPES: ReadonlyArray<SidingType> = [
     x: 78,
     y: 30,
     title: "Soffit, Trim & Fascia",
-    image: "/projects/project-2.webp",
+    image: project2,
     imageAlt: "Crisp white soffit, fascia and trim detailing on a Cape Cod home",
     description:
       "Often overlooked, but critical: soffit, trim and fascia regulate attic temperature and moisture, finish your rooflines, and keep pests out. We replace to match your siding system.",
@@ -230,19 +238,24 @@ type ShowcasePair = {
   description: string;
 };
 
-const SHOWCASE_PAIRS: ReadonlyArray<ShowcasePair> = BEFORE_AFTER_PAIRS.map((p, i) => {
-  // Pair each before/after with its matching project entry to surface a
-  // real headline + description, falling back gracefully if the slug isn't
-  // found (e.g. asset added without a project record).
-  const project = PROJECTS_SORTED.find((proj) => proj.src === p.after);
-  return {
-    ...p,
-    title: project?.title ?? `Real Project #${i + 1}`,
-    description:
-      project?.description ??
-      "Full exterior transformation by Siding Depot — James Hardie siding, paint and trim.",
-  };
-});
+const SHOWCASE_PAIRS: ReadonlyArray<ShowcasePair> = [
+  {
+    before: project1Before,
+    after: project1,
+    beforeAlt: "Greater Marietta home before renovation with peeling paint and worn siding",
+    afterAlt: "Same Greater Marietta home transformed with James Hardie blue siding by Siding Depot",
+    title: "James Hardie Board & Batten Siding — Greater Marietta, GA",
+    description: "Full James Hardie Board & Batten siding replacement on a two-story Greater Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
+  },
+  {
+    before: project5Before,
+    after: project5,
+    beforeAlt: "Two-story home before renovation with faded, mildewed siding",
+    afterAlt: "Same home repainted in deep blue with white trim by Siding Depot",
+    title: "Real Project #2",
+    description: "Full exterior transformation by Siding Depot — James Hardie siding, paint and trim.",
+  },
+];
 
 function BeforeAfterCarousel() {
   const [index, setIndex] = useState(0);
