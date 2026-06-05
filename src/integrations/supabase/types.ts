@@ -445,11 +445,14 @@ export type Database = {
           created_at: string
           details: string | null
           email: string | null
+          ghl_response: Json | null
           id: string
+          metadata: Json | null
           name: string
           phone: string
           services: string[]
           source: string | null
+          status: Database["public"]["Enums"]["lead_status"]
           tag: string | null
         }
         Insert: {
@@ -458,11 +461,14 @@ export type Database = {
           created_at?: string
           details?: string | null
           email?: string | null
+          ghl_response?: Json | null
           id?: string
+          metadata?: Json | null
           name: string
           phone: string
           services?: string[]
           source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
           tag?: string | null
         }
         Update: {
@@ -471,11 +477,14 @@ export type Database = {
           created_at?: string
           details?: string | null
           email?: string | null
+          ghl_response?: Json | null
           id?: string
+          metadata?: Json | null
           name?: string
           phone?: string
           services?: string[]
           source?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
           tag?: string | null
         }
         Relationships: []
@@ -675,6 +684,7 @@ export type Database = {
       }
     }
     Enums: {
+      lead_status: "new" | "processed" | "failed"
       user_role: "admin" | "viewer"
     }
     CompositeTypes: {
@@ -803,6 +813,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      lead_status: ["new", "processed", "failed"],
       user_role: ["admin", "viewer"],
     },
   },
