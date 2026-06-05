@@ -264,7 +264,7 @@ function BeforeAfterCarousel() {
   if (!current) return null;
 
   return (
-    <section className="bg-muted py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
           <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">
@@ -467,7 +467,7 @@ We've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alphar
       <SidingTypesSection />
       
       {/* Pricing Section */}
-      <section className="bg-sd-gray-bg py-20 lg:py-28 text-sd-black">
+      <section className="bg-white py-20 lg:py-28 text-sd-black">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-center">
             How Much Does James Hardie Siding Cost in Marietta, GA? (2026)

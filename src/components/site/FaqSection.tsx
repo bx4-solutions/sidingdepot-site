@@ -20,7 +20,7 @@ export function FaqSection({
   eyebrow = "FAQ" 
 }: FaqSectionProps) {
   return (
-    <section className="bg-sd-gray-bg py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-4xl px-4 lg:px-8">
         <div className="text-center">
           <span className="inline-block rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold uppercase tracking-wider text-sd-navy">

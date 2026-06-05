@@ -14,7 +14,7 @@ const ITEMS = [
  */
 export function ServiceStrip() {
   return (
-    <div className="w-full bg-sd-gray-bg border-b border-sd-gray-border">
+    <div className="w-full bg-white border-b border-sd-gray-border">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ul className="flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-sd-gray-border">
           {ITEMS.map((item) => (

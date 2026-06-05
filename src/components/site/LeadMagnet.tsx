@@ -13,7 +13,7 @@ type Props = {
 
 export function LeadMagnet({ source = "lead_magnet" }: Props) {
   return (
-    <section className="bg-muted py-16 lg:py-20">
+    <section className="bg-white py-16 lg:py-20">
       <div className="mx-auto max-w-5xl px-4 lg:px-8">
         <div className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-background shadow-sm lg:grid-cols-[1fr_1.1fr]">
           {/* Left: PDF preview / pitch */}

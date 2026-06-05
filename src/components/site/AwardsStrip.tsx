@@ -5,7 +5,7 @@ const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, Wallet];
 
 export function AwardsStrip() {
   return (
-    <section className="py-14 bg-sd-gray-bg border-y border-sd-gray-border">
+    <section className="py-14 bg-white border-y border-sd-gray-border">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <p className="text-center text-xs font-bold tracking-[0.16em] uppercase text-sd-gray-text">
           Certified · Awarded · Trusted
