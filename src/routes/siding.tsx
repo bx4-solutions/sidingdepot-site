@@ -13,12 +13,12 @@ import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema } from "@/lib/schema";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
-import sidingHeroAsset from "@/assets/siding-hero.png.asset.json";
+import sidingHouseHeroAsset from "@/assets/siding-house-hero.png.asset.json";
 
 const SERVICE_KEY = "siding";
 const CITY = "Marietta & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
-const HERO_IMAGE = sidingHeroAsset.url;
+const HERO_IMAGE = sidingHouseHeroAsset.url;
 
 export const Route = createFileRoute("/siding")({
   head: () => ({
