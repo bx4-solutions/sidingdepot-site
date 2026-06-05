@@ -15,8 +15,9 @@ import {
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
 import { SERVICE_METADATA } from "@/data/seo-config";
+import decksHeroAsset from "@/assets/decks-hero.png.asset.json";
 
-const HERO_IMAGE = "/projects/project-6.webp";
+const HERO_IMAGE = decksHeroAsset.url;
 const CANONICAL = "https://sidingdepot.com/decks";
 const SERVICE_KEY = "decks";
 const CITY = "Greater Marietta";
@@ -83,6 +84,8 @@ function DeckPage() {
       serviceKey={SERVICE_KEY}
       city={CITY}
       heroImage={HERO_IMAGE}
+      heroImageSide
+      heroImageAlt="Beautiful new custom composite deck in Greater Marietta, North Atlanta"
       eyebrow="Trex · TimberTech · Pressure-Treated"
       title="Custom Composite Decks:"
       titleAccent="Long-lasting Luxury."
