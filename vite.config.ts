@@ -12,4 +12,12 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  nitro: {
+    preset: "vercel",
+    experimental: { tasks: true },
+    scheduledTasks: {
+      // Every 2 days at 06:00 UTC — mirrors the vercel.json cron schedule
+      "0 6 */2 * *": ["google:refresh"],
+    },
+  },
 });
