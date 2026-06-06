@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import decksHeroAsset from "@/assets/decks-hero.png.asset.json";
+import decksHeroImg from "@/assets/decks-hero.jpg";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
-const HERO_IMAGE = decksHeroAsset.url;
+const HERO_IMAGE = decksHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/decks";
 const seo = SERVICE_METADATA["decks"];
