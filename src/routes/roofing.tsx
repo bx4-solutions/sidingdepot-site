@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import roofingHeroAsset from "@/assets/roofing-hero.png.asset.json";
+import roofingHeroAsset from "@/assets/roofing-house-hero.png.asset.json";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
 const HERO_IMAGE = roofingHeroAsset.url;
@@ -108,11 +108,31 @@ const CONFIG: ServicePageConfig = {
   processSubheadline:
     "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from inspection through final sign-off.",
   steps: [
-    { num: "01", title: "Free Roof Inspection", desc: "We come to your property and evaluate the full roof — decking, shingles, flashing, and ridge — at no charge. You receive a written findings report with photographs the same day." },
-    { num: "02", title: "Property & Insurance Evaluation", desc: "We assess storm damage, calculate square footage, identify decking conditions, and walk you through your coverage options before any claim is filed." },
-    { num: "03", title: "Detailed Written Proposal", desc: "You receive an itemized quote: materials, labor, decking repairs, underlayment, flashing, and permit fees. The number in the proposal is the number you pay — no changes mid-project." },
-    { num: "04", title: "Professional Installation", desc: "Our W-2 roofing crews arrive on schedule, protect your property, remove the existing system, and install your new roof to GAF manufacturer specifications. Most homes are finished in one to two days." },
-    { num: "05", title: "Final Walkthrough & Warranty", desc: "We walk the completed project with you, confirm site clean-up, and hand you GAF warranty documentation in writing. The project doesn't close until you're satisfied." },
+    {
+      num: "01",
+      title: "Free Roof Inspection",
+      desc: "We come to your property and evaluate the full roof — decking, shingles, flashing, and ridge — at no charge. You receive a written findings report with photographs the same day.",
+    },
+    {
+      num: "02",
+      title: "Property & Insurance Evaluation",
+      desc: "We assess storm damage, calculate square footage, identify decking conditions, and walk you through your coverage options before any claim is filed.",
+    },
+    {
+      num: "03",
+      title: "Detailed Written Proposal",
+      desc: "You receive an itemized quote: materials, labor, decking repairs, underlayment, flashing, and permit fees. The number in the proposal is the number you pay — no changes mid-project.",
+    },
+    {
+      num: "04",
+      title: "Professional Installation",
+      desc: "Our W-2 roofing crews arrive on schedule, protect your property, remove the existing system, and install your new roof to GAF manufacturer specifications. Most homes are finished in one to two days.",
+    },
+    {
+      num: "05",
+      title: "Final Walkthrough & Warranty",
+      desc: "We walk the completed project with you, confirm site clean-up, and hand you GAF warranty documentation in writing. The project doesn't close until you're satisfied.",
+    },
   ],
 
   projectsLabel: "Recent Roofing Projects\nAcross Metro Atlanta.",
@@ -144,7 +164,11 @@ const CONFIG: ServicePageConfig = {
   ctaBody2:
     "We respond within 24 hours, come to your home on your schedule, and deliver a written findings report at no charge.",
   ctaMainBtn: "Book My Free Roof Inspection",
-  ctaTrustPoints: ["No-obligation inspection", "Same-day written report", "W-2 crews · Not subcontracted"],
+  ctaTrustPoints: [
+    "No-obligation inspection",
+    "Same-day written report",
+    "W-2 crews · Not subcontracted",
+  ],
 
   faqTitle: "Roofing questions,",
   faqTitleAccent: "answered.",
@@ -167,7 +191,17 @@ export const Route = createFileRoute("/roofing")({
     ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
-      { type: "application/ld+json", children: JSON.stringify(getServiceSchema("Roofing Installation & Storm Repair in North Atlanta", seo.metaDesc, "/roofing", OG_IMAGE)) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getServiceSchema(
+            "Roofing Installation & Storm Repair in North Atlanta",
+            seo.metaDesc,
+            "/roofing",
+            OG_IMAGE,
+          ),
+        ),
+      },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
     ],
   }),

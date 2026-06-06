@@ -15,6 +15,7 @@ import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
@@ -24,6 +25,7 @@ import { Route as DumpsterRouteImport } from './routes/dumpster'
 import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DecksRouteImport } from './routes/decks'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogSitemapDotxmlRouteImport } from './routes/blog-sitemap[.]xml'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -35,6 +37,8 @@ import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-mariett
 import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
 import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
 import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
+import { Route as DevHotspotCalibratorRouteImport } from './routes/dev.hotspot-calibrator'
+import { Route as DevDesignPreviewRouteImport } from './routes/dev.design-preview'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -71,6 +75,11 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaintingRoute = PaintingRouteImport.update({
@@ -118,6 +127,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSitemapDotxmlRoute = BlogSitemapDotxmlRouteImport.update({
+  id: '/blog-sitemap.xml',
+  path: '/blog-sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -134,9 +148,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsRoute,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
@@ -149,9 +163,9 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
-  id: '/projects/$slug',
-  path: '/projects/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProjectsRoute,
 } as any)
 const LpSidingMariettaRoute = LpSidingMariettaRouteImport.update({
   id: '/lp/siding-marietta',
@@ -172,6 +186,16 @@ const GuideThankYouRoute = GuideThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
   getParentRoute: () => GuideRoute,
+} as any)
+const DevHotspotCalibratorRoute = DevHotspotCalibratorRouteImport.update({
+  id: '/dev/hotspot-calibrator',
+  path: '/dev/hotspot-calibrator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevDesignPreviewRoute = DevDesignPreviewRouteImport.update({
+  id: '/dev/design-preview',
+  path: '/dev/design-preview',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
@@ -213,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
@@ -222,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
+  '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -233,6 +259,8 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dev/design-preview': typeof DevDesignPreviewRoute
+  '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -248,6 +276,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
@@ -268,6 +297,8 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dev/design-preview': typeof DevDesignPreviewRoute
+  '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -284,6 +315,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
   '/doors': typeof DoorsRoute
@@ -293,6 +325,7 @@ export interface FileRoutesById {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
+  '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -304,6 +337,8 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/dev/design-preview': typeof DevDesignPreviewRoute
+  '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
@@ -321,6 +356,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
     | '/doors'
@@ -330,6 +366,7 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
+    | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -341,6 +378,8 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
+    | '/dev/design-preview'
+    | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -356,6 +395,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
     | '/doors'
@@ -376,6 +416,8 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
+    | '/dev/design-preview'
+    | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -391,6 +433,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
     | '/doors'
@@ -400,6 +443,7 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
+    | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -411,6 +455,8 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/reset-password'
     | '/blog/$slug'
+    | '/dev/design-preview'
+    | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
@@ -427,6 +473,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
+  BlogSitemapDotxmlRoute: typeof BlogSitemapDotxmlRoute
   ContactRoute: typeof ContactRoute
   DecksRoute: typeof DecksRoute
   DoorsRoute: typeof DoorsRoute
@@ -436,6 +483,7 @@ export interface RootRouteChildren {
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
+  ProjectsRoute: typeof ProjectsRouteWithChildren
   ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
@@ -447,13 +495,13 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminResetPasswordRoute: typeof AdminResetPasswordRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  DevDesignPreviewRoute: typeof DevDesignPreviewRoute
+  DevHotspotCalibratorRoute: typeof DevHotspotCalibratorRoute
   LpSidingAlpharettaRoute: typeof LpSidingAlpharettaRoute
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
-  ProjectsSlugRoute: typeof ProjectsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
-  ProjectsIndexRoute: typeof ProjectsIndexRoute
   AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
 }
@@ -500,6 +548,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painting': {
@@ -565,6 +620,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog-sitemap.xml': {
+      id: '/blog-sitemap.xml'
+      path: '/blog-sitemap.xml'
+      fullPath: '/blog-sitemap.xml'
+      preLoaderRoute: typeof BlogSitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -588,10 +650,10 @@ declare module '@tanstack/react-router' {
     }
     '/projects/': {
       id: '/projects/'
-      path: '/projects'
+      path: '/'
       fullPath: '/projects/'
       preLoaderRoute: typeof ProjectsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProjectsRoute
     }
     '/blog/': {
       id: '/blog/'
@@ -609,10 +671,10 @@ declare module '@tanstack/react-router' {
     }
     '/projects/$slug': {
       id: '/projects/$slug'
-      path: '/projects/$slug'
+      path: '/$slug'
       fullPath: '/projects/$slug'
       preLoaderRoute: typeof ProjectsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProjectsRoute
     }
     '/lp/siding-marietta': {
       id: '/lp/siding-marietta'
@@ -641,6 +703,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/guide/thank-you'
       preLoaderRoute: typeof GuideThankYouRouteImport
       parentRoute: typeof GuideRoute
+    }
+    '/dev/hotspot-calibrator': {
+      id: '/dev/hotspot-calibrator'
+      path: '/dev/hotspot-calibrator'
+      fullPath: '/dev/hotspot-calibrator'
+      preLoaderRoute: typeof DevHotspotCalibratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dev/design-preview': {
+      id: '/dev/design-preview'
+      path: '/dev/design-preview'
+      fullPath: '/dev/design-preview'
+      preLoaderRoute: typeof DevDesignPreviewRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
       id: '/blog/$slug'
@@ -704,10 +780,25 @@ const GuideRouteChildren: GuideRouteChildren = {
 
 const GuideRouteWithChildren = GuideRoute._addFileChildren(GuideRouteChildren)
 
+interface ProjectsRouteChildren {
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+}
+
+const ProjectsRouteChildren: ProjectsRouteChildren = {
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+}
+
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
+  ProjectsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
+  BlogSitemapDotxmlRoute: BlogSitemapDotxmlRoute,
   ContactRoute: ContactRoute,
   DecksRoute: DecksRoute,
   DoorsRoute: DoorsRoute,
@@ -717,6 +808,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
+  ProjectsRoute: ProjectsRouteWithChildren,
   ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
@@ -728,16 +820,26 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminResetPasswordRoute: AdminResetPasswordRoute,
   BlogSlugRoute: BlogSlugRoute,
+  DevDesignPreviewRoute: DevDesignPreviewRoute,
+  DevHotspotCalibratorRoute: DevHotspotCalibratorRoute,
   LpSidingAlpharettaRoute: LpSidingAlpharettaRoute,
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,
-  ProjectsSlugRoute: ProjectsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
-  ProjectsIndexRoute: ProjectsIndexRoute,
   AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
