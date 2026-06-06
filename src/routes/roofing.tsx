@@ -1,73 +1,164 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Award,
-  ShieldCheck,
-  FileText,
-  Wrench,
-  Search,
-  Clock,
-} from "lucide-react";
-import {
-  ServiceLandingPage,
-  faqJsonLd,
-  serviceJsonLd,
-  type FaqItem,
-  type ChecklistItem,
-} from "@/components/site/ServiceLandingPage";
+import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import roofingHeroAsset from "@/assets/roofing-house-hero.png.asset.json";
+import roofingHeroAsset from "@/assets/roofing-hero.png.asset.json";
+import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
 const HERO_IMAGE = roofingHeroAsset.url;
+const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
-const SERVICE_KEY = "roofing";
-const CITY = "Greater Marietta";
+const seo = SERVICE_METADATA["roofing"];
 
-const seo = SERVICE_METADATA[SERVICE_KEY];
+const FAQS = [
+  {
+    q: "How do I know if I need a full replacement or just a repair?",
+    a: "During a free inspection we evaluate shingle age, granule loss, deck integrity, flashing condition, and attic ventilation. Roofs under 15 years with isolated damage often qualify for targeted repair. Roofs over 20 years, or those with widespread curling, cracking, or recurring leaks, typically need full replacement — incremental repairs on an aging system cost more in the long run.",
+  },
+  {
+    q: "What roofing products does Siding Depot install?",
+    a: "We install GAF architectural shingles (Timberline HDZ and UHDZ), standing-seam metal roofing, and low-slope TPO membranes. For most North Atlanta homes, GAF Timberline delivers the best balance of performance, warranty coverage, and long-term value.",
+  },
+  {
+    q: "Does my homeowner's insurance cover storm damage?",
+    a: "Most policies cover sudden storm-related damage — hail strikes, wind-lifted shingles, and falling debris. We assist with documentation: detailed inspection reports with photographs, itemized damage assessments, and direct communication with your adjuster when needed. The inspection costs you nothing.",
+  },
+  {
+    q: "How long does a roof replacement take?",
+    a: "A standard 2,000–2,500 sq ft home is typically finished in one to two days. Steeper pitches, multiple valleys, and dormers can extend the schedule to three days. We protect driveways and landscaping daily and handle all debris removal — your property is clean when we leave.",
+  },
+  {
+    q: "What warranty comes with a Siding Depot roof?",
+    a: "We offer GAF's Golden Pledge® Limited Warranty — 50-year non-prorated coverage on materials and 25-year workmanship coverage. This is the strongest residential roofing warranty available, exclusive to GAF Master Elite contractors. Every project also includes our own written workmanship guarantee.",
+  },
+  {
+    q: "What does a roof replacement cost in Cobb or Cherokee County?",
+    a: "A 2,000 sq ft architectural shingle roof in North Atlanta typically runs $9,000–$14,000 installed, depending on pitch, accessibility, decking condition, and shingle tier. Metal roofing ranges $18,000–$30,000 for the same footprint. Every project starts with a detailed, itemized written estimate.",
+  },
+  {
+    q: "Do you pull roofing permits?",
+    a: "Yes. We handle all Cobb, Cherokee, and Fulton County permit filings. Permitted work is county-inspected — protecting your home's resale value and ensuring your insurance coverage remains fully valid after the project.",
+  },
+  {
+    q: "Can I finance a roof replacement?",
+    a: "Yes. Through our GreenSky® partnership you can apply for 0% APR financing in under 60 seconds with a soft credit pull — decisions are typically instant. Financing and homeowner's insurance can be used simultaneously.",
+  },
+] as const;
 
-const FAQS: ReadonlyArray<FaqItem> = [
-  {
-    q: "How much does roof replacement cost in Greater Marietta, GA in 2026?",
-    a: "A full roof replacement in the Greater Marietta area typically costs $9,000–$18,000 for asphalt shingles on a standard 2,000 sq ft home. GAF Timberline HDZ — the most popular option — runs $10,000–$14,000 installed. Metal roofing costs $18,000–$35,000 but lasts 40–70 years. Cobb County permit fees add $250–$500 to the project total.",
-  },
-  {
-    q: "Does homeowner's insurance cover roof replacement in Georgia?",
-    a: "Yes, if the damage was caused by a covered event — hail, wind, fallen tree, or fire. Georgia's storm season creates thousands of roof insurance claims annually across Cobb, Cherokee, and Fulton counties. We inspect for storm damage, document it with photos, provide an insurance-grade estimate, and can meet your adjuster on-site. You pay only your deductible.",
-  },
-  {
-    q: "When should I replace my roof in Greater Marietta?",
-    a: "If your roof is 15+ years old, has multiple leak points, or sustained widespread storm damage, replacement is the most cost-effective long-term solution. We offer free inspections and give you an honest recommendation for a full system replacement.",
-  },
-  {
-    q: "How long does a roof replacement take in Greater Marietta?",
-    a: "Most residential roof replacements take 1–2 days. We start early, complete in one day when possible, and leave your property clean. You won't have an exposed roof overnight. We pull all required permits before starting work.",
-  },
-  {
-    q: "What roofing brands do you use and what warranties are offered?",
-    a: "We install GAF Timberline HDZ shingles as our primary product — GAF is North America's largest roofing manufacturer. As a GAF Factory Certified contractor, we offer the Golden Pledge warranty (50 years on product, 25 years on labor), which is only available through certified installers. We also install Owens Corning Duration series.",
-  },
-  {
-    q: "Should I be worried about roof damage after a hail storm in Greater Marietta?",
-    a: "Yes. Georgia's hail season (March through June) causes significant roof damage that isn't always visible from the ground. Even quarter-sized hail can bruise asphalt shingles, reducing their lifespan by years. After any storm, we recommend a free inspection for full replacement — there's no obligation and no cost.",
-  },
-];
+const CONFIG: ServicePageConfig = {
+  heroImage: HERO_IMAGE,
+  heroImageAlt: "Professional roofing installation on a North Atlanta home by Siding Depot",
+  heroBadge: "GAF Certified · Storm-Ready Systems",
+  heroLine1: "Protect What Matters Most",
+  heroLine2: "With A Roof",
+  heroLine3: "Built To Last.",
+  heroSubtitle:
+    "North Atlanta's trusted roofing contractor — GAF architectural systems, storm-damage specialists, and full permit management across Cobb, Cherokee, and Fulton counties. W-2 crews. Written warranties. No pressure.",
 
-const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "GAF Factory Certified", desc: "Only certified contractors can offer the GAF Golden Pledge warranty (50-year product, 25-year labor)." },
-  { Icon: ShieldCheck, title: "License & insurance", desc: "Verify a current Georgia GC license plus general liability and workers' comp before any deposit." },
-  { Icon: FileText, title: "Itemized written estimate", desc: "Insist on tear-off, decking inspection, underlayment, drip edge, ice & water shield, ridge vent, flashing — not a single lump sum." },
-  { Icon: Wrench, title: "Highly specialized certified teams, not day labor", desc: "Roofing is dangerous and warranty-critical. highly specialized certified professionals are trained, insured and accountable." },
-  { Icon: Search, title: "Recent local reviews", desc: "Look for 50+ recent Google reviews from Cobb, Cherokee or Fulton county — and drive past completed jobs after one storm season." },
-  { Icon: Clock, title: "Realistic timeline", desc: "A standard tear-off and reinstall is 1–2 days. Anyone promising same-day on a complex roof is cutting corners on prep or cleanup." },
-];
+  problemHeadline: "Your Roof Is Your Home's First Line Of Defense.",
+  problemPoints: [
+    "Leaks that travel inside walls before a ceiling stain ever appears",
+    "Curling or missing shingles that compound quickly under Georgia's UV and storm season",
+    "Attic moisture damage that quietly compromises insulation and framing for years",
+    "Insurance claims denied as 'pre-existing' — when the damage is clearly storm-related",
+  ],
+  problemSolution:
+    "Siding Depot's roofing team inspects, documents, and resolves your roofing system issues using GAF-certified materials and methods. We manage permits, assist with insurance documentation, and complete most residential replacements in one to two days — backed by a written warranty, not a verbal promise.",
+
+  optionsEyebrow: "Roofing Systems",
+  optionsHeadline: "Four Systems. One Right Choice For Your Home.",
+  optionsSubheadline:
+    "Every system we specify is rated for Georgia's heat, humidity, and storm season — engineered for the conditions your home actually faces.",
+  options: [
+    {
+      id: "architectural",
+      title: "Architectural Shingles",
+      subtitle: "Most popular · Best value",
+      image: "/projects/project-1.webp",
+      description:
+        "GAF Timberline HDZ and UHDZ — the most installed residential shingle in North America. LayerLock technology, StainGuard Plus algae protection, and WindProven unlimited wind warranty when installed as a complete GAF system.",
+    },
+    {
+      id: "metal",
+      title: "Standing-Seam Metal",
+      subtitle: "50+ year lifespan · Premium",
+      image: "/projects/project-3.webp",
+      description:
+        "Steel or aluminum standing-seam panels with concealed fasteners, superior hail resistance, and energy-reflective coatings. For homeowners who want a final roofing decision — not another replacement cycle in 20 years.",
+    },
+    {
+      id: "flat",
+      title: "Low-Slope TPO Membrane",
+      subtitle: "Flat roofs · Covered additions",
+      image: "/projects/project-4.webp",
+      description:
+        "TPO single-ply membrane for flat and low-slope applications — covered porches and additions. Heat-welded seams form a continuous watertight barrier built for Georgia's 50+ inches of annual rainfall.",
+    },
+    {
+      id: "repair",
+      title: "Storm Repair & Insurance Work",
+      subtitle: "Fast turnaround · Documentation ready",
+      image: "/projects/project-2.webp",
+      description:
+        "Targeted repair of hail-damaged, wind-lifted, or leaking sections. We provide written inspection reports with photographs for insurance claims and coordinate directly with adjusters to document and protect your coverage.",
+    },
+  ],
+
+  processEyebrow: "How It Works",
+  processHeadline: "From First Call To A Dry Home.",
+  processSubheadline:
+    "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from inspection through final sign-off.",
+  steps: [
+    { num: "01", title: "Free Roof Inspection", desc: "We come to your property and evaluate the full roof — decking, shingles, flashing, and ridge — at no charge. You receive a written findings report with photographs the same day." },
+    { num: "02", title: "Property & Insurance Evaluation", desc: "We assess storm damage, calculate square footage, identify decking conditions, and walk you through your coverage options before any claim is filed." },
+    { num: "03", title: "Detailed Written Proposal", desc: "You receive an itemized quote: materials, labor, decking repairs, underlayment, flashing, and permit fees. The number in the proposal is the number you pay — no changes mid-project." },
+    { num: "04", title: "Professional Installation", desc: "Our W-2 roofing crews arrive on schedule, protect your property, remove the existing system, and install your new roof to GAF manufacturer specifications. Most homes are finished in one to two days." },
+    { num: "05", title: "Final Walkthrough & Warranty", desc: "We walk the completed project with you, confirm site clean-up, and hand you GAF warranty documentation in writing. The project doesn't close until you're satisfied." },
+  ],
+
+  projectsLabel: "Recent Roofing Projects\nAcross Metro Atlanta.",
+
+  authorityEyebrow: "Why Our Warranty Is Different",
+  authorityHeadline: "Most Roofers Can't Back",
+  authorityHeadlineAccent: "What They Install.",
+  authorityBody1:
+    "A roof warranty is only as strong as the contractor behind it. GAF's Golden Pledge® — the strongest residential roofing warranty available — is exclusive to GAF Master Elite contractors. It covers materials and workmanship for 25 years, fully non-prorated.",
+  authorityBody2:
+    "Standard contractors typically offer a one-year verbal guarantee backed by nothing in writing. Ours is documented, transferable on home sale, and backed by North America's largest roofing manufacturer. That distinction matters the day you need to use it.",
+  authorityRows: [
+    ["Workmanship coverage", "1-year verbal", "25-year written"],
+    ["Material warranty", "Basic limited", "50-year GAF"],
+    ["Transferable on sale", "No", "Yes"],
+    ["Wind protection", "Standard", "WindProven unlimited"],
+  ],
+  authorityCta: "Schedule My Free Inspection",
+
+  whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Roofing.",
+  whyUsSubheadline:
+    "We're not the cheapest option in the area. We're the one your neighbor calls back to thank you for recommending.",
+
+  ctaEyebrow: "Free Consultation",
+  ctaHeadline: "Find Out What's Happening",
+  ctaHeadlineAccent: "On Your Roof Today.",
+  ctaBody1:
+    "Most roof problems are invisible until they become expensive. A free inspection uncovers what's developing — before it becomes a leak inside your home.",
+  ctaBody2:
+    "We respond within 24 hours, come to your home on your schedule, and deliver a written findings report at no charge.",
+  ctaMainBtn: "Book My Free Roof Inspection",
+  ctaTrustPoints: ["No-obligation inspection", "Same-day written report", "W-2 crews · Not subcontracted"],
+
+  faqTitle: "Roofing questions,",
+  faqTitleAccent: "answered.",
+  faqs: FAQS,
+};
 
 export const Route = createFileRoute("/roofing")({
   head: () => ({
     meta: [
-      { title: seo.metaTitle(CITY) },
+      { title: seo.metaTitle("North Atlanta") },
       { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:title", content: seo.metaTitle("North Atlanta") },
       { property: "og:description", content: seo.metaDesc },
-      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
     ],
     links: [
@@ -75,39 +166,10 @@ export const Route = createFileRoute("/roofing")({
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Roof Replacement", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "RoofingContractor" }),
-      faqJsonLd(FAQS),
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(getServiceSchema("Roofing Installation & Storm Repair in North Atlanta", seo.metaDesc, "/roofing", OG_IMAGE)) },
+      { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
     ],
   }),
-  component: RoofingPage,
+  component: () => <ServicePageLayout config={CONFIG} />,
 });
-
-function RoofingPage() {
-  return (
-    <ServiceLandingPage
-      serviceKey={SERVICE_KEY}
-      city={CITY}
-      heroImage={HERO_IMAGE}
-      heroImageSide
-      heroImageAlt="Siding Depot roofing crew installing new shingles on a North Atlanta home"
-      eyebrow="GAF Factory Certified · Top Roofer"
-      title="GAF Factory-Certified Roofing:"
-      titleAccent="North Atlanta's Shield."
-      intro="Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry."
-      benefits={[
-        "GAF Factory Certified — Golden Pledge warranty available",
-        "Hail and wind storm damage specialists (March–June season)",
-        "Insurance claim documentation and adjuster meetings",
-        "1–2 day install on standard 2,000 sq ft homes",
-      ]}
-      hiringRole="roofing contractor"
-      hiringIntro="Your roof is your home's most critical structural barrier. Use this checklist to verify factory certifications and system-wide warranty protections before signing."
-      hiringChecklist={CHECKLIST}
-      faqLabel="Roofing"
-      faqs={FAQS}
-      seoParagraph="Siding Depot is a GAF Factory Certified roofing contractor based in Greater Marietta, GA. We replace asphalt shingle and metal roofs in Greater Marietta — all engineered for North Atlanta's heat, humidity, and hail season. Most full residential roof replacements in our service area run $9,000–$18,000 in 2026, and we handle insurance documentation for storm-damage claims after Georgia's spring and summer storm cycles."
-      ctaAccent="decades, not seasons?"
-      trustBadge={{ title: "GAF Factory Certified", subtitle: "Golden Pledge Warranty" }}
-    />
-  );
-}

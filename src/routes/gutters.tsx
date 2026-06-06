@@ -1,68 +1,94 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Award,
-  ShieldCheck,
-  FileText,
-  Wrench,
-  Search,
-  Clock,
-} from "lucide-react";
-import {
-  ServiceLandingPage,
-  faqJsonLd,
-  serviceJsonLd,
-  type FaqItem,
-  type ChecklistItem,
-} from "@/components/site/ServiceLandingPage";
+import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
+import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
-const HERO_IMAGE = "/projects/project-5.webp";
+const HERO_IMAGE = "/projects/project-6.webp";
+const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/gutters";
-const SERVICE_KEY = "gutters";
-const CITY = "Greater Marietta";
+const seo = SERVICE_METADATA["gutters"];
 
-const seo = SERVICE_METADATA[SERVICE_KEY];
+const FAQS = [
+  { q: "Why do gutters matter so much in Georgia?", a: "Georgia averages 50+ inches of rainfall per year — nearly double the US average. Without properly sized and functional gutters, that water runs off your roof and pools against your foundation, erodes landscaping, saturates the soil below your slab, and works behind siding and trim. Gutters aren't cosmetic — they're structural protection for everything below the roofline." },
+  { q: "What is a seamless gutter and why is it better?", a: "Seamless gutters are fabricated on-site from a continuous roll of aluminum — no seams except at corners and downspout connections. Standard sectional gutters have joints every 10 feet, and every joint is a future leak point. Seamless gutters eliminate 90% of those leak points and are the only type we install for residential projects in North Atlanta." },
+  { q: "What size gutter do I need?", a: "Most North Atlanta homes need 5-inch K-style gutters as a minimum. Homes with steep pitches, large roof footprints, or complex valleys benefit from 6-inch gutters, which move 40% more water per linear foot. We calculate runoff capacity for your specific roof pitch and drainage zones during the free inspection — not a rule-of-thumb guess." },
+  { q: "How much do seamless gutters cost in Cobb or Cherokee County?", a: "Seamless aluminum gutters in North Atlanta run $8–$14 per linear foot installed, including downspouts and hangers. A typical 2,000 sq ft home with 150–200 linear feet of gutter runs $1,200–$2,800 total. Copper and steel run higher. We provide written, itemized estimates before any work begins." },
+  { q: "Do gutter guards actually work?", a: "Quality micro-mesh gutter guards — the type we install — significantly reduce cleaning frequency and prevent 95%+ of debris entry. They work best on homes surrounded by mature trees where seasonal cleaning costs $200–$400 per visit. Cheaper foam or brush inserts we don't install — they create mold and hold debris rather than shedding it." },
+  { q: "How often should gutters be cleaned in North Atlanta?", a: "Without guards: twice annually — once in late spring after pollen season, once in late fall after leaf drop. With quality micro-mesh guards: typically once every 2–3 years to remove fine debris that accumulates on top. We offer annual maintenance programs for homeowners who prefer not to track the schedule themselves." },
+  { q: "What materials are gutters made from?", a: "We install aluminum (most common — rustproof, lightweight, 20+ year lifespan), galvanized steel (heavier, stronger for high-debris areas), and copper (architectural choice — naturally patinas, 50+ year lifespan, premium cost). For most North Atlanta homes, aluminum is the correct specification." },
+  { q: "Can you repair existing gutters, or do they always need full replacement?", a: "Often, repairs extend functional life significantly — especially on aluminum systems under 15 years old. We assess each section individually and recommend repair where it makes sense. If more than 40% of the system needs individual fixes, full replacement is typically the better economic decision. We'll show you the math." },
+] as const;
 
-const FAQS: ReadonlyArray<FaqItem> = [
-  {
-    q: "How much does gutter installation cost in Greater Marietta, GA?",
-    a: "Seamless aluminum gutter installation in Greater Marietta typically costs $1,200–$3,500 for a standard home, depending on linear footage, gutter size (5\" vs 6\"), and whether gutter guards are included. 6-inch gutters are strongly recommended for Georgia — our rainfall averages 50+ inches per year, and standard 5-inch gutters frequently overflow during summer storms.",
-  },
-  {
-    q: "What size gutters does a home in Greater Marietta need?",
-    a: "We recommend 6-inch K-style gutters for most homes in Greater Marietta. Georgia receives some of the highest annual rainfall in the Southeast — standard 5-inch gutters can't handle the flow during summer thunderstorms, leading to overflow, foundation damage, and erosion. 6-inch gutters move 40% more water.",
-  },
-  {
-    q: "How often should gutters be cleaned in Georgia?",
-    a: "Twice a year minimum — spring (after pollen season) and fall (after leaves drop). Homes near pine trees in Cherokee or Cobb counties may need cleaning 3–4 times per year, as pine needles accumulate quickly and block downspouts. Clogged gutters cause fascia rot, foundation problems, and basement flooding — all expensive replacements.",
-  },
-  {
-    q: "Are gutter guards worth it in Atlanta?",
-    a: "For most North Atlanta homeowners, yes. Georgia's combination of heavy rain, pine pollen, and leaf fall makes gutters clog faster than average. Quality gutter guards (LeafGuard, MicroMesh) reduce cleaning frequency to once per year and prevent the standing water that breeds mosquitoes — a real concern in our climate. ROI over 5–7 years vs cleaning costs is typically positive.",
-  },
-  {
-    q: "Can clogged gutters damage my foundation in Georgia?",
-    a: "Yes — this is one of the most common and costly problems we see in Cobb and Cherokee counties. When gutters overflow, water pools at the foundation. Georgia's clay-heavy soil expands and contracts with moisture, accelerating foundation movement. We've seen $30,000+ foundation replacements that started with a $200 gutter cleaning that was skipped for years.",
-  },
-];
-
-const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "Seamless, on-site forming", desc: "Sectional gutters leak at every joint. Demand seamless aluminum cut on-site to your exact runs." },
-  { Icon: ShieldCheck, title: "License & insurance", desc: "Ladder work above 20 feet is high-risk. Verify GA GC license plus general liability and workers' comp." },
-  { Icon: FileText, title: "Itemized written estimate", desc: "Linear footage, hangers per run, downspouts, splash blocks and guard model — never a single lump sum." },
-  { Icon: Wrench, title: "Hidden hangers, not spike-and-ferrule", desc: "Hidden hangers screwed into fascia hold 50% better than 1990s-era spikes that pull free under our rainfall." },
-  { Icon: Search, title: "6-inch K-style for North Atlanta", desc: "5-inch gutters are undersized for Georgia rainfall. Insist on 6-inch capacity and 3x4 downspouts." },
-  { Icon: Clock, title: "Realistic timeline", desc: "A standard home takes 4–8 hours start to finish. Beware crews that quote a multi-day install — usually means undermanned." },
-];
+const CONFIG: ServicePageConfig = {
+  heroImage: HERO_IMAGE,
+  heroImageAlt: "Seamless aluminum gutter installation protecting a North Atlanta home by Siding Depot",
+  heroBadge: "Seamless Aluminum · Gutter Guards Available",
+  heroLine1: "Protect Your Home",
+  heroLine2: "From Costly",
+  heroLine3: "Water Damage.",
+  heroSubtitle: "Seamless gutter installation and repair across Greater Marietta — fabricated on-site, sized for Georgia's rainfall, and backed by a written warranty. The last gutter system your home should ever need.",
+  problemHeadline: "Gutters Fail Quietly — Until The Damage Is Expensive.",
+  problemPoints: [
+    "Foundation settlement caused by years of concentrated roof runoff pooling against the slab",
+    "Fascia and soffit rot that progresses invisibly until a full section needs replacement",
+    "Basement and crawl space moisture that drives mold, efflorescence, and structural damage",
+    "Landscaping erosion that washes away beds and grades you spent money installing",
+  ],
+  problemSolution: "Siding Depot installs seamless aluminum gutters fabricated on-site — no pre-cut sections, no seam leaks. We calculate proper sizing for your specific roof pitch and drainage zones, install downspout extensions to move water away from the foundation, and offer micro-mesh guard systems for homes surrounded by trees.",
+  optionsEyebrow: "Gutter Systems",
+  optionsHeadline: "Four Systems. Sized Right For Your Roof.",
+  optionsSubheadline: "Every gutter system we install is sized for your specific roof footprint and Georgia's rainfall intensity — not a catalog default.",
+  options: [
+    { id: "k-style", title: "5\" & 6\" K-Style Aluminum", subtitle: "Most popular · Best value", image: "/projects/project-1.webp", description: "Seamless K-style aluminum gutters in 5-inch and 6-inch profiles — the industry standard for North Atlanta residential roofing. Fabricated on-site for a continuous run, powder-coated in 20+ color options, and rated for 20+ years with proper maintenance." },
+    { id: "half-round", title: "Half-Round Gutters", subtitle: "Historic homes · Traditional look", image: "/projects/project-3.webp", description: "Half-round profile gutters for craftsman, Victorian, and traditional architectural styles where K-style looks out of place. Available in aluminum, galvanized steel, and copper. Superior debris shedding versus K-style due to the round bottom profile." },
+    { id: "guards", title: "Micro-Mesh Gutter Guards", subtitle: "Tree-heavy lots · Reduced cleaning", image: "/projects/project-4.webp", description: "Stainless steel micro-mesh guards that stop debris while allowing full water flow — unlike foam or brush inserts that trap moisture and grow mold. For homes with mature trees, guards reduce cleaning visits from twice annually to once every 2–3 years." },
+    { id: "copper", title: "Copper Gutter Systems", subtitle: "Architectural · 50+ yr lifespan", image: "/projects/project-2.webp", description: "Copper gutters patina naturally over time and are the longest-lasting gutter material available — 50+ year functional lifespan with no painting required. The architectural choice for high-end traditional homes where permanence and aesthetics both matter." },
+  ],
+  processEyebrow: "How We Install It",
+  processHeadline: "Properly Sized, Properly Pitched, Properly Done.",
+  processSubheadline: "Most gutter failures trace back to improper pitch or undersizing at installation. We engineer before we install.",
+  steps: [
+    { num: "01", title: "Free Gutter Inspection", desc: "We walk the full perimeter of your home, evaluate existing gutter condition, identify leak points and sag, and assess foundation and landscaping drainage. Written findings delivered the same day." },
+    { num: "02", title: "Drainage Engineering & Sizing", desc: "We calculate roof runoff volume for your specific pitch, drainage zones, and rainfall intensity — then spec the appropriate gutter profile, size, and downspout placement to move water completely away from the foundation." },
+    { num: "03", title: "Written Proposal — Itemized", desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during inspection. Fixed price — no additions after signing." },
+    { num: "04", title: "On-Site Fabrication & Installation", desc: "We fabricate seamless gutters on-site from a continuous aluminum coil — cut to your exact roofline dimensions. No pre-cut sections. No exposed seams except at inside corners and downspout outlets." },
+    { num: "05", title: "Water Test & Final Walkthrough", desc: "We run water through every downspout and verify proper drainage direction before we leave. If anything doesn't drain perfectly, we adjust on the spot — not on a callback visit." },
+  ],
+  projectsLabel: "Recent Gutter Projects\nAcross Metro Atlanta.",
+  authorityEyebrow: "Why On-Site Fabrication Changes Everything",
+  authorityHeadline: "Sectional Gutters Have",
+  authorityHeadlineAccent: "One Problem Per Section.",
+  authorityBody1: "Pre-cut sectional gutters from a box store have joints every 10 feet — and every joint is a future leak point. Caulk degrades. Seams separate in Georgia's heat cycles. Most gutter failures in North Atlanta homes are sectional gutter failures — not aluminum failures.",
+  authorityBody2: "Seamless gutters fabricated on-site have no exposed seams in straight runs — only at mitered corners and downspout connections. That's the difference between a gutter system that lasts 5–8 years and one that lasts 20+. We only install seamless systems for residential projects.",
+  authorityRows: [
+    ["Seams per 40ft run", "4 joints (leak points)", "0 seams (seamless)"],
+    ["Pitch calibration", "Level by eye", "Engineered per section"],
+    ["Downspout placement", "Convenience-based", "Drainage-zone calculated"],
+    ["Hanger spacing", "24\" industry default", "18\" for Georgia rainfall"],
+  ],
+  authorityCta: "Schedule My Free Gutter Inspection",
+  whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Gutters.",
+  whyUsSubheadline: "Gutters are the least glamorous exterior upgrade and the most consequential one to get wrong. We get it right.",
+  ctaEyebrow: "Free Consultation",
+  ctaHeadline: "Find Out Where Your Home",
+  ctaHeadlineAccent: "Is Draining Wrong.",
+  ctaBody1: "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free inspection identifies what's failing — before the repair costs compound.",
+  ctaBody2: "We respond within 24 hours, walk your full perimeter, and deliver a written findings report at no charge.",
+  ctaMainBtn: "Book My Free Gutter Inspection",
+  ctaTrustPoints: ["Free written inspection", "On-site seamless fabrication", "Drainage-zone engineered sizing"],
+  faqTitle: "Gutter questions,",
+  faqTitleAccent: "answered.",
+  faqs: FAQS,
+};
 
 export const Route = createFileRoute("/gutters")({
   head: () => ({
     meta: [
-      { title: seo.metaTitle(CITY) },
+      { title: seo.metaTitle("North Atlanta") },
       { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle(CITY) },
+      { property: "og:title", content: seo.metaTitle("North Atlanta") },
       { property: "og:description", content: seo.metaDesc },
-      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
     ],
     links: [
@@ -70,37 +96,10 @@ export const Route = createFileRoute("/gutters")({
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Seamless Gutter Installation", seo.metaDesc, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "GutterContractor" }),
-      faqJsonLd(FAQS),
+      { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
+      { type: "application/ld+json", children: JSON.stringify(getServiceSchema("Seamless Gutter Installation in North Atlanta", seo.metaDesc, "/gutters", OG_IMAGE)) },
+      { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
     ],
   }),
-  component: GuttersPage,
+  component: () => <ServicePageLayout config={CONFIG} />,
 });
-
-function GuttersPage() {
-  return (
-    <ServiceLandingPage
-      serviceKey={SERVICE_KEY}
-      city={CITY}
-      heroImage={HERO_IMAGE}
-      eyebrow="Seamless Aluminum · LeafGuard"
-      title="6-Inch Seamless Gutters:"
-      titleAccent="High-Volume Protection."
-      intro="Protect your foundation from Georgia's 50+ inches of annual rain. Our 6-inch seamless systems move 40% more water than standard gutters, preventing basement leaks and fascia rot."
-      benefits={[
-        "6-inch K-style gutters move 40% more water than 5-inch",
-        "Seamless aluminum formed on-site — no leaky joints",
-        "LeafGuard / MicroMesh guards for pine-heavy yards",
-        "Most homes installed in 4–8 hours",
-      ]}
-      hiringRole="gutter installer"
-      hiringIntro="Gutters are your foundation's primary defense against erosion. Use this checklist to verify pitch engineering and material capacity for heavy Georgia rainfall."
-      hiringChecklist={CHECKLIST}
-      faqLabel="Gutter"
-      faqs={FAQS}
-      seoParagraph="Siding Depot installs seamless aluminum gutters and LeafGuard systems across Greater Marietta. Metro Atlanta receives 50+ inches of rainfall a year — combined with heavy pine pollen, our climate clogs and overwhelms undersized 5-inch gutters within a couple of seasons. We size every system for Greater Marietta rainfall and Georgia's clay-heavy soil, where overflow leads directly to foundation movement and costly replacements."
-      ctaAccent="years, not seasons?"
-      trustBadge={{ title: "LeafGuard Authorized", subtitle: "Lifetime no-clog warranty" }}
-    />
-  );
-}
