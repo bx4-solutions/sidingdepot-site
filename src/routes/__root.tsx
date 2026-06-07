@@ -173,7 +173,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           setTimeout(fixGHLPosition, 2000);
           setTimeout(fixGHLPosition, 5000);
           window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'hl-chat-form-submitted') {
+            // GHL fires different event types depending on version
+            var isGHLLead = e.data && (
+              e.data.type === 'hl-chat-form-submitted' ||
+              e.data.type === 'form-submitted' ||
+              e.data.type === 'lead_submitted' ||
+              (e.data.type && e.data.type.includes('submit'))
+            );
+            if (isGHLLead) {
               if (typeof gtag === 'function') {
                 gtag('event', 'ghl_chat_lead', {
                   event_category: 'Lead',
@@ -188,6 +195,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                   page_path: window.location.pathname
                 });
               }
+              // Store in our Supabase leads table via webhook
+              try {
+                var payload = e.data.data || e.data.payload || e.data || {};
+                fetch('/api/ghl-webhook', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(Object.assign({}, payload, {
+                    page_url: window.location.href,
+                    source: 'ghl-chat-widget'
+                  }))
+                }).catch(function() {});
+              } catch(err) {}
             }
           });
         `,

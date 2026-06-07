@@ -320,51 +320,7 @@ function SEODashboard() {
   };
 
   const renderLeadsRealtime = () => {
-    return (
-      <div className="space-y-8 animate-in fade-in duration-500">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <KPICard title={lang === 'pt' ? "Envios Hoje" : "Submissions Today"} value="4" icon={Activity} color="sd-green" diff={lang === 'pt' ? "+2 vs ontem" : "+2 vs yesterday"} />
-          <KPICard title={lang === 'pt' ? "Taxa Real-time" : "Real-time Rate"} value="3.2%" icon={Zap} color="sd-green" diff={lang === 'pt' ? "Conversão da sessão" : "Session conversion"} />
-          <KPICard title={lang === 'pt' ? "Origem Principal" : "Primary Source"} value="Google Ads" icon={Target} color="sd-green" diff={lang === 'pt' ? "Campanha Siding 2026" : "Siding 2026 Campaign"} />
-        </div>
-
-        <Card className="bg-[#131921] border-white/10">
-          <CardHeader>
-            <CardTitle className="text-lg font-bold">{t('leadStream')}</CardTitle>
-            <CardDescription>{t('instantMonitoring')}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow className="border-white/10">
-                  <TableHead className="text-slate-400">{t('time')}</TableHead>
-                  <TableHead className="text-slate-400">{t('event')}</TableHead>
-                  <TableHead className="text-slate-400">{t('location')}</TableHead>
-                  <TableHead className="text-slate-400">{t('originCTA')}</TableHead>
-                  <TableHead className="text-slate-400">{t('channel')}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {[
-                  { time: "Agora", event: "Envio de Formulário", loc: "Marietta", cta: "Hero Form", channel: "Google / CPC" },
-                  { time: "2 min atrás", event: "Clique WhatsApp", loc: "Alpharetta", cta: "Floating Btn", channel: "Direct" },
-                  { time: "15 min atrás", event: "Lead Qualificado", loc: "Milton", cta: "Siding LP", channel: "Facebook" },
-                  { time: "1h atrás", event: "Envio de Formulário", loc: "Woodstock", cta: "Footer Form", channel: "SEO" },
-                ].map((lead, i) => (
-                  <TableRow key={i} className="border-white/5 hover:bg-white/5">
-                    <TableCell className="font-mono text-xs">{lead.time}</TableCell>
-                    <TableCell className="font-bold text-sd-green">{lead.event}</TableCell>
-                    <TableCell>{lead.loc}</TableCell>
-                    <TableCell className="text-slate-300">{lead.cta}</TableCell>
-                    <TableCell><Badge variant="outline" className="border-sd-green/30 text-sd-green text-[10px]">{lead.channel}</Badge></TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <LeadsRealtimeView lang={lang} t={t} />;
   };
 
   const renderSeoAudit = () => {
@@ -397,39 +353,31 @@ function SEODashboard() {
                    <div className="flex gap-8">
                       <div>
                          <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('auditedPages')}</p>
-                         <p className="text-2xl font-black">74</p>
+                         <p className="text-2xl font-black">—</p>
                       </div>
                       <div>
                          <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('indexable')}</p>
-                         <p className="text-2xl font-black text-sd-green">100%</p>
+                         <p className="text-2xl font-black text-slate-400">—</p>
                       </div>
                       <div>
                          <p className="text-[10px] uppercase font-black text-slate-400 mb-1">{t('warnings')}</p>
-                         <p className="text-2xl font-black text-yellow-500">0</p>
+                         <p className="text-2xl font-black text-slate-400">—</p>
                       </div>
                    </div>
-                   <Badge className="bg-sd-green text-sd-black">{t('healthy')}</Badge>
+                   <Badge className="bg-white/10 text-slate-300 border-white/20">
+                     {lang === 'pt' ? 'Executar auditoria' : 'Run audit'}
+                   </Badge>
                 </div>
-                
-                <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                   {[
-                     { url: "/", title: "Siding Depot — James Hardie Elite Preferred...", status: "OK" },
-                     { url: "/siding", title: "James Hardie Siding in Marietta, GA | Siding Depot", status: "OK" },
-                     { url: "/painting", title: "Exterior Painting in Marietta, GA | Sherwin-Williams...", status: "OK" },
-                     { url: "/locations/marietta/siding", title: "James Hardie Siding in Marietta, GA", status: "OK" },
-                     { url: "/locations/alpharetta/siding", title: "James Hardie Siding in Alpharetta, GA", status: "OK" },
-                   ].map((item, i) => (
-                     <div key={i} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
-                        <div className="min-w-0">
-                           <p className="text-xs font-mono text-sd-green truncate">{item.url}</p>
-                           <p className="text-sm text-white truncate">{item.title}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                           <div className="h-2 w-2 rounded-full bg-sd-green" />
-                           <span className="text-[10px] font-bold">{item.status}</span>
-                        </div>
-                     </div>
-                   ))}
+                <div className="flex flex-col items-center justify-center py-8 text-center">
+                  <Search className="h-10 w-10 text-slate-600 mb-3" />
+                  <p className="text-sm font-bold text-slate-300">
+                    {lang === 'pt' ? 'Nenhuma auditoria executada ainda' : 'No audit run yet'}
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1 max-w-xs">
+                    {lang === 'pt'
+                      ? 'Clique em "Executar Auditoria" para analisar as páginas do site.'
+                      : 'Click "Run Audit" to analyze site pages.'}
+                  </p>
                 </div>
              </div>
           </CardContent>
@@ -439,103 +387,31 @@ function SEODashboard() {
   };
 
   const renderGtmDebugger = () => {
-    return (
-      <div className="space-y-8 animate-in fade-in duration-500">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-[#131921] border-sd-green/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-sd-green animate-pulse" />
-                DataLayer Live Feed
-              </CardTitle>
-              <CardDescription>Últimos eventos disparados para o GTM/GA4</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2 font-mono text-[10px]">
-                {[
-                  { event: "lead_submit", status: "success", payload: { source: "hero_form", service: "siding" } },
-                  { event: "cta_click", status: "success", payload: { cta_text: "Get a free quote", section: "hero" } },
-                  { event: "page_view", status: "success", payload: { path: "/locations/marietta/siding" } },
-                  { event: "whatsapp_click", status: "success", payload: { location: "floating_btn" } },
-                ].map((item, i) => (
-                  <div key={i} className="p-3 bg-sd-black/30 border border-white/5 rounded-lg">
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sd-green font-bold uppercase">{item.event}</span>
-                      <span className="text-slate-500">{new Date().toLocaleTimeString()}</span>
-                    </div>
-                    <pre className="text-slate-400 overflow-x-auto">{JSON.stringify(item.payload, null, 2)}</pre>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[#131921] border-white/10">
-            <CardHeader>
-              <CardTitle>{t('integrationStatus')}</CardTitle>
-              <CardDescription>{t('trackingConnectivity')}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {[
-                { name: "Google Tag Manager", id: "GTM-TFGQWCQN", status: "Connected" },
-                { name: "Google Analytics 4", id: "VITE_GA4_ID", status: "Active" },
-                { name: "Supabase Events", id: "ab_events", status: "Live" },
-              ].map((service, i) => (
-                <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-sd-green" />
-                    <div>
-                      <p className="text-sm font-bold">{service.name}</p>
-                      <p className="text-[10px] text-slate-400 font-mono">{service.id}</p>
-                    </div>
-                  </div>
-                  <Badge className="bg-sd-green/10 text-sd-green border-sd-green/20">{service.status}</Badge>
-                </div>
-              ))}
-              <div className="p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl">
-                <p className="text-xs text-sd-green font-bold mb-2">{t('debugTip')}</p>
-                <p className="text-[11px] text-slate-300 leading-relaxed">
-                  {t('debugDesc')}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
+    return <GtmDebuggerView t={t} />;
   };
 
   const renderAlerts = () => {
     return (
       <div className="space-y-8 animate-in fade-in duration-500">
-        <Card className="bg-[#131921] border-red-500/20">
+        <Card className="bg-[#131921] border-white/10">
           <CardHeader>
-            <CardTitle className="text-red-500 flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5" />
+            <CardTitle className="flex items-center gap-2">
+              <Bell className="h-5 w-5 text-sd-green" />
               {t('alertsTitle')}
             </CardTitle>
             <CardDescription>{t('alertsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {[
-                { type: "SEO", msg: "Meta descrição ausente ou muito curta", target: "/locations/canton/gutters", severity: "medium" },
-                { type: "Sitemap", msg: "Página no sitemap mas retornando 404", target: "/old-service-page", severity: "high" },
-              ].map((alert, i) => (
-                <div key={i} className="flex items-start justify-between p-4 bg-white/5 border border-white/10 rounded-xl">
-                  <div className="flex gap-4">
-                    <div className={cn(
-                      "mt-1 h-2 w-2 rounded-full",
-                      alert.severity === "high" ? "bg-red-500 animate-pulse" : "bg-yellow-500"
-                    )} />
-                    <div>
-                      <p className="text-sm font-bold">{alert.msg}</p>
-                      <p className="text-xs text-sd-green font-mono">{alert.target}</p>
-                    </div>
-                  </div>
-                  <Badge variant="outline" className="text-[10px] uppercase">{alert.type}</Badge>
-                </div>
-              ))}
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <CheckCircle2 className="h-12 w-12 text-sd-green mb-4" />
+              <p className="text-lg font-bold text-white">
+                {lang === 'pt' ? 'Nenhum alerta ativo' : 'No active alerts'}
+              </p>
+              <p className="text-sm text-slate-400 mt-2 max-w-xs">
+                {lang === 'pt'
+                  ? 'Alertas automáticos aparecerão aqui quando eventos críticos forem detectados.'
+                  : 'Automatic alerts will appear here when critical events are detected.'}
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -782,12 +658,12 @@ function SEODashboard() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      <MiniKPICard title={t('totalVisitors')} value="12.4k" diff="+5%" />
-                      <MiniKPICard title={t('uniqueVisitors')} value="8.9k" diff="+3%" />
-                      <MiniKPICard title={t('pageViews')} value="32.1k" diff="+8%" />
-                      <MiniKPICard title={t('pagesPerVisit')} value="2.6" diff="+1%" />
-                      <MiniKPICard title={t('bounceRate')} value="42%" diff="-2%" />
-                      <MiniKPICard title={t('avgSessionDuration')} value="2m 45s" diff="+15s" />
+                      <MiniKPICard title={t('totalVisitors')} value={metrics?.overview?.totalVisitors ? metrics.overview.totalVisitors.toLocaleString() : "—"} diff="" />
+                      <MiniKPICard title={t('uniqueVisitors')} value={metrics?.overview?.uniqueVisitors ? metrics.overview.uniqueVisitors.toLocaleString() : "—"} diff="" />
+                      <MiniKPICard title={t('pageViews')} value={metrics?.overview?.pageViews ? metrics.overview.pageViews.toLocaleString() : "—"} diff="" />
+                      <MiniKPICard title={t('pagesPerVisit')} value={metrics?.overview?.pagesPerVisit ? String(metrics.overview.pagesPerVisit) : "—"} diff="" />
+                      <MiniKPICard title={t('bounceRate')} value={metrics?.overview?.bounceRate ? `${metrics.overview.bounceRate}%` : "—"} diff="" />
+                      <MiniKPICard title={t('avgSessionDuration')} value={metrics?.overview?.avgSessionDuration && metrics.overview.avgSessionDuration !== "0s" ? metrics.overview.avgSessionDuration : "—"} diff="" />
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -1605,14 +1481,271 @@ function KPICard({ title, value, icon: Icon, color, diff }: any) {
 }
 
 function MiniKPICard({ title, value, diff }: any) {
-  const isPositive = diff.startsWith('+');
+  const isPositive = diff?.startsWith('+');
   return (
     <div className="bg-[#131921]/50 border border-white/5 rounded-xl p-4 hover:bg-[#131921] transition-colors">
        <p className="text-[9px] font-black uppercase tracking-widest text-slate-300 mb-1">{title}</p>
        <div className="flex items-end justify-between">
           <span className="text-xl font-bold">{value}</span>
-          <span className={cn("text-[10px] font-bold", isPositive ? "text-sd-green" : "text-red-400")}>{diff}</span>
+          {diff ? <span className={cn("text-[10px] font-bold", isPositive ? "text-sd-green" : "text-red-400")}>{diff}</span> : null}
        </div>
+    </div>
+  );
+}
+
+// ── Real Leads view — reads from Supabase `leads` table ──────────────────────
+function LeadsRealtimeView({ lang, t }: { lang: string; t: (k: string) => string }) {
+  const [leads, setLeads] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Initial load
+    supabase
+      .from("leads")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(50)
+      .then(({ data }) => {
+        setLeads(data || []);
+        setLoading(false);
+      });
+
+    // Real-time subscription
+    const channel = supabase
+      .channel("leads-realtime")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "leads" }, (payload) => {
+        setLeads((prev) => [payload.new, ...prev]);
+      })
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
+  const today = new Date().toISOString().slice(0, 10);
+  const todayLeads = leads.filter((l) => l.created_at?.slice(0, 10) === today);
+
+  const formatTime = (ts: string) => {
+    if (!ts) return "—";
+    const d = new Date(ts);
+    const diff = Math.floor((Date.now() - d.getTime()) / 1000);
+    if (diff < 60) return lang === 'pt' ? "Agora" : "Just now";
+    if (diff < 3600) return `${Math.floor(diff / 60)} min ${lang === 'pt' ? 'atrás' : 'ago'}`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}h ${lang === 'pt' ? 'atrás' : 'ago'}`;
+    return d.toLocaleDateString();
+  };
+
+  return (
+    <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="bg-[#131921] border-white/10">
+          <CardHeader className="pb-2">
+            <CardDescription className="text-[10px] font-black uppercase tracking-widest text-slate-300">
+              {lang === 'pt' ? "Envios Hoje" : "Submissions Today"}
+            </CardDescription>
+            <CardTitle className="text-3xl font-black text-white">{todayLeads.length}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-sd-green">
+              <Activity className="h-3 w-3" /> {lang === 'pt' ? 'Via widget GHL' : 'Via GHL widget'}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-[#131921] border-white/10">
+          <CardHeader className="pb-2">
+            <CardDescription className="text-[10px] font-black uppercase tracking-widest text-slate-300">
+              {lang === 'pt' ? "Total de Leads" : "Total Leads"}
+            </CardDescription>
+            <CardTitle className="text-3xl font-black text-white">{leads.length}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-sd-green">
+              <Zap className="h-3 w-3" /> {lang === 'pt' ? 'Captados no site' : 'Captured on site'}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-[#131921] border-white/10">
+          <CardHeader className="pb-2">
+            <CardDescription className="text-[10px] font-black uppercase tracking-widest text-slate-300">
+              {lang === 'pt' ? "Status" : "Status"}
+            </CardDescription>
+            <CardTitle className="text-xl font-black text-sd-green">
+              {lang === 'pt' ? 'Monitorando' : 'Monitoring'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-sd-green">
+              <div className="h-2 w-2 rounded-full bg-sd-green animate-pulse" />
+              {lang === 'pt' ? 'Tempo real ativo' : 'Real-time active'}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="bg-[#131921] border-white/10">
+        <CardHeader>
+          <CardTitle className="text-lg font-bold">{t('leadStream')}</CardTitle>
+          <CardDescription>{t('instantMonitoring')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {loading ? (
+            <div className="py-12 text-center text-slate-400">
+              <RefreshCw className="h-6 w-6 animate-spin mx-auto mb-2" />
+              {lang === 'pt' ? 'Carregando leads...' : 'Loading leads...'}
+            </div>
+          ) : leads.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <Activity className="h-12 w-12 text-slate-600 mb-4" />
+              <p className="text-lg font-bold text-white">
+                {lang === 'pt' ? 'Nenhum lead capturado ainda' : 'No leads captured yet'}
+              </p>
+              <p className="text-sm text-slate-400 mt-2 max-w-sm">
+                {lang === 'pt'
+                  ? 'Quando alguém preencher o formulário do widget GHL, o lead aparecerá aqui automaticamente em tempo real.'
+                  : 'When someone fills out the GHL widget form, the lead will appear here automatically in real time.'}
+              </p>
+              <div className="mt-6 p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl max-w-md text-left">
+                <p className="text-xs text-sd-green font-bold mb-1">
+                  {lang === 'pt' ? 'Como capturar leads:' : 'How to capture leads:'}
+                </p>
+                <ul className="text-[11px] text-slate-300 space-y-1 list-disc list-inside">
+                  <li>{lang === 'pt' ? 'Preencha o widget de chat no site' : 'Fill out the chat widget on the site'}</li>
+                  <li>{lang === 'pt' ? 'Configure o webhook no GHL: POST /api/ghl-webhook' : 'Configure the webhook in GHL: POST /api/ghl-webhook'}</li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow className="border-white/10">
+                  <TableHead className="text-slate-400">{t('time')}</TableHead>
+                  <TableHead className="text-slate-400">{lang === 'pt' ? 'Nome' : 'Name'}</TableHead>
+                  <TableHead className="text-slate-400">{lang === 'pt' ? 'Contato' : 'Contact'}</TableHead>
+                  <TableHead className="text-slate-400">{lang === 'pt' ? 'Página' : 'Page'}</TableHead>
+                  <TableHead className="text-slate-400">{lang === 'pt' ? 'Fonte' : 'Source'}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {leads.map((lead) => (
+                  <TableRow key={lead.id} className="border-white/5 hover:bg-white/5">
+                    <TableCell className="font-mono text-xs">{formatTime(lead.created_at)}</TableCell>
+                    <TableCell className="font-bold text-sd-green">{lead.name || "—"}</TableCell>
+                    <TableCell className="text-slate-300 text-xs">{lead.email || lead.phone || "—"}</TableCell>
+                    <TableCell className="font-mono text-[10px] text-slate-400 max-w-[160px] truncate">{lead.page_url || "—"}</TableCell>
+                    <TableCell>
+                      <Badge variant="outline" className="border-sd-green/30 text-sd-green text-[10px]">
+                        {lead.source || "ghl"}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── GTM Debugger — reads real window.dataLayer events ───────────────────────
+function GtmDebuggerView({ t }: { t: (k: string) => string }) {
+  const [dlEvents, setDlEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Snapshot current dataLayer
+    if (typeof window !== "undefined" && Array.isArray((window as any).dataLayer)) {
+      const meaningful = (window as any).dataLayer
+        .filter((e: any) => e.event && e.event !== "gtm.js" && e.event !== "gtm.load" && e.event !== "gtm.dom")
+        .slice(-20)
+        .reverse();
+      setDlEvents(meaningful);
+    }
+
+    // Poll every 5 s for new events
+    const interval = setInterval(() => {
+      if (typeof window !== "undefined" && Array.isArray((window as any).dataLayer)) {
+        const meaningful = (window as any).dataLayer
+          .filter((e: any) => e.event && e.event !== "gtm.js" && e.event !== "gtm.load" && e.event !== "gtm.dom")
+          .slice(-20)
+          .reverse();
+        setDlEvents(meaningful);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const integrations = [
+    { name: "Google Tag Manager", id: "GTM-TFGQWCQN", ok: typeof window !== "undefined" && !!(window as any).google_tag_manager },
+    { name: "Google Analytics 4", id: "GA4", ok: typeof window !== "undefined" && typeof (window as any).gtag === "function" },
+    { name: "GHL Lead Webhook", id: "/api/ghl-webhook", ok: true },
+  ];
+
+  return (
+    <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-[#131921] border-sd-green/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-sd-green animate-pulse" />
+              DataLayer Live Feed
+            </CardTitle>
+            <CardDescription>Eventos reais disparados na sessão atual</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {dlEvents.length === 0 ? (
+              <div className="py-10 text-center text-slate-500 text-sm">
+                Nenhum evento de conversão registrado nesta sessão ainda.
+              </div>
+            ) : (
+              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2 font-mono text-[10px]">
+                {dlEvents.map((item, i) => {
+                  const { event, ...rest } = item;
+                  return (
+                    <div key={i} className="p-3 bg-sd-black/30 border border-white/5 rounded-lg">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sd-green font-bold uppercase">{event}</span>
+                        <span className="text-slate-500">{new Date().toLocaleTimeString()}</span>
+                      </div>
+                      <pre className="text-slate-400 overflow-x-auto">{JSON.stringify(rest, null, 2)}</pre>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="bg-[#131921] border-white/10">
+          <CardHeader>
+            <CardTitle>{t('integrationStatus')}</CardTitle>
+            <CardDescription>{t('trackingConnectivity')}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {integrations.map((service, i) => (
+              <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                <div className="flex items-center gap-3">
+                  {service.ok
+                    ? <CheckCircle2 className="h-5 w-5 text-sd-green" />
+                    : <AlertTriangle className="h-5 w-5 text-yellow-400" />}
+                  <div>
+                    <p className="text-sm font-bold">{service.name}</p>
+                    <p className="text-[10px] text-slate-400 font-mono">{service.id}</p>
+                  </div>
+                </div>
+                <Badge className={service.ok ? "bg-sd-green/10 text-sd-green border-sd-green/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}>
+                  {service.ok ? "Active" : "Check"}
+                </Badge>
+              </div>
+            ))}
+            <div className="p-4 bg-sd-green/5 border border-sd-green/20 rounded-xl">
+              <p className="text-xs text-sd-green font-bold mb-2">{t('debugTip')}</p>
+              <p className="text-[11px] text-slate-300 leading-relaxed">
+                {t('debugDesc')}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
