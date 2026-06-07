@@ -76,12 +76,12 @@
   --radius: 0.625rem;
 
   /* Brand palette (HEX → oklch) */
-  --sd-green:        #B6E214;
-  --sd-green-hover:  #A4CC12; /* Slightly darker for hover */
-  --sd-green-active: #92B510; /* Even darker for active */
-  --sd-green-dark:   #81A00E;
-  --sd-green-pale:   #F7FBE7; /* Pale tint of brand green */
-  --sd-green-text:   #3C4A07; /* Deep brand green for text on light bg */
+  --sd-green:        #B3D133; /* brand lime — extracted from logo.png */
+  --sd-green-hover:  #9EBB28; /* hover: -12% lightness */
+  --sd-green-active: #8EA526; /* active: -18% lightness */
+  --sd-green-dark:   #7A9020;
+  --sd-green-pale:   #F0F7C8; /* Pale tint of brand lime */
+  --sd-green-text:   #3C4A07; /* Deep text on light lime bg */
   --sd-navy:         oklch(0.265 0.030 252.0);   /* kept dark for text */
   --sd-dark:         oklch(0.180 0 0);
   --sd-dark-mid:     oklch(0.250 0 0);
@@ -94,7 +94,7 @@
   /* shadcn semantic mapping → SD tokens */
   --background: var(--sd-white);
   --foreground: var(--sd-black);
-  --card: #B6E214E6; /* Lime green @ 90% */
+  --card: #B3D133E6; /* Lime green @ 90% */
   --card-foreground: var(--sd-black);
   --popover: var(--sd-white);
   --popover-foreground: var(--sd-black);
@@ -157,6 +157,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* prevent horizontal scroll / zoom-out on mobile */
   }
 
   .font-display {
@@ -180,6 +181,47 @@
     --muted-foreground: var(--sd-gray-text);
     background-color: var(--background);
     color: var(--foreground);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Google Reviews marquee (infinite horizontal scroll)               */
+/* ---------------------------------------------------------------- */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: max-content;
+  animation: marquee-left 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* Respect user's reduced-motion preference — stop auto-scrolling carousel */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .marquee-track > * {
+    scroll-snap-align: start;
+  }
+  .animate-hotspot-pulse {
+    animation: none;
   }
 }
 
