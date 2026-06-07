@@ -217,7 +217,7 @@ export function AnalyticsTracker() {
     lastPathRef.current = path;
 
     // Track page_view (geo may still be loading — that's fine)
-    trackEvent("page_view", path, sessionId.current, geoRef.current);
+    trackEvent("pageview", path, sessionId.current, geoRef.current);
 
     // Update Realtime Presence with new page
     const updatePresence = async () => {

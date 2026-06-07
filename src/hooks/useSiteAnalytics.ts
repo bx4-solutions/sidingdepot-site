@@ -17,13 +17,16 @@ export function useTopPages(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("page_path, page_title, session_id, scroll_depth, time_on_page")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
       if (error) throw error;
 
-      const map = new Map<string, { path: string; title: string; views: number; totalScroll: number; totalTime: number }>();
+      const map = new Map<
+        string,
+        { path: string; title: string; views: number; totalScroll: number; totalTime: number }
+      >();
       (data || []).forEach((e) => {
         const key = e.page_path;
         if (map.has(key)) {
@@ -32,12 +35,22 @@ export function useTopPages(filters: AnalyticsFilters) {
           r.totalScroll += e.scroll_depth || 0;
           r.totalTime += e.time_on_page || 0;
         } else {
-          map.set(key, { path: key, title: e.page_title || key, views: 1, totalScroll: e.scroll_depth || 0, totalTime: e.time_on_page || 0 });
+          map.set(key, {
+            path: key,
+            title: e.page_title || key,
+            views: 1,
+            totalScroll: e.scroll_depth || 0,
+            totalTime: e.time_on_page || 0,
+          });
         }
       });
 
       return Array.from(map.values())
-        .map((r) => ({ ...r, avgScroll: Math.round(r.totalScroll / r.views), avgTime: Math.round(r.totalTime / r.views) }))
+        .map((r) => ({
+          ...r,
+          avgScroll: Math.round(r.totalScroll / r.views),
+          avgTime: Math.round(r.totalTime / r.views),
+        }))
         .sort((a, b) => b.views - a.views);
     },
     refetchInterval: 60_000,
@@ -51,14 +64,19 @@ export function useDeviceStats(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("device_type")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
       if (error) throw error;
       const m = new Map<string, number>();
-      (data || []).forEach((e) => { const k = e.device_type || "unknown"; m.set(k, (m.get(k) || 0) + 1); });
-      return Array.from(m.entries()).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+      (data || []).forEach((e) => {
+        const k = e.device_type || "unknown";
+        m.set(k, (m.get(k) || 0) + 1);
+      });
+      return Array.from(m.entries())
+        .map(([name, value]) => ({ name, value }))
+        .sort((a, b) => b.value - a.value);
     },
   });
 }
@@ -70,14 +88,19 @@ export function useBrowserStats(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("browser")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
       if (error) throw error;
       const m = new Map<string, number>();
-      (data || []).forEach((e) => { const k = e.browser || "Other"; m.set(k, (m.get(k) || 0) + 1); });
-      return Array.from(m.entries()).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+      (data || []).forEach((e) => {
+        const k = e.browser || "Other";
+        m.set(k, (m.get(k) || 0) + 1);
+      });
+      return Array.from(m.entries())
+        .map(([name, value]) => ({ name, value }))
+        .sort((a, b) => b.value - a.value);
     },
   });
 }
@@ -89,14 +112,19 @@ export function useOSStats(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("os")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
       if (error) throw error;
       const m = new Map<string, number>();
-      (data || []).forEach((e) => { const k = e.os || "Other"; m.set(k, (m.get(k) || 0) + 1); });
-      return Array.from(m.entries()).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+      (data || []).forEach((e) => {
+        const k = e.os || "Other";
+        m.set(k, (m.get(k) || 0) + 1);
+      });
+      return Array.from(m.entries())
+        .map(([name, value]) => ({ name, value }))
+        .sort((a, b) => b.value - a.value);
     },
   });
 }
@@ -108,15 +136,19 @@ export function useCountryStats(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("country")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .not("country", "is", null)
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
       if (error) throw error;
       const m = new Map<string, number>();
-      (data || []).forEach((e) => { if (e.country) m.set(e.country, (m.get(e.country) || 0) + 1); });
-      return Array.from(m.entries()).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+      (data || []).forEach((e) => {
+        if (e.country) m.set(e.country, (m.get(e.country) || 0) + 1);
+      });
+      return Array.from(m.entries())
+        .map(([name, value]) => ({ name, value }))
+        .sort((a, b) => b.value - a.value);
     },
   });
 }
@@ -128,7 +160,7 @@ export function useAcquisitionStats(filters: AnalyticsFilters) {
       const { data, error } = await supabase
         .from("analytics_events")
         .select("utm_source, utm_medium, utm_campaign, session_id")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
@@ -143,17 +175,27 @@ export function useAcquisitionStats(filters: AnalyticsFilters) {
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value);
 
-      const campMap = new Map<string, { source: string; medium: string; campaign: string; visitors: number }>();
+      const campMap = new Map<
+        string,
+        { source: string; medium: string; campaign: string; visitors: number }
+      >();
       (data || []).forEach((e) => {
         if (!e.utm_campaign) return;
         const key = `${e.utm_source}|${e.utm_medium}|${e.utm_campaign}`;
         if (campMap.has(key)) {
           campMap.get(key)!.visitors++;
         } else {
-          campMap.set(key, { source: e.utm_source || "", medium: e.utm_medium || "", campaign: e.utm_campaign, visitors: 1 });
+          campMap.set(key, {
+            source: e.utm_source || "",
+            medium: e.utm_medium || "",
+            campaign: e.utm_campaign,
+            visitors: 1,
+          });
         }
       });
-      const campaigns = Array.from(campMap.values()).sort((a, b) => b.visitors - a.visitors).slice(0, 10);
+      const campaigns = Array.from(campMap.values())
+        .sort((a, b) => b.visitors - a.visitors)
+        .slice(0, 10);
 
       return { sources, campaigns };
     },
@@ -167,7 +209,7 @@ export function useFunnelData(filters: AnalyticsFilters) {
       const { data: sessions } = await supabase
         .from("analytics_events")
         .select("session_id")
-        .eq("event_type", "page_view")
+        .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
 
