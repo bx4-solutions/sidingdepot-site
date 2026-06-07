@@ -234,6 +234,19 @@
   }
 }
 
+/* GHL Chat Widget — force bottom-right position */
+#chat-widget-container,
+[id^="chat-widget"],
+.hl-chat-widget,
+div[data-widget-id] {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9999 !important;
+}
+
 /* Inline Edit Mode Styles */
 .design-mode-active {
   cursor: text !important;

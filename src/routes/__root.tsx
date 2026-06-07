@@ -240,7 +240,6 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingCTA />
-          <MascotGreeter />
           {isDev && <VisualEditToggle />}
         </div>
       </GoogleStatsContext.Provider>
