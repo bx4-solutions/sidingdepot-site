@@ -26,7 +26,9 @@ serve(async (req) => {
         body = JSON.parse(text);
       } else {
         const params = new URLSearchParams(text);
-        params.forEach((v, k) => { body[k] = v; });
+        params.forEach((v, k) => {
+          body[k] = v;
+        });
       }
     } catch {
       // ignore parse errors
@@ -67,10 +69,10 @@ serve(async (req) => {
 
     if (error) {
       console.error("[GHL Webhook] Insert error:", error);
-      return new Response(
-        JSON.stringify({ ok: false, error: error.message }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: error.message }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     // Notify admin dashboard in real-time
@@ -83,15 +85,14 @@ serve(async (req) => {
     });
 
     console.log("[GHL Webhook] Lead stored:", { name, email, phone });
-    return new Response(
-      JSON.stringify({ ok: true }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ ok: true }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (err) {
     console.error("[GHL Webhook] Unexpected error:", err);
-    return new Response(
-      JSON.stringify({ ok: false, error: String(err) }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ ok: false, error: String(err) }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });

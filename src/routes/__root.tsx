@@ -14,6 +14,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
 import { MascotGreeter } from "@/components/site/MascotGreeter";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { VisualEditToggle } from "@/components/VisualEditToggle";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
@@ -271,6 +272,7 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingCTA />
+          <AnalyticsTracker />
           {isDev && <VisualEditToggle />}
         </div>
       </GoogleStatsContext.Provider>

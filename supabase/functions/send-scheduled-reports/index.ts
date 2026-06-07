@@ -49,9 +49,19 @@ async function buildReportData(admin: any): Promise<ReportData> {
   const conversionRate = views > 0 ? ((leads / views) * 100).toFixed(2) + "%" : "0%";
 
   const periodStart = weekAgo.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  const periodEnd = now.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const periodEnd = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
-  return { period: `${periodStart} – ${periodEnd}`, leads, pageViews: views, conversionRate, topPages };
+  return {
+    period: `${periodStart} – ${periodEnd}`,
+    leads,
+    pageViews: views,
+    conversionRate,
+    topPages,
+  };
 }
 
 function buildEmailHtml(report: ReportData): string {
@@ -60,7 +70,7 @@ function buildEmailHtml(report: ReportData): string {
       (p) => `<tr>
         <td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;font-size:13px;color:#374151;">${p.path}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;font-size:13px;color:#374151;text-align:right;">${p.views.toLocaleString()}</td>
-      </tr>`
+      </tr>`,
     )
     .join("");
 
@@ -96,7 +106,9 @@ function buildEmailHtml(report: ReportData): string {
         </tr>
       </table>
     </div>
-    ${report.topPages.length > 0 ? `
+    ${
+      report.topPages.length > 0
+        ? `
     <div style="padding:0 40px 32px;">
       <h3 style="margin:0 0 16px;font-size:14px;font-weight:600;color:#111827;text-transform:uppercase;letter-spacing:0.5px;">Top Pages This Week</h3>
       <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #f0f0f0;border-radius:8px;overflow:hidden;">
@@ -108,7 +120,9 @@ function buildEmailHtml(report: ReportData): string {
         </thead>
         <tbody>${topPagesRows}</tbody>
       </table>
-    </div>` : ""}
+    </div>`
+        : ""
+    }
     <div style="padding:0 40px 32px;text-align:center;">
       <a href="https://sidingdepot.com/admin/dashboard" style="display:inline-block;background:#22c55e;color:#0A0A0A;text-decoration:none;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;">View Full Dashboard →</a>
     </div>
@@ -131,10 +145,10 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
 
     if (!resendApiKey) {
-      return new Response(
-        JSON.stringify({ ok: false, error: "RESEND_API_KEY not configured" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: "RESEND_API_KEY not configured" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const admin = createClient(supabaseUrl, serviceKey, {
@@ -147,10 +161,9 @@ serve(async (req) => {
       .eq("enabled", true);
 
     if (reportsError || !reports?.length) {
-      return new Response(
-        JSON.stringify({ ok: true, message: "No active scheduled reports" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ ok: true, message: "No active scheduled reports" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const reportData = await buildReportData(admin);
@@ -184,15 +197,14 @@ serve(async (req) => {
     }
 
     console.log("[Scheduled Reports] Sent:", results.length);
-    return new Response(
-      JSON.stringify({ ok: true, sent: results.length, results }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ ok: true, sent: results.length, results }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (err) {
     console.error("[Scheduled Reports] Error:", err);
-    return new Response(
-      JSON.stringify({ ok: false, error: String(err) }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ ok: false, error: String(err) }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });
