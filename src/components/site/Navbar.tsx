@@ -30,13 +30,13 @@ const NAV_LINKS: NavLink[] = [
   { to: "/painting", label: "PAINTING" },
   { to: "/dumpster", label: "DUMPSTER" },
   { to: "/projects", label: "GALLERY" },
-  { 
-    to: "/about", 
+  {
+    to: "/about",
     label: "ABOUT",
     sublinks: [
       { to: "/about", label: "ABOUT" },
-      { to: "/blog", label: "BLOG" }
-    ]
+      { to: "/blog", label: "BLOG" },
+    ],
   },
 ];
 
@@ -50,7 +50,9 @@ export function Navbar() {
       setSession(session);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 
@@ -65,7 +67,9 @@ export function Navbar() {
             <img
               src={logoSidingDepot}
               alt={`${SITE.name} logo`}
-              className="h-10 sm:h-12 lg:h-14 w-auto" width="160" height="56"
+              className="h-10 sm:h-12 lg:h-14 w-auto"
+              width="160"
+              height="56"
               loading="eager"
               decoding="async"
             />
@@ -76,11 +80,12 @@ export function Navbar() {
           {NAV_LINKS.map((l) => (
             <div key={l.label} className="relative group py-2">
               <div className="flex items-center gap-1 px-3">
-                <Link 
-                  to={l.to} 
+                <Link
+                  to={l.to}
                   className={cn(
                     "text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text",
-                    location.pathname === l.to && "text-sd-green-text border-b-2 border-sd-green-text"
+                    location.pathname === l.to &&
+                      "text-sd-green-text border-b-2 border-sd-green-text",
                   )}
                 >
                   {l.label}
@@ -89,7 +94,7 @@ export function Navbar() {
                   <ChevronDown className="h-3 w-3 text-sd-black group-hover:text-sd-green-text transition-transform group-hover:rotate-180" />
                 )}
               </div>
-              
+
               {l.sublinks && (
                 <div className="absolute left-0 top-[100%] pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-[200px]">
                   <div className="bg-white border border-sd-navy/10 shadow-2xl rounded-md overflow-hidden py-2">
@@ -107,22 +112,11 @@ export function Navbar() {
               )}
             </div>
           ))}
-          {session && (
-            <div className="flex items-center px-3">
-              <Link
-                to="/seo-dashboard"
-                className="text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text"
-              >
-                SEO DASHBOARD
-              </Link>
-            </div>
-          )}
         </nav>
-
 
         <button
           type="button"
-          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-sd-black"
+          className="lg:hidden inline-flex items-center justify-center rounded-md p-2.5 min-h-[44px] min-w-[44px] text-sd-black"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -132,7 +126,9 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-white border-b border-sd-gray-border`}>
+        <div
+          className={`lg:hidden border-t border-sd-navy/15 overflow-y-auto max-h-[calc(100vh-var(--spacing-nav-mobile))] bg-white border-b border-sd-gray-border`}
+        >
           <nav className="px-4 py-4 flex flex-col gap-1">
             <Accordion type="single" collapsible className="w-full">
               {NAV_LINKS.map((l) => (
@@ -147,7 +143,7 @@ export function Navbar() {
                           <Link
                             key={sub.label}
                             to={sub.to}
-                            className="px-3 py-2 rounded-md text-xs font-medium text-sd-black/70 hover:bg-sd-green/10"
+                            className="px-3 py-3 rounded-md text-sm font-medium text-sd-black/70 hover:bg-sd-green/10"
                             onClick={() => setOpen(false)}
                           >
                             {sub.label}
@@ -158,7 +154,7 @@ export function Navbar() {
                   ) : (
                     <Link
                       to={l.to}
-                      className="px-3 py-2 flex items-center rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
+                      className="px-3 py-3 flex items-center rounded-md text-sm font-semibold transition-colors text-sd-black hover:bg-sd-green/10"
                       onClick={() => setOpen(false)}
                     >
                       {l.label}
@@ -167,16 +163,6 @@ export function Navbar() {
                 </div>
               ))}
             </Accordion>
-            {session && (
-              <Link
-                to="/seo-dashboard"
-                className="px-3 py-2 rounded-md text-sm font-bold transition-colors text-sd-black hover:bg-sd-green/10"
-                onClick={() => setOpen(false)}
-              >
-                SEO DASHBOARD
-              </Link>
-            )}
-            
           </nav>
         </div>
       )}

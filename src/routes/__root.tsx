@@ -160,6 +160,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         children: `
           window.hl_chat_widget_page_source = window.location.href;
+          // Force GHL widget to bottom-right
+          function fixGHLPosition() {
+            var selectors = ['#chat-widget-container','[id^="chat-widget"]','.hl-chat-widget','[data-widget-id]','#leadconnector-chat-widget'];
+            selectors.forEach(function(sel) {
+              var el = document.querySelector(sel);
+              if (el) {
+                el.style.cssText += 'position:fixed!important;bottom:20px!important;right:20px!important;top:auto!important;left:auto!important;z-index:9999!important;';
+              }
+            });
+          }
+          setTimeout(fixGHLPosition, 2000);
+          setTimeout(fixGHLPosition, 5000);
           window.addEventListener('message', function(e) {
             if (e.data && e.data.type === 'hl-chat-form-submitted') {
               if (typeof gtag === 'function') {
