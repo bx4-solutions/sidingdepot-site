@@ -1097,7 +1097,18 @@ function SEODashboard() {
                 )}
 
                 {activeView === "integrations" && (
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-500">
+                   <div className="space-y-6 animate-in fade-in duration-500">
+                     {/* Status banner */}
+                     <div className="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl flex items-start gap-3">
+                       <AlertTriangle className="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" />
+                       <div>
+                         <p className="text-sm font-bold text-yellow-400">Integrações externas requerem configuração manual</p>
+                         <p className="text-xs text-slate-300 mt-1">Google Search Console e GA4 não se conectam automaticamente. Siga as instruções abaixo para ativá-los.</p>
+                       </div>
+                     </div>
+
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Google Search Console */}
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader className="flex flex-row items-center gap-4">
                            <div className="p-3 bg-sd-green/10 rounded-xl">
@@ -1111,15 +1122,35 @@ function SEODashboard() {
                         <CardContent className="space-y-4">
                            <div className="p-4 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between">
                               <div className="flex items-center gap-3">
-                                 <Globe className="h-4 w-4 text-sd-green" />
-                                 <span className="text-sm font-bold">sidingdepot.lovable.app</span>
+                                 <Globe className="h-4 w-4 text-slate-400" />
+                                 <span className="text-sm font-bold font-mono">
+                                   {typeof window !== 'undefined' ? window.location.hostname : 'sidingdepot.vercel.app'}
+                                 </span>
                               </div>
-                              <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30">CONECTADO</Badge>
+                              <Badge className="bg-yellow-500/10 text-yellow-400 border-yellow-500/30">Verificar</Badge>
                            </div>
-                           <Button className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-black uppercase tracking-widest text-xs h-12 rounded-xl">Configurar Propriedade</Button>
+                           <div className="p-3 bg-sd-black/40 border border-white/5 rounded-lg text-[11px] text-slate-300 space-y-1">
+                             <p className="font-bold text-white text-xs mb-2">Como configurar:</p>
+                             <p>1. Acesse <span className="text-sd-green font-mono">search.google.com/search-console</span></p>
+                             <p>2. Adicione a propriedade <span className="text-sd-green font-mono">sidingdepot.com</span></p>
+                             <p>3. Verifique via tag HTML (já está no site) ou DNS</p>
+                             <p className="text-slate-500 mt-2">O código de verificação já está no site: <span className="font-mono text-sd-green">Q3iqnEYQT-...</span></p>
+                           </div>
+                           <a
+                             href="https://search.google.com/search-console/welcome"
+                             target="_blank"
+                             rel="noopener noreferrer"
+                             className="block w-full"
+                           >
+                             <Button className="w-full bg-sd-green hover:bg-sd-green-hover text-sd-black font-black uppercase tracking-widest text-xs h-12 rounded-xl">
+                               Abrir Search Console
+                               <ExternalLink className="h-4 w-4 ml-2" />
+                             </Button>
+                           </a>
                         </CardContent>
                       </Card>
 
+                      {/* Google Analytics 4 */}
                       <Card className="bg-[#131921] border-white/10">
                         <CardHeader className="flex flex-row items-center gap-4">
                            <div className="p-3 bg-sd-green/10 rounded-xl">
@@ -1130,11 +1161,108 @@ function SEODashboard() {
                               <CardDescription>Eventos, conversões e fluxo de usuários</CardDescription>
                            </div>
                         </CardHeader>
-                        <CardContent className="space-y-4 text-center py-8">
-                           <p className="text-slate-300 text-sm">Métricas reais integradas via Global Site Tag.</p>
-                           <Button variant="outline" className="border-white/10 text-white font-bold h-10">Gerenciar Integração</Button>
+                        <CardContent className="space-y-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="p-3 bg-white/5 border border-white/10 rounded-xl">
+                              <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">GTM</p>
+                              <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 rounded-full bg-sd-green" />
+                                <span className="text-xs font-bold text-sd-green">GTM-TFGQWCQN</span>
+                              </div>
+                              <p className="text-[10px] text-slate-400 mt-1">Ativo no site</p>
+                            </div>
+                            <div className="p-3 bg-white/5 border border-yellow-500/20 rounded-xl">
+                              <p className="text-[10px] font-bold uppercase text-slate-400 mb-1">GA4 ID</p>
+                              <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 rounded-full bg-yellow-400" />
+                                <span className="text-xs font-bold text-yellow-400">Não configurado</span>
+                              </div>
+                              <p className="text-[10px] text-slate-400 mt-1">VITE_GA4_ID faltando</p>
+                            </div>
+                          </div>
+                          <div className="p-3 bg-sd-black/40 border border-white/5 rounded-lg text-[11px] text-slate-300 space-y-1">
+                            <p className="font-bold text-white text-xs mb-2">Como ativar GA4:</p>
+                            <p>1. Crie uma propriedade GA4 em <span className="text-sd-green font-mono">analytics.google.com</span></p>
+                            <p>2. Copie o Measurement ID (ex: <span className="font-mono text-sd-green">G-XXXXXXXXXX</span>)</p>
+                            <p>3. Adicione na Vercel: <span className="font-mono text-sd-green">VITE_GA4_ID = G-XXXXXXXXXX</span></p>
+                            <p className="text-slate-500 mt-1">Ou configure via GTM → GA4 Configuration Tag</p>
+                          </div>
+                          <a
+                            href="https://analytics.google.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full"
+                          >
+                            <Button variant="outline" className="w-full border-white/10 text-white font-bold h-10 hover:bg-white/5">
+                              Abrir Google Analytics
+                              <ExternalLink className="h-4 w-4 ml-2" />
+                            </Button>
+                          </a>
                         </CardContent>
                       </Card>
+
+                      {/* GHL Webhook */}
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader className="flex flex-row items-center gap-4">
+                           <div className="p-3 bg-sd-green/10 rounded-xl">
+                              <MessageSquare className="h-6 w-6 text-sd-green" />
+                           </div>
+                           <div>
+                              <CardTitle className="text-xl font-bold text-white">GHL Chat Widget</CardTitle>
+                              <CardDescription>Captura de leads via formulário do widget</CardDescription>
+                           </div>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="p-3 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between">
+                            <span className="font-mono text-xs text-slate-300">Widget ID: 6a05e7c2f127bb4126a40721</span>
+                            <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30">Ativo</Badge>
+                          </div>
+                          <div className="p-3 bg-sd-black/40 border border-white/5 rounded-lg text-[11px] text-slate-300 space-y-1">
+                            <p className="font-bold text-white text-xs mb-2">Webhook para captura de leads:</p>
+                            <p className="font-mono text-sd-green break-all">
+                              {typeof window !== 'undefined' ? window.location.origin : 'https://sidingdepot.vercel.app'}/api/ghl-webhook
+                            </p>
+                            <p className="mt-2">Configure no GHL → Settings → Integrations → Webhooks → POST</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* GTM */}
+                      <Card className="bg-[#131921] border-white/10">
+                        <CardHeader className="flex flex-row items-center gap-4">
+                           <div className="p-3 bg-sd-green/10 rounded-xl">
+                              <BarChart3 className="h-6 w-6 text-sd-green" />
+                           </div>
+                           <div>
+                              <CardTitle className="text-xl font-bold text-white">Google Tag Manager</CardTitle>
+                              <CardDescription>Container de tags e eventos</CardDescription>
+                           </div>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="p-3 bg-white/5 border border-sd-green/20 rounded-xl flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <CheckCircle2 className="h-5 w-5 text-sd-green" />
+                              <div>
+                                <p className="text-sm font-bold">GTM-TFGQWCQN</p>
+                                <p className="text-[10px] text-slate-400">Instalado em todas as páginas</p>
+                              </div>
+                            </div>
+                            <Badge className="bg-sd-green/20 text-sd-green border-sd-green/30">Ativo</Badge>
+                          </div>
+                          <a
+                            href="https://tagmanager.google.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full"
+                          >
+                            <Button variant="outline" className="w-full border-white/10 text-white font-bold h-10 hover:bg-white/5">
+                              Abrir Tag Manager
+                              <ExternalLink className="h-4 w-4 ml-2" />
+                            </Button>
+                          </a>
+                        </CardContent>
+                      </Card>
+                     </div>
                    </div>
                 )}
 
