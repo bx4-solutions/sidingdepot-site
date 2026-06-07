@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 export function MapSection() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  
+
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const addressQuery = encodeURIComponent(`${SITE.name}, ${SITE.address.full}`);
-  
+
   const mapUrl = apiKey
     ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${addressQuery}`
     : `https://www.google.com/maps?q=${addressQuery}&z=15&output=embed`;
@@ -29,12 +29,13 @@ export function MapSection() {
               Visit Our Showroom in Marietta
             </h2>
             <p className="mt-4 text-sd-gray-text max-w-lg">
-              Stop by our office to see James Hardie siding samples, window displays, and talk to our experts about your exterior renovation project.
+              Stop by our office to see James Hardie siding samples, window displays, and talk to
+              our experts about your exterior renovation project.
             </p>
 
             <div className="mt-10 space-y-6">
               <div className="flex gap-4">
-                <div className="h-10 w-10 rounded-full bg-sd-green/10 flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
                   <MapPin className="h-5 w-5 text-sd-green" />
                 </div>
                 <div>
@@ -44,7 +45,7 @@ export function MapSection() {
               </div>
 
               <div className="flex gap-4">
-                <div className="h-10 w-10 rounded-full bg-sd-green/10 flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
                   <Clock className="h-5 w-5 text-sd-green" />
                 </div>
                 <div>
@@ -54,24 +55,30 @@ export function MapSection() {
               </div>
 
               <div className="flex gap-4">
-                <div className="h-10 w-10 rounded-full bg-sd-green/10 flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
                   <Phone className="h-5 w-5 text-sd-green" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Phone</h3>
-                  <a href={SITE.phoneHref} className="text-sm text-sd-gray-text hover:text-sd-green transition-colors">
+                  <a
+                    href={SITE.phoneHref}
+                    className="text-sm text-sd-gray-text hover:text-sd-green transition-colors"
+                  >
                     {SITE.phone}
                   </a>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="h-10 w-10 rounded-full bg-sd-green/10 flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
                   <Mail className="h-5 w-5 text-sd-green" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Email</h3>
-                  <a href={`mailto:${SITE.email}`} className="text-sm text-sd-gray-text hover:text-sd-green transition-colors">
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="text-sm text-sd-gray-text hover:text-sd-green transition-colors"
+                  >
                     {SITE.email}
                   </a>
                 </div>
@@ -84,7 +91,12 @@ export function MapSection() {
                     Open in Google Maps
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="sm" className="rounded-full text-sd-black hover:text-sd-black">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full text-sd-black hover:text-sd-black"
+                >
                   <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="mr-2 h-4 w-4" />
                     Open in Apple Maps
@@ -101,13 +113,14 @@ export function MapSection() {
                 <p className="mt-2 text-sm text-sd-gray-text animate-pulse">Loading Map...</p>
               </div>
             )}
-            
+
             {hasError ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-sd-gray-bg p-8 text-center">
                 <MapPin className="h-12 w-12 text-sd-gray-text/30 mb-4" />
                 <h4 className="font-semibold text-sd-black">Map couldn't be loaded</h4>
                 <p className="mt-2 text-sm text-sd-gray-text max-w-xs">
-                  We're having trouble loading the interactive map. You can still view our location directly on Google Maps.
+                  We're having trouble loading the interactive map. You can still view our location
+                  directly on Google Maps.
                 </p>
                 <Button asChild variant="dark" className="mt-6" size="sm">
                   <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
@@ -132,7 +145,7 @@ export function MapSection() {
                 }}
               ></iframe>
             )}
-            
+
             <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl border border-sd-gray-bg shadow-lg lg:hidden opacity-0 group-hover:opacity-100 transition-opacity">
               <p className="text-xs font-semibold text-sd-black flex items-center gap-2">
                 <Navigation className="h-3 w-3 text-sd-green" />

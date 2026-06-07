@@ -10,7 +10,7 @@ const PAINS = [
   "Subcontractors your contractor never met show up at your door.",
   "The final invoice has line items that weren't in the estimate.",
   "Calls go unanswered once the deposit clears.",
-  "Wood rot is \"discovered\" mid-project and the price doubles.",
+  'Wood rot is "discovered" mid-project and the price doubles.',
   "You spend $20,000 — and still have to call someone else to fix it.",
 ];
 
@@ -34,10 +34,11 @@ export function PainPointsSection() {
           </p>
 
           {/* Lead-capture CTA next to the slider */}
-          <div className="mt-5 rounded-xl section-dark p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 shadow-lg ring-1 ring-white/5">
+          <div className="mt-5 rounded-xl section-dark p-4 sm:p-5 flex flex-col gap-4 shadow-lg ring-1 ring-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-foreground font-semibold text-sm sm:text-base">
-                Want to see your home transformed like this? Our team has completed 1,500+ projects across Greater Marietta, Alpharetta and North Atlanta.
+                Want to see your home transformed like this? Our team has completed 1,500+ projects
+                across Greater Marietta, Alpharetta and North Atlanta.
               </p>
               <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                 Free estimate · response within 24h.
@@ -48,7 +49,7 @@ export function PainPointsSection() {
               trigger={
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto shrink-0"
+                  className="w-full shrink-0"
                   onClick={() => track("quote_cta_click", { source: SLIDER_SOURCE })}
                 >
                   Get Your Quote
@@ -56,20 +57,20 @@ export function PainPointsSection() {
               }
             />
           </div>
-
-          
         </div>
 
         <div>
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green-pale px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text">
-            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Risk of Getting It Wrong
+            <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" /> The Risk of Getting It
+            Wrong
           </span>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl text-foreground leading-[1.05]">
-            Choosing the Wrong Contractor Is a <span className="text-sd-green">$20,000 Mistake.</span>
+            Choosing the Wrong Contractor Is a{" "}
+            <span className="text-sd-green">$20,000 Mistake.</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg">
-            Choosing the wrong North Atlanta exterior contractor is a costly mistake. Ask yourself
-            — what if you hire a contractor and then:
+            Choosing the wrong North Atlanta exterior contractor is a costly mistake. Ask yourself —
+            what if you hire a contractor and then:
           </p>
           <ul className="mt-6 space-y-3">
             {PAINS.map((p) => (
@@ -81,12 +82,10 @@ export function PainPointsSection() {
           </ul>
           <p className="mt-6 text-muted-foreground max-w-lg">
             Don&apos;t put yourself in that situation.{" "}
-            <span className="font-semibold text-foreground">Siding Depot</span> uses only 
-            highly specialized certified teams — trained, insured, and accountable to us 
-
-            directly. Every project has a dedicated manager on-site. Every 
-            estimate is written, itemized, and guaranteed. No surprises. 
-            No strangers at your door.
+            <span className="font-semibold text-foreground">Siding Depot</span> uses only highly
+            specialized certified teams — trained, insured, and accountable to us directly. Every
+            project has a dedicated manager on-site. Every estimate is written, itemized, and
+            guaranteed. No surprises. No strangers at your door.
           </p>
         </div>
       </div>

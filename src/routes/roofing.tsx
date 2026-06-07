@@ -48,9 +48,9 @@ const CONFIG: ServicePageConfig = {
   heroImage: HERO_IMAGE,
   heroImageAlt: "Professional roofing installation on a North Atlanta home by Siding Depot",
   heroBadge: "GAF Certified · Storm-Ready Systems",
-  heroLine1: "Protect What Matters Most",
-  heroLine2: "With A Roof",
-  heroLine3: "Built To Last.",
+  heroLine1: "Storm-Proof Roofing",
+  heroLine2: "Built To Last.",
+  heroLine3: "",
   heroSubtitle:
     "North Atlanta's trusted roofing contractor — GAF architectural systems, storm-damage specialists, and full permit management across Cobb, Cherokee, and Fulton counties. W-2 crews. Written warranties. No pressure.",
 

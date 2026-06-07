@@ -147,7 +147,7 @@ function SidingHero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8 flex flex-col items-center justify-center h-full py-32 lg:py-40 text-center">
-        <div className="max-w-3xl">
+        <div className="max-w-5xl">
           <div className="flex items-center justify-center gap-3 mb-6">
             <span
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
@@ -161,12 +161,10 @@ function SidingHero() {
             </span>
           </div>
 
-          <h1 className="font-display text-white leading-[0.9] text-4xl sm:text-5xl lg:text-7xl xl:text-8xl">
+          <h1 className="font-display text-white leading-[0.95] text-5xl sm:text-6xl lg:text-8xl xl:text-9xl">
             James Hardie
             <br />
-            <span style={{ color: "#B3D133" }}>Siding Done</span>
-            <br />
-            Right.
+            <span style={{ color: "#B3D133" }}>Siding Done</span> Right.
           </h1>
 
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">

@@ -94,6 +94,7 @@ export type ServicePageConfig = {
 
   // ── Projects ───────────────────────────────────────────────────────────────
   projectsLabel: string;
+  hideBeforeAfter?: boolean;
 
   // ── Authority ──────────────────────────────────────────────────────────────
   authorityEyebrow: string;
@@ -897,18 +898,18 @@ function FinalCTA({ cfg }: { cfg: ServicePageConfig }) {
               </h2>
               <p className="text-white/65 leading-relaxed mb-4">{cfg.ctaBody1}</p>
               <p className="text-white/65 leading-relaxed mb-8">{cfg.ctaBody2}</p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-wrap gap-3">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-base transition-all hover:scale-105"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105"
                   style={{ background: SD_LIME, color: SD_NAVY }}
                 >
                   {cfg.ctaMainBtn} <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
                   href={SITE.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-base text-white transition-all hover:bg-white/10"
-                  style={{ border: "2px solid rgba(255,255,255,0.2)" }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white transition-all hover:bg-white/10"
+                  style={{ border: "1px solid rgba(255,255,255,0.2)" }}
                 >
                   <Phone className="h-4 w-4" /> {SITE.phone}
                 </a>
@@ -950,7 +951,7 @@ function ServiceHero({ cfg }: { cfg: ServicePageConfig }) {
         }}
       />
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8 flex flex-col items-center justify-center h-full py-32 lg:py-40 text-center">
-        <div className="max-w-3xl">
+        <div className="max-w-5xl">
           <div className="flex items-center justify-center gap-3 mb-6">
             <span
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
@@ -963,16 +964,11 @@ function ServiceHero({ cfg }: { cfg: ServicePageConfig }) {
               <Award className="h-3 w-3" /> {cfg.heroBadge}
             </span>
           </div>
-          <h1 className="font-display text-white leading-[0.9] text-4xl sm:text-5xl lg:text-7xl xl:text-8xl">
+          <h1 className="font-display text-white leading-[0.95] text-4xl sm:text-5xl lg:text-7xl xl:text-8xl">
             {cfg.heroLine1}
             <br />
             <span style={{ color: SD_LIME }}>{cfg.heroLine2}</span>
-            {cfg.heroLine3 && (
-              <>
-                <br />
-                {cfg.heroLine3}
-              </>
-            )}
+            {cfg.heroLine3 && <> {cfg.heroLine3}</>}
           </h1>
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
             {cfg.heroSubtitle}
@@ -1039,7 +1035,7 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
         }
         steps={config.steps}
       />
-      <BeforeAfterSection projectsLabel={config.projectsLabel} />
+      {!config.hideBeforeAfter && <BeforeAfterSection projectsLabel={config.projectsLabel} />}
       <GoogleReviewsCarousel />
       <AuthoritySection cfg={config} />
       <WhyUsSection headline={config.whyUsHeadline} subheadline={config.whyUsSubheadline} />

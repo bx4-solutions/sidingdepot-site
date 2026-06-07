@@ -19,6 +19,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FinanceRouteImport } from './routes/finance'
 import { Route as DumpsterRentalRouteImport } from './routes/dumpster-rental'
 import { Route as DumpsterRouteImport } from './routes/dumpster'
@@ -95,6 +96,11 @@ const GuttersRoute = GuttersRouteImport.update({
 const GuideRoute = GuideRouteImport.update({
   id: '/guide',
   path: '/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinanceRoute = FinanceRouteImport.update({
@@ -244,6 +250,7 @@ export interface FileRoutesByFullPath {
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
   '/finance': typeof FinanceRoute
+  '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
@@ -283,6 +290,7 @@ export interface FileRoutesByTo {
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
   '/finance': typeof FinanceRoute
+  '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
@@ -322,6 +330,7 @@ export interface FileRoutesById {
   '/dumpster': typeof DumpsterRoute
   '/dumpster-rental': typeof DumpsterRentalRoute
   '/finance': typeof FinanceRoute
+  '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
@@ -363,6 +372,7 @@ export interface FileRouteTypes {
     | '/dumpster'
     | '/dumpster-rental'
     | '/finance'
+    | '/gallery'
     | '/guide'
     | '/gutters'
     | '/painting'
@@ -402,6 +412,7 @@ export interface FileRouteTypes {
     | '/dumpster'
     | '/dumpster-rental'
     | '/finance'
+    | '/gallery'
     | '/guide'
     | '/gutters'
     | '/painting'
@@ -440,6 +451,7 @@ export interface FileRouteTypes {
     | '/dumpster'
     | '/dumpster-rental'
     | '/finance'
+    | '/gallery'
     | '/guide'
     | '/gutters'
     | '/painting'
@@ -480,6 +492,7 @@ export interface RootRouteChildren {
   DumpsterRoute: typeof DumpsterRoute
   DumpsterRentalRoute: typeof DumpsterRentalRoute
   FinanceRoute: typeof FinanceRoute
+  GalleryRoute: typeof GalleryRoute
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
@@ -576,6 +589,13 @@ declare module '@tanstack/react-router' {
       path: '/guide'
       fullPath: '/guide'
       preLoaderRoute: typeof GuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/finance': {
@@ -805,6 +825,7 @@ const rootRouteChildren: RootRouteChildren = {
   DumpsterRoute: DumpsterRoute,
   DumpsterRentalRoute: DumpsterRentalRoute,
   FinanceRoute: FinanceRoute,
+  GalleryRoute: GalleryRoute,
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,

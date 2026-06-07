@@ -13,14 +13,15 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
+import { MascotGreeter } from "@/components/site/MascotGreeter";
 import { VisualEditToggle } from "@/components/VisualEditToggle";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
-
+import { fetchGooglePlaceStats } from "@/lib/place-stats.server";
+import { GoogleStatsContext } from "@/lib/google-stats-context";
 
 const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
-
 
 function NotFoundComponent() {
   const router = useRouter();
@@ -65,12 +66,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-sd-gray-text">Something went wrong on our end.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-pill bg-sd-green px-6 py-3 text-sm font-semibold text-sd-black hover:bg-sd-green-hover"
           >
             Try again
           </button>
-          <a href="/" className="rounded-pill border-2 border-sd-green px-6 py-3 text-sm font-semibold text-sd-green hover:bg-sd-green hover:text-sd-black">
+          <a
+            href="/"
+            className="rounded-pill border-2 border-sd-green px-6 py-3 text-sm font-semibold text-sd-green hover:bg-sd-green hover:text-sd-black"
+          >
             Go home
           </a>
         </div>
@@ -80,24 +87,51 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // Fetch Google stats ONCE for the entire app — all pages share the same live count
+  loader: async () => {
+    try {
+      const stats = await fetchGooglePlaceStats();
+      return { googleStats: stats };
+    } catch {
+      return { googleStats: { rating: 4.4, totalReviews: 162 } };
+    }
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Siding Depot — James Hardie Elite Preferred Contractor" },
-      { name: "description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta." },
+      {
+        name: "description",
+        content:
+          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta.",
+      },
       { name: "author", content: "Siding Depot LLC" },
       { name: "google-site-verification", content: "Q3iqnEYQT-FjjpwrinYUm2LxJYgmuYrBgQDgPPcBiQ8" },
       { name: "theme-color", content: "#0A0A0A" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Siding Depot" },
-      { property: "og:title", content: "Siding Depot — James Hardie Elite Preferred Contractor in Greater Marietta GA" },
-      { property: "og:description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta." },
+      {
+        property: "og:title",
+        content: "Siding Depot — James Hardie Elite Preferred Contractor in Greater Marietta GA",
+      },
+      {
+        property: "og:description",
+        content:
+          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta.",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Siding Depot — James Hardie Elite Preferred Contractor in Greater Marietta GA" },
-      { name: "twitter:description", content: "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      {
+        name: "twitter:title",
+        content: "Siding Depot — James Hardie Elite Preferred Contractor in Greater Marietta GA",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta.",
+      },
+      { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
+      { name: "twitter:image", content: "https://sidingdepot.com/og-default.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -122,6 +156,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
           ]
         : []),
+      // GHL Chat Widget — tracks source page automatically via window.location
+      {
+        children: `
+          window.hl_chat_widget_page_source = window.location.href;
+          window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'hl-chat-form-submitted') {
+              if (typeof gtag === 'function') {
+                gtag('event', 'ghl_chat_lead', {
+                  event_category: 'Lead',
+                  event_label: window.location.pathname,
+                  page_source: window.location.href
+                });
+              }
+              if (window.dataLayer) {
+                window.dataLayer.push({
+                  event: 'ghl_chat_lead',
+                  page_source: window.location.href,
+                  page_path: window.location.pathname
+                });
+              }
+            }
+          });
+        `,
+      },
+      {
+        src: "https://beta.leadconnectorhq.com/loader.js",
+        async: true,
+        "data-resources-url": "https://beta.leadconnectorhq.com/chat-widget/loader.js",
+        "data-widget-id": "6a05e7c2f127bb4126a40721",
+      },
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
@@ -159,19 +223,27 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const isDev = import.meta.env.DEV || (typeof window !== 'undefined' && (window.location.hostname === "localhost" || window.location.hostname.includes("lovableproject.com")));
+  const { googleStats } = Route.useLoaderData();
+  const isDev =
+    import.meta.env.DEV ||
+    (typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname.includes("lovableproject.com")));
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
-        <Navbar />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-        <FloatingCTA />
-        {isDev && <VisualEditToggle />}
-      </div>
+      <GoogleStatsContext.Provider value={googleStats}>
+        <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
+          <Navbar />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+          <FloatingCTA />
+          <MascotGreeter />
+          {isDev && <VisualEditToggle />}
+        </div>
+      </GoogleStatsContext.Provider>
     </QueryClientProvider>
   );
 }
