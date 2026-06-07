@@ -117,9 +117,14 @@ function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50/50 p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-sd-navy mb-2">System Overview</h1>
-          <p className="text-sd-gray-text font-medium">Dashboard monitor of pages, locations, and blog publication states.</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-sd-navy mb-2">System Overview</h1>
+            <p className="text-sd-gray-text font-medium">Dashboard monitor of pages, locations, and blog publication states.</p>
+          </div>
+          <Button asChild variant="outline" size="sm" className="rounded-full">
+            <Link to="/admin/users">👥 Manage Users</Link>
+          </Button>
         </div>
 
         {/* Stats Grid */}
