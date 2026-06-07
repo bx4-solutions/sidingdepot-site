@@ -37,30 +37,13 @@ export default defineEventHandler(async (event) => {
     body.contact_name ||
     (firstName || lastName ? `${firstName} ${lastName}`.trim() : null);
 
-  const email =
-    body.email ||
-    body.email_address ||
-    body.contact_email ||
-    null;
+  const email = body.email || body.email_address || body.contact_email || null;
 
-  const phone =
-    body.phone ||
-    body.phone_number ||
-    body.contact_phone ||
-    null;
+  const phone = body.phone || body.phone_number || body.contact_phone || null;
 
-  const page_url =
-    body.page_url ||
-    body.source_page ||
-    body.form_page ||
-    body.referrer ||
-    null;
+  const page_url = body.page_url || body.source_page || body.form_page || body.referrer || null;
 
-  const message =
-    body.message ||
-    body.notes ||
-    body.comment ||
-    null;
+  const message = body.message || body.notes || body.comment || null;
 
   const { error } = await admin.from("leads").insert({
     name: name || null,

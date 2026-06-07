@@ -89,34 +89,59 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
       if (start) eventsQuery = eventsQuery.gte("timestamp", start);
       if (end) eventsQuery = eventsQuery.lte("timestamp", end);
 
-      let trafficQuery = supabase
-        .from("traffic_metrics_daily")
-        .select("date,total_visitors,unique_visitors,page_views,avg_session_duration,bounce_rate,conversions,appointments")
-        .order("date", { ascending: true })
-        .limit(1000);
+      // Query analytics_events (replaces old traffic_metrics_daily / traffic_sources_daily)
+      let analyticsQuery = supabase
+        .from("analytics_events")
+        .select("id,session_id,event_type,page_path,referrer,utm_source,utm_medium,utm_campaign,device_type,country,city,created_at")
+        .order("created_at", { ascending: true })
+        .limit(2000);
 
-      if (startDate) trafficQuery = trafficQuery.gte("date", startDate);
-      if (endDate) trafficQuery = trafficQuery.lte("date", endDate);
+      if (start) analyticsQuery = analyticsQuery.gte("created_at", start);
+      if (end) analyticsQuery = analyticsQuery.lte("created_at", end);
 
-      let sourceQuery = supabase
-        .from("traffic_sources_daily")
-        .select("source,visitors,conversions")
-        .limit(1000);
-
-      if (startDate) sourceQuery = sourceQuery.gte("date", startDate);
-      if (endDate) sourceQuery = sourceQuery.lte("date", endDate);
-
-      const [eventsResult, trafficResult, sourceResult, postsResult] = await Promise.all([
+      const [eventsResult, analyticsResult, postsResult] = await Promise.all([
         eventsQuery,
-        trafficQuery,
-        sourceQuery,
+        analyticsQuery,
         supabase.from("blog_posts").select("title,slug,keywords,status").limit(200),
       ]);
 
       if (eventsResult.error) throw eventsResult.error;
       const events = (eventsResult.data || []) as any[];
-      const trafficRows = (trafficResult.data || []) as any[];
-      const sourceRows = (sourceResult.data || []) as any[];
+      const analyticsRows = (analyticsResult.data || []) as any[];
+
+      // Aggregate analytics_events into per-day traffic rows
+      const dayMap: Record<string, { page_views: number; sessions: Set<string>; }> = {};
+      analyticsRows.forEach((row) => {
+        const day = (row.created_at as string)?.slice(0, 10) || "";
+        if (!day) return;
+        if (!dayMap[day]) dayMap[day] = { page_views: 0, sessions: new Set() };
+        if (row.event_type === "page_view") dayMap[day].page_views++;
+        if (row.session_id) dayMap[day].sessions.add(row.session_id as string);
+      });
+      const trafficRows = Object.entries(dayMap)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([date, d]) => ({
+          date,
+          total_visitors: d.sessions.size,
+          unique_visitors: d.sessions.size,
+          page_views: d.page_views,
+          avg_session_duration: 0,
+          bounce_rate: 0,
+          conversions: 0,
+          appointments: 0,
+        }));
+
+      // Aggregate source counts from analytics_events
+      const srcMap: Record<string, number> = {};
+      analyticsRows.forEach((row) => {
+        const src = (row.utm_source as string) || (row.referrer as string) || "direct";
+        srcMap[src] = (srcMap[src] || 0) + 1;
+      });
+      const sourceRows = Object.entries(srcMap).map(([source, visitors]) => ({
+        source,
+        visitors,
+        conversions: 0,
+      }));
       const posts = (postsResult.data || []) as any[];
 
       const pageMap = new Map<string, any>();
