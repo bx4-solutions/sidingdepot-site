@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import roofingHeroAsset from "@/assets/roofing-house-hero.png.asset.json";
+import roofingHeroImg from "@/assets/services/roofing.jpg";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
-const HERO_IMAGE = roofingHeroAsset.url;
+const HERO_IMAGE = roofingHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/roofing";
 const seo = SERVICE_METADATA["roofing"];

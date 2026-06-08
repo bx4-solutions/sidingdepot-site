@@ -3,7 +3,8 @@ import { ServicePageLayout, type ServicePageConfig } from "@/components/site/Ser
 import { SERVICE_METADATA } from "@/data/seo-config";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
-const HERO_IMAGE = "/src/assets/doors-hero.png";
+import doorsHeroImg from "@/assets/doors-hero.png";
+const HERO_IMAGE = doorsHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/doors";
 const seo = SERVICE_METADATA["doors"];

@@ -8,12 +8,12 @@ import {
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
-import dumpsterHeroAsset from "@/assets/dumpster-hero.png.asset.json";
+import dumpsterHeroImg from "@/assets/dumpster-hero.png";
 
 const PAGE_TITLE = "Dumpster Rental in Marietta, GA | Siding Depot — Free Estimate";
 const PAGE_DESC =
   "10, 15 and 20-yard dumpsters with same-day or next-day delivery in North Atlanta. Serving Marietta, Alpharetta, Milton, Greater Marietta & North Atlanta. Licensed & insured. Free estimate in 24h. Call (678) 400-2012.";
-const HERO_IMAGE = dumpsterHeroAsset.url;
+const HERO_IMAGE = dumpsterHeroImg;
 const CANONICAL = "https://sidingdepot.com/dumpster";
 
 const FAQS: ReadonlyArray<FaqItem> = [

@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import dumpsterHeroAsset from "@/assets/dumpster-hero.png.asset.json";
+import dumpsterHeroImg from "@/assets/dumpster-hero.png";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
-const HERO_IMAGE = dumpsterHeroAsset.url;
+const HERO_IMAGE = dumpsterHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/dumpster-rental";
 const seo = SERVICE_METADATA["dumpster-rental"];
