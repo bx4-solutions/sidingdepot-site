@@ -7,8 +7,8 @@ const GHL_SELECTORS = [
   '[id^="chat-widget"]',
   ".hl-chat-widget",
   "[data-widget-id]",
-  "chat-widget",           // web component tag
-  "leadconnector-chat",    // alternate web component
+  "chat-widget", // web component tag
+  "leadconnector-chat", // alternate web component
 ];
 
 const FLOATING_STYLES =
@@ -20,7 +20,7 @@ const FLOATING_STYLES =
   "z-index:2147483647!important;" +
   "transform:none!important;";
 
-// CSS injected into <head> — stylesheet !important beats GHL's inline styles
+// CSS injected into <head> — targets the shadow host element
 const GHL_OVERRIDE_CSS = `
 #chat-widget-container,
 #leadconnector-chat-widget,
@@ -33,6 +33,27 @@ leadconnector-chat {
   right: 24px !important;
   top: auto !important;
   left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  z-index: 2147483647 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+`;
+
+// CSS injected INTO the shadow DOM — GHL uses a full-viewport shadow host overlay;
+// :host overrides force the host itself to be auto-sized at bottom-right.
+const GHL_SHADOW_CSS = `
+:host {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
   z-index: 2147483647 !important;
   transform: none !important;
 }
@@ -46,6 +67,18 @@ function injectOverrideStyles() {
   document.head.appendChild(style);
 }
 
+function injectShadowCss(el: Element) {
+  const shadow = (el as any).shadowRoot as ShadowRoot | null;
+  if (!shadow) return;
+  if (shadow.querySelector("#ghl-shadow-override")) return;
+  try {
+    const style = document.createElement("style");
+    style.id = "ghl-shadow-override";
+    style.textContent = GHL_SHADOW_CSS;
+    shadow.prepend(style);
+  } catch (_) {}
+}
+
 function applyFloatingPosition() {
   let applied = false;
   GHL_SELECTORS.forEach((sel) => {
@@ -56,6 +89,7 @@ function applyFloatingPosition() {
           htmlEl.style.cssText = FLOATING_STYLES;
           applied = true;
         }
+        injectShadowCss(el);
       });
     } catch (_) {}
   });
@@ -137,7 +171,7 @@ export function GhlChatWidget() {
                 Object.assign({}, payload, {
                   page_url: window.location.href,
                   source: "ghl-chat-widget",
-                })
+                }),
               ),
             }).catch(() => {});
           } catch (_) {}
@@ -152,7 +186,7 @@ export function GhlChatWidget() {
       script.async = true;
       script.setAttribute(
         "data-resources-url",
-        "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+        "https://beta.leadconnectorhq.com/chat-widget/loader.js",
       );
       script.setAttribute("data-widget-id", "6a05e7c2f127bb4126a40721");
       document.head.appendChild(script);
