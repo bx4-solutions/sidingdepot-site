@@ -20,6 +20,7 @@ import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { fetchGooglePlaceStats } from "@/lib/place-stats.server";
 import { GoogleStatsContext } from "@/lib/google-stats-context";
+import { GhlChatWidget } from "@/components/site/GhlChatWidget";
 
 const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
@@ -88,14 +89,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  // Fetch Google stats ONCE for the entire app — all pages share the same live count
-  loader: async () => {
-    try {
-      const stats = await fetchGooglePlaceStats();
-      return { googleStats: stats };
-    } catch {
-      return { googleStats: { rating: 4.4, totalReviews: 162 } };
-    }
+  // Return Google stats fallback instantly on the server to prevent blocking TTFB
+  loader: () => {
+    return { googleStats: { rating: 4.4, totalReviews: 162 } };
   },
   head: () => ({
     meta: [
@@ -142,6 +138,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap",
       },
+      // Preload critical LCP assets (Hero Image)
+      {
+        rel: "preload",
+        href: "/hero-home-sm.webp",
+        as: "image",
+        media: "(max-width: 640px)",
+        fetchPriority: "high" as any,
+      },
+      {
+        rel: "preload",
+        href: "/hero-home.webp",
+        as: "image",
+        media: "(min-width: 641px)",
+        fetchPriority: "high" as any,
+      },
     ],
     scripts: [
       // Google Tag Manager
@@ -157,67 +168,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
           ]
         : []),
-      // GHL Chat Widget — tracks source page automatically via window.location
-      {
-        children: `
-          window.hl_chat_widget_page_source = window.location.href;
-          // Force GHL widget to bottom-right
-          function fixGHLPosition() {
-            var selectors = ['#chat-widget-container','[id^="chat-widget"]','.hl-chat-widget','[data-widget-id]','#leadconnector-chat-widget'];
-            selectors.forEach(function(sel) {
-              var el = document.querySelector(sel);
-              if (el) {
-                el.style.cssText += 'position:fixed!important;bottom:20px!important;right:20px!important;top:auto!important;left:auto!important;z-index:9999!important;';
-              }
-            });
-          }
-          setTimeout(fixGHLPosition, 2000);
-          setTimeout(fixGHLPosition, 5000);
-          window.addEventListener('message', function(e) {
-            // GHL fires different event types depending on version
-            var isGHLLead = e.data && (
-              e.data.type === 'hl-chat-form-submitted' ||
-              e.data.type === 'form-submitted' ||
-              e.data.type === 'lead_submitted' ||
-              (e.data.type && e.data.type.includes('submit'))
-            );
-            if (isGHLLead) {
-              if (typeof gtag === 'function') {
-                gtag('event', 'ghl_chat_lead', {
-                  event_category: 'Lead',
-                  event_label: window.location.pathname,
-                  page_source: window.location.href
-                });
-              }
-              if (window.dataLayer) {
-                window.dataLayer.push({
-                  event: 'ghl_chat_lead',
-                  page_source: window.location.href,
-                  page_path: window.location.pathname
-                });
-              }
-              // Store in our Supabase leads table via webhook
-              try {
-                var payload = e.data.data || e.data.payload || e.data || {};
-                fetch('/api/ghl-webhook', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(Object.assign({}, payload, {
-                    page_url: window.location.href,
-                    source: 'ghl-chat-widget'
-                  }))
-                }).catch(function() {});
-              } catch(err) {}
-            }
-          });
-        `,
-      },
-      {
-        src: "https://beta.leadconnectorhq.com/loader.js",
-        async: true,
-        "data-resources-url": "https://beta.leadconnectorhq.com/chat-widget/loader.js",
-        "data-widget-id": "6a05e7c2f127bb4126a40721",
-      },
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
@@ -273,6 +223,7 @@ function RootComponent() {
           <Footer />
           <FloatingCTA />
           <AnalyticsTracker />
+          <GhlChatWidget />
           {isDev && <VisualEditToggle />}
         </div>
       </GoogleStatsContext.Provider>

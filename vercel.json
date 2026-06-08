@@ -2,12 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "bun run build",
   "framework": null,
-  "crons": [
-    {
-      "path": "/_vercel/cron",
-      "schedule": "0 6 */2 * *"
-    }
-  ],
+
   "headers": [
     {
       "source": "/sitemap.xml",
