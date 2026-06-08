@@ -140,21 +140,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap",
         as: "style",
       },
+      // Preconnect to own CDN (OG images served from sidingdepot.com)
+      { rel: "preconnect", href: "https://sidingdepot.com" },
     ],
     scripts: [
-      // Google Tag Manager
-      {
-        children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
-      },
-      // GA4 (only if env var present)
-      ...(GA4_ID
-        ? [
-            { src: `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`, async: true },
-            {
-              children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA4_ID}');`,
-            },
-          ]
-        : []),
+      // GA4 (only if env var present) — also loaded afterInteractive via useEffect
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
@@ -212,6 +202,38 @@ function RootComponent() {
     (typeof window !== "undefined" &&
       (window.location.hostname === "localhost" ||
         window.location.hostname.includes("lovableproject.com")));
+
+  // ── afterInteractive: inject GTM + GA4 only after React hydration ──────────
+  // Equivalent to Next.js <Script strategy="afterInteractive">
+  // This keeps gtm.js out of the critical path and eliminates its TBT impact.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Initialize dataLayer immediately (zero-byte, just array creation)
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+    // Inject gtm.js script tag (async — fires after hydration)
+    const gtmScript = document.createElement("script");
+    gtmScript.async = true;
+    gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+    document.head.appendChild(gtmScript);
+
+    // Inject GA4 if configured
+    if (GA4_ID) {
+      w.dataLayer = w.dataLayer || [];
+      function gtag(...args: any[]) { w.dataLayer.push(args); }
+      w.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", GA4_ID);
+
+      const ga4Script = document.createElement("script");
+      ga4Script.async = true;
+      ga4Script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+      document.head.appendChild(ga4Script);
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

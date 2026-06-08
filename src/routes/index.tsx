@@ -1,24 +1,40 @@
 // GitHub sync test commit — sidingdepot-dfab98cb
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ShieldCheck, Sparkles, Users, ListChecks } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { HeroCtaButtons } from "@/components/site/HeroCtaButtons";
 import { ProofBar } from "@/components/site/ProofBar";
 import { ServiceCard } from "@/components/site/ServiceCard";
-import { TestimonialCard } from "@/components/site/TestimonialCard";
-import { MapSection } from "@/components/site/MapSection";
-import { CitiesServed } from "@/components/site/CitiesServed";
-
 import { PainPointsSection } from "@/components/site/PainPointsSection";
-import { ProcessTimeline } from "@/components/site/ProcessTimeline";
-import { AwardsStrip } from "@/components/site/AwardsStrip";
 import { ServicesHotspots } from "@/components/site/ServicesHotspots";
-import { FinancingBlock } from "@/components/site/FinancingBlock";
-import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SERVICES, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
+import { lazy, Suspense } from "react";
+
+// ── Below-fold components: lazy-loaded (equivalent to Next.js dynamic()) ──────
+const TestimonialCard = lazy(() =>
+  import("@/components/site/TestimonialCard").then((m) => ({ default: m.TestimonialCard }))
+);
+const MapSection = lazy(() =>
+  import("@/components/site/MapSection").then((m) => ({ default: m.MapSection }))
+);
+const CitiesServed = lazy(() =>
+  import("@/components/site/CitiesServed").then((m) => ({ default: m.CitiesServed }))
+);
+const ProcessTimeline = lazy(() =>
+  import("@/components/site/ProcessTimeline").then((m) => ({ default: m.ProcessTimeline }))
+);
+const AwardsStrip = lazy(() =>
+  import("@/components/site/AwardsStrip").then((m) => ({ default: m.AwardsStrip }))
+);
+const FinancingBlock = lazy(() =>
+  import("@/components/site/FinancingBlock").then((m) => ({ default: m.FinancingBlock }))
+);
+const GoogleReviewsCarousel = lazy(() =>
+  import("@/components/site/GoogleReviewsCarousel").then((m) => ({ default: m.GoogleReviewsCarousel }))
+);
 const HOME_VIDEOS = [
   {
     id: "898FBaW_VnI",
@@ -310,13 +326,21 @@ function HomePage() {
         </div>
       </section>
 
-      <ProcessTimeline title="How It Works — From First Call to Final Walkthrough" />
+      <Suspense fallback={null}>
+        <ProcessTimeline title="How It Works — From First Call to Final Walkthrough" />
+      </Suspense>
 
-      <AwardsStrip />
+      <Suspense fallback={null}>
+        <AwardsStrip />
+      </Suspense>
 
-      <GoogleReviewsCarousel />
+      <Suspense fallback={null}>
+        <GoogleReviewsCarousel />
+      </Suspense>
 
-      <FinancingBlock />
+      <Suspense fallback={null}>
+        <FinancingBlock />
+      </Suspense>
 
       {/* QUOTE FORM TEASER */}
       <section className="section-dark-alt py-20 lg:py-24">
@@ -497,10 +521,14 @@ function HomePage() {
         </div>
       </section>
 
-      <CitiesServed />
+      <Suspense fallback={null}>
+        <CitiesServed />
+      </Suspense>
 
       <section id="location-section" aria-labelledby="location-title">
-        <MapSection />
+        <Suspense fallback={null}>
+          <MapSection />
+        </Suspense>
       </section>
     </>
   );

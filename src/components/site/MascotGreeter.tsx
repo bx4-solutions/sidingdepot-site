@@ -192,15 +192,18 @@ export function MascotGreeter() {
 
         {/* Mascot waist-up */}
         <div className="sdg-mascot-clip">
-          <img
-            src="/mascot.png"
-            alt="Siding Depot mascot waving hello"
-            className="sdg-mascot-img"
-            width={170}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-          />
+          <picture>
+            <source srcSet="/mascot.webp" type="image/webp" />
+            <img
+              src="/mascot.png"
+              alt="Siding Depot mascot waving hello"
+              className="sdg-mascot-img"
+              width={170}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
+          </picture>
         </div>
 
       </div>
