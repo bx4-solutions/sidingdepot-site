@@ -47,26 +47,26 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import sidingImg from "@/assets/services/siding.webp";
+import sidingImg from "../assets/services/siding.webp";
 
-import paintingImg from "@/assets/services/painting.jpg";
-import paintingWebp from "@/assets/services/painting.webp";
-import paintingAvif from "@/assets/services/painting.avif";
-import windowsImg from "@/assets/services/windows.jpg";
-import windowsWebp from "@/assets/services/windows.webp";
-import windowsAvif from "@/assets/services/windows.avif";
-import deckImg from "@/assets/services/deck.jpg";
-import deckWebp from "@/assets/services/deck.webp";
-import deckAvif from "@/assets/services/deck.avif";
-import guttersImg from "@/assets/services/gutters.jpg";
-import guttersWebp from "@/assets/services/gutters.webp";
-import guttersAvif from "@/assets/services/gutters.avif";
-import roofingImg from "@/assets/services/roofing.jpg";
-import roofingWebp from "@/assets/services/roofing.webp";
-import roofingAvif from "@/assets/services/roofing.avif";
-import dumpsterImg from "@/assets/services/dumpster.jpg";
-import dumpsterWebp from "@/assets/services/dumpster.webp";
-import dumpsterAvif from "@/assets/services/dumpster.avif";
+import paintingImg from "../assets/services/painting.jpg";
+import paintingWebp from "../assets/services/painting.webp";
+import paintingAvif from "../assets/services/painting.avif";
+import windowsImg from "../assets/services/windows.jpg";
+import windowsWebp from "../assets/services/windows.webp";
+import windowsAvif from "../assets/services/windows.avif";
+import deckImg from "../assets/services/deck.jpg";
+import deckWebp from "../assets/services/deck.webp";
+import deckAvif from "../assets/services/deck.avif";
+import guttersImg from "../assets/services/gutters.jpg";
+import guttersWebp from "../assets/services/gutters.webp";
+import guttersAvif from "../assets/services/gutters.avif";
+import roofingImg from "../assets/services/roofing.jpg";
+import roofingWebp from "../assets/services/roofing.webp";
+import roofingAvif from "../assets/services/roofing.avif";
+import dumpsterImg from "../assets/services/dumpster.jpg";
+import dumpsterWebp from "../assets/services/dumpster.webp";
+import dumpsterAvif from "../assets/services/dumpster.avif";
 
 export type ServiceImage = {
   /** Fallback raster (JPEG/WebP) used as <img src>. */
