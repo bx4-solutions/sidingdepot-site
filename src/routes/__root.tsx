@@ -219,7 +219,9 @@ function RootComponent() {
     // Inject GA4 if configured
     if (GA4_ID) {
       w.dataLayer = w.dataLayer || [];
-      function gtag(...args: any[]) { w.dataLayer.push(args); }
+      function gtag(...args: any[]) {
+        w.dataLayer.push(args);
+      }
       w.gtag = gtag;
       gtag("js", new Date());
       gtag("config", GA4_ID);
