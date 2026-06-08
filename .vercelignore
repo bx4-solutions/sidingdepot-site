@@ -19,7 +19,6 @@ scripts/videos/
 public/material/
 *.mp4
 *.mov
-*.JPG
 *.zip
 *.tar.gz
 *.pdf
