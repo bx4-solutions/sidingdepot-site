@@ -74,6 +74,7 @@ export const Route = createFileRoute("/dumpster")({
 function DumpsterPage() {
   return (
     <ServiceLandingPage
+      serviceKey="dumpster"
       eyebrow="10 / 15 / 20 yd · Same-Day Delivery"
       title="Dumpster rental,"
       titleAccent="ready when your project is."
