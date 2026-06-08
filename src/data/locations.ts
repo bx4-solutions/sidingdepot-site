@@ -1,4 +1,4 @@
-import { CITIES, SERVICES } from "./site";
+import { CITIES } from "./site-meta";
 
 export const SITE_ORIGIN =
   (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ?? "https://sidingdepot.com";
@@ -57,9 +57,6 @@ export function getCityMeta(slug: string) {
   return CITIES.find((c) => c.slug === slug);
 }
 
-export function getServiceMeta(slug: string) {
-  return SERVICES.find((s) => s.slug === slug);
-}
 
 /** All static (non-dynamic) routes that should appear in sitemap.xml */
 export const STATIC_ROUTES = [

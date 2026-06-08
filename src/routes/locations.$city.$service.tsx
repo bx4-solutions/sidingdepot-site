@@ -15,7 +15,8 @@ import { HeroSection } from "@/components/site/HeroSection";
 import { ProofBar } from "@/components/site/ProofBar";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
 import { MapEmbed } from "@/components/site/MapEmbed";
-import { isValidLocation, getCityMeta, getServiceMeta, SITE_ORIGIN } from "@/data/locations";
+import { isValidLocation, getCityMeta, SITE_ORIGIN } from "@/data/locations";
+import { getServiceMeta } from "@/data/services-utils";
 import { SITE, HERO } from "@/data/site";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
