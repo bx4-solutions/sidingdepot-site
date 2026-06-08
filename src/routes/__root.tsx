@@ -24,6 +24,8 @@ import { GhlChatWidget } from "@/components/site/GhlChatWidget";
 
 const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
+// Set VITE_META_PIXEL_ID=<pixel_id> in Vercel env vars to activate Meta Pixel
+const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
 
 function NotFoundComponent() {
   const router = useRouter();
@@ -230,6 +232,34 @@ function RootComponent() {
       ga4Script.async = true;
       ga4Script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
       document.head.appendChild(ga4Script);
+    }
+
+    // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
+    if (META_PIXEL_ID) {
+      w.fbq = w.fbq || function (...args: any[]) {
+        (w.fbq.q = w.fbq.q || []).push(args);
+      };
+      w.fbq.v = "2.0";
+      w.fbq.loaded = true;
+      w._fbq = w._fbq || w.fbq;
+
+      w.fbq("init", META_PIXEL_ID);
+      w.fbq("track", "PageView");
+
+      const pixelScript = document.createElement("script");
+      pixelScript.async = true;
+      pixelScript.src = "https://connect.facebook.net/en_US/fbevents.js";
+      document.head.appendChild(pixelScript);
+
+      // noscript fallback
+      const noscript = document.createElement("noscript");
+      const img = document.createElement("img");
+      img.height = 1;
+      img.width = 1;
+      img.style.display = "none";
+      img.src = `https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`;
+      noscript.appendChild(img);
+      document.body.appendChild(noscript);
     }
   }, []);
 

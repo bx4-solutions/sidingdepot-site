@@ -17,6 +17,9 @@ const UTM_KEYS = [
   "utm_content",
 ] as const;
 
+// Click IDs — NOT stored in first-touch persistence (they belong to current click only)
+const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid", "ttclid"] as const;
+
 
 const STORAGE_KEY = "__lp_attribution_v1";
 const VISITOR_ID_KEY = "__lp_visitor_id_v1";
@@ -82,13 +85,18 @@ export function getAttribution(): Record<string, string> {
     }
   }
 
-  // Read current URL UTMs
+  // Read current URL UTMs + click IDs
   const current: Record<string, string> = {};
   try {
     const sp = new URLSearchParams(window.location.search);
     for (const k of UTM_KEYS) {
       const v = sp.get(k);
       if (v) current[k] = v;
+    }
+    // Click IDs go directly into `out` (not persisted — they are per-click)
+    for (const k of CLICK_ID_KEYS) {
+      const v = sp.get(k);
+      if (v) out[k] = v;
     }
   } catch {
     // ignore malformed URL
@@ -185,6 +193,29 @@ export function track(event: string, payload: TrackPayload = {}): void {
 
 
 // =====================================================================
+// Meta Pixel Helper
+// =====================================================================
+
+/**
+ * Fire a Meta Pixel standard or custom event.
+ * Safe no-op when Meta Pixel is not loaded (VITE_META_PIXEL_ID not set).
+ */
+export function trackMeta(event: string, payload?: Record<string, unknown>): void {
+  try {
+    if (typeof window === "undefined") return;
+    const fbq = (window as any).fbq;
+    if (typeof fbq !== "function") return;
+    if (payload) {
+      fbq("track", event, payload);
+    } else {
+      fbq("track", event);
+    }
+  } catch {
+    // never crash the page
+  }
+}
+
+// =====================================================================
 // Conversion Event Helpers
 // =====================================================================
 
@@ -203,6 +234,12 @@ export function trackLeadSubmit(data: {
     service: data.service,
     city: data.city,
     source: data.source || "contact_form",
+  });
+  // Meta Pixel — "Lead" is a standard event recognised by Meta Ads Manager
+  trackMeta("Lead", {
+    content_name: data.service || "general",
+    content_category: "Home Services",
+    status: "submitted",
   });
 }
 
@@ -302,6 +339,7 @@ export function trackCallClick(ctx: AbCtx & { city?: string }): void {
     event_label: `${ctx.serviceKey}_${ctx.variation}`,
     ...ctx,
   });
+  trackMeta("Contact");
 }
 
 /** Track Finance application click. */
@@ -313,6 +351,7 @@ export function trackFinanceApply(): void {
     variation: "A",
     source: "finance_apply_btn",
   });
+  trackMeta("InitiateCheckout", { content_name: "GreenSky Financing" });
 }
 
 /** Track Finance qualification (next step in the flow). */
