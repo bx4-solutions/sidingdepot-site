@@ -7,22 +7,63 @@ import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import certHeroImg from "@/assets/certifications-hero.jpg";
 
-
 const LucideFacebook = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
 );
 const LucideInstagram = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.51"/></svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.51" />
+  </svg>
 );
 const LucideYoutube = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 69.14 69.14 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 69.14 69.14 0 0 1-15 0 2 2 0 0 1-2-2z"/><polyline points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 69.14 69.14 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 69.14 69.14 0 0 1-15 0 2 2 0 0 1-2-2z" />
+    <polyline points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+  </svg>
 );
 
 const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
   title: "Meet Siding Depot — James Hardie Siding Installer in Greater Marietta, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Greater Marietta. 12+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Greater Marietta. 10+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
@@ -53,7 +94,9 @@ const LOCAL_BUSINESS_ABOUT_JSONLD = {
     "Siding replacement",
     "Exterior painting",
     "Replacement windows",
-    "Gutters", "Decks", "Roofing",
+    "Gutters",
+    "Decks",
+    "Roofing",
   ],
 };
 
@@ -87,7 +130,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Local James Hardie Elite Preferred siding contractor serving Greater Marietta. 12+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
+          "Local James Hardie Elite Preferred siding contractor serving Greater Marietta. 10+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
       {
         name: "keywords",
@@ -96,8 +139,7 @@ export const Route = createFileRoute("/about")({
       },
       {
         property: "og:title",
-        content:
-          "About Siding Depot — Georgia's Trusted James Hardie Siding Installer",
+        content: "About Siding Depot — Georgia's Trusted James Hardie Siding Installer",
       },
       {
         property: "og:description",
@@ -122,7 +164,8 @@ export const Route = createFileRoute("/about")({
       },
       {
         name: "twitter:description",
-        content: "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
+        content:
+          "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
       {
         name: "twitter:image",
@@ -172,7 +215,7 @@ const DIFFERENTIATORS = [
 
 const STATS = [
   {
-    value: "12+",
+    value: "10+",
     label: "Years of Experience",
     desc: "Over a decade delivering siding, painting, and exterior renovation projects with quality and technical precision.",
   },
@@ -199,15 +242,13 @@ function AboutPage() {
               About Siding Depot
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              12 years installing{" "}
-              <span className="text-sd-green">James Hardie siding</span> across
+              10 years installing <span className="text-sd-green">James Hardie siding</span> across
               Greater Marietta.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
-              Siding Depot is a James Hardie Elite Preferred contractor based in
-              Greater Marietta, GA — specialists in fiber cement siding installation,
-              replacement, painting, windows, decks, gutters and roofing
-              for homeowners in the area.
+              Siding Depot is a James Hardie Elite Preferred contractor based in Greater Marietta,
+              GA — specialists in fiber cement siding installation, replacement, painting, windows,
+              decks, gutters and roofing for homeowners in the area.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -219,10 +260,7 @@ function AboutPage() {
             </div>
           </div>
           <div>
-            <YoutubeEmbed
-              videoId="fgNhcGoEYmE"
-              title="Meet Siding Depot — Greater Marietta, GA"
-            />
+            <YoutubeEmbed videoId="fgNhcGoEYmE" title="Meet Siding Depot — Greater Marietta, GA" />
             <nav
               aria-label="Related siding services"
               className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/75"
@@ -256,9 +294,9 @@ function AboutPage() {
               What sets our siding installation apart in Georgia
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Siding Depot is one of the fastest-growing James Hardie Replacement
-              Contractors in Georgia. Hiring a certified local installer matters —
-              here's why Greater Marietta homeowners trust us with their siding project:
+              Siding Depot is one of the fastest-growing James Hardie Replacement Contractors in
+              Georgia. Hiring a certified local installer matters — here's why Greater Marietta
+              homeowners trust us with their siding project:
             </p>
           </div>
 
@@ -276,9 +314,11 @@ function AboutPage() {
 
           <p className="mt-10 text-center text-sd-gray-text max-w-3xl mx-auto leading-relaxed">
             You can count on the team at Siding Depot to satisfy all your{" "}
-            <strong className="text-sd-navy">Siding, Painting, Windows, Decks, Gutter, and Roofing</strong>{" "}
-            needs quickly, efficiently and affordably. We know how much quality means to you,
-            and we work hard to give you the absolute best on every job.
+            <strong className="text-sd-navy">
+              Siding, Painting, Windows, Decks, Gutter, and Roofing
+            </strong>{" "}
+            needs quickly, efficiently and affordably. We know how much quality means to you, and we
+            work hard to give you the absolute best on every job.
           </p>
 
           <div className="mt-8 text-center">
@@ -295,7 +335,9 @@ function AboutPage() {
           <div className="grid gap-10 md:grid-cols-3">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="font-display text-6xl text-sd-green leading-none">{s.value}</div>
+                <div className="font-display text-4xl sm:text-6xl text-sd-green leading-none">
+                  {s.value}
+                </div>
                 <h3 className="mt-3 text-base font-bold uppercase tracking-wider">{s.label}</h3>
                 <p className="mt-3 text-sm text-white/70 leading-relaxed">{s.desc}</p>
               </div>
@@ -304,21 +346,25 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* PARTNERS / BRAND CAROUSEL */}
-      <section className="py-16 bg-white border-y border-sd-gray-border">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text">
-            Trusted partners &amp; manufacturers
-          </p>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-6 items-center">
-            {PARTNER_LOGOS.map((src, i) => (
-              <div key={src} className="flex items-center justify-center h-20">
+      {/* PARTNERS / BRAND MARQUEE */}
+      <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
+        <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
+          Trusted partners &amp; manufacturers
+        </p>
+        {/* Marquee track — duplicated for seamless loop */}
+        <div className="relative flex">
+          <div
+            className="flex items-center gap-12 animate-marquee whitespace-nowrap"
+            style={{ animation: "marquee 28s linear infinite" }}
+          >
+            {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
+              <div key={i} className="flex-shrink-0 flex items-center justify-center h-20 w-36">
                 <img
                   src={src}
-                  alt={`Manufacturer partner ${i + 1}`}
-                  width={160}
+                  alt={`Manufacturer partner ${(i % PARTNER_LOGOS.length) + 1}`}
+                  width={144}
                   height={64}
-                  className="max-h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  className="max-h-16 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
                   loading="lazy"
                   decoding="async"
                 />
@@ -326,6 +372,12 @@ function AboutPage() {
             ))}
           </div>
         </div>
+        <style>{`
+          @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
       </section>
 
       {/* CERTIFICATIONS */}
@@ -369,12 +421,18 @@ function AboutPage() {
             <h2 className="font-display text-4xl">Office</h2>
             <ul className="mt-6 space-y-4 text-base">
               <li>
-                <a href={SITE.phoneHref} className="flex items-center gap-3 text-sd-green hover:text-sd-green-hover">
+                <a
+                  href={SITE.phoneHref}
+                  className="flex items-center gap-3 text-sd-green hover:text-sd-green-hover"
+                >
                   <Phone className="h-5 w-5" /> {SITE.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${SITE.email}`} className="flex items-center gap-3 text-sd-green hover:text-sd-green-hover">
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="flex items-center gap-3 text-sd-green hover:text-sd-green-hover"
+                >
                   <Mail className="h-5 w-5" /> {SITE.email}
                 </a>
               </li>
@@ -391,10 +449,42 @@ function AboutPage() {
               </li>
             </ul>
             <div className="flex gap-4 mt-10">
-              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/50 hover:text-sd-green transition-colors"><LucideFacebook className="h-6 w-6" /></a>
-              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/50 hover:text-sd-green transition-colors"><LucideInstagram className="h-6 w-6" /></a>
-              <a href={SITE.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/50 hover:text-sd-green transition-colors"><LucideYoutube className="h-6 w-6" /></a>
-              <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/50 hover:text-sd-green transition-colors"><Music2 className="h-6 w-6" /></a>
+              <a
+                href={SITE.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-white/50 hover:text-sd-green transition-colors"
+              >
+                <LucideFacebook className="h-6 w-6" />
+              </a>
+              <a
+                href={SITE.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-white/50 hover:text-sd-green transition-colors"
+              >
+                <LucideInstagram className="h-6 w-6" />
+              </a>
+              <a
+                href={SITE.social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="text-white/50 hover:text-sd-green transition-colors"
+              >
+                <LucideYoutube className="h-6 w-6" />
+              </a>
+              <a
+                href={SITE.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                className="text-white/50 hover:text-sd-green transition-colors"
+              >
+                <Music2 className="h-6 w-6" />
+              </a>
             </div>
           </div>
           <div>

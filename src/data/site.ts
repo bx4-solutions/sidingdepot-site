@@ -84,14 +84,63 @@ export const SERVICES: ReadonlyArray<{
   Icon: LucideIcon;
   image: ServiceImage;
 }> = [
-  { slug: "siding", title: "James Hardie Siding", short: "HardieZone HZ10 engineered for Georgia's 95°F+ summers, year-round humidity and storm season. No subcontractors.", Icon: PanelsTopLeft, image: { src: sidingImg } },
-  { slug: "painting", title: "Exterior Painting", short: "Sherwin-Williams premium with UV protection.", Icon: PaintRoller, image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif } },
-  { slug: "windows", title: "Windows", short: "Energy-efficient replacements that lower bills.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
-  { slug: "doors", title: "Entry & Patio Doors", short: "Secure and stylish doors by Therma-Tru & ProVia.", Icon: AppWindow, image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif } },
-  { slug: "decks", title: "Deck Construction", short: "Custom decks in composite, hardwood and PT.", Icon: Hammer, image: { src: deckImg, webp: deckWebp, avif: deckAvif } },
-  { slug: "gutters", title: "Gutter Systems", short: "Seamless aluminum gutters and LeafGuard.", Icon: CloudRain, image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif } },
-  { slug: "roofing", title: "Roofing", short: "GAF Factory Certified — replacement.", Icon: Triangle, image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif } },
-  { slug: "dumpster", title: "Dumpster Rental", short: "10/15/20 yd — same-day delivery in Greater Marietta.", Icon: Truck, image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif } },
+  {
+    slug: "siding",
+    title: "James Hardie Siding",
+    short:
+      "HardieZone HZ10 engineered for Georgia's 95°F+ summers, year-round humidity and storm season. No subcontractors.",
+    Icon: PanelsTopLeft,
+    image: { src: sidingImg },
+  },
+  {
+    slug: "painting",
+    title: "Exterior Painting",
+    short: "Sherwin-Williams premium with UV protection.",
+    Icon: PaintRoller,
+    image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif },
+  },
+  {
+    slug: "windows",
+    title: "Windows",
+    short: "Energy-efficient replacements that lower bills.",
+    Icon: AppWindow,
+    image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif },
+  },
+  {
+    slug: "doors",
+    title: "Entry & Patio Doors",
+    short: "Secure and stylish doors by Therma-Tru & ProVia.",
+    Icon: AppWindow,
+    image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif },
+  },
+  {
+    slug: "decks",
+    title: "Deck Construction",
+    short: "Custom decks in composite, hardwood and PT.",
+    Icon: Hammer,
+    image: { src: deckImg, webp: deckWebp, avif: deckAvif },
+  },
+  {
+    slug: "gutters",
+    title: "Gutter Systems",
+    short: "Seamless aluminum gutters and LeafGuard.",
+    Icon: CloudRain,
+    image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif },
+  },
+  {
+    slug: "roofing",
+    title: "Roofing",
+    short: "GAF Factory Certified — replacement.",
+    Icon: Triangle,
+    image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif },
+  },
+  {
+    slug: "dumpster",
+    title: "Dumpster Rental",
+    short: "10/15/20 yd — same-day delivery in Greater Marietta.",
+    Icon: Truck,
+    image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif },
+  },
 ];
 
 export const CITIES = [
@@ -109,13 +158,13 @@ export const CITIES = [
 
 export const STATS = [
   { value: "1,500+", label: "Homes in North Atlanta" },
-  { value: "12+", label: "Years in Georgia" },
+  { value: "10+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
-  { value: "4.5★", label: "Google Rating" },
+  { value: "4.4★", label: "Google Rating" },
 ] as const;
 
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.5 · 158 Google Reviews" },
+  { icon: "⭐", label: "4.4 · 162 Google Reviews" },
   { icon: "🏆", label: "Elite Preferred · Top 2% US" },
   { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
   { icon: "🏠", label: "1,500+ North Atlanta Homes" },
@@ -143,7 +192,7 @@ export const PROCESS_STEPS = [
 export const AWARDS = [
   { name: "James Hardie Elite Preferred", subtitle: "Top 2% of installers in the USA" },
   { name: "GAF Factory Certified", subtitle: "Roof system warranty" },
-  { name: "Google · 4.5★", subtitle: "158 verified reviews" },
+  { name: "Google · 4.4★", subtitle: "162 verified reviews" },
   { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
   { name: "BBB Accredited", subtitle: "A+ Rating" },
   { name: "GreenSky Financing", subtitle: "0% APR plans available" },
@@ -204,8 +253,8 @@ export const PROJECTS: ReadonlyArray<Project> = [
   },
 ];
 
-export const PROJECTS_SORTED: ReadonlyArray<Project> = [...PROJECTS].sort(
-  (a, b) => (b.date ?? "").localeCompare(a.date ?? ""),
+export const PROJECTS_SORTED: ReadonlyArray<Project> = [...PROJECTS].sort((a, b) =>
+  (b.date ?? "").localeCompare(a.date ?? ""),
 );
 
 export function formatProjectDate(iso?: string): string {
@@ -220,7 +269,8 @@ export const BEFORE_AFTER_PAIRS = [
     before: "/projects/project-1-before.webp",
     after: "/projects/project-1.webp",
     beforeAlt: "Greater Marietta home before renovation with peeling paint and worn siding",
-    afterAlt: "Same Greater Marietta home transformed with James Hardie blue siding by Siding Depot",
+    afterAlt:
+      "Same Greater Marietta home transformed with James Hardie blue siding by Siding Depot",
   },
   {
     before: "/projects/project-5-before.webp",

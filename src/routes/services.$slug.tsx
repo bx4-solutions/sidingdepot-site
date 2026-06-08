@@ -1,12 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ShieldCheck,
-  Star,
-  Award,
-  Phone,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Star, Award, Phone } from "lucide-react";
 import { generateServicePageSchemas } from "@/lib/jsonld";
 import {
   PROJECTS_SORTED,
@@ -16,15 +9,9 @@ import {
   serviceSlug,
   type ProjectTag,
 } from "@/data/site";
+import { useGoogleStats } from "@/lib/google-stats-context";
 
-type ServiceSlug =
-  | "siding"
-  | "painting"
-  | "windows"
-  | "doors"
-  | "gutters"
-  | "decks"
-  | "roof";
+type ServiceSlug = "siding" | "painting" | "windows" | "doors" | "gutters" | "decks" | "roof";
 
 type ServiceContent = {
   label: ProjectTag;
@@ -49,9 +36,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "highly specialized certified teams — no subcontractors",
     ],
     process: [
-      { title: "Precision Measurement", desc: "We perform a forensic inspection of your current siding and provide a detailed, itemized quote within 24 hours." },
-      { title: "Material Customization", desc: "Select your profile (Lap, Shingle, or Board & Batten) and your ColorPlus® palette for a maintenance-free finish." },
-      { title: "Expert Installation", desc: "Full tear-off, weather-barrier wrap, and precision install following Hardie's strict Best Practices manual." },
+      {
+        title: "Precision Measurement",
+        desc: "We perform a forensic inspection of your current siding and provide a detailed, itemized quote within 24 hours.",
+      },
+      {
+        title: "Material Customization",
+        desc: "Select your profile (Lap, Shingle, or Board & Batten) and your ColorPlus® palette for a maintenance-free finish.",
+      },
+      {
+        title: "Expert Installation",
+        desc: "Full tear-off, weather-barrier wrap, and precision install following Hardie's strict Best Practices manual.",
+      },
     ],
     partners: "James Hardie Elite Preferred",
     ogImage: "/projects/project-1.webp",
@@ -68,9 +64,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "5-year workmanship warranty on all full repaints",
     ],
     process: [
-      { title: "Deep Surface Prep", desc: "We don't just paint; we restore. Every project starts with professional washing and manual surface stabilization." },
-      { title: "Premium Priming", desc: "A dedicated primer layer ensures the final coats bond permanently to fiber cement, wood, or brick surfaces." },
-      { title: "Dual-Coat Finish", desc: "Two full coats of premium enamel applied for maximum depth, protection, and sharp architectural lines." },
+      {
+        title: "Deep Surface Prep",
+        desc: "We don't just paint; we restore. Every project starts with professional washing and manual surface stabilization.",
+      },
+      {
+        title: "Premium Priming",
+        desc: "A dedicated primer layer ensures the final coats bond permanently to fiber cement, wood, or brick surfaces.",
+      },
+      {
+        title: "Dual-Coat Finish",
+        desc: "Two full coats of premium enamel applied for maximum depth, protection, and sharp architectural lines.",
+      },
     ],
     partners: "Sherwin-Williams PRO Preferred",
     ogImage: "/projects/project-5.webp",
@@ -87,9 +92,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Lifetime limited manufacturer warranty on frames",
     ],
     process: [
-      { title: "Structural Assessment", desc: "We measure every opening to the millimeter to ensure a true air-tight, water-tight custom fit." },
-      { title: "Custom Fabrication", desc: "Windows are custom-built using high-performance vinyl or fiberglass engineered for Southeast humidity." },
-      { title: "Clean-Capture Install", desc: "Most projects completed in 1-2 days with full debris removal and a final seal-integrity inspection." },
+      {
+        title: "Structural Assessment",
+        desc: "We measure every opening to the millimeter to ensure a true air-tight, water-tight custom fit.",
+      },
+      {
+        title: "Custom Fabrication",
+        desc: "Windows are custom-built using high-performance vinyl or fiberglass engineered for Southeast humidity.",
+      },
+      {
+        title: "Clean-Capture Install",
+        desc: "Most projects completed in 1-2 days with full debris removal and a final seal-integrity inspection.",
+      },
     ],
     partners: "ENERGY STAR® Certified Installers",
     ogImage: "/projects/project-8.webp",
@@ -106,9 +120,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Fully insulated cores for maximum energy savings",
     ],
     process: [
-      { title: "Design Consultation", desc: "Choose your material, glass insert (decorative or clear), and high-security hardware options." },
-      { title: "Precision Framing", desc: "We re-square your entryway to ensure a perfect weather seal and effortless lock alignment." },
-      { title: "Security Testing", desc: "Every door undergoes a 20-point check for threshold level, sweep contact, and lock engagement." },
+      {
+        title: "Design Consultation",
+        desc: "Choose your material, glass insert (decorative or clear), and high-security hardware options.",
+      },
+      {
+        title: "Precision Framing",
+        desc: "We re-square your entryway to ensure a perfect weather seal and effortless lock alignment.",
+      },
+      {
+        title: "Security Testing",
+        desc: "Every door undergoes a 20-point check for threshold level, sweep contact, and lock engagement.",
+      },
     ],
     partners: "Therma-Tru Authorized Dealer",
   },
@@ -124,9 +147,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Optional LeafGuard® lifetime no-clog systems",
     ],
     process: [
-      { title: "Pitch Engineering", desc: "We calculate the exact slope needed for your roofline to ensure water never pools or overflows." },
-      { title: "Custom Extrusion", desc: "Aluminum coils are fed through our on-site machine to create continuous, joint-free gutter runs." },
-      { title: "Downspout Routing", desc: "Strategic placement of high-flow 3x4 downspouts to move water safely away from your foundation." },
+      {
+        title: "Pitch Engineering",
+        desc: "We calculate the exact slope needed for your roofline to ensure water never pools or overflows.",
+      },
+      {
+        title: "Custom Extrusion",
+        desc: "Aluminum coils are fed through our on-site machine to create continuous, joint-free gutter runs.",
+      },
+      {
+        title: "Downspout Routing",
+        desc: "Strategic placement of high-flow 3x4 downspouts to move water safely away from your foundation.",
+      },
     ],
     partners: "LeafGuard Authorized Installer",
   },
@@ -142,9 +174,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "10-year workmanship & 25-year material warranties",
     ],
     process: [
-      { title: "3D Layout & Planning", desc: "We design your space based on your lifestyle, from grill zones to multi-level lounge areas." },
-      { title: "Permit Management", desc: "We handle all filings and structural inspections with Cobb, Cherokee, or Fulton counties." },
-      { title: "Craftsman Build", desc: "Framing, decking, and railing installed by our dedicated carpenters with high-load footings." },
+      {
+        title: "3D Layout & Planning",
+        desc: "We design your space based on your lifestyle, from grill zones to multi-level lounge areas.",
+      },
+      {
+        title: "Permit Management",
+        desc: "We handle all filings and structural inspections with Cobb, Cherokee, or Fulton counties.",
+      },
+      {
+        title: "Craftsman Build",
+        desc: "Framing, decking, and railing installed by our dedicated carpenters with high-load footings.",
+      },
     ],
     partners: "Trex Pro Installer",
     ogImage: "/projects/project-6.webp",
@@ -161,9 +202,18 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       "Storm damage insurance claim documentation experts",
     ],
     process: [
-      { title: "Drone & Manual Audit", desc: "A comprehensive photo report of your roof's current health, including shingle, valley, and flashing state." },
-      { title: "Full System Tear-off", desc: "We remove all old layers to inspect the structural deck before installing the GAF system components." },
-      { title: "Site Protection & Scan", desc: "We protect your landscaping and perform a high-powered magnet sweep for nails before leaving." },
+      {
+        title: "Drone & Manual Audit",
+        desc: "A comprehensive photo report of your roof's current health, including shingle, valley, and flashing state.",
+      },
+      {
+        title: "Full System Tear-off",
+        desc: "We remove all old layers to inspect the structural deck before installing the GAF system components.",
+      },
+      {
+        title: "Site Protection & Scan",
+        desc: "We protect your landscaping and perform a high-powered magnet sweep for nails before leaving.",
+      },
     ],
     partners: "GAF Factory Certified",
     ogImage: "/projects/project-7.webp",
@@ -196,9 +246,15 @@ export const Route = createFileRoute("/services/$slug")({
       image: content.ogImage ? `https://www.sidingdepot.com${content.ogImage}` : undefined,
       // Adding common FAQs for these services
       faqs: [
-        { q: `Do you provide free estimates for ${content.label.toLowerCase()}?`, a: "Yes, we provide 100% free, no-obligation on-site estimates for all our exterior services." },
-        { q: "Are you licensed and insured?", a: "Yes, Siding Depot is fully licensed and carries comprehensive liability and workers' compensation insurance." }
-      ]
+        {
+          q: `Do you provide free estimates for ${content.label.toLowerCase()}?`,
+          a: "Yes, we provide 100% free, no-obligation on-site estimates for all our exterior services.",
+        },
+        {
+          q: "Are you licensed and insured?",
+          a: "Yes, Siding Depot is fully licensed and carries comprehensive liability and workers' compensation insurance.",
+        },
+      ],
     });
 
     const meta = [
@@ -219,7 +275,7 @@ export const Route = createFileRoute("/services/$slug")({
     return {
       meta,
       links: [{ rel: "canonical", href: url }],
-      scripts: serviceSchemas.map(schema => ({
+      scripts: serviceSchemas.map((schema) => ({
         type: "application/ld+json",
         children: JSON.stringify(schema),
       })),
@@ -242,6 +298,7 @@ function ServicePage() {
   const data = Route.useLoaderData() as { slug: ServiceSlug; content: ServiceContent };
   const { slug, content } = data;
   const related = PROJECTS_SORTED.filter((p) => p.tags.includes(content.label)).slice(0, 3);
+  const { rating: googleRating, totalReviews: googleReviews } = useGoogleStats();
 
   return (
     <div className="bg-sd-gray-bg">
@@ -273,7 +330,9 @@ function ServicePage() {
           </div>
           <div className="mt-8 inline-flex items-center gap-2 text-sm text-white/80">
             <Star className="h-4 w-4 fill-sd-green text-sd-green" aria-hidden="true" />
-            <span>4.5 · 158 reviews · {content.partners}</span>
+            <span>
+              {googleRating} · {googleReviews} reviews · {content.partners}
+            </span>
           </div>
         </div>
       </section>
@@ -287,13 +346,16 @@ function ServicePage() {
                 Why homeowners choose Siding Depot for {content.label.toLowerCase()}
               </h2>
               <p className="mt-4 text-sd-gray-text leading-relaxed">
-                Backed by industry-leading partners and Highly specialized certified teams. Every project includes
-                a dedicated project manager and a written warranty.
+                Backed by industry-leading partners and Highly specialized certified teams. Every
+                project includes a dedicated project manager and a written warranty.
               </p>
               <ul className="mt-8 grid gap-3">
                 {content.benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-sd-green flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle2
+                      className="h-5 w-5 text-sd-green flex-shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span className="text-sd-black">{b}</span>
                   </li>
                 ))}
@@ -302,7 +364,7 @@ function ServicePage() {
             <div className="grid grid-cols-2 gap-3">
               <TrustCard icon={<Award className="h-5 w-5" />} label={content.partners} />
               <TrustCard icon={<ShieldCheck className="h-5 w-5" />} label="Licensed & insured" />
-              <TrustCard icon={<Star className="h-5 w-5" />} label="4.5★ Google" />
+              <TrustCard icon={<Star className="h-5 w-5" />} label="4.4★ Google" />
               <TrustCard icon={<CheckCircle2 className="h-5 w-5" />} label="Written warranty" />
             </div>
           </div>
@@ -423,7 +485,9 @@ function ServicePage() {
 function TrustCard({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="rounded-xl border border-sd-gray-border bg-white p-4 flex items-center gap-3">
-      <div className="text-sd-navy" aria-hidden="true">{icon}</div>
+      <div className="text-sd-navy" aria-hidden="true">
+        {icon}
+      </div>
       <span className="text-sm font-semibold text-sd-black">{label}</span>
     </div>
   );

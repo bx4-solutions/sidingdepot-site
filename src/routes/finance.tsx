@@ -1,13 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ArrowRight, ExternalLink, ShieldCheck, Clock, CreditCard, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  CheckCircle2,
+  ArrowRight,
+  ExternalLink,
+  ShieldCheck,
+  Clock,
+  CreditCard,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
 import greenSkyFinancing from "@/assets/finance-banner.png.asset.json";
-
-
 
 export const Route = createFileRoute("/finance")({
   head: () => {
@@ -18,14 +25,15 @@ export const Route = createFileRoute("/finance")({
         {
           "@type": "WebPage",
           "@id": `${canonical}/#webpage`,
-          "url": canonical,
-          "name": "Financing for Siding & Roofing Projects in North Atlanta",
-          "description": "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
-          "isPartOf": { "@id": "https://sidingdepot.com/#website" }
+          url: canonical,
+          name: "Financing for Siding & Roofing Projects in North Atlanta",
+          description:
+            "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
+          isPartOf: { "@id": "https://sidingdepot.com/#website" },
         },
         ORG_SCHEMA,
-        LOCAL_BUSINESS_SCHEMA
-      ]
+        LOCAL_BUSINESS_SCHEMA,
+      ],
     };
 
     return {
@@ -33,22 +41,25 @@ export const Route = createFileRoute("/finance")({
         { title: "Financing for Siding & Roofing Projects | Siding Depot North Atlanta" },
         {
           name: "description",
-          content: "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
+          content:
+            "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
         },
         { property: "og:title", content: "Financing for Siding & Roofing | Siding Depot" },
-        { property: "og:description", content: "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available." },
+        {
+          property: "og:description",
+          content:
+            "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available.",
+        },
         { property: "og:image", content: "/projects/project-1.webp" },
         { property: "og:type", content: "website" },
       ],
-      links: [
-        { rel: "canonical", href: canonical }
-      ],
+      links: [{ rel: "canonical", href: canonical }],
       scripts: [
         {
           type: "application/ld+json",
-          children: JSON.stringify(schema)
-        }
-      ]
+          children: JSON.stringify(schema),
+        },
+      ],
     };
   },
   component: FinancePage,
@@ -60,28 +71,28 @@ function FinancePage() {
   const faqs = [
     {
       q: "How does the credit approval process work?",
-      a: "The application process is quick and secure. You can apply online through the GreenSky® portal and receive a credit decision in seconds. Once approved, you'll receive a loan agreement and can start your project immediately."
+      a: "The application process is quick and secure. You can apply online through the GreenSky® portal and receive a credit decision in seconds. Once approved, you'll receive a loan agreement and can start your project immediately.",
     },
     {
       q: "What are the promotional interest rates?",
-      a: "We offer two main promotional plans: a 12-month deferred interest plan where interest is waived if paid in full within a year, and a long-term plan with a reduced APR of 9.99% for up to 138 months."
+      a: "We offer two main promotional plans: a 12-month deferred interest plan where interest is waived if paid in full within a year, and a long-term plan with a reduced APR of 9.99% for up to 138 months.",
     },
     {
       q: "How does the 12-month deferred interest period work?",
-      a: "With this plan, interest is billed during the promotional period but is completely waived if the entire purchase amount is paid in full within 12 months of the first transaction."
+      a: "With this plan, interest is billed during the promotional period but is completely waived if the entire purchase amount is paid in full within 12 months of the first transaction.",
     },
     {
       q: "Is everyone eligible for the 9.99% APR plan?",
-      a: "Eligibility is subject to credit approval by GreenSky®. This plan offers low fixed monthly payments stretched over 138 months, making large exterior projects affordable for most qualified homeowners."
+      a: "Eligibility is subject to credit approval by GreenSky®. This plan offers low fixed monthly payments stretched over 138 months, making large exterior projects affordable for most qualified homeowners.",
     },
     {
       q: "How do I make my loan payments?",
-      a: "Payments are made directly to GreenSky®. You can set up automatic payments, pay online through their portal, or pay by mail. You'll receive all the necessary information once your loan is finalized."
+      a: "Payments are made directly to GreenSky®. You can set up automatic payments, pay online through their portal, or pay by mail. You'll receive all the necessary information once your loan is finalized.",
     },
     {
       q: "Are there any prepayment penalties?",
-      a: "No, GreenSky® loans through Siding Depot do not have prepayment penalties. You can pay off your loan at any time without incurring extra fees, which is especially beneficial for the deferred interest plan."
-    }
+      a: "No, GreenSky® loans through Siding Depot do not have prepayment penalties. You can pay off your loan at any time without incurring extra fees, which is especially beneficial for the deferred interest plan.",
+    },
   ];
 
   useEffect(() => {
@@ -107,9 +118,7 @@ function FinancePage() {
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 lg:px-12 lg:pb-20 lg:pt-40">
-
-
-          <h1 className="font-display text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl">
             Financing Options
           </h1>
         </div>
@@ -135,7 +144,6 @@ function FinancePage() {
               />
             </header>
 
-
             {/* House photo */}
             <div className="mt-10 overflow-hidden rounded-xl">
               <img
@@ -149,12 +157,12 @@ function FinancePage() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:gap-8">
               <article className="flex h-full min-h-[220px] flex-col rounded-xl border-l-4 border-sd-navy bg-sd-gray-bg p-6 sm:p-8">
                 <h3 className="font-display text-2xl font-extrabold leading-[1.1] text-sd-navy uppercase sm:text-3xl">
-                  No Interest if Paid in Full in <span className="text-sd-green-text">12 Months</span>
+                  No Interest if Paid in Full in{" "}
+                  <span className="text-sd-green-text">12 Months</span>
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-sd-dark-mid sm:text-lg">
-                  Subject to credit approval. Interest is billed during the
-                  promotional period but waived if the purchase amount is paid
-                  in full within 12 months.
+                  Subject to credit approval. Interest is billed during the promotional period but
+                  waived if the purchase amount is paid in full within 12 months.
                 </p>
               </article>
 
@@ -164,7 +172,9 @@ function FinancePage() {
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-sd-dark-mid sm:text-lg">
                   Low fixed monthly payments stretched over 138 months to fit your budget.
-                  <span className="mt-2 block text-xs font-semibold italic text-sd-gray-text">*With approved credit</span>
+                  <span className="mt-2 block text-xs font-semibold italic text-sd-gray-text">
+                    *With approved credit
+                  </span>
                 </p>
               </article>
             </div>
@@ -172,9 +182,9 @@ function FinancePage() {
             {/* Closing copy + CTAs */}
             <div className="mt-12 text-center">
               <p className="mx-auto max-w-3xl text-lg font-medium italic leading-relaxed text-sd-navy sm:text-xl">
-                "Whether you want to pay using a deferred interest plan or have a
-                fixed monthly budget, the GreenSky® programs offer flexible
-                consumer financing options to meet your needs."
+                "Whether you want to pay using a deferred interest plan or have a fixed monthly
+                budget, the GreenSky® programs offer flexible consumer financing options to meet
+                your needs."
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -188,13 +198,17 @@ function FinancePage() {
                     APPLY NOW <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button 
-                  asChild 
-                  variant="outline" 
-                  size="lg" 
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
                   className="h-14 w-full border-2 px-10 text-base font-bold sm:w-auto"
                 >
-                  <a href="http://www.greenskycredit.com/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="http://www.greenskycredit.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Learn More
                   </a>
                 </Button>
@@ -211,21 +225,27 @@ function FinancePage() {
                   <Clock className="h-7 w-7" />
                 </div>
                 <h3 className="text-lg font-bold text-sd-navy">Quick Decision</h3>
-                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">Apply online and get a credit decision in seconds.</p>
+                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">
+                  Apply online and get a credit decision in seconds.
+                </p>
               </div>
               <div className="rounded-2xl bg-sd-gray-bg p-8 text-center ring-1 ring-black/5">
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-sd-green/10 text-sd-green-text">
                   <CreditCard className="h-7 w-7" />
                 </div>
                 <h3 className="text-lg font-bold text-sd-navy">Flexible Plans</h3>
-                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">Deferred interest or low monthly payment options.</p>
+                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">
+                  Deferred interest or low monthly payment options.
+                </p>
               </div>
               <div className="rounded-2xl bg-sd-gray-bg p-8 text-center ring-1 ring-black/5">
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-sd-green/10 text-sd-green-text">
                   <ShieldCheck className="h-7 w-7" />
                 </div>
                 <h3 className="text-lg font-bold text-sd-navy">Secure Process</h3>
-                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">Safe and confidential application through GreenSky®.</p>
+                <p className="mt-3 text-sm leading-relaxed text-sd-gray-text">
+                  Safe and confidential application through GreenSky®.
+                </p>
               </div>
             </div>
           </section>
@@ -243,8 +263,8 @@ function FinancePage() {
 
               <div className="space-y-4">
                 {faqs.map((faq, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="overflow-hidden rounded-2xl border border-black/5 bg-sd-gray-bg"
                   >
                     <button
@@ -260,9 +280,7 @@ function FinancePage() {
                     </button>
                     {openFaq === idx && (
                       <div className="border-t border-black/5 p-6 pt-0">
-                        <p className="mt-4 leading-relaxed text-sd-gray-text">
-                          {faq.a}
-                        </p>
+                        <p className="mt-4 leading-relaxed text-sd-gray-text">{faq.a}</p>
                       </div>
                     )}
                   </div>
@@ -283,25 +301,33 @@ function FinancePage() {
                 <span className="text-sd-green">Homeowners in Georgia</span>
               </h2>
               <p className="mt-6 text-lg text-white/70 leading-relaxed">
-                Over 1,500 homes transformed in Georgia. As a Top 2% Elite Preferred James Hardie® contractor, 
-                we bring certified excellence and 5-star Google reviews to every project.
+                Over 1,500 homes transformed in Georgia. As a Top 2% Elite Preferred James Hardie®
+                contractor, we bring certified excellence and 5-star Google reviews to every
+                project.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Button asChild size="lg" className="h-14 px-8">
-                  <Link to="/contact">Contact us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  <Link to="/contact">
+                    Contact us <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
                 <div className="flex items-center gap-4">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="h-10 w-10 rounded-full border-2 border-sd-navy bg-sd-gray-bg overflow-hidden">
-                        <img src={`/projects/project-${i}.webp`} alt="Happy Customer" className="h-full w-full object-cover" />
+                      <div
+                        key={i}
+                        className="h-10 w-10 rounded-full border-2 border-sd-navy bg-sd-gray-bg overflow-hidden"
+                      >
+                        <img
+                          src={`/projects/project-${i}.webp`}
+                          alt="Happy Customer"
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                     ))}
                   </div>
                   <div className="text-sm">
-                    <div className="flex text-sd-green">
-                      {"★".repeat(5)}
-                    </div>
+                    <div className="flex text-sd-green">{"★".repeat(5)}</div>
                     <p className="font-bold">1,500+ Homes Served</p>
                   </div>
                 </div>
@@ -309,15 +335,17 @@ function FinancePage() {
             </div>
             <div className="relative">
               <div className="aspect-video overflow-hidden rounded-2xl shadow-2xl">
-                <img 
-                  src="/projects/project-2.webp" 
-                  alt="Renovated Home" 
+                <img
+                  src="/projects/project-2.webp"
+                  alt="Renovated Home"
                   className="h-full w-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-2xl bg-sd-green p-6 shadow-xl">
                 <p className="text-3xl font-bold text-sd-navy uppercase">5-Star</p>
-                <p className="text-sm font-bold text-sd-navy/80 uppercase tracking-wider">Google Reviews</p>
+                <p className="text-sm font-bold text-sd-navy/80 uppercase tracking-wider">
+                  Google Reviews
+                </p>
               </div>
             </div>
           </div>

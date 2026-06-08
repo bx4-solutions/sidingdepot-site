@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Award,
-  ShieldCheck,
-  FileText,
-  Wrench,
-  Search,
-  Clock,
-} from "lucide-react";
+import { Award, ShieldCheck, FileText, Wrench, Search, Clock } from "lucide-react";
 import {
   ServiceLandingPage,
   buildServiceMeta,
@@ -43,12 +36,36 @@ const FAQS: ReadonlyArray<FaqItem> = [
 ];
 
 const CHECKLIST: ReadonlyArray<ChecklistItem> = [
-  { Icon: Award, title: "Right-sized for the job", desc: "10 yd for cleanouts, 15 yd for one-room remodels, 20 yd for full siding/roof projects. Going one size up is almost always cheaper than an overfill fee." },
-  { Icon: ShieldCheck, title: "Driveway protection", desc: "A reputable hauler uses wood planks under the rollers to protect your asphalt or concrete driveway from gouging." },
-  { Icon: FileText, title: "Transparent pricing", desc: "Insist on a written quote that includes delivery, pickup, disposal fees, weight allowance, and overage rate per ton." },
-  { Icon: Wrench, title: "Same-day or next-day delivery", desc: "Local haulers in North Atlanta should deliver within 24 hours. Multi-day waits usually mean a broker, not a real local company." },
-  { Icon: Search, title: "Knows what you can't load", desc: "A good rental partner tells you upfront: no paint, chemicals, tires, batteries, refrigerant appliances — and flags asbestos risk on pre-1980 homes." },
-  { Icon: Clock, title: "Flexible rental period", desc: "Standard rentals are 7 days. Make sure you can extend at a fair daily rate without renegotiating the whole contract." },
+  {
+    Icon: Award,
+    title: "Right-sized for the job",
+    desc: "10 yd for cleanouts, 15 yd for one-room remodels, 20 yd for full siding/roof projects. Going one size up is almost always cheaper than an overfill fee.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Driveway protection",
+    desc: "A reputable hauler uses wood planks under the rollers to protect your asphalt or concrete driveway from gouging.",
+  },
+  {
+    Icon: FileText,
+    title: "Transparent pricing",
+    desc: "Insist on a written quote that includes delivery, pickup, disposal fees, weight allowance, and overage rate per ton.",
+  },
+  {
+    Icon: Wrench,
+    title: "Same-day or next-day delivery",
+    desc: "Local haulers in North Atlanta should deliver within 24 hours. Multi-day waits usually mean a broker, not a real local company.",
+  },
+  {
+    Icon: Search,
+    title: "Knows what you can't load",
+    desc: "A good rental partner tells you upfront: no paint, chemicals, tires, batteries, refrigerant appliances — and flags asbestos risk on pre-1980 homes.",
+  },
+  {
+    Icon: Clock,
+    title: "Flexible rental period",
+    desc: "Standard rentals are 7 days. Make sure you can extend at a fair daily rate without renegotiating the whole contract.",
+  },
 ];
 
 export const Route = createFileRoute("/dumpster")({
@@ -64,7 +81,11 @@ export const Route = createFileRoute("/dumpster")({
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("Dumpster Rental", PAGE_DESC, { canonical: CANONICAL, image: HERO_IMAGE, serviceType: "Dumpster Rental" }),
+      serviceJsonLd("Dumpster Rental", PAGE_DESC, {
+        canonical: CANONICAL,
+        image: HERO_IMAGE,
+        serviceType: "Dumpster Rental",
+      }),
       faqJsonLd(FAQS),
     ],
   }),

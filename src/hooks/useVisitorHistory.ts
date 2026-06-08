@@ -66,18 +66,27 @@ export function useVisitorHistory(pageFilter = "all") {
       for (let h = 0; h < 24; h++) hourCounts[h] = 0;
       points.forEach((p) => hourCounts[p.hour]++);
 
-      const hourlyDistribution: HourlyBucket[] = Object.entries(hourCounts).map(
-        ([h, count]) => ({ hour: Number(h), count, label: String(h).padStart(2, "0") + ":00" })
-      );
+      const hourlyDistribution: HourlyBucket[] = Object.entries(hourCounts).map(([h, count]) => ({
+        hour: Number(h),
+        count,
+        label: String(h).padStart(2, "0") + ":00",
+      }));
 
       let peakHour: { hour: number; count: number } | null = null;
       let lowestHour: { hour: number; count: number } | null = null;
       hourlyDistribution.forEach((b) => {
         if (!peakHour || b.count > peakHour.count) peakHour = { hour: b.hour, count: b.count };
-        if (!lowestHour || b.count < lowestHour.count) lowestHour = { hour: b.hour, count: b.count };
+        if (!lowestHour || b.count < lowestHour.count)
+          lowestHour = { hour: b.hour, count: b.count };
       });
 
-      return { historyPoints: points, hourlyDistribution, peakHour, lowestHour, totalVisits: points.length };
+      return {
+        historyPoints: points,
+        hourlyDistribution,
+        peakHour,
+        lowestHour,
+        totalVisits: points.length,
+      };
     },
     refetchInterval: 60_000,
   });

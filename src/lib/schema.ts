@@ -26,6 +26,8 @@ export const ORG_SCHEMA = {
     SITE.social.instagram,
     SITE.social.youtube,
     SITE.social.tiktok,
+    "https://www.bbb.org/us/ga/marietta/profile/siding-contractors/siding-depot-llc-0443-27604557",
+    "https://www.guildquality.com/profile/siding-depot-llc",
   ],
   contactPoint: [
     {
@@ -46,18 +48,19 @@ export const LOCAL_BUSINESS_SCHEMA = {
   image: `${BASE_URL}/og-default.jpg`,
   aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "reviewCount": "158"
+    ratingValue: "4.4",
+    reviewCount: "162",
   },
   review: [
     {
       "@type": "Review",
-      "author": { "@type": "Person", "name": "Jennifer M." },
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "reviewBody": "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work."
-    }
+      author: { "@type": "Person", name: "Jennifer M." },
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+      reviewBody:
+        "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work.",
+    },
   ],
-  telePhone: SITE.phone,
+  telephone: SITE.phone,
   url: BASE_URL,
   address: {
     "@type": "PostalAddress",
@@ -85,7 +88,11 @@ export const LOCAL_BUSINESS_SCHEMA = {
     "@id": ORG_ID,
   },
   areaServed: [
-    { "@type": "City", name: "Marietta", sameAs: "https://en.wikipedia.org/wiki/Marietta,_Georgia" },
+    {
+      "@type": "City",
+      name: "Marietta",
+      sameAs: "https://en.wikipedia.org/wiki/Marietta,_Georgia",
+    },
     { "@type": "City", name: "Alpharetta" },
     { "@type": "City", name: "Milton" },
     { "@type": "City", name: "Greater Marietta" },
@@ -95,6 +102,8 @@ export const LOCAL_BUSINESS_SCHEMA = {
     { "@type": "City", name: "Johns Creek" },
     { "@type": "City", name: "Sandy Springs" },
     { "@type": "City", name: "Acworth" },
+    { "@type": "City", name: "Cumming" },
+    { "@type": "City", name: "Canton" },
   ],
 };
 

@@ -1,9 +1,10 @@
 import { createFileRoute, notFound, Link, useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Phone, CheckCircle2, Calendar } from "lucide-react";
+import { Phone, CheckCircle2, Calendar, X } from "lucide-react";
 import { useState } from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
@@ -14,23 +15,21 @@ import { HeroSection } from "@/components/site/HeroSection";
 import { ProofBar } from "@/components/site/ProofBar";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
 import { MapEmbed } from "@/components/site/MapEmbed";
-import {
-  isValidLocation,
-  getCityMeta,
-  getServiceMeta,
-  SITE_ORIGIN,
-} from "@/data/locations";
+import { isValidLocation, getCityMeta, getServiceMeta, SITE_ORIGIN } from "@/data/locations";
 import { SITE, HERO } from "@/data/site";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
-
 
 export const Route = createFileRoute("/locations/$city/$service")({
   loader: ({ params }) => {
     if (!isValidLocation(params.city, params.service)) {
       throw notFound();
     }
-    const city = getCityMeta(params.city)!;
-    const service = getServiceMeta(params.service)!;
+    const cityFull = getCityMeta(params.city)!;
+    const serviceFull = getServiceMeta(params.service)!;
+    // Return only serializable primitives — omit Icon (LucideIcon fn) and image objects
+    // which would cause seroval "Serialization error" during SSR data transfer.
+    const city = { slug: cityFull.slug, name: cityFull.name, county: cityFull.county };
+    const service = { slug: serviceFull.slug, title: serviceFull.title, short: serviceFull.short };
     return { city, service };
   },
   head: ({ loaderData }) => {
@@ -51,7 +50,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
       `${service.title} in ${city.name}`,
       description,
       `/locations/${city.slug}/${service.slug}`,
-      "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835"
+      "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
     );
 
     const faqSchema = getFaqSchema([
@@ -71,13 +70,21 @@ export const Route = createFileRoute("/locations/$city/$service")({
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+        {
+          property: "og:image",
+          content:
+            "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
+        },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
-        { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+        {
+          name: "twitter:image",
+          content:
+            "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
+        },
       ],
       links: [
         { rel: "canonical", href: url },
@@ -92,7 +99,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-2xl px-4 py-24 text-center">
-      <h1 className="font-display text-5xl text-sd-navy">Location not available</h1>
+      <h1 className="font-display text-3xl sm:text-5xl text-sd-navy">Location not available</h1>
       <p className="mt-4 text-sd-gray-text">
         We don't have a dedicated landing page for this combination yet.
       </p>
@@ -126,8 +133,7 @@ function LocationPage() {
         badge={`${city.name}, GA · Elite Preferred`}
         title={
           <>
-            {service.title} in{" "}
-            <span className="text-sd-green">{city.name}, GA</span>
+            {service.title} in <span className="text-sd-green">{city.name}, GA</span>
           </>
         }
         subtitle={`Local ${service.title.toLowerCase()} done right by Georgia's most trusted exterior contractor — serving ${city.name} (${city.county}) and all of North Atlanta.`}
@@ -142,7 +148,7 @@ function LocationPage() {
           </h2>
           <ul className="mt-6 space-y-3">
             {[
-              `12+ years of ${service.title.toLowerCase()} projects in ${city.county}.`,
+              `10+ years of ${service.title.toLowerCase()} projects in ${city.county}.`,
               `Crews based in North Atlanta — fast scheduling for ${city.name} addresses.`,
               `Familiar with local HOAs, permits and architectural standards.`,
               `Transparent written quotes — no surprises after we start.`,
@@ -158,18 +164,29 @@ function LocationPage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
-                <Button size="lg" className="px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105">
+                <Button
+                  size="lg"
+                  className="px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
+                >
                   <Calendar className="mr-2 h-5 w-5" />
                   Get a free {city.name} quote
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+              <DialogContent className="sm:max-w-md p-0 overflow-y-auto max-h-[90dvh] bg-transparent border-0 shadow-none [&>button]:hidden">
                 <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
-                <HeroQuoteForm 
-                  source={`location_page_${city.slug}_${service.slug}`} 
-                  tag={`location_page_${city.slug}_${service.slug}_quote`}
-                  onSuccess={() => setTimeout(() => setOpen(false), 2500)}
-                />
+                <div className="relative">
+                  <DialogClose
+                    className="absolute right-3 top-3 z-20 rounded-full bg-white/20 p-2 text-white hover:bg-white/40 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+                    aria-label="Close"
+                  >
+                    <X className="h-4 w-4" aria-hidden="true" />
+                  </DialogClose>
+                  <HeroQuoteForm
+                    source={`location_page_${city.slug}_${service.slug}`}
+                    tag={`location_page_${city.slug}_${service.slug}_quote`}
+                    onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+                  />
+                </div>
               </DialogContent>
             </Dialog>
           </div>
@@ -206,7 +223,8 @@ function LocationPage() {
               Serving {city.name}, {city.county}
             </h2>
             <p className="mt-3 text-sd-gray-text max-w-xl mx-auto">
-              Crews dispatched from our Marietta showroom — typical arrival within North Atlanta same week.
+              Crews dispatched from our Marietta showroom — typical arrival within North Atlanta
+              same week.
             </p>
           </div>
           <MapEmbed

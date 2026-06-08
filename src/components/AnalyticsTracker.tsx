@@ -85,10 +85,7 @@ const fetchGeoData = async (): Promise<GeoData | null> => {
 
   try {
     // ip-api.com: free, HTTPS only on paid plan — http is fine for anonymous geo
-    const res = await fetch(
-      "https://ipapi.co/json/",
-      { signal: AbortSignal.timeout(5000) }
-    );
+    const res = await fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(5000) });
     if (!res.ok) throw new Error("geo api error");
     const d = await res.json();
     if (d.error) throw new Error(d.reason || "geo blocked");
@@ -115,7 +112,7 @@ async function trackEvent(
   pathname: string,
   sessionId: string,
   geo: GeoData | null,
-  extraData: Record<string, unknown> = {}
+  extraData: Record<string, unknown> = {},
 ) {
   const utm = getUTM();
   try {
@@ -151,11 +148,7 @@ async function trackEvent(
 
 const PRESENCE_CHANNEL = "visitor-presence";
 
-function buildPresencePayload(
-  sessionId: string,
-  pathname: string,
-  geo: GeoData | null
-) {
+function buildPresencePayload(sessionId: string, pathname: string, geo: GeoData | null) {
   return {
     session_id: sessionId,
     page_path: pathname,
@@ -236,14 +229,14 @@ export function AnalyticsTracker() {
           if (status === "SUBSCRIBED") {
             subscribedRef.current = true;
             await channelRef.current?.track(
-              buildPresencePayload(sessionId.current, path, geoRef.current)
+              buildPresencePayload(sessionId.current, path, geoRef.current),
             );
           }
         });
       } else if (subscribedRef.current) {
         // Already subscribed — just update the tracked data
         await channelRef.current.track(
-          buildPresencePayload(sessionId.current, path, geoRef.current)
+          buildPresencePayload(sessionId.current, path, geoRef.current),
         );
       }
     };

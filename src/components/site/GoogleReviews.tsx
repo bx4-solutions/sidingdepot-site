@@ -1,4 +1,12 @@
-import { Star, MessageSquare, ChevronLeft, ChevronRight, Filter, Calendar, RefreshCw } from "lucide-react";
+import {
+  Star,
+  MessageSquare,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  Calendar,
+  RefreshCw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useMemo, useEffect } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -106,7 +114,6 @@ export function GoogleReviews() {
     }
   }, [remoteData?.shouldSync]);
 
-
   const allReviews: Review[] = useMemo(() => {
     if (!remoteData?.reviews || remoteData.reviews.length === 0) {
       return RECENT_REVIEWS;
@@ -122,20 +129,20 @@ export function GoogleReviews() {
     }));
   }, [remoteData]);
 
-  const gmbUrl = "https://www.google.com/maps/place/Siding+Depot/@33.9856525,-84.4716183,17z/data=!4m8!3m7!1s0x88f5148386377777:0x7c7c7c7c7c7c7c7c!8m2!3d33.9856525!4d-84.4716183!9m1!1b1!16s%2Fg%2F11b6_v1_v1";
+  const gmbUrl =
+    "https://www.google.com/maps/place/Siding+Depot/@33.9856525,-84.4716183,17z/data=!4m8!3m7!1s0x88f5148386377777:0x7c7c7c7c7c7c7c7c!8m2!3d33.9856525!4d-84.4716183!9m1!1b1!16s%2Fg%2F11b6_v1_v1";
 
   const [ratingFilter, setRatingFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10; // Updated from 3 to 10 as per request
 
-
   const filteredReviews = useMemo(() => {
     let result = [...allReviews];
 
     // Filter by rating
     if (ratingFilter !== "all") {
-      result = result.filter(r => r.rating === parseInt(ratingFilter));
+      result = result.filter((r) => r.rating === parseInt(ratingFilter));
     }
 
     // Sort
@@ -153,12 +160,12 @@ export function GoogleReviews() {
   const totalPages = Math.ceil(filteredReviews.length / reviewsPerPage);
   const currentReviews = filteredReviews.slice(
     (currentPage - 1) * reviewsPerPage,
-    currentPage * reviewsPerPage
+    currentPage * reviewsPerPage,
   );
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
-    document.getElementById('reviews-grid')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("reviews-grid")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -175,28 +182,39 @@ export function GoogleReviews() {
             <div className="mt-4 flex items-center gap-2">
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Star 
-                    key={s} 
-                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.5) ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                  <Star
+                    key={s}
+                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.4) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
                     aria-hidden="true"
                   />
                 ))}
               </div>
-              <span className="font-bold text-sd-black">{(remoteData as any)?.overallRating || "4.5"}/5.0</span>
-              <span className="text-sd-gray-text">({(remoteData as any)?.totalReviews || "158"} Reviews)</span>
+              <span className="font-bold text-sd-black">
+                {(remoteData as any)?.overallRating || "4.4"}/5.0
+              </span>
+              <span className="text-sd-gray-text">
+                ({(remoteData as any)?.totalReviews || "162"} Reviews)
+              </span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Button 
-              onClick={() => syncMutation.mutate()} 
+            <Button
+              onClick={() => syncMutation.mutate()}
               disabled={syncMutation.isPending}
-              variant="outline" 
+              variant="outline"
               className="border-sd-navy text-sd-navy hover:bg-sd-navy hover:text-white"
             >
-              <RefreshCw className={`mr-2 h-4 w-4 ${syncMutation.isPending ? "animate-spin" : ""}`} aria-hidden="true" />
+              <RefreshCw
+                className={`mr-2 h-4 w-4 ${syncMutation.isPending ? "animate-spin" : ""}`}
+                aria-hidden="true"
+              />
               {syncMutation.isPending ? "Syncing..." : "Sync Reviews"}
             </Button>
-            <Button asChild variant="outline" className="border-sd-green text-sd-green hover:bg-sd-green hover:text-white">
+            <Button
+              asChild
+              variant="outline"
+              className="border-sd-green text-sd-green hover:bg-sd-green hover:text-white"
+            >
               <a href={gmbUrl} target="_blank" rel="noopener noreferrer">
                 <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />
                 Write a Review
@@ -212,7 +230,13 @@ export function GoogleReviews() {
               <Filter className="h-4 w-4 text-sd-gray-text" aria-hidden="true" />
               <span className="text-sm font-medium text-sd-navy">Rating:</span>
             </div>
-            <Select value={ratingFilter} onValueChange={(v) => { setRatingFilter(v); setCurrentPage(1); }}>
+            <Select
+              value={ratingFilter}
+              onValueChange={(v) => {
+                setRatingFilter(v);
+                setCurrentPage(1);
+              }}
+            >
               <SelectTrigger className="w-[120px] h-9">
                 <SelectValue placeholder="All Ratings" />
               </SelectTrigger>
@@ -230,7 +254,13 @@ export function GoogleReviews() {
               <Calendar className="h-4 w-4 text-sd-gray-text" aria-hidden="true" />
               <span className="text-sm font-medium text-sd-navy">Sort:</span>
             </div>
-            <Select value={sortOrder} onValueChange={(v) => { setSortOrder(v); setCurrentPage(1); }}>
+            <Select
+              value={sortOrder}
+              onValueChange={(v) => {
+                setSortOrder(v);
+                setCurrentPage(1);
+              }}
+            >
               <SelectTrigger className="w-[140px] h-9">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
@@ -247,7 +277,10 @@ export function GoogleReviews() {
         <div id="reviews-grid" className="grid gap-6 md:grid-cols-3 min-h-[350px]">
           {currentReviews.length > 0 ? (
             currentReviews.map((r, i) => (
-              <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-black/5 flex flex-col h-full animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div
+                key={i}
+                className="bg-white p-6 rounded-2xl shadow-sm border border-black/5 flex flex-col h-full animate-in fade-in slide-in-from-bottom-2 duration-500"
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="h-10 w-10 rounded-full bg-sd-navy text-white flex items-center justify-center font-bold">
                     {r.avatar}
@@ -259,18 +292,18 @@ export function GoogleReviews() {
                 </div>
                 <div className="flex mb-3">
                   {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`h-3 w-3 ${i < r.rating ? "fill-sd-green text-sd-green" : "text-gray-300"}`} 
+                    <Star
+                      key={i}
+                      className={`h-3 w-3 ${i < r.rating ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
                       aria-hidden="true"
                     />
                   ))}
                 </div>
                 <p className="text-sm text-sd-gray-text flex-grow italic">"{r.text}"</p>
                 <div className="mt-4 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-sd-green">
-                  <img 
-                    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png" 
-                    alt="Google" 
+                  <img
+                    src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png"
+                    alt="Google"
                     width="46"
                     height="15"
                     className="h-3 w-auto opacity-70"
@@ -282,7 +315,13 @@ export function GoogleReviews() {
           ) : (
             <div className="col-span-full py-20 text-center">
               <p className="text-sd-gray-text">No reviews matching your filters.</p>
-              <Button variant="link" onClick={() => { setRatingFilter("all"); setSortOrder("newest"); }}>
+              <Button
+                variant="link"
+                onClick={() => {
+                  setRatingFilter("all");
+                  setSortOrder("newest");
+                }}
+              >
                 Clear Filters
               </Button>
             </div>
@@ -308,8 +347,8 @@ export function GoogleReviews() {
                   variant={currentPage === i + 1 ? "default" : "outline"}
                   onClick={() => handlePageChange(i + 1)}
                   className={`h-9 w-9 rounded-full p-0 text-xs ${
-                    currentPage === i + 1 
-                      ? "bg-sd-navy text-white" 
+                    currentPage === i + 1
+                      ? "bg-sd-navy text-white"
                       : "border-sd-navy/10 text-sd-navy hover:bg-sd-navy/5"
                   }`}
                 >

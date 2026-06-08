@@ -82,7 +82,7 @@ export const useOnlineVisitors = () => {
       setCount(all.length);
       setByCountry(countries);
     },
-    [calcMinutes]
+    [calcMinutes],
   );
 
   useEffect(() => {
@@ -106,9 +106,7 @@ export const useOnlineVisitors = () => {
       .subscribe();
 
     const timer = setInterval(() => {
-      setVisitors((prev) =>
-        prev.map((v) => ({ ...v, online_minutes: calcMinutes(v.joined_at) }))
-      );
+      setVisitors((prev) => prev.map((v) => ({ ...v, online_minutes: calcMinutes(v.joined_at) })));
     }, 60000);
 
     return () => {

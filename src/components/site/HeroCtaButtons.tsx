@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Phone, Calendar } from "lucide-react";
+import { Phone, Calendar, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
@@ -35,9 +36,22 @@ export function HeroCtaButtons({ source = "hero_cta" }: Props = {}) {
             Get My Free Quote →
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+        {/* overflow-y-auto + max-h-[90dvh] fixes mobile scroll trap */}
+        <DialogContent className="sm:max-w-md p-0 overflow-y-auto max-h-[90dvh] bg-transparent border-0 shadow-none [&>button]:hidden">
           <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
-          <QuickQuoteForm source={source} onSuccess={() => setTimeout(() => setOpen(false), 2500)} />
+          {/* Visible close button over the dark form header */}
+          <div className="relative">
+            <DialogClose
+              className="absolute right-3 top-3 z-20 rounded-full bg-white/20 p-2 text-white hover:bg-white/40 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </DialogClose>
+            <QuickQuoteForm
+              source={source}
+              onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </div>

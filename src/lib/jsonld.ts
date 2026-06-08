@@ -24,10 +24,7 @@ export function organizationSchema() {
     name: SITE.legalName,
     url: "https://sidingdepot.com",
     logo: "https://sidingdepot.com/logo.png",
-    sameAs: [
-      "https://www.facebook.com/sidingdepot",
-      "https://www.instagram.com/sidingdepot",
-    ],
+    sameAs: ["https://www.facebook.com/sidingdepot", "https://www.instagram.com/sidingdepot"],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE.phone,
@@ -47,7 +44,7 @@ export function localBusinessSchema(city?: string) {
     name: SITE.legalName,
     image: "https://sidingdepot.com/og-default.jpg",
     description:
-      "James Hardie Elite Preferred siding and exterior contractor serving North Atlanta with 12+ years experience, 1,500+ homes completed.",
+      "James Hardie Elite Preferred siding and exterior contractor serving North Atlanta with 10+ years experience, 1,500+ homes completed.",
     telephone: SITE.phone,
     email: SITE.email,
     url: "https://sidingdepot.com",
@@ -76,22 +73,15 @@ export function localBusinessSchema(city?: string) {
     priceRange: "$$",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.5",
-      ratingCount: "158",
-      reviewCount: "158",
+      ratingValue: "4.4",
+      ratingCount: "162",
+      reviewCount: "162",
       bestRating: "5",
       worstRating: "1",
     },
-    sameAs: [
-      "https://www.facebook.com/sidingdepot",
-      "https://www.instagram.com/sidingdepot",
-    ],
+    sameAs: ["https://www.facebook.com/sidingdepot", "https://www.instagram.com/sidingdepot"],
     // James Hardie Elite Preferred Certification
-    knowsAbout: [
-      "James Hardie Fiber Cement Siding",
-      "Exterior Home Renovation",
-      "Home Remodeling",
-    ],
+    knowsAbout: ["James Hardie Fiber Cement Siding", "Exterior Home Renovation", "Home Remodeling"],
   };
 }
 
@@ -144,8 +134,8 @@ export function serviceSchema(input: ServiceSchemaInput) {
       availability: "https://schema.org/InStock",
       seller: {
         "@type": "LocalBusiness",
-        name: SITE.legalName
-      }
+        name: SITE.legalName,
+      },
     },
   };
 }

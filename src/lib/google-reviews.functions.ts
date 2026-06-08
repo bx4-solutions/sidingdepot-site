@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { getPlaceStatsCache } from "@/lib/place-stats.server";
 
 const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/details/json";
 
@@ -16,16 +17,20 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
     try {
       const fields = "reviews,rating,user_ratings_total";
       const response = await fetch(
-        `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=${fields}&key=${apiKey}`
+        `${GOOGLE_PLACES_API_URL}?place_id=${data.placeId}&fields=${fields}&key=${apiKey}`,
       );
-      
+
       if (response.status === 429) {
         console.warn("Google Places API rate limit hit (429)");
-        return { success: false, error: "Rate limit reached. Please try again later.", status: 429 };
+        return {
+          success: false,
+          error: "Rate limit reached. Please try again later.",
+          status: 429,
+        };
       }
 
       const result = await response.json();
-      
+
       if (result.status === "OVER_QUERY_LIMIT") {
         console.warn("Google Places API OVER_QUERY_LIMIT");
         return { success: false, error: "Google API limit reached.", status: 429 };
@@ -42,7 +47,7 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
 
       const reviews = result.result.reviews;
       const upsertData = reviews.map((r: any) => ({
-        google_review_id: `${data.placeId}_${r.time}_${r.author_name.replace(/\s+/g, '_')}`,
+        google_review_id: `${data.placeId}_${r.time}_${r.author_name.replace(/\s+/g, "_")}`,
         author_name: r.author_name,
         author_photo_url: r.profile_photo_url,
         rating: r.rating,
@@ -61,19 +66,17 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
       }
 
       // Update sync log - Using type assertion to bypass temporary type mismatch
-      await (supabaseAdmin as any)
-        .from("google_reviews_sync_log")
-        .insert({ 
-          place_id: data.placeId, 
-          status: "success", 
-          reviews_count: reviews.length 
-        });
+      await (supabaseAdmin as any).from("google_reviews_sync_log").insert({
+        place_id: data.placeId,
+        status: "success",
+        reviews_count: reviews.length,
+      });
 
-      return { 
-        success: true, 
+      return {
+        success: true,
         count: reviews.length,
         overallRating: result.result.rating,
-        totalReviews: result.result.user_ratings_total
+        totalReviews: result.result.user_ratings_total,
       };
     } catch (error: any) {
       console.error("Failed to sync Google Reviews:", error);
@@ -81,37 +84,41 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
     }
   });
 
-export const getGoogleReviews = createServerFn({ method: "GET" })
-  .handler(async () => {
-    try {
-      const { data: syncData } = await (supabaseAdmin as any)
-        .from("google_reviews_sync_log")
-        .select("created_at")
-        .order("created_at", { ascending: false })
-        .limit(1);
+export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const { data: syncData } = await (supabaseAdmin as any)
+      .from("google_reviews_sync_log")
+      .select("created_at")
+      .order("created_at", { ascending: false })
+      .limit(1);
 
-      const lastSync = syncData && syncData[0] ? new Date(syncData[0].created_at).getTime() : 0;
-      const now = Date.now();
-      const oneDay = 24 * 60 * 60 * 1000;
+    const lastSync = syncData && syncData[0] ? new Date(syncData[0].created_at).getTime() : 0;
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
 
-      const { data, error } = await supabaseAdmin
-        .from("google_reviews")
-        .select("*")
-        .order("time_timestamp", { ascending: false });
+    const { data, error } = await supabaseAdmin
+      .from("google_reviews")
+      .select("*")
+      .order("time_timestamp", { ascending: false });
 
-      if (error) {
-        console.error("Error fetching reviews:", error);
-        return { reviews: [], overallRating: 4.5, totalReviews: 158, shouldSync: false };
-      }
+    // Reuse the shared cache to avoid extra Google API calls
+    const cache = getPlaceStatsCache();
+    const overallRating = cache?.rating ?? 4.4;
+    const totalReviews = cache?.totalReviews ?? 162;
 
-      return {
-        reviews: data || [],
-        overallRating: 4.5,
-        totalReviews: 158,
-        shouldSync: (now - lastSync) > oneDay,
-      };
-    } catch (err: any) {
-      console.error("getGoogleReviews failed (likely missing server env):", err?.message);
-      return { reviews: [], overallRating: 4.5, totalReviews: 158, shouldSync: false };
+    if (error) {
+      console.error("Error fetching reviews:", error);
+      return { reviews: [], overallRating, totalReviews, shouldSync: false };
     }
-  });
+
+    return {
+      reviews: data || [],
+      overallRating,
+      totalReviews,
+      shouldSync: now - lastSync > oneDay,
+    };
+  } catch (err: any) {
+    console.error("getGoogleReviews failed (likely missing server env):", err?.message);
+    return { reviews: [], overallRating: 4.4, totalReviews: 162, shouldSync: false };
+  }
+});

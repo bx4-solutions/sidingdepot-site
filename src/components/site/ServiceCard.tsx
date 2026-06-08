@@ -7,24 +7,23 @@ type Props = {
   title: string;
   description: string;
   to?: string;
-  /** Optional DOM id, used as a scroll anchor target (e.g. "services-siding"). */
   id?: string;
-  /** Background image shown behind the card content; covered by white on hover. */
   image?: ServiceImage;
-  /**
-   * When true, the background image is preloaded eagerly with high fetch priority.
-   * Use for cards rendered in the first viewport (above the fold).
-   */
   priority?: boolean;
 };
 
 export function ServiceCard({ Icon, title, description, to, id, image, priority = false }: Props) {
   const inner = (
-    <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-background transition-all hover:-translate-y-1 hover:shadow-xl scroll-mt-32">
-      <div className="relative z-20 h-1.5 bg-sd-green" />
-
-      {/* Background image (behind text). Hidden on hover by white overlay. */}
-      {image && (
+    <div
+      className="group relative h-full overflow-hidden rounded-xl scroll-mt-32"
+      style={{
+        minHeight: 280,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
+        transition: "box-shadow 0.3s ease, transform 0.3s ease",
+      }}
+    >
+      {/* Photo — always visible, subtle zoom on hover */}
+      {image ? (
         <picture>
           {image.avif && <source srcSet={image.avif} type="image/avif" />}
           {image.webp && <source srcSet={image.webp} type="image/webp" />}
@@ -34,34 +33,63 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
             aria-hidden="true"
             loading={priority ? "eager" : "lazy"}
             decoding="async"
-            // @ts-expect-error - fetchpriority is a valid HTML attribute, types lag behind
+            // @ts-expect-error fetchpriority is a valid HTML attribute
             fetchpriority={priority ? "high" : "auto"}
             width={480}
             height={320}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-0"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </picture>
+      ) : (
+        <div className="absolute inset-0 bg-sd-dark" />
       )}
-      {/* Soft white veil for default-state readability */}
-      {image && (
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-white/55 transition-opacity duration-300 group-hover:opacity-0" />
-      )}
-      {/* Solid white cover on hover so text is crisp */}
-      <div className="pointer-events-none absolute inset-0 z-[2] bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      <div className="relative z-10 p-6">
-        <div className="flex h-11 w-11 items-center justify-center rounded-md bg-sd-green-pale text-sd-navy transition-colors">
-          <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+      {/* Default gradient — bottom-up, legible without hover */}
+      <div
+        aria-hidden
+        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.40) 55%, rgba(10,10,10,0.10) 100%)",
+        }}
+      />
+
+      {/* Hover overlay — deeper dark for description legibility */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: "rgba(10,10,10,0.72)" }}
+      />
+
+      {/* Green top accent bar */}
+      <div className="absolute inset-x-0 top-0 z-20 h-[3px] bg-sd-green" />
+
+      {/* Content — pinned to bottom */}
+      <div className="relative z-10 flex h-full flex-col justify-end p-6">
+        {/* Icon */}
+        <div
+          className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg"
+          style={{
+            background: "rgba(182,226,20,0.15)",
+            border: "1px solid rgba(182,226,20,0.30)",
+          }}
+        >
+          <Icon className="h-5 w-5 text-sd-green" strokeWidth={2} aria-hidden="true" />
         </div>
-        <h3 className="mt-4 text-lg font-bold text-foreground [text-shadow:0_1px_2px_rgba(255,255,255,0.6)] group-hover:[text-shadow:none]">
-          {title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-foreground/85 group-hover:text-muted-foreground">
+
+        {/* Title */}
+        <h3 className="text-lg font-bold leading-snug text-white">{title}</h3>
+
+        {/* Description — hidden at rest, visible on hover */}
+        <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-white/80 opacity-0 transition-all duration-300 ease-out group-hover:max-h-24 group-hover:opacity-100">
           {description}
         </p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sd-green-text">
-          View More <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+
+        {/* CTA */}
+        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-sd-green">
+          View Services{" "}
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1.5" />
         </span>
       </div>
     </div>
@@ -72,6 +100,8 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
       {inner}
     </Link>
   ) : (
-    <div id={id}>{inner}</div>
+    <div id={id} className="h-full">
+      {inner}
+    </div>
   );
 }

@@ -1,8 +1,7 @@
 import { CITIES, SERVICES } from "./site";
 
 export const SITE_ORIGIN =
-  (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ??
-  "https://sidingdepot.lovable.app";
+  (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ?? "https://sidingdepot.com";
 
 /**
  * Phase 2 — City × Service priority matrix from the PRD.
@@ -12,16 +11,34 @@ export const SITE_ORIGIN =
  *   - includes the URL in /sitemap.xml
  */
 export const LOCATION_MATRIX: Record<string, readonly string[]> = {
-  marietta:        ["siding", "painting", "roofing", "doors", "windows", "decks", "gutters", "dumpster"],
-  alpharetta:      ["siding", "painting", "windows", "doors", "roofing", "decks", "gutters", "dumpster"],
-  milton:          ["siding", "decks", "painting", "roofing", "windows", "doors", "gutters", "dumpster"],
-  canton:          ["siding", "roofing", "gutters", "painting", "windows", "doors", "decks", "dumpster"],
-  woodstock:       ["siding", "painting", "roofing", "windows", "doors", "decks", "gutters", "dumpster"],
-  roswell:         ["siding", "windows", "painting", "doors", "roofing", "decks", "gutters", "dumpster"],
-  kennesaw:        ["siding", "roofing", "painting", "windows", "doors", "decks", "gutters", "dumpster"],
-  "johns-creek":   ["siding", "decks", "roofing", "painting", "windows", "doors", "gutters", "dumpster"],
-  "sandy-springs": ["siding", "painting", "roofing", "windows", "doors", "decks", "gutters", "dumpster"],
-  acworth:         ["siding", "gutters", "roofing", "painting", "windows", "doors", "decks", "dumpster"],
+  marietta: ["siding", "painting", "roofing", "doors", "windows", "decks", "gutters", "dumpster"],
+  alpharetta: ["siding", "painting", "windows", "doors", "roofing", "decks", "gutters", "dumpster"],
+  milton: ["siding", "decks", "painting", "roofing", "windows", "doors", "gutters", "dumpster"],
+  canton: ["siding", "roofing", "gutters", "painting", "windows", "doors", "decks", "dumpster"],
+  woodstock: ["siding", "painting", "roofing", "windows", "doors", "decks", "gutters", "dumpster"],
+  roswell: ["siding", "windows", "painting", "doors", "roofing", "decks", "gutters", "dumpster"],
+  kennesaw: ["siding", "roofing", "painting", "windows", "doors", "decks", "gutters", "dumpster"],
+  "johns-creek": [
+    "siding",
+    "decks",
+    "roofing",
+    "painting",
+    "windows",
+    "doors",
+    "gutters",
+    "dumpster",
+  ],
+  "sandy-springs": [
+    "siding",
+    "painting",
+    "roofing",
+    "windows",
+    "doors",
+    "decks",
+    "gutters",
+    "dumpster",
+  ],
+  acworth: ["siding", "gutters", "roofing", "painting", "windows", "doors", "decks", "dumpster"],
 };
 
 export type LocationCombo = { city: string; service: string };
@@ -60,7 +77,6 @@ export const STATIC_ROUTES = [
   "/dumpster-rental",
   "/contact",
   "/guide",
-  "/guide/thank-you",
   "/lp/siding-marietta",
   "/lp/siding-alpharetta",
   "/lp/siding-canton",

@@ -6,7 +6,15 @@ export interface HiringChecklistItem {
   desc: string;
 }
 
-export function HiringChecklist({ items }: { items: readonly HiringChecklistItem[] }) {
+export function HiringChecklist({
+  items,
+  heading = "What to consider when hiring a contractor.",
+  subheading = "Use this checklist to verify your contractor meets the highest industry standards for Georgia installations.",
+}: {
+  items: readonly HiringChecklistItem[];
+  heading?: string;
+  subheading?: string;
+}) {
   return (
     <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -15,10 +23,10 @@ export function HiringChecklist({ items }: { items: readonly HiringChecklistItem
             Hire smart
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            What to consider when hiring a contractor.
+            {heading}
           </h2>
           <p className="mt-5 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            Choosing the right siding is a 30-year decision. Use this checklist to verify your contractor meets the highest industry standards for Georgia installations.
+            {subheading}
           </p>
         </div>
 
@@ -42,4 +50,3 @@ export function HiringChecklist({ items }: { items: readonly HiringChecklistItem
     </section>
   );
 }
-

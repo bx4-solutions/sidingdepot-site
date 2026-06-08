@@ -4,7 +4,6 @@ import { BLOG_POSTS } from "@/data/blog-posts";
 import { z } from "zod";
 import { getOptimizedUnsplashUrl } from "@/utils/image-optimization";
 
-
 const blogSearchSchema = z.object({
   preview: z.boolean().optional(),
 });
@@ -15,9 +14,9 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ params }) => {
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
     if (!post) return { title: "Post Not Found | Siding Depot" };
-    
+
     const canonicalUrl = `https://sidingdepot.com/blog/${post.slug}`;
-    
+
     return {
       title: post.metaTitle,
       meta: [
@@ -25,7 +24,10 @@ export const Route = createFileRoute("/blog/$slug")({
         // Open Graph / Facebook
         { property: "og:title", content: post.metaTitle },
         { property: "og:description", content: post.metaDescription },
-        { property: "og:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
+        {
+          property: "og:image",
+          content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }),
+        },
         { property: "og:image:alt", content: post.heroImage.alt },
         { property: "og:url", content: canonicalUrl },
         { property: "og:type", content: "article" },
@@ -33,45 +35,49 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "article:published_time", content: post.publishDate },
         { property: "article:author", content: "Siding Depot Team" },
         { property: "article:section", content: post.category },
-        
+
         // Twitter Card
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.metaTitle },
         { name: "twitter:description", content: post.metaDescription },
-        { name: "twitter:image", content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }) },
+        {
+          name: "twitter:image",
+          content: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 }),
+        },
       ],
-      links: [
-        { rel: "canonical", href: canonicalUrl },
-      ],
+      links: [{ rel: "canonical", href: canonicalUrl }],
       scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            "headline": post.title,
-            "description": post.excerpt,
-            "image": getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
-            "wordCount": post.sections.reduce((acc, section) => acc + section.content.split(/\s+/).length, 0),
-            "datePublished": post.publishDate,
-            "dateModified": post.publishDate,
-            "author": {
-              "@type": "Organization",
-              "name": "Siding Depot Team",
-              "url": "https://sidingdepot.com"
+            headline: post.title,
+            description: post.excerpt,
+            image: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
+            wordCount: post.sections.reduce(
+              (acc, section) => acc + section.content.split(/\s+/).length,
+              0,
+            ),
+            datePublished: post.publishDate,
+            dateModified: (post as any).modifiedDate ?? post.publishDate,
+            author: {
+              "@type": "Person",
+              name: "Siding Depot Editorial Team",
+              url: "https://sidingdepot.com/about",
             },
-            "publisher": {
+            publisher: {
               "@type": "Organization",
-              "name": "Siding Depot LLC",
-              "logo": {
+              name: "Siding Depot LLC",
+              logo: {
                 "@type": "ImageObject",
-                "url": "https://sidingdepot.com/logo.png"
-              }
+                url: "https://sidingdepot.com/logo.png",
+              },
             },
-            "mainEntityOfPage": {
+            mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": canonicalUrl
-            }
+              "@id": canonicalUrl,
+            },
           }),
         },
         {
@@ -79,14 +85,14 @@ export const Route = createFileRoute("/blog/$slug")({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": post.faq.map(item => ({
+            mainEntity: post.faq.map((item) => ({
               "@type": "Question",
-              "name": item.q,
-              "acceptedAnswer": {
+              name: item.q,
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": item.a
-              }
-            }))
+                text: item.a,
+              },
+            })),
           }),
         },
         {
@@ -94,29 +100,29 @@ export const Route = createFileRoute("/blog/$slug")({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": [
+            itemListElement: [
               {
                 "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://sidingdepot.com"
+                position: 1,
+                name: "Home",
+                item: "https://sidingdepot.com",
               },
               {
                 "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": "https://sidingdepot.com/blog"
+                position: 2,
+                name: "Blog",
+                item: "https://sidingdepot.com/blog",
               },
               {
                 "@type": "ListItem",
-                "position": 3,
-                "name": post.title,
-                "item": canonicalUrl
-              }
-            ]
+                position: 3,
+                name: post.title,
+                item: canonicalUrl,
+              },
+            ],
           }),
-        }
-      ]
+        },
+      ],
     };
   },
 });

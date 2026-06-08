@@ -41,10 +41,12 @@ import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
 import { Route as DevHotspotCalibratorRouteImport } from './routes/dev.hotspot-calibrator'
 import { Route as DevDesignPreviewRouteImport } from './routes/dev.design-preview'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminBlogPreviewRouteImport } from './routes/admin.blog-preview'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 import { Route as AdminBlogSlugRouteImport } from './routes/admin.blog.$slug'
 
@@ -208,6 +210,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
   id: '/admin/reset-password',
   path: '/admin/reset-password',
@@ -226,6 +233,11 @@ const AdminDashboardRoute = AdminDashboardRouteImport.update({
 const AdminBlogPreviewRoute = AdminBlogPreviewRouteImport.update({
   id: '/admin/blog-preview',
   path: '/admin/blog-preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
@@ -261,10 +273,12 @@ export interface FileRoutesByFullPath {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
@@ -300,10 +314,12 @@ export interface FileRoutesByTo {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
@@ -341,10 +357,12 @@ export interface FileRoutesById {
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/windows': typeof WindowsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/users': typeof AdminUsersRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
@@ -383,10 +401,12 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/analytics'
     | '/admin/blog-preview'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/admin/users'
     | '/blog/$slug'
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
@@ -422,10 +442,12 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/analytics'
     | '/admin/blog-preview'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/admin/users'
     | '/blog/$slug'
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
@@ -462,10 +484,12 @@ export interface FileRouteTypes {
     | '/siding'
     | '/sitemap.xml'
     | '/windows'
+    | '/admin/analytics'
     | '/admin/blog-preview'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
+    | '/admin/users'
     | '/blog/$slug'
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
@@ -503,10 +527,12 @@ export interface RootRouteChildren {
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WindowsRoute: typeof WindowsRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminBlogPreviewRoute: typeof AdminBlogPreviewRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminResetPasswordRoute: typeof AdminResetPasswordRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   BlogSlugRoute: typeof BlogSlugRoute
   DevDesignPreviewRoute: typeof DevDesignPreviewRoute
   DevHotspotCalibratorRoute: typeof DevHotspotCalibratorRoute
@@ -745,6 +771,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/reset-password': {
       id: '/admin/reset-password'
       path: '/admin/reset-password'
@@ -771,6 +804,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/blog-preview'
       fullPath: '/admin/blog-preview'
       preLoaderRoute: typeof AdminBlogPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/$city/$service': {
@@ -836,10 +876,12 @@ const rootRouteChildren: RootRouteChildren = {
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WindowsRoute: WindowsRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminBlogPreviewRoute: AdminBlogPreviewRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminResetPasswordRoute: AdminResetPasswordRoute,
+  AdminUsersRoute: AdminUsersRoute,
   BlogSlugRoute: BlogSlugRoute,
   DevDesignPreviewRoute: DevDesignPreviewRoute,
   DevHotspotCalibratorRoute: DevHotspotCalibratorRoute,

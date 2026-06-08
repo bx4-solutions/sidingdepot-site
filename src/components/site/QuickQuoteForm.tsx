@@ -44,7 +44,11 @@ export function QuickQuoteForm({
     onSuccess,
   });
 
-  const { register, control, formState: { errors } } = form as any;
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form as any;
 
   if (isSuccess) {
     return (
@@ -60,32 +64,79 @@ export function QuickQuoteForm({
     <div className="w-full max-w-[440px] mx-auto rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
       <div className="bg-sd-navy px-5 pt-5 pb-4 text-center text-white border-b border-white/10">
         <h2 className="font-display text-xl sm:text-2xl leading-tight">Get Your FREE Quote</h2>
-        <p className="mt-1 text-[11px] text-white/75">A specialist will contact you within 24 hours.</p>
+        <p className="mt-1 text-[11px] text-white/75">
+          A specialist will contact you within 24 hours.
+        </p>
         <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
-          ⭐ 4.5 Google · 🏆 Elite Preferred · 🔨 4.7 GuildQuality
+          ⭐ 4.4 Google · 🏆 Elite Preferred · 🔨 4.7 GuildQuality
         </div>
       </div>
       <form onSubmit={onSubmit} className="px-5 py-5 grid gap-3">
         <div className="grid gap-1">
-          <Label htmlFor="qq-name" className="text-[11px] font-bold text-sd-black uppercase tracking-wider">Full Name *</Label>
-          <Input {...register("name")} id="qq-name" placeholder="Your full name" className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
-          {errors.name && <p className="text-[11px] text-destructive font-medium">{errors.name.message as string}</p>}
+          <Label
+            htmlFor="qq-name"
+            className="text-[11px] font-bold text-sd-black uppercase tracking-wider"
+          >
+            Full Name *
+          </Label>
+          <Input
+            {...register("name")}
+            id="qq-name"
+            placeholder="Your full name"
+            className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
+          />
+          {errors.name && (
+            <p className="text-[11px] text-destructive font-medium">
+              {errors.name.message as string}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-1">
-          <Label htmlFor="qq-phone" className="text-[11px] font-bold text-sd-black uppercase tracking-wider">Phone *</Label>
-          <Input {...register("phone")} id="qq-phone" type="tel" placeholder="(678) 000-0000" className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
-          {errors.phone && <p className="text-[11px] text-destructive font-medium">{errors.phone.message as string}</p>}
+          <Label
+            htmlFor="qq-phone"
+            className="text-[11px] font-bold text-sd-black uppercase tracking-wider"
+          >
+            Phone *
+          </Label>
+          <Input
+            {...register("phone")}
+            id="qq-phone"
+            type="tel"
+            placeholder="(678) 000-0000"
+            className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
+          />
+          {errors.phone && (
+            <p className="text-[11px] text-destructive font-medium">
+              {errors.phone.message as string}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-1">
-          <Label htmlFor="qq-city" className="text-[11px] font-bold text-sd-black uppercase tracking-wider">City *</Label>
-          <Input {...register("city")} id="qq-city" placeholder="Your city" className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20" />
-          {errors.city && <p className="text-[11px] text-destructive font-medium">{errors.city.message as string}</p>}
+          <Label
+            htmlFor="qq-city"
+            className="text-[11px] font-bold text-sd-black uppercase tracking-wider"
+          >
+            City *
+          </Label>
+          <Input
+            {...register("city")}
+            id="qq-city"
+            placeholder="Your city"
+            className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
+          />
+          {errors.city && (
+            <p className="text-[11px] text-destructive font-medium">
+              {errors.city.message as string}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-1.5">
-          <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">Services *</Label>
+          <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">
+            Services *
+          </Label>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
             {SERVICES_OPTIONS.map((opt) => (
               <div key={opt} className="flex items-center gap-2">
@@ -109,19 +160,40 @@ export function QuickQuoteForm({
                     );
                   }}
                 />
-                <Label htmlFor={`qq-svc-${opt}`} className="text-[13px] text-sd-black cursor-pointer">{opt}</Label>
+                <Label
+                  htmlFor={`qq-svc-${opt}`}
+                  className="text-[13px] text-sd-black cursor-pointer"
+                >
+                  {opt}
+                </Label>
               </div>
             ))}
           </div>
-          {errors.services && <p className="text-[11px] text-destructive font-medium">{errors.services.message as string}</p>}
+          {errors.services && (
+            <p className="text-[11px] text-destructive font-medium">
+              {errors.services.message as string}
+            </p>
+          )}
         </div>
 
         {error && <p className="text-sm text-destructive text-center font-semibold">{error}</p>}
 
-        <Button type="submit" disabled={isSubmitting} className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg shadow-sd-green/20 transition-all h-11 text-sm mt-1">
-          {isSubmitting ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending…</> : "Send Request →"}
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full font-bold bg-sd-green text-sd-dark hover:bg-sd-green-hover shadow-lg shadow-sd-green/20 transition-all h-11 text-sm mt-1"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending…
+            </>
+          ) : (
+            "Send Request →"
+          )}
         </Button>
-        <p className="text-[10px] text-sd-gray-text text-center font-medium">🔒 Response within 24h · No pressure · Written estimate</p>
+        <p className="text-[10px] text-sd-gray-text text-center font-medium">
+          🔒 Response within 24h · No pressure · Written estimate
+        </p>
       </form>
     </div>
   );

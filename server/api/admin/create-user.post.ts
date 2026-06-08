@@ -12,7 +12,10 @@ export default defineEventHandler(async (event) => {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !serviceKey) {
-    throw createError({ statusCode: 500, message: "SUPABASE_SERVICE_ROLE_KEY not configured on server" });
+    throw createError({
+      statusCode: 500,
+      message: "SUPABASE_SERVICE_ROLE_KEY not configured on server",
+    });
   }
 
   const admin = createClient(supabaseUrl, serviceKey, {

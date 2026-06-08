@@ -1735,7 +1735,11 @@ function SEODashboard() {
                       />
                       <KPICard
                         title="Lead Conversion"
-                        value={metrics?.overview?.conversionRate ? `${metrics.overview.conversionRate}%` : "—"}
+                        value={
+                          metrics?.overview?.conversionRate
+                            ? `${metrics.overview.conversionRate}%`
+                            : "—"
+                        }
                         icon={Target}
                         color="sd-green"
                         diff="Conversão real do período"
@@ -1874,7 +1878,6 @@ function SEODashboard() {
                     </div>
                   </div>
                 )}
-
               </>
             )}
           </div>

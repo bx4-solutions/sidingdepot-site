@@ -10,35 +10,24 @@ import {
   Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { SITE, SERVICES } from "@/data/site";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { useState } from "react";
 import { type SocialProof, getServiceVariation, AB_CONTENT, SOCIAL_PROOF } from "@/data/ab-testing";
 import { getSeoForVariation } from "@/data/seo-config";
-import {
-  trackVariationView,
-  trackCtaClick,
-  trackCallClick,
-} from "@/lib/track";
+import { trackVariationView, trackCtaClick, trackCallClick } from "@/lib/track";
 import { getFaqSchema, getServiceSchema } from "@/lib/schema";
+import { useGoogleStats } from "@/lib/google-stats-context";
 import { HiringChecklist } from "@/components/site/HiringChecklist";
 import { FaqSection } from "@/components/site/FaqSection";
+import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
+import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
 import { HiringChecklistItem } from "./HiringChecklist";
 import { FaqItem as GlobalFaqItem } from "./FaqSection";
 
-
-
-
-
 export type ChecklistItem = HiringChecklistItem;
 export type FaqItem = GlobalFaqItem;
-
 
 export type ServiceLandingProps = {
   eyebrow: string;
@@ -63,23 +52,23 @@ export type ServiceLandingProps = {
   heroImageAlt?: string;
 };
 
-const ServiceFormModal = ({ source, tag }: { source: string, tag: string }) => {
+const ServiceFormModal = ({ source, tag }: { source: string; tag: string }) => {
   const [open, setOpen] = useState(false);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button 
-          size="lg" 
-          className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
+        <Button
+          size="lg"
+          className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-7 text-base sm:text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
         >
           Get My Free Quote →
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+      <DialogContent className="sm:max-w-md p-0 overflow-y-auto max-h-[85dvh] bg-transparent border-0 shadow-none">
         <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
-        <HeroQuoteForm 
-          source={source} 
-          tag={tag} 
+        <HeroQuoteForm
+          source={source}
+          tag={tag}
           onSuccess={() => setTimeout(() => setOpen(false), 2500)}
         />
       </DialogContent>
@@ -116,9 +105,9 @@ export function ServiceLandingPage({
   const [midModalOpen, setMidModalOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const fallbackImage = "https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&q=80&w=1200";
+  const fallbackImage =
+    "https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&q=80&w=1200";
 
-  
   // Use AB content if available, fallback to manual props
   const eyebrow = abContent?.eyebrow ?? manualEyebrow;
   const title = abContent?.title ?? manualTitle;
@@ -128,10 +117,20 @@ export function ServiceLandingPage({
   const hiringIntro = abContent?.hiringIntro ?? manualHiringIntro;
   const process = abContent?.process;
 
-  const socialProof = manualSocialProof || SOCIAL_PROOF[serviceKey] || SOCIAL_PROOF["siding"];
+  const { rating: googleRating, totalReviews: googleReviews } = useGoogleStats();
+  const rawSocialProof = manualSocialProof || SOCIAL_PROOF[serviceKey] || SOCIAL_PROOF["siding"];
+  // Override the Google Reviews stat with live data from context
+  const socialProof = {
+    ...rawSocialProof,
+    stats: rawSocialProof.stats.map((s: any) =>
+      s.label.includes("Google")
+        ? { ...s, value: `⭐ ${googleRating}`, label: `${googleReviews} Google Reviews` }
+        : s,
+    ),
+  };
 
   // Internal links for SEO consistency
-  const relatedServices = SERVICES.filter(s => s.slug !== serviceKey).slice(0, 3);
+  const relatedServices = SERVICES.filter((s) => s.slug !== serviceKey).slice(0, 3);
 
   // Track variation view + override <title>/meta description on client per assigned variation
   useEffect(() => {
@@ -160,10 +159,8 @@ export function ServiceLandingPage({
               alt=""
               aria-hidden
               className="h-full w-full object-cover object-center"
-              fetchPriority="high"
               loading="lazy"
               onError={() => setImgError(true)}
-
             />
             <div className="absolute inset-0 bg-gradient-to-r from-sd-navy via-sd-navy/80 to-transparent" />
           </div>
@@ -173,14 +170,26 @@ export function ServiceLandingPage({
             <div className="grid gap-8 lg:gap-10 lg:grid-cols-2 lg:items-center">
               <div className="max-w-2xl">
                 <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                  {title}{" "}
-                  <span className="text-sd-green">{titleAccent}</span>
+                  {title} <span className="text-sd-green">{titleAccent}</span>
                 </h1>
                 <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
                   {intro.split("\n\n").map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
                 </div>
+                {benefits && benefits.length > 0 && (
+                  <ul className="mt-5 space-y-2">
+                    {benefits.map((b) => (
+                      <li
+                        key={b}
+                        className="flex items-center gap-2 text-sm sm:text-base text-white/90"
+                      >
+                        <CheckCircle2 className="h-4 w-4 text-sd-green shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="mt-8 mb-4 lg:mb-0">
                   <ServiceFormModal
                     source={`service_${serviceKey}_hero`}
@@ -194,9 +203,7 @@ export function ServiceLandingPage({
                   alt={heroImageAlt}
                   className="w-full aspect-[4/3] lg:aspect-[4/5] object-cover object-center rounded-2xl shadow-2xl ring-1 ring-white/10"
                   fetchPriority="high"
-                  loading="lazy"
                   onError={() => setImgError(true)}
-
                 />
               </div>
             </div>
@@ -204,8 +211,7 @@ export function ServiceLandingPage({
             <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,420px)] lg:items-start">
               <div className="max-w-2xl">
                 <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                  {title}{" "}
-                  <span className="text-sd-green">{titleAccent}</span>
+                  {title} <span className="text-sd-green">{titleAccent}</span>
                 </h1>
                 <div className="mt-6 text-lg text-white/80 leading-relaxed space-y-4">
                   {intro.split("\n\n").map((p, i) => (
@@ -230,7 +236,10 @@ export function ServiceLandingPage({
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-3">
               {socialProof.stats.map((s) => (
-                <div key={s.label} className="flex items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border">
+                <div
+                  key={s.label}
+                  className="flex items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border"
+                >
                   <div className="p-3 bg-sd-green-pale rounded-full text-sd-green">
                     <s.icon className="h-6 w-6" />
                   </div>
@@ -246,15 +255,22 @@ export function ServiceLandingPage({
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {socialProof.reviews.map((r, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border">
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border"
+                >
                   <div className="flex text-sd-green mb-3">
-                    {[...Array(r.rating)].map((_, j) => <Star key={j} className="h-4 w-4 fill-sd-green" />)}
+                    {[...Array(r.rating)].map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-sd-green" />
+                    ))}
                   </div>
                   <p className="text-sm text-sd-gray-text italic leading-relaxed">"{r.text}"</p>
-                  <p className="mt-4 text-xs font-bold text-sd-navy">{r.name} — {r.city}</p>
+                  <p className="mt-4 text-xs font-bold text-sd-navy">
+                    {r.name} — {r.city}
+                  </p>
                 </div>
               ))}
             </div>
@@ -262,14 +278,8 @@ export function ServiceLandingPage({
         </section>
       )}
 
-      {/* SEO copy block */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <p className="text-base sm:text-lg text-sd-gray-text leading-relaxed">
-            {seoParagraph}
-          </p>
-        </div>
-      </section>
+      {/* SEO copy block — visually hidden, preserved for crawlers */}
+      <p className="sr-only">{seoParagraph}</p>
 
       {/* What to consider when hiring / Process */}
       {process ? (
@@ -299,9 +309,7 @@ export function ServiceLandingPage({
                     <h3 className="text-lg font-semibold text-sd-black leading-tight">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">
-                      {step.desc}
-                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -309,16 +317,19 @@ export function ServiceLandingPage({
           </div>
         </section>
       ) : (
-        <HiringChecklist items={hiringChecklist} />
+        <HiringChecklist
+          items={hiringChecklist}
+          heading={`Why North Atlanta Homeowners Choose Siding Depot for ${faqLabel}.`}
+          subheading={hiringIntro}
+        />
       )}
 
-
       {/* Internal Linking Section */}
-      <section className="py-16 bg-white border-t border-sd-dark/5">
+      <section className="py-8 bg-white border-t border-sd-dark/5">
         <div className="max-w-7xl mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-2xl font-display text-sd-dark mb-8">Related Services in {city}</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            {relatedServices.map(s => (
+            {relatedServices.map((s) => (
               <Button
                 key={s.slug}
                 asChild
@@ -347,12 +358,12 @@ export function ServiceLandingPage({
               Free Quote · 24h Response
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold leading-tight text-sd-black">
-              Ready to start your{" "}
-              <span className="text-sd-green">{faqLabel.toLowerCase()}</span> project in {city}?
+              Ready to start your <span className="text-sd-green">{faqLabel.toLowerCase()}</span>{" "}
+              project in {city}?
             </h2>
             <p className="mt-4 text-base sm:text-lg text-sd-gray-text leading-relaxed">
-              Tell us about your project and our team will respond within 24 hours
-              with a written estimate — no obligation.
+              Tell us about your project and our team will respond within 24 hours with a written
+              estimate — no obligation.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-sd-gray-text">
               {[
@@ -377,28 +388,29 @@ export function ServiceLandingPage({
       </section>
 
       {/* FAQ */}
-      <FaqSection 
-        items={faqs} 
-        eyebrow="FAQ" 
-        title={`${faqLabel} questions,`} 
-        titleAccent="answered." 
+      <FaqSection
+        items={faqs}
+        eyebrow="FAQ"
+        title={`${faqLabel} questions,`}
+        titleAccent="answered."
       />
 
+      <EliteBadgeSection />
+      <GoogleReviewsCarousel />
 
       {/* Closing CTA */}
       <section className="section-dark py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
           <div className="lg:col-span-2">
             <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
-              Ready for work that lasts{" "}
-              <span className="text-sd-green">{ctaAccent}</span>
+              Ready for work that lasts <span className="text-sd-green">{ctaAccent}</span>
             </h2>
             <p className="mt-4 text-white/75 max-w-2xl">
-              Free on-site consultation, written estimate the same day, and a
-              dedicated project manager from start to finish.
+              Free on-site consultation, written estimate the same day, and a dedicated project
+              manager from start to finish.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <ServiceFormModal 
+              <ServiceFormModal
                 source={`service_${serviceKey}_footer`}
                 tag={`service_${serviceKey}_quote`}
               />
@@ -440,7 +452,7 @@ export function serviceJsonLd(
     canonical?: string;
     image?: string;
     serviceType?: string;
-  }
+  },
 ) {
   const path = options?.canonical ? new URL(options.canonical).pathname : "";
   return {

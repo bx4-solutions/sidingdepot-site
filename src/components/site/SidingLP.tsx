@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { ArrowRight, CheckCircle2, Loader2, Phone, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, Phone, ShieldCheck, Star, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
@@ -21,14 +22,9 @@ import { SITE } from "@/data/site";
 import { LeadMagnet } from "@/components/site/LeadMagnet";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { track, type TrackPayload } from "@/lib/track";
-import {
-  SIDING_TYPES,
-  buildFaqs,
-  GREENSKY_STEPS,
-  GREENSKY_FAQS,
-} from "@/data/lp-content";
+import { SIDING_TYPES, buildFaqs, GREENSKY_STEPS, GREENSKY_FAQS } from "@/data/lp-content";
 import { LOCAL_BUSINESS_SCHEMA, getFaqSchema, getServiceSchema } from "@/lib/schema";
-
+import { useGoogleStats } from "@/lib/google-stats-context";
 
 /**
  * Conversion-optimized landing page for Google Ads traffic.
@@ -90,8 +86,8 @@ const REVIEWS = [
 
 const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
-  { value: "12+", label: "Years in Georgia" },
-  { value: "4.5★", label: "Google Rating" },
+  { value: "10+", label: "Years in Georgia" },
+  { value: "4.4★", label: "Google Rating" },
   { value: "98%", label: "Customer Satisfaction" },
 ] as const;
 
@@ -107,27 +103,35 @@ type LeadFormProps = {
 
 function LeadForm({ source, title, subtitle }: LeadFormProps) {
   const [open, setOpen] = useState(false);
-  
+
   return (
     <div data-lead-form className="flex flex-col items-center justify-center">
       <Dialog open={open} onOpenChange={(v) => setOpen(v)}>
         <DialogTrigger asChild>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="w-full sm:w-auto px-10 py-7 text-lg font-bold bg-sd-green text-sd-navy hover:bg-sd-green-hover shadow-xl shadow-sd-green/20 rounded-full transition-all hover:scale-105"
           >
             Get My Free Estimate →
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-0 shadow-none">
+        <DialogContent className="sm:max-w-md p-0 overflow-y-auto max-h-[90dvh] bg-transparent border-0 shadow-none [&>button]:hidden">
           <DialogTitle className="sr-only">Get Your Free Quote</DialogTitle>
-          <HeroQuoteForm 
-            source={source} 
-            tag="lp_quote_request" 
-            title={title} 
-            subtitle={subtitle} 
-            onSuccess={() => setTimeout(() => setOpen(false), 2500)}
-          />
+          <div className="relative">
+            <DialogClose
+              className="absolute right-3 top-3 z-20 rounded-full bg-white/20 p-2 text-white hover:bg-white/40 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </DialogClose>
+            <HeroQuoteForm
+              source={source}
+              tag="lp_quote_request"
+              title={title}
+              subtitle={subtitle}
+              onSuccess={() => setTimeout(() => setOpen(false), 2500)}
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </div>
@@ -141,7 +145,12 @@ function LeadForm({ source, title, subtitle }: LeadFormProps) {
 export type SidingLPProps = { city: string };
 
 export function SidingLP({ city }: SidingLPProps) {
+  const { rating: googleRating, totalReviews: googleReviews } = useGoogleStats();
   const FAQS = buildFaqs(city);
+  // Dynamic stats — Google Rating pulled from API via context
+  const DYNAMIC_STATS = STATS.map((s) =>
+    s.label === "Google Rating" ? { value: `${googleRating}★`, label: "Google Rating" } : s,
+  );
 
   function scrollToLeadForm(meta: TrackPayload = {}) {
     const el = document.querySelector("[data-lead-form]");
@@ -173,11 +182,11 @@ export function SidingLP({ city }: SidingLPProps) {
       {/* HERO + FORM */}
       <section className="relative overflow-hidden bg-sd-navy text-white">
         <div className="absolute inset-0">
-          <img 
-            src={HERO_BG} 
-            alt="Siding Depot contractor installing James Hardie siding" 
-            className="h-full w-full object-cover opacity-30" 
-            loading="eager" 
+          <img
+            src={HERO_BG}
+            alt="Siding Depot contractor installing James Hardie siding"
+            className="h-full w-full object-cover opacity-30"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-sd-navy/65" />
         </div>
@@ -188,13 +197,15 @@ export function SidingLP({ city }: SidingLPProps) {
                 James Hardie® Siding Installation in {city}, GA
               </h1>
               <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
-                Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's climate, our siding systems combine unbeatable durability with the vibrant ColorPlus® finish.
+                Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred
+                contractor. Engineered for Georgia's climate, our siding systems combine unbeatable
+                durability with the vibrant ColorPlus® finish.
               </p>
             </div>
             <div className="w-full max-w-[300px] md:max-w-[200px] lg:max-w-[280px] shrink-0">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-sd-green/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <img 
+                <img
                   src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780663807517-6231247b-0c9b-4a94-bd0d-0bb161cd8625.png"
                   alt="James Hardie Siding Project Portfolio"
                   className="relative rounded-2xl shadow-2xl border-4 border-white/10 w-full object-cover aspect-[4/5] transform hover:scale-105 transition-transform duration-500"
@@ -213,17 +224,17 @@ export function SidingLP({ city }: SidingLPProps) {
       </section>
 
       {/* PROOF BAR */}
-      <section
-        className="bg-sd-black text-white border-t-[3px] border-sd-green"
-      >
+      <section className="bg-sd-black text-white border-t-[3px] border-sd-green">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
-            "⭐ 4.5/5 Google Rating",
+            `⭐ ${googleRating}/5 · ${googleReviews} Google Reviews`,
             "🏅 Elite Preferred — Top 2% in the U.S.",
             "🏠 1,500+ Homes in Georgia",
             "✓ Free Estimates · No Obligation",
           ].map((t) => (
-            <div key={t} className="text-center text-sm font-semibold text-white/90">{t}</div>
+            <div key={t} className="text-center text-sm font-semibold text-white/90">
+              {t}
+            </div>
           ))}
         </div>
       </section>
@@ -236,11 +247,26 @@ export function SidingLP({ city }: SidingLPProps) {
           </h2>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
-              { icon: "🏆", title: "Elite Preferred Status", desc: "Only 2% of contractors nationwide earn James Hardie's Elite Preferred designation. Your installation comes with extended warranties only available through certified installers." },
-              { icon: "💰", title: "Transparent, Fixed Pricing", desc: "Every estimate is itemized and fixed. The price we quote is the price you pay — no change orders, no surprise fees when the job is done." },
-              { icon: "📍", title: "Local to North Atlanta", desc: "We live and work here. Our crews know Cobb County, Cherokee County, and Fulton County HOA requirements, permit processes, and local building codes." },
+              {
+                icon: "🏆",
+                title: "Elite Preferred Status",
+                desc: "Only 2% of contractors nationwide earn James Hardie's Elite Preferred designation. Your installation comes with extended warranties only available through certified installers.",
+              },
+              {
+                icon: "💰",
+                title: "Transparent, Fixed Pricing",
+                desc: "Every estimate is itemized and fixed. The price we quote is the price you pay — no change orders, no surprise fees when the job is done.",
+              },
+              {
+                icon: "📍",
+                title: "Local to North Atlanta",
+                desc: "We live and work here. Our crews know Cobb County, Cherokee County, and Fulton County HOA requirements, permit processes, and local building codes.",
+              },
             ].map((c) => (
-              <div key={c.title} className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm">
+              <div
+                key={c.title}
+                className="rounded-xl border border-sd-gray-border bg-white p-6 shadow-sm"
+              >
                 <div className="text-3xl">{c.icon}</div>
                 <h3 className="mt-3 text-lg font-bold text-sd-black">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sd-gray-text">{c.desc}</p>
@@ -261,7 +287,8 @@ export function SidingLP({ city }: SidingLPProps) {
               Types of Siding We Install in {city}
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Every Hardie product line — installed by Elite Preferred crews engineered for HardieZone HZ10.
+              Every Hardie product line — installed by Elite Preferred crews engineered for
+              HardieZone HZ10.
             </p>
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -295,7 +322,11 @@ export function SidingLP({ city }: SidingLPProps) {
                   </div>
                   <div className="ml-auto flex">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-sd-green text-sd-green" aria-hidden="true" />
+                      <Star
+                        key={i}
+                        className="h-3.5 w-3.5 fill-sd-green text-sd-green"
+                        aria-hidden="true"
+                      />
                     ))}
                   </div>
                 </div>
@@ -307,8 +338,11 @@ export function SidingLP({ city }: SidingLPProps) {
             ))}
           </div>
           <div className="grid grid-cols-2 gap-4 self-center">
-            {STATS.map((s) => (
-              <div key={s.label} className="rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-black/5">
+            {DYNAMIC_STATS.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl bg-white p-6 text-center shadow-sm ring-1 ring-black/5"
+              >
                 <div className="text-4xl font-extrabold text-sd-black">{s.value}</div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-sd-gray-text">
                   {s.label}
@@ -330,9 +364,7 @@ export function SidingLP({ city }: SidingLPProps) {
               We limit the number of projects per month to guarantee quality on every job. Spring is
               our busiest season — North Atlanta homeowners are scheduling now.
             </p>
-            <div
-              className="mt-6 rounded-lg p-4 text-sm font-bold bg-sd-green text-sd-navy"
-            >
+            <div className="mt-6 rounded-lg p-4 text-sm font-bold bg-sd-green text-sd-navy">
               ⚡ We&apos;re booking 3–4 weeks out. Request your estimate today to secure your spot.
             </div>
           </div>
@@ -359,7 +391,8 @@ export function SidingLP({ city }: SidingLPProps) {
               GreenSky® Home Improvement Financing
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Pre-approved in 60 seconds. Soft credit pull, zero obligation, no impact on your score.
+              Pre-approved in 60 seconds. Soft credit pull, zero obligation, no impact on your
+              score.
             </p>
           </div>
 
@@ -445,14 +478,11 @@ export function SidingLP({ city }: SidingLPProps) {
         </div>
       </section>
 
-
       {/* FOOTER */}
       <footer className="text-white/70 text-sm" style={{ background: "#07111A" }}>
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex flex-col gap-1">
-            <span className="text-base font-extrabold text-sd-green">
-              Siding Depot
-            </span>
+            <span className="text-base font-extrabold text-sd-green">Siding Depot</span>
             <span>© 2026 {SITE.legalName}</span>
           </div>
           <div className="flex flex-col gap-1 lg:items-end">
@@ -479,7 +509,8 @@ export function SidingLP({ city }: SidingLPProps) {
 export function lpHead({ city, path }: { city: string; path: string }) {
   const title = `James Hardie Siding ${city} GA | Free Estimate | Siding Depot`;
   const description = `James Hardie Elite Preferred contractor in ${city}, GA. Serving North Atlanta since 2009. Free estimate in 24h. Call ${SITE.phone}.`;
-  const image = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835";
+  const image = "https://sidingdepot.com/og-default.webp";
+  const canonicalUrl = `https://sidingdepot.com${path}`;
   return {
     meta: [
       { title },
@@ -488,13 +519,14 @@ export function lpHead({ city, path }: { city: string; path: string }) {
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:image", content: image },
+      { property: "og:url", content: canonicalUrl },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: image },
-      { rel: "canonical", href: `https://sidingdepot.com${path}` },
     ],
+    links: [{ rel: "canonical", href: canonicalUrl }],
     scripts: [
       {
         type: "application/ld+json",
@@ -502,7 +534,9 @@ export function lpHead({ city, path }: { city: string; path: string }) {
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify(getServiceSchema(`James Hardie Siding Installation in ${city}`, description, path, image)),
+        children: JSON.stringify(
+          getServiceSchema(`James Hardie Siding Installation in ${city}`, description, path, image),
+        ),
       },
       {
         type: "application/ld+json",

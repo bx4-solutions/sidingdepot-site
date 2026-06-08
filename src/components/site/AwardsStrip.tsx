@@ -1,9 +1,18 @@
 import { Award, BadgeCheck, ShieldCheck, Star, Wallet, Wrench } from "lucide-react";
 import { AWARDS } from "@/data/site";
+import { useGoogleStats } from "@/lib/google-stats-context";
 
 const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, Wallet];
 
 export function AwardsStrip() {
+  const { rating, totalReviews } = useGoogleStats();
+  // Dynamically replace the static Google entry with live data
+  const awards = AWARDS.map((a) =>
+    a.name === "Google · 4.4★"
+      ? { name: `Google · ${rating}★`, subtitle: `${totalReviews} verified reviews` }
+      : a,
+  );
+
   return (
     <section className="py-14 bg-white border-y border-sd-gray-border">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -11,7 +20,7 @@ export function AwardsStrip() {
           Certified · Awarded · Trusted
         </p>
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {AWARDS.map((a, i) => {
+          {awards.map((a, i) => {
             const Icon = ICONS[i] ?? Award;
             return (
               <div

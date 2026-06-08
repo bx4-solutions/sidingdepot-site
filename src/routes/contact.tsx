@@ -4,8 +4,9 @@ import { z } from "zod";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { trackContactPageView } from "@/lib/track";
 import { MapSection } from "@/components/site/MapSection";
+import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
+import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
-
 
 const searchSchema = z.object({
   source: z.string().max(80).optional(),
@@ -24,14 +25,32 @@ export const Route = createFileRoute("/contact")({
           "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours.",
       },
       { property: "og:title", content: "Get a Free Quote — Siding Depot" },
-      { property: "og:description", content: "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      {
+        property: "og:description",
+        content:
+          "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Get a Free Quote — Siding Depot" },
-      { name: "twitter:description", content: "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours." },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835" },
+      {
+        name: "twitter:description",
+        content:
+          "Request your free quote for siding, painting, windows, decks, or roofing in North Atlanta. Response within 24 hours.",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
+      },
+      { property: "og:url", content: "https://sidingdepot.com/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://sidingdepot.com/contact" }],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
@@ -63,13 +82,14 @@ function ContactPage() {
         </div>
 
         <div className="mt-10">
-          <HeroQuoteForm
-            source={search.source || "contact_page"}
-            tag="contact_page_request"
-          />
+          <HeroQuoteForm source={search.source || "contact_page"} tag="contact_page_request" />
         </div>
       </div>
-      <MapSection />
+      <div className="relative overflow-hidden">
+        <MapSection />
+      </div>
+      <EliteBadgeSection />
+      <GoogleReviewsCarousel />
     </section>
   );
 }
