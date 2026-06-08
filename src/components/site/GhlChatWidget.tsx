@@ -17,8 +17,34 @@ const FLOATING_STYLES =
   "right:24px!important;" +
   "top:auto!important;" +
   "left:auto!important;" +
-  "z-index:2147483647!important;" + // max z-index
+  "z-index:2147483647!important;" +
   "transform:none!important;";
+
+// CSS injected into <head> — stylesheet !important beats GHL's inline styles
+const GHL_OVERRIDE_CSS = `
+#chat-widget-container,
+#leadconnector-chat-widget,
+[id^="chat-widget"],
+.hl-chat-widget,
+chat-widget,
+leadconnector-chat {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 2147483647 !important;
+  transform: none !important;
+}
+`;
+
+function injectOverrideStyles() {
+  if (document.getElementById("ghl-position-override")) return;
+  const style = document.createElement("style");
+  style.id = "ghl-position-override";
+  style.textContent = GHL_OVERRIDE_CSS;
+  document.head.appendChild(style);
+}
 
 function applyFloatingPosition() {
   let applied = false;
@@ -39,6 +65,10 @@ function applyFloatingPosition() {
 export function GhlChatWidget() {
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // Inject CSS override immediately — before GHL loads — so the widget
+    // lands at bottom-right from the first paint, regardless of what GHL sets
+    injectOverrideStyles();
 
     let loaded = false;
     let interactionTimer: ReturnType<typeof setTimeout> | null = null;
