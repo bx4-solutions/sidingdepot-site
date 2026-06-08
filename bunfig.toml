@@ -1,0 +1,9 @@
+# Tell Bun how to handle image imports when running scripts (generate-sitemap, etc.)
+# Without this, Bun on Vercel fails with "Cannot find module '*.jpg'"
+[loader]
+".jpg"  = "file"
+".jpeg" = "file"
+".png"  = "file"
+".webp" = "file"
+".avif" = "file"
+".svg"  = "file"
