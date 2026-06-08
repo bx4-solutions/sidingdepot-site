@@ -105,6 +105,16 @@ export const Route = createFileRoute("/")({
       { rel: "canonical", href: "https://sidingdepot.com/" },
       { rel: "preconnect", href: "https://www.youtube.com" },
       { rel: "preconnect", href: "https://i.ytimg.com" },
+      // Responsive hero preload — browser picks the correct variant automatically
+      {
+        rel: "preload",
+        href: "/hero-home.webp",
+        as: "image",
+        // @ts-expect-error — imagesrcset/imagesizes are valid but not typed in TanStack's LinkProps
+        imagesrcset: "/hero-home-sm.webp 640w, /hero-home.webp 1920w",
+        imagesizes: "(max-width: 640px) 100vw, 100vw",
+        fetchpriority: "high",
+      },
     ],
     scripts: [
       ...VIDEO_JSONLD_LIST.map((data) => ({

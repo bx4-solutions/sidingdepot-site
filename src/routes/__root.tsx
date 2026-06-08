@@ -134,24 +134,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Non-blocking font load: preload first, then swap to stylesheet via script
       {
-        rel: "stylesheet",
+        rel: "preload",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap",
-      },
-      // Preload critical LCP assets (Hero Image)
-      {
-        rel: "preload",
-        href: "/hero-home-sm.webp",
-        as: "image",
-        media: "(max-width: 640px)",
-        fetchPriority: "high" as any,
-      },
-      {
-        rel: "preload",
-        href: "/hero-home.webp",
-        as: "image",
-        media: "(min-width: 641px)",
-        fetchPriority: "high" as any,
+        as: "style",
       },
     ],
     scripts: [
@@ -180,10 +167,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const FONT_URL =
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap";
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Non-blocking font swap: convert preload → stylesheet on load */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var l=document.querySelector('link[rel="preload"][href*="fonts.googleapis.com"]');if(l){l.onload=function(){l.rel='stylesheet'};l.onerror=function(){l.rel='stylesheet'}}})();`,
+          }}
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href={FONT_URL}
+          />
+        </noscript>
       </head>
       <body>
         {/* GTM noscript fallback */}

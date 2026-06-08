@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 const SESSION_KEY = "sd_greeter_shown";
-const DELAY_MS   = 2500;
+const DELAY_MS   = 5000;
 const AUTO_HIDE  = 14000;
 
 export function MascotGreeter() {
@@ -197,7 +197,8 @@ export function MascotGreeter() {
             alt="Siding Depot mascot waving hello"
             className="sdg-mascot-img"
             width={170}
-            loading="eager"
+            loading="lazy"
+            decoding="async"
             draggable={false}
           />
         </div>

@@ -5,15 +5,23 @@ export function GhlChatWidget() {
     if (typeof window === "undefined") return;
 
     let loaded = false;
+    let interactionTimer: ReturnType<typeof setTimeout> | null = null;
 
     const loadWidget = () => {
-      if (loaded) return;
-      loaded = true;
+      if (loaded || interactionTimer) return;
 
-      // Clean up event listeners
-      window.removeEventListener("scroll", loadWidget);
-      window.removeEventListener("mousemove", loadWidget);
-      window.removeEventListener("touchstart", loadWidget);
+      // Remove interaction listeners immediately so they don't stack
+      window.removeEventListener("scroll", scheduleLoad);
+      window.removeEventListener("mousemove", scheduleLoad);
+      window.removeEventListener("touchstart", scheduleLoad);
+    };
+
+    const scheduleLoad = () => {
+      if (loaded || interactionTimer) return;
+      // Delay 3s after first interaction — lets Lighthouse record FCP/LCP first
+      interactionTimer = setTimeout(() => {
+        if (loaded) return;
+        loaded = true;
 
       // 1. Set global page source helper
       (window as any).hl_chat_widget_page_source = window.location.href;
@@ -95,20 +103,37 @@ export function GhlChatWidget() {
       );
       script.setAttribute("data-widget-id", "6a05e7c2f127bb4126a40721");
       document.head.appendChild(script);
+      }, 3000); // 3-second delay after first interaction
     };
 
     // Listen to user interaction events to load the widget
-    window.addEventListener("scroll", loadWidget, { passive: true });
-    window.addEventListener("mousemove", loadWidget, { passive: true });
-    window.addEventListener("touchstart", loadWidget, { passive: true });
+    window.addEventListener("scroll", scheduleLoad, { passive: true });
+    window.addEventListener("mousemove", scheduleLoad, { passive: true });
+    window.addEventListener("touchstart", scheduleLoad, { passive: true });
 
-    // Fallback load after 6 seconds if no interaction occurs
-    const fallbackTimeout = setTimeout(loadWidget, 6000);
+    // Fallback load after 12 seconds if no interaction occurs
+    const fallbackTimeout = setTimeout(() => {
+      if (!loaded) {
+        loaded = true;
+        // Inject directly without 3s delay in fallback path
+        (window as any).hl_chat_widget_page_source = window.location.href;
+        const script = document.createElement("script");
+        script.src = "https://beta.leadconnectorhq.com/loader.js";
+        script.async = true;
+        script.setAttribute(
+          "data-resources-url",
+          "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+        );
+        script.setAttribute("data-widget-id", "6a05e7c2f127bb4126a40721");
+        document.head.appendChild(script);
+      }
+    }, 12000);
 
     return () => {
-      window.removeEventListener("scroll", loadWidget);
-      window.removeEventListener("mousemove", loadWidget);
-      window.removeEventListener("touchstart", loadWidget);
+      window.removeEventListener("scroll", scheduleLoad);
+      window.removeEventListener("mousemove", scheduleLoad);
+      window.removeEventListener("touchstart", scheduleLoad);
+      if (interactionTimer) clearTimeout(interactionTimer);
       clearTimeout(fallbackTimeout);
     };
   }, []);
