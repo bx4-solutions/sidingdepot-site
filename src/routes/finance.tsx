@@ -14,7 +14,7 @@ import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 import { useEffect, useState } from "react";
-import greenSkyFinancing from "@/assets/finance-banner.png.asset.json";
+const greenSkyFinancing = { url: "/finance-hero-illustration.webp" };
 
 export const Route = createFileRoute("/finance")({
   head: () => {

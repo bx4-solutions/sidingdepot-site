@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import decksHeroImg from "@/assets/decks-hero.jpg";
+import decksHeroImg from "@/assets/decks-hero.png";
 import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
 
 const HERO_IMAGE = decksHeroImg;
