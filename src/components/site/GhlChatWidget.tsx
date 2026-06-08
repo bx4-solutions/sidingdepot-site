@@ -1,54 +1,78 @@
 import { useEffect } from "react";
 
+// Selectors GHL uses for its chat widget container
+const GHL_SELECTORS = [
+  "#chat-widget-container",
+  "#leadconnector-chat-widget",
+  '[id^="chat-widget"]',
+  ".hl-chat-widget",
+  "[data-widget-id]",
+  "chat-widget",           // web component tag
+  "leadconnector-chat",    // alternate web component
+];
+
+const FLOATING_STYLES =
+  "position:fixed!important;" +
+  "bottom:24px!important;" +
+  "right:24px!important;" +
+  "top:auto!important;" +
+  "left:auto!important;" +
+  "z-index:2147483647!important;" + // max z-index
+  "transform:none!important;";
+
+function applyFloatingPosition() {
+  let applied = false;
+  GHL_SELECTORS.forEach((sel) => {
+    try {
+      document.querySelectorAll(sel).forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        if (htmlEl.style.cssText !== FLOATING_STYLES) {
+          htmlEl.style.cssText = FLOATING_STYLES;
+          applied = true;
+        }
+      });
+    } catch (_) {}
+  });
+  return applied;
+}
+
 export function GhlChatWidget() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let loaded = false;
     let interactionTimer: ReturnType<typeof setTimeout> | null = null;
+    let mutationObserver: MutationObserver | null = null;
 
-    const loadWidget = () => {
-      if (loaded || interactionTimer) return;
-
-      // Remove interaction listeners immediately so they don't stack
-      window.removeEventListener("scroll", scheduleLoad);
-      window.removeEventListener("mousemove", scheduleLoad);
-      window.removeEventListener("touchstart", scheduleLoad);
+    // ── MutationObserver: watches DOM for any new GHL element added ──────────
+    // This is the most reliable way — fires immediately when the widget appears
+    const startObserver = () => {
+      if (mutationObserver) return;
+      mutationObserver = new MutationObserver(() => {
+        applyFloatingPosition();
+      });
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style", "class", "id"],
+      });
     };
 
-    const scheduleLoad = () => {
-      if (loaded || interactionTimer) return;
-      // Delay 3s after first interaction — lets Lighthouse record FCP/LCP first
-      interactionTimer = setTimeout(() => {
-        if (loaded) return;
-        loaded = true;
+    const injectScript = () => {
+      if (loaded) return;
+      loaded = true;
 
-      // 1. Set global page source helper
       (window as any).hl_chat_widget_page_source = window.location.href;
 
-      // 2. Setup fix position function and loop
-      const fixGHLPosition = () => {
-        const selectors = [
-          "#chat-widget-container",
-          '[id^="chat-widget"]',
-          ".hl-chat-widget",
-          "[data-widget-id]",
-          "#leadconnector-chat-widget",
-        ];
-        selectors.forEach((sel) => {
-          const el = document.querySelector(sel) as HTMLElement | null;
-          if (el) {
-            el.style.cssText +=
-              "position:fixed!important;bottom:20px!important;right:20px!important;top:auto!important;left:auto!important;z-index:9999!important;";
-          }
-        });
-      };
+      // Start observer before injecting so we catch the widget immediately
+      startObserver();
 
-      setTimeout(fixGHLPosition, 2000);
-      setTimeout(fixGHLPosition, 5000);
-      setTimeout(fixGHLPosition, 10000);
+      // Periodic safety net for the first 30s in case observer misses
+      const intervals = [1000, 2000, 3000, 5000, 8000, 15000, 30000];
+      intervals.forEach((ms) => setTimeout(applyFloatingPosition, ms));
 
-      // 3. Message event listener for Lead Capturing
+      // Message event listener for Lead Capturing
       const handleGhlMessage = (e: MessageEvent) => {
         const isGHLLead =
           e.data &&
@@ -74,7 +98,6 @@ export function GhlChatWidget() {
             });
           }
 
-          // Store in our Supabase leads table via webhook
           try {
             const payload = e.data.data || e.data.payload || e.data || {};
             fetch("/api/ghl-webhook", {
@@ -87,13 +110,13 @@ export function GhlChatWidget() {
                 })
               ),
             }).catch(() => {});
-          } catch (err) {}
+          } catch (_) {}
         }
       };
 
       window.addEventListener("message", handleGhlMessage);
 
-      // 4. Dynamically inject the script tag
+      // Inject the GHL loader script
       const script = document.createElement("script");
       script.src = "https://beta.leadconnectorhq.com/loader.js";
       script.async = true;
@@ -103,30 +126,25 @@ export function GhlChatWidget() {
       );
       script.setAttribute("data-widget-id", "6a05e7c2f127bb4126a40721");
       document.head.appendChild(script);
-      }, 3000); // 3-second delay after first interaction
     };
 
-    // Listen to user interaction events to load the widget
+    const scheduleLoad = () => {
+      if (loaded || interactionTimer) return;
+      // Remove listeners so they don't stack
+      window.removeEventListener("scroll", scheduleLoad);
+      window.removeEventListener("mousemove", scheduleLoad);
+      window.removeEventListener("touchstart", scheduleLoad);
+      // 3s delay after first interaction — lets Lighthouse record FCP/LCP first
+      interactionTimer = setTimeout(injectScript, 3000);
+    };
+
     window.addEventListener("scroll", scheduleLoad, { passive: true });
     window.addEventListener("mousemove", scheduleLoad, { passive: true });
     window.addEventListener("touchstart", scheduleLoad, { passive: true });
 
-    // Fallback load after 12 seconds if no interaction occurs
+    // Fallback: load after 12s if user never interacts
     const fallbackTimeout = setTimeout(() => {
-      if (!loaded) {
-        loaded = true;
-        // Inject directly without 3s delay in fallback path
-        (window as any).hl_chat_widget_page_source = window.location.href;
-        const script = document.createElement("script");
-        script.src = "https://beta.leadconnectorhq.com/loader.js";
-        script.async = true;
-        script.setAttribute(
-          "data-resources-url",
-          "https://beta.leadconnectorhq.com/chat-widget/loader.js"
-        );
-        script.setAttribute("data-widget-id", "6a05e7c2f127bb4126a40721");
-        document.head.appendChild(script);
-      }
+      if (!loaded) injectScript();
     }, 12000);
 
     return () => {
@@ -135,6 +153,7 @@ export function GhlChatWidget() {
       window.removeEventListener("touchstart", scheduleLoad);
       if (interactionTimer) clearTimeout(interactionTimer);
       clearTimeout(fallbackTimeout);
+      if (mutationObserver) mutationObserver.disconnect();
     };
   }, []);
 
