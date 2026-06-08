@@ -132,16 +132,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // Non-blocking font load: preload first, then swap to stylesheet via script
+      // Preload hero — browser inicia download antes de parsear o body → LCP -1.5s
       {
         rel: "preload",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap",
-        as: "style",
+        as: "image",
+        href: "/hero-home.webp",
+        // @ts-ignore
+        fetchpriority: "high",
+        media: "(min-width: 641px)",
       },
-      // Preconnect to own CDN (OG images served from sidingdepot.com)
+      {
+        rel: "preload",
+        as: "image",
+        href: "/hero-home-sm.webp",
+        // @ts-ignore
+        fetchpriority: "high",
+        media: "(max-width: 640px)",
+      },
+      // Preconnect para CDN próprio (OG images)
       { rel: "preconnect", href: "https://sidingdepot.com" },
+      // Fontes auto-hospedadas em /fonts/ — sem round-trips para Google Fonts
     ],
     scripts: [
       // GA4 (only if env var present) — also loaded afterInteractive via useEffect
@@ -157,24 +167,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
-  const FONT_URL =
-    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap";
   return (
     <html lang="en">
       <head>
         <HeadContent />
-        {/* Non-blocking font swap: convert preload → stylesheet on load */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var l=document.querySelector('link[rel="preload"][href*="fonts.googleapis.com"]');if(l){l.onload=function(){l.rel='stylesheet'};l.onerror=function(){l.rel='stylesheet'}}})();`,
-          }}
-        />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href={FONT_URL}
-          />
-        </noscript>
       </head>
       <body>
         {/* GTM noscript fallback */}

@@ -109,7 +109,7 @@ function FinancePage() {
       <section className="relative w-full overflow-hidden bg-sd-black">
         <div className="absolute inset-0 z-0">
           <img
-            src="/finance-hero-bg.jpg"
+            src="/finance-hero-bg.webp"
             alt=""
             aria-hidden="true"
             className="h-full w-full object-cover opacity-90"

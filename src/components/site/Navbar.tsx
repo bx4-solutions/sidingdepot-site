@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 import { supabase } from "@/integrations/supabase/client";
-import logoSidingDepot from "@/assets/logo-sidingdepot.png";
+import logoSidingDepot from "@/assets/logo-sidingdepot.webp";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
