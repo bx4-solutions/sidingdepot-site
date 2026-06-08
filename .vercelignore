@@ -1,0 +1,30 @@
+# Ignore Vercel's own cache/artifacts folder
+.vercel
+
+# Ignore git
+.git
+.github
+
+# Ignore dependencies and build outputs
+node_modules
+dist
+dist-ssr
+.output
+.vinxi
+.tanstack
+.nitro
+
+# Ignore large media and scripts
+scripts/videos/
+public/material/
+*.mp4
+*.mov
+*.JPG
+*.zip
+*.tar.gz
+*.pdf
+
+# Ignore environment variables
+.env
+.env.local
+*.local
