@@ -79,18 +79,22 @@ export function GhlChatWidget() {
     let interactionTimer: ReturnType<typeof setTimeout> | null = null;
     let mutationObserver: MutationObserver | null = null;
 
-    // ── MutationObserver: watches DOM for any new GHL element added ──────────
-    // This is the most reliable way — fires immediately when the widget appears
+    // ── MutationObserver: watches DOM for new GHL elements added ─────────────
+    // Only watches childList (new nodes). Watching attribute changes caused
+    // applyFloatingPosition() → setAttribute("style") → MO fires again →
+    // infinite loop → browser freeze.
+    let applyingPosition = false;
     const startObserver = () => {
       if (mutationObserver) return;
       mutationObserver = new MutationObserver(() => {
+        if (applyingPosition) return;
+        applyingPosition = true;
         applyFloatingPosition();
+        applyingPosition = false;
       });
       mutationObserver.observe(document.body, {
         childList: true,
         subtree: true,
-        attributes: true,
-        attributeFilter: ["style", "class", "id"],
       });
     };
 
