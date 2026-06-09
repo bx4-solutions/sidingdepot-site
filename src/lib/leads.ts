@@ -61,8 +61,21 @@ export async function submitLead(payload: LeadPayload) {
       // but we should probably track this error.
     }
 
-    // 2. Send to Webhook (GHL)
-    if (SITE.ghlWebhookUrl) {
+    // 2. Send to GHL Webhook (only if enabled in site_settings table)
+    const { data: settings } = await supabase
+      .from("site_settings")
+      .select("key, value")
+      .in("key", ["ghl_webhook_enabled", "ghl_webhook_url"]);
+
+    const settingsMap = Object.fromEntries(
+      (settings ?? []).map((r: { key: string; value: string }) => [r.key, r.value])
+    );
+
+    const webhookEnabled = settingsMap["ghl_webhook_enabled"] !== "false";
+    // DB URL takes priority over env var — lets you change it without redeploying
+    const webhookUrl = settingsMap["ghl_webhook_url"] || SITE.ghlWebhookUrl;
+
+    if (webhookEnabled && webhookUrl) {
       const ghlPayload = {
         first_name: name.split(" ")[0],
         last_name: name.split(" ").slice(1).join(" ") || " ",
@@ -78,19 +91,23 @@ export async function submitLead(payload: LeadPayload) {
         utm_source: attribution.utm_source ?? null,
         utm_medium: attribution.utm_medium ?? null,
         utm_campaign: attribution.utm_campaign ?? null,
+        utm_content: (attribution as Record<string, string>).utm_content ?? null,
+        utm_term: (attribution as Record<string, string>).utm_term ?? null,
         gclid,
         fbclid,
         source_platform: deriveSourcePlatform(),
+        page_url: typeof window !== "undefined" ? window.location.href : "",
+        referrer: typeof document !== "undefined" ? document.referrer : "",
       };
 
-      const response = await fetch(SITE.ghlWebhookUrl, {
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ghlPayload),
       });
 
       if (!response.ok) {
-        throw new Error("Webhook submission failed");
+        console.warn("GHL webhook responded with:", response.status);
       }
     }
 
