@@ -15,25 +15,27 @@ import { lazy, Suspense } from "react";
 
 // ── Below-fold components: lazy-loaded (equivalent to Next.js dynamic()) ──────
 const TestimonialCard = lazy(() =>
-  import("@/components/site/TestimonialCard").then((m) => ({ default: m.TestimonialCard }))
+  import("@/components/site/TestimonialCard").then((m) => ({ default: m.TestimonialCard })),
 );
 const MapSection = lazy(() =>
-  import("@/components/site/MapSection").then((m) => ({ default: m.MapSection }))
+  import("@/components/site/MapSection").then((m) => ({ default: m.MapSection })),
 );
 const CitiesServed = lazy(() =>
-  import("@/components/site/CitiesServed").then((m) => ({ default: m.CitiesServed }))
+  import("@/components/site/CitiesServed").then((m) => ({ default: m.CitiesServed })),
 );
 const ProcessTimeline = lazy(() =>
-  import("@/components/site/ProcessTimeline").then((m) => ({ default: m.ProcessTimeline }))
+  import("@/components/site/ProcessTimeline").then((m) => ({ default: m.ProcessTimeline })),
 );
 const AwardsStrip = lazy(() =>
-  import("@/components/site/AwardsStrip").then((m) => ({ default: m.AwardsStrip }))
+  import("@/components/site/AwardsStrip").then((m) => ({ default: m.AwardsStrip })),
 );
 const FinancingBlock = lazy(() =>
-  import("@/components/site/FinancingBlock").then((m) => ({ default: m.FinancingBlock }))
+  import("@/components/site/FinancingBlock").then((m) => ({ default: m.FinancingBlock })),
 );
 const GoogleReviewsCarousel = lazy(() =>
-  import("@/components/site/GoogleReviewsCarousel").then((m) => ({ default: m.GoogleReviewsCarousel }))
+  import("@/components/site/GoogleReviewsCarousel").then((m) => ({
+    default: m.GoogleReviewsCarousel,
+  })),
 );
 const HOME_VIDEOS = [
   {
@@ -304,7 +306,7 @@ function HomePage() {
               <Button asChild size="lg">
                 <Link to="/contact">Get Your Free Quote</Link>
               </Button>
-              <Button asChild size="lg" variant="outlineWhite">
+              <Button asChild size="lg" variant="outline">
                 <Link to="/about">About Siding Depot</Link>
               </Button>
             </div>
@@ -386,7 +388,7 @@ function HomePage() {
               <Button asChild size="lg">
                 <Link to="/contact">Open Full Quote Form</Link>
               </Button>
-              <Button asChild size="lg" variant="outlineWhite">
+              <Button asChild size="lg" variant="outline">
                 <a href={SITE.phoneHref}>Call {SITE.phone}</a>
               </Button>
               <p className="text-xs text-sd-black/45 text-center mt-2">
