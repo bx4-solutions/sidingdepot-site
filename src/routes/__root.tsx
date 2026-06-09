@@ -173,14 +173,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        {/* GHL widget position override — inlined in SSR HTML so it applies before any JS */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          #chat-widget-container,#leadconnector-chat-widget,[id^="chat-widget"],.hl-chat-widget,[data-widget-id],chat-widget,leadconnector-chat{
-            position:fixed!important;bottom:24px!important;right:24px!important;
-            top:auto!important;left:auto!important;z-index:2147483647!important;
-            transform:none!important;width:auto!important;height:auto!important;
-          }
-        ` }} />
       </head>
       <body>
         {/* GTM noscript fallback */}
