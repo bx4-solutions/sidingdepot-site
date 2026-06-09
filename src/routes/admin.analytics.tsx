@@ -63,6 +63,8 @@ import {
   useCountryStats,
   useAcquisitionStats,
   useFunnelData,
+  useChannelStats,
+  useLeadsByChannel,
 } from "@/hooks/useSiteAnalytics";
 
 // ── Auth guard ────────────────────────────────────────────────────────────────
@@ -601,12 +603,15 @@ function AnalyticsDashboard() {
   const { data: osData } = useOSStats(filters);
   const { data: countryData } = useCountryStats(filters);
   const { data: acqData } = useAcquisitionStats(filters);
+  const { data: channelData } = useChannelStats(filters);
+  const { data: leadsByChannel } = useLeadsByChannel(filters);
   const { count: onlineCount } = useOnlineVisitors();
 
   const TABS = [
     { id: "realtime", label: "Tempo Real" },
     { id: "audience", label: "Audiência" },
     { id: "acquisition", label: "Aquisição" },
+    { id: "channels", label: "Canais" },
     { id: "pages", label: "Páginas" },
     { id: "funnel", label: "Funil" },
   ] as const;
@@ -821,6 +826,139 @@ function AnalyticsDashboard() {
                         <TableCell className="text-right">{c.visitors.toLocaleString()}</TableCell>
                       </TableRow>
                     ))}
+                  </TableBody>
+                </Table>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Channels */}
+      {tab === "channels" && (
+        <div className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Share2 className="h-5 w-5" />
+                  Sessões por Canal
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {!channelData?.length ? (
+                  <div className="h-56 flex items-center justify-center text-muted-foreground text-sm">
+                    Dados de canal aparecem após visitantes com source_platform rastreado
+                  </div>
+                ) : (
+                  <div className="h-56">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={channelData} layout="vertical">
+                        <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                        <XAxis type="number" tick={{ fontSize: 11 }} />
+                        <YAxis type="category" dataKey="name" width={110} tick={{ fontSize: 11 }} />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "hsl(var(--card))",
+                            border: "1px solid hsl(var(--border))",
+                            borderRadius: "6px",
+                          }}
+                        />
+                        <Bar
+                          dataKey="value"
+                          fill="hsl(var(--chart-1))"
+                          radius={[0, 4, 4, 0]}
+                          name="Sessões"
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5" />
+                  Leads por Canal
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {!leadsByChannel?.length ? (
+                  <div className="h-56 flex items-center justify-center text-muted-foreground text-sm">
+                    Sem leads com atribuição ainda
+                  </div>
+                ) : (
+                  <div className="h-56">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={leadsByChannel} layout="vertical">
+                        <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                        <XAxis type="number" tick={{ fontSize: 11 }} />
+                        <YAxis type="category" dataKey="name" width={110} tick={{ fontSize: 11 }} />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "hsl(var(--card))",
+                            border: "1px solid hsl(var(--border))",
+                            borderRadius: "6px",
+                          }}
+                        />
+                        <Bar
+                          dataKey="leads"
+                          fill="hsl(var(--chart-2))"
+                          radius={[0, 4, 4, 0]}
+                          name="Leads"
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Tabela de Atribuição por Canal</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!channelData?.length ? (
+                <div className="py-6 text-center text-muted-foreground text-sm">
+                  Sem dados de canal ainda — os dados aparecem assim que visitantes chegarem com
+                  parâmetros UTM, gclid ou fbclid
+                </div>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Canal</TableHead>
+                      <TableHead className="text-right">Sessões</TableHead>
+                      <TableHead className="text-right">Leads</TableHead>
+                      <TableHead className="text-right">Conv. %</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {channelData.map((ch) => {
+                      const lRow = leadsByChannel?.find((l) => l.name === ch.name);
+                      const leads = lRow?.leads ?? 0;
+                      const conv = ch.value > 0 ? ((leads / ch.value) * 100).toFixed(1) : "—";
+                      return (
+                        <TableRow key={ch.name}>
+                          <TableCell className="font-medium">{ch.name}</TableCell>
+                          <TableCell className="text-right font-mono">
+                            {ch.value.toLocaleString()}
+                          </TableCell>
+                          <TableCell className="text-right font-mono">{leads}</TableCell>
+                          <TableCell className="text-right">
+                            <Badge
+                              variant={leads > 0 ? "default" : "outline"}
+                              className="font-mono"
+                            >
+                              {conv}
+                              {leads > 0 ? "%" : ""}
+                            </Badge>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               )}

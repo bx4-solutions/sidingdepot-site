@@ -202,6 +202,60 @@ export function useAcquisitionStats(filters: AnalyticsFilters) {
   });
 }
 
+export function useChannelStats(filters: AnalyticsFilters) {
+  return useQuery({
+    queryKey: ["channel-stats", filters.startDate, filters.endDate],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("analytics_events")
+        .select("source_platform, session_id")
+        .eq("event_type", "pageview")
+        .gte("created_at", filters.startDate.toISOString())
+        .lte("created_at", filters.endDate.toISOString());
+
+      if (error) throw error;
+
+      const sessionsByChannel = new Map<string, Set<string>>();
+      (data || []).forEach((e) => {
+        const ch = e.source_platform || "Direct";
+        if (!sessionsByChannel.has(ch)) sessionsByChannel.set(ch, new Set());
+        sessionsByChannel.get(ch)!.add(e.session_id);
+      });
+
+      return Array.from(sessionsByChannel.entries())
+        .map(([name, sessions]) => ({ name, value: sessions.size }))
+        .sort((a, b) => b.value - a.value);
+    },
+    refetchInterval: 60_000,
+  });
+}
+
+export function useLeadsByChannel(filters: AnalyticsFilters) {
+  return useQuery({
+    queryKey: ["leads-by-channel", filters.startDate, filters.endDate],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("leads")
+        .select("source_platform, gclid, fbclid, created_at")
+        .gte("created_at", filters.startDate.toISOString())
+        .lte("created_at", filters.endDate.toISOString());
+
+      if (error) throw error;
+
+      const m = new Map<string, number>();
+      (data || []).forEach((lead) => {
+        const ch = lead.source_platform || "Direct";
+        m.set(ch, (m.get(ch) || 0) + 1);
+      });
+
+      return Array.from(m.entries())
+        .map(([name, leads]) => ({ name, leads }))
+        .sort((a, b) => b.leads - a.leads);
+    },
+    refetchInterval: 120_000,
+  });
+}
+
 export function useFunnelData(filters: AnalyticsFilters) {
   return useQuery({
     queryKey: ["funnel-data", filters.startDate, filters.endDate],

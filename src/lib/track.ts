@@ -20,7 +20,6 @@ const UTM_KEYS = [
 // Click IDs — NOT stored in first-touch persistence (they belong to current click only)
 const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid", "ttclid"] as const;
 
-
 const STORAGE_KEY = "__lp_attribution_v1";
 const VISITOR_ID_KEY = "__lp_visitor_id_v1";
 
@@ -132,7 +131,7 @@ export function getAttribution(): Record<string, string> {
 export function track(event: string, payload: TrackPayload = {}): void {
   try {
     if (typeof window === "undefined") return;
-    
+
     const attribution = getAttribution();
     const visitorId = getVisitorId();
     const enriched = { event, visitorId, ...attribution, ...payload };
@@ -140,7 +139,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
     // 1. DataLayer for GA4/GTM
     const w = window as any;
     w.dataLayer = w.dataLayer || [];
-    
+
     // Standard GA4 event naming convention
     const ga4Event = {
       event: event,
@@ -148,37 +147,40 @@ export function track(event: string, payload: TrackPayload = {}): void {
       page_location: window.location.href,
       page_path: window.location.pathname,
       ...attribution,
-      ...payload 
+      ...payload,
     };
-    
+
     w.dataLayer.push(ga4Event);
 
     // 2. Supabase for Dashboard (Clicks, Leads, Conversions)
     const trackedEvents = [
-      "cta_click", 
-      "lead_submit", 
-      "qualified_lead", 
-      "whatsapp_click", 
+      "cta_click",
+      "lead_submit",
+      "qualified_lead",
+      "whatsapp_click",
       "quote_request",
       "finance_apply",
-      "call_click"
+      "call_click",
     ];
-    
+
     if (trackedEvents.includes(event) || event.includes("click") || event.includes("submit")) {
-      supabase.from("ab_events").insert({
-        event_type: event,
-        visitor_id: visitorId,
-        service_key: String(payload.serviceKey || "unknown"),
-        variation: String(payload.variation || "A"),
-        city: String(payload.city || ""),
-        utm_source: attribution.utm_source,
-        utm_medium: attribution.utm_medium,
-        utm_campaign: attribution.utm_campaign,
-        landing_page: attribution.landing_page,
-        metadata: { ...payload, referrer: attribution.referrer }
-      }).then(({ error }: { error: any }) => {
-        if (error && import.meta.env.DEV) console.error("[track] supabase error", error);
-      });
+      supabase
+        .from("ab_events")
+        .insert({
+          event_type: event,
+          visitor_id: visitorId,
+          service_key: String(payload.serviceKey || "unknown"),
+          variation: String(payload.variation || "A"),
+          city: String(payload.city || ""),
+          utm_source: attribution.utm_source,
+          utm_medium: attribution.utm_medium,
+          utm_campaign: attribution.utm_campaign,
+          landing_page: attribution.landing_page,
+          metadata: { ...payload, referrer: attribution.referrer },
+        })
+        .then(({ error }: { error: any }) => {
+          if (error && import.meta.env.DEV) console.error("[track] supabase error", error);
+        });
     }
 
     if (import.meta.env.DEV) {
@@ -190,7 +192,6 @@ export function track(event: string, payload: TrackPayload = {}): void {
     }
   }
 }
-
 
 // =====================================================================
 // Meta Pixel Helper
@@ -365,7 +366,6 @@ export function trackFinanceQualified(): void {
   });
 }
 
-
 // Run from the browser console:   __trackSmokeTest()
 // Or in dev, results are auto-logged once on first import in the browser.
 
@@ -430,10 +430,7 @@ export function runTrackSmokeTest(): SmokeResult[] {
     if (storage) {
       const backup = storage.getItem(STORAGE_KEY);
       try {
-        storage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ utm_source: "smoke", utm_medium: "test" }),
-        );
+        storage.setItem(STORAGE_KEY, JSON.stringify({ utm_source: "smoke", utm_medium: "test" }));
         const r2 = getAttribution();
         results.push({
           name: "first-touch UTM persists across pages",

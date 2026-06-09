@@ -57,7 +57,6 @@ export function getCityMeta(slug: string) {
   return CITIES.find((c) => c.slug === slug);
 }
 
-
 /** All static (non-dynamic) routes that should appear in sitemap.xml */
 export const STATIC_ROUTES = [
   "/",

@@ -53,13 +53,41 @@ const getOS = (): string => {
   return "Other";
 };
 
+function deriveSourcePlatform(
+  utm: Record<string, string | null>,
+  gclid: string | null,
+  fbclid: string | null,
+): string {
+  if (gclid) return "Google Ads";
+  if (fbclid) return "Meta Paid";
+  const src = utm.utm_source?.toLowerCase() ?? "";
+  const med = utm.utm_medium?.toLowerCase() ?? "";
+  if (src === "lsa" || utm.utm_campaign?.toLowerCase().includes("lsa")) return "LSA";
+  if (src === "gmb" || src === "google_business_profile") return "GMB";
+  if ((src === "google" || src === "google_ads") && (med === "cpc" || med === "ppc"))
+    return "Google Ads";
+  if (src === "google" && med === "organic") return "Google Organic";
+  if (src === "google") return "Google Organic";
+  if (src === "instagram") return "Instagram";
+  if (src === "facebook" || src === "fb") return "Facebook";
+  if (med === "social") return "Social";
+  if (med === "email") return "Email";
+  if (med === "referral" || med === "affiliate") return "Referral";
+  if (src) return src;
+  return "Direct";
+}
+
 const getUTM = () => {
   const p = new URLSearchParams(window.location.search);
-  return {
+  const utm = {
     utm_source: p.get("utm_source"),
     utm_medium: p.get("utm_medium"),
     utm_campaign: p.get("utm_campaign"),
   };
+  const gclid = p.get("gclid");
+  const fbclid = p.get("fbclid");
+  const source_platform = deriveSourcePlatform(utm, gclid, fbclid);
+  return { ...utm, gclid, fbclid, source_platform };
 };
 
 // ─── Geolocation (ip-api.com — free, no key, 45 req/min) ─────────────────────
@@ -125,6 +153,9 @@ async function trackEvent(
       utm_source: utm.utm_source,
       utm_medium: utm.utm_medium,
       utm_campaign: utm.utm_campaign,
+      gclid: utm.gclid,
+      fbclid: utm.fbclid,
+      source_platform: utm.source_platform,
       device_type: getDeviceType(),
       browser: getBrowser(),
       os: getOS(),

@@ -236,9 +236,11 @@ function RootComponent() {
 
     // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
     if (META_PIXEL_ID) {
-      w.fbq = w.fbq || function (...args: any[]) {
-        (w.fbq.q = w.fbq.q || []).push(args);
-      };
+      w.fbq =
+        w.fbq ||
+        function (...args: any[]) {
+          (w.fbq.q = w.fbq.q || []).push(args);
+        };
       w.fbq.v = "2.0";
       w.fbq.loaded = true;
       w._fbq = w._fbq || w.fbq;

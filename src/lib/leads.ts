@@ -1,6 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
+import { track, getAttribution } from "@/lib/track";
 
 export type LeadPayload = {
   name: string;
@@ -16,6 +16,24 @@ export type LeadPayload = {
 
 export async function submitLead(payload: LeadPayload) {
   const { name, phone, email, city, services, details, source, tag, consent } = payload;
+  const attribution = typeof window !== "undefined" ? getAttribution() : {};
+  const gclid = attribution.gclid ?? null;
+  const fbclid = attribution.fbclid ?? null;
+
+  function deriveSourcePlatform(): string {
+    if (gclid) return "Google Ads";
+    if (fbclid) return "Meta Paid";
+    const src = (attribution.utm_source ?? "").toLowerCase();
+    const med = (attribution.utm_medium ?? "").toLowerCase();
+    if (src === "lsa") return "LSA";
+    if (src === "gmb" || src === "google_business_profile") return "GMB";
+    if (src === "google" && (med === "cpc" || med === "ppc")) return "Google Ads";
+    if (src === "google") return "Google Organic";
+    if (src === "instagram") return "Instagram";
+    if (src === "facebook" || src === "fb") return "Facebook";
+    if (src) return src;
+    return "Direct";
+  }
 
   try {
     // 1. Save to Supabase
@@ -29,11 +47,17 @@ export async function submitLead(payload: LeadPayload) {
       consent: consent || false,
       source,
       tag,
+      utm_source: attribution.utm_source ?? null,
+      utm_medium: attribution.utm_medium ?? null,
+      utm_campaign: attribution.utm_campaign ?? null,
+      gclid,
+      fbclid,
+      source_platform: deriveSourcePlatform(),
     });
 
     if (dbError) {
       console.error("Database error:", dbError);
-      // We still continue to webhook if database fails, 
+      // We still continue to webhook if database fails,
       // but we should probably track this error.
     }
 
@@ -51,6 +75,12 @@ export async function submitLead(payload: LeadPayload) {
         source,
         tag,
         submittedAt: new Date().toISOString(),
+        utm_source: attribution.utm_source ?? null,
+        utm_medium: attribution.utm_medium ?? null,
+        utm_campaign: attribution.utm_campaign ?? null,
+        gclid,
+        fbclid,
+        source_platform: deriveSourcePlatform(),
       };
 
       const response = await fetch(SITE.ghlWebhookUrl, {
