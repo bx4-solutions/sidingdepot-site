@@ -90,7 +90,12 @@ export function GhlChatWidget() {
         if (applyingPosition) return;
         applyingPosition = true;
         applyFloatingPosition();
-        applyingPosition = false;
+        // Rapid retries to catch GHL overwriting our inline styles after insertion
+        setTimeout(() => { applyFloatingPosition(); applyingPosition = false; }, 0);
+        setTimeout(applyFloatingPosition, 50);
+        setTimeout(applyFloatingPosition, 150);
+        setTimeout(applyFloatingPosition, 400);
+        setTimeout(applyFloatingPosition, 800);
       });
       mutationObserver.observe(document.body, {
         childList: true,
