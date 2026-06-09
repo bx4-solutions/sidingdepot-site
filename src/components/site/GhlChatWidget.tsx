@@ -57,6 +57,14 @@ function applyFloatingPosition() {
     try {
       document.querySelectorAll(sel).forEach((el) => {
         const htmlEl = el as HTMLElement;
+
+        // If the element is NOT a direct child of <body>, move it there.
+        // backdrop-filter/transform on ancestor elements breaks position:fixed
+        // by creating a new containing block — moving to body fixes this.
+        if (htmlEl.parentElement && htmlEl.parentElement !== document.body) {
+          document.body.appendChild(htmlEl);
+        }
+
         htmlEl.style.cssText = FLOATING_STYLES;
         applied = true;
         // setAttribute overrides inline style set by GHL's own script
@@ -91,7 +99,10 @@ export function GhlChatWidget() {
         applyingPosition = true;
         applyFloatingPosition();
         // Rapid retries to catch GHL overwriting our inline styles after insertion
-        setTimeout(() => { applyFloatingPosition(); applyingPosition = false; }, 0);
+        setTimeout(() => {
+          applyFloatingPosition();
+          applyingPosition = false;
+        }, 0);
         setTimeout(applyFloatingPosition, 50);
         setTimeout(applyFloatingPosition, 150);
         setTimeout(applyFloatingPosition, 400);
