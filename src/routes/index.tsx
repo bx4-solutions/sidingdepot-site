@@ -11,6 +11,7 @@ import { ServicesHotspots } from "@/components/site/ServicesHotspots";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SERVICES, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
+import { QuickQuoteForm } from "@/components/site/QuickQuoteForm";
 import { lazy, Suspense } from "react";
 
 // ── Below-fold components: lazy-loaded (equivalent to Next.js dynamic()) ──────
@@ -380,24 +381,8 @@ function HomePage() {
             </ul>
           </div>
 
-          <div className="rounded-xl bg-white border border-sd-gray-border p-6 lg:p-8">
-            <h3 className="text-lg font-semibold">Request Your Free Estimate</h3>
-            <p className="text-sm text-sd-black/55 mt-1">It takes less than 60 seconds.</p>
-
-            <div className="mt-5 grid gap-3">
-              <Button asChild size="lg">
-                <Link to="/contact">Open Full Quote Form</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href={SITE.phoneHref}>Call {SITE.phone}</a>
-              </Button>
-              <p className="text-xs text-sd-black/45 text-center mt-2">
-                Or email us at{" "}
-                <a href={`mailto:${SITE.email}`} className="text-sd-green hover:underline">
-                  {SITE.email}
-                </a>
-              </p>
-            </div>
+          <div className="flex justify-center">
+            <QuickQuoteForm source="home_quote_section" tag="quote_request" />
           </div>
         </div>
       </section>
