@@ -316,13 +316,13 @@ function HomePage() {
               aria-label="Related siding pages"
               className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
             >
-              <Link to="/siding" className="text-sd-green hover:underline">
+              <Link to="/siding" className="text-sd-black hover:underline">
                 James Hardie siding installation in Greater Marietta
               </Link>
-              <Link to="/lp/siding-marietta" className="text-sd-green hover:underline">
+              <Link to="/lp/siding-marietta" className="text-sd-black hover:underline">
                 Service areas
               </Link>
-              <Link to="/projects" className="text-sd-green hover:underline">
+              <Link to="/projects" className="text-sd-black hover:underline">
                 See recent siding projects
               </Link>
             </nav>
@@ -486,20 +486,20 @@ function HomePage() {
               >
                 <Link
                   to="/siding"
-                  className="text-sd-green hover:underline flex items-center gap-2"
+                  className="text-sd-black hover:underline flex items-center gap-2 [&>svg]:text-sd-green"
                 >
                   <Sparkles className="h-4 w-4" /> Fiber cement siding installation services
                 </Link>
                 <Link
                   to="/lp/siding-marietta"
-                  className="text-sd-green hover:underline flex items-center gap-2"
+                  className="text-sd-black hover:underline flex items-center gap-2 [&>svg]:text-sd-green"
                 >
                   <Sparkles className="h-4 w-4" /> Elite Preferred installation in Marietta &
                   Atlanta
                 </Link>
                 <Link
                   to="/projects"
-                  className="text-sd-green hover:underline flex items-center gap-2"
+                  className="text-sd-black hover:underline flex items-center gap-2 [&>svg]:text-sd-green"
                 >
                   <Sparkles className="h-4 w-4" /> View our recent Hardie siding transformations
                 </Link>

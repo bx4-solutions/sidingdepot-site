@@ -50,7 +50,7 @@ export function FaqSection({
 
         <p className="mt-8 text-center text-sd-gray-text">
           Still have questions?{" "}
-          <Link to="/contact" className="font-semibold text-sd-green hover:underline">
+          <Link to="/contact" className="font-semibold text-sd-black hover:underline">
             Talk to our team →
           </Link>
         </p>

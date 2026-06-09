@@ -266,16 +266,16 @@ function AboutPage() {
               className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/75"
             >
               <span className="text-white/55">Explore:</span>
-              <Link to="/siding" className="text-sd-green hover:underline">
+              <Link to="/siding" className="text-sd-black hover:underline">
                 James Hardie siding installation
               </Link>
-              <Link to="/painting" className="text-sd-green hover:underline">
+              <Link to="/painting" className="text-sd-black hover:underline">
                 exterior painting in Greater Marietta
               </Link>
-              <Link to="/windows" className="text-sd-green hover:underline">
+              <Link to="/windows" className="text-sd-black hover:underline">
                 replacement windows
               </Link>
-              <Link to="/contact" className="text-sd-green hover:underline">
+              <Link to="/contact" className="text-sd-black hover:underline">
                 request a free siding quote
               </Link>
             </nav>

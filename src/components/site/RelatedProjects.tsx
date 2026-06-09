@@ -17,7 +17,7 @@ export function RelatedProjects({ limit = 4 }: Props) {
         </h3>
         <Link
           to="/"
-          className="text-xs font-semibold text-sd-green-text hover:underline inline-flex items-center gap-1"
+          className="text-xs font-semibold text-sd-black hover:underline inline-flex items-center gap-1 [&>svg]:text-sd-green"
         >
           View all <ArrowUpRight className="h-3 w-3" />
         </Link>
