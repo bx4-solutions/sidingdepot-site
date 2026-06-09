@@ -13,6 +13,7 @@ import { SERVICES, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
 import { QuickQuoteForm } from "@/components/site/QuickQuoteForm";
 import { lazy, Suspense } from "react";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 
 // ── Below-fold components: lazy-loaded (equivalent to Next.js dynamic()) ──────
 const TestimonialCard = lazy(() =>
@@ -468,7 +469,7 @@ function HomePage() {
           <div className="lg:pl-8 flex flex-col items-center">
             <div className="relative w-full max-w-[450px] mx-auto">
               <img
-                src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780612555995-c8d6c508-3cb6-41e2-814c-0411b0c5da55.png"
+                src={jamesHardieBadge}
                 alt="James Hardie Elite Preferred Contractor Certification Badge"
                 className="w-full h-auto object-contain"
                 width={600}

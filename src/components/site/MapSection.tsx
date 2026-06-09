@@ -1,6 +1,7 @@
 import { MapPin, Clock, Phone, Mail, Navigation, ExternalLink } from "lucide-react";
 import { SITE } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { MapEmbed } from "@/components/site/MapEmbed";
 
 export function MapSection() {
   const addressQuery = encodeURIComponent(`${SITE.name}, ${SITE.address.full}`);
@@ -96,29 +97,7 @@ export function MapSection() {
             </div>
           </div>
 
-          <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-sd-gray-bg shadow-xl bg-sd-gray-bg">
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-sd-gray-bg p-8 text-center">
-              <div className="h-16 w-16 rounded-full bg-sd-green/10 border border-sd-green/30 flex items-center justify-center mb-4">
-                <MapPin className="h-8 w-8 text-sd-green" />
-              </div>
-              <h4 className="font-semibold text-sd-black text-lg">{SITE.address.full}</h4>
-              <p className="mt-2 text-sm text-sd-gray-text max-w-xs">{SITE.hours}</p>
-              <div className="mt-6 flex flex-wrap gap-3 justify-center">
-                <Button asChild size="sm" className="rounded-full">
-                  <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
-                    <Navigation className="mr-2 h-4 w-4" />
-                    Open in Google Maps
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="sm" className="rounded-full">
-                  <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Apple Maps
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
+          <MapEmbed className="h-[400px] lg:h-[500px] shadow-xl" />
         </div>
       </div>
     </section>

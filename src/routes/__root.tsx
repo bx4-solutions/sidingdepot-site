@@ -91,9 +91,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  // Return Google stats fallback instantly on the server to prevent blocking TTFB
-  loader: () => {
-    return { googleStats: { rating: 4.4, totalReviews: 162 } };
+  loader: async () => {
+    const googleStats = await fetchGooglePlaceStats().catch(() => ({
+      rating: 4.5,
+      totalReviews: 159,
+    }));
+    return { googleStats };
   },
   head: () => ({
     meta: [
