@@ -81,20 +81,27 @@ export function Navbar() {
         <nav className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((l) => (
             <div key={l.label} className="relative group py-2">
-              <div className="flex items-center gap-1 px-3">
+              <div
+                className={cn(
+                  "flex items-center gap-1 px-3 py-1.5 rounded transition-all duration-150",
+                  "hover:bg-sd-green hover:ring-1 hover:ring-sd-green",
+                  location.pathname === l.to && "bg-sd-green ring-1 ring-sd-green",
+                )}
+              >
                 <Link
                   to={l.to}
                   className={cn(
-                    "text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text flex items-center gap-1",
-                    location.pathname === l.to &&
-                      "text-sd-green-text border-b-2 border-sd-green-text",
+                    "text-[13px] font-bold tracking-wider transition-colors flex items-center gap-1",
+                    location.pathname === l.to
+                      ? "text-sd-black"
+                      : "text-sd-black group-hover:text-sd-black",
                   )}
                   aria-label={l.icon ? "Home" : undefined}
                 >
                   {l.icon ? <Home className="h-4 w-4" /> : l.label}
                 </Link>
                 {l.sublinks && (
-                  <ChevronDown className="h-3 w-3 text-sd-black group-hover:text-sd-green-text transition-transform group-hover:rotate-180" />
+                  <ChevronDown className="h-3 w-3 text-sd-black transition-transform group-hover:rotate-180" />
                 )}
               </div>
 

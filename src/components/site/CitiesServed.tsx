@@ -34,7 +34,8 @@ export function CitiesServed() {
             Serving <span style={{ color: "#B3D133" }}>North Atlanta</span> &amp; Surrounding Cities
           </h2>
           <p className="mt-4 text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
-            From Marietta to Canton and beyond — our in-house installation crews bring James Hardie Elite quality directly to your neighborhood. No subcontractors, ever.
+            From Marietta to Canton and beyond — our in-house installation crews bring James Hardie
+            Elite quality directly to your neighborhood. No subcontractors, ever.
           </p>
         </div>
 

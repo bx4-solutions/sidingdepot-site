@@ -33,7 +33,8 @@ export function GuildQualityReviews() {
           <p className="mt-4 text-sd-gray-text max-w-2xl mx-auto">
             You get exact pricing up front — no hidden costs. The details of your project in writing
             — no surprises. Installation by trained, insured, professional crews with strict quality
-            control — not cheap, per-day labor. And if at any point you're not satisfied, you have our guarantee that Siding Depot will be there to make it right.
+            control — not cheap, per-day labor. And if at any point you're not satisfied, you have
+            our guarantee that Siding Depot will be there to make it right.
           </p>
         </div>
 

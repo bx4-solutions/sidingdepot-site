@@ -147,7 +147,10 @@ export function ServicesHotspots() {
             One Crew. Every Exterior. Zero Shortcuts.
           </h2>
           <p className="mt-6 text-sd-gray-text leading-relaxed">
-            Siding Depot is North Atlanta's #1 top-rated James Hardie Elite Preferred Contractor, recognized by homeowners for exceptional reviews, proven reliability, and quality craftsmanship. Our in-house installation crews have completed 1,500+ projects across Marietta, Canton, Kennesaw, and Alpharetta.
+            Siding Depot is North Atlanta's #1 top-rated James Hardie Elite Preferred Contractor,
+            recognized by homeowners for exceptional reviews, proven reliability, and quality
+            craftsmanship. Our in-house installation crews have completed 1,500+ projects across
+            Marietta, Canton, Kennesaw, and Alpharetta.
           </p>
           <p className="mt-4 text-sd-gray-text leading-relaxed">
             Click any pin on the house to see exactly what we do, how we do it, and why homeowners
