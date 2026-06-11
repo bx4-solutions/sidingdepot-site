@@ -258,15 +258,9 @@
 }
 
 
-/* Inline Edit Mode Styles */
-.design-mode-active {
-  cursor: text !important;
-}
-.design-mode-active a, 
-.design-mode-active button {
-  pointer-events: none !important;
-}
-.design-mode-active *:focus {
+/* Inline Edit Mode Styles — only the active contenteditable element gets text cursor */
+.design-mode-active [contenteditable="true"] {
+  cursor: text;
   outline: 2px solid var(--sd-green) !important;
   outline-offset: 2px;
 }

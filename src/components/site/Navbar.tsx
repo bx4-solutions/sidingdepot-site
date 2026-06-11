@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
@@ -17,17 +17,19 @@ import {
 interface NavLink {
   to: string;
   label: string;
+  icon?: boolean;
   sublinks?: { to: string; label: string }[];
 }
 
 const NAV_LINKS: NavLink[] = [
+  { to: "/", label: "HOME", icon: true },
   { to: "/siding", label: "SIDING" },
-  { to: "/roofing", label: "ROOFING" },
-  { to: "/decks", label: "DECKS" },
+  { to: "/painting", label: "PAINTING" },
+  { to: "/gutters", label: "GUTTERS" },
   { to: "/windows", label: "WINDOWS" },
   { to: "/doors", label: "DOORS" },
-  { to: "/gutters", label: "GUTTERS" },
-  { to: "/painting", label: "PAINTING" },
+  { to: "/decks", label: "DECKS" },
+  { to: "/roofing", label: "ROOFING" },
   { to: "/dumpster", label: "DUMPSTER" },
   { to: "/projects", label: "GALLERY" },
   {
@@ -83,12 +85,13 @@ export function Navbar() {
                 <Link
                   to={l.to}
                   className={cn(
-                    "text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text",
+                    "text-[13px] font-bold tracking-wider transition-colors text-sd-black hover:text-sd-green-text flex items-center gap-1",
                     location.pathname === l.to &&
                       "text-sd-green-text border-b-2 border-sd-green-text",
                   )}
+                  aria-label={l.icon ? "Home" : undefined}
                 >
-                  {l.label}
+                  {l.icon ? <Home className="h-4 w-4" /> : l.label}
                 </Link>
                 {l.sublinks && (
                   <ChevronDown className="h-3 w-3 text-sd-black group-hover:text-sd-green-text transition-transform group-hover:rotate-180" />

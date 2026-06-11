@@ -209,7 +209,7 @@ function HomePage() {
             <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="We're the Elite Preferred James Hardie contractor your Marietta, Alpharetta and Canton neighbors call back to thank. W-2 crews only. Written quote within 24 hours, guaranteed."
+        subtitle="Georgia's Top-Rated Elite James Hardie Contractor, trusted and recommended by homeowners across Marietta, Alpharetta, and Canton. In-house installation crews only—no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         showCallCta={false}
         trustItems={[
