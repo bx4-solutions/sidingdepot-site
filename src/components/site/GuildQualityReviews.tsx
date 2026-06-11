@@ -30,9 +30,11 @@ export function GuildQualityReviews() {
             What Homeowners Say
             <span className="block text-sd-green-text">About Siding Depot.</span>
           </h2>
-          <p className="mt-4 text-sd-gray-text max-w-xl mx-auto">
-            4.7 stars · 303 verified reviews on GuildQuality — the industry's independent contractor
-            review platform. Every review is tied to a real completed project.
+          <p className="mt-4 text-sd-gray-text max-w-2xl mx-auto">
+            You get exact pricing up front — no hidden costs. The details of your project in
+            writing — no surprises. Installation by trained, insured, professional crews with strict
+            quality control — not cheap, per-day labor. And if you're ever unhappy, in five years or
+            fifty, we guarantee we'll make it right.
           </p>
         </div>
 
