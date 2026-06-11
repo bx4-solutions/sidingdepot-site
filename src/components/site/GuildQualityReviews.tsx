@@ -31,8 +31,8 @@ export function GuildQualityReviews() {
             <span className="block text-sd-green-text">About Siding Depot.</span>
           </h2>
           <p className="mt-4 text-sd-gray-text max-w-xl mx-auto">
-            4.7 stars · 303 verified reviews on GuildQuality — the industry's independent
-            contractor review platform. Every review is tied to a real completed project.
+            4.7 stars · 303 verified reviews on GuildQuality — the industry's independent contractor
+            review platform. Every review is tied to a real completed project.
           </p>
         </div>
 
@@ -70,7 +70,8 @@ export function GuildQualityReviews() {
             </h3>
             <div
               id="gq3-reviews-widget"
-              className="rounded-2xl overflow-hidden shadow-sm border border-sd-gray-border min-h-[400px] bg-white"
+              className="rounded-2xl border border-sd-gray-border bg-white shadow-sm"
+              style={{ height: "400px", overflowY: "auto" }}
             />
           </div>
 
