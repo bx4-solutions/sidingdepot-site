@@ -123,7 +123,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "04",
       title: "Professional Installation",
-      desc: "Our W-2 crews remove the existing door, prepare the opening, install the new unit to manufacturer specifications — including flash, seal, and hardware alignment — and restore exterior trim.",
+      desc: "Our in-house crews remove the existing door, prepare the opening, install the new unit to manufacturer specifications — including flash, seal, and hardware alignment — and restore exterior trim.",
     },
     {
       num: "05",
@@ -161,7 +161,7 @@ const CONFIG: ServicePageConfig = {
   ctaTrustPoints: [
     "Physical samples at your home",
     "Same-day written estimate",
-    "W-2 installation crews",
+    "In-house installation crews",
   ],
   faqTitle: "Door questions,",
   faqTitleAccent: "answered.",

@@ -770,8 +770,8 @@ const WHY_US_ITEMS = [
   },
   {
     Icon: ShieldCheck,
-    title: "W-2 Crews — Not a Subcontract Shop",
-    desc: "Every crew member on your job is a Siding Depot W-2 employee. Background-checked, trained, and covered under our insurance. We never hand your project to a third party.",
+    title: "In-House Crews — Not a Subcontract Shop",
+    desc: "Every crew member on your job is a Siding Depot in-house employee. Background-checked, trained, and covered under our insurance. We never hand your project to a third party.",
   },
   {
     Icon: CheckCircle2,

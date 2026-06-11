@@ -100,6 +100,13 @@ export const SERVICES: ReadonlyArray<{
     image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif },
   },
   {
+    slug: "gutters",
+    title: "Gutter Systems",
+    short: "Seamless aluminum gutters and LeafGuard.",
+    Icon: CloudRain,
+    image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif },
+  },
+  {
     slug: "windows",
     title: "Windows",
     short: "Energy-efficient replacements that lower bills.",
@@ -119,13 +126,6 @@ export const SERVICES: ReadonlyArray<{
     short: "Custom decks in composite, hardwood and PT.",
     Icon: Hammer,
     image: { src: deckImg, webp: deckWebp, avif: deckAvif },
-  },
-  {
-    slug: "gutters",
-    title: "Gutter Systems",
-    short: "Seamless aluminum gutters and LeafGuard.",
-    Icon: CloudRain,
-    image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif },
   },
   {
     slug: "roofing",

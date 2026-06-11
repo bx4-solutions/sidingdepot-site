@@ -12,7 +12,7 @@ const seo = SERVICE_METADATA["roofing"];
 const FAQS = [
   {
     q: "How do I know if I need a full replacement or just a repair?",
-    a: "During a free inspection we evaluate shingle age, granule loss, deck integrity, flashing condition, and attic ventilation. Roofs under 15 years with isolated damage often qualify for targeted repair. Roofs over 20 years, or those with widespread curling, cracking, or recurring leaks, typically need full replacement — incremental repairs on an aging system cost more in the long run.",
+    a: "During a free consultation we evaluate shingle age, granule loss, deck integrity, flashing condition, and attic ventilation. Roofs under 15 years with isolated damage often qualify for targeted repair. Roofs over 20 years, or those with widespread curling, cracking, or recurring leaks, typically need full replacement — incremental repairs on an aging system cost more in the long run.",
   },
   {
     q: "What roofing products does Siding Depot install?",
@@ -52,7 +52,7 @@ const CONFIG: ServicePageConfig = {
   heroLine2: "Built To Last.",
   heroLine3: "",
   heroSubtitle:
-    "North Atlanta's trusted roofing contractor — GAF architectural systems, storm-damage specialists, and full permit management across Cobb, Cherokee, and Fulton counties. W-2 crews. Written warranties. No pressure.",
+    "North Atlanta's trusted roofing contractor — GAF architectural systems, storm-damage specialists, and full permit management across Cobb, Cherokee, and Fulton counties. In-house crews. Written warranties. No pressure.",
 
   problemHeadline: "Your Roof Is Your Home's First Line Of Defense.",
   problemPoints: [
@@ -126,7 +126,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "04",
       title: "Professional Installation",
-      desc: "Our W-2 roofing crews arrive on schedule, protect your property, remove the existing system, and install your new roof to GAF manufacturer specifications. Most homes are finished in one to two days.",
+      desc: "Our in-house roofing crews arrive on schedule, protect your property, remove the existing system, and install your new roof to GAF manufacturer specifications. Most homes are finished in one to two days.",
     },
     {
       num: "05",
@@ -160,14 +160,14 @@ const CONFIG: ServicePageConfig = {
   ctaHeadline: "Find Out What's Happening",
   ctaHeadlineAccent: "On Your Roof Today.",
   ctaBody1:
-    "Most roof problems are invisible until they become expensive. A free inspection uncovers what's developing — before it becomes a leak inside your home.",
+    "Most roof problems are invisible until they become expensive. A free consultation uncovers what's developing — before it becomes a leak inside your home.",
   ctaBody2:
     "We respond within 24 hours, come to your home on your schedule, and deliver a written findings report at no charge.",
   ctaMainBtn: "Book My Free Roof Inspection",
   ctaTrustPoints: [
     "No-obligation inspection",
     "Same-day written report",
-    "W-2 crews · Not subcontracted",
+    "In-house crews · Not subcontracted",
   ],
 
   faqTitle: "Roofing questions,",

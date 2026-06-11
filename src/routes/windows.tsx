@@ -159,7 +159,7 @@ function WindowsHero() {
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
             Energy Star certified window replacement across Marietta, Canton, and North Atlanta —
             cut cooling bills by up to 31%, eliminate drafts, and protect your home's resale value.
-            Written warranty. W-2 installers. Free in-home assessment.
+            Written warranty. In-house installers. Free in-home assessment.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
@@ -592,7 +592,7 @@ const PROCESS = [
   {
     num: "04",
     title: "Professional Installation",
-    desc: "Our W-2 crews remove the old window, inspect and repair the rough opening, install full-perimeter flashing, foam-seal the frame, and fit the new window to manufacturer specs. Interior and exterior trim matched and finished same day.",
+    desc: "Our in-house crews remove the old window, assess and repair the rough opening, install full-perimeter flashing, foam-seal the frame, and fit the new window to manufacturer specs. Interior and exterior trim matched and finished same day.",
     icon: ShieldCheck,
   },
   {
@@ -982,8 +982,8 @@ const WHY_US = [
   },
   {
     Icon: ShieldCheck,
-    title: "W-2 Installers — Zero Subcontracting",
-    desc: "Every window is installed by a Siding Depot W-2 employee — trained, background-checked, insured. We never hand your project to a subcontractor the day it starts.",
+    title: "In-House Installers — Zero Subcontracting",
+    desc: "Every window is installed by a Siding Depot in-house employee — trained, background-checked, insured. We never hand your project to a subcontractor the day it starts.",
   },
   {
     Icon: Thermometer,

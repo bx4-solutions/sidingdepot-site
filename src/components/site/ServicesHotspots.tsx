@@ -32,15 +32,26 @@ type Hotspot = {
 
 const HOTSPOTS: Hotspot[] = [
   {
-    id: "roofing",
-    top: "29.1%",
-    left: "56.5%",
-    label: "Roofing",
-    title: "Roofing",
-    body: "GAF Master Elite certified — only 3% of US roofers earn this. We handle insurance claims directly so you don't have to. Bundle with siding and save $2,000–$5,000 in shared mobilization costs.",
-    image: roofingImg,
-    to: "/roofing",
-    cta: "ROOFING SERVICES",
+    id: "siding",
+    top: "73.2%",
+    left: "18.4%",
+    label: "James Hardie Siding",
+    title: "James Hardie Siding",
+    body: "As Elite Preferred installers, we're authorized to offer the full 30-year James Hardie warranty — most contractors can't. HZ10 panels built for Georgia's heat, humidity, and hurricane-force winds.",
+    image: sidingImg,
+    to: "/siding",
+    cta: "SIDING SERVICES",
+  },
+  {
+    id: "painting",
+    top: "35.9%",
+    left: "11.9%",
+    label: "Exterior Painting",
+    title: "Exterior Painting",
+    body: "We only use Sherwin-Williams Duration — a lifetime-grade exterior coating. Full prep included: power wash, caulk, prime, two finish coats. No shortcuts, no upcharges. Price locked at estimate.",
+    image: paintingImg,
+    to: "/painting",
+    cta: "PAINTING SERVICES",
   },
   {
     id: "gutters",
@@ -54,23 +65,12 @@ const HOTSPOTS: Hotspot[] = [
     cta: "GUTTER SERVICES",
   },
   {
-    id: "siding",
-    top: "73.2%",
-    left: "18.4%",
-    label: "James Hardie Siding",
-    title: "James Hardie Siding",
-    body: "As Elite Preferred installers, we're authorized to offer the full 30-year James Hardie warranty — most contractors can't. HZ10 panels built for Georgia's heat, humidity, and hurricane-force winds.",
-    image: sidingImg,
-    to: "/siding",
-    cta: "SIDING SERVICES",
-  },
-  {
     id: "windows",
     top: "65.4%",
     left: "28.5%",
     label: "Window Replacement",
     title: "Window Replacement",
-    body: "Low-E glass rated for Georgia's climate zone cuts HVAC costs by up to 30%. Every window installed by our own W-2 crew — not a sub — with a written seal and weatherproofing guarantee.",
+    body: "Low-E glass rated for Georgia's climate zone cuts HVAC costs by up to 30%. Every window installed by our own in-house crew — with a written seal and weatherproofing guarantee.",
     image: windowsImg,
     to: "/windows",
     cta: "WINDOW SERVICES",
@@ -98,15 +98,15 @@ const HOTSPOTS: Hotspot[] = [
     cta: "DECK SERVICES",
   },
   {
-    id: "painting",
-    top: "35.9%",
-    left: "11.9%",
-    label: "Exterior Painting",
-    title: "Exterior Painting",
-    body: "We only use Sherwin-Williams Duration — a lifetime-grade exterior coating. Full prep included: power wash, caulk, prime, two finish coats. No shortcuts, no upcharges. Price locked at estimate.",
-    image: paintingImg,
-    to: "/painting",
-    cta: "PAINTING SERVICES",
+    id: "roofing",
+    top: "29.1%",
+    left: "56.5%",
+    label: "Roofing",
+    title: "Roofing",
+    body: "GAF Master Elite certified — only 3% of US roofers earn this. We handle insurance claims directly so you don't have to. Bundle with siding and save $2,000–$5,000 in shared mobilization costs.",
+    image: roofingImg,
+    to: "/roofing",
+    cta: "ROOFING SERVICES",
   },
 ];
 
@@ -147,9 +147,7 @@ export function ServicesHotspots() {
             One Crew. Every Exterior. Zero Shortcuts.
           </h2>
           <p className="mt-6 text-sd-gray-text leading-relaxed">
-            Siding Depot is North Atlanta's only Elite Preferred James Hardie installer — placing us
-            in the top 2% of contractors nationwide. Our W-2 crews (never subcontracted) have
-            completed 1,500+ projects across Marietta, Canton, Kennesaw and Alpharetta.
+            Siding Depot is North Atlanta's #1 top-rated James Hardie Elite Preferred Contractor, recognized by homeowners for exceptional reviews, proven reliability, and quality craftsmanship. Our in-house installation crews have completed 1,500+ projects across Marietta, Canton, Kennesaw, and Alpharetta.
           </p>
           <p className="mt-4 text-sd-gray-text leading-relaxed">
             Click any pin on the house to see exactly what we do, how we do it, and why homeowners
@@ -178,7 +176,7 @@ export function ServicesHotspots() {
             to="/contact"
             className="mt-8 inline-block font-bold text-sd-green hover:text-sd-green-hover active:text-sd-green-active transition-colors"
           >
-            Contact us for a free inspection →
+            Contact us for a free consultation →
           </Link>
         </div>
 

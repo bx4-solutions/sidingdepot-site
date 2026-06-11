@@ -68,7 +68,7 @@ export async function submitLead(payload: LeadPayload) {
       .in("key", ["ghl_webhook_enabled", "ghl_webhook_url"]);
 
     const settingsMap = Object.fromEntries(
-      (settings ?? []).map((r: { key: string; value: string }) => [r.key, r.value])
+      (settings ?? []).map((r: { key: string; value: string }) => [r.key, r.value]),
     );
 
     const webhookEnabled = settingsMap["ghl_webhook_enabled"] !== "false";

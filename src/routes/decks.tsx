@@ -123,7 +123,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "04",
       title: "Professional Installation",
-      desc: "Our W-2 deck crews build to engineered plans using specified materials and stainless fasteners. We manage county inspections at no additional cost.",
+      desc: "Our in-house deck crews build to engineered plans using specified materials and stainless fasteners. We manage county inspections at no additional cost.",
     },
     {
       num: "05",

@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: "What size gutter do I need?",
-    a: "Most North Atlanta homes need 5-inch K-style gutters as a minimum. Homes with steep pitches, large roof footprints, or complex valleys benefit from 6-inch gutters, which move 40% more water per linear foot. We calculate runoff capacity for your specific roof pitch and drainage zones during the free inspection — not a rule-of-thumb guess.",
+    a: "Most North Atlanta homes need 5-inch K-style gutters as a minimum. Homes with steep pitches, large roof footprints, or complex valleys benefit from 6-inch gutters, which move 40% more water per linear foot. We calculate runoff capacity for your specific roof pitch and drainage zones during the free consultation — not a rule-of-thumb guess.",
   },
   {
     q: "How much do seamless gutters cost in Cobb or Cherokee County?",
@@ -153,12 +153,12 @@ const CONFIG: ServicePageConfig = {
   ctaHeadline: "Find Out Where Your Home",
   ctaHeadlineAccent: "Is Draining Wrong.",
   ctaBody1:
-    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free inspection identifies what's failing — before the repair costs compound.",
+    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free consultation identifies what's failing — before the repair costs compound.",
   ctaBody2:
     "We respond within 24 hours, walk your full perimeter, and deliver a written findings report at no charge.",
   ctaMainBtn: "Book My Free Gutter Inspection",
   ctaTrustPoints: [
-    "Free written inspection",
+    "Free written estimate",
     "On-site seamless fabrication",
     "Drainage-zone engineered sizing",
   ],

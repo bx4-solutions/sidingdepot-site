@@ -168,7 +168,7 @@ function SidingHero() {
           </h1>
 
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
-            Among the top 2% of James Hardie Elite Preferred contractors nationwide — with W-2
+            Among the top 2% of James Hardie Elite Preferred contractors nationwide — with in-house
             crews, a 30-year non-prorated warranty, and 1,500+ projects completed across Marietta,
             Canton and North Atlanta.
           </p>
@@ -359,7 +359,7 @@ function EliteAuthoritySection() {
           />
           <img
             src="/projects/project-1.webp"
-            alt="Siding Depot W-2 crew installing James Hardie siding in North Atlanta"
+            alt="Siding Depot in-house crew installing James Hardie siding in North Atlanta"
             className="relative rounded-2xl w-full object-cover shadow-2xl"
             style={{ aspectRatio: "4/3" }}
             loading="lazy"
@@ -412,7 +412,7 @@ function EliteAuthoritySection() {
               </div>
               {[
                 ["Warranty", "15-yr prorated", "30-yr full"],
-                ["Crews", "Subcontracted", "W-2 employees"],
+                ["Crews", "Subcontracted", "In-house employees"],
                 ["Training", "Basic", "Hardie certified"],
                 ["Oversight", "Optional PM", "On-site PM"],
               ].map(([factor, standard, elite]) => (
@@ -1076,8 +1076,8 @@ const HIRING_CHECKLIST = [
   },
   {
     Icon: ShieldCheck,
-    title: "W-2 Crews Only — No Subcontractors",
-    desc: "Every crew member is a Siding Depot W-2 employee. Trained, background-checked, and insured. We never subcontract installs — period.",
+    title: "In-House Crews Only — No Subcontractors",
+    desc: "Every crew member is a Siding Depot in-house employee. Trained, background-checked, and insured. We never subcontract installs — period.",
   },
   {
     Icon: CheckCircle2,
@@ -1366,7 +1366,7 @@ function DesignConsultationSection() {
                 {[
                   "No obligation",
                   "Response within 24 hours",
-                  "W-2 crews · Never subcontracted",
+                  "In-house crews · Never subcontracted",
                 ].map((t) => (
                   <div key={t} className="flex items-center gap-1.5 text-xs text-white/50">
                     <CheckCircle2 className="h-3.5 w-3.5 shrink-0" style={{ color: "#B3D133" }} />
@@ -1396,7 +1396,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How long does siding installation take in Marietta or Canton?",
-    a: "A typical siding project takes 5–10 working days. This allows for a proper full tear-off, structural inspection, and precision installation of the James Hardie system by our W-2 crews. Every project is overseen by a dedicated on-site project manager.",
+    a: "A typical siding project takes 5–10 working days. This allows for a proper full tear-off, structural assessment, and precision installation of the James Hardie system by our in-house crews. Every project is overseen by a dedicated on-site project manager.",
   },
   {
     q: "What does the 30-year non-prorated warranty cover?",
@@ -1404,7 +1404,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Are your crews subcontractors or employees?",
-    a: "Every crew member at Siding Depot is a W-2 employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are background-checked, insured, and trained specifically in James Hardie Best Practices.",
+    a: "Every crew member at Siding Depot is an in-house employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are background-checked, insured, and trained specifically in James Hardie Best Practices.",
   },
   {
     q: "Do you provide written estimates?",
