@@ -40,24 +40,16 @@ export function CitiesServed() {
         </div>
 
         {/* Primary Cities Grid */}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-10">
           {PRIMARY_CITIES.map((city) => (
             <Link
               key={city.slug}
               to="/locations/$city/$service"
               params={{ city: city.slug, service: "siding" }}
-              className="group flex flex-col gap-1.5 rounded-xl p-4 transition-all duration-200 hover:-translate-y-0.5"
+              className="group flex flex-col gap-1.5 rounded-xl p-3 sm:p-4 transition-all duration-200 active:scale-95 hover:-translate-y-0.5"
               style={{
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(255,255,255,0.1)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(179,209,51,0.10)";
-                (e.currentTarget as HTMLElement).style.borderColor = "#B3D133";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
               }}
             >
               <div className="flex items-start justify-between gap-1">

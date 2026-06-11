@@ -39,7 +39,7 @@ export function EliteBadgeSection() {
           className="rounded-3xl overflow-hidden mb-6 shadow-2xl"
           style={{ border: `2px solid ${SD_LIME}` }}
         >
-          <div className="grid lg:grid-cols-[420px_1fr] gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-0">
             {/* Badge panel — SD dark navy */}
             <div
               className="flex flex-col items-center justify-center gap-5 p-8 lg:p-10"

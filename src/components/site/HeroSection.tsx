@@ -71,7 +71,7 @@ export function HeroSection({
       >
         {/* Left column */}
         <div>
-          <h1 className="font-display text-white leading-[0.95] mt-5 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg">
+          <h1 className="font-display text-white leading-[1.05] mt-5 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg">
             {title}
           </h1>
           {subtitle && (

@@ -259,10 +259,10 @@ function useCountUp(target: number, duration = 1800) {
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const { ref, count } = useCountUp(value);
   return (
-    <div className="flex flex-col items-center text-center px-6 py-8">
+    <div className="flex flex-col items-center text-center px-3 py-6 sm:px-6 sm:py-8">
       <span
         ref={ref}
-        className="font-display text-3xl sm:text-5xl lg:text-6xl"
+        className="font-display text-2xl sm:text-5xl lg:text-6xl"
         style={{ color: SD_LIME }}
       >
         {count.toLocaleString()}
@@ -279,7 +279,7 @@ function StatsBar() {
   return (
     <section style={{ background: SD_NAVY }} className="border-t border-white/5">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/8 divide-y lg:divide-y-0">
           {STATS_DATA.map((s) => (
             <StatItem key={s.label} {...s} />
           ))}

@@ -39,21 +39,21 @@ export function ProofBar() {
   return (
     <section aria-label="Trust signals" className="bg-sd-black border-t-2 border-sd-green">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <ul className="flex flex-wrap lg:flex-nowrap items-center justify-center gap-x-0 py-0">
+        <ul className="flex flex-wrap items-center justify-center gap-x-0 overflow-x-auto py-0">
           {items.map((item, i) => (
-            <li key={item.label} className="flex items-center shrink-0">
+            <li key={item.label} className="flex items-center">
               <a
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-1.5 px-3 py-2.5 text-white/80 hover:text-sd-green hover:bg-white/5 transition-colors text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap cursor-pointer"
+                className="flex items-center gap-1.5 px-2 sm:px-3 py-2.5 text-white/80 hover:text-sd-green active:text-sd-green hover:bg-white/5 transition-colors text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap cursor-pointer min-h-[44px]"
               >
-                <span aria-hidden="true" className="text-sm">
+                <span aria-hidden="true" className="text-sm shrink-0">
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
               </a>
-              {i < items.length - 1 && <span className="text-white/20 select-none text-xs">·</span>}
+              {i < items.length - 1 && <span className="text-white/20 select-none text-xs" aria-hidden="true">·</span>}
             </li>
           ))}
         </ul>

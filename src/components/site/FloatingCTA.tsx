@@ -5,7 +5,7 @@ import { track } from "@/lib/track";
 
 export function FloatingCTA() {
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-2 lg:hidden">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom,1rem))] right-4 z-40 flex flex-col gap-2 lg:hidden pb-safe">
       <a
         href={SITE.phoneHref}
         aria-label={`Call ${SITE.phone}`}

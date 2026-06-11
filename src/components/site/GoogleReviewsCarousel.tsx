@@ -51,7 +51,7 @@ function GoogleReviewCard({ review }: { review: GoogleReview }) {
       href={GOOGLE_MAPS_REVIEWS_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col gap-3 rounded-2xl p-5 shrink-0 w-80 transition-transform hover:-translate-y-1"
+      className="flex flex-col gap-3 rounded-2xl p-5 shrink-0 w-[272px] sm:w-80 transition-transform hover:-translate-y-1"
       style={{
         background: "rgba(255,255,255,0.06)",
         border: "1px solid rgba(255,255,255,0.09)",

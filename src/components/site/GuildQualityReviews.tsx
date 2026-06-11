@@ -66,7 +66,6 @@ const RECENT_REVIEWS = [
 ];
 
 export function GuildQualityReviews() {
-
   const ratingRows = [
     { stars: 5, count: 206, total: 261 },
     { stars: 4, count: 34, total: 261 },
@@ -128,7 +127,7 @@ export function GuildQualityReviews() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="grid lg:grid-cols-[280px_1fr_1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_1fr] gap-6">
           {/* LEFT — Satisfaction bars */}
           <div>
             {/* About surveys box */}
@@ -212,15 +211,19 @@ export function GuildQualityReviews() {
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
               Recent Reviews
             </p>
-            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: "560px" }}>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: "420px" }}>
               {RECENT_REVIEWS.map((r, i) => (
                 <div key={i} className="border border-gray-200 rounded-xl p-4 bg-white">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div>
                       <p className="text-sm font-bold text-[#1a3a5c]">{r.name}</p>
-                      <p className="text-[11px] text-gray-400">{r.location} · {r.date}</p>
+                      <p className="text-[11px] text-gray-400">
+                        {r.location} · {r.date}
+                      </p>
                     </div>
-                    <div className="flex text-[#f5a623] text-sm shrink-0">{"★".repeat(r.stars)}</div>
+                    <div className="flex text-[#f5a623] text-sm shrink-0">
+                      {"★".repeat(r.stars)}
+                    </div>
                   </div>
                   {r.verified && (
                     <p className="text-[10px] text-[#1a7abf] font-semibold mb-1.5">✓ Verified</p>
