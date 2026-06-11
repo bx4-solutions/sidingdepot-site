@@ -34,6 +34,14 @@ const AwardsStrip = lazy(() =>
 const FinancingBlock = lazy(() =>
   import("@/components/site/FinancingBlock").then((m) => ({ default: m.FinancingBlock })),
 );
+const EliteBadgeSection = lazy(() =>
+  import("@/components/site/EliteBadgeSection").then((m) => ({ default: m.EliteBadgeSection })),
+);
+const GuildQualityReviews = lazy(() =>
+  import("@/components/site/GuildQualityReviews").then((m) => ({
+    default: m.GuildQualityReviews,
+  })),
+);
 const GoogleReviewsCarousel = lazy(() =>
   import("@/components/site/GoogleReviewsCarousel").then((m) => ({
     default: m.GoogleReviewsCarousel,
@@ -340,6 +348,14 @@ function HomePage() {
 
       <Suspense fallback={null}>
         <GoogleReviewsCarousel />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <GuildQualityReviews />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <EliteBadgeSection />
       </Suspense>
 
       <Suspense fallback={null}>

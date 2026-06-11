@@ -115,7 +115,7 @@ export function EliteBadgeSection() {
         </div>
 
         {/* Secondary credentials row */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {[
             {
               name: "GuildQuality",
@@ -134,6 +134,12 @@ export function EliteBadgeSection() {
               rating: "4.9★",
               detail: "91 reviews · Top Pro badge",
               href: "https://www.thumbtack.com/ga/marietta/vinyl-siding-install/siding-depot-llc/service/482073672544780291",
+            },
+            {
+              name: "BuildZoom",
+              rating: "#1",
+              detail: "Licensed · Verified contractor · North Atlanta",
+              href: "https://www.buildzoom.com/contractor/siding-depot-llc",
             },
             {
               name: "GreenSky® Financing",
