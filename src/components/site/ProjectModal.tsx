@@ -84,19 +84,19 @@ export function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNex
               <dl className="mt-5 grid gap-3 text-sm">
                 {project.city && (
                   <div className="flex items-center gap-2.5 text-white/85">
-                    <MapPin className="h-4 w-4 text-sd-green shrink-0" />
+                    <MapPin className="h-4 w-4 text-sd-green-dark shrink-0" />
                     <span>{project.city}</span>
                   </div>
                 )}
                 {project.date && (
                   <div className="flex items-center gap-2.5 text-white/85">
-                    <Calendar className="h-4 w-4 text-sd-green shrink-0" />
+                    <Calendar className="h-4 w-4 text-sd-green-dark shrink-0" />
                     <span>{formatProjectDate(project.date)}</span>
                   </div>
                 )}
                 {project.category && (
                   <div className="flex items-center gap-2.5 text-white/85">
-                    <Tag className="h-4 w-4 text-sd-green shrink-0" />
+                    <Tag className="h-4 w-4 text-sd-green-dark shrink-0" />
                     <span>{project.category}</span>
                   </div>
                 )}

@@ -129,8 +129,7 @@ export function GoogleReviews() {
     }));
   }, [remoteData]);
 
-  const gmbUrl =
-    "https://www.google.com/maps/place/Siding+Depot/@33.9856525,-84.4716183,17z/data=!4m8!3m7!1s0x88f5148386377777:0x7c7c7c7c7c7c7c7c!8m2!3d33.9856525!4d-84.4716183!9m1!1b1!16s%2Fg%2F11b6_v1_v1";
+  const gmbUrl = "/#google-reviews";
 
   const [ratingFilter, setRatingFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("newest");
@@ -215,7 +214,7 @@ export function GoogleReviews() {
               variant="outline"
               className="border-sd-green text-sd-green hover:bg-sd-green hover:text-white"
             >
-              <a href={gmbUrl} target="_blank" rel="noopener noreferrer">
+              <a href={gmbUrl}>
                 <MessageSquare className="mr-2 h-4 w-4" aria-hidden="true" />
                 Write a Review
               </a>

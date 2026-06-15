@@ -121,31 +121,31 @@ export function EliteBadgeSection() {
               name: "GuildQuality",
               rating: "4.7★",
               detail: "261 verified reviews · Guildmember since 2019",
-              href: "https://www.guildquality.com/profile/siding-depot-llc",
+              href: "/#guild-reviews",
             },
             {
               name: "Google Reviews",
               rating: `${googleRating}★`,
               detail: `${googleReviewCount} Google customer reviews`,
-              href: "https://www.google.com/search?q=Siding+Depot+Marietta+GA+reviews",
+              href: "/#google-reviews",
             },
             {
               name: "Thumbtack",
               rating: "4.9★",
               detail: "91 reviews · Top Pro badge",
-              href: "https://www.thumbtack.com/ga/marietta/vinyl-siding-install/siding-depot-llc/service/482073672544780291",
+              href: "/#google-reviews",
             },
             {
-              name: "BuildZoom",
-              rating: "#1",
-              detail: "Licensed · Verified contractor · North Atlanta",
-              href: "https://www.buildzoom.com/contractor/siding-depot-llc",
+              name: "Angi Leads",
+              rating: "4.7★",
+              detail: "Verified reviews · Top-rated contractor",
+              href: "/#google-reviews",
             },
             {
-              name: "GreenSky® Financing",
-              rating: "0% APR",
-              detail: "Apply in 60 sec · Decisions in minutes",
-              href: "https://www.greensky.com/home-improvement/",
+              name: "Houzz",
+              rating: "5.0★",
+              detail: "Best of Houzz 2026 · Service Award",
+              href: "/#google-reviews",
             },
           ].map((c) => {
             const inner = (
@@ -174,13 +174,7 @@ export function EliteBadgeSection() {
             );
 
             return c.href ? (
-              <a
-                key={c.name}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
+              <a key={c.name} href={c.href} className="block">
                 {inner}
               </a>
             ) : (

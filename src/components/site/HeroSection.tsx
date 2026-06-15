@@ -23,9 +23,9 @@ type HeroProps = {
 };
 
 const DEFAULT_TRUST = [
-  "James Hardie Elite Preferred",
+  "James Hardie Elite Contractor",
   "1,500+ Homes in North Atlanta",
-  "GreenSky 0% APR Financing",
+  "0% APR Financing Available",
 ] as const;
 
 export function HeroSection({

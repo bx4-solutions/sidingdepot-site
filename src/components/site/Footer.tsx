@@ -136,12 +136,9 @@ export function Footer() {
             <ul className="space-y-2">
               {CITIES.slice(0, 8).map((c) => (
                 <li key={c.slug}>
-                  <Link
-                    to={`/locations/${c.slug}/siding`}
-                    className="block py-2 text-sm text-white/55 hover:text-sd-green"
-                  >
+                  <span className="block py-2 text-sm text-white/55 cursor-default">
                     {c.name}, GA
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -163,14 +160,10 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-white/55 hover:text-sd-green">
-                  Blog
-                </Link>
+                <span className="text-white/55 cursor-default">Blog</span>
               </li>
               <li>
-                <Link to="/guide" className="text-white/55 hover:text-sd-green">
-                  Free Guide
-                </Link>
+                <span className="text-white/55 cursor-default">Free Guide</span>
               </li>
               <li>
                 <Link to="/contact" className="text-white/55 hover:text-sd-green">
@@ -191,7 +184,6 @@ export function Footer() {
                   Painel
                 </a>
               </li>
-
             </ul>
             <div className="flex gap-3 mt-5">
               <a

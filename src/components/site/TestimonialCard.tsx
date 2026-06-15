@@ -12,7 +12,7 @@ export function TestimonialCard({ name, city, text, rating = 5 }: Props) {
 
   return (
     <article className="rounded-lg border border-border bg-background p-6 h-full flex flex-col">
-      <div className="flex gap-0.5 text-sd-green">
+      <div className="flex gap-0.5 text-sd-green-dark">
         {Array.from({ length: rating }).map((_, i) => (
           <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
         ))}

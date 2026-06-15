@@ -156,7 +156,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       // Preconnect para CDN próprio (OG images)
       { rel: "preconnect", href: "https://sidingdepot.com" },
-      // Fontes auto-hospedadas em /fonts/ — sem round-trips para Google Fonts
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "shortcut icon", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
     scripts: [
       // GA4 (only if env var present) — also loaded afterInteractive via useEffect

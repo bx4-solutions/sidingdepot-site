@@ -52,7 +52,7 @@ const HOME_VIDEOS = [
     id: "898FBaW_VnI",
     name: "Siding Depot — Institutional video",
     description:
-      "Meet Siding Depot, James Hardie Elite Preferred siding contractor serving Greater Marietta. 1,500+ homes resided.",
+      "Meet Siding Depot, Georgia's top-rated Elite James Hardie Contractor serving Greater Marietta. 1,500+ homes completed.",
     duration: "PT2M",
     uploadDate: "2024-06-01",
   },
@@ -93,7 +93,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Elite Preferred James Hardie contractor in Marietta, Alpharetta & Canton. 1,500+ homes transformed. W-2 crews, 30-yr warranty. Free quote in 24h.",
+          "Georgia's Top-Rated Elite James Hardie Contractor in Marietta, Alpharetta & Canton. 1,500+ homes transformed. In-house crews only, 30-yr warranty. Free quote in 24h.",
       },
       {
         name: "keywords",
@@ -113,7 +113,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite Preferred contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
+          "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
       { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
       { property: "og:type", content: "website" },
@@ -125,7 +125,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite Preferred contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
+          "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
       { name: "twitter:image", content: "https://sidingdepot.com/og-default.webp" },
     ],
@@ -157,7 +157,7 @@ export const Route = createFileRoute("/")({
 const WHY_US = [
   {
     num: "01",
-    title: "Elite Preferred · Top 2%",
+    title: "Elite Contractor · Top 2%",
     desc: "James Hardie's highest contractor tier — fewer than 2% of US installers qualify.",
   },
   {
@@ -173,7 +173,7 @@ const WHY_US = [
   {
     num: "04",
     title: "Highly Specialized Certified Teams",
-    desc: "We never sub out installs. Every crew member is part of our highly specialized certified teams — trained, background-checked, insured, and accountable to us directly.",
+    desc: "We never sub out installs. Every crew member is part of our highly specialized certified teams — trained, insured, and accountable to us directly.",
   },
   {
     num: "05",
@@ -243,7 +243,7 @@ function HomePage() {
       >
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
+            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-dark bg-sd-green-pale px-3 py-1 rounded">
               Our Services
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
@@ -276,7 +276,7 @@ function HomePage() {
       <section className="section-dark py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
+            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-navy bg-sd-green px-3 py-1 rounded">
               Why Siding Depot
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
@@ -306,7 +306,7 @@ function HomePage() {
             <div className="relative">
               <YoutubeEmbed videoId="898FBaW_VnI" title="Siding Depot — Institutional" />
               <div className="absolute top-2 right-2 sm:-top-5 sm:-right-5 bg-sd-green text-sd-black rounded-full h-16 w-16 sm:h-24 sm:w-24 flex flex-col items-center justify-center shadow-2xl border-2 sm:border-4 border-sd-navy z-10">
-                <span className="font-display text-base sm:text-2xl leading-none">10+</span>
+                <span className="font-display text-base sm:text-2xl leading-none">20+</span>
                 <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider mt-0.5">
                   Years
                 </span>
@@ -366,7 +366,7 @@ function HomePage() {
       <section className="section-dark-alt py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
           <div>
-            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
+            <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-navy bg-sd-green px-3 py-1 rounded">
               Free Quote · 24h Response
             </span>
             <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black leading-tight">
@@ -377,9 +377,9 @@ function HomePage() {
               written estimate.
             </p>
             <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-sd-green/30 bg-sd-green/5 p-4">
-              <Sparkles className="h-5 w-5 text-sd-green shrink-0" />
+              <Sparkles className="h-5 w-5 text-sd-navy shrink-0" />
               <p className="text-sm text-sd-black/80">
-                <span className="text-sd-green font-semibold">Limited slots this month.</span> Book
+                <span className="text-sd-navy font-semibold">Limited slots this month.</span> Book
                 your consultation before the calendar fills up.
               </p>
             </div>
@@ -392,7 +392,7 @@ function HomePage() {
                 { i: Sparkles, t: "Elite Preferred" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-sd-black/80">
-                  <Icon className="h-4 w-4 text-sd-green" /> {t}
+                  <Icon className="h-4 w-4 text-sd-navy" /> {t}
                 </li>
               ))}
             </ul>
@@ -416,7 +416,7 @@ function HomePage() {
           <div>
             <div className="flex items-start justify-between flex-wrap gap-4">
               <div className="flex-1 min-w-0 w-full">
-                <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green bg-sd-green/10 border border-sd-green/30 px-3 py-1 rounded">
+                <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-navy bg-sd-green px-3 py-1 rounded">
                   James Hardie · Elite Preferred
                 </span>
                 <h2
@@ -457,7 +457,7 @@ function HomePage() {
               ].map((item) => (
                 <li key={item.title} className="flex gap-4">
                   <CheckCircle2
-                    className="h-6 w-6 text-sd-green shrink-0 mt-0.5"
+                    className="h-6 w-6 text-sd-navy shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <div>

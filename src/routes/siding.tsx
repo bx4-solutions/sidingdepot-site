@@ -168,9 +168,9 @@ function SidingHero() {
           </h1>
 
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
-            Among the top 2% of James Hardie Elite Preferred contractors nationwide — with in-house
-            crews, a 30-year non-prorated warranty, and 1,500+ projects completed across Marietta,
-            Canton and North Atlanta.
+            As a James Hardie Elite Contractor, we've completed 1,500+ projects across North Atlanta
+            with our in-house installation crews—delivering siding systems backed by an
+            industry-leading 30-year non-prorated, transferable product warranty.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -222,17 +222,17 @@ function TrustStrip() {
     {
       label: "4.7★",
       sublabel: "261 GuildQuality Reviews",
-      href: "https://www.guildquality.com/profile/siding-depot-llc",
+      href: "/#guild-reviews",
     },
     {
       label: `${rating}★`,
       sublabel: `${totalReviews} Google Reviews`,
-      href: "https://www.google.com/search?q=Siding+Depot+Marietta+GA+reviews",
+      href: "/#google-reviews",
     },
     {
       label: "4.9★",
       sublabel: "91 Thumbtack Reviews",
-      href: "https://www.thumbtack.com/ga/marietta/vinyl-siding-install/siding-depot-llc/service/482073672544780291",
+      href: "/#google-reviews",
     },
     {
       label: "GreenSky®",
@@ -615,7 +615,7 @@ const PROCESS = [
   {
     num: "01",
     title: "Free On-Site Consultation",
-    desc: "We come to your home, measure the full exterior, and inspect existing conditions. You receive a written itemized estimate — usually same day. No pressure, no obligation.",
+    desc: "We come to your home, measure the full exterior, and assess existing conditions. You receive a written itemized estimate — usually same day. No pressure, no obligation.",
     icon: Users,
   },
   {
@@ -1077,7 +1077,7 @@ const HIRING_CHECKLIST = [
   {
     Icon: ShieldCheck,
     title: "In-House Crews Only — No Subcontractors",
-    desc: "Every crew member is a Siding Depot in-house employee. Trained, background-checked, and insured. We never subcontract installs — period.",
+    desc: "Every crew member is a Siding Depot in-house employee. Trained, certified, and insured. We never subcontract installs — period.",
   },
   {
     Icon: CheckCircle2,
@@ -1240,9 +1240,7 @@ function TestimonialsSection() {
             </h2>
           </div>
           <a
-            href="https://www.guildquality.com/profile/siding-depot-llc"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#guild-reviews"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white shrink-0 transition-colors hover:bg-white/8"
             style={{ border: "1px solid rgba(255,255,255,0.2)" }}
           >
@@ -1404,7 +1402,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Are your crews subcontractors or employees?",
-    a: "Every crew member at Siding Depot is an in-house employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are background-checked, insured, and trained specifically in James Hardie Best Practices.",
+    a: "Every crew member at Siding Depot is an in-house employee. We never use subcontractors. This ensures consistent quality, accountability, and safety on every project. Our teams are certified, insured, and trained specifically in James Hardie Best Practices.",
   },
   {
     q: "Do you provide written estimates?",

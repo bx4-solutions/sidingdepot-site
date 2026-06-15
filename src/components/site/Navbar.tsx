@@ -18,7 +18,7 @@ interface NavLink {
   to: string;
   label: string;
   icon?: boolean;
-  sublinks?: { to: string; label: string }[];
+  sublinks?: { to: string; label: string; disabled?: boolean }[];
 }
 
 const NAV_LINKS: NavLink[] = [
@@ -37,7 +37,7 @@ const NAV_LINKS: NavLink[] = [
     label: "ABOUT",
     sublinks: [
       { to: "/about", label: "ABOUT" },
-      { to: "/blog", label: "BLOG" },
+      { to: "/blog", label: "BLOG", disabled: true },
     ],
   },
 ];
@@ -108,15 +108,24 @@ export function Navbar() {
               {l.sublinks && (
                 <div className="absolute left-0 top-[100%] pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[160px] w-max max-w-[220px]">
                   <div className="bg-white border border-sd-navy/10 shadow-2xl rounded-md overflow-hidden py-2">
-                    {l.sublinks.map((sub) => (
-                      <Link
-                        key={sub.label}
-                        to={sub.to}
-                        className="block px-4 py-3 text-[12px] font-bold tracking-wider transition-colors hover:bg-sd-green/10 hover:text-sd-green-text text-sd-black border-b border-sd-navy/5 last:border-0"
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
+                    {l.sublinks.map((sub) =>
+                      sub.disabled ? (
+                        <span
+                          key={sub.label}
+                          className="block px-4 py-3 text-[12px] font-bold tracking-wider text-sd-black/40 border-b border-sd-navy/5 last:border-0 cursor-default"
+                        >
+                          {sub.label}
+                        </span>
+                      ) : (
+                        <Link
+                          key={sub.label}
+                          to={sub.to}
+                          className="block px-4 py-3 text-[12px] font-bold tracking-wider transition-colors hover:bg-sd-green/10 hover:text-sd-green-text text-sd-black border-b border-sd-navy/5 last:border-0"
+                        >
+                          {sub.label}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 </div>
               )}
@@ -149,16 +158,25 @@ export function Navbar() {
                         {l.label}
                       </AccordionTrigger>
                       <AccordionContent className="pb-1 pl-4 flex flex-col gap-1">
-                        {l.sublinks.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            to={sub.to}
-                            className="px-3 py-3 rounded-md text-sm font-medium text-sd-black/70 hover:bg-sd-green/10"
-                            onClick={() => setOpen(false)}
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
+                        {l.sublinks.map((sub) =>
+                          sub.disabled ? (
+                            <span
+                              key={sub.label}
+                              className="px-3 py-3 rounded-md text-sm font-medium text-sd-black/30 cursor-default block"
+                            >
+                              {sub.label}
+                            </span>
+                          ) : (
+                            <Link
+                              key={sub.label}
+                              to={sub.to}
+                              className="px-3 py-3 rounded-md text-sm font-medium text-sd-black/70 hover:bg-sd-green/10"
+                              onClick={() => setOpen(false)}
+                            >
+                              {sub.label}
+                            </Link>
+                          ),
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ) : (

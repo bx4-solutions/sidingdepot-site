@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 const SESSION_KEY = "sd_greeter_shown";
-const DELAY_MS   = 5000;
-const AUTO_HIDE  = 14000;
+const DELAY_MS = 5000;
+const AUTO_HIDE = 14000;
 
 export function MascotGreeter() {
   const [visible, setVisible] = useState(false);
@@ -176,7 +176,6 @@ export function MascotGreeter() {
       `}</style>
 
       <div className="sdg-wrap" role="complementary" aria-label="Welcome from Siding Depot">
-
         {/* Speech bubble */}
         <div className="sdg-bubble">
           <button className="sdg-close" onClick={() => setVisible(false)} aria-label="Close">
@@ -185,9 +184,12 @@ export function MascotGreeter() {
           <span className="sdg-tag">👋 Welcome!</span>
           <p className="sdg-title">Atlanta's #1 Siding Company</p>
           <p className="sdg-body">
-            Serving North Atlanta for <strong>over 10 years</strong> — James Hardie Elite Preferred contractor.
+            Serving North Atlanta for <strong>over 20 years</strong> — James Hardie Elite Preferred
+            contractor.
           </p>
-          <a href="/contact" className="sdg-cta">Get a Free Quote →</a>
+          <a href="/contact" className="sdg-cta">
+            Get a Free Quote →
+          </a>
         </div>
 
         {/* Mascot waist-up */}
@@ -205,7 +207,6 @@ export function MascotGreeter() {
             />
           </picture>
         </div>
-
       </div>
     </>
   );

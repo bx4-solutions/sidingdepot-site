@@ -63,7 +63,7 @@ const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
   title: "Meet Siding Depot — James Hardie Siding Installer in Greater Marietta, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Greater Marietta. 10+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Greater Marietta. 20+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
@@ -130,7 +130,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Local James Hardie Elite Preferred siding contractor serving Greater Marietta. 10+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
+          "Local James Hardie Elite Preferred siding contractor serving Greater Marietta. 20+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
       },
       {
         name: "keywords",
@@ -215,9 +215,9 @@ const DIFFERENTIATORS = [
 
 const STATS = [
   {
-    value: "10+",
+    value: "20+",
     label: "Years of Experience",
-    desc: "Over a decade delivering siding, painting, and exterior renovation projects with quality and technical precision.",
+    desc: "Over two decades delivering siding, painting, and exterior renovation projects with quality and technical precision.",
   },
   {
     value: "1,500+",

@@ -12,7 +12,7 @@ export const SITE = {
     zip: "30062",
     full: "3036 Roswell Rd, Greater Marietta, GA 30062",
   },
-  hours: "Mon–Sat: 8:00 AM – 6:00 PM",
+  hours: "Mon–Fri: 8:00 AM – 6:00 PM",
   greenSkyUrl:
     "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03",
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
@@ -158,7 +158,7 @@ export const CITIES = [
 
 export const STATS = [
   { value: "1,500+", label: "Homes in North Atlanta" },
-  { value: "10+", label: "Years in Georgia" },
+  { value: "20+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
   { value: "4.4★", label: "Google Rating" },
 ] as const;

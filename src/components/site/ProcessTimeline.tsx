@@ -32,7 +32,7 @@ export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Proj
                 <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-sd-green text-sd-navy shadow-lg">
                   <Icon className="h-7 w-7" />
                 </div>
-                <span className="mt-4 font-display text-2xl text-sd-green">{step.num}</span>
+                <span className="mt-4 font-display text-2xl text-sd-green-dark">{step.num}</span>
                 <h3 className="mt-1 text-lg font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground max-w-xs">{step.desc}</p>
               </div>

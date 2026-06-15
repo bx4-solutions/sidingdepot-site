@@ -107,7 +107,7 @@ const CONFIG: ServicePageConfig = {
   steps: [
     {
       num: "01",
-      title: "Free Gutter Inspection",
+      title: "Free Gutter Estimate",
       desc: "We walk the full perimeter of your home, evaluate existing gutter condition, identify leak points and sag, and assess foundation and landscaping drainage. Written findings delivered the same day.",
     },
     {
@@ -118,7 +118,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "03",
       title: "Written Proposal — Itemized",
-      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during inspection. Fixed price — no additions after signing.",
+      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during our consultation. Fixed price — no additions after signing.",
     },
     {
       num: "04",
@@ -145,7 +145,7 @@ const CONFIG: ServicePageConfig = {
     ["Downspout placement", "Convenience-based", "Drainage-zone calculated"],
     ["Hanger spacing", '24" industry default', '18" for Georgia rainfall'],
   ],
-  authorityCta: "Schedule My Free Gutter Inspection",
+  authorityCta: "Schedule My Free Gutter Estimate",
   whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Gutters.",
   whyUsSubheadline:
     "Gutters are the least glamorous exterior upgrade and the most consequential one to get wrong. We get it right.",
@@ -156,7 +156,7 @@ const CONFIG: ServicePageConfig = {
     "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free consultation identifies what's failing — before the repair costs compound.",
   ctaBody2:
     "We respond within 24 hours, walk your full perimeter, and deliver a written findings report at no charge.",
-  ctaMainBtn: "Book My Free Gutter Inspection",
+  ctaMainBtn: "Book My Free Gutter Estimate",
   ctaTrustPoints: [
     "Free written estimate",
     "On-site seamless fabrication",

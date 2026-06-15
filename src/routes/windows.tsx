@@ -205,17 +205,17 @@ function TrustStrip() {
     {
       label: "4.7★",
       sublabel: "261 GuildQuality Reviews",
-      href: "https://www.guildquality.com/profile/siding-depot-llc",
+      href: "/#guild-reviews",
     },
     {
       label: `${rating}★`,
       sublabel: `${totalReviews} Google Reviews`,
-      href: "https://www.google.com/search?q=Siding+Depot+Marietta+GA+reviews",
+      href: "/#google-reviews",
     },
     {
       label: "4.9★",
       sublabel: "91 Thumbtack Reviews",
-      href: "https://www.thumbtack.com/ga/marietta/vinyl-siding-install/siding-depot-llc/service/482073672544780291",
+      href: "/#google-reviews",
     },
     { label: "GreenSky®", sublabel: "0% APR Financing" },
     { label: "Guildmember", sublabel: "Since 2019" },
@@ -983,7 +983,7 @@ const WHY_US = [
   {
     Icon: ShieldCheck,
     title: "In-House Installers — Zero Subcontracting",
-    desc: "Every window is installed by a Siding Depot in-house employee — trained, background-checked, insured. We never hand your project to a subcontractor the day it starts.",
+    desc: "Every window is installed by a Siding Depot in-house employee — trained, certified, and insured. We never hand your project to a subcontractor the day it starts.",
   },
   {
     Icon: Thermometer,

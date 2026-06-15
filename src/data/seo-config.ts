@@ -16,21 +16,21 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. W-2 crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
       h1: (c) => `James Hardie Siding Installation in Marietta & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. W-2 crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
       h1: (c) => `James Hardie Siding Installation in Marietta & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
       metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. W-2 crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
   },
   painting: {
@@ -39,21 +39,21 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Sherwin-Williams`,
       metaDesc:
-        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
+        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, in-house certified crews, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
       h1: (c) => `Exterior Painting in Marietta & North Atlanta, GA`,
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Sherwin-Williams`,
       metaDesc:
-        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
+        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, in-house certified crews, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
       h1: (c) => `Exterior Painting in Marietta & North Atlanta, GA`,
       h2: "Why North Atlanta Homeowners Choose Siding Depot for Exterior Painting",
       metaTitle: (c) => `Exterior Painting Marietta GA | Sherwin-Williams`,
       metaDesc:
-        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, W-2 crews, written estimates. Free quote: (678) 400-2012.",
+        "Exterior painting in Marietta & North Atlanta, GA. Sherwin-Williams Duration, in-house certified crews, written estimates. Free quote: (678) 400-2012.",
     },
   },
   windows: {
@@ -184,7 +184,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h2: "Hail & Wind Damage Specialists · Insurance Documentation",
       metaTitle: (c) => `Storm Damage Roofing ${c}, GA | Insurance Help`,
       metaDesc:
-        "Hail & wind storm damage specialists. Free inspection and full insurance claim documentation in Greater Marietta. Call today.",
+        "Hail & wind storm damage specialists. Free consultation and full insurance claim documentation in Greater Marietta. Call today.",
     },
     C: {
       h1: (c) => `Roof Replacement in ${c}, GA`,

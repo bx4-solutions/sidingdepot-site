@@ -38,7 +38,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
     process: [
       {
         title: "Precision Measurement",
-        desc: "We perform a forensic inspection of your current siding and provide a detailed, itemized quote within 24 hours.",
+        desc: "We perform a thorough assessment of your current siding and provide a detailed, itemized quote within 24 hours.",
       },
       {
         title: "Material Customization",
@@ -102,7 +102,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       },
       {
         title: "Clean-Capture Install",
-        desc: "Most projects completed in 1-2 days with full debris removal and a final seal-integrity inspection.",
+        desc: "Most projects completed in 1-2 days with full debris removal and a final quality walk-through.",
       },
     ],
     partners: "ENERGY STAR® Certified Installers",

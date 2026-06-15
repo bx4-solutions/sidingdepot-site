@@ -1,7 +1,7 @@
 import { Star, ArrowRight } from "lucide-react";
 import { useGoogleStats } from "@/lib/google-stats-context";
 
-const GOOGLE_MAPS_REVIEWS_URL = "https://www.google.com/maps?cid=4217399086514930798";
+const GOOGLE_MAPS_REVIEWS_URL = "/#google-reviews";
 
 const FALLBACK_GOOGLE_REVIEWS = [
   {
@@ -49,8 +49,6 @@ function GoogleReviewCard({ review }: { review: GoogleReview }) {
   return (
     <a
       href={GOOGLE_MAPS_REVIEWS_URL}
-      target="_blank"
-      rel="noopener noreferrer"
       className="flex flex-col gap-3 rounded-2xl p-5 shrink-0 w-[272px] sm:w-80 transition-transform hover:-translate-y-1"
       style={{
         background: "rgba(255,255,255,0.06)",
@@ -130,7 +128,7 @@ export function GoogleReviewsCarousel({
   const allReviews = [...rawReviews, ...rawReviews];
 
   return (
-    <section style={{ background: "#111827" }} className="py-20">
+    <section id="google-reviews" style={{ background: "#111827" }} className="py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 mb-10">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
@@ -148,8 +146,6 @@ export function GoogleReviewsCarousel({
           </div>
           <a
             href={GOOGLE_MAPS_REVIEWS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white shrink-0 transition-colors hover:bg-white/8"
             style={{ border: "1px solid rgba(255,255,255,0.2)" }}
           >

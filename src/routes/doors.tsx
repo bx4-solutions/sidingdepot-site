@@ -113,7 +113,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "02",
       title: "Frame & Structural Evaluation",
-      desc: "We inspect the existing rough opening, header integrity, and exterior trim condition. If structural work is required, we identify it upfront — not mid-installation as a change order.",
+      desc: "We assess the existing rough opening, header integrity, and exterior trim condition. If structural work is required, we identify it upfront — not mid-installation as a change order.",
     },
     {
       num: "03",

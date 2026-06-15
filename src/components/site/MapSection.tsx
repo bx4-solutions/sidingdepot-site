@@ -27,7 +27,7 @@ export function MapSection() {
             <div className="mt-10 space-y-6">
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
-                  <MapPin className="h-5 w-5 text-sd-green" />
+                  <MapPin className="h-5 w-5 text-sd-green-dark" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Address</h3>
@@ -37,7 +37,7 @@ export function MapSection() {
 
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
-                  <Clock className="h-5 w-5 text-sd-green" />
+                  <Clock className="h-5 w-5 text-sd-green-dark" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Office Hours</h3>
@@ -47,7 +47,7 @@ export function MapSection() {
 
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
-                  <Phone className="h-5 w-5 text-sd-green" />
+                  <Phone className="h-5 w-5 text-sd-green-dark" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Phone</h3>
@@ -62,7 +62,7 @@ export function MapSection() {
 
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-sd-green/20 border border-sd-green/40 flex items-center justify-center shrink-0">
-                  <Mail className="h-5 w-5 text-sd-green" />
+                  <Mail className="h-5 w-5 text-sd-green-dark" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-sd-black">Email</h3>

@@ -10,7 +10,9 @@ export function FloatingCTA() {
         href={SITE.phoneHref}
         aria-label={`Call ${SITE.phone}`}
         className="flex items-center justify-center h-13 w-13 rounded-full bg-sd-green text-sd-black shadow-lg shadow-sd-green/30 hover:bg-sd-green-hover transition-all"
-        onClick={() => track("call_click", { button: "Floating Phone CTA", source: "floating_cta" })}
+        onClick={() =>
+          track("call_click", { button: "Floating Phone CTA", source: "floating_cta" })
+        }
       >
         <Phone className="h-5 w-5" />
       </a>

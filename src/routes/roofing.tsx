@@ -20,7 +20,7 @@ const FAQS = [
   },
   {
     q: "Does my homeowner's insurance cover storm damage?",
-    a: "Most policies cover sudden storm-related damage — hail strikes, wind-lifted shingles, and falling debris. We assist with documentation: detailed inspection reports with photographs, itemized damage assessments, and direct communication with your adjuster when needed. The inspection costs you nothing.",
+    a: "Most policies cover sudden storm-related damage — hail strikes, wind-lifted shingles, and falling debris. We assist with documentation: detailed assessment reports with photographs, itemized damage assessments, and direct communication with your adjuster when needed. The consultation costs you nothing.",
   },
   {
     q: "How long does a roof replacement take?",
@@ -106,11 +106,11 @@ const CONFIG: ServicePageConfig = {
   processEyebrow: "How It Works",
   processHeadline: "From First Call To A Dry Home.",
   processSubheadline:
-    "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from inspection through final sign-off.",
+    "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from consultation through final sign-off.",
   steps: [
     {
       num: "01",
-      title: "Free Roof Inspection",
+      title: "Free Roof Estimate",
       desc: "We come to your property and evaluate the full roof — decking, shingles, flashing, and ridge — at no charge. You receive a written findings report with photographs the same day.",
     },
     {
@@ -150,7 +150,7 @@ const CONFIG: ServicePageConfig = {
     ["Transferable on sale", "No", "Yes"],
     ["Wind protection", "Standard", "WindProven unlimited"],
   ],
-  authorityCta: "Schedule My Free Inspection",
+  authorityCta: "Schedule My Free Estimate",
 
   whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Roofing.",
   whyUsSubheadline:
@@ -163,9 +163,9 @@ const CONFIG: ServicePageConfig = {
     "Most roof problems are invisible until they become expensive. A free consultation uncovers what's developing — before it becomes a leak inside your home.",
   ctaBody2:
     "We respond within 24 hours, come to your home on your schedule, and deliver a written findings report at no charge.",
-  ctaMainBtn: "Book My Free Roof Inspection",
+  ctaMainBtn: "Book My Free Roof Consultation",
   ctaTrustPoints: [
-    "No-obligation inspection",
+    "No-obligation consultation",
     "Same-day written report",
     "In-house crews · Not subcontracted",
   ],

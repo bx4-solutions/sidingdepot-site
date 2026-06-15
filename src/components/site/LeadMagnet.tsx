@@ -18,7 +18,7 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
         <div className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-background shadow-sm lg:grid-cols-[1fr_1.1fr]">
           {/* Left: PDF preview / pitch */}
           <div className="relative section-dark-alt p-8 text-white lg:p-10">
-            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-green ring-1 ring-sd-green/40">
+            <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sd-green-dark ring-1 ring-sd-green/40">
               <FileText className="h-3.5 w-3.5" /> Free Homeowner Guide
             </span>
             <h2 className="mt-5 font-display text-3xl leading-tight sm:text-4xl">
@@ -35,7 +35,7 @@ export function LeadMagnet({ source = "lead_magnet" }: Props) {
                 "8 questions that filter pros from amateurs",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 text-sd-green shrink-0" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 text-sd-green-dark shrink-0" />
                   <span>{b}</span>
                 </li>
               ))}

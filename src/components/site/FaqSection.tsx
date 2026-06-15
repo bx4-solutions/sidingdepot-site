@@ -27,7 +27,7 @@ export function FaqSection({
             {eyebrow}
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-sd-black">
-            {title} <span className="text-sd-green">{titleAccent}</span>
+            {title} <span className="text-sd-green-dark">{titleAccent}</span>
           </h2>
         </div>
 

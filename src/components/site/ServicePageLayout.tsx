@@ -132,19 +132,19 @@ function TrustStrip() {
     {
       label: "4.7★",
       sublabel: "261 GuildQuality Reviews",
-      href: "https://www.guildquality.com/profile/siding-depot-llc",
+      href: "/#guild-reviews",
       badge: false,
     },
     {
       label: `${rating}★`,
       sublabel: `${totalReviews} Google Reviews`,
-      href: "https://www.google.com/search?q=Siding+Depot+Marietta+GA+reviews",
+      href: "/#google-reviews",
       badge: false,
     },
     {
       label: "4.9★",
       sublabel: "91 Thumbtack Reviews",
-      href: "https://www.thumbtack.com/ga/marietta/vinyl-siding-install/siding-depot-llc/service/482073672544780291",
+      href: "/#google-reviews",
       badge: false,
     },
     { label: "GreenSky®", sublabel: "0% APR Financing", href: undefined, badge: false },
@@ -187,13 +187,7 @@ function TrustStrip() {
               </div>
             );
             return item.href ? (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
+              <a key={item.label} href={item.href} className="hover:opacity-80 transition-opacity">
                 {inner}
               </a>
             ) : (
@@ -209,7 +203,7 @@ function TrustStrip() {
 // ─── StatsBar ─────────────────────────────────────────────────────────────────
 const STATS_DATA = [
   { value: 1500, suffix: "+", label: "Projects Completed" },
-  { value: 10, suffix: "+", label: "Years in Georgia" },
+  { value: 20, suffix: "+", label: "Years in Georgia" },
   { value: 92, suffix: "%", label: "Would Recommend Us" },
   { value: 261, suffix: "+", label: "Verified Reviews" },
 ];

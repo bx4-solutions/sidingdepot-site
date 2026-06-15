@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import jhEliteBadge from "@/assets/jh-elite-badge.svg";
 
 const GreenStar = () => (
@@ -41,15 +42,13 @@ export function ProofBar() {
         <ul className="flex flex-wrap sm:flex-nowrap items-stretch justify-center divide-x divide-white/10">
           {/* Box 1: James Hardie Elite */}
           <li className="flex-1 min-w-0">
-            <a
-              href="https://www.jameshardie.com/find-a-contractor/results/siding-depot-marietta/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/siding"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <img
                 src={jhEliteBadge}
-                alt="James Hardie Elite Preferred"
+                alt="James Hardie Elite Contractor"
                 className="h-9 w-auto shrink-0"
               />
               <div className="min-w-0">
@@ -60,15 +59,13 @@ export function ProofBar() {
                   Elite Contractor
                 </div>
               </div>
-            </a>
+            </Link>
           </li>
 
           {/* Box 2: 4.7 · 512 Verified Reviews */}
           <li className="flex-1 min-w-0">
             <a
-              href="https://www.guildquality.com/profile/siding-depot-llc"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#google-reviews"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <GreenStar />
@@ -88,8 +85,8 @@ export function ProofBar() {
 
           {/* Box 3: 1,500+ Homes */}
           <li className="flex-1 min-w-0">
-            <a
-              href="/projects"
+            <Link
+              to="/projects"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <HouseCheck />
@@ -101,27 +98,25 @@ export function ProofBar() {
                   Completed in North Atlanta
                 </div>
               </div>
-            </a>
+            </Link>
           </li>
 
-          {/* Box 4: GreenSky */}
+          {/* Box 4: GreenSky Financing */}
           <li className="flex-1 min-w-0">
-            <a
-              href="https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/contact"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <GreenSkyIcon />
               <div className="min-w-0">
                 <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight">
-                  GreenSky®
+                  GreenSky® 0% APR
                 </div>
                 <div className="text-white/60 text-[10px] sm:text-[11px] leading-tight">
-                  0% APR Financing
+                  Financing for 12 months
                 </div>
               </div>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

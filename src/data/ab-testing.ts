@@ -36,12 +36,12 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
         "Top 2% Elite Preferred James Hardie status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
       ],
       process: [], // Using hiringChecklist for the 6 cards as requested
       hiringIntro:
@@ -52,12 +52,12 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
         "Top 2% Elite Preferred James Hardie status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
       ],
       process: [],
       hiringIntro:
@@ -68,12 +68,12 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is a W-2 Siding Depot employee. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
         "Top 2% Elite Preferred James Hardie status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
       ],
       process: [],
       hiringIntro:
@@ -86,11 +86,11 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "Exterior Painting in Marietta &",
       titleAccent: "North Atlanta, GA",
       intro:
-        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by W-2 crews who never skip prep.",
+        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by in-house certified crews who never skip prep.",
       benefits: [
         "Sherwin-Williams Duration® & SuperPaint®",
         "Full multi-stage surface preparation",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
         "Written itemized estimates guaranteed",
       ],
       process: [], // Using hiringChecklist instead for 6 cards
@@ -102,11 +102,11 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "Exterior Painting in Marietta &",
       titleAccent: "North Atlanta, GA",
       intro:
-        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by W-2 crews who never skip prep.",
+        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by in-house certified crews who never skip prep.",
       benefits: [
         "Sherwin-Williams Duration® & SuperPaint®",
         "Full multi-stage surface preparation",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
         "Written itemized estimates guaranteed",
       ],
       process: [],
@@ -118,11 +118,11 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
       title: "Exterior Painting in Marietta &",
       titleAccent: "North Atlanta, GA",
       intro:
-        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by W-2 crews who never skip prep.",
+        "Georgia's heat and humidity destroy cheap exterior paint in 2–3 years. Siding Depot uses only Sherwin-Williams Duration® and SuperPaint® — premium coatings engineered for the Southeast, applied by in-house certified crews who never skip prep.",
       benefits: [
         "Sherwin-Williams Duration® & SuperPaint®",
         "Full multi-stage surface preparation",
-        "W-2 employee crews (never subcontractors)",
+        "In-house certified crews (never subcontractors)",
         "Written itemized estimates guaranteed",
       ],
       process: [],

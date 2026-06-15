@@ -84,7 +84,7 @@ export function GuildQualityReviews() {
   ];
 
   return (
-    <section className="py-16 lg:py-20 bg-white border-t border-gray-100">
+    <section id="guild-reviews" className="py-16 lg:py-20 bg-white border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* ── Header — company card ── */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8 pb-6 border-b border-gray-200">
@@ -104,9 +104,7 @@ export function GuildQualityReviews() {
               <div className="flex items-center gap-2 mt-0.5">
                 <div className="flex text-[#f5a623] text-lg">★★★★★</div>
                 <a
-                  href="https://www.guildquality.com/profile/siding-depot-llc?tab=reviews"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/#guild-reviews"
                   className="text-[#f5a623] font-semibold text-sm hover:underline"
                 >
                   261 Reviews
@@ -116,9 +114,7 @@ export function GuildQualityReviews() {
           </div>
           <div className="sm:ml-auto">
             <a
-              href="https://www.guildquality.com/profile/siding-depot-llc?tab=reviews"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#guild-reviews"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#1a3a5c] border border-[#1a3a5c]/20 px-4 py-2 rounded-lg hover:bg-[#1a3a5c]/5 transition-colors"
             >
               View full profile →
@@ -232,9 +228,7 @@ export function GuildQualityReviews() {
                 </div>
               ))}
               <a
-                href="https://www.guildquality.com/profile/siding-depot-llc?tab=reviews"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/#guild-reviews"
                 className="block text-center text-xs font-semibold text-[#1a3a5c] hover:underline pt-1 pb-2"
               >
                 View all 261 reviews on GuildQuality →

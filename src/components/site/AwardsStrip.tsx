@@ -1,12 +1,24 @@
 import { Award, BadgeCheck, ShieldCheck, Star, Wallet, Wrench } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { AWARDS } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
 
+const SD_NAVY = "#1e2a3a";
+const SD_LIME = "#B3D133";
+const SD_LIME_TEXT = "#3C4A07";
+
 const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, Wallet];
+
+const AWARD_LINKS: Record<string, { type: "internal" | "anchor"; href: string }> = {
+  "James Hardie Elite Preferred": { type: "internal", href: "/siding" },
+  "GAF Factory Certified": { type: "internal", href: "/roofing" },
+  "Licensed & Insured": { type: "internal", href: "/contact" },
+  "BBB Accredited": { type: "anchor", href: "/#google-reviews" },
+  "GreenSky Financing": { type: "internal", href: "/contact" },
+};
 
 export function AwardsStrip() {
   const { rating, totalReviews } = useGoogleStats();
-  // Dynamically replace the static Google entry with live data
   const awards = AWARDS.map((a) =>
     a.name === "Google · 4.4★"
       ? { name: `Google · ${rating}★`, subtitle: `${totalReviews} verified reviews` }
@@ -22,16 +34,52 @@ export function AwardsStrip() {
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {awards.map((a, i) => {
             const Icon = ICONS[i] ?? Award;
-            return (
+            const isGoogle = a.name.startsWith("Google ·");
+
+            const cardContent = (
               <div
-                key={a.name}
-                className="flex flex-col items-center text-center px-3 py-4 rounded-lg bg-white border border-sd-gray-border hover:border-sd-green hover:shadow-md transition-all"
+                className="flex flex-col items-start px-4 py-4 rounded-2xl bg-white h-full transition-all hover:shadow-lg"
+                style={{
+                  border: `2px solid ${SD_LIME}`,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                }}
               >
-                <Icon className="h-7 w-7 text-sd-green" aria-hidden />
-                <p className="mt-2 text-sm font-semibold text-sd-black leading-tight">{a.name}</p>
-                <p className="mt-0.5 text-xs text-sd-gray-text">{a.subtitle}</p>
+                <div className="h-1 w-10 rounded-full mb-3" style={{ background: SD_LIME }} />
+                <Icon className="h-6 w-6 mb-2" style={{ color: SD_LIME }} aria-hidden />
+                <p className="text-sm font-bold leading-tight" style={{ color: SD_NAVY }}>
+                  {a.name}
+                </p>
+                <p className="mt-0.5 text-xs leading-tight" style={{ color: "#9ca3af" }}>
+                  {a.subtitle}
+                </p>
               </div>
             );
+
+            if (isGoogle) {
+              return (
+                <a key={a.name} href="/#google-reviews" className="block">
+                  {cardContent}
+                </a>
+              );
+            }
+
+            const link = AWARD_LINKS[a.name];
+            if (link?.type === "internal") {
+              return (
+                <Link key={a.name} to={link.href} className="block">
+                  {cardContent}
+                </Link>
+              );
+            }
+            if (link?.type === "anchor") {
+              return (
+                <a key={a.name} href={link.href} className="block">
+                  {cardContent}
+                </a>
+              );
+            }
+
+            return <div key={a.name}>{cardContent}</div>;
           })}
         </div>
       </div>
