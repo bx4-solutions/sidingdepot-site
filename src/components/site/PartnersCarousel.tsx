@@ -42,18 +42,17 @@ export function PartnersCarousel() {
 
       {/* Marquee — same classes as Google Reviews */}
       <div className="marquee-wrapper">
-        <div className="marquee-track gap-10 px-6">
+        <div className="marquee-track gap-5 sm:gap-10 px-4 sm:px-6">
           {TRACK.map((p, i) => (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center justify-center"
-              style={{ minWidth: p.w + 40, height: 100 }}
+              className="flex-shrink-0 flex items-center justify-center h-16 sm:h-24"
+              style={{ width: `clamp(110px, 34vw, ${p.w + 40}px)` }}
             >
               <img
                 src={p.src}
                 alt={p.name}
-                className="object-contain select-none"
-                style={{ width: p.w, height: 80, objectFit: "contain" }}
+                className="object-contain select-none h-12 sm:h-20 w-auto max-w-full"
                 draggable={false}
               />
             </div>

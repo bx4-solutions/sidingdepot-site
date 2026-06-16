@@ -56,17 +56,19 @@ export function SupplierBrandSection({ cfg }: { cfg: SupplierSectionConfig }) {
               className="flex flex-col items-center justify-center gap-5 p-8 lg:p-10"
               style={{ background: SD_NAVY }}
             >
-              <img
-                src={cfg.logoSrc}
-                alt={cfg.logoAlt}
-                className="w-full h-auto object-contain"
-                style={{
-                  maxWidth: 300,
-                  maxHeight: 200,
-                  filter: cfg.logoFilter ?? "drop-shadow(0 6px 20px rgba(0,0,0,0.45))",
-                }}
-                loading="lazy"
-              />
+              <div className="bg-white rounded-2xl p-6 lg:p-8 w-full flex items-center justify-center shadow-lg">
+                <img
+                  src={cfg.logoSrc}
+                  alt={cfg.logoAlt}
+                  className="w-full h-auto object-contain"
+                  style={{
+                    maxWidth: 280,
+                    maxHeight: 160,
+                    filter: cfg.logoFilter,
+                  }}
+                  loading="lazy"
+                />
+              </div>
               <p
                 className="text-center text-sm font-bold uppercase tracking-wider"
                 style={{ color: SD_LIME }}
