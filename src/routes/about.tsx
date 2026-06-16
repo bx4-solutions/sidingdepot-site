@@ -5,7 +5,7 @@ import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
-import certHeroImg from "@/assets/certifications-hero.jpg";
+import teamPhoto from "@/assets/team-photo.png";
 
 const LucideFacebook = ({ className }: { className?: string }) => (
   <svg
@@ -199,7 +199,6 @@ const PARTNER_LOGOS = [
   "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
 ] as const;
 
-const CERT_HERO = certHeroImg;
 
 const DIFFERENTIATORS = [
   "You get a line-by-line itemized estimate with exact pricing up front.",
@@ -384,27 +383,31 @@ function AboutPage() {
         <div className="mx-auto max-w-6xl px-4 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
           <div>
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-green-text bg-sd-green-pale px-3 py-1 rounded">
-              Certifications
+              The People Behind The Work
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-sd-black">
-              Our Certifications
+              A company made of people
             </h2>
             <p className="mt-4 text-sd-gray-text leading-relaxed">
-              Our certifications and recognitions reflect the quality, trust, and commitment we
-              bring to every project. They validate our dedication to meeting the highest industry
-              standards, ensuring our clients receive safety, excellence, and results that exceed
-              expectations.
+              Certifications and awards matter — they prove we meet the highest standards in the
+              industry. But what truly defines Siding Depot is our people. We're a tight-knit,
+              in-house crew who show up, take pride in every home, and treat your project like it's
+              our own — no subcontractors, no strangers on your property.
+            </p>
+            <p className="mt-4 text-sd-gray-text leading-relaxed">
+              Because at the end of the day, this work isn't really about siding — it's about people.
+              And we genuinely love working with them, from the first handshake to the final walk-through.
             </p>
             <p className="mt-6 text-lg font-semibold text-sd-navy">
-              Experts in siding installation.
+              Real people. Real craftsmanship. Real care.
             </p>
           </div>
           <div className="flex justify-center">
             <img
-              src={CERT_HERO}
-              alt="James Hardie Elite Preferred siding installation on a North Atlanta home"
-              width={1280}
-              height={960}
+              src={teamPhoto}
+              alt="The Siding Depot crew — our full in-house team in front of the company vans"
+              width={1200}
+              height={800}
               className="max-w-full h-auto rounded-2xl shadow-xl ring-1 ring-black/5"
               loading="lazy"
               decoding="async"

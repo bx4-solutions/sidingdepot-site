@@ -177,6 +177,7 @@ const CONFIG: ServicePageConfig = {
     logoAlt: "Master Windows Professional Door & Window Installer Logo",
     logoTagline: "★ 20+ YEARS OF EXPERTISE",
     logoFilter: "brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
+    logoOnDark: true,
     sectionEyebrow: "Certified Door Supplier",
     sectionHeadline: "The Credentials That Back Your Doors.",
     sectionBody:
