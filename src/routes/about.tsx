@@ -241,7 +241,7 @@ function AboutPage() {
               About Siding Depot
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-              10 years installing <span className="text-sd-green">James Hardie siding</span> across
+              20+ years installing <span className="text-sd-green">James Hardie siding</span> across
               Greater Marietta.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
