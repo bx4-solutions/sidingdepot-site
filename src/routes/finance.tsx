@@ -50,7 +50,7 @@ export const Route = createFileRoute("/finance")({
           content:
             "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available.",
         },
-        { property: "og:image", content: "/projects/project-1.webp" },
+        { property: "og:image", content: "https://sidingdepot.com/projects/project-1.webp" },
         { property: "og:type", content: "website" },
       ],
       links: [{ rel: "canonical", href: canonical }],
@@ -117,7 +117,7 @@ function FinancePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-sd-black/40 via-sd-black/20 to-sd-black/70" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 lg:px-12 lg:pb-20 lg:pt-40">
+        <div className="relative z-10 mx-auto flex min-h-[360px] sm:min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-24 sm:pt-32 lg:px-12 lg:pb-20 lg:pt-40">
           <h1 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl">
             Financing Options
           </h1>

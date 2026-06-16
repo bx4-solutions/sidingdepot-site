@@ -9,7 +9,7 @@ export function FloatingCTA() {
       <a
         href={SITE.phoneHref}
         aria-label={`Call ${SITE.phone}`}
-        className="flex items-center justify-center h-13 w-13 rounded-full bg-sd-green text-sd-black shadow-lg shadow-sd-green/30 hover:bg-sd-green-hover transition-all"
+        className="flex items-center justify-center h-14 w-14 rounded-full bg-sd-green text-sd-black shadow-lg shadow-sd-green/30 hover:bg-sd-green-hover transition-all"
         onClick={() =>
           track("call_click", { button: "Floating Phone CTA", source: "floating_cta" })
         }
@@ -19,7 +19,7 @@ export function FloatingCTA() {
       <Link
         to="/contact"
         aria-label="Get a free quote"
-        className="flex items-center justify-center h-13 w-13 rounded-full bg-sd-black text-sd-green shadow-lg hover:bg-sd-dark transition-all"
+        className="flex items-center justify-center h-14 w-14 rounded-full bg-sd-black text-sd-green shadow-lg hover:bg-sd-dark transition-all"
       >
         <MessageSquareText className="h-5 w-5" />
       </Link>

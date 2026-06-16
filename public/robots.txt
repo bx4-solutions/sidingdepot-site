@@ -5,5 +5,30 @@ Disallow: /admin/
 Disallow: /seo-dashboard/
 Disallow: /access-denied/
 
+# AI assistants & answer engines — explicitly allowed for citation
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://sidingdepot.com/sitemap.xml
 Sitemap: https://sidingdepot.com/blog-sitemap.xml

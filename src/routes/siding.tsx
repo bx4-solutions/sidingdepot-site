@@ -17,13 +17,14 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { FaqSection } from "@/components/site/FaqSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
-import { getFaqSchema } from "@/lib/schema";
+import { getFaqSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
 import sidingHouseHeroAsset from "@/assets/siding-house-hero-pool.jpg";
-import sidingInstallationCrews from "@/assets/siding-installation-crews.png";
+import sidingInstallationCrews from "@/assets/siding-installation-crews.jpg";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
+import { RelatedServices } from "@/components/site/ServicePageLayout";
 import { useGoogleStats } from "@/lib/google-stats-context";
 
 // Brand palette — used by inline sections in this file
@@ -64,6 +65,15 @@ export const Route = createFileRoute("/siding")({
       {
         type: "application/ld+json",
         children: JSON.stringify(getFaqSchema(FAQ_ITEMS)),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Siding", url: "/siding" },
+          ]),
+        ),
       },
     ],
   }),
@@ -247,15 +257,14 @@ function TrustStrip() {
   return (
     <div style={{ background: "#1e2a3a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-8 gap-y-0 py-0">
+        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
           {items.map((item, i) => {
             const inner = (
               <div
                 key={item.label}
-                className="flex items-center gap-3 py-4 px-2"
-                style={{
-                  borderRight: i < items.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
+                className={`flex items-center gap-3 py-4 px-2 ${
+                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
+                }`}
               >
                 {item.badge ? (
                   <img
@@ -1439,6 +1448,7 @@ function SidingPage() {
       {/* overallRating and totalReviews intentionally omitted — carousel reads from GoogleStatsContext */}
       <GoogleReviewsCarousel reviews={mappedReviews} />
       <WhyUsSection />
+      <RelatedServices />
       <DesignConsultationSection />
       <FaqSection items={FAQ_ITEMS} title="Siding questions," />
     </div>

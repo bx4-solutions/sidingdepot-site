@@ -10,7 +10,7 @@ export function FinancingBlock() {
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green">
             <CreditCard className="h-3.5 w-3.5" /> GreenSky Financing
           </span>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-tight">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">
             Buy Now. <span className="text-sd-green">Pay Over Time.</span>
           </h2>
           <p className="mt-3 text-white/70 max-w-xl">

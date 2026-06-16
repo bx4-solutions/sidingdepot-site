@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import dumpsterHeroImg from "@/assets/dumpster-hero.png";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import dumpsterHeroImg from "@/assets/dumpster-hero.jpg";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
 const HERO_IMAGE = dumpsterHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
@@ -196,6 +201,15 @@ export const Route = createFileRoute("/dumpster-rental")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Dumpster Rental", url: "/dumpster-rental" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

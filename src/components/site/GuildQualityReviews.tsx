@@ -1,69 +1,4 @@
-const RECENT_REVIEWS = [
-  {
-    name: "Reviewer in Marietta, GA",
-    location: "Marietta, GA",
-    date: "Apr 27, 2025",
-    stars: 5,
-    verified: true,
-    text: "Siding Depot did great work and were very professional.",
-  },
-  {
-    name: "Ozzie S.",
-    location: "Marietta, GA",
-    date: "Dec 9, 2024",
-    stars: 5,
-    verified: true,
-    text: "I had 4 different companies come to the property to give me an estimate on a portion of my home. Siding Depot was the most thorough, most professional, and delivered exactly what they promised.",
-  },
-  {
-    name: "Elmer W.",
-    location: "Kennesaw, GA",
-    date: "Oct 23, 2024",
-    stars: 5,
-    verified: true,
-    text: "I had three estimates. They had the best price of all three and they had outstanding professionalism. The crew was clean, efficient, and the result was better than I expected.",
-  },
-  {
-    name: "Reviewer in Canton, GA",
-    location: "Canton, GA",
-    date: "Sep 14, 2024",
-    stars: 5,
-    verified: true,
-    text: "From the first call to the final walkthrough, everything was handled with care. They showed up on time every day and left the property clean. Highly recommend.",
-  },
-  {
-    name: "Reviewer in Alpharetta, GA",
-    location: "Alpharetta, GA",
-    date: "Aug 5, 2024",
-    stars: 5,
-    verified: true,
-    text: "The crew was courteous and knowledgeable. The project manager checked in daily. We are very happy with our new siding and the whole experience.",
-  },
-  {
-    name: "Reviewer in Marietta, GA",
-    location: "Marietta, GA",
-    date: "Jul 18, 2024",
-    stars: 5,
-    verified: true,
-    text: "Excellent communication throughout the entire project. The written estimate matched the final bill exactly — no surprises. Would use Siding Depot again without hesitation.",
-  },
-  {
-    name: "Reviewer in Woodstock, GA",
-    location: "Woodstock, GA",
-    date: "Jun 2, 2024",
-    stars: 5,
-    verified: true,
-    text: "Nick and his team are top notch. They replaced our siding and gutters and the house looks brand new. Very competitive pricing and professional from start to finish.",
-  },
-  {
-    name: "Reviewer in Roswell, GA",
-    location: "Roswell, GA",
-    date: "May 10, 2024",
-    stars: 5,
-    verified: true,
-    text: "James Hardie product looks amazing. The installation was flawless and the crew was respectful of our property. Could not be happier with the outcome.",
-  },
-];
+import { GuildQualityEmbed } from "@/components/site/GuildQualityEmbed";
 
 export function GuildQualityReviews() {
   const ratingRows = [
@@ -207,33 +142,15 @@ export function GuildQualityReviews() {
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
               Recent Reviews
             </p>
-            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: "420px" }}>
-              {RECENT_REVIEWS.map((r, i) => (
-                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-white">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <div>
-                      <p className="text-sm font-bold text-[#1a3a5c]">{r.name}</p>
-                      <p className="text-[11px] text-gray-400">
-                        {r.location} · {r.date}
-                      </p>
-                    </div>
-                    <div className="flex text-[#f5a623] text-sm shrink-0">
-                      {"★".repeat(r.stars)}
-                    </div>
-                  </div>
-                  {r.verified && (
-                    <p className="text-[10px] text-[#1a7abf] font-semibold mb-1.5">✓ Verified</p>
-                  )}
-                  <p className="text-xs text-gray-600 leading-relaxed">{r.text}</p>
-                </div>
-              ))}
-              <a
-                href="/#guild-reviews"
-                className="block text-center text-xs font-semibold text-[#1a3a5c] hover:underline pt-1 pb-2"
-              >
-                View all 261 reviews on GuildQuality →
-              </a>
-            </div>
+            <GuildQualityEmbed />
+            <a
+              href="https://www.guildquality.com/profile/siding-depot-llc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center text-xs font-semibold text-[#1a3a5c] hover:underline pt-2"
+            >
+              View all reviews on GuildQuality →
+            </a>
           </div>
         </div>
       </div>

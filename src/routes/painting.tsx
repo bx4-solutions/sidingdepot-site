@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
 import paintingHeroImg from "@/assets/painting-hero.png";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
 const HERO_IMAGE = paintingHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
@@ -167,6 +172,54 @@ const CONFIG: ServicePageConfig = {
   faqTitle: "Painting questions,",
   faqTitleAccent: "answered.",
   faqs: FAQS,
+
+  supplierSection: {
+    logoSrc: "/logos/sherwin-williams.png",
+    logoAlt: "Sherwin-Williams Premium Exterior Paint Logo",
+    logoTagline: "★ PREFERRED CONTRACTOR",
+    sectionEyebrow: "Certified Paint Supplier",
+    sectionHeadline: "The Credentials That Back Your Paint Job.",
+    sectionBody:
+      "Sherwin-Williams is the #1 paint brand in North America. We use their premium exterior lines — Duration® and Emerald® — engineered for UV resistance, moisture protection, and long-term color retention in Georgia's climate.",
+    cardEyebrow: "Sherwin-Williams® — Premium Exterior",
+    cardHeadline: "The paint that lasts — backed by the brand that invented it.",
+    body1:
+      "Sherwin-Williams Duration® and Emerald® exterior paints carry a Lifetime Limited Warranty against peeling and blistering — valid for as long as the original purchaser owns the home. This is a product warranty: if the paint peels or blisters, Sherwin-Williams provides replacement product or refunds the original purchase price.",
+    body2:
+      "What it means for you: the paint product itself is backed by the manufacturer for life. Note that the warranty covers product only — labor for reapplication is not included. Proper surface preparation is required; the warranty does not apply to failures caused by improper prep or structural defects.",
+    stats: [
+      { val: "Lifetime", desc: "warranty against peeling & blistering" },
+      { val: "Product", desc: "coverage only — no labor included" },
+      { val: "#1 Brand", desc: "in North America" },
+    ],
+    cards: [
+      {
+        name: "Peeling Coverage",
+        value: "Lifetime",
+        detail: "Product replacement or price refund if paint peels",
+      },
+      {
+        name: "Blistering Coverage",
+        value: "Lifetime",
+        detail: "Product replacement or price refund if paint blisters",
+      },
+      {
+        name: "Labor Coverage",
+        value: "Not Included",
+        detail: "Warranty covers product only — not reapplication labor",
+      },
+      {
+        name: "Transferable",
+        value: "No",
+        detail: "Warranty applies to original purchaser only",
+      },
+      {
+        name: "Prep Requirement",
+        value: "Mandatory",
+        detail: "Warranty void if surface not properly prepared",
+      },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/painting")({
@@ -197,6 +250,15 @@ export const Route = createFileRoute("/painting")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Painting", url: "/painting" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

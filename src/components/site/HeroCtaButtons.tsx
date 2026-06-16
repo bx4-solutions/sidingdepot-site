@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { QuickQuoteForm } from "@/components/site/QuickQuoteForm";
+import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { SITE } from "@/data/site";
 import { track } from "@/lib/track";
 
@@ -47,7 +47,7 @@ export function HeroCtaButtons({ source = "hero_cta" }: Props = {}) {
             >
               <X className="h-4 w-4" aria-hidden="true" />
             </DialogClose>
-            <QuickQuoteForm
+            <HeroQuoteForm
               source={source}
               onSuccess={() => setTimeout(() => setOpen(false), 2500)}
             />

@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
 import roofingHeroImg from "@/assets/services/roofing.jpg";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
 const HERO_IMAGE = roofingHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
@@ -173,6 +178,46 @@ const CONFIG: ServicePageConfig = {
   faqTitle: "Roofing questions,",
   faqTitleAccent: "answered.",
   faqs: FAQS,
+
+  supplierSection: {
+    logoSrc: "/logos/gaf.png",
+    logoAlt: "GAF Master Elite Roofing Manufacturer Logo",
+    logoTagline: "★ MASTER ELITE CERTIFIED",
+    sectionEyebrow: "Certified Roofing Supplier",
+    sectionHeadline: "The Credentials That Back Your Roof.",
+    sectionBody:
+      "GAF's Golden Pledge® is the strongest residential roofing warranty available — and it's only offered by Master Elite contractors. We are one of the top 2% of roofers in the US who qualify.",
+    cardEyebrow: "GAF® — Master Elite Contractor",
+    cardHeadline: "The highest certification GAF awards.",
+    body1:
+      "Only the top 2% of roofing contractors in the US earn GAF Master Elite status. It requires verified installation quality, active state licensing, insurance, and ongoing factory training. GAF vets every applicant and can revoke the certification if quality drops.",
+    body2:
+      "What it means for you: only Master Elite contractors can offer the Golden Pledge® Limited Warranty — covering your shingles for your lifetime as the original owner, with up to 30-year workmanship coverage. Standard contractors cannot offer this warranty.",
+    stats: [
+      { val: "Top 2%", desc: "of US roofers qualify" },
+      { val: "30-Year", desc: "workmanship coverage" },
+      { val: "Lifetime", desc: "shingle warranty" },
+    ],
+    cards: [
+      {
+        name: "Material Warranty",
+        value: "Lifetime",
+        detail: "Original homeowner on single-family residence",
+      },
+      {
+        name: "Smart Choice® Period",
+        value: "25 Years",
+        detail: "Non-prorated coverage (Golden Pledge®)",
+      },
+      { name: "Workmanship", value: "Up to 30yr", detail: "Golden Pledge® — Master Elite only" },
+      {
+        name: "Wind Protection",
+        value: "15 Years",
+        detail: "WindProven™ — no max windspeed limit",
+      },
+      { name: "Algae Protection", value: "25 Years", detail: "StainGuard Plus™ limited warranty" },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/roofing")({
@@ -203,6 +248,15 @@ export const Route = createFileRoute("/roofing")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Roofing", url: "/roofing" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

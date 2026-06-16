@@ -21,12 +21,13 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { FaqSection } from "@/components/site/FaqSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
-import { getFaqSchema } from "@/lib/schema";
+import { getFaqSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
-import windowsHeroImg from "@/assets/windows-hero.png";
+import windowsHeroImg from "@/assets/windows-hero.jpg";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
-import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
+import { RelatedServices } from "@/components/site/ServicePageLayout";
+import { SupplierBrandSection } from "@/components/site/SupplierBrandSection";
 import { useGoogleStats } from "@/lib/google-stats-context";
 
 const SD_NAVY = "#1e2a3a";
@@ -65,6 +66,15 @@ export const Route = createFileRoute("/windows")({
         serviceType: "Window Replacement & Installation",
       }),
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema(FAQ_ITEMS)) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Windows", url: "/windows" },
+          ]),
+        ),
+      },
     ],
   }),
   component: WindowsPage,
@@ -223,15 +233,14 @@ function TrustStrip() {
   return (
     <div style={{ background: "#1e2a3a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-8 gap-y-0 py-0">
+        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
           {items.map((item, i) => {
             const inner = (
               <div
                 key={item.label}
-                className="flex items-center gap-3 py-4 px-2"
-                style={{
-                  borderRight: i < items.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
+                className={`flex items-center gap-3 py-4 px-2 ${
+                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
+                }`}
               >
                 <div
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-black"
@@ -1208,12 +1217,61 @@ function WindowsPage() {
       <WindowsHero />
       <TrustStrip />
       <WindowsStatsBar />
-      <EliteBadgeSection />
+      <SupplierBrandSection
+        cfg={{
+          logoSrc: "/logos/simonton.png",
+          logoAlt: "Simonton Windows & Doors Logo",
+          logoTagline: "★ AAMA GOLD LABEL CERTIFIED",
+          sectionEyebrow: "Certified Window Supplier",
+          sectionHeadline: "The Credentials That Back Your Windows.",
+          sectionBody:
+            "Simonton windows carry a Lifetime Limited Warranty on frames and sashes — the industry's strongest frame coverage — plus AAMA Gold Label certification, the highest quality standard in the fenestration industry.",
+          cardEyebrow: "Simonton® — AAMA Gold Label Certified",
+          cardHeadline: "The highest designation AAMA awards.",
+          body1:
+            "AAMA Gold Label is the top quality certification available for window and door manufacturers — independently verifying that every Simonton product meets or exceeds the most rigorous performance standards in the industry. It's renewed, not just awarded once.",
+          body2:
+            "What it means for you: a Lifetime Limited Warranty on vinyl frames, sashes, and working parts, plus 15-year coverage on the insulating glass unit against internal obstruction. The warranty is transferable to the next homeowner, adding documented resale value.",
+          stats: [
+            { val: "Lifetime", desc: "frame & sash warranty" },
+            { val: "15 Years", desc: "insulating glass unit" },
+            { val: "Transferable", desc: "to next homeowner" },
+          ],
+          cards: [
+            {
+              name: "Frame Warranty",
+              value: "Lifetime",
+              detail: "Vinyl frames & sashes for original homeowner",
+            },
+            {
+              name: "Glass Unit (IGU)",
+              value: "15 Years",
+              detail: "Internal obstruction of vision coverage",
+            },
+            {
+              name: "Working Parts",
+              value: "Lifetime",
+              detail: "Hardware and operating components",
+            },
+            {
+              name: "Warranty Transfer",
+              value: "Yes",
+              detail: "Transferable to next homeowner upon sale",
+            },
+            {
+              name: "Quality Standard",
+              value: "AAMA Gold",
+              detail: "Industry's highest certification",
+            },
+          ],
+        }}
+      />
       <WindowTypesSection />
       <WindowsProcess />
       <BeforeAfterCarousel />
       <GoogleReviewsCarousel reviews={mappedReviews} />
       <WindowsWhyUsSection />
+      <RelatedServices />
       <WindowsCtaSection />
       <FaqSection items={FAQ_ITEMS} title="Window questions," />
     </div>

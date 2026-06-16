@@ -46,20 +46,8 @@ export const LOCAL_BUSINESS_SCHEMA = {
   "@id": LOCAL_BUSINESS_ID,
   name: SITE.name,
   image: `${BASE_URL}/og-default.jpg`,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.4",
-    reviewCount: "162",
-  },
-  review: [
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Jennifer M." },
-      reviewRating: { "@type": "Rating", ratingValue: "5" },
-      reviewBody:
-        "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work.",
-    },
-  ],
+  // aggregateRating is emitted dynamically from the root with LIVE Google stats
+  // (same @id → Google merges the nodes). No static rating here.
   telephone: SITE.phone,
   url: BASE_URL,
   address: {
@@ -160,6 +148,19 @@ export function getFaqSchema(faqs: ReadonlyArray<{ q: string; a: string }>) {
         "@type": "Answer",
         text: f.a,
       },
+    })),
+  };
+}
+
+export function getBreadcrumbSchema(items: ReadonlyArray<{ name: string; url: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: it.url.startsWith("http") ? it.url : `${BASE_URL}${it.url}`,
     })),
   };
 }

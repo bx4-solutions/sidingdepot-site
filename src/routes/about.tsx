@@ -124,13 +124,12 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       {
-        title:
-          "About Siding Depot — James Hardie Elite Preferred Siding Contractor in Greater Marietta, GA",
+        title: "About Siding Depot — James Hardie Elite Contractor, Marietta GA",
       },
       {
         name: "description",
         content:
-          "Local James Hardie Elite Preferred siding contractor serving Greater Marietta. 20+ years installing fiber cement siding, replacement windows, painting, decks, gutters & roofing on 1,500+ Georgia homes.",
+          "James Hardie Elite Preferred siding contractor in Marietta, GA. 20+ years on 1,500+ homes — siding, windows, painting, decks, gutters & roofing.",
       },
       {
         name: "keywords",

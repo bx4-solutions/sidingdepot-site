@@ -1,20 +1,26 @@
-import { Award, BadgeCheck, ShieldCheck, Star, Wallet, Wrench } from "lucide-react";
+import { Award, BadgeCheck, ShieldCheck, Star, Wrench } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { AWARDS } from "@/data/site";
+import { AWARDS, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
 
 const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
 const SD_LIME_TEXT = "#3C4A07";
 
-const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, Wallet];
+const DollarIcon = ({ style }: { className?: string; style?: React.CSSProperties }) => (
+  <span style={{ ...style, fontSize: "1.4rem", fontWeight: 700, lineHeight: 1 }} aria-hidden>
+    $
+  </span>
+);
 
-const AWARD_LINKS: Record<string, { type: "internal" | "anchor"; href: string }> = {
+const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, DollarIcon];
+
+const AWARD_LINKS: Record<string, { type: "internal" | "anchor" | "external"; href: string }> = {
   "James Hardie Elite Preferred": { type: "internal", href: "/siding" },
   "GAF Factory Certified": { type: "internal", href: "/roofing" },
   "Licensed & Insured": { type: "internal", href: "/contact" },
   "BBB Accredited": { type: "anchor", href: "/#google-reviews" },
-  "GreenSky Financing": { type: "internal", href: "/contact" },
+  "GreenSky Financing": { type: "external", href: SITE.greenSkyUrl },
 };
 
 export function AwardsStrip() {
@@ -74,6 +80,19 @@ export function AwardsStrip() {
             if (link?.type === "anchor") {
               return (
                 <a key={a.name} href={link.href} className="block">
+                  {cardContent}
+                </a>
+              );
+            }
+            if (link?.type === "external") {
+              return (
+                <a
+                  key={a.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
                   {cardContent}
                 </a>
               );

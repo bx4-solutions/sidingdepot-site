@@ -1,5 +1,5 @@
 import { Star, ArrowRight } from "lucide-react";
-import { useGoogleStats } from "@/lib/google-stats-context";
+import { useGoogleStats, useGoogleReviews } from "@/lib/google-stats-context";
 
 const GOOGLE_MAPS_REVIEWS_URL = "/#google-reviews";
 
@@ -121,9 +121,16 @@ export function GoogleReviewsCarousel({
   totalReviews: countProp,
 }: Props) {
   const stats = useGoogleStats();
+  const ctxReviews = useGoogleReviews();
   const overallRating = ratingProp ?? stats.rating;
   const totalReviews = countProp ?? stats.totalReviews;
-  const rawReviews = reviews && reviews.length > 0 ? reviews : FALLBACK_GOOGLE_REVIEWS;
+  // Priority: explicit prop → global live reviews (root loader) → static fallback.
+  const rawReviews =
+    reviews && reviews.length > 0
+      ? reviews
+      : ctxReviews.length > 0
+        ? ctxReviews
+        : FALLBACK_GOOGLE_REVIEWS;
   // Duplicate the list to create seamless loop
   const allReviews = [...rawReviews, ...rawReviews];
 
@@ -138,7 +145,7 @@ export function GoogleReviewsCarousel({
             >
               Google Reviews
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
               {overallRating}★ · {totalReviews} Reviews.
               <br />
               <span style={{ color: "#B3D133" }}>Straight from Google.</span>

@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
 import decksHeroImg from "@/assets/decks-hero.png";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
 const HERO_IMAGE = decksHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
@@ -165,6 +170,50 @@ const CONFIG: ServicePageConfig = {
   faqTitle: "Deck questions,",
   faqTitleAccent: "answered.",
   faqs: FAQS,
+
+  supplierSection: {
+    logoSrc: "/logos/timbertech.png",
+    logoAlt: "TimberTech Composite Decking Logo",
+    logoTagline: "★ TIMBERTECH CERTIFIED INSTALLER",
+    sectionEyebrow: "Certified Decking Supplier",
+    sectionHeadline: "The Credentials That Back Your Deck.",
+    sectionBody:
+      "TimberTech AZEK is a premium capped polymer composite decking — engineered for maximum durability, superior fade resistance, and a 30-year limited warranty. We are TimberTech certified installers.",
+    cardEyebrow: "TimberTech® AZEK — Certified Installer",
+    cardHeadline: "30-year warranty. Zero rot. Zero splinters.",
+    body1:
+      "TimberTech AZEK boards are made from 100% capped polymer — not wood fiber — giving them superior moisture resistance, scratch resistance, and color stability compared to standard composite decks. The result is a deck that looks and feels like wood without any of the maintenance.",
+    body2:
+      "What it means for you: a 30-year limited fade and stain warranty on AZEK premium lines, and a 25-year structural warranty — backed by the manufacturer and fully valid when installed by a TimberTech certified contractor.",
+    stats: [
+      { val: "30 Years", desc: "fade & stain warranty (AZEK)" },
+      { val: "25 Years", desc: "structural warranty" },
+      { val: "Capped", desc: "polymer — no wood fiber" },
+    ],
+    cards: [
+      {
+        name: "Fade Warranty",
+        value: "30 Years",
+        detail: "AZEK premium line — limited residential",
+      },
+      {
+        name: "Stain Warranty",
+        value: "30 Years",
+        detail: "AZEK premium line — limited residential",
+      },
+      {
+        name: "Structural",
+        value: "25 Years",
+        detail: "Limited warranty on board structural integrity",
+      },
+      {
+        name: "Transferable",
+        value: "Yes",
+        detail: "Warranty transfers to next homeowner",
+      },
+      { name: "Installation", value: "Certified", detail: "TimberTech certified installer" },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/decks")({
@@ -195,6 +244,15 @@ export const Route = createFileRoute("/decks")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Decks", url: "/decks" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

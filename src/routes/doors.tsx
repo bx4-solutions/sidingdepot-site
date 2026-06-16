@@ -1,9 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
-import doorsHeroImg from "@/assets/doors-hero.png";
+import doorsHeroImg from "@/assets/doors-hero.jpg";
 const HERO_IMAGE = doorsHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/doors";
@@ -166,6 +171,51 @@ const CONFIG: ServicePageConfig = {
   faqTitle: "Door questions,",
   faqTitleAccent: "answered.",
   faqs: FAQS,
+
+  supplierSection: {
+    logoSrc: "/logos/master-windows.png",
+    logoAlt: "Master Windows Professional Door & Window Installer Logo",
+    logoTagline: "★ 20+ YEARS OF EXPERTISE",
+    logoFilter: "brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
+    sectionEyebrow: "Certified Door Supplier",
+    sectionHeadline: "The Credentials That Back Your Doors.",
+    sectionBody:
+      "Master Windows brings professional-grade door installation backed by a 20-year limited warranty and a fully licensed, insured in-house crew — no subcontractors, no surprises.",
+    cardEyebrow: "Master Windows — Professional Grade",
+    cardHeadline: "20+ years of expert door installation.",
+    body1:
+      "Master Windows operates a professional in-house installation team with over 20 years of experience in the industry. Every installation includes removal of the old door, full installation, and complete cleanup — no third parties involved.",
+    body2:
+      "What it means for you: a 20-year limited warranty on products and labor, transferable to the next homeowner. Licensed and insured for residential installations across Georgia.",
+    stats: [
+      { val: "20-Year", desc: "limited warranty" },
+      { val: "Licensed", desc: "& insured crew" },
+      { val: "Transferable", desc: "to next homeowner" },
+    ],
+    cards: [
+      {
+        name: "Product Warranty",
+        value: "20 Years",
+        detail: "Limited warranty on all installed products",
+      },
+      {
+        name: "Labor Coverage",
+        value: "Included",
+        detail: "Workmanship covered alongside product warranty",
+      },
+      {
+        name: "Warranty Transfer",
+        value: "Yes",
+        detail: "Transferable to next homeowner upon sale",
+      },
+      {
+        name: "Installation Crew",
+        value: "In-House",
+        detail: "Licensed & insured — no subcontractors",
+      },
+      { name: "Experience", value: "20+ Years", detail: "Professional door & window installation" },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/doors")({
@@ -196,6 +246,15 @@ export const Route = createFileRoute("/doors")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Doors", url: "/doors" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

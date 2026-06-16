@@ -37,6 +37,9 @@ const FinancingBlock = lazy(() =>
 const EliteBadgeSection = lazy(() =>
   import("@/components/site/EliteBadgeSection").then((m) => ({ default: m.EliteBadgeSection })),
 );
+const PartnersCarousel = lazy(() =>
+  import("@/components/site/PartnersCarousel").then((m) => ({ default: m.PartnersCarousel })),
+);
 const GuildQualityReviews = lazy(() =>
   import("@/components/site/GuildQualityReviews").then((m) => ({
     default: m.GuildQualityReviews,
@@ -219,6 +222,7 @@ function HomePage() {
         }
         subtitle="Georgia's Top-Rated Elite James Hardie Contractor, trusted and recommended by homeowners across Marietta, Alpharetta, and Canton. In-house installation crews only—no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
+        bgVideo="898FBaW_VnI"
         showCallCta={false}
         trustItems={[
           `⭐ ${rating} · ${totalReviews} Google Reviews`,
@@ -343,7 +347,7 @@ function HomePage() {
       </Suspense>
 
       <Suspense fallback={null}>
-        <AwardsStrip />
+        <EliteBadgeSection />
       </Suspense>
 
       <Suspense fallback={null}>
@@ -355,7 +359,7 @@ function HomePage() {
       </Suspense>
 
       <Suspense fallback={null}>
-        <EliteBadgeSection />
+        <AwardsStrip />
       </Suspense>
 
       <Suspense fallback={null}>
@@ -369,7 +373,7 @@ function HomePage() {
             <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-navy bg-sd-green px-3 py-1 rounded">
               Free Quote · 24h Response
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-sd-black leading-tight">
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-sd-black leading-tight">
               Get Your Free Quote Today
             </h2>
             <p className="mt-4 text-sd-black/65 max-w-lg">
@@ -404,7 +408,10 @@ function HomePage() {
         </div>
       </section>
 
-      {/* GAF/HARDIE SEALS STRIP OR CTA */}
+      {/* PARTNERS CAROUSEL */}
+      <Suspense fallback={null}>
+        <PartnersCarousel />
+      </Suspense>
 
       {/* HARDIE SECTION */}
       <section
@@ -421,7 +428,7 @@ function HomePage() {
                 </span>
                 <h2
                   id="hardie-section-title"
-                  className="mt-4 font-display text-4xl sm:text-5xl text-sd-black"
+                  className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-sd-black"
                 >
                   Why James Hardie Is Built For Georgia
                 </h2>

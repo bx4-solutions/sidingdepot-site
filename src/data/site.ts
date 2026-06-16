@@ -7,14 +7,13 @@ export const SITE = {
   email: "office@sidingdepot.com",
   address: {
     street: "3036 Roswell Rd",
-    city: "Greater Marietta",
+    city: "Marietta",
     state: "GA",
     zip: "30062",
-    full: "3036 Roswell Rd, Greater Marietta, GA 30062",
+    full: "3036 Roswell Rd, Marietta, GA 30062",
   },
   hours: "Mon–Fri: 8:00 AM – 6:00 PM",
-  greenSkyUrl:
-    "https://projects.greensky.com/merchantloanapplication?apptype=short&merchant=81018569&dealerplan=2521&channel=External-Button-03",
+  greenSkyUrl: "https://www.greensky.com/home-improvement/",
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
   social: {
     facebook: "https://www.facebook.com/SidingDepot",
@@ -190,9 +189,9 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const AWARDS = [
-  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of installers in the USA" },
-  { name: "GAF Factory Certified", subtitle: "Roof system warranty" },
   { name: "Google · 4.4★", subtitle: "162 verified reviews" },
+  { name: "GAF Factory Certified", subtitle: "Roof system warranty" },
+  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of installers in the USA" },
   { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
   { name: "BBB Accredited", subtitle: "A+ Rating" },
   { name: "GreenSky Financing", subtitle: "0% APR plans available" },

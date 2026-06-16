@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
 import { SERVICE_METADATA } from "@/data/seo-config";
-import { LOCAL_BUSINESS_SCHEMA, getServiceSchema, getFaqSchema } from "@/lib/schema";
+import {
+  LOCAL_BUSINESS_SCHEMA,
+  getServiceSchema,
+  getFaqSchema,
+  getBreadcrumbSchema,
+} from "@/lib/schema";
 
 const HERO_IMAGE = "/projects/project-6.webp";
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
@@ -165,6 +170,34 @@ const CONFIG: ServicePageConfig = {
   faqTitle: "Gutter questions,",
   faqTitleAccent: "answered.",
   faqs: FAQS,
+
+  supplierSection: {
+    logoSrc: "/logos/senox.png",
+    logoAlt: "Senox American-Made Gutter Systems Logo",
+    logoTagline: "★ AMERICAN-MADE QUALITY",
+    sectionEyebrow: "Certified Gutter Supplier",
+    sectionHeadline: "The Credentials That Back Your Gutters.",
+    sectionBody:
+      "Senox painted aluminum gutters carry the longest factory paint warranty in the gutter industry — 50 years. Manufactured primarily in the USA with a factory-baked finish built to last.",
+    cardEyebrow: "Senox® — American-Made Gutter Systems",
+    cardHeadline: "50-year paint warranty. The longest in the industry.",
+    body1:
+      "Senox manufactures seamless gutter systems primarily in the United States, with a factory-applied paint finish that is baked on for durability and scuff resistance from day one. Their 50-year paint warranty is the longest available for aluminum gutter coatings.",
+    body2:
+      "What it means for you: a 50-year warranty against paint cracking, peeling, and chipping — plus 32 color options to match any exterior. For high-moisture environments, Senox Galvalume products provide superior corrosion resistance backed by a 20-year warranty.",
+    stats: [
+      { val: "50 Years", desc: "paint warranty" },
+      { val: "32 Colors", desc: "painted aluminum options" },
+      { val: "Made in USA", desc: "primary manufacturing" },
+    ],
+    cards: [
+      { name: "Paint Warranty", value: "50 Years", detail: "Against cracking, peeling & chipping" },
+      { name: "Galvalume Warranty", value: "20 Years", detail: "Galvalume steel gutter systems" },
+      { name: "Color Options", value: "32", detail: "Factory-baked aluminum finishes" },
+      { name: "Fabrication", value: "On-Site", detail: "Seamless — formed to exact length" },
+      { name: "Manufacturing", value: "USA", detail: "Primarily American-made materials" },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/gutters")({
@@ -195,6 +228,15 @@ export const Route = createFileRoute("/gutters")({
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          getBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Gutters", url: "/gutters" },
+          ]),
+        ),
+      },
     ],
   }),
   component: () => <ServicePageLayout config={CONFIG} />,

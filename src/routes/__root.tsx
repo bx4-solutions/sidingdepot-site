@@ -17,9 +17,10 @@ import { MascotGreeter } from "@/components/site/MascotGreeter";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { VisualEditToggle } from "@/components/VisualEditToggle";
 import { SITE } from "@/data/site";
-import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA, LOCAL_BUSINESS_ID } from "@/lib/schema";
 import { fetchGooglePlaceStats } from "@/lib/place-stats.server";
-import { GoogleStatsContext } from "@/lib/google-stats-context";
+import { getGoogleReviews } from "@/lib/google-reviews.functions";
+import { GoogleStatsContext, GoogleReviewsContext } from "@/lib/google-stats-context";
 import { GhlChatWidget } from "@/components/site/GhlChatWidget";
 
 const GTM_ID = "GTM-TFGQWCQN";
@@ -92,11 +93,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   loader: async () => {
-    const googleStats = await fetchGooglePlaceStats().catch(() => ({
-      rating: 4.5,
-      totalReviews: 159,
-    }));
-    return { googleStats };
+    const [googleStats, reviewsData] = await Promise.all([
+      fetchGooglePlaceStats().catch(() => ({ rating: 4.5, totalReviews: 159 })),
+      getGoogleReviews().catch(() => ({ reviews: [] as any[] })),
+    ]);
+    const googleReviews = ((reviewsData as any)?.reviews ?? [])
+      .filter((r: any) => r?.text)
+      .map((r: any) => ({
+        author_name: r.author_name,
+        rating: r.rating,
+        text: r.text as string,
+        relative_time_description: r.relative_time_description ?? "",
+        author_photo_url: r.author_photo_url ?? undefined,
+      }));
+    return { googleStats, googleReviews };
   },
   head: () => ({
     meta: [
@@ -123,15 +133,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta.",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Siding Depot — James Hardie Elite Preferred Contractor in Greater Marietta GA",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Greater Marietta & North Atlanta.",
-      },
+      // twitter:title/description intentionally omitted — X/Twitter falls back to each
+      // page's og:title/og:description, keeping social cards page-specific.
       { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
       { name: "twitter:image", content: "https://sidingdepot.com/og-default.webp" },
     ],
@@ -199,7 +202,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { googleStats } = Route.useLoaderData();
+  const { googleStats, googleReviews } = Route.useLoaderData();
   const isDev =
     import.meta.env.DEV ||
     (typeof window !== "undefined" &&
@@ -273,17 +276,37 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <GoogleStatsContext.Provider value={googleStats}>
-        <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
-          <Navbar />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <Footer />
-          <FloatingCTA />
-          <AnalyticsTracker />
-          <GhlChatWidget />
-          {isDev && <VisualEditToggle />}
-        </div>
+        <GoogleReviewsContext.Provider value={googleReviews}>
+          {/* Live aggregateRating — merged into LocalBusiness by matching @id. Uses real Google stats. */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "HomeAndConstructionBusiness",
+                "@id": LOCAL_BUSINESS_ID,
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: googleStats.rating,
+                  reviewCount: googleStats.totalReviews,
+                  bestRating: 5,
+                  worstRating: 1,
+                },
+              }),
+            }}
+          />
+          <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
+            <Navbar />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <Footer />
+            <FloatingCTA />
+            <AnalyticsTracker />
+            <GhlChatWidget />
+            {isDev && <VisualEditToggle />}
+          </div>
+        </GoogleReviewsContext.Provider>
       </GoogleStatsContext.Provider>
     </QueryClientProvider>
   );

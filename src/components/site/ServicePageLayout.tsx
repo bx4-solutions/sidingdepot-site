@@ -33,11 +33,15 @@ import {
   Phone,
   ChevronRight,
 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { FaqSection } from "@/components/site/FaqSection";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
+import {
+  SupplierBrandSection,
+  type SupplierSectionConfig,
+} from "@/components/site/SupplierBrandSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
@@ -122,6 +126,9 @@ export type ServicePageConfig = {
   faqTitle: string;
   faqTitleAccent?: string;
   faqs: ReadonlyArray<{ q: string; a: string }>;
+
+  // ── Supplier brand section (replaces EliteBadgeSection when provided) ──────
+  supplierSection?: SupplierSectionConfig;
 };
 
 // ─── TrustStrip ───────────────────────────────────────────────────────────────
@@ -154,14 +161,13 @@ function TrustStrip() {
   return (
     <div style={{ background: SD_NAVY, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-8 gap-y-0 py-0">
+        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
           {items.map((item, i) => {
             const inner = (
               <div
-                className="flex items-center gap-3 py-4 px-2"
-                style={{
-                  borderRight: i < items.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
+                className={`flex items-center gap-3 py-4 px-2 ${
+                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
+                }`}
               >
                 {item.badge ? (
                   <img
@@ -902,7 +908,7 @@ function FinalCTA({ cfg }: { cfg: ServicePageConfig }) {
                 </Link>
                 <a
                   href={SITE.phoneHref}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white transition-all hover:bg-white/10"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white transition-all hover:bg-white/10 whitespace-nowrap"
                   style={{ border: "1px solid rgba(255,255,255,0.2)" }}
                 >
                   <Phone className="h-4 w-4" /> {SITE.phone}
@@ -1001,6 +1007,63 @@ function ServiceHero({ cfg }: { cfg: ServicePageConfig }) {
   );
 }
 
+// ─── RelatedServices ──────────────────────────────────────────────────────────
+const SERVICE_LINKS = [
+  { to: "/siding", label: "Siding", desc: "James Hardie fiber cement" },
+  { to: "/painting", label: "Painting", desc: "Sherwin-Williams exteriors" },
+  { to: "/windows", label: "Windows", desc: "Energy-efficient replacements" },
+  { to: "/doors", label: "Doors", desc: "Entry, patio & storm doors" },
+  { to: "/gutters", label: "Gutters", desc: "Seamless 6-inch systems" },
+  { to: "/decks", label: "Decks", desc: "Composite & custom builds" },
+  { to: "/roofing", label: "Roofing", desc: "GAF-certified roofing" },
+] as const;
+
+export function RelatedServices() {
+  const { pathname } = useLocation();
+  const others = SERVICE_LINKS.filter((s) => s.to !== pathname);
+  if (others.length === 0) return null;
+
+  return (
+    <section className="py-16 sm:py-20 lg:py-24" style={{ background: SD_NAVY }}>
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="text-center mb-10">
+          <span
+            className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
+            style={{ background: SD_LIME, color: SD_NAVY }}
+          >
+            More From Siding Depot
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white leading-tight">
+            Explore Our Other Services
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {others.map((s) => (
+            <Link
+              key={s.to}
+              to={s.to}
+              className="group rounded-xl p-4 flex flex-col gap-1 transition-all hover:-translate-y-0.5"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <span className="flex items-center justify-between text-white font-bold text-sm">
+                {s.label}
+                <ArrowRight
+                  className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ color: SD_LIME }}
+                />
+              </span>
+              <span className="text-white/50 text-xs leading-snug">{s.desc}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Main export ──────────────────────────────────────────────────────────────
 export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
   return (
@@ -1008,7 +1071,11 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
       <ServiceHero cfg={config} />
       <TrustStrip />
       <StatsBar />
-      <EliteBadgeSection />
+      {config.supplierSection ? (
+        <SupplierBrandSection cfg={config.supplierSection} />
+      ) : (
+        <EliteBadgeSection />
+      )}
       <ProblemSolution
         headline={config.problemHeadline}
         points={config.problemPoints}
@@ -1033,6 +1100,7 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
       <GoogleReviewsCarousel />
       <AuthoritySection cfg={config} />
       <WhyUsSection headline={config.whyUsHeadline} subheadline={config.whyUsSubheadline} />
+      <RelatedServices />
       <FinalCTA cfg={config} />
       <FaqSection
         items={config.faqs}

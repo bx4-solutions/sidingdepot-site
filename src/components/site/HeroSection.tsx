@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, ShieldCheck, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, HERO } from "@/data/site";
+import { HeroVideoBg } from "@/components/site/HeroVideoBg";
 
 type HeroProps = {
   badge?: string;
@@ -11,6 +12,7 @@ type HeroProps = {
   bgImage?: string;
   bgImageMobile?: string;
   bgAlt?: string;
+  bgVideo?: string;
   primaryCta?: { label: string; to?: string; href?: string };
   showCallCta?: boolean;
   /** Right-column slot (typically a quote form). When provided, layout becomes 2-col on lg+. */
@@ -35,6 +37,7 @@ export function HeroSection({
   bgImage = HERO.bgImage,
   bgImageMobile = HERO.bgImageMobile,
   bgAlt = HERO.bgAlt,
+  bgVideo,
   primaryCta = { label: "Schedule FREE Quote", to: "/contact" },
   showCallCta = true,
   formSlot,
@@ -46,28 +49,34 @@ export function HeroSection({
   const trustIcons = [Award, ShieldCheck, Clock];
 
   return (
-    <section className="relative isolate overflow-hidden min-h-[600px] flex items-center">
-      <picture>
-        {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}
-        <img
-          src={bgImage}
-          alt={bgAlt}
-          fetchPriority="high"
-          decoding="async"
-          width="1920"
-          height="1080"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-        />
-      </picture>
+    <section className="relative isolate overflow-hidden min-h-screen lg:min-h-[100vh] flex items-center">
+      {bgVideo ? (
+        <HeroVideoBg videoId={bgVideo} fallbackImg={bgImage} />
+      ) : (
+        <picture>
+          {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}
+          <img
+            src={bgImage}
+            alt={bgAlt}
+            fetchPriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          />
+        </picture>
+      )}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-r from-sd-navy/90 via-sd-navy/80 to-sd-navy/60"
+        style={{ zIndex: 2 }}
       />
 
       <div
-        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg grid gap-10 ${
+        className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg grid gap-10 w-full ${
           hasForm ? "lg:grid-cols-[1.2fr_minmax(360px,440px)] lg:gap-12 items-center" : ""
         }`}
+        style={{ zIndex: 3 }}
       >
         {/* Left column */}
         <div>
