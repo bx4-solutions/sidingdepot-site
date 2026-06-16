@@ -53,6 +53,7 @@ export async function submitLead(payload: LeadPayload) {
       gclid,
       fbclid,
       source_platform: deriveSourcePlatform(),
+      page_url: typeof window !== "undefined" ? window.location.href : null,
     });
 
     if (dbError) {
