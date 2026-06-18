@@ -22,6 +22,11 @@ export default defineConfig({
     },
   },
   vite: {
+    server: {
+      watch: {
+        ignored: ["**/node_modules/**", "**/.git/**", "**/dist/**", "/Users/severinobione/Desktop/SindingDepot/**"],
+      },
+    },
     plugins: [
       viteCompression({ algorithm: "gzip", ext: ".gz", threshold: 1024 }),
       viteCompression({ algorithm: "brotliCompress", ext: ".br", threshold: 1024 }),

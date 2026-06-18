@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "Can you build screened porches or multi-level decks?",
-    a: "Yes. We design and build in any configuration — single-level, multi-level, L-shaped, and screened porches. Every design starts with a free consultation and a site-specific structural plan, not a template from a catalog.",
+    a: "Yes. We design and build in any configuration — single-level, multi-level, L-shaped, and screened porches. Every design starts with a free estimate and a site-specific structural plan, not a template from a catalog.",
   },
   {
     q: "What is Trex and why do you recommend it?",
@@ -112,7 +112,7 @@ const CONFIG: ServicePageConfig = {
   steps: [
     {
       num: "01",
-      title: "Free Outdoor Living Consultation",
+      title: "Free Outdoor Living Estimate",
       desc: "We visit your property, measure the space, evaluate grade and footing requirements, and discuss how your family wants to use the deck. You leave with a clear vision — we leave with everything we need to design.",
     },
     {
@@ -150,20 +150,20 @@ const CONFIG: ServicePageConfig = {
     ["Permit handling", "Homeowner's responsibility", "Fully managed"],
     ["Engineering plans", "Informal sketch", "Stamped & county-filed"],
   ],
-  authorityCta: "Get My Free Deck Design Consultation",
+  authorityCta: "Get My Free Deck Design Estimate",
   whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Their Deck.",
   whyUsSubheadline:
     "Your deck is a structural extension of your home. We treat it that way — from footing depth to final fastener.",
-  ctaEyebrow: "Free Design Consultation",
+  ctaEyebrow: "Free Design Estimate",
   ctaHeadline: "See What Your Backyard",
   ctaHeadlineAccent: "Could Actually Look Like.",
   ctaBody1:
-    "Most homeowners don't know what's possible until they see it. Our consultation walks you through composite systems, custom layouts, and color combinations — with references from projects in your neighborhood.",
+    "Most homeowners don't know what's possible until they see it. Our estimate process walks you through composite systems, custom layouts, and color combinations — with references from projects in your neighborhood.",
   ctaBody2:
-    "Schedule a free outdoor living consultation today. We respond within 24 hours and come to your home ready to design — not just to sell.",
-  ctaMainBtn: "Book My Free Deck Consultation",
+    "Schedule a free outdoor living estimate today. We respond within 24 hours and come to your home ready to design — not just to sell.",
+  ctaMainBtn: "Book My Free Deck Estimate",
   ctaTrustPoints: [
-    "No-obligation consultation",
+    "No-obligation estimate",
     "Permit-ready engineered plans",
     "Trex Pro certified installer",
   ],

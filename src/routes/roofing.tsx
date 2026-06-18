@@ -17,7 +17,7 @@ const seo = SERVICE_METADATA["roofing"];
 const FAQS = [
   {
     q: "How do I know if I need a full replacement or just a repair?",
-    a: "During a free consultation we evaluate shingle age, granule loss, deck integrity, flashing condition, and attic ventilation. Roofs under 15 years with isolated damage often qualify for targeted repair. Roofs over 20 years, or those with widespread curling, cracking, or recurring leaks, typically need full replacement — incremental repairs on an aging system cost more in the long run.",
+    a: "During a free estimate we evaluate shingle age, granule loss, deck integrity, flashing condition, and attic ventilation. Roofs under 15 years with isolated damage often qualify for targeted repair. Roofs over 20 years, or those with widespread curling, cracking, or recurring leaks, typically need full replacement — incremental repairs on an aging system cost more in the long run.",
   },
   {
     q: "What roofing products does Siding Depot install?",
@@ -25,7 +25,7 @@ const FAQS = [
   },
   {
     q: "Does my homeowner's insurance cover storm damage?",
-    a: "Most policies cover sudden storm-related damage — hail strikes, wind-lifted shingles, and falling debris. We assist with documentation: detailed assessment reports with photographs, itemized damage assessments, and direct communication with your adjuster when needed. The consultation costs you nothing.",
+    a: "Most policies cover sudden storm-related damage — hail strikes, wind-lifted shingles, and falling debris. We assist with documentation: detailed assessment reports with photographs, itemized damage assessments, and direct communication with your adjuster when needed. The estimate costs you nothing.",
   },
   {
     q: "How long does a roof replacement take?",
@@ -67,7 +67,7 @@ const CONFIG: ServicePageConfig = {
     "Insurance claims denied as 'pre-existing' — when the damage is clearly storm-related",
   ],
   problemSolution:
-    "Siding Depot's roofing team inspects, documents, and resolves your roofing system issues using GAF-certified materials and methods. We manage permits, assist with insurance documentation, and complete most residential replacements in one to two days — backed by a written warranty, not a verbal promise.",
+    "Siding Depot's roofing team evaluates, documents, and resolves your roofing system issues using GAF-certified materials and methods. We manage permits, assist with insurance documentation, and complete most residential replacements in one to two days — backed by a written warranty, not a verbal promise.",
 
   optionsEyebrow: "Roofing Systems",
   optionsHeadline: "Four Systems. One Right Choice For Your Home.",
@@ -104,14 +104,14 @@ const CONFIG: ServicePageConfig = {
       subtitle: "Fast turnaround · Documentation ready",
       image: "/projects/project-2.webp",
       description:
-        "Targeted repair of hail-damaged, wind-lifted, or leaking sections. We provide written inspection reports with photographs for insurance claims and coordinate directly with adjusters to document and protect your coverage.",
+        "Targeted repair of hail-damaged, wind-lifted, or leaking sections. We provide written assessment reports with photographs for insurance claims and coordinate directly with adjusters to document and protect your coverage.",
     },
   ],
 
   processEyebrow: "How It Works",
   processHeadline: "From First Call To A Dry Home.",
   processSubheadline:
-    "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from consultation through final sign-off.",
+    "Roofing projects should never be mysterious. We eliminate uncertainty at every step — from estimate through final sign-off.",
   steps: [
     {
       num: "01",
@@ -161,16 +161,16 @@ const CONFIG: ServicePageConfig = {
   whyUsSubheadline:
     "We're not the cheapest option in the area. We're the one your neighbor calls back to thank you for recommending.",
 
-  ctaEyebrow: "Free Consultation",
+  ctaEyebrow: "Free Estimate",
   ctaHeadline: "Find Out What's Happening",
   ctaHeadlineAccent: "On Your Roof Today.",
   ctaBody1:
-    "Most roof problems are invisible until they become expensive. A free consultation uncovers what's developing — before it becomes a leak inside your home.",
+    "Most roof problems are invisible until they become expensive. A free estimate uncovers what's developing — before it becomes a leak inside your home.",
   ctaBody2:
     "We respond within 24 hours, come to your home on your schedule, and deliver a written findings report at no charge.",
-  ctaMainBtn: "Book My Free Roof Consultation",
+  ctaMainBtn: "Book My Free Roof Estimate",
   ctaTrustPoints: [
-    "No-obligation consultation",
+    "No-obligation estimate",
     "Same-day written report",
     "In-house crews · Not subcontracted",
   ],

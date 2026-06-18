@@ -179,7 +179,7 @@ export function ServicesHotspots() {
             to="/contact"
             className="mt-8 inline-block font-bold text-sd-green-dark hover:text-sd-green-hover active:text-sd-green-active transition-colors"
           >
-            Contact us for a free consultation →
+            Contact us for a free estimate →
           </Link>
         </div>
 

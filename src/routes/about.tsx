@@ -199,7 +199,6 @@ const PARTNER_LOGOS = [
   "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
 ] as const;
 
-
 const DIFFERENTIATORS = [
   "You get a line-by-line itemized estimate with exact pricing up front.",
   "You get the details of the project in writing. No surprises.",
@@ -395,8 +394,9 @@ function AboutPage() {
               our own — no subcontractors, no strangers on your property.
             </p>
             <p className="mt-4 text-sd-gray-text leading-relaxed">
-              Because at the end of the day, this work isn't really about siding — it's about people.
-              And we genuinely love working with them, from the first handshake to the final walk-through.
+              Because at the end of the day, this work isn't really about siding — it's about
+              people. And we genuinely love working with them, from the first handshake to the final
+              walk-through.
             </p>
             <p className="mt-6 text-lg font-semibold text-sd-navy">
               Real people. Real craftsmanship. Real care.

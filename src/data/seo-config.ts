@@ -184,7 +184,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h2: "Hail & Wind Damage Specialists · Insurance Documentation",
       metaTitle: (c) => `Storm Damage Roofing ${c}, GA | Insurance Help`,
       metaDesc:
-        "Hail & wind storm damage specialists. Free consultation and full insurance claim documentation in Greater Marietta. Call today.",
+        "Hail & wind storm damage specialists. Free estimate and full insurance claim documentation in Greater Marietta. Call today.",
     },
     C: {
       h1: (c) => `Roof Replacement in ${c}, GA`,

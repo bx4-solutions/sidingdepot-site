@@ -21,6 +21,7 @@ type HeroProps = {
   ctaSlot?: ReactNode;
   /** Trust bullets shown under the subtitle. */
   trustItems?: ReadonlyArray<string>;
+  alignCenter?: boolean;
   children?: ReactNode;
 };
 
@@ -43,6 +44,7 @@ export function HeroSection({
   formSlot,
   ctaSlot,
   trustItems = DEFAULT_TRUST,
+  alignCenter = false,
   children,
 }: HeroProps) {
   const hasForm = Boolean(formSlot);
@@ -75,23 +77,35 @@ export function HeroSection({
       <div
         className={`relative mx-auto max-w-7xl px-4 lg:px-8 py-hero lg:py-hero-lg grid gap-10 w-full ${
           hasForm ? "lg:grid-cols-[1.2fr_minmax(360px,440px)] lg:gap-12 items-center" : ""
-        }`}
+        } ${alignCenter ? "flex flex-col items-center justify-center text-center" : ""}`}
         style={{ zIndex: 3 }}
       >
         {/* Left column */}
-        <div>
-          <h1 className="font-display text-white leading-[1.05] mt-5 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg">
+        <div className={alignCenter ? "flex flex-col items-center text-center mx-auto" : ""}>
+          {badge && (
+            <span
+              className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
+              style={{
+                background: "rgba(179,209,51,0.15)",
+                border: "1px solid #B3D133",
+                color: "#B3D133",
+              }}
+            >
+              {badge}
+            </span>
+          )}
+          <h1 className={`font-display text-white leading-[1.05] mt-5 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg ${alignCenter ? "text-center mx-auto" : ""}`}>
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-5 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
+            <p className={`mt-5 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed ${alignCenter ? "text-center mx-auto" : ""}`}>
               {subtitle}
             </p>
           )}
 
           {children && <div className="mt-8">{children}</div>}
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className={`mt-9 flex flex-wrap gap-3 ${alignCenter ? "justify-center" : ""}`}>
             {ctaSlot ? (
               ctaSlot
             ) : (

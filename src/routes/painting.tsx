@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     q: "Do you paint trim, shutters, and doors as part of exterior painting?",
-    a: "Yes — trim, shutters, garage doors, and front doors are included in our exterior painting scope. Trim color is one of the highest-impact design decisions in an exterior repaint. We discuss color strategy during the consultation — not just replicating whatever was there before.",
+    a: "Yes — trim, shutters, garage doors, and front doors are included in our exterior painting scope. Trim color is one of the highest-impact design decisions in an exterior repaint. We discuss color strategy during the estimate — not just replicating whatever was there before.",
   },
 ] as const;
 
@@ -57,7 +57,7 @@ const CONFIG: ServicePageConfig = {
   heroLine2: "Your Home's Exterior.",
   heroLine3: "",
   heroSubtitle:
-    "Exterior painting across Greater Marietta — proper preparation, premium Sherwin-Williams coatings, and an approach that extends protection for 8–10 years. Not just a cosmetic refresh.",
+    "Exterior painting across North Atlanta with meticulous preparation, premium PPG sealants, and TWO full coats of Sherwin-Williams Duration®—a proven system designed to protect your home for 10-15 years. Not just a cosmetic refresh. A long-term exterior protection investment.",
   problemHeadline: "Peeling Paint Is A Warning Sign — Not Just An Eyesore.",
   problemPoints: [
     "Chalking, peeling, and cracking that signal moisture is already working behind the surface",
@@ -66,7 +66,7 @@ const CONFIG: ServicePageConfig = {
     "Cheap repaint jobs that last 2–3 years because prep was skipped to hit a low bid",
   ],
   problemSolution:
-    "Siding Depot's exterior painting crews start with thorough preparation — pressure washing, scraping, sanding, caulking, and spot priming — before a single drop of finish coat goes on. We use Sherwin-Williams Duration and Emerald Exterior for all topcoats. The result: a paint job that holds for 8–10 years in Georgia's UV and humidity, not 3.",
+    "Siding Depot's exterior painting crews start with thorough preparation — pressure washing, scraping, sanding, caulking with premium PPG sealants, and spot priming — before a single drop of finish coat goes on. We use Sherwin-Williams Duration and Emerald Exterior for all topcoats. The result: a paint job that holds for 10-15 years in Georgia's UV and humidity, not 3.",
   optionsEyebrow: "Painting Services",
   optionsHeadline: "Four Scopes. One Exterior That Works.",
   optionsSubheadline:
@@ -112,7 +112,7 @@ const CONFIG: ServicePageConfig = {
   steps: [
     {
       num: "01",
-      title: "Free Color & Condition Consultation",
+      title: "Free Color & Condition Estimate",
       desc: "We walk the full exterior with you, assess paint condition, identify problem areas, and discuss color strategy — including finish options, sheen levels, and how to treat trim versus siding.",
     },
     {
@@ -148,24 +148,24 @@ const CONFIG: ServicePageConfig = {
   authorityRows: [
     ["Surface prep", "Pressure wash only", "Wash, scrape, sand, caulk, prime"],
     ["Paint product", "Contractor-grade", "Sherwin-Williams Duration/Emerald"],
-    ["Expected lifespan", "3–4 years", "8–10 years"],
+    ["Expected lifespan", "3–4 years", "10–15 years"],
     ["Warranty", "1-year labor", "Lifetime SW material + written labor"],
   ],
-  authorityCta: "Schedule My Free Color Consultation",
+  authorityCta: "Schedule My Free Color Estimate",
   whyUsHeadline:
     "Six Reasons North Atlanta Homeowners Choose Siding Depot To Repaint Their Exterior.",
   whyUsSubheadline:
     "We're not the lowest-bid exterior painter in the area. We're the one whose work still looks good in year eight.",
-  ctaEyebrow: "Free Consultation",
+  ctaEyebrow: "Free Estimate",
   ctaHeadline: "See What Your Home",
   ctaHeadlineAccent: "Could Look Like.",
   ctaBody1:
-    "Color is the most personal decision in an exterior project. Our consultation walks you through color combinations, finish options, and references from completed projects in your neighborhood — before you commit to a single gallon.",
+    "Color is the most personal decision in an exterior project. Our estimate visit walks you through color combinations, finish options, and references from completed projects in your neighborhood — before you commit to a single gallon.",
   ctaBody2:
-    "We respond within 24 hours and bring Sherwin-Williams color samples to your home. The consultation is free and the recommendation is honest.",
-  ctaMainBtn: "Book My Free Color Consultation",
+    "We respond within 24 hours and bring Sherwin-Williams color samples to your home. The estimate is free and the recommendation is honest.",
+  ctaMainBtn: "Book My Free Color Estimate",
   ctaTrustPoints: [
-    "Free color consultation with samples",
+    "Free color estimate with samples",
     "Sherwin-Williams certified contractor",
     "Prep-first — written scope included",
   ],

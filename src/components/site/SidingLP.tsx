@@ -87,7 +87,7 @@ const REVIEWS = [
 const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
   { value: "20+", label: "Years in Georgia" },
-  { value: "4.4★", label: "Google Rating" },
+  { value: "4.5★", label: "Google Rating" },
   { value: "98%", label: "Customer Satisfaction" },
 ] as const;
 

@@ -137,27 +137,81 @@ export function GoogleReviewsCarousel({
   return (
     <section id="google-reviews" style={{ background: "#111827" }} className="py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 mb-10">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div>
             <span
               className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
               style={{ background: "rgba(179,209,51,0.12)", color: "#B3D133" }}
             >
-              Google Reviews
+              Verified Reviews
             </span>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-              {overallRating}★ · {totalReviews} Reviews.
+              {overallRating}★ · {totalReviews} Google Reviews.
               <br />
-              <span style={{ color: "#B3D133" }}>Straight from Google.</span>
+              <span style={{ color: "#B3D133" }}>Directly from Google My Business.</span>
             </h2>
           </div>
-          <a
-            href={GOOGLE_MAPS_REVIEWS_URL}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white shrink-0 transition-colors hover:bg-white/8"
-            style={{ border: "1px solid rgba(255,255,255,0.2)" }}
-          >
-            See All Reviews <ArrowRight className="h-4 w-4" />
-          </a>
+
+          {/* Review Platform Logos */}
+          <div className="flex flex-wrap items-center gap-4 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-2xl border border-white/10 shrink-0">
+            {/* Google Logo & Link */}
+            <a
+              href="#google-reviews"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              title="Google Reviews"
+            >
+              <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24" aria-hidden>
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+              </svg>
+              <span className="text-white text-xs font-bold">Google</span>
+            </a>
+
+            <div className="h-6 w-[1px] bg-white/10" />
+
+            {/* GuildQuality Logo & Link */}
+            <a
+              href="#guild-reviews"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              title="GuildQuality Reviews"
+            >
+              <svg viewBox="0 0 40 40" className="w-6 h-6 shrink-0">
+                <circle cx="20" cy="20" r="18" fill="#f5a623" />
+                <path d="M20 10l2.5 7.5h7.9l-6.4 4.7 2.5 7.5L20 25.2l-6.5 4.5 2.5-7.5-6.4-4.7h7.9z" fill="white" />
+              </svg>
+              <span className="text-white text-xs font-bold">GuildQuality</span>
+            </a>
+
+            <div className="h-6 w-[1px] bg-white/10" />
+
+            {/* Thumbtack Logo & Link */}
+            <a
+              href="#google-reviews"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              title="Thumbtack Reviews"
+            >
+              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.5-6.3 4.5 2.3-7.4-6-4.6h7.6z" fill="#009fd9" />
+              </svg>
+              <span className="text-white text-xs font-bold">Thumbtack</span>
+            </a>
+
+            <div className="h-6 w-[1px] bg-white/10" />
+
+            {/* Angi Leads Logo & Link */}
+            <a
+              href="#google-reviews"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              title="Angi Leads Reviews"
+            >
+              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4a5a" />
+              </svg>
+              <span className="text-white text-xs font-bold">Angi Leads</span>
+            </a>
+          </div>
         </div>
       </div>
 

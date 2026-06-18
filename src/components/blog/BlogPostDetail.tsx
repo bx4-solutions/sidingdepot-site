@@ -307,7 +307,7 @@ export default function BlogPostDetail() {
               <div className="bg-white p-8 rounded-[32px] shadow-2xl ring-1 ring-black/5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/15 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                 <h3 className="text-2xl font-bold text-sd-black mb-2">Get Your Quote</h3>
-                <p className="text-sd-gray-text text-sm mb-6 font-bold uppercase tracking-widest">Free Consultation</p>
+                <p className="text-sd-gray-text text-sm mb-6 font-bold uppercase tracking-widest">Free Estimate</p>
                 <HeroQuoteForm />
               </div>
 

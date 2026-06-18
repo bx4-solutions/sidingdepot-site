@@ -20,8 +20,10 @@ export function MapSection() {
               Visit Our Showroom in Marietta
             </h2>
             <p className="mt-4 text-sd-gray-text max-w-lg">
-              Stop by our office to see James Hardie siding samples, window displays, and talk to
-              our experts about your exterior renovation project.
+              Stop by our office to see full-size James Hardie siding products installed on
+              showroom wall displays—not just small sample pieces. Compare siding profiles,
+              windows displays, GAF roofing systems, gutters, railings, and composite materials
+              in person and talk to our experts about your exterior renovation project.
             </p>
 
             <div className="mt-10 space-y-6">

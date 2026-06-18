@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { supabase } from "@/integrations/supabase/client";
 import { getPlaceStatsCache } from "@/lib/place-stats.server";
 
 const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/details/json";
@@ -86,7 +87,7 @@ export const syncGoogleReviews = createServerFn({ method: "POST" })
 
 export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async () => {
   try {
-    const { data: syncData } = await (supabaseAdmin as any)
+    const { data: syncData } = await (supabase as any)
       .from("google_reviews_sync_log")
       .select("created_at")
       .order("created_at", { ascending: false })
@@ -96,15 +97,15 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabase
       .from("google_reviews")
       .select("*")
       .order("time_timestamp", { ascending: false });
 
     // Reuse the shared cache to avoid extra Google API calls
     const cache = getPlaceStatsCache();
-    const overallRating = cache?.rating ?? 4.4;
-    const totalReviews = cache?.totalReviews ?? 162;
+    const overallRating = cache?.rating ?? 4.5;
+    const totalReviews = cache?.totalReviews ?? 160;
 
     if (error) {
       console.error("Error fetching reviews:", error);
@@ -119,6 +120,6 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
     };
   } catch (err: any) {
     console.error("getGoogleReviews failed (likely missing server env):", err?.message);
-    return { reviews: [], overallRating: 4.4, totalReviews: 162, shouldSync: false };
+    return { reviews: [], overallRating: 4.5, totalReviews: 160, shouldSync: false };
   }
 });

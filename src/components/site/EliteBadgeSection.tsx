@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { useGoogleStats } from "@/lib/google-stats-context";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 
+
 const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
 const SD_LIME_TEXT = "#3C4A07";
@@ -45,22 +46,22 @@ export function EliteBadgeSection() {
               className="flex flex-col items-center justify-center gap-5 p-8 lg:p-10"
               style={{ background: SD_NAVY }}
             >
+              <p
+                className="text-center text-sm font-bold uppercase tracking-wider"
+                style={{ color: SD_LIME }}
+              >
+                #1 Siding Contractor
+              </p>
               <img
                 src={jamesHardieBadge}
                 alt="James Hardie Alliance Elite Preferred Contractor badge"
                 className="w-full h-auto object-contain"
                 style={{
-                  maxWidth: "340px",
+                  maxWidth: "300px",
                   filter: "drop-shadow(0 6px 20px rgba(0,0,0,0.45))",
                 }}
                 loading="lazy"
               />
-              <p
-                className="text-center text-sm font-bold uppercase tracking-wider"
-                style={{ color: SD_LIME }}
-              >
-                ★ Top 2% Nationwide
-              </p>
             </div>
 
             {/* Explanation panel — white */}
@@ -90,26 +91,28 @@ export function EliteBadgeSection() {
                 materials and labor. Standard contractors max out at 15-year prorated coverage.
               </p>
 
-              <div className="grid sm:grid-cols-3 gap-3">
+              <div className="grid sm:grid-cols-3 gap-3 mb-8">
                 {[
-                  { val: "Top 2%", desc: "of US installers" },
-                  { val: "30-Year", desc: "non-prorated warranty" },
-                  { val: "Since 2019", desc: "GuildQuality member" },
+                  { val: "1,500+", desc: "Projects Completed" },
+                  { val: "30-Year", desc: "Non-Prorated Product Warranty*" },
+                  { val: "2018-2025", desc: "President's Club Award (Highest volume of product sales)" },
                 ].map((s) => (
                   <div
                     key={s.val}
-                    className="rounded-xl p-4 text-center"
+                    className="rounded-xl p-4 text-center flex flex-col justify-center min-h-[100px]"
                     style={{ background: SD_NAVY }}
                   >
-                    <p className="font-display text-2xl font-bold" style={{ color: SD_LIME }}>
+                    <p className="font-display text-xl sm:text-2xl font-bold" style={{ color: SD_LIME }}>
                       {s.val}
                     </p>
-                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    <p className="text-[10px] sm:text-xs mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
                       {s.desc}
                     </p>
                   </div>
                 ))}
               </div>
+
+
             </div>
           </div>
         </div>

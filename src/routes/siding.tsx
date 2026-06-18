@@ -40,8 +40,13 @@ const OG_IMAGE = "https://sidingdepot.com/og-default.webp"; // absolute for OG c
 
 export const Route = createFileRoute("/siding")({
   loader: async () => {
-    const reviewsData = await getGoogleReviews();
-    return { reviewsData };
+    try {
+      const reviewsData = await getGoogleReviews();
+      return { reviewsData };
+    } catch (error) {
+      console.error("Failed to load reviews in siding loader:", error);
+      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 160 } };
+    }
   },
   head: () => ({
     meta: [
@@ -509,9 +514,10 @@ function SidingTypesSection() {
             <br />
             One Right Choice For Your Home.
           </h2>
-          <p className="mt-5 text-white/55 leading-relaxed">
-            Every product is HardieZone® HZ10 — engineered specifically for Georgia's heat,
-            humidity, and storm cycles. Click to explore each style.
+          <p className="mt-5 text-white/70 leading-relaxed">
+            Explore the full James Hardie HZ10 product lineup, including lap siding, board & batten,
+            shake siding, trim, soffit, fascia, and modern architectural panels—all professionally
+            installed and painted to match your home's style.
           </p>
         </div>
 
@@ -623,7 +629,7 @@ function SidingTypesSection() {
 const PROCESS = [
   {
     num: "01",
-    title: "Free On-Site Consultation",
+    title: "Free On-Site Estimate",
     desc: "We come to your home, measure the full exterior, and assess existing conditions. You receive a written itemized estimate — usually same day. No pressure, no obligation.",
     icon: Users,
   },
@@ -641,8 +647,8 @@ const PROCESS = [
   },
   {
     num: "04",
-    title: "Sheathing & Framing Inspection",
-    desc: "With the old siding off, we inspect sheathing and framing for moisture damage, rot, or mold. Any issues are addressed before a single new board goes up.",
+    title: "Sheathing & Framing Assessment",
+    desc: "With the old siding off, we assess sheathing and framing for moisture damage, rot, or mold. Any issues are addressed before a single new board goes up.",
     icon: ShieldCheck,
   },
   {
@@ -1290,9 +1296,9 @@ function TestimonialsSection() {
 }
 
 /* ---------------------------------------------------------------- */
-/* Design Consultation CTA (replaces pricing)                        */
+/* Design Estimate Section (replaces pricing)                        */
 /* ---------------------------------------------------------------- */
-function DesignConsultationSection() {
+function DesignEstimateSection() {
   return (
     <section className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -1335,7 +1341,7 @@ function DesignConsultationSection() {
                 className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
                 style={{ background: "rgba(179,209,51,0.12)", color: "#B3D133" }}
               >
-                Free Consultation
+                Free Estimate
               </span>
               <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight mb-5">
                 See What Your Home
@@ -1348,7 +1354,7 @@ function DesignConsultationSection() {
                 specific home — with photo references from similar projects in your neighborhood.
               </p>
               <p className="text-white/65 leading-relaxed mb-8">
-                Schedule a free consultation. We'll bring the ideas, you make the call.
+                Schedule a free estimate. We'll bring the ideas, you make the call.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -1357,7 +1363,7 @@ function DesignConsultationSection() {
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-base transition-all hover:scale-105"
                   style={{ background: "#B3D133", color: "#1e2a3a" }}
                 >
-                  Book Free Consultation <ArrowRight className="h-4 w-4" />
+                  Book Free Estimate <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
                   href={SITE.phoneHref}
@@ -1395,7 +1401,7 @@ function DesignConsultationSection() {
 const FAQ_ITEMS = [
   {
     q: "How do I get a quote for James Hardie siding in Marietta or Canton, GA?",
-    a: "Contact us online or call us directly. We come to your home for a free on-site consultation, measure the full exterior, and deliver a written itemized estimate — usually the same day. No obligation, no pressure.",
+    a: "Contact us online or call us directly. We come to your home for a free on-site estimate, measure the full exterior, and deliver a written itemized estimate — usually the same day. No obligation, no pressure.",
   },
   {
     q: "What is the best siding for Georgia's climate?",
@@ -1449,8 +1455,8 @@ function SidingPage() {
       <GoogleReviewsCarousel reviews={mappedReviews} />
       <WhyUsSection />
       <RelatedServices />
-      <DesignConsultationSection />
-      <FaqSection items={FAQ_ITEMS} title="Siding questions," />
+      <DesignEstimateSection />
+      <FaqSection items={FAQ_ITEMS} title="Siding questions" />
     </div>
   );
 }

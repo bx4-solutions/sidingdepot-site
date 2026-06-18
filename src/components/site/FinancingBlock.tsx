@@ -4,7 +4,7 @@ import { SITE } from "@/data/site";
 
 export function FinancingBlock() {
   return (
-    <section className="bg-sd-black text-white py-16 lg:py-20">
+    <section id="financing" className="bg-sd-black text-white py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-4 lg:px-8 grid gap-10 lg:grid-cols-[1fr_auto] items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-pill bg-sd-green/15 border border-sd-green/40 px-3 py-1 text-xs font-bold tracking-[0.12em] uppercase text-sd-green">

@@ -18,7 +18,6 @@ const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, DollarIcon];
 const AWARD_LINKS: Record<string, { type: "internal" | "anchor" | "external"; href: string }> = {
   "James Hardie Elite Preferred": { type: "internal", href: "/siding" },
   "GAF Factory Certified": { type: "internal", href: "/roofing" },
-  "Licensed & Insured": { type: "internal", href: "/contact" },
   "BBB Accredited": { type: "anchor", href: "/#google-reviews" },
   "GreenSky Financing": { type: "external", href: SITE.greenSkyUrl },
 };
@@ -26,8 +25,8 @@ const AWARD_LINKS: Record<string, { type: "internal" | "anchor" | "external"; hr
 export function AwardsStrip() {
   const { rating, totalReviews } = useGoogleStats();
   const awards = AWARDS.map((a) =>
-    a.name === "Google · 4.4★"
-      ? { name: `Google · ${rating}★`, subtitle: `${totalReviews} verified reviews` }
+    a.name.includes("Verified Reviews") || a.name.includes("Reviews")
+      ? { name: `${rating} ⭐️ ${totalReviews + 352}+ Reviews`, subtitle: "Across Google, GuildQuality, Thumbtack, and AngiLeads" }
       : a,
   );
 
@@ -40,7 +39,7 @@ export function AwardsStrip() {
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {awards.map((a, i) => {
             const Icon = ICONS[i] ?? Award;
-            const isGoogle = a.name.startsWith("Google ·");
+            const isGoogle = a.name.includes("Reviews");
 
             const cardContent = (
               <div

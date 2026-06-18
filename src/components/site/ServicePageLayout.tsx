@@ -44,7 +44,7 @@ import {
 } from "@/components/site/SupplierBrandSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import jamesHardieBadge from "@/assets/jh-elite-badge.svg";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const SD_NAVY = "#1e2a3a";
@@ -770,8 +770,8 @@ const WHY_US_ITEMS = [
   },
   {
     Icon: ShieldCheck,
-    title: "In-House Crews — Not a Subcontract Shop",
-    desc: "Every crew member on your job is a Siding Depot in-house employee. Background-checked, trained, and covered under our insurance. We never hand your project to a third party.",
+    title: "In-House Certified Installation Crews",
+    desc: "We never subcontract our installations. Every crew member is part of our highly specialized, certified team—with over 20 years of combined experience, fully insured, and directly accountable to Siding Depot.",
   },
   {
     Icon: CheckCircle2,
@@ -780,8 +780,8 @@ const WHY_US_ITEMS = [
   },
   {
     Icon: FileText,
-    title: "Written Estimates — Price Locked",
-    desc: "Every estimate is detailed, itemized, and binding. The number you see is the number you pay. No surprise change orders, no last-minute additions after the job starts.",
+    title: "Detailed, Itemized, and transparent Estimates",
+    desc: "Know exactly what you're paying for. Every estimate includes a detailed, itemized scope of work, material and labor specifications, and a wood replacement addendum with predetermined pricing for any hidden rot uncovered during installation.",
   },
   {
     Icon: Users,

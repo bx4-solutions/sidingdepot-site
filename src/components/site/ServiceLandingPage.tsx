@@ -406,7 +406,7 @@ export function ServiceLandingPage({
               Ready for work that lasts <span className="text-sd-green">{ctaAccent}</span>
             </h2>
             <p className="mt-4 text-white/75 max-w-2xl">
-              Free on-site consultation, written estimate the same day, and a dedicated project
+              Free on-site estimate, written estimate the same day, and a dedicated project
               manager from start to finish.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">

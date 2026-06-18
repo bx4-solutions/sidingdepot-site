@@ -23,6 +23,14 @@ export function GuildQualityEmbed() {
 
   return (
     <div className="overflow-y-auto" style={{ maxHeight: "420px" }}>
+      <style>{`
+        #gq3-reviews-widget a {
+          pointer-events: none !important;
+          cursor: default !important;
+          text-decoration: none !important;
+          color: inherit !important;
+        }
+      `}</style>
       <div id="gq3-reviews-widget">
         <p className="text-xs text-gray-400">Loading verified GuildQuality reviews…</p>
       </div>

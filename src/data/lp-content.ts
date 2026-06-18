@@ -35,7 +35,7 @@ export function buildFaqs(city: string): ReadonlyArray<FaqItem> {
     },
     {
       q: "Do you offer financing or 0% APR plans?",
-      a: "Yes. We partner with GreenSky to offer 0% APR plans (subject to credit approval). Most homeowners get pre-approved in under 60 seconds during the consultation, with monthly payments often less than what they spend on coffee per week.",
+      a: "Yes. We partner with GreenSky to offer 0% APR plans (subject to credit approval). Most homeowners get pre-approved in under 60 seconds during the estimate, with monthly payments often less than what they spend on coffee per week.",
     },
     {
       q: "How long does siding installation take?",
@@ -65,7 +65,7 @@ export const GREENSKY_STEPS: ReadonlyArray<GreenSkyStep> = [
   {
     step: "1",
     title: "Apply in 60 seconds",
-    desc: "Soft credit check during your free consultation — no impact on your score.",
+    desc: "Soft credit check during your free estimate — no impact on your score.",
   },
   {
     step: "2",
@@ -92,7 +92,7 @@ export const GREENSKY_FAQS: ReadonlyArray<FaqItem> = [
   },
   {
     q: "How long does approval take?",
-    a: "Under 60 seconds. We submit the soft credit check digitally during your consultation and you get an instant decision.",
+    a: "Under 60 seconds. We submit the soft credit check digitally during your estimate and you get an instant decision.",
   },
   {
     q: "Are there any application or prepayment fees?",

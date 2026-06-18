@@ -131,11 +131,17 @@ function LocationPage() {
   return (
     <>
       <HeroSection
-        badge={`${city.name}, GA · Elite Preferred`}
+        alignCenter
+        badge={`${city.name.toUpperCase()}, GA · ELITE PREFERRED`}
         title={
-          <>
-            {service.title} in <span className="text-sd-green">{city.name}, GA</span>
-          </>
+          <div className="flex flex-col items-center justify-center text-center">
+            <span className="text-white block font-display">
+              {service.slug === "siding" ? "JAMES HARDIE SIDING IN" : `${service.title.toUpperCase()} IN`}
+            </span>
+            <span className="text-sd-green block mt-2 sm:mt-4 font-display">
+              {city.name.toUpperCase()}, GA
+            </span>
+          </div>
         }
         subtitle={`Local ${service.title.toLowerCase()} done right by Georgia's most trusted exterior contractor — serving ${city.name} (${city.county}) and all of North Atlanta.`}
       />

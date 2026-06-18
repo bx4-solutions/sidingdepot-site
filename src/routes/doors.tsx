@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     q: "Can I see door styles and finishes before committing?",
-    a: "Yes. During your free consultation we bring physical samples of door skins, glass patterns, hardware finishes, and paint or stain options. We reference completed projects from similar homes in your area so you can see the actual result — not just a catalog photo.",
+    a: "Yes. During your free estimate we bring physical samples of door skins, glass patterns, hardware finishes, and paint or stain options. We reference completed projects from similar homes in your area so you can see the actual result — not just a catalog photo.",
   },
 ] as const;
 
@@ -112,8 +112,8 @@ const CONFIG: ServicePageConfig = {
   steps: [
     {
       num: "01",
-      title: "Free Door Consultation",
-      desc: "We come to your home with physical samples — door skins, glass patterns, hardware finishes — and assess the existing frame, threshold condition, and security hardware. You leave the consultation with a clear recommendation, not a catalog.",
+      title: "Free Door Estimate",
+      desc: "We come to your home with physical samples — door skins, glass patterns, hardware finishes — and assess the existing frame, threshold condition, and security hardware. You leave the estimate with a clear recommendation, not a catalog.",
     },
     {
       num: "02",
@@ -150,19 +150,19 @@ const CONFIG: ServicePageConfig = {
     ["Threshold seal", "Factory default", "Custom fit & adjusted"],
     ["Hardware alignment", "Approximate", "Calibrated & tested"],
   ],
-  authorityCta: "Schedule My Free Door Consultation",
+  authorityCta: "Schedule My Free Door Estimate",
   whyUsHeadline:
     "Six Reasons North Atlanta Homeowners Choose Siding Depot For Their Exterior Doors.",
   whyUsSubheadline:
     "A door is a security system, an energy system, and a design statement. We treat it as all three.",
-  ctaEyebrow: "Free Consultation",
+  ctaEyebrow: "Free Estimate",
   ctaHeadline: "See What The Right Door",
   ctaHeadlineAccent: "Does For Your Home.",
   ctaBody1:
-    "Your front door shapes the first impression of your home for every visitor — and every buyer. A free consultation shows you what's possible before you commit to anything.",
+    "Your front door shapes the first impression of your home for every visitor — and every buyer. A free estimate shows you what's possible before you commit to anything.",
   ctaBody2:
     "We respond within 24 hours and bring samples to your home so you can see finishes, glass patterns, and hardware in the actual light of your entryway.",
-  ctaMainBtn: "Book My Free Door Consultation",
+  ctaMainBtn: "Book My Free Door Estimate",
   ctaTrustPoints: [
     "Physical samples at your home",
     "Same-day written estimate",

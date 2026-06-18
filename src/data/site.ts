@@ -12,7 +12,7 @@ export const SITE = {
     zip: "30062",
     full: "3036 Roswell Rd, Marietta, GA 30062",
   },
-  hours: "Mon–Fri: 8:00 AM – 6:00 PM",
+  hours: "Mon–Fri: 8:00 AM – 5:00 PM",
   greenSkyUrl: "https://www.greensky.com/home-improvement/",
   ghlWebhookUrl: import.meta.env.VITE_GHL_WEBHOOK_URL ?? "",
   social: {
@@ -94,35 +94,40 @@ export const SERVICES: ReadonlyArray<{
   {
     slug: "painting",
     title: "Exterior Painting",
-    short: "Sherwin-Williams premium with UV protection.",
+    short:
+      "Sherwin-Williams Duration paint with premium UV protection and Lifetime limited warranty against peeling and blistering.",
     Icon: PaintRoller,
     image: { src: paintingImg, webp: paintingWebp, avif: paintingAvif },
   },
   {
     slug: "gutters",
     title: "Gutter Systems",
-    short: "Seamless aluminum gutters and LeafGuard.",
+    short:
+      "ALUMINUM SEAMLESS GUTTERS, DOWNSPOUTS, LEAF FREE-HIGH WATER FLOW GUTTER GUARD COVERS",
     Icon: CloudRain,
     image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif },
   },
   {
     slug: "windows",
     title: "Windows",
-    short: "Energy-efficient replacements that lower bills.",
+    short:
+      "Explore a wide selection of window styles, colors, frame options, and decorative grids designed to enhance your home's curb appeal.",
     Icon: AppWindow,
     image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif },
   },
   {
     slug: "doors",
     title: "Entry & Patio Doors",
-    short: "Secure and stylish doors by Therma-Tru & ProVia.",
+    short:
+      "Fiberglass, steel, French, and sliding patio doors available in a wide range of colors, glass options, and architectural styles.",
     Icon: AppWindow,
     image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif },
   },
   {
     slug: "decks",
     title: "Deck Construction",
-    short: "Custom decks in composite, hardwood and PT.",
+    short:
+      "Explore composite and pressure-treated wood decking options with custom railings, stairs, landings, covered areas and design layouts tailored to your outdoor space.",
     Icon: Hammer,
     image: { src: deckImg, webp: deckWebp, avif: deckAvif },
   },
@@ -159,11 +164,11 @@ export const STATS = [
   { value: "1,500+", label: "Homes in North Atlanta" },
   { value: "20+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
-  { value: "4.4★", label: "Google Rating" },
+  { value: "4.5★", label: "Google Rating" },
 ] as const;
 
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.4 · 162 Google Reviews" },
+  { icon: "⭐", label: "4.5 · 160 Google Reviews" },
   { icon: "🏆", label: "Elite Preferred · Top 2% US" },
   { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
   { icon: "🏠", label: "1,500+ North Atlanta Homes" },
@@ -173,28 +178,38 @@ export const PROOF_BAR = [
 export const PROCESS_STEPS = [
   {
     num: "01",
-    title: "Consultation",
-    desc: "Free on-site visit in Greater Marietta. We measure, assess, and deliver a written, itemized proposal — usually the same day. No pressure. No obligation.",
+    title: "Estimate",
+    desc: "Meet with a James Hardie trained exterior specialist to discuss your project, explore options, and receive a detailed, itemized written estimate within 24 hours.",
   },
   {
     num: "02",
-    title: "Renovation",
-    desc: "Your dedicated project manager is on-site daily. Our highly specialized certified teams — never subcontractors — handle every aspect of the installation. You get a daily update call or text.",
+    title: "Approval & Planning",
+    desc: "Once your estimate details are approved and the agreement is signed, our team will coordinate a start date that works with your schedule. Your project is prepared for production, materials and dumpster delivery are scheduled, and everything is organized for a smooth installation.",
   },
   {
     num: "03",
-    title: "Celebration",
-    desc: "Final walk-through to make sure every detail meets your expectations. Then step back to the curb and admire your transformed home.",
+    title: "Customer Portal Access",
+    desc: "Gain access to the Siding Depot app, where you can track project progress in real time, view photos and updates, review documents, communicate with your project team, and stay informed every step of the way.",
+  },
+  {
+    num: "04",
+    title: "Installation",
+    desc: "Our highly specialized in-house crews complete the work while our team oversees the installation and keeps you updated throughout the process.",
+  },
+  {
+    num: "05",
+    title: "Final Walkthrough",
+    desc: "We review the completed project with you, address any final details, and ensure everything meets your expectations before considering the job complete.",
   },
 ] as const;
 
 export const AWARDS = [
-  { name: "Google · 4.4★", subtitle: "162 verified reviews" },
-  { name: "GAF Factory Certified", subtitle: "Roof system warranty" },
-  { name: "James Hardie Elite Preferred", subtitle: "Top 2% of installers in the USA" },
-  { name: "Licensed & Insured", subtitle: "Georgia GC #RBQA006789" },
+  { name: "James Hardie Elite Contractor", subtitle: "Top 2% of installers in the USA" },
+  { name: "GAF Certified Roofing Contractor", subtitle: "Roof system warranty" },
+  { name: "4.5 ⭐️ 512+ Verified Reviews", subtitle: "Across Google, GuildQuality, Thumbtack, and AngiLeads" },
+  { name: "Licensed & Insured", subtitle: "Fully licensed, bonded and insured" },
   { name: "BBB Accredited", subtitle: "A+ Rating" },
-  { name: "GreenSky Financing", subtitle: "0% APR plans available" },
+  { name: "Best of Houzz Service 2026", subtitle: "Awarded for customer service excellence" },
 ] as const;
 
 export const SERVICE_OPTIONS = [

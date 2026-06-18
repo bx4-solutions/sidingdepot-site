@@ -43,8 +43,13 @@ const CANONICAL = "https://sidingdepot.com/windows";
 
 export const Route = createFileRoute("/windows")({
   loader: async () => {
-    const reviewsData = await getGoogleReviews();
-    return { reviewsData };
+    try {
+      const reviewsData = await getGoogleReviews();
+      return { reviewsData };
+    } catch (error) {
+      console.error("Failed to load reviews in windows loader:", error);
+      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 160 } };
+    }
   },
   head: () => ({
     meta: [

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useGoogleStats } from "@/lib/google-stats-context";
 import { useLeadForm } from "@/hooks/use-lead-form";
 import { Controller } from "react-hook-form";
 
@@ -23,9 +24,9 @@ type Props = {
 const SERVICES_OPTIONS = [
   "Siding",
   "Painting",
+  "Gutters",
   "Windows",
   "Doors",
-  "Gutters",
   "Decks",
   "Roof",
   "Dumpster Rental",
@@ -36,6 +37,7 @@ export function QuickQuoteForm({
   tag = "quote_request",
   onSuccess,
 }: Props = {}) {
+  const { rating } = useGoogleStats();
   const { form, onSubmit, isSubmitting, isSuccess, error } = useLeadForm({
     schema: formSchema as any,
     defaultValues: { name: "", phone: "", city: "", services: [] } as any,
@@ -68,7 +70,7 @@ export function QuickQuoteForm({
           A specialist will contact you within 24 hours.
         </p>
         <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
-          ⭐ 4.4 Google · 🏆 Elite Preferred · 🔨 4.7 GuildQuality
+          ⭐ {rating} Google · 🏆 Elite Preferred · 🔨 4.7 GuildQuality
         </div>
       </div>
       <form onSubmit={onSubmit} className="px-5 py-5 grid gap-3">

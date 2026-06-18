@@ -183,16 +183,16 @@ export function GoogleReviews() {
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star
                     key={s}
-                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.4) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
+                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.5) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
                     aria-hidden="true"
                   />
                 ))}
               </div>
               <span className="font-bold text-sd-black">
-                {(remoteData as any)?.overallRating || "4.4"}/5.0
+                {(remoteData as any)?.overallRating || "4.5"}/5.0
               </span>
               <span className="text-sd-gray-text">
-                ({(remoteData as any)?.totalReviews || "162"} Reviews)
+                ({(remoteData as any)?.totalReviews || "160"} Reviews)
               </span>
             </div>
           </div>

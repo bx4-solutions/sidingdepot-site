@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Hammer } from "lucide-react";
-import { SITE } from "@/data/site";
-import jhEliteBadge from "@/assets/jh-elite-badge.svg";
+import { Hammer, ShieldCheck } from "lucide-react";
+import { useGoogleStats } from "@/lib/google-stats-context";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 
 const GreenStar = () => (
   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-sd-green/20 shrink-0">
@@ -23,12 +23,22 @@ const GreenSkyIcon = () => (
   </span>
 );
 
+const TrustIcon = () => (
+  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-sd-green/20 shrink-0">
+    <ShieldCheck className="h-4 w-4" style={{ color: "#B3D133" }} aria-hidden />
+  </span>
+);
+
 export function ProofBar() {
+  const { rating, totalReviews } = useGoogleStats();
+  // Combined total: Google (live) + GuildQuality 261 + Thumbtack 91
+  const combinedReviews = totalReviews + 352;
   return (
     <section aria-label="Trust signals" className="bg-sd-black">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ul className="grid grid-cols-2 sm:flex sm:flex-nowrap items-stretch justify-center sm:divide-x sm:divide-white/10">
-          {/* Box 1: 4.7 · 512 Verified Reviews */}
+
+          {/* Box 1: 4.7★ · 550+ Verified Reviews → seção Google Reviews */}
           <li className="flex-1 min-w-0">
             <a
               href="/#google-reviews"
@@ -37,41 +47,47 @@ export function ProofBar() {
               <GreenStar />
               <div className="min-w-0">
                 <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight flex items-center gap-1">
-                  4.7
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#B3D133" aria-hidden="true">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                </div>
-                <div className="text-white/60 text-[10px] sm:text-[11px] leading-tight">
-                  512 Verified Reviews
+                  {rating}★ · {combinedReviews}+ Verified Reviews
                 </div>
               </div>
             </a>
           </li>
 
-          {/* Box 2: James Hardie Elite */}
+          {/* Box 2: James Hardie Elite → seção James Hardie na home */}
           <li className="flex-1 min-w-0">
-            <Link
-              to="/siding"
+            <a
+              href="/#james-hardie-section"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <img
-                src={jhEliteBadge}
+                src={jamesHardieBadge}
                 alt="James Hardie Elite Contractor"
                 className="h-9 w-auto shrink-0"
               />
               <div className="min-w-0">
                 <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight">
-                  James Hardie
-                </div>
-                <div className="text-white/60 text-[10px] sm:text-[11px] leading-tight">
-                  Elite Contractor
+                  James Hardie® Elite Contractor
                 </div>
               </div>
-            </Link>
+            </a>
           </li>
 
-          {/* Box 3: 1,500+ Homes */}
+          {/* Box 3: GuildQuality → seção GuildQuality na home */}
+          <li className="flex-1 min-w-0">
+            <a
+              href="/#guild-reviews"
+              className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
+            >
+              <TrustIcon />
+              <div className="min-w-0">
+                <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight">
+                  GuildQuality Verified
+                </div>
+              </div>
+            </a>
+          </li>
+
+          {/* Box 4: 1,500+ Homes → página Galeria/Projetos */}
           <li className="flex-1 min-w-0">
             <Link
               to="/projects"
@@ -80,34 +96,27 @@ export function ProofBar() {
               <HammerIcon />
               <div className="min-w-0">
                 <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight">
-                  1,500+ Homes
-                </div>
-                <div className="text-white/60 text-[10px] sm:text-[11px] leading-tight">
-                  Completed in North Atlanta
+                  1,500+ Homes Completed
                 </div>
               </div>
             </Link>
           </li>
 
-          {/* Box 4: GreenSky Financing */}
-          <li className="flex-1 min-w-0">
+          {/* Box 5: GreenSky → seção Financiamento na home */}
+          <li className="flex-1 min-w-0 text-center sm:text-left">
             <a
-              href={SITE.greenSkyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#financing"
               className="flex items-center gap-2.5 px-4 py-3.5 min-h-[60px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
               <GreenSkyIcon />
               <div className="min-w-0">
                 <div className="text-white text-[11px] sm:text-xs font-bold uppercase tracking-wide leading-tight">
-                  GreenSky® 0% APR
-                </div>
-                <div className="text-white/60 text-[10px] sm:text-[11px] leading-tight">
-                  Financing for 12 months
+                  GreenSky® 0% APR Financing for 12 months
                 </div>
               </div>
             </a>
           </li>
+
         </ul>
       </div>
     </section>

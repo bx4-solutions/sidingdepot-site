@@ -143,14 +143,6 @@ export function GuildQualityReviews() {
               Recent Reviews
             </p>
             <GuildQualityEmbed />
-            <a
-              href="https://www.guildquality.com/profile/siding-depot-llc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center text-xs font-semibold text-[#1a3a5c] hover:underline pt-2"
-            >
-              View all reviews on GuildQuality →
-            </a>
           </div>
         </div>
       </div>

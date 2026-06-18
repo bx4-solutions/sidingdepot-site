@@ -121,7 +121,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
     ],
     process: [
       {
-        title: "Design Consultation",
+        title: "Design Estimate",
         desc: "Choose your material, glass insert (decorative or clear), and high-security hardware options.",
       },
       {
@@ -208,7 +208,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
       },
       {
         title: "Full System Tear-off",
-        desc: "We remove all old layers to inspect the structural deck before installing the GAF system components.",
+        desc: "We remove all old layers to assess the structural deck before installing the GAF system components.",
       },
       {
         title: "Site Protection & Scan",
@@ -364,7 +364,7 @@ function ServicePage() {
             <div className="grid grid-cols-2 gap-3">
               <TrustCard icon={<Award className="h-5 w-5" />} label={content.partners} />
               <TrustCard icon={<ShieldCheck className="h-5 w-5" />} label="Licensed & insured" />
-              <TrustCard icon={<Star className="h-5 w-5" />} label="4.4★ Google" />
+              <TrustCard icon={<Star className="h-5 w-5" />} label={`${googleRating}★ Google`} />
               <TrustCard icon={<CheckCircle2 className="h-5 w-5" />} label="Written warranty" />
             </div>
           </div>
@@ -447,7 +447,7 @@ function ServicePage() {
             Ready to start your {content.label.toLowerCase()} project?
           </h2>
           <p className="mt-3 text-white/80">
-            Free on-site consultation. Written estimate within 24 hours.
+            Free on-site estimate. Written estimate within 24 hours.
           </p>
           <Link
             to="/contact"

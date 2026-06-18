@@ -1,6 +1,6 @@
 // GitHub sync test commit — sidingdepot-dfab98cb
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Sparkles, Users, Link2, Star, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/site/HeroSection";
 import { HeroCtaButtons } from "@/components/site/HeroCtaButtons";
@@ -14,6 +14,16 @@ import { useGoogleStats } from "@/lib/google-stats-context";
 import { QuickQuoteForm } from "@/components/site/QuickQuoteForm";
 import { lazy, Suspense } from "react";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+
+const PARTNER_LOGOS = [
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b594a44584e19b5e18190f.svg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b5950c3441c1803b96202d.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68a8c7609c19c009b3f34d09.svg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/irZ39Ik02snUd4JAOmPv/media/68ac604545eaf7e812e3da66.png",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b59793acd791744f0bde7d.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://storage.googleapis.com/msgsndr/VPwAmJKkB62wR0BJhYil/media/68bacd232398ef53b4c4598c.jpeg",
+  "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/69d7c3c274d020e518e3a116.png",
+] as const;
 
 // ── Below-fold components: lazy-loaded (equivalent to Next.js dynamic()) ──────
 const TestimonialCard = lazy(() =>
@@ -118,7 +128,15 @@ export const Route = createFileRoute("/")({
         content:
           "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
-      { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
+      { property: "og:image", content: "https://sidingdepot.vercel.app/og-default.jpg" },
+      { property: "og:image:secure_url", content: "https://sidingdepot.vercel.app/og-default.jpg" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Siding Depot — James Hardie siding experts in Greater Marietta, GA",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {
@@ -130,7 +148,7 @@ export const Route = createFileRoute("/")({
         content:
           "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
-      { name: "twitter:image", content: "https://sidingdepot.com/og-default.webp" },
+      { name: "twitter:image", content: "https://sidingdepot.vercel.app/og-default.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://sidingdepot.com/" },
@@ -170,23 +188,23 @@ const WHY_US = [
   },
   {
     num: "03",
-    title: "Written Estimates — No Surprises",
-    desc: "Detailed written estimates before any work starts. The price in the estimate is the price you pay. No last-minute change orders, ever.",
+    title: "Detailed, Itemized, and transparent Estimates",
+    desc: "Know exactly what you're paying for. Every estimate includes a detailed, itemized scope of work, material and labor specifications, and a wood replacement addendum with predetermined pricing for any hidden rot uncovered during installation.",
   },
   {
     num: "04",
-    title: "Highly Specialized Certified Teams",
-    desc: "We never sub out installs. Every crew member is part of our highly specialized certified teams — trained, insured, and accountable to us directly.",
+    title: "In-House Certified Installation Crews",
+    desc: "We never subcontract our installations. Every crew member is part of our highly specialized, certified team—with over 20 years of combined experience, fully insured, and directly accountable to Siding Depot.",
   },
   {
     num: "05",
-    title: "Payment at Completion",
-    desc: "No large upfront deposits. You pay when the job is 100% complete to your satisfaction.",
+    title: "Flexible Payment Options",
+    desc: "No large upfront deposit required when you sign. Your first payment isn't due until your project start date. With milestone-based payments and financing options available, we make it easy to move forward with your project while staying within your budget.",
   },
   {
     num: "06",
-    title: "GuildQuality Verified — 256 Reviews",
-    desc: "92% of our customers say they would recommend Siding Depot to a friend. Verified by GuildQuality since 2019.",
+    title: "Trusted by Hundreds of Homeowners",
+    desc: "4.5-star Google rating with 512+ verified reviews across Google, GuildQuality, Thumbtack, and AngiLeads—reflecting our commitment to quality, communication, and customer satisfaction.",
   },
 ];
 
@@ -239,6 +257,40 @@ function HomePage() {
       <PainPointsSection />
 
       <ServicesHotspots />
+
+      {/* CERTIFICATIONS / TRUSTED PARTNERS MARQUEE */}
+      <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
+        <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
+          Trusted partners &amp; manufacturers
+        </p>
+        {/* Marquee track — duplicated for seamless loop */}
+        <div className="relative flex">
+          <div
+            className="flex items-center gap-12 animate-marquee whitespace-nowrap"
+            style={{ animation: "marquee 28s linear infinite" }}
+          >
+            {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
+              <div key={i} className="flex-shrink-0 flex items-center justify-center h-20 w-36">
+                <img
+                  src={src}
+                  alt={`Manufacturer partner ${(i % PARTNER_LOGOS.length) + 1}`}
+                  width={144}
+                  height={64}
+                  className="max-h-16 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+      </section>
 
       {/* SERVICES GRID */}
       <section
@@ -326,15 +378,18 @@ function HomePage() {
             </div>
             <nav
               aria-label="Related siding pages"
-              className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-sd-black/70"
+              className="mt-6 flex flex-col gap-3 text-sm"
             >
-              <Link to="/siding" className="text-sd-black hover:underline">
+              <Link to="/siding" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+                <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
                 James Hardie siding installation in Greater Marietta
               </Link>
-              <Link to="/lp/siding-marietta" className="text-sd-black hover:underline">
+              <Link to="/lp/siding-marietta" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+                <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
                 Service areas
               </Link>
-              <Link to="/projects" className="text-sd-black hover:underline">
+              <Link to="/projects" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+                <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
                 See recent siding projects
               </Link>
             </nav>
@@ -350,13 +405,17 @@ function HomePage() {
         <EliteBadgeSection />
       </Suspense>
 
-      <Suspense fallback={null}>
-        <GoogleReviewsCarousel />
-      </Suspense>
+      <div id="google-reviews">
+        <Suspense fallback={null}>
+          <GoogleReviewsCarousel />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={null}>
-        <GuildQualityReviews />
-      </Suspense>
+      <div id="guild-reviews">
+        <Suspense fallback={null}>
+          <GuildQualityReviews />
+        </Suspense>
+      </div>
 
       <Suspense fallback={null}>
         <AwardsStrip />
@@ -377,23 +436,23 @@ function HomePage() {
               Get Your Free Quote Today
             </h2>
             <p className="mt-4 text-sd-black/65 max-w-lg">
-              Tell us about your project and we'll get back within 24 hours with a no-pressure,
-              written estimate.
+              Tell us about your project and we'll get back to you within 24 hours to schedule an estimator to write you a detailed, no-obligation written estimate.
             </p>
             <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-sd-green/30 bg-sd-green/5 p-4">
               <Sparkles className="h-5 w-5 text-sd-navy shrink-0" />
               <p className="text-sm text-sd-black/80">
-                <span className="text-sd-navy font-semibold">Limited slots this month.</span> Book
-                your consultation before the calendar fills up.
+                Limited estimate slots available each month. Schedule yours before our calendar fills up.
               </p>
             </div>
 
             <ul className="mt-8 grid grid-cols-2 gap-3 text-sm">
               {[
+                { i: Star, t: "4.7-Star Rating" },
+                { i: CheckCircle2, t: "500+ Verified Reviews" },
+                { i: Users, t: "1,500+ Projects Completed" },
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: CheckCircle2, t: "Free Estimates" },
-                { i: Users, t: "1,500+ Homes" },
-                { i: Sparkles, t: "Elite Preferred" },
+                { i: Award, t: "James Hardie Elite Contractor" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-sd-black/80">
                   <Icon className="h-4 w-4 text-sd-navy" /> {t}
@@ -450,8 +509,8 @@ function HomePage() {
                   desc: "Non-combustible fiber cement that resists warping, rotting, and buckling better than wood or vinyl.",
                 },
                 {
-                  title: "ColorPlus® Technology",
-                  desc: "Baked-on finish provides a vibrant color that lasts up to 30% longer than field-applied paint.",
+                  title: "Pest Resistance",
+                  desc: "Unlike wood siding, fiber cement is not a food source for termites, carpenter ants, woodpeckers, or rodents and is far less susceptible to pest-related damage.",
                 },
                 {
                   title: "Industry-Leading Warranty",

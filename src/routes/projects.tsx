@@ -262,7 +262,7 @@ function VideoModal({ project, onClose }: { project: Project; onClose: () => voi
         <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
           {project.youtube_id ? (
             <iframe
-              src={`https://www.youtube.com/embed/${project.youtube_id}?autoplay=1&rel=0&modestbranding=1`}
+              src={`https://www.youtube.com/embed/${project.youtube_id}?autoplay=1&rel=0&controls=1&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
               title={project.title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

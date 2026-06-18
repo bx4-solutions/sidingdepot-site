@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: "What size gutter do I need?",
-    a: "Most North Atlanta homes need 5-inch K-style gutters as a minimum. Homes with steep pitches, large roof footprints, or complex valleys benefit from 6-inch gutters, which move 40% more water per linear foot. We calculate runoff capacity for your specific roof pitch and drainage zones during the free consultation — not a rule-of-thumb guess.",
+    a: "Most North Atlanta homes need 5-inch K-style gutters as a minimum. Homes with steep pitches, large roof footprints, or complex valleys benefit from 6-inch gutters, which move 40% more water per linear foot. We calculate runoff capacity for your specific roof pitch and drainage zones during the free estimate — not a rule-of-thumb guess.",
   },
   {
     q: "How much do seamless gutters cost in Cobb or Cherokee County?",
@@ -123,7 +123,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "03",
       title: "Written Proposal — Itemized",
-      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during our consultation. Fixed price — no additions after signing.",
+      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during our estimate. Fixed price — no additions after signing.",
     },
     {
       num: "04",
@@ -154,11 +154,11 @@ const CONFIG: ServicePageConfig = {
   whyUsHeadline: "Six Reasons North Atlanta Homeowners Choose Siding Depot For Gutters.",
   whyUsSubheadline:
     "Gutters are the least glamorous exterior upgrade and the most consequential one to get wrong. We get it right.",
-  ctaEyebrow: "Free Consultation",
+  ctaEyebrow: "Free Estimate",
   ctaHeadline: "Find Out Where Your Home",
   ctaHeadlineAccent: "Is Draining Wrong.",
   ctaBody1:
-    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free consultation identifies what's failing — before the repair costs compound.",
+    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free estimate identifies what's failing — before the repair costs compound.",
   ctaBody2:
     "We respond within 24 hours, walk your full perimeter, and deliver a written findings report at no charge.",
   ctaMainBtn: "Book My Free Gutter Estimate",

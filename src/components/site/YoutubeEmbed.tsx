@@ -23,7 +23,7 @@ export function YoutubeEmbed({ videoId, title, className = "" }: Props) {
     >
       {active ? (
         <iframe
-          src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`}
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
           title={title}
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

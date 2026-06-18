@@ -112,7 +112,7 @@ const CONFIG: ServicePageConfig = {
   steps: [
     {
       num: "01",
-      title: "Free Project Consultation & Sizing",
+      title: "Free Project Estimate & Sizing",
       desc: "Tell us your project type, timeline, and approximate debris volume. We recommend the right size — including whether a second swap-out pickup mid-project makes more sense than a single oversized container.",
     },
     {

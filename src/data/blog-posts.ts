@@ -661,7 +661,7 @@ export const BLOG_POSTS: BlogPost[] = [
     sections: [
       {
         h2: "Why Georgia Homes Are Prone to Rot",
-        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons. If you suspect damage, our [siding consultation team in Woodstock](/locations/woodstock/siding) can help identify issues before they become structural.`,
+        content: `The combination of high humidity and driving rain makes North Atlanta a perfect environment for wood rot. If your siding is improperly flashed or if your house wrap has failed, water gets trapped against the wooden sheathing and has no way to evaporate. This "aquarium effect" can rot through an OSB board in just a few seasons. If you suspect damage, our [siding estimate team in Woodstock](/locations/woodstock/siding) can help identify issues before they become structural.`,
         image: {
           url: "https://images.unsplash.com/photo-1582268611958-ebaf161c8e2a?auto=format&fit=crop&w=1000&q=80",
           alt: "Water damage on exterior building materials",
@@ -837,7 +837,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         q: "Why is an in-home assessment necessary for a siding quote?",
-        a: "Every home has unique factors—such as rotten sheathing, architectural complexity, and height safety requirements—that cannot be diagnosed over the phone. An in-home consultation ensures an accurate, guaranteed written quote.",
+        a: "Every home has unique factors—such as rotten sheathing, architectural complexity, and height safety requirements—that cannot be diagnosed over the phone. An in-home assessment ensures an accurate, guaranteed written quote.",
       },
     ],
     cta: { city: "Atlanta", service: "Siding" },

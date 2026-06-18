@@ -73,9 +73,9 @@ export function localBusinessSchema(city?: string) {
     priceRange: "$$",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.4",
-      ratingCount: "162",
-      reviewCount: "162",
+      ratingValue: "4.5",
+      ratingCount: "160",
+      reviewCount: "160",
       bestRating: "5",
       worstRating: "1",
     },
