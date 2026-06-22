@@ -292,40 +292,6 @@ function HomePage() {
 
       <ServicesHotspots />
 
-      {/* CERTIFICATIONS / TRUSTED PARTNERS MARQUEE */}
-      <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
-        <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
-          Trusted partners &amp; manufacturers
-        </p>
-        {/* Marquee track — duplicated for seamless loop */}
-        <div className="relative flex">
-          <div
-            className="flex items-center gap-12 animate-marquee whitespace-nowrap"
-            style={{ animation: "marquee 28s linear infinite" }}
-          >
-            {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
-              <div key={i} className="flex-shrink-0 flex items-center justify-center h-20 w-36">
-                <img
-                  src={src}
-                  alt={`Manufacturer partner ${(i % PARTNER_LOGOS.length) + 1}`}
-                  width={144}
-                  height={64}
-                  className="max-h-16 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <style>{`
-          @keyframes marquee {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}</style>
-      </section>
-
       {/* SERVICES GRID */}
       <section
         id="services"
