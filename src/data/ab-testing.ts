@@ -194,7 +194,7 @@ export const SOCIAL_PROOF: Record<string, SocialProof> = {
     reviews: [
       {
         name: "David K.",
-        city: "Greater Marietta",
+        city: "Marietta",
         text: "They used high-end Emerald paint and the finish is flawless. My house looks brand new after 10 years of neglect.",
         rating: 5,
       },

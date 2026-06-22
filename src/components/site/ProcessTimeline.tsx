@@ -8,7 +8,11 @@ const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
 const SD_LIME_TEXT = "#3C4A07";
 
-export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Project" }: { title?: string }) {
+export function ProcessTimeline({
+  title = "It's Easy to Start Your Exterior Project",
+}: {
+  title?: string;
+}) {
   return (
     <section className="py-20 lg:py-24 bg-white overflow-hidden">
       <style>{`
@@ -34,10 +38,13 @@ export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Proj
             {title}
           </h2>
           <p className="mt-4 text-gray-500 leading-relaxed">
-            Five steps. Zero surprises. Total transparency from quote to handshake.
+            Five simple steps. Complete transparency from consultation to completion. Through the
+            Siding Depot customer portal, you'll have 24/7 access to project updates, progress
+            photos, documents, schedules, and direct communication with your dedicated project
+            manager.
           </p>
         </div>
-        
+
         {/* Desktop zigzag (lg+) */}
         <div className="hidden lg:block relative">
           <div
@@ -63,7 +70,7 @@ export function ProcessTimeline({ title = "It's Easy to Start Your Exterior Proj
             );
           })}
         </div>
-        
+
         {/* Mobile / tablet stacked (< lg) */}
         <div className="lg:hidden flex flex-col gap-0">
           {PROCESS_STEPS.map((step, i) => {

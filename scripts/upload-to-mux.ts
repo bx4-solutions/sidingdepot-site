@@ -3,7 +3,7 @@
  * Usage: bun scripts/upload-to-mux.ts
  *
  * Place your video files in: scripts/videos/
- * File naming convention: "SD TV BA 10.mp4" → auto-saved as siding / Greater Marietta
+ * File naming convention: "SD TV BA 10.mp4" → auto-saved as siding / Marietta
  * After upload, edit city/service in Supabase dashboard if needed.
  */
 
@@ -107,8 +107,8 @@ async function saveToSupabase(row: {
 function inferMeta(filename: string) {
   const num = filename.match(/(\d+)/)?.[1] ?? "?";
   return {
-    title: `Siding Transformation #${num} — Greater Marietta`,
-    city: "Greater Marietta",
+    title: `Siding Transformation #${num} — Marietta`,
+    city: "Marietta",
     service: "siding", // edit in Supabase if painting/windows/etc.
   };
 }

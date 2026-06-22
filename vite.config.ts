@@ -20,11 +20,11 @@ export default defineConfig({
       // Every 2 days at 06:00 UTC — mirrors the vercel.json cron schedule
       "0 6 */2 * *": ["google:refresh"],
     },
-  },
+  } as any,
   vite: {
     server: {
       watch: {
-        ignored: ["**/node_modules/**", "**/.git/**", "**/dist/**", "/Users/severinobione/Desktop/SindingDepot/**"],
+        ignored: ["**/node_modules/**", "**/.git/**", "**/dist/**"],
       },
     },
     plugins: [

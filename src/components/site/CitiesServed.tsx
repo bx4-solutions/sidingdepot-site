@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, ArrowRight } from "lucide-react";
 
 const PRIMARY_CITIES = [
-  { slug: "marietta", name: "Greater Marietta", county: "Cobb County" },
+  { slug: "marietta", name: "Marietta", county: "Cobb County" },
   { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
   { slug: "canton", name: "Canton", county: "Cherokee County" },
   { slug: "woodstock", name: "Woodstock", county: "Cherokee County" },

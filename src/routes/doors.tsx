@@ -57,7 +57,7 @@ const CONFIG: ServicePageConfig = {
   heroLine2: "First Impression.",
   heroLine3: "",
   heroSubtitle:
-    "Exterior door replacement and installation across Greater Marietta — fiberglass, steel, and French doors specified for Georgia's climate. Security, energy efficiency, and curb appeal in one project.",
+    "Exterior door replacement and installation across Marietta — fiberglass, steel, and French doors specified for Georgia's climate. Security, energy efficiency, and curb appeal in one project.",
   problemHeadline: "Your Front Door Does More Than Open And Close.",
   problemPoints: [
     "A warped or swollen door that sticks in humidity and signals deferred maintenance to every visitor",

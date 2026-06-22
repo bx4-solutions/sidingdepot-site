@@ -44,7 +44,7 @@ import {
 } from "@/components/site/SupplierBrandSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import jamesHardieBadge from "@/assets/jh-elite-badge.svg";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const SD_NAVY = "#1e2a3a";
@@ -129,78 +129,104 @@ export type ServicePageConfig = {
 
   // ── Supplier brand section (replaces EliteBadgeSection when provided) ──────
   supplierSection?: SupplierSectionConfig;
+
+  // ── Trust strip first badge (optional, defaults to James Hardie® Elite) ────
+  trustBadgeLabel?: string;
 };
 
+const GreenBadgeChar = ({ char }: { char: string }) => (
+  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-sd-green/20 shrink-0 font-black text-[#B3D133] text-[9px]">
+    {char}
+  </span>
+);
+
+const GreenStar = () => (
+  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-sd-green/20 shrink-0">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="#B3D133" aria-hidden="true">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  </span>
+);
+
 // ─── TrustStrip ───────────────────────────────────────────────────────────────
-function TrustStrip() {
+function TrustStrip({ trustBadgeLabel }: { trustBadgeLabel?: string }) {
   const { rating, totalReviews } = useGoogleStats();
   const items = [
-    { label: "James Hardie", sublabel: "Elite Preferred Contractor", badge: true, href: undefined },
     {
-      label: "4.7★",
-      sublabel: "261 GuildQuality Reviews",
+      label: trustBadgeLabel ?? "James Hardie® Elite",
+      href: undefined,
+      badge: !trustBadgeLabel,
+      char: trustBadgeLabel ? "★" : undefined,
+    },
+    {
+      label: `4.7★ · 261 GuildQuality`,
       href: "/#guild-reviews",
-      badge: false,
+      char: "★",
     },
     {
-      label: `${rating}★`,
-      sublabel: `${totalReviews} Google Reviews`,
+      label: `${rating}★ · ${totalReviews} Google Reviews`,
       href: "/#google-reviews",
-      badge: false,
+      char: "★",
     },
     {
-      label: "4.9★",
-      sublabel: "91 Thumbtack Reviews",
+      label: `4.9★ · 91 Thumbtack`,
       href: "/#google-reviews",
-      badge: false,
+      char: "★",
     },
-    { label: "GreenSky®", sublabel: "0% APR Financing", href: undefined, badge: false },
-    { label: "Guildmember", sublabel: "Since 2019", href: undefined, badge: false },
+    {
+      label: "GreenSky® 0% APR",
+      href: undefined,
+      char: "G",
+    },
+    {
+      label: "Guildmember Since 2019",
+      href: undefined,
+      char: "G",
+    },
   ];
 
   return (
     <div style={{ background: SD_NAVY, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
-          {items.map((item, i) => {
+        <ul className="overflow-x-auto scrollbar-none flex flex-nowrap items-center justify-start lg:justify-between gap-x-4 py-1">
+          {items.map((item) => {
             const inner = (
-              <div
-                className={`flex items-center gap-3 py-4 px-2 ${
-                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
-                }`}
-              >
+              <div className="flex items-center gap-2 py-1.5 px-2 shrink-0">
                 {item.badge ? (
                   <img
                     src={jamesHardieBadge}
-                    alt="James Hardie Elite Preferred"
-                    className="h-10 w-auto object-contain"
+                    alt="James Hardie Elite Preferred Contractor"
+                    className="h-5 w-auto object-contain shrink-0"
                     loading="eager"
                   />
+                ) : item.char === "★" ? (
+                  <GreenStar />
                 ) : (
-                  <div
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-black"
-                    style={{ background: "rgba(179,209,51,0.12)", color: SD_LIME }}
-                  >
-                    {item.label.includes("★") ? "★" : item.label.charAt(0)}
-                  </div>
+                  <GreenBadgeChar char={item.char!} />
                 )}
-                <div>
-                  {!item.badge && (
-                    <p className="text-sm font-bold text-white leading-none">{item.label}</p>
-                  )}
-                  <p className="text-xs text-white/45 leading-none mt-0.5">{item.sublabel}</p>
+                <div className="min-w-0">
+                  <p className="text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wide leading-none whitespace-nowrap truncate">
+                    {item.label}
+                  </p>
                 </div>
               </div>
             );
+
             return item.href ? (
-              <a key={item.label} href={item.href} className="hover:opacity-80 transition-opacity">
+              <a
+                key={item.label}
+                href={item.href}
+                className="hover:opacity-80 transition-opacity shrink-0"
+              >
                 {inner}
               </a>
             ) : (
-              <div key={item.label}>{inner}</div>
+              <div key={item.label} className="shrink-0">
+                {inner}
+              </div>
             );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
@@ -1069,7 +1095,7 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
   return (
     <div className="flex flex-col">
       <ServiceHero cfg={config} />
-      <TrustStrip />
+      <TrustStrip trustBadgeLabel={config.trustBadgeLabel} />
       <StatsBar />
       {config.supplierSection ? (
         <SupplierBrandSection cfg={config.supplierSection} />
@@ -1087,15 +1113,7 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
         subheadline={config.optionsSubheadline}
         options={config.options}
       />
-      <ProcessSection
-        eyebrow={config.processEyebrow ?? "Our Process"}
-        headline={config.processHeadline ?? "5 Steps. No Surprises."}
-        subheadline={
-          config.processSubheadline ??
-          "A clear, predictable process from first call to final walkthrough."
-        }
-        steps={config.steps}
-      />
+      {/* ProcessSection removido das páginas de serviço — a seção "How It Works" existe apenas na home (ProcessTimeline), para não ficar replicada em todo o site. */}
       {!config.hideBeforeAfter && <BeforeAfterSection projectsLabel={config.projectsLabel} />}
       <GoogleReviewsCarousel />
       <AuthoritySection cfg={config} />

@@ -227,7 +227,7 @@ function GuidePage() {
               <span>Marietta</span>
               <span>Alpharetta</span>
               <span>Milton</span>
-              <span>Greater Marietta</span>
+              <span>Marietta</span>
               <span>Woodstock</span>
               <span>Roswell</span>
             </div>

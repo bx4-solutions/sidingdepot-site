@@ -192,7 +192,7 @@ export function ServicesHotspots() {
           {/* House photo — dims when popup open */}
           <img
             src="/projects/project-2.webp"
-            alt="Real home exterior project by Siding Depot — James Hardie siding, roofing, windows and deck in Greater Marietta, GA"
+            alt="Real home exterior project by Siding Depot — James Hardie siding, roofing, windows and deck in Marietta, GA"
             className="w-full h-full object-cover block transition-all duration-300"
             style={{ filter: activeHotspot ? "brightness(0.45)" : "brightness(1)" }}
             loading="lazy"

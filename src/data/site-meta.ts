@@ -1,5 +1,5 @@
 export const CITIES = [
-  { slug: "marietta", name: "Greater Marietta", county: "Cobb County" },
+  { slug: "marietta", name: "Marietta", county: "Cobb County" },
   { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
   { slug: "milton", name: "Milton", county: "Fulton County" },
   { slug: "canton", name: "Canton", county: "Cherokee County" },

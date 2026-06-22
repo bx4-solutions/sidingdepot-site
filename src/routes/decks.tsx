@@ -16,7 +16,7 @@ const seo = SERVICE_METADATA["decks"];
 
 const FAQS = [
   {
-    q: "How much does a deck cost in Greater Marietta in 2026?",
+    q: "How much does a deck cost in Marietta in 2026?",
     a: "Pressure-treated wood decks in our service area run $15–$25 per square foot installed — so a 300 sq ft deck costs $4,500–$7,500. Composite decking (Trex, TimberTech AZEK) runs $30–$55 per square foot for the same size, but lasts 25–30 years with no staining, no sealing, and no splinters. We provide written, itemized estimates — not ballpark guesses.",
   },
   {
@@ -57,7 +57,7 @@ const CONFIG: ServicePageConfig = {
   heroLine2: "Into Something Remarkable.",
   heroLine3: "",
   heroSubtitle:
-    "Custom composite and wood decks across Greater Marietta — engineered for Georgia's heat and humidity, permit-managed from start to finish, and built to increase the value and livability of your outdoor space.",
+    "Custom composite and wood decks across Marietta — engineered for Georgia's heat and humidity, permit-managed from start to finish, and built to increase the value and livability of your outdoor space.",
   problemHeadline: "Your Backyard Has More Potential Than A Worn-Out Deck Can Offer.",
   problemPoints: [
     "Splintering boards that keep your family off the deck through summer",
@@ -219,9 +219,9 @@ const CONFIG: ServicePageConfig = {
 export const Route = createFileRoute("/decks")({
   head: () => ({
     meta: [
-      { title: seo.metaTitle("Greater Marietta") },
+      { title: seo.metaTitle("Marietta") },
       { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle("Greater Marietta") },
+      { property: "og:title", content: seo.metaTitle("Marietta") },
       { property: "og:description", content: seo.metaDesc },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
@@ -236,7 +236,7 @@ export const Route = createFileRoute("/decks")({
         type: "application/ld+json",
         children: JSON.stringify(
           getServiceSchema(
-            "Custom Deck Construction in Greater Marietta",
+            "Custom Deck Construction in Marietta",
             seo.metaDesc,
             "/decks",
             OG_IMAGE,

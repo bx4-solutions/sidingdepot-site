@@ -38,7 +38,7 @@ export function PainPointsSection() {
             <div className="flex-1 min-w-0">
               <p className="text-foreground font-semibold text-sm sm:text-base">
                 Want to see your home transformed like this? Our team has completed 1,500+ projects
-                across Greater Marietta, Alpharetta and North Atlanta.
+                across Marietta, Alpharetta and North Atlanta.
               </p>
               <p className="text-muted-foreground text-xs sm:text-sm mt-0.5">
                 Free estimate · response within 24h.

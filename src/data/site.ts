@@ -32,7 +32,7 @@ export const SITE = {
 export const HERO = {
   bgImage: "/hero-home.webp",
   bgImageMobile: "/hero-home-sm.webp",
-  bgAlt: "Newly renovated Greater Marietta home with James Hardie siding by Siding Depot",
+  bgAlt: "Newly renovated Marietta home with James Hardie siding by Siding Depot",
 } as const;
 
 import {
@@ -87,7 +87,7 @@ export const SERVICES: ReadonlyArray<{
     slug: "siding",
     title: "James Hardie Siding",
     short:
-      "HardieZone HZ10 engineered for Georgia's 95°F+ summers, year-round humidity and storm season. No subcontractors.",
+      "explore the full james hardie hz10 product lineup, including lap siding, board & batten, shake siding, trim, soffit, fascia, and modern architectural panels—all professionally installed and painted to match your home's style.",
     Icon: PanelsTopLeft,
     image: { src: sidingImg },
   },
@@ -103,7 +103,7 @@ export const SERVICES: ReadonlyArray<{
     slug: "gutters",
     title: "Gutter Systems",
     short:
-      "ALUMINUM SEAMLESS GUTTERS, DOWNSPOUTS, LEAF FREE-HIGH WATER FLOW GUTTER GUARD COVERS",
+      "Aluminum Seamless Gutters, Downspouts, and Leaf-Free High Water Flow Gutter Guard Covers",
     Icon: CloudRain,
     image: { src: guttersImg, webp: guttersWebp, avif: guttersAvif },
   },
@@ -141,14 +141,14 @@ export const SERVICES: ReadonlyArray<{
   {
     slug: "dumpster",
     title: "Dumpster Rental",
-    short: "10/15/20 yd — same-day delivery in Greater Marietta.",
+    short: "10/15/20 yd — same-day delivery in Marietta.",
     Icon: Truck,
     image: { src: dumpsterImg, webp: dumpsterWebp, avif: dumpsterAvif },
   },
 ];
 
 export const CITIES = [
-  { slug: "marietta", name: "Greater Marietta", county: "Cobb County" },
+  { slug: "marietta", name: "Marietta", county: "Cobb County" },
   { slug: "alpharetta", name: "Alpharetta", county: "Fulton County" },
   { slug: "milton", name: "Milton", county: "Fulton County" },
   { slug: "canton", name: "Canton", county: "Cherokee County" },
@@ -178,7 +178,7 @@ export const PROOF_BAR = [
 export const PROCESS_STEPS = [
   {
     num: "01",
-    title: "Estimate",
+    title: "Consultation",
     desc: "Meet with a James Hardie trained exterior specialist to discuss your project, explore options, and receive a detailed, itemized written estimate within 24 hours.",
   },
   {
@@ -206,7 +206,10 @@ export const PROCESS_STEPS = [
 export const AWARDS = [
   { name: "James Hardie Elite Contractor", subtitle: "Top 2% of installers in the USA" },
   { name: "GAF Certified Roofing Contractor", subtitle: "Roof system warranty" },
-  { name: "4.5 ⭐️ 512+ Verified Reviews", subtitle: "Across Google, GuildQuality, Thumbtack, and AngiLeads" },
+  {
+    name: "4.5 ⭐️ 512+ Verified Reviews",
+    subtitle: "Across Google, GuildQuality, Thumbtack, and AngiLeads",
+  },
   { name: "Licensed & Insured", subtitle: "Fully licensed, bonded and insured" },
   { name: "BBB Accredited", subtitle: "A+ Rating" },
   { name: "Best of Houzz Service 2026", subtitle: "Awarded for customer service excellence" },
@@ -244,26 +247,26 @@ export const PROJECTS: ReadonlyArray<Project> = [
   {
     slug: "hardie-board-batten-marietta",
     src: "/projects/project-1.webp",
-    alt: "Two-story Greater Marietta home with new James Hardie blue siding, fresh paint and white trim",
+    alt: "Two-story Marietta home with new James Hardie blue siding, fresh paint and white trim",
     tags: ["Siding", "Painting", "Windows"],
-    title: "James Hardie Board & Batten Siding — Greater Marietta, GA",
+    title: "James Hardie Board & Batten Siding — Marietta, GA",
     category: "Siding Installation & Replacement",
-    city: "Greater Marietta, GA",
+    city: "Marietta, GA",
     date: "2026-04-29",
     description:
-      "Full James Hardie Board & Batten siding replacement on a two-story Greater Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
+      "Full James Hardie Board & Batten siding replacement on a two-story Marietta home, paired with fresh exterior paint and crisp white trim. Engineered for HardieZone HZ10 — built to last in Georgia weather.",
   },
   {
     slug: "hardie-repaint-deck-marietta-e-regiao",
     src: "/projects/project-6.webp",
-    alt: "Three-story Greater Marietta home with bold blue siding, white trim and rebuilt rear deck",
+    alt: "Three-story Marietta home with bold blue siding, white trim and rebuilt rear deck",
     tags: ["Siding", "Painting", "Decks"],
-    title: "Hardie Siding, Repaint & Rebuilt Deck — Greater Marietta, GA",
+    title: "Hardie Siding, Repaint & Rebuilt Deck — Marietta, GA",
     category: "Siding Installation & Replacement",
-    city: "Greater Marietta, GA",
+    city: "Marietta, GA",
     date: "2026-03-28",
     description:
-      "Three-story Greater Marietta home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
+      "Three-story Marietta home re-sided with James Hardie, freshly painted, and finished with a rebuilt rear deck for outdoor living.",
   },
 ];
 
@@ -282,9 +285,8 @@ export const BEFORE_AFTER_PAIRS = [
   {
     before: "/projects/project-1-before.webp",
     after: "/projects/project-1.webp",
-    beforeAlt: "Greater Marietta home before renovation with peeling paint and worn siding",
-    afterAlt:
-      "Same Greater Marietta home transformed with James Hardie blue siding by Siding Depot",
+    beforeAlt: "Marietta home before renovation with peeling paint and worn siding",
+    afterAlt: "Same Marietta home transformed with James Hardie blue siding by Siding Depot",
   },
   {
     before: "/projects/project-5-before.webp",

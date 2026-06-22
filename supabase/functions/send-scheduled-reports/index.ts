@@ -127,7 +127,7 @@ function buildEmailHtml(report: ReportData): string {
       <a href="https://sidingdepot.com/admin/dashboard" style="display:inline-block;background:#22c55e;color:#0A0A0A;text-decoration:none;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;">View Full Dashboard →</a>
     </div>
     <div style="padding:24px 40px;background:#f9fafb;border-top:1px solid #f0f0f0;text-align:center;">
-      <p style="margin:0;font-size:12px;color:#9ca3af;">Siding Depot — James Hardie Elite Preferred Contractor<br>Greater Marietta & North Atlanta, GA</p>
+      <p style="margin:0;font-size:12px;color:#9ca3af;">Siding Depot — James Hardie Elite Preferred Contractor<br>Marietta & North Atlanta, GA</p>
     </div>
   </div>
 </body>

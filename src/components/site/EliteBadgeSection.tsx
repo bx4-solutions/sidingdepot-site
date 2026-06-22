@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
-
+import jamesHardieBadge from "@/assets/james-hardie-elite-contractor.png";
+import cybertruckImg from "@/assets/cybertruck-james-hardie.webp";
 
 const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
@@ -50,18 +50,30 @@ export function EliteBadgeSection() {
                 className="text-center text-sm font-bold uppercase tracking-wider"
                 style={{ color: SD_LIME }}
               >
-                #1 Siding Contractor
+                James Hardie® Alliance – Elite Contractor
               </p>
               <img
                 src={jamesHardieBadge}
-                alt="James Hardie Alliance Elite Preferred Contractor badge"
+                alt="James Hardie Alliance Elite Contractor badge"
                 className="w-full h-auto object-contain"
-                style={{
-                  maxWidth: "300px",
-                  filter: "drop-shadow(0 6px 20px rgba(0,0,0,0.45))",
-                }}
+                style={{ maxWidth: "320px" }}
                 loading="lazy"
               />
+              <figure className="w-full">
+                <img
+                  src={cybertruckImg}
+                  alt="Siding Depot's James Hardie–wrapped Tesla Cybertruck"
+                  className="w-full h-auto rounded-xl"
+                  style={{ border: `2px solid ${SD_LIME}` }}
+                  loading="lazy"
+                />
+                <figcaption
+                  className="text-center text-[11px] mt-2 font-semibold uppercase tracking-wider"
+                  style={{ color: SD_LIME }}
+                >
+                  Our James Hardie Cybertruck
+                </figcaption>
+              </figure>
             </div>
 
             {/* Explanation panel — white */}
@@ -70,49 +82,58 @@ export function EliteBadgeSection() {
                 className="text-xs font-bold uppercase tracking-widest mb-3"
                 style={{ color: SD_LIME_TEXT }}
               >
-                James Hardie® Alliance — Elite Preferred
+                James Hardie® Alliance – Elite Contractor
               </p>
               <h3
                 className="font-display text-3xl lg:text-4xl leading-tight mb-5"
                 style={{ color: SD_NAVY }}
               >
-                The highest designation
+                The Highest Level of Recognition
                 <br />
-                James Hardie awards.
+                James Hardie Awards.
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Elite Preferred requires passing rigorous installation audits, maintaining certified
-                crews, and meeting James Hardie's highest quality benchmarks year over year. It's
-                renewed annually — not just awarded once.
+                James Hardie Elite Contractor status is earned by meeting rigorous standards for
+                installation quality, ongoing training, customer satisfaction, licensing, and
+                insurance. Contractors must maintain these standards year after year to remain in
+                the program—it's earned continuously, not awarded once.
               </p>
               <p className="text-gray-600 leading-relaxed mb-8">
-                <strong style={{ color: SD_NAVY }}>What it means for you:</strong> only Elite
-                Preferred contractors can offer the 30-year non-prorated warranty — covering both
-                materials and labor. Standard contractors max out at 15-year prorated coverage.
+                <strong style={{ color: SD_NAVY }}>What it means for you:</strong> your project is
+                installed by a contractor highly recognized by James Hardie for meeting some of the
+                industry's highest performance standards and backed by James Hardie's 30-year
+                non-prorated, transferable product warranty.
               </p>
 
               <div className="grid sm:grid-cols-3 gap-3 mb-8">
                 {[
                   { val: "1,500+", desc: "Projects Completed" },
                   { val: "30-Year", desc: "Non-Prorated Product Warranty*" },
-                  { val: "2018-2025", desc: "President's Club Award (Highest volume of product sales)" },
+                  {
+                    val: "2018-2025",
+                    desc: "President's Club Award (Highest volume of product sales)",
+                  },
                 ].map((s) => (
                   <div
                     key={s.val}
                     className="rounded-xl p-4 text-center flex flex-col justify-center min-h-[100px]"
                     style={{ background: SD_NAVY }}
                   >
-                    <p className="font-display text-xl sm:text-2xl font-bold" style={{ color: SD_LIME }}>
+                    <p
+                      className="font-display text-xl sm:text-2xl font-bold"
+                      style={{ color: SD_LIME }}
+                    >
                       {s.val}
                     </p>
-                    <p className="text-[10px] sm:text-xs mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    <p
+                      className="text-[10px] sm:text-xs mt-1"
+                      style={{ color: "rgba(255,255,255,0.6)" }}
+                    >
                       {s.desc}
                     </p>
                   </div>
                 ))}
               </div>
-
-
             </div>
           </div>
         </div>
