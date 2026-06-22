@@ -83,7 +83,6 @@ export const LOCAL_BUSINESS_SCHEMA = {
     },
     { "@type": "City", name: "Alpharetta" },
     { "@type": "City", name: "Milton" },
-    { "@type": "City", name: "Greater Marietta" },
     { "@type": "City", name: "Woodstock" },
     { "@type": "City", name: "Roswell" },
     { "@type": "City", name: "Kennesaw" },

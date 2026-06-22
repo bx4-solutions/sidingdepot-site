@@ -21,8 +21,8 @@ type Project = {
 const STATIC_PROJECTS: Project[] = [
   {
     id: "1",
-    title: "Before & After Siding Transformation #1 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #1 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "Tnjj45TAc2k",
     mux_playback_id: null,
@@ -32,8 +32,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "2",
-    title: "Before & After Siding Transformation #2 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #2 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "2TFxqOOVhg4",
     mux_playback_id: null,
@@ -43,8 +43,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "3",
-    title: "Before & After Siding Transformation #3 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #3 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "Wb3zPV83_dg",
     mux_playback_id: null,
@@ -54,8 +54,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "4",
-    title: "Before & After Siding Transformation #4 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #4 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "Zf61N2WWkJ4",
     mux_playback_id: null,
@@ -65,8 +65,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "5",
-    title: "Before & After Siding Transformation #5 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #5 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "OlWZlwOlQqI",
     mux_playback_id: null,
@@ -76,8 +76,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "6",
-    title: "Before & After Siding Transformation #6 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #6 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "_lk2t_5ZZBs",
     mux_playback_id: null,
@@ -87,8 +87,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "7",
-    title: "Before & After Siding Transformation #7 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #7 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "v4Pf_1rNLDs",
     mux_playback_id: null,
@@ -98,8 +98,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "8",
-    title: "Before & After Siding Transformation #8 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #8 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "q1t0HoeP3lY",
     mux_playback_id: null,
@@ -109,8 +109,8 @@ const STATIC_PROJECTS: Project[] = [
   },
   {
     id: "9",
-    title: "Before & After Siding Transformation #9 — Greater Marietta",
-    city: "Greater Marietta",
+    title: "Before & After Siding Transformation #9 — Marietta",
+    city: "Marietta",
     service: "siding",
     youtube_id: "43lgIP_ZJqU",
     mux_playback_id: null,
@@ -134,7 +134,15 @@ const loadProjects = createServerFn({ method: "GET" }).handler(async () => {
     if (error || !data || data.length === 0) {
       return STATIC_PROJECTS;
     }
-    return data as Project[];
+
+    // Garantir que qualquer ocorrência vinda do banco de dados seja sanitizada para "Marietta"
+    const sanitizedData = data.map((p) => ({
+      ...p,
+      title: p.title.replace(/Greater Marietta/g, "Marietta"),
+      city: p.city.replace(/Greater Marietta/g, "Marietta"),
+    }));
+
+    return sanitizedData as Project[];
   } catch {
     return STATIC_PROJECTS;
   }
@@ -146,12 +154,12 @@ export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
       {
-        title: "Before & After Projects | Siding Depot — Greater Marietta, GA",
+        title: "Before & After Projects | Siding Depot — Marietta, GA",
       },
       {
         name: "description",
         content:
-          "See real before-and-after transformations by Siding Depot across Greater Marietta, Alpharetta, Canton and North Atlanta. Siding, painting, windows and more.",
+          "See real before-and-after transformations by Siding Depot across Marietta, Alpharetta, Canton and North Atlanta. Siding, painting, windows and more.",
       },
       {
         property: "og:title",
@@ -160,7 +168,7 @@ export const Route = createFileRoute("/projects")({
       {
         property: "og:description",
         content:
-          "Real before-and-after home transformations in Greater Marietta & North Atlanta by Siding Depot.",
+          "Real before-and-after home transformations in Marietta & North Atlanta by Siding Depot.",
       },
       {
         property: "og:image",

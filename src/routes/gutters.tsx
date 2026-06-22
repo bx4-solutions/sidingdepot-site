@@ -57,7 +57,7 @@ const CONFIG: ServicePageConfig = {
   heroLine2: "From Costly Water Damage.",
   heroLine3: "",
   heroSubtitle:
-    "Seamless gutter installation and repair across Greater Marietta — fabricated on-site, sized for Georgia's rainfall, and backed by a written warranty. The last gutter system your home should ever need.",
+    "Seamless gutter installation and repair across Marietta — fabricated on-site, sized for Georgia's rainfall, and backed by a written warranty. The last gutter system your home should ever need.",
   problemHeadline: "Gutters Fail Quietly — Until The Damage Is Expensive.",
   problemPoints: [
     "Foundation settlement caused by years of concentrated roof runoff pooling against the slab",

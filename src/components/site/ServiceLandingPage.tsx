@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
+import { ProofBar } from "@/components/site/ProofBar";
 import {
   ArrowRight,
   Phone,
@@ -230,53 +231,8 @@ export function ServiceLandingPage({
         </div>
       </section>
 
-      {/* SOCIAL PROOF SECTION */}
-      {socialProof && (
-        <section className="bg-white py-12 lg:py-16">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-3">
-              {socialProof.stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="flex items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border"
-                >
-                  <div className="p-3 bg-sd-green-pale rounded-full text-sd-green">
-                    <s.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-sd-navy">{s.value}</div>
-                    <div className="text-sm font-bold text-sd-gray-text">{s.label}</div>
-                    {s.description && (
-                      <div className="mt-1 text-xs text-sd-gray-text/80 leading-snug">
-                        {s.description}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+      <ProofBar />
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {socialProof.reviews.map((r, i) => (
-                <div
-                  key={i}
-                  className="bg-white p-6 rounded-xl shadow-sm border border-sd-gray-border"
-                >
-                  <div className="flex text-sd-green mb-3">
-                    {[...Array(r.rating)].map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-sd-green" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-sd-gray-text italic leading-relaxed">"{r.text}"</p>
-                  <p className="mt-4 text-xs font-bold text-sd-navy">
-                    {r.name} — {r.city}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* SEO copy block — visually hidden, preserved for crawlers */}
       <p className="sr-only">{seoParagraph}</p>

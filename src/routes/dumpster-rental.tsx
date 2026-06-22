@@ -56,6 +56,7 @@ const CONFIG: ServicePageConfig = {
   heroLine1: "Fast, Reliable Dumpsters",
   heroLine2: "For Any Project Size.",
   heroLine3: "",
+  trustBadgeLabel: "Next-Day Delivery · North Atlanta",
   heroSubtitle:
     "Dumpster rental across Cobb, Cherokee, and Fulton counties — next-day delivery, flexible rental periods, and transparent pricing with no hidden surcharges. From single-room cleanouts to full renovation hauls.",
   problemHeadline: "Debris Piling Up Slows Down Every Project.",

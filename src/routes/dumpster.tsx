@@ -19,7 +19,7 @@ const CANONICAL = "https://sidingdepot.com/dumpster";
 const FAQS: ReadonlyArray<FaqItem> = [
   {
     q: "How much does dumpster rental cost in Marietta or Woodstock, GA?",
-    a: "Dumpster rental in the North Atlanta area typically costs $350–$650 for a 10–20 yard dumpster for a standard 7-day rental. Price depends on dumpster size, rental period, and disposal fees. We serve Marietta, Greater Marietta, Woodstock, Kennesaw, and surrounding cities with same-day or next-day delivery available.",
+    a: "Dumpster rental in the North Atlanta area typically costs $350–$650 for a 10–20 yard dumpster for a standard 7-day rental. Price depends on dumpster size, rental period, and disposal fees. We serve Marietta, Woodstock, Kennesaw, and surrounding cities with same-day or next-day delivery available.",
   },
   {
     q: "What size dumpster do I need for a home renovation in Georgia?",
@@ -30,7 +30,7 @@ const FAQS: ReadonlyArray<FaqItem> = [
     a: "Yes — construction debris including old siding, shingles, drywall, wood framing, and general renovation waste is accepted. We cannot accept hazardous materials: paint, chemicals, tires, batteries, or appliances with refrigerant. If your home has older siding that may contain asbestos (common in homes built before 1980), contact us before renting — asbestos requires special disposal.",
   },
   {
-    q: "Do I need a permit for a dumpster in Marietta or Greater Marietta?",
+    q: "Do I need a permit for a dumpster in Marietta?",
     a: "You don't need a permit if the dumpster is placed on your private property (driveway). If it needs to go on a public street or ROW, a permit may be required from Cobb County or the City of Marietta. We handle this coordination — just let us know your placement preference when booking.",
   },
 ];
@@ -115,7 +115,7 @@ function DumpsterPage() {
       hiringChecklist={CHECKLIST}
       faqLabel="Dumpster"
       faqs={FAQS}
-      seoParagraph="Siding Depot rents construction-grade roll-off dumpsters across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Greater Marietta, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Same-day or next-day delivery is standard in our North Atlanta service area, and 2026 pricing for a 10–20 yard roll-off on a 7-day rental runs $350–$650 all-in. We accept standard construction debris — old siding, shingles, drywall, framing — and will flag pre-1980 homes that may need asbestos testing before we drop."
+      seoParagraph="Siding Depot rents construction-grade roll-off dumpsters across Cobb County, Cherokee County and Fulton County, including Marietta, Alpharetta, Milton, Woodstock, Roswell, Kennesaw, Johns Creek, Sandy Springs and Acworth. Same-day or next-day delivery is standard in our North Atlanta service area, and 2026 pricing for a 10–20 yard roll-off on a 7-day rental runs $350–$650 all-in. We accept standard construction debris — old siding, shingles, drywall, framing — and will flag pre-1980 homes that may need asbestos testing before we drop."
       ctaAccent="without surprise fees?"
       trustBadge={{ title: "Same-Day Delivery", subtitle: "10 / 15 / 20 yd roll-offs" }}
     />

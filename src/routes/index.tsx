@@ -65,7 +65,7 @@ const HOME_VIDEOS = [
     id: "898FBaW_VnI",
     name: "Siding Depot — Institutional video",
     description:
-      "Meet Siding Depot, Georgia's top-rated Elite James Hardie Contractor serving Greater Marietta. 1,500+ homes completed.",
+      "Meet Siding Depot, Georgia's top-rated Elite James Hardie Contractor serving Marietta. 1,500+ homes completed.",
     duration: "PT2M",
     uploadDate: "2024-06-01",
   },
@@ -73,7 +73,7 @@ const HOME_VIDEOS = [
     id: "tENqAaDFr9s",
     name: "Why James Hardie fiber cement siding is built for Georgia",
     description:
-      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Greater Marietta, GA.",
+      "How HardieZone-engineered fiber cement siding handles Georgia's heat, humidity and storms — installed by Siding Depot in Marietta, GA.",
     duration: "PT3M",
     uploadDate: "2024-04-15",
   },
@@ -111,10 +111,10 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "siding contractor Greater Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot",
+          "siding contractor Marietta GA, James Hardie siding Atlanta, exterior painting Marietta, window replacement North Atlanta, Siding Depot",
       },
       { name: "geo.region", content: "US-GA" },
-      { name: "geo.placename", content: "Greater Marietta" },
+      { name: "geo.placename", content: "Marietta" },
       { name: "geo.position", content: "33.9806;-84.4752" },
       { name: "ICBM", content: "33.9806, -84.4752" },
       { name: "address", content: SITE.address.full },
@@ -135,7 +135,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
-        content: "Siding Depot — James Hardie siding experts in Greater Marietta, GA",
+        content: "Siding Depot — James Hardie siding experts in Marietta, GA",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -211,17 +211,17 @@ const WHY_US = [
 const TESTIMONIALS = [
   {
     name: "Jennifer M.",
-    city: "Greater Marietta",
+    city: "Marietta",
     text: "We got 4 quotes. Siding Depot was the most transparent — no vague numbers, no pressure. The James Hardie looks incredible. Our neighbors keep stopping to ask who did the work.",
   },
   {
     name: "David & Susan R.",
-    city: "Greater Marietta",
+    city: "Marietta",
     text: "From the first quote to the final walkthrough, not a single surprise. The estimate matched the invoice to the dollar. The project manager checked in with us every single day. This is how a contractor should run.",
   },
   {
     name: "Michael T.",
-    city: "Greater Marietta",
+    city: "Marietta",
     text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
   },
 ];
@@ -231,14 +231,14 @@ function HomePage() {
   return (
     <>
       <HeroSection
-        badge="Elite Preferred · Top 2% of US Installers · Greater Marietta, GA"
+        badge="Elite Preferred · Top 2% of US Installers · Marietta, GA"
         title={
           <>
             Marietta & North Atlanta's James Hardie Siding Experts —{" "}
             <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
-        subtitle="Georgia's Top-Rated Elite James Hardie Contractor, trusted and recommended by homeowners across Marietta, Alpharetta, and Canton. In-house installation crews only—no subcontractors. Written quote within 24 hours, guaranteed."
+        subtitle="Georgia's Top-Rated Elite James Hardie Contractor, trusted and recommended by homeowners across Marietta, Alpharetta, Canton, Woodstock, and Kennesaw. In-house installation crews only—no subcontractors. Written quote within 24 hours, guaranteed."
         primaryCta={{ label: "Schedule FREE Quote", to: "/contact" }}
         bgVideo="898FBaW_VnI"
         showCallCta={false}
@@ -255,6 +255,40 @@ function HomePage() {
       <ProofBar />
 
       <PainPointsSection />
+
+      {/* CERTIFICATIONS / TRUSTED PARTNERS MARQUEE (acima de "Explore Our Services") */}
+      <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
+        <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
+          Trusted partners &amp; manufacturers
+        </p>
+        {/* Marquee track — duplicated for seamless loop */}
+        <div className="relative flex">
+          <div
+            className="flex items-center gap-12 animate-marquee whitespace-nowrap"
+            style={{ animation: "marquee 28s linear infinite" }}
+          >
+            {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((src, i) => (
+              <div key={i} className="flex-shrink-0 flex items-center justify-center h-20 w-36">
+                <img
+                  src={src}
+                  alt={`Manufacturer partner ${(i % PARTNER_LOGOS.length) + 1}`}
+                  width={144}
+                  height={64}
+                  className="max-h-16 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+      </section>
 
       <ServicesHotspots />
 
@@ -307,7 +341,7 @@ function HomePage() {
             </h2>
             <p className="mt-3 text-sd-gray-text">
               From James Hardie siding to painting, windows, decks and gutters — Siding Depot
-              handles every exterior service in Greater Marietta and all of North Atlanta.
+              handles every exterior service in Marietta and all of North Atlanta.
             </p>
           </div>
 
@@ -339,8 +373,8 @@ function HomePage() {
               6 Reasons Georgia Homeowners Choose Us
             </h2>
             <p className="mt-3 text-sd-black/65 max-w-lg">
-              We're not the cheapest contractor in Greater Marietta. We're the one your neighbors
-              call back to thank.
+              We're not the cheapest contractor in Marietta. We're the one your neighbors call back
+              to thank.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -376,19 +410,25 @@ function HomePage() {
                 <Link to="/about">About Siding Depot</Link>
               </Button>
             </div>
-            <nav
-              aria-label="Related siding pages"
-              className="mt-6 flex flex-col gap-3 text-sm"
-            >
-              <Link to="/siding" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+            <nav aria-label="Related siding pages" className="mt-6 flex flex-col gap-3 text-sm">
+              <Link
+                to="/siding"
+                className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors"
+              >
                 <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
-                James Hardie siding installation in Greater Marietta
+                James Hardie siding installation in Marietta
               </Link>
-              <Link to="/lp/siding-marietta" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+              <Link
+                to="/lp/siding-marietta"
+                className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors"
+              >
                 <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
                 Service areas
               </Link>
-              <Link to="/projects" className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors">
+              <Link
+                to="/projects"
+                className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors"
+              >
                 <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
                 See recent siding projects
               </Link>
@@ -436,12 +476,14 @@ function HomePage() {
               Get Your Free Quote Today
             </h2>
             <p className="mt-4 text-sd-black/65 max-w-lg">
-              Tell us about your project and we'll get back to you within 24 hours to schedule an estimator to write you a detailed, no-obligation written estimate.
+              Tell us about your project and we'll get back to you within 24 hours to schedule an
+              estimator to write you a detailed, no-obligation written estimate.
             </p>
             <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-sd-green/30 bg-sd-green/5 p-4">
               <Sparkles className="h-5 w-5 text-sd-navy shrink-0" />
               <p className="text-sm text-sd-black/80">
-                Limited estimate slots available each month. Schedule yours before our calendar fills up.
+                Limited estimate slots available each month. Schedule yours before our calendar
+                fills up.
               </p>
             </div>
 

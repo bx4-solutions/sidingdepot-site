@@ -26,6 +26,7 @@ import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
 import { RelatedServices } from "@/components/site/ServicePageLayout";
 import { useGoogleStats } from "@/lib/google-stats-context";
+import { ProofBar } from "@/components/site/ProofBar";
 
 // Brand palette — used by inline sections in this file
 const SD_NAVY = "#1e2a3a";
@@ -227,92 +228,7 @@ function SidingHero() {
 /* Trust Strip — all credentials in one horizontal bar              */
 /* ---------------------------------------------------------------- */
 function TrustStrip() {
-  const { rating, totalReviews } = useGoogleStats();
-  const items = [
-    {
-      label: "James Hardie",
-      sublabel: "Elite Preferred Contractor",
-      badge: true,
-    },
-    {
-      label: "4.7★",
-      sublabel: "261 GuildQuality Reviews",
-      href: "/#guild-reviews",
-    },
-    {
-      label: `${rating}★`,
-      sublabel: `${totalReviews} Google Reviews`,
-      href: "/#google-reviews",
-    },
-    {
-      label: "4.9★",
-      sublabel: "91 Thumbtack Reviews",
-      href: "/#google-reviews",
-    },
-    {
-      label: "GreenSky®",
-      sublabel: "0% APR Financing",
-    },
-    {
-      label: "Guildmember",
-      sublabel: "Since 2019",
-    },
-  ];
-
-  return (
-    <div style={{ background: "#1e2a3a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
-          {items.map((item, i) => {
-            const inner = (
-              <div
-                key={item.label}
-                className={`flex items-center gap-3 py-4 px-2 ${
-                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
-                }`}
-              >
-                {item.badge ? (
-                  <img
-                    src={jamesHardieBadge}
-                    alt="James Hardie Elite Preferred Contractor"
-                    className="h-10 w-auto object-contain"
-                    loading="eager"
-                  />
-                ) : (
-                  <div
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-black"
-                    style={{ background: "rgba(179,209,51,0.12)", color: "#B3D133" }}
-                  >
-                    {item.label.includes("★") ? "★" : item.label.charAt(0)}
-                  </div>
-                )}
-                <div>
-                  {!item.badge && (
-                    <p className="text-sm font-bold text-white leading-none">{item.label}</p>
-                  )}
-                  <p className="text-xs text-white/45 leading-none mt-0.5">{item.sublabel}</p>
-                </div>
-              </div>
-            );
-
-            return item.href ? (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
-                {inner}
-              </a>
-            ) : (
-              <div key={item.label}>{inner}</div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
+  return <ProofBar />;
 }
 
 /* ---------------------------------------------------------------- */
@@ -515,7 +431,7 @@ function SidingTypesSection() {
             One Right Choice For Your Home.
           </h2>
           <p className="mt-5 text-white/70 leading-relaxed">
-            Explore the full James Hardie HZ10 product lineup, including lap siding, board & batten,
+            explore the full james hardie hz10 product lineup, including lap siding, board & batten,
             shake siding, trim, soffit, fascia, and modern architectural panels—all professionally
             installed and painted to match your home's style.
           </p>
@@ -1449,7 +1365,7 @@ function SidingPage() {
       <SidingStatsBar />
       <EliteBadgeSection />
       <SidingTypesSection />
-      <SidingProcess />
+      {/* SidingProcess removido — a seção "How It Works" existe apenas na home */}
       <BeforeAfterCarousel />
       {/* overallRating and totalReviews intentionally omitted — carousel reads from GoogleStatsContext */}
       <GoogleReviewsCarousel reviews={mappedReviews} />

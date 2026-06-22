@@ -216,46 +216,27 @@ function WindowsHero() {
 function TrustStrip() {
   const { rating, totalReviews } = useGoogleStats();
   const items = [
-    { label: "Energy Star", sublabel: "Certified Installer", badge: false },
-    {
-      label: "4.7★",
-      sublabel: "261 GuildQuality Reviews",
-      href: "/#guild-reviews",
-    },
-    {
-      label: `${rating}★`,
-      sublabel: `${totalReviews} Google Reviews`,
-      href: "/#google-reviews",
-    },
-    {
-      label: "4.9★",
-      sublabel: "91 Thumbtack Reviews",
-      href: "/#google-reviews",
-    },
-    { label: "GreenSky®", sublabel: "0% APR Financing" },
-    { label: "Guildmember", sublabel: "Since 2019" },
+    { label: "Energy Star · Certified Installer", href: undefined, char: "E" },
+    { label: "4.7★ · 261 GuildQuality", href: "/#guild-reviews", char: "★" },
+    { label: `${rating}★ · ${totalReviews} Google Reviews`, href: "/#google-reviews", char: "★" },
+    { label: "4.9★ · 91 Thumbtack", href: "/#google-reviews", char: "★" },
+    { label: "GreenSky® 0% APR", href: undefined, char: "G" },
+    { label: "Guildmember Since 2019", href: undefined, char: "G" },
   ];
   return (
     <div style={{ background: "#1e2a3a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-1 lg:gap-x-8 py-0">
-          {items.map((item, i) => {
+        <ul className="overflow-x-auto scrollbar-none flex flex-nowrap items-center justify-start lg:justify-between gap-x-4 py-1">
+          {items.map((item) => {
             const inner = (
-              <div
-                key={item.label}
-                className={`flex items-center gap-3 py-4 px-2 ${
-                  i < items.length - 1 ? "lg:border-r lg:border-white/10" : ""
-                }`}
-              >
-                <div
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-black"
-                  style={{ background: "rgba(179,209,51,0.12)", color: "#B3D133" }}
-                >
-                  {item.label.includes("★") ? "★" : item.label.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-white leading-none">{item.label}</p>
-                  <p className="text-xs text-white/45 leading-none mt-0.5">{item.sublabel}</p>
+              <div className="flex items-center gap-2 py-1.5 px-2 shrink-0">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-sd-green/20 shrink-0 font-black text-[#B3D133] text-[9px]">
+                  {item.char}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wide leading-none whitespace-nowrap truncate">
+                    {item.label}
+                  </p>
                 </div>
               </div>
             );
@@ -263,17 +244,17 @@ function TrustStrip() {
               <a
                 key={item.label}
                 href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
+                className="hover:opacity-80 transition-opacity shrink-0"
               >
                 {inner}
               </a>
             ) : (
-              <div key={item.label}>{inner}</div>
+              <div key={item.label} className="shrink-0">
+                {inner}
+              </div>
             );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
@@ -1272,7 +1253,7 @@ function WindowsPage() {
         }}
       />
       <WindowTypesSection />
-      <WindowsProcess />
+      {/* WindowsProcess removido — a seção "How It Works" existe apenas na home */}
       <BeforeAfterCarousel />
       <GoogleReviewsCarousel reviews={mappedReviews} />
       <WindowsWhyUsSection />
