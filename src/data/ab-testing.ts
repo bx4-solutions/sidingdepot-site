@@ -32,13 +32,13 @@ export type SocialProof = {
 export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
   siding: {
     A: {
-      eyebrow: "James Hardie Siding — Elite Preferred Installation",
+      eyebrow: "James Hardie Siding — Elite Contractor Installation",
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs a James Hardie Elite Contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
-        "Top 2% Elite Preferred James Hardie status",
+        "Top 2% James Hardie Elite Contractor status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
         "In-house certified crews (never subcontractors)",
@@ -48,13 +48,13 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
         "We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.",
     },
     B: {
-      eyebrow: "James Hardie Siding — Elite Preferred Installation",
+      eyebrow: "James Hardie Siding — Elite Contractor Installation",
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs a James Hardie Elite Contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
-        "Top 2% Elite Preferred James Hardie status",
+        "Top 2% James Hardie Elite Contractor status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
         "In-house certified crews (never subcontractors)",
@@ -64,13 +64,13 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
         "We're not the cheapest contractor in North Atlanta. We're the one your neighbors call back to thank.",
     },
     C: {
-      eyebrow: "James Hardie Siding — Elite Preferred Installation",
+      eyebrow: "James Hardie Siding — Elite Contractor Installation",
       title: "James Hardie Siding Installation in",
       titleAccent: "Marietta & North Atlanta, GA",
       intro:
-        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs an Elite Preferred James Hardie contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
+        "Georgia homes face brutal conditions — summer heat above 95°F, year-round humidity over 70%, and an active storm season from March through October. Standard vinyl siding warps, fades, and fails. James Hardie fiber cement doesn't.\n\nAs a James Hardie Elite Contractor — the top 2% of installers in the US — Siding Depot installs HardieZone® HZ10 products specifically engineered for Georgia's climate. Every project is managed by a dedicated on-site supervisor. Every crew member is part of our in-house certified installation teams. No subcontractors. Ever.\n\nWe've completed 1,500+ siding projects across Marietta, Canton, Kennesaw, Alpharetta, Milton and Woodstock. Our homeowners get written, itemized estimates — the price in the estimate is the price they pay. If anything changes, we tell you before we do it. That's the Siding Depot guarantee.",
       benefits: [
-        "Top 2% Elite Preferred James Hardie status",
+        "Top 2% James Hardie Elite Contractor status",
         "Engineered for Georgia heat & humidity (HZ10)",
         "30-year limited material warranty",
         "In-house certified crews (never subcontractors)",
@@ -136,14 +136,14 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
 export const SOCIAL_PROOF: Record<string, SocialProof> = {
   siding: {
     stats: [
-      { value: "⭐ 4.5", label: "160 Google Reviews", icon: Star },
-      { value: "🏆 Elite Preferred", label: "Top 2% US", icon: Award },
+      { value: "⭐ 4.7", label: "160 Google Reviews", icon: Star },
+      { value: "🏆 Elite Contractor", label: "Top 2% US", icon: Award },
       { value: "🔨 4.7", label: "256 GuildQuality Reviews", icon: Users },
       { value: "🏠 1,500+", label: "Homes in North Atlanta", icon: MapPin },
       { value: "💰 GreenSky", label: "0% APR Financing", icon: ShieldCheck },
     ],
     seals: [
-      { title: "James Hardie®", subtitle: "Elite Preferred", icon: BadgeCheck },
+      { title: "James Hardie®", subtitle: "Elite Contractor", icon: BadgeCheck },
       { title: "BBB Accredited", subtitle: "A+ Rating", icon: ShieldCheck },
       { title: "Google Rated", subtitle: "4.9 Stars", icon: Star },
     ],

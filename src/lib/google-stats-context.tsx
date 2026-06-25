@@ -11,7 +11,7 @@ export type GoogleStats = {
   totalReviews: number;
 };
 
-const DEFAULT: GoogleStats = { rating: 4.5, totalReviews: 160 };
+const DEFAULT: GoogleStats = { rating: 4.7, totalReviews: 160 };
 
 export const GoogleStatsContext = createContext<GoogleStats>(DEFAULT);
 

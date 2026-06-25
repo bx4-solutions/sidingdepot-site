@@ -70,7 +70,7 @@ export function QuickQuoteForm({
           A specialist will contact you within 24 hours.
         </p>
         <div className="mt-3 text-[9px] font-bold text-sd-green uppercase tracking-wider flex items-center justify-center gap-1.5 bg-white/5 py-1 px-2 rounded-full">
-          ⭐ {rating} Google · 🏆 Elite Preferred · 🔨 4.7 GuildQuality
+          ⭐ {rating} Google · 🏆 Elite Contractor · 🔨 4.7 GuildQuality
         </div>
       </div>
       <form onSubmit={onSubmit} className="px-5 py-5 grid gap-3">

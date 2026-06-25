@@ -184,7 +184,7 @@ export function MascotGreeter() {
           <span className="sdg-tag">👋 Welcome!</span>
           <p className="sdg-title">Atlanta's #1 Siding Company</p>
           <p className="sdg-body">
-            Serving North Atlanta for <strong>over 20 years</strong> — James Hardie Elite Preferred
+            Serving North Atlanta for <strong>over 20 years</strong> — James Hardie Elite Contractor
             contractor.
           </p>
           <a href="/contact" className="sdg-cta">

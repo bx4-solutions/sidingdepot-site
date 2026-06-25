@@ -89,7 +89,7 @@ export function Footer() {
               decoding="async"
             />
             <p className="mt-3 text-sm text-white/50 max-w-xs">
-              Georgia's trusted James Hardie Elite Preferred contractor. Serving North Atlanta since
+              Georgia's trusted James Hardie Elite Contractor. Serving North Atlanta since
               2010.
             </p>
             <div className="mt-5 space-y-2 text-sm">
@@ -233,7 +233,7 @@ export function Footer() {
             © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
           </p>
           <p className="text-balance">
-            James Hardie Elite Preferred Contractor · Licensed &amp; Insured · GA
+            James Hardie Elite Contractor · Licensed &amp; Insured · GA
           </p>
         </div>
       </div>

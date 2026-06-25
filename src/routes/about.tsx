@@ -63,7 +63,7 @@ const ABOUT_VIDEO = {
   id: "fgNhcGoEYmE",
   title: "Meet Siding Depot — James Hardie Siding Installer in Marietta, GA",
   description:
-    "Get to know Siding Depot, the James Hardie Elite Preferred siding contractor serving Marietta. 20+ years and 1,500+ homes resided.",
+    "Get to know Siding Depot, the James Hardie Elite Contractor siding contractor serving Marietta. 20+ years and 1,500+ homes resided.",
   duration: "PT2M30S",
   uploadDate: "2024-06-01",
 } as const;
@@ -76,7 +76,7 @@ const LOCAL_BUSINESS_ABOUT_JSONLD = {
   hasCredential: [
     {
       "@type": "EducationalOccupationalCredential",
-      name: "James Hardie Elite Preferred Contractor",
+      name: "James Hardie Elite Contractor",
       credentialCategory: "Manufacturer Certification",
       recognizedBy: { "@type": "Organization", name: "James Hardie Industries" },
     },
@@ -129,7 +129,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "James Hardie Elite Preferred siding contractor in Marietta, GA. 20+ years on 1,500+ homes — siding, windows, painting, decks, gutters & roofing.",
+          "James Hardie Elite Contractor siding contractor in Marietta, GA. 20+ years on 1,500+ homes — siding, windows, painting, decks, gutters & roofing.",
       },
       {
         name: "keywords",
@@ -143,7 +143,7 @@ export const Route = createFileRoute("/about")({
       {
         property: "og:description",
         content:
-          "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
+          "1,500+ homes resided across North Atlanta. James Hardie Elite Contractor — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
       {
         property: "og:image",
@@ -164,7 +164,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "twitter:description",
         content:
-          "1,500+ homes resided across North Atlanta. James Hardie Elite Preferred — top 2% of US installers. In-house crews, written estimates, no surprises.",
+          "1,500+ homes resided across North Atlanta. James Hardie Elite Contractor — top 2% of US installers. In-house crews, written estimates, no surprises.",
       },
       {
         name: "twitter:image",
@@ -243,7 +243,7 @@ function AboutPage() {
               Marietta.
             </h1>
             <p className="mt-5 text-lg text-white/75 max-w-xl leading-relaxed">
-              Siding Depot is a James Hardie Elite Preferred contractor based in Marietta,
+              Siding Depot is a James Hardie Elite Contractor based in Marietta,
               GA — specialists in fiber cement siding installation, replacement, painting, windows,
               decks, gutters and roofing for homeowners in the area.
             </p>

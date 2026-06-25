@@ -8,7 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/details/json";
 
 /** Fallback when both Supabase and Google API are unavailable. */
-export const FALLBACK_STATS = { rating: 4.5, totalReviews: 160 } as const;
+export const FALLBACK_STATS = { rating: 4.7, totalReviews: 160 } as const;
 
 /** How long to use cached stats before refreshing from Google (48 hours). */
 const CACHE_TTL_MS = 48 * 60 * 60 * 1000;

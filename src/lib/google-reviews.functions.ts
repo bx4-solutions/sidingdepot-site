@@ -104,7 +104,7 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
 
     // Reuse the shared cache to avoid extra Google API calls
     const cache = getPlaceStatsCache();
-    const overallRating = cache?.rating ?? 4.5;
+    const overallRating = cache?.rating ?? 4.7;
     const totalReviews = cache?.totalReviews ?? 160;
 
     if (error) {
@@ -120,6 +120,6 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
     };
   } catch (err: any) {
     console.error("getGoogleReviews failed (likely missing server env):", err?.message);
-    return { reviews: [], overallRating: 4.5, totalReviews: 160, shouldSync: false };
+    return { reviews: [], overallRating: 4.7, totalReviews: 160, shouldSync: false };
   }
 });

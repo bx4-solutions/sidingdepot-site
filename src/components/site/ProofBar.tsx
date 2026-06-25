@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Hammer, ShieldCheck } from "lucide-react";
+import { Hammer } from "lucide-react";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import jamesHardieBadge from "@/assets/james-hardie-elite-contractor.png";
 
 const GreenStar = () => (
   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-sd-green/20 shrink-0">
@@ -23,12 +23,6 @@ const GreenSkyIcon = () => (
   </span>
 );
 
-const TrustIcon = () => (
-  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-sd-green/20 shrink-0">
-    <ShieldCheck className="h-3.5 w-3.5" style={{ color: "#B3D133" }} aria-hidden />
-  </span>
-);
-
 export function ProofBar() {
   const { rating } = useGoogleStats();
   const combinedReviews = 550;
@@ -36,7 +30,6 @@ export function ProofBar() {
     <section aria-label="Trust signals" className="bg-sd-black">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ul className="grid grid-cols-2 sm:flex sm:flex-nowrap items-center justify-center sm:divide-x sm:divide-white/10">
-
           {/* Box 1: Google Reviews */}
           <li className="flex-1 min-w-0">
             <a
@@ -60,27 +53,12 @@ export function ProofBar() {
             >
               <img
                 src={jamesHardieBadge}
-                alt="James Hardie Elite Contractor"
-                className="h-6 w-auto shrink-0"
+                alt="JAMES HARDIE ELITE CONTRACTOR"
+                className="h-8 w-auto shrink-0"
               />
               <div className="min-w-0">
                 <div className="text-white text-[10px] md:text-xs font-bold uppercase tracking-wide leading-none whitespace-nowrap truncate">
                   James Hardie® Elite
-                </div>
-              </div>
-            </a>
-          </li>
-
-          {/* Box 3: GuildQuality */}
-          <li className="flex-1 min-w-0">
-            <a
-              href="/#guild-reviews"
-              className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2.5 min-h-[48px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
-            >
-              <TrustIcon />
-              <div className="min-w-0">
-                <div className="text-white text-[10px] md:text-xs font-bold uppercase tracking-wide leading-none whitespace-nowrap truncate">
-                  GuildQuality Verified
                 </div>
               </div>
             </a>
@@ -110,12 +88,11 @@ export function ProofBar() {
               <GreenSkyIcon />
               <div className="min-w-0">
                 <div className="text-white text-[10px] md:text-xs font-bold uppercase tracking-wide leading-none whitespace-nowrap truncate">
-                  GreenSky® 0% APR
+                  GreenSky® 0% APR Financing for 12 Months
                 </div>
               </div>
             </a>
           </li>
-
         </ul>
       </div>
     </section>

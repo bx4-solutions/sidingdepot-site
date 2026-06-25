@@ -48,7 +48,7 @@ export const Route = createFileRoute("/windows")({
       return { reviewsData };
     } catch (error) {
       console.error("Failed to load reviews in windows loader:", error);
-      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 160 } };
+      return { reviewsData: { reviews: [], overallRating: 4.7, totalReviews: 160 } };
     }
   },
   head: () => ({

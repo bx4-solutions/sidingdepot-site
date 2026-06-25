@@ -87,7 +87,7 @@ const REVIEWS = [
 const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
   { value: "20+", label: "Years in Georgia" },
-  { value: "4.5★", label: "Google Rating" },
+  { value: "4.7★", label: "Google Rating" },
   { value: "98%", label: "Customer Satisfaction" },
 ] as const;
 
@@ -197,7 +197,7 @@ export function SidingLP({ city }: SidingLPProps) {
                 James Hardie® Siding Installation in {city}, GA
               </h1>
               <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed">
-                Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred
+                Transform your home with North Atlanta's Top 2% James Hardie Elite Contractor
                 contractor. Engineered for Georgia's climate, our siding systems combine unbeatable
                 durability with the vibrant ColorPlus® finish.
               </p>
@@ -228,7 +228,7 @@ export function SidingLP({ city }: SidingLPProps) {
         <div className="mx-auto grid max-w-7xl gap-3 px-4 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {[
             `⭐ ${googleRating}/5 · ${googleReviews} Google Reviews`,
-            "🏅 Elite Preferred — Top 2% in the U.S.",
+            "🏅 James Hardie Elite Contractor · Marietta, GA",
             "🏠 1,500+ Homes in Georgia",
             "✓ Free Estimates · No Obligation",
           ].map((t) => (
@@ -249,8 +249,8 @@ export function SidingLP({ city }: SidingLPProps) {
             {[
               {
                 icon: "🏆",
-                title: "Elite Preferred Status",
-                desc: "Only 2% of contractors nationwide earn James Hardie's Elite Preferred designation. Your installation comes with extended warranties only available through certified installers.",
+                title: "Elite Contractor Status",
+                desc: "Only 2% of contractors nationwide earn James Hardie's Elite Contractor designation. Your installation comes with extended warranties only available through certified installers.",
               },
               {
                 icon: "💰",
@@ -287,7 +287,7 @@ export function SidingLP({ city }: SidingLPProps) {
               Types of Siding We Install in {city}
             </h2>
             <p className="mt-3 text-sd-gray-text">
-              Every Hardie product line — installed by Elite Preferred crews engineered for
+              Every Hardie product line — installed by Elite Contractor crews engineered for
               HardieZone HZ10.
             </p>
           </div>
@@ -508,7 +508,7 @@ export function SidingLP({ city }: SidingLPProps) {
 /** Build the meta + JSON-LD payload for an LP route. */
 export function lpHead({ city, path }: { city: string; path: string }) {
   const title = `James Hardie Siding ${city} GA | Free Estimate | Siding Depot`;
-  const description = `James Hardie Elite Preferred contractor in ${city}, GA. Serving North Atlanta since 2009. Free estimate in 24h. Call ${SITE.phone}.`;
+  const description = `James Hardie Elite Contractor in ${city}, GA. Serving North Atlanta since 2009. Free estimate in 24h. Call ${SITE.phone}.`;
   const image = "https://sidingdepot.com/og-default.webp";
   const canonicalUrl = `https://sidingdepot.com${path}`;
   return {

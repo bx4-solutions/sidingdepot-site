@@ -2,6 +2,7 @@ const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
 
 const PARTNERS = [
+  { name: "James Hardie", src: "/logos/james-hardie.jpg", w: 200 },
   { name: "GAF", src: "/logos/gaf.png", w: 160 },
   { name: "Simonton", src: "/logos/simonton.png", w: 180 },
   { name: "Norandex", src: "/logos/norandex.png", w: 180 },

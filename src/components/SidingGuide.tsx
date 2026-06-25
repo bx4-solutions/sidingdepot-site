@@ -204,7 +204,7 @@ export const SidingGuide = () => {
               {
                 id: "02",
                 title: "Hiring Without James Hardie Certification",
-                desc: "Only 2% of contractors earn Elite Preferred status. Without it, the 30-year warranty is void. Wrong flashing detail on a Georgia storm leads to warranty denial and expensive repairs out of your pocket."
+                desc: "Only 2% of contractors earn Elite Contractor status. Without it, the 30-year warranty is void. Wrong flashing detail on a Georgia storm leads to warranty denial and expensive repairs out of your pocket."
               },
               {
                 id: "03",
@@ -282,7 +282,7 @@ export const SidingGuide = () => {
 
           <div className="mt-12 space-y-4">
             {[
-              { q: "Are you James Hardie Elite Preferred?", a: "Ask for ID number. Verify at jameshardie.com/contractor-locator." },
+              { q: "Are you James Hardie Elite Contractor?", a: "Ask for ID number. Verify at jameshardie.com/contractor-locator." },
               { q: "Are you licensed in Georgia with liability + workers' comp?", a: "Ask for the COI. Call and verify it is current." },
               { q: "Do you use highly specialized certified professionals or subcontractors?", a: "Subcontracted crews have no loyalty to quality. In-house crews do." },
               { q: "What is your per-linear-foot price for wood replacement?", a: "If they hesitate or say 'we will figure it out,' walk away." },

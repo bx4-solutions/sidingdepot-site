@@ -26,7 +26,7 @@ type HeroProps = {
 };
 
 const DEFAULT_TRUST = [
-  "James Hardie Elite Contractor",
+  "JAMES HARDIE ELITE CONTRACTOR",
   "1,500+ Homes in North Atlanta",
   "0% APR Financing Available",
 ] as const;
@@ -94,11 +94,15 @@ export function HeroSection({
               {badge}
             </span>
           )}
-          <h1 className={`font-display text-white leading-[1.05] mt-5 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg ${alignCenter ? "text-center mx-auto" : ""}`}>
+          <h1
+            className={`font-display text-white leading-[1.05] mt-5 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl drop-shadow-lg ${alignCenter ? "text-center mx-auto" : ""}`}
+          >
             {title}
           </h1>
           {subtitle && (
-            <p className={`mt-5 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed ${alignCenter ? "text-center mx-auto" : ""}`}>
+            <p
+              className={`mt-5 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed ${alignCenter ? "text-center mx-auto" : ""}`}
+            >
               {subtitle}
             </p>
           )}

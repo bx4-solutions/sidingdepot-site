@@ -204,7 +204,7 @@ const WHY_US = [
   {
     num: "06",
     title: "Trusted by Hundreds of Homeowners",
-    desc: "4.5-star Google rating with 512+ verified reviews across Google, GuildQuality, Thumbtack, and AngiLeads—reflecting our commitment to quality, communication, and customer satisfaction.",
+    desc: "4.7-star average rating with 550+ verified reviews across Google, GuildQuality, Thumbtack, Houzz and AngiLeads—reflecting our commitment to quality, communication, and customer satisfaction.",
   },
 ];
 
@@ -222,7 +222,7 @@ const TESTIMONIALS = [
   {
     name: "Michael T.",
     city: "Marietta",
-    text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
+    text: "I specifically looked for a James Hardie Elite Contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
   },
 ];
 
@@ -231,7 +231,7 @@ function HomePage() {
   return (
     <>
       <HeroSection
-        badge="Elite Preferred · Top 2% of US Installers · Marietta, GA"
+        badge="James Hardie Elite Contractor · Marietta, GA"
         title={
           <>
             Marietta & North Atlanta's James Hardie Siding Experts —{" "}
@@ -244,12 +244,13 @@ function HomePage() {
         showCallCta={false}
         trustItems={[
           `⭐ ${rating} · ${totalReviews} Google Reviews`,
-          "🏆 Elite Preferred · Top 2% US",
+          "🏆 James Hardie Elite Contractor · Marietta, GA",
           "🔨 4.7 · 256 GuildQuality Reviews",
           "🏠 1,500+ North Atlanta Homes",
           "💰 GreenSky 0% APR Financing",
         ]}
-        ctaSlot={<HeroCtaButtons source="home_hero" />}
+        ctaSlot={<></>}
+        formSlot={<HeroCtaButtons source="home_hero" />}
       />
 
       <ProofBar />
@@ -460,7 +461,7 @@ function HomePage() {
                 { i: Users, t: "1,500+ Projects Completed" },
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: CheckCircle2, t: "Free Estimates" },
-                { i: Award, t: "James Hardie Elite Contractor" },
+                { i: Award, t: "JAMES HARDIE ELITE CONTRACTOR" },
               ].map(({ i: Icon, t }) => (
                 <li key={t} className="flex items-center gap-2 text-sd-black/80">
                   <Icon className="h-4 w-4 text-sd-navy" /> {t}
@@ -491,7 +492,7 @@ function HomePage() {
             <div className="flex items-start justify-between flex-wrap gap-4">
               <div className="flex-1 min-w-0 w-full">
                 <span className="inline-block text-xs font-bold tracking-[0.12em] uppercase text-sd-navy bg-sd-green px-3 py-1 rounded">
-                  James Hardie · Elite Preferred
+                  James Hardie · Elite Contractor
                 </span>
                 <h2
                   id="hardie-section-title"
@@ -500,8 +501,8 @@ function HomePage() {
                   Why James Hardie Is Built For Georgia
                 </h2>
                 <p className="mt-4 text-sd-black/70 text-lg leading-relaxed">
-                  As a James Hardie Elite Preferred contractor, we install the highest quality fiber
-                  cement siding engineered specifically for Georgia's unique climate challenges.
+                  As a James Hardie Elite Contractor, we install the highest quality fiber cement
+                  siding engineered specifically for Georgia's unique climate challenges.
                 </p>
               </div>
             </div>
@@ -560,7 +561,7 @@ function HomePage() {
             <div className="relative w-full max-w-[450px] mx-auto">
               <img
                 src={jamesHardieBadge}
-                alt="James Hardie Elite Preferred Contractor Certification Badge"
+                alt="James Hardie Elite Contractor Certification Badge"
                 className="w-full h-auto object-contain"
                 width={600}
                 height={450}
@@ -584,7 +585,7 @@ function HomePage() {
                   to="/lp/siding-marietta"
                   className="text-sd-black hover:underline flex items-center gap-2 [&>svg]:text-sd-green"
                 >
-                  <Sparkles className="h-4 w-4" /> Elite Preferred installation in Marietta &
+                  <Sparkles className="h-4 w-4" /> Elite Contractor installation in Marietta &
                   Atlanta
                 </Link>
                 <Link

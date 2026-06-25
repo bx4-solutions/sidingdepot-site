@@ -38,6 +38,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
+import { ProofBar } from "@/components/site/ProofBar";
 import {
   SupplierBrandSection,
   type SupplierSectionConfig,
@@ -195,7 +196,7 @@ function TrustStrip({ trustBadgeLabel }: { trustBadgeLabel?: string }) {
                 {item.badge ? (
                   <img
                     src={jamesHardieBadge}
-                    alt="James Hardie Elite Preferred Contractor"
+                    alt="James Hardie Elite Contractor"
                     className="h-5 w-auto object-contain shrink-0"
                     loading="eager"
                   />
@@ -791,8 +792,8 @@ function AuthoritySection({ cfg }: { cfg: ServicePageConfig }) {
 const WHY_US_ITEMS = [
   {
     Icon: Award,
-    title: "Elite Preferred — Top 2% in the US",
-    desc: "One of fewer than 2% of US installers to hold James Hardie Elite Preferred status. This certification is renewed annually and unlocks warranty coverage no standard contractor can offer.",
+    title: "Elite Contractor — Top 2% in the US",
+    desc: "One of fewer than 2% of US installers to hold James Hardie Elite Contractor status. This certification is renewed annually and unlocks warranty coverage no standard contractor can offer.",
   },
   {
     Icon: ShieldCheck,
@@ -1095,7 +1096,7 @@ export function ServicePageLayout({ config }: { config: ServicePageConfig }) {
   return (
     <div className="flex flex-col">
       <ServiceHero cfg={config} />
-      <TrustStrip trustBadgeLabel={config.trustBadgeLabel} />
+      <ProofBar />
       <StatsBar />
       {config.supplierSection ? (
         <SupplierBrandSection cfg={config.supplierSection} />

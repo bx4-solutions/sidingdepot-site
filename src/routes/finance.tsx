@@ -301,7 +301,7 @@ function FinancePage() {
                 <span className="text-sd-green">Homeowners in Georgia</span>
               </h2>
               <p className="mt-6 text-lg text-white/70 leading-relaxed">
-                Over 1,500 homes transformed in Georgia. As a Top 2% Elite Preferred James Hardie®
+                Over 1,500 homes transformed in Georgia. As a Top 2% James Hardie Elite Contractor®
                 contractor, we bring certified excellence and 5-star Google reviews to every
                 project.
               </p>

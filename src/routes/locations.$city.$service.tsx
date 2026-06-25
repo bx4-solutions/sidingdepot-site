@@ -37,7 +37,7 @@ export const Route = createFileRoute("/locations/$city/$service")({
     if (!loaderData) return {};
     const { city, service } = loaderData;
     const title = `${service.title} in ${city.name}, GA — Siding Depot`;
-    const description = `Local ${service.title.toLowerCase()} expert in ${city.name}, GA. James Hardie Elite Preferred contractor. Free quote in 24h.`;
+    const description = `Local ${service.title.toLowerCase()} expert in ${city.name}, GA. James Hardie Elite Contractor. Free quote in 24h.`;
     const url = `${SITE_ORIGIN}/locations/${city.slug}/${service.slug}`;
 
     const localBusiness = {
@@ -159,7 +159,7 @@ function LocationPage() {
               `Crews based in North Atlanta — fast scheduling for ${city.name} addresses.`,
               `Familiar with local HOAs, permits and architectural standards.`,
               `Transparent written quotes — no surprises after we start.`,
-              `Licensed, insured, and James Hardie Elite Preferred (top 2%).`,
+              `Licensed, insured, and James Hardie Elite Contractor (top 2%).`,
             ].map((b) => (
               <li key={b} className="flex gap-3 text-sd-black">
                 <CheckCircle2 className="h-5 w-5 text-sd-green shrink-0 mt-0.5" />

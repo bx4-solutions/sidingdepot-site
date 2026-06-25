@@ -46,7 +46,7 @@ export const Route = createFileRoute("/siding")({
       return { reviewsData };
     } catch (error) {
       console.error("Failed to load reviews in siding loader:", error);
-      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 160 } };
+      return { reviewsData: { reviews: [], overallRating: 4.7, totalReviews: 160 } };
     }
   },
   head: () => ({
@@ -173,7 +173,7 @@ function SidingHero() {
                 color: "#B3D133",
               }}
             >
-              <Award className="h-3 w-3" /> Elite Preferred — Top 2% US Installers
+              <Award className="h-3 w-3" /> James Hardie Elite Contractor · Marietta, GA
             </span>
           </div>
 
@@ -312,7 +312,7 @@ function EliteAuthoritySection() {
             className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
             style={{ background: "#eef7c0", color: SD_LIME_TEXT }}
           >
-            Why Elite Preferred Matters
+            Why Elite Contractor Matters
           </span>
           <h2 className="font-display text-4xl sm:text-5xl text-sd-navy leading-tight">
             Most Contractors Can't Offer
@@ -320,7 +320,7 @@ function EliteAuthoritySection() {
             <span style={{ color: SD_LIME_TEXT }}>This Warranty.</span>
           </h2>
           <p className="mt-6 text-gray-600 leading-relaxed text-lg">
-            James Hardie's Elite Preferred status is awarded to fewer than 2% of US installers. It's
+            James Hardie's Elite Contractor status is awarded to fewer than 2% of US installers. It's
             not a marketing badge — it's a quality certification that unlocks the
             <strong> 30-year non-prorated warranty</strong> covering both materials <em>and</em>{" "}
             labor.
@@ -337,7 +337,7 @@ function EliteAuthoritySection() {
                 <span>Factor</span>
                 <span className="text-center">Standard</span>
                 <span className="text-center" style={{ color: SD_LIME_TEXT }}>
-                  Elite Preferred
+                  Elite Contractor
                 </span>
               </div>
               {[
@@ -1002,8 +1002,8 @@ function BeforeAfterCarousel() {
 const HIRING_CHECKLIST = [
   {
     Icon: Award,
-    title: "Elite Preferred — Top 2% in the US",
-    desc: "One of the few certified Elite Preferred James Hardie installers in Cherokee and Cobb County. This status qualifies your project for the extended 30-year non-prorated warranty — not available from standard installers.",
+    title: "Elite Contractor — Top 2% in the US",
+    desc: "One of the few certified James Hardie Elite Contractor installers in Cherokee and Cobb County. This status qualifies your project for the extended 30-year non-prorated warranty — not available from standard installers.",
   },
   {
     Icon: ShieldCheck,
@@ -1028,7 +1028,7 @@ const HIRING_CHECKLIST = [
   {
     Icon: ShieldCheck,
     title: "30-Year Non-Prorated Warranty",
-    desc: "As Elite Preferred installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry.",
+    desc: "As Elite Contractor installers, our projects qualify for James Hardie's extended warranty covering both materials and labor. The highest coverage in the industry.",
   },
 ] as const;
 
@@ -1329,7 +1329,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What does the 30-year non-prorated warranty cover?",
-    a: "As Elite Preferred installers, we can offer James Hardie's highest level of protection. The 30-year non-prorated warranty covers both materials and labor, giving you peace of mind that your investment is fully protected against manufacturer defects and installation issues.",
+    a: "As Elite Contractor installers, we can offer James Hardie's highest level of protection. The 30-year non-prorated warranty covers both materials and labor, giving you peace of mind that your investment is fully protected against manufacturer defects and installation issues.",
   },
   {
     q: "Are your crews subcontractors or employees?",

@@ -44,7 +44,7 @@ export function localBusinessSchema(city?: string) {
     name: SITE.legalName,
     image: "https://sidingdepot.com/og-default.jpg",
     description:
-      "James Hardie Elite Preferred siding and exterior contractor serving North Atlanta with 20+ years experience, 1,500+ homes completed.",
+      "James Hardie Elite Contractor siding and exterior contractor serving North Atlanta with 20+ years experience, 1,500+ homes completed.",
     telephone: SITE.phone,
     email: SITE.email,
     url: "https://sidingdepot.com",
@@ -72,14 +72,14 @@ export function localBusinessSchema(city?: string) {
     priceRange: "$$",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.5",
+      ratingValue: "4.7",
       ratingCount: "160",
       reviewCount: "160",
       bestRating: "5",
       worstRating: "1",
     },
     sameAs: ["https://www.facebook.com/sidingdepot", "https://www.instagram.com/sidingdepot"],
-    // James Hardie Elite Preferred Certification
+    // James Hardie Elite Contractor Certification
     knowsAbout: ["James Hardie Fiber Cement Siding", "Exterior Home Renovation", "Home Remodeling"],
   };
 }

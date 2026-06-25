@@ -87,7 +87,7 @@ export const SERVICES: ReadonlyArray<{
     slug: "siding",
     title: "James Hardie Siding",
     short:
-      "explore the full james hardie hz10 product lineup, including lap siding, board & batten, shake siding, trim, soffit, fascia, and modern architectural panels—all professionally installed and painted to match your home's style.",
+      "Explore the full james hardie hz10 product lineup, including lap siding, board & batten, shake siding, trim, soffit, fascia, and modern architectural panels—all professionally installed and painted to match your home's style.",
     Icon: PanelsTopLeft,
     image: { src: sidingImg },
   },
@@ -164,12 +164,12 @@ export const STATS = [
   { value: "1,500+", label: "Homes in North Atlanta" },
   { value: "20+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
-  { value: "4.5★", label: "Google Rating" },
+  { value: "4.7★", label: "Google Rating" },
 ] as const;
 
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.5 · 160 Google Reviews" },
-  { icon: "🏆", label: "Elite Preferred · Top 2% US" },
+  { icon: "⭐", label: "4.7 · 160 Google Reviews" },
+  { icon: "🏆", label: "James Hardie Elite Contractor · Marietta, GA" },
   { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
   { icon: "🏠", label: "1,500+ North Atlanta Homes" },
   { icon: "💰", label: "GreenSky 0% APR Financing" },
@@ -204,10 +204,10 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const AWARDS = [
-  { name: "James Hardie Elite Contractor", subtitle: "Top 2% of installers in the USA" },
+  { name: "JAMES HARDIE ELITE CONTRACTOR", subtitle: "Top installers in the USA" },
   { name: "GAF Certified Roofing Contractor", subtitle: "Roof system warranty" },
   {
-    name: "4.5 ⭐️ 512+ Verified Reviews",
+    name: "4.7 ⭐️ 512+ Verified Reviews",
     subtitle: "Across Google, GuildQuality, Thumbtack, and AngiLeads",
   },
   { name: "Licensed & Insured", subtitle: "Fully licensed, bonded and insured" },

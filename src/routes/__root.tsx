@@ -100,9 +100,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
     const [googleStats, reviewsData] = await Promise.all([
       withTimeout(
-        fetchGooglePlaceStats().catch(() => ({ rating: 4.5, totalReviews: 159 })),
+        fetchGooglePlaceStats().catch(() => ({ rating: 4.7, totalReviews: 159 })),
         2500,
-        { rating: 4.5, totalReviews: 159 },
+        { rating: 4.7, totalReviews: 159 },
       ),
       withTimeout(
         getGoogleReviews().catch(() => ({ reviews: [] as any[] })),
@@ -125,11 +125,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Siding Depot — James Hardie Elite Preferred Contractor" },
+      { title: "Siding Depot — James Hardie Elite Contractor" },
       {
         name: "description",
         content:
-          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta & North Atlanta.",
+          "Georgia's trusted James Hardie Elite Contractor. Siding, painting, windows, decks, gutters, roofing in Marietta & North Atlanta.",
       },
       { name: "author", content: "Siding Depot LLC" },
       { name: "google-site-verification", content: "Q3iqnEYQT-FjjpwrinYUm2LxJYgmuYrBgQDgPPcBiQ8" },
@@ -138,12 +138,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Siding Depot" },
       {
         property: "og:title",
-        content: "Siding Depot — James Hardie Elite Preferred Contractor in Marietta GA",
+        content: "Siding Depot — James Hardie Elite Contractor in Marietta GA",
       },
       {
         property: "og:description",
         content:
-          "Georgia's trusted James Hardie Elite Preferred contractor. Siding, painting, windows, decks, gutters, roofing in Marietta & North Atlanta.",
+          "Georgia's trusted James Hardie Elite Contractor. Siding, painting, windows, decks, gutters, roofing in Marietta & North Atlanta.",
       },
       { name: "twitter:card", content: "summary_large_image" },
       // twitter:title/description intentionally omitted — X/Twitter falls back to each

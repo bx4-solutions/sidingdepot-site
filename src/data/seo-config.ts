@@ -14,23 +14,23 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
     A: {
       h1: (c) => `James Hardie Siding Installation in Marietta & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
-      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
+      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Contractor`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "James Hardie Elite Contractor siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
     B: {
       h1: (c) => `James Hardie Siding Installation in Marietta & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
-      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
+      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Contractor`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "James Hardie Elite Contractor siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
     C: {
       h1: (c) => `James Hardie Siding Installation in Marietta & North Atlanta, GA`,
       h2: "Why Marietta and Canton Homeowners Choose Siding Depot",
-      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Preferred`,
+      metaTitle: (c) => `James Hardie Siding Marietta GA | Elite Contractor`,
       metaDesc:
-        "Elite Preferred James Hardie siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
+        "James Hardie Elite Contractor siding in Marietta & North Atlanta, GA. In-house certified crews, 30-yr warranty, written estimates. Free quote: (678) 400-2012.",
     },
   },
   painting: {

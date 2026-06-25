@@ -52,7 +52,7 @@ const RECENT_REVIEWS: Review[] = [
     date: "2 months ago",
     timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
     rating: 5,
-    text: "I specifically looked for a James Hardie Elite Preferred contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
+    text: "I specifically looked for a James Hardie Elite Contractor because I wanted the 30-year warranty. Siding Depot qualified. The install was flawless — you can see the craftsmanship at every corner.",
     avatar: "M",
   },
   {
@@ -183,13 +183,13 @@ export function GoogleReviews() {
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star
                     key={s}
-                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.5) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
+                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.7) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
                     aria-hidden="true"
                   />
                 ))}
               </div>
               <span className="font-bold text-sd-black">
-                {(remoteData as any)?.overallRating || "4.5"}/5.0
+                {(remoteData as any)?.overallRating || "4.7"}/5.0
               </span>
               <span className="text-sd-gray-text">
                 ({(remoteData as any)?.totalReviews || "160"} Reviews)

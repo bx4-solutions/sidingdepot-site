@@ -28,9 +28,9 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
     label: "Siding",
     hero: "James Hardie® Siding: Elite Installation & Protection",
     intro:
-      "Transform your home with North Atlanta's Top 2% James Hardie Elite Preferred contractor. Engineered for Georgia's HZ10 zone, our siding systems combine unbeatable durability with the vibrant ColorPlus® Technology finish.",
+      "Transform your home with North Atlanta's Top 2% James Hardie Elite Contractor. Engineered for Georgia's HZ10 zone, our siding systems combine unbeatable durability with the vibrant ColorPlus® Technology finish.",
     benefits: [
-      "Top 2% Elite Preferred James Hardie status",
+      "Top 2% James Hardie Elite Contractor status",
       "Engineered specifically for Georgia's heat & humidity",
       "30-year limited material & 15-year finish warranty",
       "highly specialized certified teams — no subcontractors",
@@ -49,7 +49,7 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
         desc: "Full tear-off, weather-barrier wrap, and precision install following Hardie's strict Best Practices manual.",
       },
     ],
-    partners: "James Hardie Elite Preferred",
+    partners: "James Hardie Elite Contractor",
     ogImage: "/projects/project-1.webp",
   },
   painting: {

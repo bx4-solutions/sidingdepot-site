@@ -226,7 +226,7 @@ export default function BlogListing() {
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">
                   <Star className="w-6 h-6 text-sd-black mb-2" />
                   <span className="text-[10px] font-extrabold uppercase tracking-tight text-center">
-                    Elite Preferred
+                    Elite Contractor
                   </span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all grayscale opacity-70 hover:grayscale-0 hover:opacity-100">

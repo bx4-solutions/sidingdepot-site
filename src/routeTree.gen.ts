@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WindowsRouteImport } from './routes/windows'
-import { Route as UpdateDbRouteImport } from './routes/update-db'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
@@ -54,11 +53,6 @@ import { Route as AdminBlogSlugRouteImport } from './routes/admin.blog.$slug'
 const WindowsRoute = WindowsRouteImport.update({
   id: '/windows',
   path: '/windows',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UpdateDbRoute = UpdateDbRouteImport.update({
-  id: '/update-db',
-  path: '/update-db',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -278,7 +272,6 @@ export interface FileRoutesByFullPath {
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/update-db': typeof UpdateDbRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -320,7 +313,6 @@ export interface FileRoutesByTo {
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/update-db': typeof UpdateDbRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -364,7 +356,6 @@ export interface FileRoutesById {
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/update-db': typeof UpdateDbRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -409,7 +400,6 @@ export interface FileRouteTypes {
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
-    | '/update-db'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -451,7 +441,6 @@ export interface FileRouteTypes {
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
-    | '/update-db'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -494,7 +483,6 @@ export interface FileRouteTypes {
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
-    | '/update-db'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -538,7 +526,6 @@ export interface RootRouteChildren {
   SeoDashboardRoute: typeof SeoDashboardRoute
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  UpdateDbRoute: typeof UpdateDbRoute
   WindowsRoute: typeof WindowsRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminBlogPreviewRoute: typeof AdminBlogPreviewRoute
@@ -565,13 +552,6 @@ declare module '@tanstack/react-router' {
       path: '/windows'
       fullPath: '/windows'
       preLoaderRoute: typeof WindowsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/update-db': {
-      id: '/update-db'
-      path: '/update-db'
-      fullPath: '/update-db'
-      preLoaderRoute: typeof UpdateDbRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -895,7 +875,6 @@ const rootRouteChildren: RootRouteChildren = {
   SeoDashboardRoute: SeoDashboardRoute,
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  UpdateDbRoute: UpdateDbRoute,
   WindowsRoute: WindowsRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminBlogPreviewRoute: AdminBlogPreviewRoute,

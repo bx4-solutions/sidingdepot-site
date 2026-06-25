@@ -16,7 +16,7 @@ const DollarIcon = ({ style }: { className?: string; style?: React.CSSProperties
 const ICONS = [Award, Wrench, Star, ShieldCheck, BadgeCheck, DollarIcon];
 
 const AWARD_LINKS: Record<string, { type: "internal" | "anchor" | "external"; href: string }> = {
-  "James Hardie Elite Preferred": { type: "internal", href: "/siding" },
+  "James Hardie Elite Contractor": { type: "internal", href: "/siding" },
   "GAF Factory Certified": { type: "internal", href: "/roofing" },
   "BBB Accredited": { type: "anchor", href: "/#google-reviews" },
   "GreenSky Financing": { type: "external", href: SITE.greenSkyUrl },

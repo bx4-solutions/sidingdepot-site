@@ -37,7 +37,7 @@ const HOTSPOTS: Hotspot[] = [
     left: "18.4%",
     label: "James Hardie Siding",
     title: "James Hardie Siding",
-    body: "As Elite Preferred installers, we're authorized to offer the full 30-year James Hardie warranty — most contractors can't. HZ10 panels built for Georgia's heat, humidity, and hurricane-force winds.",
+    body: "As Elite Contractor installers, we're authorized to offer the full 30-year James Hardie warranty — most contractors can't. HZ10 panels built for Georgia's heat, humidity, and hurricane-force winds.",
     image: sidingImg,
     to: "/siding",
     cta: "SIDING SERVICES",

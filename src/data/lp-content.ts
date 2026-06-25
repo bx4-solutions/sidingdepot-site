@@ -55,7 +55,7 @@ export function buildFaqs(city: string): ReadonlyArray<FaqItem> {
     },
     {
       q: "Are you really licensed and insured?",
-      a: "Yes — Georgia GC #RBQA006789, fully insured with general liability and workers' comp. We're James Hardie Elite Preferred (top 2% nationwide), GAF Factory Certified, and BBB A+ accredited.",
+      a: "Yes — Georgia GC #RBQA006789, fully insured with general liability and workers' comp. We're James Hardie Elite Contractor (top 2% nationwide), GAF Factory Certified, and BBB A+ accredited.",
     },
   ];
 }
