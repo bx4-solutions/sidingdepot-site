@@ -26,6 +26,7 @@ import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
 import windowsHeroImg from "@/assets/windows-hero.jpg";
 import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
+import { ProofBar } from "@/components/site/ProofBar";
 import { RelatedServices } from "@/components/site/ServicePageLayout";
 import { SupplierBrandSection } from "@/components/site/SupplierBrandSection";
 import { useGoogleStats } from "@/lib/google-stats-context";
@@ -264,9 +265,9 @@ function TrustStrip() {
 /* Stats Bar                                                          */
 /* ---------------------------------------------------------------- */
 const STATS_DATA = [
-  { value: 31, suffix: "%", label: "Lower Energy Bills" },
-  { value: 15, suffix: "-Year", label: "Installation Warranty" },
-  { value: 1500, suffix: "+", label: "Homes Upgraded" },
+  { value: 1500, suffix: "+", label: "Projects Completed" },
+  { value: 20, suffix: "+", label: "Years in Georgia" },
+  { value: 92, suffix: "%", label: "Would Recommend Us" },
   { value: 261, suffix: "+", label: "Verified Reviews" },
 ];
 
@@ -1201,7 +1202,7 @@ function WindowsPage() {
   return (
     <div className="flex flex-col">
       <WindowsHero />
-      <TrustStrip />
+      <ProofBar />
       <WindowsStatsBar />
       <SupplierBrandSection
         cfg={{
