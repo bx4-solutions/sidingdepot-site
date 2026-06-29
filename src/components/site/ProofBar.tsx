@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Hammer } from "lucide-react";
-import { useGoogleStats } from "@/lib/google-stats-context";
 import jamesHardieBadge from "@/assets/james-hardie-elite-contractor.png";
 
 const GreenStar = () => (
@@ -24,7 +23,7 @@ const GreenSkyIcon = () => (
 );
 
 export function ProofBar() {
-  const { rating } = useGoogleStats();
+  const rating = 4.7;
   const combinedReviews = 550;
   return (
     <section aria-label="Trust signals" className="bg-sd-black">
