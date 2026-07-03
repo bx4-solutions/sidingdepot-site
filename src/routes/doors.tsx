@@ -165,7 +165,7 @@ const CONFIG: ServicePageConfig = {
   ctaMainBtn: "Book My Free Door Estimate",
   ctaTrustPoints: [
     "Physical samples at your home",
-    "Same-day written estimate",
+    "Written, detailed estimate — no surprises — in 24 hours",
     "In-house installation crews",
   ],
   faqTitle: "Door questions,",

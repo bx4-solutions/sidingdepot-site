@@ -96,7 +96,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
     },
     C: {
       h1: (c) => `Custom Door Replacement in ${c}, GA`,
-      h2: "Same-Day Quotes · Precision Sill Alignment",
+      h2: "Written, No-Surprise Estimate in 24 Hours · Precision Sill Alignment",
       metaTitle: (c) => `Door Replacement ${c}, GA | Free Quote — Siding Depot`,
       metaDesc:
         "Custom entry & patio door replacement in Marietta. Authorized dealer. Precision install. Get a free written quote in 24 hours.",

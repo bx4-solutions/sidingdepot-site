@@ -1,6 +1,6 @@
 import fs from "fs";
-import { BLOG_POSTS } from "../src/data/blog-posts.ts";
-import { LOCATION_MATRIX } from "../src/data/locations.ts";
+import { BLOG_POSTS } from "../src/data/blog-posts";
+import { LOCATION_MATRIX } from "../src/data/locations";
 
 const DOMAIN = "https://sidingdepot.com";
 const lastMod = new Date().toISOString().split("T")[0];

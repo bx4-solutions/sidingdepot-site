@@ -233,7 +233,6 @@ export function ServiceLandingPage({
 
       <ProofBar />
 
-
       {/* SEO copy block — visually hidden, preserved for crawlers */}
       <p className="sr-only">{seoParagraph}</p>
 
@@ -355,15 +354,15 @@ export function ServiceLandingPage({
       <GoogleReviewsCarousel />
 
       {/* Closing CTA */}
-      <section className="section-dark py-20">
+      <section className="py-20" style={{ backgroundColor: "var(--sd-green-pale)" }}>
         <div className="mx-auto max-w-7xl px-4 lg:px-8 grid gap-10 lg:grid-cols-3 items-center">
           <div className="lg:col-span-2">
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
-              Ready for work that lasts <span className="text-sd-green">{ctaAccent}</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-sd-green-dark">
+              Ready for work that lasts {ctaAccent}
             </h2>
-            <p className="mt-4 text-white/75 max-w-2xl">
-              Free on-site estimate, written estimate the same day, and a dedicated project
-              manager from start to finish.
+            <p className="mt-4 text-sd-black max-w-2xl">
+              Free on-site estimate, a written and detailed estimate with no surprises within 24
+              hours, and a dedicated project manager from start to finish.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <ServiceFormModal
@@ -373,18 +372,18 @@ export function ServiceLandingPage({
             </div>
           </div>
           <div className="grid gap-3">
-            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
-              <Award className="h-6 w-6 text-sd-green" />
+            <div className="flex items-center gap-3 rounded-lg bg-white p-4 ring-1 ring-black/10">
+              <Award className="h-6 w-6 text-sd-green-dark" />
               <div>
-                <p className="font-semibold">{trustBadge.title}</p>
-                <p className="text-xs text-white/60">{trustBadge.subtitle}</p>
+                <p className="font-semibold text-sd-black">{trustBadge.title}</p>
+                <p className="text-xs text-sd-gray-text">{trustBadge.subtitle}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
-              <ShieldCheck className="h-6 w-6 text-sd-green" />
+            <div className="flex items-center gap-3 rounded-lg bg-white p-4 ring-1 ring-black/10">
+              <ShieldCheck className="h-6 w-6 text-sd-green-dark" />
               <div>
-                <p className="font-semibold">Licensed &amp; Insured</p>
-                <p className="text-xs text-white/60">GA GC #RBQA006789</p>
+                <p className="font-semibold text-sd-black">Licensed &amp; Insured</p>
+                <p className="text-xs text-sd-gray-text">GA GC #RBQA006789</p>
               </div>
             </div>
           </div>

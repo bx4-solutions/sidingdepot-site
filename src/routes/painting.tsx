@@ -177,6 +177,7 @@ const CONFIG: ServicePageConfig = {
     logoSrc: "/logos/sherwin-williams.png",
     logoAlt: "Sherwin-Williams Premium Exterior Paint Logo",
     logoTagline: "★ PREFERRED CONTRACTOR",
+    logoOnDark: true,
     sectionEyebrow: "Certified Paint Supplier",
     sectionHeadline: "The Credentials That Back Your Paint Job.",
     sectionBody:
