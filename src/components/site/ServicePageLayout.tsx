@@ -430,7 +430,7 @@ function ServiceOptions({
                   className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
                   style={{
                     background:
-                      "linear-gradient(to top, rgba(30,42,58,0.88) 0%, rgba(30,42,58,0.20) 60%, transparent 100%)",
+                      "linear-gradient(to top, rgba(30,42,58,0.76) 0%, rgba(30,42,58,0.10) 60%, transparent 100%)",
                   }}
                 />
                 <div

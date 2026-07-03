@@ -51,7 +51,7 @@ export function ServiceCard({ Icon, title, description, to, id, image, priority 
         className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.40) 55%, rgba(10,10,10,0.10) 100%)",
+            "linear-gradient(to top, rgba(10,10,10,0.74) 0%, rgba(10,10,10,0.22) 55%, rgba(10,10,10,0.03) 100%)",
         }}
       />
 
