@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { Play, MapPin, Filter } from "lucide-react";
+import { Play, MapPin, Filter, Images, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -15,6 +15,10 @@ type Project = {
   thumbnail_url: string;
   featured: boolean;
   sort_order: number;
+  media_type?: "video" | "slideshow" | "before_after" | null;
+  gallery_images?: string[] | null;
+  before_after?: { before: string; after: string }[] | null;
+  description?: string | null;
 };
 
 // ── Static fallback videos (YouTube) ─────────────────────────────────────────
@@ -125,7 +129,9 @@ const loadProjects = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const { data, error } = await supabase
       .from("projects")
-      .select("id,title,city,service,mux_playback_id,youtube_id,thumbnail_url,featured,sort_order")
+      .select(
+        "id,title,city,service,mux_playback_id,youtube_id,thumbnail_url,media_type,gallery_images,before_after,description,featured,sort_order",
+      )
       .eq("published", true)
       .order("featured", { ascending: false })
       .order("sort_order", { ascending: true })
@@ -195,11 +201,16 @@ const SERVICE_LABELS: Record<string, string> = {
 
 // ── Project card ──────────────────────────────────────────────────────────────
 function ProjectCard({ project, onPlay }: { project: Project; onPlay: (p: Project) => void }) {
+  const isVideo =
+    !!(project.youtube_id || project.mux_playback_id) || project.media_type === "video";
+  const firstImage = project.gallery_images?.[0] || project.before_after?.[0]?.before || null;
   const thumb =
     project.thumbnail_url ||
+    firstImage ||
     (project.youtube_id
       ? `https://img.youtube.com/vi/${project.youtube_id}/maxresdefault.jpg`
       : `https://sidingdepot.com/og-default.webp`);
+  const OverlayIcon = isVideo ? Play : Images;
 
   return (
     <div
@@ -221,7 +232,7 @@ function ProjectCard({ project, onPlay }: { project: Project; onPlay: (p: Projec
             className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
             style={{ background: "#B3D133" }}
           >
-            <Play className="h-6 w-6 ml-0.5" style={{ color: "#1a2332" }} />
+            <OverlayIcon className="h-6 w-6" style={{ color: "#1a2332" }} />
           </div>
         </div>
         {/* Featured badge */}
@@ -253,42 +264,125 @@ function ProjectCard({ project, onPlay }: { project: Project; onPlay: (p: Projec
   );
 }
 
-// ── Video modal ───────────────────────────────────────────────────────────────
-function VideoModal({ project, onClose }: { project: Project; onClose: () => void }) {
+// ── Media modal (video · slideshow · before/after) ─────────────────────────────
+function MediaModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const isVideo = !!(project.youtube_id || project.mux_playback_id);
+  const pairs = project.before_after ?? [];
+  const isBeforeAfter = !isVideo && project.media_type === "before_after" && pairs.length > 0;
+  const slides =
+    !isVideo && !isBeforeAfter
+      ? project.gallery_images && project.gallery_images.length > 0
+        ? project.gallery_images
+        : project.thumbnail_url
+          ? [project.thumbnail_url]
+          : []
+      : [];
+  const count = isBeforeAfter ? pairs.length : slides.length;
+  const [idx, setIdx] = useState(0);
+  const prev = () => setIdx((i) => (i > 0 ? i - 1 : count - 1));
+  const next = () => setIdx((i) => (i < count - 1 ? i + 1 : 0));
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 p-4"
       onClick={onClose}
     >
-      <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
           className="absolute -top-9 right-0 text-white/60 hover:text-white text-sm transition-colors"
         >
           ✕ Fechar
         </button>
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
-          {project.youtube_id ? (
-            <iframe
-              src={`https://www.youtube.com/embed/${project.youtube_id}?autoplay=1&rel=0&controls=1&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
-              title={project.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
+
+        {isVideo ? (
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
+            {project.youtube_id ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${project.youtube_id}?autoplay=1&rel=0&controls=1&showinfo=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
+                title={project.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            ) : (
+              <mux-player
+                stream-type="on-demand"
+                playback-id={project.mux_playback_id!}
+                metadata-video-title={project.title}
+                autoplay
+                style={{ width: "100%", height: "100%" } as React.CSSProperties}
+              />
+            )}
+          </div>
+        ) : isBeforeAfter ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 rounded-2xl overflow-hidden bg-black shadow-2xl">
+            <div className="relative">
+              <img
+                src={pairs[idx].before}
+                alt="Before"
+                className="w-full h-[45vh] sm:h-[65vh] object-contain bg-black"
+              />
+              <span className="absolute top-2 left-2 px-2 py-1 rounded bg-black/70 text-white text-[11px] font-bold uppercase tracking-wide">
+                Before
+              </span>
+            </div>
+            <div className="relative">
+              <img
+                src={pairs[idx].after}
+                alt="After"
+                className="w-full h-[45vh] sm:h-[65vh] object-contain bg-black"
+              />
+              <span
+                className="absolute top-2 left-2 px-2 py-1 rounded text-[11px] font-bold uppercase tracking-wide"
+                style={{ background: "#B3D133", color: "#1a2332" }}
+              >
+                After
+              </span>
+            </div>
+          </div>
+        ) : slides.length > 0 ? (
+          <div className="relative rounded-2xl overflow-hidden bg-black shadow-2xl">
+            <img
+              src={slides[idx]}
+              alt={`${project.title} — ${idx + 1}`}
+              className="w-full h-[70vh] object-contain bg-black"
             />
-          ) : project.mux_playback_id ? (
-            <mux-player
-              stream-type="on-demand"
-              playback-id={project.mux_playback_id}
-              metadata-video-title={project.title}
-              autoplay
-              style={{ width: "100%", height: "100%" } as React.CSSProperties}
-            />
-          ) : null}
-        </div>
-        <p className="mt-3 text-white/50 text-sm text-center">
+          </div>
+        ) : (
+          <div className="aspect-video w-full rounded-2xl bg-black flex items-center justify-center text-white/40 shadow-2xl">
+            Sem mídia neste projeto.
+          </div>
+        )}
+
+        {!isVideo && count > 1 && (
+          <>
+            <button
+              onClick={prev}
+              aria-label="Anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={next}
+              aria-label="Próximo"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </>
+        )}
+
+        <p className="mt-3 text-white/60 text-sm text-center">
           {project.title} · {project.city}
+          {!isVideo && count > 1 ? ` · ${idx + 1}/${count}` : ""}
         </p>
+        {project.description && (
+          <p className="mt-1 text-white/40 text-xs text-center max-w-2xl mx-auto">
+            {project.description}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -402,7 +496,9 @@ function ProjectsPage() {
       </section>
 
       {/* ── Modal ── */}
-      {playing && <VideoModal project={playing} onClose={() => setPlaying(null)} />}
+      {playing && (
+        <MediaModal key={playing.id} project={playing} onClose={() => setPlaying(null)} />
+      )}
     </>
   );
 }
