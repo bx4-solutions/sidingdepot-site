@@ -53,7 +53,7 @@ export function HeroSection({
   return (
     <section className="relative isolate overflow-hidden min-h-screen lg:min-h-[100vh] flex items-center">
       {bgVideo ? (
-        <HeroVideoBg videoId={bgVideo} fallbackImg={bgImage} />
+        <HeroVideoBg videoId={bgVideo} fallbackImg={bgImage} fallbackImgMobile={bgImageMobile} />
       ) : (
         <picture>
           {bgImageMobile && <source media="(max-width: 640px)" srcSet={bgImageMobile} />}

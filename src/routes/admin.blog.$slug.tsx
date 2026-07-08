@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, redirect, Link, useNavigate } from "@tanstack/react-router";
 // Post data imported below
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,12 @@ import { BLOG_POSTS, BlogPost } from "@/data/blog-posts";
 import { AuditLogViewer } from "./admin.blog-preview";
 
 export const Route = createFileRoute("/admin/blog/$slug")({
+  beforeLoad: async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (!session) throw redirect({ to: "/admin/login" });
+  },
   component: ArticleDetail,
 });
 

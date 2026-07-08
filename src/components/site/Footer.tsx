@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Music2, Phone } from "lucide-react";
 import { SITE, SERVICES, CITIES } from "@/data/site";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import logoSidingDepot from "@/assets/logo-sidingdepot.png";
 
 const LucideFacebook = ({ className }: { className?: string }) => (
@@ -58,22 +56,6 @@ const LucideYoutube = ({ className }: { className?: string }) => (
 );
 
 export function Footer() {
-  const [session, setSession] = useState<any>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   return (
     <footer className="bg-sd-black text-white">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 py-14 pb-24 lg:pb-14">
@@ -89,8 +71,7 @@ export function Footer() {
               decoding="async"
             />
             <p className="mt-3 text-sm text-white/50 max-w-xs">
-              Georgia's trusted James Hardie Elite Contractor. Serving North Atlanta since
-              2010.
+              Georgia's trusted James Hardie Elite Contractor. Serving North Atlanta since 2010.
             </p>
             <div className="mt-5 space-y-2 text-sm">
               <a
@@ -172,20 +153,6 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
-              <li>
-                <a
-                  href={
-                    import.meta.env.DEV
-                      ? "http://localhost:4004/admin/dashboard"
-                      : "https://sidingdepot-dashboard.vercel.app/admin/dashboard"
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white/70"
-                >
-                  Painel
-                </a>
-              </li>
             </ul>
             <div className="flex gap-3 mt-5">
               <a
@@ -232,6 +199,14 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
           </p>
+          <div className="flex gap-4">
+            <Link to="/privacy-policy" className="hover:text-sd-green">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-of-use" className="hover:text-sd-green">
+              Terms of Use
+            </Link>
+          </div>
           <p className="text-balance">
             James Hardie Elite Contractor · Licensed &amp; Insured · GA
           </p>

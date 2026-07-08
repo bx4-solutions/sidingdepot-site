@@ -12,7 +12,15 @@ declare global {
   }
 }
 
-export function HeroVideoBg({ videoId, fallbackImg }: { videoId: string; fallbackImg?: string }) {
+export function HeroVideoBg({
+  videoId,
+  fallbackImg,
+  fallbackImgMobile,
+}: {
+  videoId: string;
+  fallbackImg?: string;
+  fallbackImgMobile?: string;
+}) {
   const playerRef = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const segRef = useRef(0);
@@ -116,13 +124,20 @@ export function HeroVideoBg({ videoId, fallbackImg }: { videoId: string; fallbac
   return (
     <>
       {fallbackImg && (
-        <img
-          src={fallbackImg}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ zIndex: 0 }}
-        />
+        <picture>
+          {fallbackImgMobile && <source media="(max-width: 640px)" srcSet={fallbackImgMobile} />}
+          <img
+            src={fallbackImg}
+            alt=""
+            aria-hidden
+            fetchPriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ zIndex: 0 }}
+          />
+        </picture>
       )}
       {isDesktop && (
         <div

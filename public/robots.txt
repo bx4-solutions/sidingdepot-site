@@ -4,6 +4,7 @@ Allow: /locations/
 Disallow: /admin/
 Disallow: /seo-dashboard/
 Disallow: /access-denied/
+Disallow: /dev/
 
 # AI assistants & answer engines — explicitly allowed for citation
 User-agent: GPTBot

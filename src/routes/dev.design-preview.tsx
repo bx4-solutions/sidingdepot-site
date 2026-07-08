@@ -1,8 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { SERVICES } from "@/data/site";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/dev/design-preview")({
+  beforeLoad: async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (!session) throw redirect({ to: "/admin/login" });
+  },
   component: DesignPreview,
 });
 
