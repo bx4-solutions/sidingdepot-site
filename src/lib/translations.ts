@@ -1,5 +1,4 @@
-
-export type Language = 'pt' | 'en';
+export type Language = "pt" | "en";
 
 export const TRANSLATIONS = {
   pt: {
@@ -28,7 +27,7 @@ export const TRANSLATIONS = {
     datePresets: {
       "7 dias": "7 dias",
       "30 dias": "30 dias",
-      "90 dias": "90 dias"
+      "90 dias": "90 dias",
     },
     export: "Exportar",
     weeklyReport: "RELATÓRIO SEMANAL (PDF)",
@@ -41,7 +40,7 @@ export const TRANSLATIONS = {
     conversionRate: "Taxa Conversão",
     callClicks: "Call Clicks",
     appointments: "Agendamentos",
-    chatInteractions: "Chat com Bia",
+    chatInteractions: "Interações no Chat",
     totalVisitors: "Total Visitantes",
     uniqueVisitors: "Únicos",
     pageViews: "Visualizações",
@@ -71,7 +70,8 @@ export const TRANSLATIONS = {
     integrationStatus: "Status da Integração",
     trackingConnectivity: "Conectividade com serviços de tracking",
     debugTip: "Dica de Debug:",
-    debugDesc: "Abra o console do navegador e digite window.dataLayer para ver o histórico completo de eventos brutos capturados nesta sessão.",
+    debugDesc:
+      "Abra o console do navegador e digite window.dataLayer para ver o histórico completo de eventos brutos capturados nesta sessão.",
     leadStream: "Fluxo de Leads em Tempo Real",
     instantMonitoring: "Monitoramento instantâneo de formulários e CTAs",
     time: "Hora",
@@ -117,7 +117,7 @@ export const TRANSLATIONS = {
     datePresets: {
       "7 dias": "7 days",
       "30 dias": "30 days",
-      "90 dias": "90 days"
+      "90 dias": "90 days",
     },
     export: "Export",
     weeklyReport: "WEEKLY REPORT (PDF)",
@@ -130,7 +130,7 @@ export const TRANSLATIONS = {
     conversionRate: "Conversion Rate",
     callClicks: "Call Clicks",
     appointments: "Appointments",
-    chatInteractions: "Chat with Bia",
+    chatInteractions: "Chat Interactions",
     totalVisitors: "Total Visitors",
     uniqueVisitors: "Unique",
     pageViews: "Page Views",
@@ -160,7 +160,8 @@ export const TRANSLATIONS = {
     integrationStatus: "Integration Status",
     trackingConnectivity: "Connectivity with tracking services",
     debugTip: "Debug Tip:",
-    debugDesc: "Open the browser console and type window.dataLayer to see the complete history of raw events captured in this session.",
+    debugDesc:
+      "Open the browser console and type window.dataLayer to see the complete history of raw events captured in this session.",
     leadStream: "Real-Time Lead Stream",
     instantMonitoring: "Instant form and CTA monitoring",
     time: "Time",
@@ -179,5 +180,5 @@ export const TRANSLATIONS = {
     generatingWeeklyReport: "Generating consolidated Weekly Report...",
     acquisitionSources: "Acquisition Sources",
     mainChannels: "Main acquisition channels",
-  }
+  },
 };

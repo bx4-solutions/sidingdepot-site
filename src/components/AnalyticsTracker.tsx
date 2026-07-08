@@ -2,7 +2,7 @@
  * AnalyticsTracker — tracks page views, geolocation, and real-time presence
  * into Supabase analytics_events + Realtime presence channel.
  *
- * This powers the ClickOne dashboard's:
+ * This powers the /admin/analytics dashboard's:
  *   - Online Visitors Map (real-time dots on world map)
  *   - Visitor History Map (last 24h geo activity)
  *   - Peak Hours, Device, Browser, OS, Country charts
@@ -174,7 +174,7 @@ async function trackEvent(
 }
 
 // ─── Supabase Realtime Presence ───────────────────────────────────────────────
-// Powers the "Online Visitors Map" in the ClickOne dashboard.
+// Powers the "Online Visitors Map" in the /admin/analytics dashboard.
 // Each visitor joins the "visitor-presence" channel with their current page + geo.
 
 const PRESENCE_CHANNEL = "visitor-presence";

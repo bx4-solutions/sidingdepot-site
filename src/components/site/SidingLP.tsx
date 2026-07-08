@@ -206,7 +206,7 @@ export function SidingLP({ city }: SidingLPProps) {
               <div className="relative group">
                 <div className="absolute -inset-1 bg-sd-green/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 <img
-                  src="https://ynvrijkuampxpsmshftm.supabase.co/storage/v1/object/public/prompt-images/uploads/1780663807517-6231247b-0c9b-4a94-bd0d-0bb161cd8625.png"
+                  src="/projects/jh-project-hero.jpeg"
                   alt="James Hardie Siding Project Portfolio"
                   className="relative rounded-2xl shadow-2xl border-4 border-white/10 w-full object-cover aspect-[4/5] transform hover:scale-105 transition-transform duration-500"
                 />

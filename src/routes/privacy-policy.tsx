@@ -30,15 +30,20 @@ function PrivacyPolicyPage() {
             <p>
               Siding Depot LLC ("we," "us," or "our") respects your privacy and is committed to
               protecting your personal information. This Privacy Policy explains how we collect,
-              use, disclose, and safeguard your data when you visit our website sidingdepot.com
-              (the "Site") or communicate with us by email, SMS, or WhatsApp.
+              use, disclose, and safeguard your data when you visit our website sidingdepot.com (the
+              "Site") or communicate with us by email, SMS, or WhatsApp.
             </p>
-            <p className="mt-3">By using our Site, you agree to the practices described in this policy.</p>
+            <p className="mt-3">
+              By using our Site, you agree to the practices described in this policy.
+            </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-sd-navy mb-2">2. Information We Collect</h2>
-            <p>We may collect the following information when you interact with our Site or submit a contact form:</p>
+            <p>
+              We may collect the following information when you interact with our Site or submit a
+              contact form:
+            </p>
             <ul className="mt-3 list-disc pl-6 space-y-2">
               <li>
                 <strong className="text-sd-black">Personal identification data:</strong> Full name,
@@ -62,16 +67,17 @@ function PrivacyPolicyPage() {
             <ul className="mt-3 list-disc pl-6 space-y-2">
               <li>Respond to your questions or quote requests;</li>
               <li>Schedule consultations or appointments;</li>
-              <li>Send follow-up messages, service updates, and marketing messages by email, SMS, or WhatsApp;</li>
+              <li>
+                Send follow-up messages, service updates, and marketing messages by email, SMS, or
+                WhatsApp;
+              </li>
               <li>Improve our services, website, and customer experience;</li>
               <li>Comply with legal obligations.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sd-navy mb-2">
-              4. Legal Basis and Consent
-            </h2>
+            <h2 className="text-xl font-bold text-sd-navy mb-2">4. Legal Basis and Consent</h2>
             <p>
               By submitting your information on our Site, you agree to the collection and use of
               your personal data for the purposes described above, including receiving
@@ -118,8 +124,8 @@ function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-bold text-sd-navy mb-2">7. Data Retention</h2>
             <p>
-              We retain your information only for as long as necessary for the purposes described
-              in this Policy or as required by law.
+              We retain your information only for as long as necessary for the purposes described in
+              this Policy or as required by law.
             </p>
             <p className="mt-3">
               When no longer needed, your data will be securely deleted or anonymized.
@@ -129,8 +135,8 @@ function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-bold text-sd-navy mb-2">8. Data Security</h2>
             <p>
-              We implement appropriate administrative, technical, and physical safeguards to
-              protect your personal data against unauthorized access, alteration, disclosure, or
+              We implement appropriate administrative, technical, and physical safeguards to protect
+              your personal data against unauthorized access, alteration, disclosure, or
               destruction.
             </p>
           </section>
