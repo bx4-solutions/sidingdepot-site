@@ -15,7 +15,6 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
 import { MascotGreeter } from "@/components/site/MascotGreeter";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
-import { VisualEditToggle } from "@/components/VisualEditToggle";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA, LOCAL_BUSINESS_ID } from "@/lib/schema";
 import { fetchGooglePlaceStats } from "@/lib/place-stats.server";
@@ -216,11 +215,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const { googleStats, googleReviews } = Route.useLoaderData();
-  const isDev =
-    import.meta.env.DEV ||
-    (typeof window !== "undefined" &&
-      (window.location.hostname === "localhost" ||
-        window.location.hostname.includes("lovableproject.com")));
 
   // ── afterInteractive: inject GTM + GA4 only after React hydration ──────────
   // Equivalent to Next.js <Script strategy="afterInteractive">
@@ -317,7 +311,6 @@ function RootComponent() {
             <FloatingCTA />
             <AnalyticsTracker />
             <GhlChatWidget />
-            {isDev && <VisualEditToggle />}
           </div>
         </GoogleReviewsContext.Provider>
       </GoogleStatsContext.Provider>

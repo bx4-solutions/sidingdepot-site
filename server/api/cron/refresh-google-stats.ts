@@ -1,9 +1,9 @@
 /**
- * Vercel Cron endpoint — runs every 2 days at 06:00 UTC.
+ * Vercel Cron endpoint — runs every day at 06:00 UTC.
  * Fetches fresh stats from Google Places API and persists to Supabase
  * so all Vercel function instances share the updated count.
  *
- * Cron schedule: "0 6 */2 * *" (configured in vercel.json)
+ * Cron schedule: "0 6 * * *" (auto-generated from nitro.scheduledTasks in vite.config.ts)
  */
 import { defineEventHandler, createError } from "h3";
 import { refreshFromGoogle } from "../../src/lib/place-stats.server";

@@ -10,12 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WindowsRouteImport } from './routes/windows'
+import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
@@ -55,6 +57,11 @@ const WindowsRoute = WindowsRouteImport.update({
   path: '/windows',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsOfUseRoute = TermsOfUseRouteImport.update({
+  id: '/terms-of-use',
+  path: '/terms-of-use',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -83,6 +90,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaintingRoute = PaintingRouteImport.update({
@@ -266,12 +278,14 @@ export interface FileRoutesByFullPath {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -308,11 +322,13 @@ export interface FileRoutesByTo {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -350,12 +366,14 @@ export interface FileRoutesById {
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
   '/painting': typeof PaintingRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/blog-preview': typeof AdminBlogPreviewRoute
@@ -394,12 +412,14 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
+    | '/privacy-policy'
     | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -436,11 +456,13 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
+    | '/privacy-policy'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -477,12 +499,14 @@ export interface FileRouteTypes {
     | '/guide'
     | '/gutters'
     | '/painting'
+    | '/privacy-policy'
     | '/projects'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
     | '/admin/blog-preview'
@@ -520,12 +544,14 @@ export interface RootRouteChildren {
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
   PaintingRoute: typeof PaintingRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsOfUseRoute: typeof TermsOfUseRoute
   WindowsRoute: typeof WindowsRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminBlogPreviewRoute: typeof AdminBlogPreviewRoute
@@ -552,6 +578,13 @@ declare module '@tanstack/react-router' {
       path: '/windows'
       fullPath: '/windows'
       preLoaderRoute: typeof WindowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-use': {
+      id: '/terms-of-use'
+      path: '/terms-of-use'
+      fullPath: '/terms-of-use'
+      preLoaderRoute: typeof TermsOfUseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -594,6 +627,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painting': {
@@ -869,12 +909,14 @@ const rootRouteChildren: RootRouteChildren = {
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
   PaintingRoute: PaintingRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsOfUseRoute: TermsOfUseRoute,
   WindowsRoute: WindowsRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminBlogPreviewRoute: AdminBlogPreviewRoute,

@@ -1,7 +1,7 @@
 // Server-only module — safe to import from __root.tsx loader.
 // Uses Supabase as a persistent cross-instance cache so ALL Vercel function
 // instances share the same live Google Places data.
-// Google API is called at most once every 48 hours (2-day cadence).
+// Google API is called at most once every 24 hours (daily cadence).
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -10,8 +10,8 @@ const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/detail
 /** Fallback when both Supabase and Google API are unavailable. */
 export const FALLBACK_STATS = { rating: 4.7, totalReviews: 160 } as const;
 
-/** How long to use cached stats before refreshing from Google (48 hours). */
-const CACHE_TTL_MS = 48 * 60 * 60 * 1000;
+/** How long to use cached stats before refreshing from Google (24 hours). */
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 // In-memory cache within a single Nitro worker instance (fast path).
 let _memCache: { rating: number; totalReviews: number; cachedAt: number } | null = null;
