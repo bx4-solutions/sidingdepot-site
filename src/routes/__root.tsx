@@ -157,16 +157,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "preload",
         as: "image",
         href: "/hero-home.webp",
-        // @ts-ignore
-        fetchpriority: "high",
+        // @ts-ignore — React 19 needs camelCase; lowercase was dropped (no high priority)
+        fetchPriority: "high",
         media: "(min-width: 641px)",
       },
       {
         rel: "preload",
         as: "image",
         href: "/hero-home-sm.webp",
-        // @ts-ignore
-        fetchpriority: "high",
+        // @ts-ignore — React 19 needs camelCase; lowercase was dropped (no high priority)
+        fetchPriority: "high",
         media: "(max-width: 640px)",
       },
       // Preconnect para CDN próprio (OG images)

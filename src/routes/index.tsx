@@ -162,10 +162,13 @@ export const Route = createFileRoute("/")({
         rel: "preload",
         href: "/hero-home.webp",
         as: "image",
-        // @ts-expect-error — imagesrcset/imagesizes are valid but not typed in TanStack's LinkProps
-        imagesrcset: "/hero-home-sm.webp 640w, /hero-home.webp 1920w",
-        imagesizes: "(max-width: 640px) 100vw, 100vw",
-        fetchpriority: "high",
+        // React 19 expects camelCase for these <link rel=preload as=image> props; the
+        // lowercase versions were silently dropped, so the responsive/high-priority
+        // hero preload never applied (hurting mobile LCP).
+        // @ts-expect-error — imageSrcSet/imageSizes/fetchPriority not typed in TanStack's LinkProps
+        imageSrcSet: "/hero-home-sm.webp 640w, /hero-home.webp 1920w",
+        imageSizes: "(max-width: 640px) 100vw, 100vw",
+        fetchPriority: "high",
       },
     ],
     scripts: [

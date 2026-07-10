@@ -36,8 +36,9 @@ export default defineConfig(async ({ command, mode }) => {
         scheduledTasks: {
           // Every 3 days at 06:00 UTC — the Google Places API refresh.
           "0 6 */3 * *": ["google:refresh"],
-          // Every 15 minutes — keeps /admin/leads pipeline status close to real-time
-          "*/15 * * * *": ["ghl:status-sync"],
+          // Once daily at 07:00 UTC — Vercel Hobby plan allows crons at most once/day.
+          // (Was */15 min; upgrade to Pro to restore near-real-time /admin/leads sync.)
+          "0 7 * * *": ["ghl:status-sync"],
         },
       } as any),
     );
