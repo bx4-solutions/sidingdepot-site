@@ -284,7 +284,7 @@ export function ServicesHotspots() {
             >
               {/* Left — service photo */}
               <div className="relative overflow-hidden" style={{ minHeight: 260 }}>
-                <img
+                <img loading="lazy" decoding="async"
                   src={activeHotspot.image}
                   alt={activeHotspot.title}
                   className="absolute inset-0 w-full h-full object-cover"

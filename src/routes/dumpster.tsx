@@ -8,7 +8,7 @@ import {
   type FaqItem,
   type ChecklistItem,
 } from "@/components/site/ServiceLandingPage";
-import dumpsterHeroImg from "@/assets/dumpster-hero.jpg";
+import dumpsterHeroImg from "@/assets/dumpster-hero.webp";
 
 const PAGE_TITLE = "Dumpster Rental in Marietta, GA | Siding Depot — Free Estimate";
 const PAGE_DESC =

@@ -108,7 +108,7 @@ function FinancePage() {
       {/* Hero Section — illustrated banner */}
       <section className="relative w-full overflow-hidden bg-sd-black">
         <div className="absolute inset-0 z-0">
-          <img
+          <img loading="lazy" decoding="async"
             src="/finance-hero-bg.webp"
             alt=""
             aria-hidden="true"
@@ -137,7 +137,7 @@ function FinancePage() {
           <div className="mx-auto w-full rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 sm:p-12 lg:p-16">
             {/* Big GreenSky logo */}
             <header className="flex flex-col items-center">
-              <img
+              <img loading="lazy" decoding="async"
                 src={greenSkyFinancing.url}
                 alt="Financing options from GreenSky"
                 className="h-auto w-full max-w-[480px]"
@@ -146,7 +146,7 @@ function FinancePage() {
 
             {/* House photo */}
             <div className="mt-10 overflow-hidden rounded-xl">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/projects/project-1.webp"
                 alt="Modern renovated home featuring fresh siding and roofing"
                 className="h-64 w-full object-cover sm:h-80 md:h-96"
@@ -318,7 +318,7 @@ function FinancePage() {
                         key={i}
                         className="h-10 w-10 rounded-full border-2 border-sd-navy bg-sd-gray-bg overflow-hidden"
                       >
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={`/projects/project-${i}.webp`}
                           alt="Happy Customer"
                           className="h-full w-full object-cover"
@@ -335,7 +335,7 @@ function FinancePage() {
             </div>
             <div className="relative">
               <div className="aspect-video overflow-hidden rounded-2xl shadow-2xl">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/projects/project-2.webp"
                   alt="Renovated Home"
                   className="h-full w-full object-cover"

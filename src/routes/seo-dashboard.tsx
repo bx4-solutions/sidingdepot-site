@@ -565,7 +565,7 @@ function SEODashboard() {
                 )}
                 title="Português"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://flagcdn.com/w20/br.png"
                   alt="PT"
                   className="w-4 h-3 object-cover rounded-sm"
@@ -580,7 +580,7 @@ function SEODashboard() {
                 )}
                 title="English"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://flagcdn.com/w20/us.png"
                   alt="EN"
                   className="w-4 h-3 object-cover rounded-sm"

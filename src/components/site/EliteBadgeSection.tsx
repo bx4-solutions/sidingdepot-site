@@ -139,7 +139,7 @@ export function EliteBadgeSection() {
         </div>
 
         {/* Secondary credentials row */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           {[
             {
               name: "GuildQuality",
@@ -174,7 +174,7 @@ export function EliteBadgeSection() {
           ].map((c) => {
             const inner = (
               <div
-                className="rounded-2xl p-5 h-full flex flex-col gap-2 bg-white transition-all hover:shadow-lg"
+                className="rounded-2xl p-4 sm:p-5 h-full flex flex-col gap-2 bg-white transition-all hover:shadow-lg"
                 style={{
                   border: `2px solid ${SD_LIME}`,
                   boxShadow: "0 2px 8px rgba(0,0,0,0.06)",

@@ -12,6 +12,9 @@ export default defineConfig(async ({ command, mode }) => {
     tailwindcss(),
     tanstackStart({
       server: { entry: "server" },
+      serverFns: {
+        disableCsrfMiddlewareWarning: true,
+      },
       // Prevents server-only code (server/**, "server-only" imports) from leaking into the client bundle.
       importProtection: {
         behavior: "error",
@@ -31,8 +34,10 @@ export default defineConfig(async ({ command, mode }) => {
         preset: "vercel",
         experimental: { tasks: true },
         scheduledTasks: {
-          // Every day at 06:00 UTC
-          "0 6 * * *": ["google:refresh"],
+          // Every 3 days at 06:00 UTC — the Google Places API refresh.
+          "0 6 */3 * *": ["google:refresh"],
+          // Every 15 minutes — keeps /admin/leads pipeline status close to real-time
+          "*/15 * * * *": ["ghl:status-sync"],
         },
       } as any),
     );

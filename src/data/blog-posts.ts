@@ -811,7 +811,7 @@ export const BLOG_POSTS: BlogPost[] = [
         h2: "Why Installation Quality is 50% of the Equation",
         content: `Even the best siding material will fail if not installed correctly. Fiber cement is a heavy, masonry-based product that requires precise nailing, correct flashing at transitions, and proper clearance from roofs and soil. \n\nSiding Depot differs from many Atlanta remodelers by using **in-house certified installation crews** rather than day laborers. This allows us to guarantee consistent quality, strict adherence to manufacturer specifications, and a worry-free experience on every [siding replacement in Marietta](/locations/marietta/siding) and [Alpharetta](/locations/alpharetta/siding). Our crews handle the entire process, including old siding removal, sheathing inspection, and the integration of high-performance moisture barriers.`,
         image: {
-          url: "/src/assets/siding-installation-crews.png",
+          url: "/siding-installation-crews.webp",
           alt: "Siding Depot professional installation crew installing gray fiber cement lap siding on a traditional home in Atlanta",
           caption:
             "Specialized installation by a professional crew ensures the weather barrier and siding panels act as a unified, weather-tight shield for your home.",

@@ -51,7 +51,7 @@ export function HeroSection({
   const trustIcons = [Award, ShieldCheck, Clock];
 
   return (
-    <section className="relative isolate overflow-hidden min-h-screen lg:min-h-[100vh] flex items-center">
+    <section className="relative isolate overflow-hidden min-h-[70vh] lg:min-h-[100vh] flex items-center">
       {bgVideo ? (
         <HeroVideoBg videoId={bgVideo} fallbackImg={bgImage} fallbackImgMobile={bgImageMobile} />
       ) : (
@@ -84,14 +84,21 @@ export function HeroSection({
         <div className={alignCenter ? "flex flex-col items-center text-center mx-auto" : ""}>
           {badge && (
             <span
-              className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
+              className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5 text-center"
               style={{
                 background: "rgba(179,209,51,0.15)",
                 border: "1px solid #B3D133",
                 color: "#B3D133",
               }}
             >
-              {badge}
+              {badge.includes(" · ")
+                ? badge.split(" · ").map((part, i) => (
+                    <span key={i} className="block sm:inline">
+                      {i > 0 && <span className="hidden sm:inline"> · </span>}
+                      {part}
+                    </span>
+                  ))
+                : badge}
             </span>
           )}
           <h1

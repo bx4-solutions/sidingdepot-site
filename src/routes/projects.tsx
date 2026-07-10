@@ -318,7 +318,7 @@ function MediaModal({ project, onClose }: { project: Project; onClose: () => voi
         ) : isBeforeAfter ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 rounded-2xl overflow-hidden bg-black shadow-2xl">
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={pairs[idx].before}
                 alt="Before"
                 className="w-full h-[45vh] sm:h-[65vh] object-contain bg-black"
@@ -328,7 +328,7 @@ function MediaModal({ project, onClose }: { project: Project; onClose: () => voi
               </span>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={pairs[idx].after}
                 alt="After"
                 className="w-full h-[45vh] sm:h-[65vh] object-contain bg-black"
@@ -343,7 +343,7 @@ function MediaModal({ project, onClose }: { project: Project; onClose: () => voi
           </div>
         ) : slides.length > 0 ? (
           <div className="relative rounded-2xl overflow-hidden bg-black shadow-2xl">
-            <img
+            <img loading="lazy" decoding="async"
               src={slides[idx]}
               alt={`${project.title} — ${idx + 1}`}
               className="w-full h-[70vh] object-contain bg-black"

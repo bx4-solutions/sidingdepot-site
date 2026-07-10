@@ -1,5 +1,3 @@
-import { GuildQualityEmbed } from "@/components/site/GuildQualityEmbed";
-
 export function GuildQualityReviews() {
   const ratingRows = [
     { stars: 5, count: 206, total: 261 },
@@ -58,7 +56,7 @@ export function GuildQualityReviews() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           {/* LEFT — Satisfaction bars */}
           <div>
             {/* About surveys box */}
@@ -122,28 +120,12 @@ export function GuildQualityReviews() {
                 </div>
               </div>
 
-              {/* Project map */}
-              <div className="rounded-lg overflow-hidden h-[200px]">
-                <iframe
-                  src="https://www.guildquality.com/embed/projects/NDAzMDQ0"
-                  title="Siding Depot project map"
-                  style={{ padding: 0, margin: 0, border: 0, height: "100%", width: "100%" }}
-                  loading="lazy"
-                />
-              </div>
               <p className="text-[11px] text-gray-400 mt-2 text-center">
                 569 projects across North Atlanta
               </p>
             </div>
           </div>
 
-          {/* RIGHT — Recent reviews */}
-          <div>
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
-              Recent Reviews
-            </p>
-            <GuildQualityEmbed />
-          </div>
         </div>
       </div>
     </section>

@@ -11,9 +11,8 @@ import { ServicesHotspots } from "@/components/site/ServicesHotspots";
 import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { SERVICES, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import { QuickQuoteForm } from "@/components/site/QuickQuoteForm";
 import { lazy, Suspense } from "react";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.webp";
 
 const PARTNER_LOGOS = [
   "https://images.leadconnectorhq.com/image/f_webp/q_70/r_320/u_https://assets.cdn.filesafe.space/VPwAmJKkB62wR0BJhYil/media/68b594a44584e19b5e18190f.svg",
@@ -59,6 +58,10 @@ const GoogleReviewsCarousel = lazy(() =>
   import("@/components/site/GoogleReviewsCarousel").then((m) => ({
     default: m.GoogleReviewsCarousel,
   })),
+);
+// Below-fold quote form — lazy so zod + react-hook-form stay out of the initial home chunk.
+const QuickQuoteForm = lazy(() =>
+  import("@/components/site/QuickQuoteForm").then((m) => ({ default: m.QuickQuoteForm })),
 );
 const HOME_VIDEOS = [
   {
@@ -178,8 +181,8 @@ export const Route = createFileRoute("/")({
 const WHY_US = [
   {
     num: "01",
-    title: "Elite Contractor · Top 2%",
-    desc: "James Hardie's highest contractor tier — fewer than 2% of US installers qualify.",
+    title: "#1 James Hardie Elite Contractor",
+    desc: "Siding Depot is a trusted James Hardie siding contractor serving Marietta and North Atlanta, specializing in premium fiber cement siding installation and replacement.",
   },
   {
     num: "02",
@@ -260,7 +263,7 @@ function HomePage() {
       {/* CERTIFICATIONS / TRUSTED PARTNERS MARQUEE (acima de "Explore Our Services") */}
       <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
         <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
-          Trusted partners &amp; manufacturers
+          Trusted partners &amp; credentials
         </p>
         {/* Marquee track — duplicated for seamless loop */}
         <div className="relative flex">
@@ -291,7 +294,11 @@ function HomePage() {
         `}</style>
       </section>
 
-      <ServicesHotspots />
+      {/* Oculto no mobile — no celular esta seção fica repetitiva com a "SERVICES GRID" abaixo.
+          Visível a partir de md (tablet/desktop), onde o mapa interativo de hotspots agrega valor. */}
+      <div className="hidden md:block">
+        <ServicesHotspots />
+      </div>
 
       {/* SERVICES GRID */}
       <section
@@ -471,7 +478,9 @@ function HomePage() {
           </div>
 
           <div className="flex justify-center">
-            <QuickQuoteForm source="home_quote_section" tag="quote_request" />
+            <Suspense fallback={null}>
+              <QuickQuoteForm source="home_quote_section" tag="quote_request" />
+            </Suspense>
           </div>
         </div>
       </section>

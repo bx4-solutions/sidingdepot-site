@@ -50,7 +50,7 @@ export function ProofBar() {
               href="/#james-hardie-section"
               className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2.5 min-h-[48px] w-full hover:bg-white/5 active:bg-white/5 transition-colors"
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={jamesHardieBadge}
                 alt="JAMES HARDIE ELITE CONTRACTOR"
                 className="h-8 w-auto shrink-0"

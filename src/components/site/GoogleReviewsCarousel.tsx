@@ -58,7 +58,7 @@ function GoogleReviewCard({ review }: { review: GoogleReview }) {
       {/* Header */}
       <div className="flex items-center gap-3">
         {review.author_photo_url ? (
-          <img
+          <img loading="lazy" decoding="async"
             src={review.author_photo_url}
             alt={review.author_name}
             className="h-10 w-10 rounded-full object-cover shrink-0"

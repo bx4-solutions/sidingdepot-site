@@ -1,6 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
-import { SITE } from "@/data/site";
-import { track, getAttribution } from "@/lib/track";
+import { track, getAttribution, getVisitorId } from "@/lib/track";
+import { getDeviceType, getBrowser, getOS } from "@/lib/device-detect";
+import { submitLeadToGhl } from "@/lib/ghl-lead.functions";
 
 export type LeadPayload = {
   name: string;
@@ -14,102 +15,113 @@ export type LeadPayload = {
   consent?: boolean;
 };
 
+function deriveSourcePlatform(attribution: Record<string, string>): string {
+  const gclid = attribution.gclid;
+  const fbclid = attribution.fbclid;
+  if (gclid) return "Google Ads";
+  if (fbclid) return "Meta Paid";
+  const src = (attribution.utm_source ?? "").toLowerCase();
+  const med = (attribution.utm_medium ?? "").toLowerCase();
+  if (src === "lsa") return "LSA";
+  if (src === "gmb" || src === "google_business_profile") return "GMB";
+  if (src === "google" && (med === "cpc" || med === "ppc")) return "Google Ads";
+  if (src === "google") return "Google Organic";
+  if (src === "instagram") return "Instagram";
+  if (src === "facebook" || src === "fb") return "Facebook";
+  if (src) return src;
+  return "Direct";
+}
+
 export async function submitLead(payload: LeadPayload) {
   const { name, phone, email, city, services, details, source, tag, consent } = payload;
   const attribution = typeof window !== "undefined" ? getAttribution() : {};
-  const gclid = attribution.gclid ?? null;
-  const fbclid = attribution.fbclid ?? null;
-
-  function deriveSourcePlatform(): string {
-    if (gclid) return "Google Ads";
-    if (fbclid) return "Meta Paid";
-    const src = (attribution.utm_source ?? "").toLowerCase();
-    const med = (attribution.utm_medium ?? "").toLowerCase();
-    if (src === "lsa") return "LSA";
-    if (src === "gmb" || src === "google_business_profile") return "GMB";
-    if (src === "google" && (med === "cpc" || med === "ppc")) return "Google Ads";
-    if (src === "google") return "Google Organic";
-    if (src === "instagram") return "Instagram";
-    if (src === "facebook" || src === "fb") return "Facebook";
-    if (src) return src;
-    return "Direct";
-  }
+  const sourcePlatform = deriveSourcePlatform(attribution);
+  const visitorId = typeof window !== "undefined" ? getVisitorId() : "";
+  const pageUrl = typeof window !== "undefined" ? window.location.href : "";
+  const deviceType = typeof window !== "undefined" ? getDeviceType() : "";
+  const browser = typeof window !== "undefined" ? getBrowser() : "";
+  const os = typeof window !== "undefined" ? getOS() : "";
 
   try {
-    // 1. Save to Supabase
-    const { error: dbError } = await supabase.from("leads").insert({
-      name,
-      phone,
-      email: email || null,
-      city: city || "",
-      services: services || [],
-      details: details || null,
-      consent: consent || false,
-      source,
-      tag,
-      utm_source: attribution.utm_source ?? null,
-      utm_medium: attribution.utm_medium ?? null,
-      utm_campaign: attribution.utm_campaign ?? null,
-      gclid,
-      fbclid,
-      source_platform: deriveSourcePlatform(),
-      page_url: typeof window !== "undefined" ? window.location.href : null,
-    });
+    // 1. Save to Supabase — full attribution snapshot, not just the basics.
+    const { data: inserted, error: dbError } = await supabase
+      .from("leads")
+      .insert({
+        name,
+        phone,
+        email: email || null,
+        city: city || "",
+        services: services || [],
+        details: details || null,
+        consent: consent || false,
+        source,
+        tag,
+        utm_source: attribution.utm_source ?? null,
+        utm_medium: attribution.utm_medium ?? null,
+        utm_campaign: attribution.utm_campaign ?? null,
+        utm_content: attribution.utm_content ?? null,
+        utm_term: attribution.utm_term ?? null,
+        gclid: attribution.gclid ?? null,
+        fbclid: attribution.fbclid ?? null,
+        source_platform: sourcePlatform,
+        page_url: pageUrl,
+        landing_page: attribution.landing_page ?? null,
+        referrer: attribution.referrer ?? null,
+        visitor_id: visitorId || null,
+        device_type: deviceType || null,
+        browser: browser || null,
+        os: os || null,
+      })
+      .select("id")
+      .single();
 
     if (dbError) {
       console.error("Database error:", dbError);
-      // We still continue to webhook if database fails,
-      // but we should probably track this error.
     }
 
-    // 2. Send to GHL Webhook (only if enabled in site_settings table)
-    const { data: settings } = await supabase
-      .from("site_settings")
-      .select("key, value")
-      .in("key", ["ghl_webhook_enabled", "ghl_webhook_url"]);
-
-    const settingsMap = Object.fromEntries(
-      (settings ?? []).map((r: { key: string; value: string }) => [r.key, r.value]),
-    );
-
-    const webhookEnabled = settingsMap["ghl_webhook_enabled"] !== "false";
-    // DB URL takes priority over env var — lets you change it without redeploying
-    const webhookUrl = settingsMap["ghl_webhook_url"] || SITE.ghlWebhookUrl;
-
-    if (webhookEnabled && webhookUrl) {
-      const ghlPayload = {
-        first_name: name.split(" ")[0],
-        last_name: name.split(" ").slice(1).join(" ") || " ",
+    // 2. Send to GHL via a server function (API key never touches the browser).
+    //    createServerFn is the pattern this TanStack Start build actually serves;
+    //    the old fetch("/api/submit-lead") route was never mounted (always 404).
+    const result = await submitLeadToGhl({
+      data: {
+        name,
         phone,
         email: email || "",
         city: city || "",
         services: services || [],
-        service: services?.join(", ") || "",
         details: details || "",
         source,
         tag,
-        submittedAt: new Date().toISOString(),
         utm_source: attribution.utm_source ?? null,
         utm_medium: attribution.utm_medium ?? null,
         utm_campaign: attribution.utm_campaign ?? null,
-        utm_content: (attribution as Record<string, string>).utm_content ?? null,
-        utm_term: (attribution as Record<string, string>).utm_term ?? null,
-        gclid,
-        fbclid,
-        source_platform: deriveSourcePlatform(),
-        page_url: typeof window !== "undefined" ? window.location.href : "",
-        referrer: typeof document !== "undefined" ? document.referrer : "",
-      };
+        utm_content: attribution.utm_content ?? null,
+        utm_term: attribution.utm_term ?? null,
+        gclid: attribution.gclid ?? null,
+        fbclid: attribution.fbclid ?? null,
+        source_platform: sourcePlatform,
+        page_url: pageUrl,
+        landing_page: attribution.landing_page ?? null,
+        referrer: attribution.referrer ?? null,
+        visitor_id: visitorId,
+        device_type: deviceType,
+        browser,
+        os,
+      },
+    }).catch((err) => {
+      console.warn("GHL submit failed:", err);
+      return null;
+    });
 
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ghlPayload),
-      });
-
-      if (!response.ok) {
-        console.warn("GHL webhook responded with:", response.status);
-      }
+    if (result?.ghl && inserted?.id) {
+      await supabase
+        .from("leads")
+        .update({
+          ghl_contact_id: result.ghl_contact_id ?? null,
+          ghl_opportunity_id: result.ghl_opportunity_id ?? null,
+          ghl_synced_at: new Date().toISOString(),
+        })
+        .eq("id", inserted.id);
     }
 
     track("lead_submission_success", { source, tag });

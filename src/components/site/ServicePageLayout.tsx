@@ -45,7 +45,7 @@ import {
 } from "@/components/site/SupplierBrandSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { useGoogleStats } from "@/lib/google-stats-context";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.webp";
 
 // ─── Brand tokens ─────────────────────────────────────────────────────────────
 const SD_NAVY = "#1e2a3a";
@@ -475,7 +475,7 @@ function ServiceOptions({
               border: "1px solid rgba(179,209,51,0.2)",
             }}
           >
-            <img
+            <img loading="lazy" decoding="async"
               src={activeOpt.image}
               alt={activeOpt.title}
               className="rounded-xl w-full object-cover"
@@ -792,8 +792,8 @@ function AuthoritySection({ cfg }: { cfg: ServicePageConfig }) {
 const WHY_US_ITEMS = [
   {
     Icon: Award,
-    title: "Elite Contractor — Top 2% in the US",
-    desc: "One of fewer than 2% of US installers to hold James Hardie Elite Contractor status. This certification is renewed annually and unlocks warranty coverage no standard contractor can offer.",
+    title: "#1 James Hardie Elite Contractor",
+    desc: "Siding Depot is a trusted James Hardie siding contractor serving Marietta and North Atlanta, specializing in premium fiber cement siding installation and replacement.",
   },
   {
     Icon: ShieldCheck,

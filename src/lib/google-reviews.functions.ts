@@ -7,7 +7,7 @@ import { getPlaceStatsCache } from "@/lib/place-stats.server";
 const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/details/json";
 
 export const syncGoogleReviews = createServerFn({ method: "POST" })
-  .inputValidator((data) => z.object({ placeId: z.string() }).parse(data))
+  .validator((data: unknown) => z.object({ placeId: z.string() }).parse(data))
   .handler(async ({ data }) => {
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
     if (!apiKey) {
@@ -104,8 +104,8 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
 
     // Reuse the shared cache to avoid extra Google API calls
     const cache = getPlaceStatsCache();
-    const overallRating = cache?.rating ?? 4.7;
-    const totalReviews = cache?.totalReviews ?? 160;
+    const overallRating = cache?.rating ?? 4.5;
+    const totalReviews = cache?.totalReviews ?? 166;
 
     if (error) {
       console.error("Error fetching reviews:", error);
@@ -120,6 +120,6 @@ export const getGoogleReviews = createServerFn({ method: "GET" }).handler(async 
     };
   } catch (err: any) {
     console.error("getGoogleReviews failed (likely missing server env):", err?.message);
-    return { reviews: [], overallRating: 4.7, totalReviews: 160, shouldSync: false };
+    return { reviews: [], overallRating: 4.5, totalReviews: 166, shouldSync: false };
   }
 });

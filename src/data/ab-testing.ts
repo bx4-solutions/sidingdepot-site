@@ -136,7 +136,7 @@ export const AB_CONTENT: Record<string, Record<ABVariation, ServiceCopy>> = {
 export const SOCIAL_PROOF: Record<string, SocialProof> = {
   siding: {
     stats: [
-      { value: "⭐ 4.7", label: "160 Google Reviews", icon: Star },
+      { value: "⭐ 4.5", label: "166 Google Reviews", icon: Star },
       { value: "🏆 Elite Contractor", label: "Top 2% US", icon: Award },
       { value: "🔨 4.7", label: "256 GuildQuality Reviews", icon: Users },
       { value: "🏠 1,500+", label: "Homes in North Atlanta", icon: MapPin },

@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import { getAttribution, getVisitorId } from "@/lib/track";
+import { getDeviceType, getBrowser, getOS } from "@/lib/device-detect";
+import { enrichGhlFromWidget } from "@/lib/ghl-lead.functions";
 
 /**
  * GhlChatWidget — lazy-loads the GHL chat widget after user interaction.
@@ -50,15 +53,27 @@ export function GhlChatWidget() {
           }
           try {
             const payload = e.data.data || e.data.payload || e.data || {};
-            fetch("/api/ghl-webhook", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(
-                Object.assign({}, payload, {
-                  page_url: window.location.href,
-                  source: "ghl-chat-widget",
-                }),
-              ),
+            const attribution = getAttribution();
+            // createServerFn call — the old fetch("/api/ghl-webhook") route was
+            // never mounted in this build (always 404). Fire-and-forget.
+            enrichGhlFromWidget({
+              data: Object.assign({}, payload, {
+                page_url: window.location.href,
+                source: "ghl-chat-widget",
+                utm_source: attribution.utm_source ?? null,
+                utm_medium: attribution.utm_medium ?? null,
+                utm_campaign: attribution.utm_campaign ?? null,
+                utm_content: attribution.utm_content ?? null,
+                utm_term: attribution.utm_term ?? null,
+                gclid: attribution.gclid ?? null,
+                fbclid: attribution.fbclid ?? null,
+                landing_page: attribution.landing_page ?? null,
+                referrer: attribution.referrer ?? null,
+                visitor_id: getVisitorId(),
+                device_type: getDeviceType(),
+                browser: getBrowser(),
+                os: getOS(),
+              }),
             }).catch(() => {});
           } catch (_) {}
         }

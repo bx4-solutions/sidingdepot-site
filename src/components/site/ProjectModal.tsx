@@ -37,7 +37,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNex
           <div className="grid lg:grid-cols-[1.4fr_1fr]">
             {/* Image */}
             <div className="relative bg-sd-black aspect-[4/3] lg:aspect-auto lg:min-h-[480px]">
-              <img
+              <img loading="lazy" decoding="async"
                 src={project.src}
                 alt={project.alt}
                 className="absolute inset-0 h-full w-full object-cover"

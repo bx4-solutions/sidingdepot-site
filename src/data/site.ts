@@ -164,11 +164,11 @@ export const STATS = [
   { value: "1,500+", label: "Homes in North Atlanta" },
   { value: "20+", label: "Years in Georgia" },
   { value: "98%", label: "5-Star Reviews" },
-  { value: "4.7★", label: "Google Rating" },
+  { value: "4.5★", label: "Google Rating" },
 ] as const;
 
 export const PROOF_BAR = [
-  { icon: "⭐", label: "4.7 · 160 Google Reviews" },
+  { icon: "⭐", label: "4.5 · 166 Google Reviews" },
   { icon: "🏆", label: "James Hardie Elite Contractor · Marietta, GA" },
   { icon: "🔨", label: "4.7 · 256 GuildQuality Reviews" },
   { icon: "🏠", label: "1,500+ North Atlanta Homes" },
@@ -283,10 +283,10 @@ export function formatProjectDate(iso?: string): string {
 
 export const BEFORE_AFTER_PAIRS = [
   {
-    before: "/projects/project-1-before.webp",
-    after: "/projects/project-1.webp",
-    beforeAlt: "Marietta home before renovation with peeling paint and worn siding",
-    afterAlt: "Same Marietta home transformed with James Hardie blue siding by Siding Depot",
+    before: "/projects/home-before.webp",
+    after: "/projects/home-after.webp",
+    beforeAlt: "Marietta home before renovation with faded tan siding and worn trim",
+    afterAlt: "Same Marietta home transformed with dark olive-green James Hardie siding and black trim by Siding Depot",
   },
   {
     before: "/projects/project-5-before.webp",

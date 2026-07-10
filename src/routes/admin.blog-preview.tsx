@@ -95,7 +95,7 @@ function SEOPreview({ post }: { post: BlogPost }) {
         </div>
         <div className="max-w-[500px] border rounded-xl overflow-hidden bg-[#F2F3F5]">
           <div className="aspect-[1.91/1] overflow-hidden relative border-b">
-            <img src={ogImageUrl} alt="OG Preview" className="w-full h-full object-cover" />
+            <img loading="lazy" decoding="async" src={ogImageUrl} alt="OG Preview" className="w-full h-full object-cover" />
           </div>
           <div className="p-3 bg-white">
             <div className="text-[12px] text-gray-500 uppercase font-medium mb-0.5 tracking-tight">
@@ -410,7 +410,7 @@ function BlogAdminPreview() {
               >
                 <div className="flex flex-col md:flex-row">
                   <div className="md:w-64 h-48 md:h-auto relative shrink-0">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={post.heroImage.url}
                       alt={post.heroImage.alt}
                       className="absolute inset-0 w-full h-full object-cover"

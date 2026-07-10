@@ -50,7 +50,7 @@ export function PartnersCarousel() {
               className="flex-shrink-0 flex items-center justify-center h-16 sm:h-24"
               style={{ width: `clamp(110px, 34vw, ${p.w + 40}px)` }}
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={p.src}
                 alt={p.name}
                 className="object-contain select-none h-12 sm:h-20 w-auto max-w-full"

@@ -19,9 +19,9 @@ import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
-import sidingHouseHeroAsset from "@/assets/siding-house-hero-pool.jpg";
-import sidingInstallationCrews from "@/assets/siding-installation-crews.jpg";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import sidingHouseHeroAsset from "@/assets/siding-house-hero-pool.webp";
+import sidingInstallationCrews from "@/assets/siding-installation-crews.webp";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.webp";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { EliteBadgeSection } from "@/components/site/EliteBadgeSection";
 import { RelatedServices } from "@/components/site/ServicePageLayout";
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/siding")({
       return { reviewsData };
     } catch (error) {
       console.error("Failed to load reviews in siding loader:", error);
-      return { reviewsData: { reviews: [], overallRating: 4.7, totalReviews: 160 } };
+      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 166 } };
     }
   },
   head: () => ({
@@ -509,7 +509,7 @@ function SidingTypesSection() {
               border: "1px solid rgba(179,209,51,0.2)",
             }}
           >
-            <img
+            <img loading="lazy" decoding="async"
               src={activeType.image}
               alt={activeType.title}
               className="rounded-xl w-full object-cover"
@@ -1002,8 +1002,8 @@ function BeforeAfterCarousel() {
 const HIRING_CHECKLIST = [
   {
     Icon: Award,
-    title: "Elite Contractor — Top 2% in the US",
-    desc: "One of the few certified James Hardie Elite Contractor installers in Cherokee and Cobb County. This status qualifies your project for the extended 30-year non-prorated warranty — not available from standard installers.",
+    title: "#1 James Hardie Elite Contractor",
+    desc: "Siding Depot is a trusted James Hardie siding contractor serving Marietta and North Atlanta, specializing in premium fiber cement siding installation and replacement.",
   },
   {
     Icon: ShieldCheck,

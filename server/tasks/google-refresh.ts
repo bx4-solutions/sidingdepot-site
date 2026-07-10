@@ -1,7 +1,7 @@
 /**
  * Nitro scheduled task: google:refresh
  * Registered in vite.config.ts -> nitro.scheduledTasks
- * Called by Vercel Cron every 2 days via /_vercel/cron route.
+ * Called by Vercel Cron every 3 days via /_vercel/cron route.
  */
 import { defineTask } from "nitropack/runtime";
 import { refreshFromGoogle } from "../src/lib/place-stats.server";

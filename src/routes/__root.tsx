@@ -99,9 +99,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
     const [googleStats, reviewsData] = await Promise.all([
       withTimeout(
-        fetchGooglePlaceStats().catch(() => ({ rating: 4.7, totalReviews: 159 })),
+        fetchGooglePlaceStats().catch(() => ({ rating: 4.5, totalReviews: 166 })),
         2500,
-        { rating: 4.7, totalReviews: 159 },
+        { rating: 4.5, totalReviews: 166 },
       ),
       withTimeout(
         getGoogleReviews().catch(() => ({ reviews: [] as any[] })),

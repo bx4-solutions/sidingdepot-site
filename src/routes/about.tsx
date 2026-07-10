@@ -5,7 +5,7 @@ import { YoutubeEmbed } from "@/components/site/YoutubeEmbed";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { SITE } from "@/data/site";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
-import teamPhoto from "@/assets/team-photo.png";
+import teamPhoto from "@/assets/team-photo.webp";
 
 const LucideFacebook = ({ className }: { className?: string }) => (
   <svg
@@ -346,7 +346,7 @@ function AboutPage() {
       {/* PARTNERS / BRAND MARQUEE */}
       <section className="py-16 bg-white border-y border-sd-gray-border overflow-hidden">
         <p className="text-center text-xs font-bold tracking-[0.12em] uppercase text-sd-gray-text mb-8">
-          Trusted partners &amp; manufacturers
+          Trusted partners &amp; credentials
         </p>
         {/* Marquee track — duplicated for seamless loop */}
         <div className="relative flex">

@@ -87,7 +87,7 @@ const REVIEWS = [
 const STATS = [
   { value: "1,500+", label: "Homes Transformed" },
   { value: "20+", label: "Years in Georgia" },
-  { value: "4.7★", label: "Google Rating" },
+  { value: "4.5★", label: "Google Rating" },
   { value: "98%", label: "Customer Satisfaction" },
 ] as const;
 
@@ -205,7 +205,7 @@ export function SidingLP({ city }: SidingLPProps) {
             <div className="w-full max-w-[300px] md:max-w-[200px] lg:max-w-[280px] shrink-0">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-sd-green/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <img
+                <img loading="lazy" decoding="async"
                   src="/projects/jh-project-hero.jpeg"
                   alt="James Hardie Siding Project Portfolio"
                   className="relative rounded-2xl shadow-2xl border-4 border-white/10 w-full object-cover aspect-[4/5] transform hover:scale-105 transition-transform duration-500"

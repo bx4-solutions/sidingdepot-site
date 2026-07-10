@@ -23,8 +23,8 @@ import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
 import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
-import windowsHeroImg from "@/assets/windows-hero.jpg";
-import jamesHardieBadge from "@/assets/james-hardie-elite-badge.png";
+import windowsHeroImg from "@/assets/windows-hero.webp";
+import jamesHardieBadge from "@/assets/james-hardie-elite-badge.webp";
 import { GoogleReviewsCarousel } from "@/components/site/GoogleReviewsCarousel";
 import { ProofBar } from "@/components/site/ProofBar";
 import { RelatedServices } from "@/components/site/ServicePageLayout";
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/windows")({
       return { reviewsData };
     } catch (error) {
       console.error("Failed to load reviews in windows loader:", error);
-      return { reviewsData: { reviews: [], overallRating: 4.7, totalReviews: 160 } };
+      return { reviewsData: { reviews: [], overallRating: 4.5, totalReviews: 166 } };
     }
   },
   head: () => ({
@@ -533,7 +533,7 @@ function WindowTypesSection() {
               border: "1px solid rgba(179,209,51,0.2)",
             }}
           >
-            <img
+            <img loading="lazy" decoding="async"
               src={activeType.image}
               alt={activeType.title}
               className="rounded-xl w-full object-cover"

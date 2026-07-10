@@ -1,17 +1,17 @@
 // Server-only module — safe to import from __root.tsx loader.
 // Uses Supabase as a persistent cross-instance cache so ALL Vercel function
 // instances share the same live Google Places data.
-// Google API is called at most once every 24 hours (daily cadence).
+// Google API is called at most once every 72 hours.
 
 import { createClient } from "@supabase/supabase-js";
 
 const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/details/json";
 
 /** Fallback when both Supabase and Google API are unavailable. */
-export const FALLBACK_STATS = { rating: 4.7, totalReviews: 160 } as const;
+export const FALLBACK_STATS = { rating: 4.5, totalReviews: 166 } as const;
 
-/** How long to use cached stats before refreshing from Google (24 hours). */
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+/** How long to use cached stats before refreshing from Google (72 hours). */
+const CACHE_TTL_MS = 72 * 60 * 60 * 1000;
 
 // In-memory cache within a single Nitro worker instance (fast path).
 let _memCache: { rating: number; totalReviews: number; cachedAt: number } | null = null;
@@ -125,8 +125,17 @@ export async function fetchGooglePlaceStats(): Promise<{ rating: number; totalRe
     }
   }
 
-  // 3. Supabase data is stale (or missing) — call Google API and refresh
-  return refreshFromGoogle();
+  // 3. Supabase data is stale (or missing) — call Google API to refresh.
+  //    If Google is unavailable and we returned the hardcoded fallback, prefer the
+  //    last known Supabase value (even if stale) so the count never "drops" to the
+  //    static number just because a single API call failed.
+  const live = await refreshFromGoogle();
+  const isHardcodedFallback =
+    live.rating === FALLBACK_STATS.rating && live.totalReviews === FALLBACK_STATS.totalReviews;
+  if (isHardcodedFallback && supabaseData) {
+    return { rating: supabaseData.rating, totalReviews: supabaseData.totalReviews };
+  }
+  return live;
 }
 
 /** Read the in-memory cache for use by getGoogleReviews (zero extra API calls). */

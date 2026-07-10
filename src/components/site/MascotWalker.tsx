@@ -17,7 +17,7 @@ export function MascotWalker({
   size = 120,
   bottom = 16,
   speed = 40,
-  src = "/mascot.png",
+  src = "/mascot.webp",
 }: MascotWalkerProps) {
   const [mounted, setMounted] = useState(false);
 

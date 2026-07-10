@@ -77,7 +77,7 @@ function HotspotCalibrator() {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
           >
-            <img
+            <img loading="lazy" decoding="async"
               src="/projects/project-2.webp"
               alt="House"
               className="w-full h-full object-cover block pointer-events-none"

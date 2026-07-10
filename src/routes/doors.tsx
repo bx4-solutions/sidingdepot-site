@@ -8,7 +8,7 @@ import {
   getBreadcrumbSchema,
 } from "@/lib/schema";
 
-import doorsHeroImg from "@/assets/doors-hero.jpg";
+import doorsHeroImg from "@/assets/doors-hero.webp";
 const HERO_IMAGE = doorsHeroImg;
 const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
 const CANONICAL = "https://sidingdepot.com/doors";

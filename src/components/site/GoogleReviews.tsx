@@ -183,16 +183,16 @@ export function GoogleReviews() {
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star
                     key={s}
-                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.7) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
+                    className={`h-5 w-5 ${s <= ((remoteData as any)?.overallRating || 4.5) ? "fill-sd-green text-sd-green" : "text-gray-300"}`}
                     aria-hidden="true"
                   />
                 ))}
               </div>
               <span className="font-bold text-sd-black">
-                {(remoteData as any)?.overallRating || "4.7"}/5.0
+                {(remoteData as any)?.overallRating || "4.5"}/5.0
               </span>
               <span className="text-sd-gray-text">
-                ({(remoteData as any)?.totalReviews || "160"} Reviews)
+                ({(remoteData as any)?.totalReviews || "166"} Reviews)
               </span>
             </div>
           </div>
@@ -300,7 +300,7 @@ export function GoogleReviews() {
                 </div>
                 <p className="text-sm text-sd-gray-text flex-grow italic">"{r.text}"</p>
                 <div className="mt-4 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-sd-green">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png"
                     alt="Google"
                     width="46"

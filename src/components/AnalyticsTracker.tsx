@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 import { useLocation } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import type { RealtimeChannel } from "@supabase/supabase-js";
+import { getDeviceType, getBrowser, getOS } from "@/lib/device-detect";
 
 // ─── Session helpers ─────────────────────────────────────────────────────────
 
@@ -21,36 +22,6 @@ const generateSessionId = (): string => {
   const id = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
   sessionStorage.setItem("sd_session_id", id);
   return id;
-};
-
-// ─── Device / Browser / OS detection ─────────────────────────────────────────
-
-const getDeviceType = (): string => {
-  const ua = navigator.userAgent;
-  if (/tablet|ipad|playbook|silk/i.test(ua)) return "tablet";
-  if (/mobile|iphone|ipod|android|blackberry|opera mini|iemobile/i.test(ua)) return "mobile";
-  return "desktop";
-};
-
-const getBrowser = (): string => {
-  const ua = navigator.userAgent;
-  if (ua.includes("Firefox")) return "Firefox";
-  if (ua.includes("SamsungBrowser")) return "Samsung Browser";
-  if (ua.includes("OPR") || ua.includes("Opera")) return "Opera";
-  if (ua.includes("Edg")) return "Edge";
-  if (ua.includes("Chrome")) return "Chrome";
-  if (ua.includes("Safari")) return "Safari";
-  return "Other";
-};
-
-const getOS = (): string => {
-  const ua = navigator.userAgent;
-  if (ua.includes("Win")) return "Windows";
-  if (ua.includes("Mac")) return "macOS";
-  if (ua.includes("Android")) return "Android";
-  if (/iPhone|iPad|iOS/.test(ua)) return "iOS";
-  if (ua.includes("Linux")) return "Linux";
-  return "Other";
 };
 
 function deriveSourcePlatform(
