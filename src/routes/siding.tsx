@@ -37,7 +37,7 @@ const SERVICE_KEY = "siding";
 const CITY = "Marietta & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 const HERO_IMAGE = sidingHouseHeroAsset;
-const OG_IMAGE = "https://sidingdepot.com/og-default.webp"; // absolute for OG crawlers
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp"; // absolute for OG crawlers
 
 export const Route = createFileRoute("/siding")({
   loader: async () => {
@@ -59,12 +59,12 @@ export const Route = createFileRoute("/siding")({
       { property: "og:type", content: "website" },
     ],
     links: [
-      { rel: "canonical", href: "https://sidingdepot.com/siding" },
+      { rel: "canonical", href: "https://www.sidingdepot.com/siding" },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
       serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
-        canonical: "https://sidingdepot.com/siding",
+        canonical: "https://www.sidingdepot.com/siding",
         image: HERO_IMAGE,
         serviceType: "James Hardie Siding Installation",
       }),

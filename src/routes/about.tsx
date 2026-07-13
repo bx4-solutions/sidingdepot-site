@@ -70,7 +70,7 @@ const ABOUT_VIDEO = {
 
 const LOCAL_BUSINESS_ABOUT_JSONLD = {
   ...LOCAL_BUSINESS_SCHEMA,
-  "@id": "https://sidingdepot.com/about/#localbusiness",
+  "@id": "https://www.sidingdepot.com/about/#localbusiness",
   alternateName: "Siding Depot Marietta",
   foundingDate: "2010",
   hasCredential: [
@@ -116,7 +116,7 @@ const VIDEO_JSONLD = {
   publisher: {
     "@type": "Organization",
     name: "Siding Depot",
-    logo: { "@type": "ImageObject", url: "https://sidingdepot.com/logo.png" },
+    logo: { "@type": "ImageObject", url: "https://www.sidingdepot.com/logo.png" },
   },
 };
 
@@ -172,7 +172,7 @@ export const Route = createFileRoute("/about")({
       },
     ],
     links: [
-      { rel: "canonical", href: "https://sidingdepot.com/about" },
+      { rel: "canonical", href: "https://www.sidingdepot.com/about" },
       // Pre-warm YouTube hosts so the click-to-play embed feels instant
       { rel: "preconnect", href: "https://www.youtube.com" },
       { rel: "preconnect", href: "https://i.ytimg.com" },

@@ -22,8 +22,8 @@ export function organizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE.legalName,
-    url: "https://sidingdepot.com",
-    logo: "https://sidingdepot.com/logo.png",
+    url: "https://www.sidingdepot.com",
+    logo: "https://www.sidingdepot.com/logo.png",
     sameAs: ["https://www.facebook.com/sidingdepot", "https://www.instagram.com/sidingdepot"],
     contactPoint: {
       "@type": "ContactPoint",
@@ -40,14 +40,14 @@ export function localBusinessSchema(city?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://sidingdepot.com",
+    "@id": "https://www.sidingdepot.com",
     name: SITE.legalName,
-    image: "https://sidingdepot.com/og-default.jpg",
+    image: "https://www.sidingdepot.com/og-default.jpg",
     description:
       "James Hardie Elite Contractor siding and exterior contractor serving North Atlanta with 20+ years experience, 1,500+ homes completed.",
     telephone: SITE.phone,
     email: SITE.email,
-    url: "https://sidingdepot.com",
+    url: "https://www.sidingdepot.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,
@@ -94,12 +94,12 @@ export function serviceSchema(input: ServiceSchemaInput) {
     name: input.title,
     description: input.description,
     serviceType: input.serviceType,
-    image: input.image || "https://sidingdepot.com/og-default.jpg",
+    image: input.image || "https://www.sidingdepot.com/og-default.jpg",
     provider: {
       "@type": "LocalBusiness",
       name: SITE.legalName,
-      url: "https://sidingdepot.com",
-      image: "https://sidingdepot.com/og-default.jpg",
+      url: "https://www.sidingdepot.com",
+      image: "https://www.sidingdepot.com/og-default.jpg",
       telephone: SITE.phone,
       priceRange: "$$",
       address: {
@@ -124,7 +124,7 @@ export function serviceSchema(input: ServiceSchemaInput) {
           { "@type": "City", name: "Sandy Springs, GA" },
           { "@type": "City", name: "Acworth, GA" },
         ],
-    url: "https://sidingdepot.com",
+    url: "https://www.sidingdepot.com",
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
@@ -198,7 +198,7 @@ export function videoSchema(input: {
       name: SITE.legalName,
       logo: {
         "@type": "ImageObject",
-        url: "https://sidingdepot.com/logo.png",
+        url: "https://www.sidingdepot.com/logo.png",
       },
     },
   };

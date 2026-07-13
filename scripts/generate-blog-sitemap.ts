@@ -1,7 +1,7 @@
 import { BLOG_POSTS } from '../src/data/blog-posts';
 import fs from 'fs';
 
-const origin = 'https://sidingdepot.com';
+const origin = 'https://www.sidingdepot.com';
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const urls = BLOG_POSTS

@@ -48,9 +48,9 @@ export const Route = createFileRoute("/contact")({
         content:
           "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/43cab0b0-cb06-42f1-a067-d5f0523e2835",
       },
-      { property: "og:url", content: "https://sidingdepot.com/contact" },
+      { property: "og:url", content: "https://www.sidingdepot.com/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://sidingdepot.com/contact" }],
+    links: [{ rel: "canonical", href: "https://www.sidingdepot.com/contact" }],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },

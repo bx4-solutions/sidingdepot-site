@@ -10,8 +10,8 @@ import {
 
 import doorsHeroImg from "@/assets/doors-hero.webp";
 const HERO_IMAGE = doorsHeroImg;
-const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
-const CANONICAL = "https://sidingdepot.com/doors";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const CANONICAL = "https://www.sidingdepot.com/doors";
 const seo = SERVICE_METADATA["doors"];
 
 const FAQS = [

@@ -1,7 +1,7 @@
 import { CITIES } from "./site-meta";
 
 export const SITE_ORIGIN =
-  (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ?? "https://sidingdepot.com";
+  (import.meta.env?.VITE_SITE_ORIGIN as string | undefined) ?? "https://www.sidingdepot.com";
 
 /**
  * Phase 2 — City × Service priority matrix from the PRD.

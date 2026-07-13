@@ -18,7 +18,7 @@ const greenSkyFinancing = { url: "/finance-hero-illustration.webp" };
 
 export const Route = createFileRoute("/finance")({
   head: () => {
-    const canonical = "https://sidingdepot.com/finance";
+    const canonical = "https://www.sidingdepot.com/finance";
     const schema = {
       "@context": "https://schema.org",
       "@graph": [
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/finance")({
           name: "Financing for Siding & Roofing Projects in North Atlanta",
           description:
             "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
-          isPartOf: { "@id": "https://sidingdepot.com/#website" },
+          isPartOf: { "@id": "https://www.sidingdepot.com/#website" },
         },
         ORG_SCHEMA,
         LOCAL_BUSINESS_SCHEMA,
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/finance")({
           content:
             "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available.",
         },
-        { property: "og:image", content: "https://sidingdepot.com/projects/project-1.webp" },
+        { property: "og:image", content: "https://www.sidingdepot.com/projects/project-1.webp" },
         { property: "og:type", content: "website" },
       ],
       links: [{ rel: "canonical", href: canonical }],

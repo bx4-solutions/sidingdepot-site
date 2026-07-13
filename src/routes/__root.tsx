@@ -147,8 +147,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       // twitter:title/description intentionally omitted — X/Twitter falls back to each
       // page's og:title/og:description, keeping social cards page-specific.
-      { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
-      { name: "twitter:image", content: "https://sidingdepot.com/og-default.webp" },
+      { property: "og:image", content: "https://www.sidingdepot.com/og-default.webp" },
+      { name: "twitter:image", content: "https://www.sidingdepot.com/og-default.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -170,7 +170,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         media: "(max-width: 640px)",
       },
       // Preconnect para CDN próprio (OG images)
-      { rel: "preconnect", href: "https://sidingdepot.com" },
+      { rel: "preconnect", href: "https://www.sidingdepot.com" },
       { rel: "icon", href: "/favicon.png?v=2", type: "image/png" },
       { rel: "shortcut icon", href: "/favicon.png?v=2" },
       { rel: "apple-touch-icon", href: "/favicon.png?v=2" },

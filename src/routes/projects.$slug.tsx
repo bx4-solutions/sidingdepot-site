@@ -24,7 +24,7 @@ export const Route = createFileRoute("/projects/$slug")({
     const description =
       p.description ??
       `${p.category ?? "Exterior renovation"} project completed by Siding Depot${p.city ? ` in ${p.city}` : ""}.`;
-    const absoluteImage = p.src.startsWith("http") ? p.src : `https://sidingdepot.com${p.src}`;
+    const absoluteImage = p.src.startsWith("http") ? p.src : `https://www.sidingdepot.com${p.src}`;
 
     return {
       meta: [
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/projects/$slug")({
         { name: "twitter:image", content: absoluteImage },
       ],
       links: [
-        { rel: "canonical", href: `https://sidingdepot.com/projects/${p.slug}` },
+        { rel: "canonical", href: `https://www.sidingdepot.com/projects/${p.slug}` },
       ],
     };
   },

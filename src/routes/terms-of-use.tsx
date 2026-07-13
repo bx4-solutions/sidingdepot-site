@@ -11,7 +11,7 @@ export const Route = createFileRoute("/terms-of-use")({
       },
       { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "canonical", href: "https://sidingdepot.com/terms-of-use" }],
+    links: [{ rel: "canonical", href: "https://www.sidingdepot.com/terms-of-use" }],
   }),
   component: TermsOfUsePage,
 });

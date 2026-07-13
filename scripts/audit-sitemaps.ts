@@ -4,7 +4,7 @@ import { XMLParser } from "fast-xml-parser";
 import { BLOG_POSTS } from "../src/data/blog-posts";
 
 const SITEMAPS = ["sitemap.xml", "blog-sitemap.xml"];
-const origin = 'https://sidingdepot.com';
+const origin = 'https://www.sidingdepot.com';
 const parser = new XMLParser();
 
 console.log("🚀 Starting Sitemap Audit...");

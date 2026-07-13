@@ -49,7 +49,7 @@ export const Route = createFileRoute("/admin/blog-preview")({
 });
 
 function SEOPreview({ post }: { post: BlogPost }) {
-  const canonicalUrl = `https://sidingdepot.com/blog/${post.slug}`;
+  const canonicalUrl = `https://www.sidingdepot.com/blog/${post.slug}`;
   const ogImageUrl = getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 630 });
 
   return (
@@ -72,7 +72,7 @@ function SEOPreview({ post }: { post: BlogPost }) {
             <div className="flex flex-col">
               <span className="text-xs">Siding Depot</span>
               <span className="text-[12px] text-[#202124]/70">
-                https://sidingdepot.com › blog › {post.slug}
+                https://www.sidingdepot.com › blog › {post.slug}
               </span>
             </div>
           </div>

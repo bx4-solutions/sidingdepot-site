@@ -15,7 +15,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
     if (!post) return { title: "Post Not Found | Siding Depot" };
 
-    const canonicalUrl = `https://sidingdepot.com/blog/${post.slug}`;
+    const canonicalUrl = `https://www.sidingdepot.com/blog/${post.slug}`;
 
     return {
       title: post.metaTitle,
@@ -64,14 +64,14 @@ export const Route = createFileRoute("/blog/$slug")({
             author: {
               "@type": "Person",
               name: "Siding Depot Editorial Team",
-              url: "https://sidingdepot.com/about",
+              url: "https://www.sidingdepot.com/about",
             },
             publisher: {
               "@type": "Organization",
               name: "Siding Depot LLC",
               logo: {
                 "@type": "ImageObject",
-                url: "https://sidingdepot.com/logo.png",
+                url: "https://www.sidingdepot.com/logo.png",
               },
             },
             mainEntityOfPage: {
@@ -105,13 +105,13 @@ export const Route = createFileRoute("/blog/$slug")({
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://sidingdepot.com",
+                item: "https://www.sidingdepot.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Blog",
-                item: "https://sidingdepot.com/blog",
+                item: "https://www.sidingdepot.com/blog",
               },
               {
                 "@type": "ListItem",

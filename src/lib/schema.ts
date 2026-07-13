@@ -1,6 +1,6 @@
 import { SITE } from "@/data/site";
 
-export const BASE_URL = "https://sidingdepot.com";
+export const BASE_URL = "https://www.sidingdepot.com";
 export const ORG_ID = `${BASE_URL}/#organization`;
 export const LOCAL_BUSINESS_ID = `${BASE_URL}/#localbusiness`;
 

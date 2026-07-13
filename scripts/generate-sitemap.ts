@@ -2,7 +2,7 @@ import fs from "fs";
 import { BLOG_POSTS } from "../src/data/blog-posts";
 import { LOCATION_MATRIX } from "../src/data/locations";
 
-const DOMAIN = "https://sidingdepot.com";
+const DOMAIN = "https://www.sidingdepot.com";
 const lastMod = new Date().toISOString().split("T")[0];
 
 // Only routes with actual route files in src/routes/

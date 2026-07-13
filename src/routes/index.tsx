@@ -98,7 +98,7 @@ const VIDEO_JSONLD_LIST = HOME_VIDEOS.map((v) => ({
   publisher: {
     "@type": "Organization",
     name: "Siding Depot",
-    logo: { "@type": "ImageObject", url: "https://sidingdepot.com/logo.png" },
+    logo: { "@type": "ImageObject", url: "https://www.sidingdepot.com/logo.png" },
   },
 }));
 
@@ -154,7 +154,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: "https://sidingdepot.vercel.app/og-default.jpg" },
     ],
     links: [
-      { rel: "canonical", href: "https://sidingdepot.com/" },
+      { rel: "canonical", href: "https://www.sidingdepot.com/" },
       { rel: "preconnect", href: "https://www.youtube.com" },
       { rel: "preconnect", href: "https://i.ytimg.com" },
       // Responsive hero preload — browser picks the correct variant automatically

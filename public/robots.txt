@@ -31,5 +31,5 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://sidingdepot.com/sitemap.xml
-Sitemap: https://sidingdepot.com/blog-sitemap.xml
+Sitemap: https://www.sidingdepot.com/sitemap.xml
+Sitemap: https://www.sidingdepot.com/blog-sitemap.xml

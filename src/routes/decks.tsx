@@ -10,8 +10,8 @@ import {
 } from "@/lib/schema";
 
 const HERO_IMAGE = decksHeroImg;
-const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
-const CANONICAL = "https://sidingdepot.com/decks";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const CANONICAL = "https://www.sidingdepot.com/decks";
 const seo = SERVICE_METADATA["decks"];
 
 const FAQS = [

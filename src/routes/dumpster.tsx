@@ -14,7 +14,7 @@ const PAGE_TITLE = "Dumpster Rental in Marietta, GA | Siding Depot — Free Esti
 const PAGE_DESC =
   "10, 15 & 20-yard dumpster rentals with same-day or next-day delivery in Marietta & North Atlanta, GA. Licensed & insured. Free estimate in 24h.";
 const HERO_IMAGE = dumpsterHeroImg;
-const CANONICAL = "https://sidingdepot.com/dumpster";
+const CANONICAL = "https://www.sidingdepot.com/dumpster";
 
 const FAQS: ReadonlyArray<FaqItem> = [
   {
@@ -78,7 +78,7 @@ export const Route = createFileRoute("/dumpster")({
     }),
     links: [
       // Canonical points to /dumpster-rental (the primary, fuller page) to avoid duplicate-content cannibalization.
-      { rel: "canonical", href: "https://sidingdepot.com/dumpster-rental" },
+      { rel: "canonical", href: "https://www.sidingdepot.com/dumpster-rental" },
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [

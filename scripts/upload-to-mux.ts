@@ -28,7 +28,7 @@ async function createMuxDirectUpload() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      cors_origin: "https://sidingdepot.com",
+      cors_origin: "https://www.sidingdepot.com",
       new_asset_settings: {
         playback_policy: ["public"],
       },
@@ -164,7 +164,7 @@ async function main() {
   }
 
   console.log("🎉  Done! View assets at https://dashboard.mux.com");
-  console.log("    Page live at https://sidingdepot.com/projects\n");
+  console.log("    Page live at https://www.sidingdepot.com/projects\n");
 }
 
 main();

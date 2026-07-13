@@ -22,10 +22,10 @@ export const Route = createFileRoute("/blog/")({
             "Expert advice on siding installation, cost guides, and maintenance for North Atlanta homeowners.",
         },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://sidingdepot.com/blog" },
-        { property: "og:image", content: "https://sidingdepot.com/og-default.webp" },
+        { property: "og:url", content: "https://www.sidingdepot.com/blog" },
+        { property: "og:image", content: "https://www.sidingdepot.com/og-default.webp" },
       ],
-      links: [{ rel: "canonical", href: "https://sidingdepot.com/blog" }],
+      links: [{ rel: "canonical", href: "https://www.sidingdepot.com/blog" }],
       scripts: [
         {
           type: "application/ld+json",
@@ -35,20 +35,20 @@ export const Route = createFileRoute("/blog/")({
             name: "Siding Depot Insights",
             description:
               "Expert advice on James Hardie siding, painting, and home exterior projects in North Atlanta.",
-            url: "https://sidingdepot.com/blog",
+            url: "https://www.sidingdepot.com/blog",
             publisher: {
               "@type": "Organization",
               name: "Siding Depot",
               logo: {
                 "@type": "ImageObject",
-                url: "https://sidingdepot.com/logo.png",
+                url: "https://www.sidingdepot.com/logo.png",
               },
             },
             blogPost: publishedPosts.map((post) => ({
               "@type": "BlogPosting",
               headline: post.title,
               description: post.excerpt,
-              url: `https://sidingdepot.com/blog/${post.slug}`,
+              url: `https://www.sidingdepot.com/blog/${post.slug}`,
               datePublished: post.publishDate,
               author: {
                 "@type": "Organization",
@@ -67,13 +67,13 @@ export const Route = createFileRoute("/blog/")({
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://sidingdepot.com/",
+                item: "https://www.sidingdepot.com/",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Blog",
-                item: "https://sidingdepot.com/blog",
+                item: "https://www.sidingdepot.com/blog",
               },
             ],
           }),

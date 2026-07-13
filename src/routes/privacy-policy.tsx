@@ -11,7 +11,7 @@ export const Route = createFileRoute("/privacy-policy")({
       },
       { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "canonical", href: "https://sidingdepot.com/privacy-policy" }],
+    links: [{ rel: "canonical", href: "https://www.sidingdepot.com/privacy-policy" }],
   }),
   component: PrivacyPolicyPage,
 });

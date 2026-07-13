@@ -10,8 +10,8 @@ import {
 } from "@/lib/schema";
 
 const HERO_IMAGE = roofingHeroImg;
-const OG_IMAGE = "https://sidingdepot.com/og-default.webp";
-const CANONICAL = "https://sidingdepot.com/roofing";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const CANONICAL = "https://www.sidingdepot.com/roofing";
 const seo = SERVICE_METADATA["roofing"];
 
 const FAQS = [
