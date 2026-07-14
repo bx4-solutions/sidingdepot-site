@@ -10,7 +10,7 @@ import {
 } from "@/lib/schema";
 
 const HERO_IMAGE = dumpsterHeroImg;
-const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/dumpster-rental";
 const seo = SERVICE_METADATA["dumpster-rental"];
 

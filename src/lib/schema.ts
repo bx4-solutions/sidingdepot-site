@@ -42,7 +42,7 @@ export const ORG_SCHEMA = {
 
 export const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
+  "@type": ["HomeAndConstructionBusiness", "GeneralContractor"],
   "@id": LOCAL_BUSINESS_ID,
   name: SITE.name,
   image: `${BASE_URL}/og-default.jpg`,

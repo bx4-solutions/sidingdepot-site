@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /locations/
 Disallow: /admin/
 Disallow: /seo-dashboard/
 Disallow: /access-denied/

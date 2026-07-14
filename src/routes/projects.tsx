@@ -178,7 +178,7 @@ export const Route = createFileRoute("/projects")({
       },
       {
         property: "og:image",
-        content: "https://www.sidingdepot.com/og-default.webp",
+        content: "https://www.sidingdepot.com/og-default.jpg",
       },
       { property: "og:type", content: "website" },
     ],
@@ -209,7 +209,7 @@ function ProjectCard({ project, onPlay }: { project: Project; onPlay: (p: Projec
     firstImage ||
     (project.youtube_id
       ? `https://img.youtube.com/vi/${project.youtube_id}/maxresdefault.jpg`
-      : `https://www.sidingdepot.com/og-default.webp`);
+      : `https://www.sidingdepot.com/og-default.jpg`);
   const OverlayIcon = isVideo ? Play : Images;
 
   return (

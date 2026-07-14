@@ -9,7 +9,7 @@ import {
 } from "@/lib/schema";
 
 const HERO_IMAGE = "/projects/project-6.webp";
-const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/gutters";
 const seo = SERVICE_METADATA["gutters"];
 

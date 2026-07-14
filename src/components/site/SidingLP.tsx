@@ -509,7 +509,7 @@ export function SidingLP({ city }: SidingLPProps) {
 export function lpHead({ city, path }: { city: string; path: string }) {
   const title = `James Hardie Siding ${city} GA | Free Estimate | Siding Depot`;
   const description = `James Hardie Elite Contractor in ${city}, GA. Serving North Atlanta since 2009. Free estimate in 24h. Call ${SITE.phone}.`;
-  const image = "https://www.sidingdepot.com/og-default.webp";
+  const image = "https://www.sidingdepot.com/og-default.jpg";
   const canonicalUrl = `https://www.sidingdepot.com${path}`;
   return {
     meta: [

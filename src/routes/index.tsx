@@ -131,8 +131,8 @@ export const Route = createFileRoute("/")({
         content:
           "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
-      { property: "og:image", content: "https://sidingdepot.vercel.app/og-default.jpg" },
-      { property: "og:image:secure_url", content: "https://sidingdepot.vercel.app/og-default.jpg" },
+      { property: "og:image", content: "https://www.sidingdepot.com/og-default.jpg" },
+      { property: "og:image:secure_url", content: "https://www.sidingdepot.com/og-default.jpg" },
       { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
@@ -151,7 +151,7 @@ export const Route = createFileRoute("/")({
         content:
           "North Atlanta's James Hardie Siding Experts — 1,500+ homes transformed. Elite James Hardie Contractor in Marietta, Alpharetta & Canton. Free quote in 24h.",
       },
-      { name: "twitter:image", content: "https://sidingdepot.vercel.app/og-default.jpg" },
+      { name: "twitter:image", content: "https://www.sidingdepot.com/og-default.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://www.sidingdepot.com/" },

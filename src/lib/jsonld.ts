@@ -39,7 +39,7 @@ export function organizationSchema() {
 export function localBusinessSchema(city?: string) {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "GeneralContractor"],
     "@id": "https://www.sidingdepot.com",
     name: SITE.legalName,
     image: "https://www.sidingdepot.com/og-default.jpg",
@@ -72,9 +72,9 @@ export function localBusinessSchema(city?: string) {
     priceRange: "$$",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.5",
-      ratingCount: "166",
-      reviewCount: "166",
+      ratingValue: "4.7",
+      ratingCount: "550",
+      reviewCount: "550",
       bestRating: "5",
       worstRating: "1",
     },

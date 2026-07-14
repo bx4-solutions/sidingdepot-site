@@ -37,7 +37,7 @@ const SERVICE_KEY = "siding";
 const CITY = "Marietta & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 const HERO_IMAGE = sidingHouseHeroAsset;
-const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp"; // absolute for OG crawlers
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg"; // absolute for OG crawlers
 
 export const Route = createFileRoute("/siding")({
   loader: async () => {

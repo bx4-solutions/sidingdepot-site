@@ -23,7 +23,7 @@ export const Route = createFileRoute("/blog/")({
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://www.sidingdepot.com/blog" },
-        { property: "og:image", content: "https://www.sidingdepot.com/og-default.webp" },
+        { property: "og:image", content: "https://www.sidingdepot.com/og-default.jpg" },
       ],
       links: [{ rel: "canonical", href: "https://www.sidingdepot.com/blog" }],
       scripts: [

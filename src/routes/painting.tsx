@@ -10,7 +10,7 @@ import {
 } from "@/lib/schema";
 
 const HERO_IMAGE = paintingHeroImg;
-const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/painting";
 const seo = SERVICE_METADATA["painting"];
 

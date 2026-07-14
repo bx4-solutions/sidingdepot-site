@@ -3,7 +3,22 @@
   "buildCommand": "bun run build",
   "framework": null,
 
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/gallery-siding", "destination": "/gallery", "permanent": true }
+  ],
+
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), camera=(), microphone=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains" }
+      ]
+    },
     {
       "source": "/sitemap.xml",
       "headers": [

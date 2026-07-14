@@ -149,8 +149,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       // twitter:title/description intentionally omitted — X/Twitter falls back to each
       // page's og:title/og:description, keeping social cards page-specific.
-      { property: "og:image", content: "https://www.sidingdepot.com/og-default.webp" },
-      { name: "twitter:image", content: "https://www.sidingdepot.com/og-default.webp" },
+      { property: "og:image", content: "https://www.sidingdepot.com/og-default.jpg" },
+      { name: "twitter:image", content: "https://www.sidingdepot.com/og-default.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -171,8 +171,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         fetchPriority: "high",
         media: "(max-width: 640px)",
       },
-      // Preconnect para CDN próprio (OG images)
-      { rel: "preconnect", href: "https://www.sidingdepot.com" },
       { rel: "icon", href: "/favicon.png?v=2", type: "image/png" },
       { rel: "shortcut icon", href: "/favicon.png?v=2" },
       { rel: "apple-touch-icon", href: "/favicon.png?v=2" },
@@ -182,7 +180,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
-      { type: "text/javascript", children: METRICOOL_TRACKER_SCRIPT },
     ],
   }),
   shellComponent: RootShell,
@@ -236,6 +233,12 @@ function RootComponent() {
     gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
     document.head.appendChild(gtmScript);
 
+    // Metricool tracker — deferred to afterInteractive (was render-blocking inline in <head>)
+    const metricoolScript = document.createElement("script");
+    metricoolScript.type = "text/javascript";
+    metricoolScript.text = METRICOOL_TRACKER_SCRIPT;
+    document.head.appendChild(metricoolScript);
+
     // Inject GA4 if configured
     if (GA4_ID) {
       w.dataLayer = w.dataLayer || [];
@@ -287,18 +290,21 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <GoogleStatsContext.Provider value={googleStats}>
         <GoogleReviewsContext.Provider value={googleReviews}>
-          {/* Live aggregateRating — merged into LocalBusiness by matching @id. Uses real Google stats. */}
+          {/* aggregateRating — merged into LocalBusiness by matching @id.
+              Matches the headline rating shown on-page (ProofBar): combined
+              4.7 / 550 reviews across Google, GuildQuality, Thumbtack, Houzz & Angi.
+              Kept in sync with ProofBar so schema never contradicts visible content. */}
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "HomeAndConstructionBusiness",
+                "@type": ["HomeAndConstructionBusiness", "GeneralContractor"],
                 "@id": LOCAL_BUSINESS_ID,
                 aggregateRating: {
                   "@type": "AggregateRating",
-                  ratingValue: googleStats.rating,
-                  reviewCount: googleStats.totalReviews,
+                  ratingValue: 4.7,
+                  reviewCount: 550,
                   bestRating: 5,
                   worstRating: 1,
                 },

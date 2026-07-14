@@ -18,7 +18,7 @@ Siding Depot is a licensed and insured exterior contractor based in Marietta, Ge
 - [Painting](/painting): Exterior painting and color consultation.
 - [Roofing](/roofing): Roof replacement and repair.
 - [Windows](/windows): Energy-efficient window replacement.
-- [Deck](/deck): Custom deck design and build.
+- [Decks](/decks): Custom deck design and build.
 - [Gutters](/gutters): Seamless gutter installation.
 - [Dumpster Rental](/dumpster-rental): Roll-off dumpster rentals.
 

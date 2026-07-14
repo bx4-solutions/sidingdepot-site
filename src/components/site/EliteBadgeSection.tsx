@@ -24,7 +24,7 @@ export function EliteBadgeSection() {
             className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight"
             style={{ color: SD_NAVY }}
           >
-            The Credentials That Protect
+            The Credentials That Protect{" "}
             <br />
             <span style={{ color: SD_LIME_TEXT }}>Your Investment.</span>
           </h2>

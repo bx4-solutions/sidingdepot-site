@@ -39,7 +39,7 @@ const SERVICE_KEY = "windows";
 const CITY = "Marietta & North Atlanta";
 const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 const HERO_IMAGE = windowsHeroImg;
-const OG_IMAGE = "https://www.sidingdepot.com/og-default.webp";
+const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/windows";
 
 export const Route = createFileRoute("/windows")({
