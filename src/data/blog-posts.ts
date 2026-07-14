@@ -38,8 +38,8 @@ export const BLOG_POSTS: BlogPost[] = [
     "status": "published",
     "heroImage": {
       "url": "/siding-installation-crews.webp",
-      "alt": "Siding Depot in-house crew installing James Hardie siding on a North Atlanta home",
-      "caption": "What you can see here Installation is a system: siding, trim, flashing and the people accountable for the finished exterior."
+      "alt": "Siding Depot in-house crew installing James Hardie fiber cement siding on a North Atlanta home",
+      "caption": "In-house crews installing James Hardie siding on a Marietta-area home."
     },
     "sections": [
       {
@@ -117,9 +117,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": true,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "How much does exterior painting cost in Marietta, GA? (2026)",
-      "caption": ""
+      "url": "/projects/home-after.webp",
+      "alt": "Freshly finished North Atlanta home exterior after professional exterior painting and trim work",
+      "caption": "A clean, freshly finished exterior in the North Atlanta area."
     },
     "sections": [
       {
@@ -195,9 +195,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "James Hardie vs. LP SmartSide in Georgia: which siding wins the climate?",
-      "caption": ""
+      "url": "/blog-images/fiber-cement-siding-georgia-hero.png",
+      "alt": "Fiber cement siding on a Georgia home, used to compare James Hardie and LP SmartSide",
+      "caption": "Comparing fiber cement and engineered wood siding for Georgia's climate."
     },
     "sections": [
       {
@@ -323,9 +323,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "The best time to replace siding in Georgia (and why to book before fall)",
-      "caption": ""
+      "url": "/projects/project-1.webp",
+      "alt": "North Atlanta home with new siding illustrating the best seasonal timing for a replacement",
+      "caption": "Georgia's spring and fall offer ideal conditions for siding replacement."
     },
     "sections": [
       {
@@ -411,9 +411,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": true,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "How much does James Hardie siding cost in Marietta, GA? (2026)",
-      "caption": ""
+      "url": "/blog-images/marietta-siding-installation-cost-hero-2026.webp",
+      "alt": "Two-story Marietta home during a James Hardie siding installation and cost estimate",
+      "caption": "Access, trim, and wall condition all shape a Marietta siding estimate."
     },
     "sections": [
       {
@@ -528,9 +528,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "James Hardie vs. vinyl siding in Georgia: cost, durability, and the honest verdict",
-      "caption": ""
+      "url": "/projects/project-5.webp",
+      "alt": "Georgia home with fiber cement siding compared against vinyl siding options",
+      "caption": "How James Hardie and vinyl siding hold up in Georgia's heat and humidity."
     },
     "sections": [
       {
@@ -660,9 +660,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "8 signs it’s time to replace your siding in Georgia",
-      "caption": ""
+      "url": "/projects/home-before.webp",
+      "alt": "Aging exterior siding on a Georgia home showing the wear that signals it is time to replace",
+      "caption": "Worn, cracked, or fading siding is one of the clearest signs to replace."
     },
     "sections": [
       {
@@ -743,9 +743,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/projects/project-5.webp",
-      "alt": "Exterior wall work exposing wood condition behind siding on a Georgia home",
-      "caption": "Why it matters Visible rot is often only part of the story — moisture may already have reached the sheathing and framing."
+      "url": "/blog-images/marietta-window-flashing-cost-driver-2026.webp",
+      "alt": "Installer inspecting a window opening and wall for rotten wood behind the existing siding",
+      "caption": "Hidden rot is usually found only after the old cladding comes off."
     },
     "sections": [
       {
@@ -838,9 +838,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "Does new siding increase home value? Siding ROI for Atlanta homeowners (2026)",
-      "caption": ""
+      "url": "/projects/project-2.webp",
+      "alt": "Updated Atlanta-area home exterior illustrating siding return on investment",
+      "caption": "New siding is consistently among the highest-ROI exterior projects."
     },
     "sections": [
       {
@@ -923,9 +923,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "Hail-damaged siding in Georgia: how to file an insurance claim (2026)",
-      "caption": ""
+      "url": "/projects/project-6.webp",
+      "alt": "Georgia home exterior evaluated for storm and hail damage for an insurance claim",
+      "caption": "Document the date and photograph damage before starting a hail claim."
     },
     "sections": [
       {
@@ -1011,9 +1011,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "How long does siding installation take? A Georgia timeline",
-      "caption": ""
+      "url": "/blog-images/fiber-cement-window-flashing-detail.png",
+      "alt": "Close-up of fiber cement siding and flashing installation showing the process step by step",
+      "caption": "Most residential siding installs run on a predictable multi-day timeline."
     },
     "sections": [
       {
@@ -1095,9 +1095,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/projects/home-after.webp",
-      "alt": "North Atlanta home with a modern James Hardie siding color palette",
-      "caption": "What you can see here Color, trim contrast and profile work together — the palette is a system, not a single swatch."
+      "url": "/projects/project-7.webp",
+      "alt": "North Atlanta home showcasing a James Hardie siding color across the full exterior",
+      "caption": "Choosing a Hardie color that fits the home and the neighborhood."
     },
     "sections": [
       {
@@ -1182,9 +1182,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "Board and batten siding in North Atlanta: styles, cost, and the modern farmhouse look",
-      "caption": ""
+      "url": "/projects/project-3.webp",
+      "alt": "North Atlanta home featuring vertical board-and-batten style siding detail",
+      "caption": "Board-and-batten adds vertical texture and modern farmhouse character."
     },
     "sections": [
       {
@@ -1272,9 +1272,9 @@ export const BLOG_POSTS: BlogPost[] = [
     "featured": false,
     "status": "published",
     "heroImage": {
-      "url": "/og-default.jpg",
-      "alt": "Exterior design trends for North Atlanta homes in 2026",
-      "caption": ""
+      "url": "/projects/project-8.webp",
+      "alt": "Modern North Atlanta exterior with deck and outdoor living illustrating 2026 design trends",
+      "caption": "Outdoor living and mixed exterior materials lead 2026 design trends."
     },
     "sections": [
       {
