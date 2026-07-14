@@ -194,9 +194,9 @@ const SERVICE_CONTENT: Record<ServiceSlug, ServiceContent> = {
     label: "Roof",
     hero: "GAF Factory-Certified Roofing & Storm Protection",
     intro:
-      "Protect your biggest investment with a GAF Golden Pledge® roofing system. As factory-certified contractors, we provide superior wind and hail resistance backed by the strongest warranty in the industry.",
+      "Protect your biggest investment with a GAF roofing system selected for your home. As a GAF Certified™ contractor, we can offer the System Plus® Limited Warranty on qualifying systems.",
     benefits: [
-      "GAF Factory-Certified status (Golden Pledge available)",
+      "GAF Certified™ contractor (System Plus® on qualifying systems)",
       "Advanced protection against 130mph wind & hail",
       "Synthetic underlayment & ice/water shield standard",
       "Storm damage insurance claim documentation experts",

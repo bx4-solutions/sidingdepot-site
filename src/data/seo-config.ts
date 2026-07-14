@@ -177,7 +177,7 @@ export const SERVICE_METADATA_AB: Record<string, ServiceSeo> = {
       h2: "GAF Factory Certified Replacement",
       metaTitle: (c) => `Roofing in ${c}, GA | GAF Factory Certified`,
       metaDesc:
-        "GAF Factory Certified roof replacement in Marietta. Golden Pledge® warranties available. Free 24h quote from Siding Depot.",
+        "GAF Certified™ roof replacement in Marietta. System Plus® warranty available on qualifying systems. Free 24h quote from Siding Depot.",
     },
     B: {
       h1: (c) => `Storm-Ready Roof Replacement in ${c}, GA`,
