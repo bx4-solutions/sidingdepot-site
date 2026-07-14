@@ -11,8 +11,8 @@ import { Controller } from "react-hook-form";
 const formSchema = z.object({
   name: z.string().trim().min(2, "Please enter your full name").max(100),
   phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
-  city: z.string().trim().min(2, "Please enter your city").max(80),
-  services: z.array(z.string()).min(1, "Please select at least one service").max(20),
+  email: z.string().trim().email("Please enter a valid email address"),
+  services: z.array(z.string()).max(20).optional(),
 });
 
 type Props = {
@@ -40,7 +40,7 @@ export function QuickQuoteForm({
   const { rating } = useGoogleStats();
   const { form, onSubmit, isSubmitting, isSuccess, error } = useLeadForm({
     schema: formSchema as any,
-    defaultValues: { name: "", phone: "", city: "", services: [] } as any,
+    defaultValues: { name: "", phone: "", email: "", services: [] } as any,
     source,
     tag,
     onSuccess,
@@ -117,27 +117,29 @@ export function QuickQuoteForm({
 
         <div className="grid gap-1">
           <Label
-            htmlFor="qq-city"
+            htmlFor="qq-email"
             className="text-[11px] font-bold text-sd-black uppercase tracking-wider"
           >
-            City *
+            Email *
           </Label>
           <Input
-            {...register("city")}
-            id="qq-city"
-            placeholder="Your city"
+            {...register("email")}
+            id="qq-email"
+            type="email"
+            placeholder="your@email.com"
+            autoComplete="email"
             className="h-10 text-sm border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
           />
-          {errors.city && (
+          {errors.email && (
             <p className="text-[11px] text-destructive font-medium">
-              {errors.city.message as string}
+              {errors.email.message as string}
             </p>
           )}
         </div>
 
         <div className="grid gap-1.5">
           <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">
-            Services *
+            Services
           </Label>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
             {SERVICES_OPTIONS.map((opt) => (

@@ -54,6 +54,8 @@ import paintingAvif from "../assets/services/painting.avif";
 import windowsImg from "../assets/services/windows.jpg";
 import windowsWebp from "../assets/services/windows.webp";
 import windowsAvif from "../assets/services/windows.avif";
+import doorsImg from "../assets/services/doors.jpg";
+import doorsWebp from "../assets/services/doors.webp";
 import deckImg from "../assets/services/deck.jpg";
 import deckWebp from "../assets/services/deck.webp";
 import deckAvif from "../assets/services/deck.avif";
@@ -121,7 +123,7 @@ export const SERVICES: ReadonlyArray<{
     short:
       "Fiberglass, steel, French, and sliding patio doors available in a wide range of colors, glass options, and architectural styles.",
     Icon: AppWindow,
-    image: { src: windowsImg, webp: windowsWebp, avif: windowsAvif },
+    image: { src: doorsImg, webp: doorsWebp },
   },
   {
     slug: "decks",
@@ -134,7 +136,8 @@ export const SERVICES: ReadonlyArray<{
   {
     slug: "roofing",
     title: "Roofing",
-    short: "GAF Factory Certified — replacement.",
+    short:
+      "North Atlanta's trusted roofing contractor — GAF architectural shingles, standing-seam metal, and TPO systems, plus storm-damage repair and insurance documentation. In-house crews and full permit management.",
     Icon: Triangle,
     image: { src: roofingImg, webp: roofingWebp, avif: roofingAvif },
   },

@@ -14,8 +14,7 @@ const formSchema = z.object({
   name: z.string().trim().min(2, "Please enter your full name").max(100),
   phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
   email: z.string().trim().email("Please enter a valid email address"),
-  city: z.string().trim().min(2, "Please enter your city").max(80),
-  services: z.array(z.string()).min(1, "Please select at least one service").max(20),
+  services: z.array(z.string()).max(20).optional(),
   details: z.string().max(2000).optional(),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Consent is required" }),
@@ -60,7 +59,6 @@ export function HeroQuoteForm({
       name: "",
       phone: "",
       email: "",
-      city: "",
       services: [],
       details: "",
       consent: false,
@@ -175,30 +173,9 @@ export function HeroQuoteForm({
           </div>
         </div>
 
-        <div className="grid gap-1">
-          <Label
-            htmlFor="hero-city"
-            className="text-[11px] font-bold text-sd-black uppercase tracking-wider"
-          >
-            City *
-          </Label>
-          <Input
-            {...register("city")}
-            id="hero-city"
-            placeholder="Your city"
-            autoComplete="address-level2"
-            className="h-11 text-base border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
-          />
-          {errors.city && (
-            <p className="text-[11px] text-destructive font-medium">
-              {errors.city.message as string}
-            </p>
-          )}
-        </div>
-
         <div className="grid gap-1.5">
           <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">
-            Services *
+            Services
           </Label>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
             {SERVICES_OPTIONS.map((opt) => (
@@ -251,7 +228,7 @@ export function HeroQuoteForm({
             {...register("details")}
             id="hero-details"
             placeholder="Describe your project..."
-            className="resize-none min-h-[64px] text-base border-sd-navy/10 focus:ring-2 focus:ring-sd-green/20"
+            className="resize-none min-h-[64px] bg-white text-sd-black caret-sd-black placeholder:text-sd-gray-text border-sd-navy/10 selection:bg-sd-navy selection:text-white focus:ring-2 focus:ring-sd-green/20"
             rows={2}
           />
         </div>
