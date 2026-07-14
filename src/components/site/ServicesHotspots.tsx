@@ -103,7 +103,7 @@ const HOTSPOTS: Hotspot[] = [
     left: "56.5%",
     label: "Roofing",
     title: "Roofing",
-    body: "GAF Master Elite certified — only 3% of US roofers earn this. We handle insurance claims directly so you don't have to. Bundle with siding and save $2,000–$5,000 in shared mobilization costs.",
+    body: "GAF Certified™ contractor. We assist with insurance documentation and provide a written estimate for roofing work. Ask about combining roofing and siding in one project.",
     image: roofingImg,
     to: "/roofing",
     cta: "ROOFING SERVICES",
