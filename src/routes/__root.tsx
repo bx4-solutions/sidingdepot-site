@@ -26,6 +26,8 @@ const GTM_ID = "GTM-TFGQWCQN";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 // Set VITE_META_PIXEL_ID=<pixel_id> in Vercel env vars to activate Meta Pixel
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
+const METRICOOL_TRACKER_SCRIPT =
+  'function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"5650f1d5ea63827a1cce95efe75d00f4"})});';
 
 function NotFoundComponent() {
   const router = useRouter();
@@ -180,6 +182,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // Organization / LocalBusiness schema
       { type: "application/ld+json", children: JSON.stringify(ORG_SCHEMA) },
       { type: "application/ld+json", children: JSON.stringify(LOCAL_BUSINESS_SCHEMA) },
+      { type: "text/javascript", children: METRICOOL_TRACKER_SCRIPT },
     ],
   }),
   shellComponent: RootShell,
