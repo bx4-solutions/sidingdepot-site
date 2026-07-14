@@ -323,7 +323,7 @@ function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.slice(0, 6).map((s, i) => (
+            {SERVICES.filter((s) => s.slug !== "dumpster").map((s, i) => (
               <ServiceCard
                 key={s.slug}
                 id={`services-${s.slug}`}
@@ -466,7 +466,7 @@ function HomePage() {
 
             <ul className="mt-8 grid grid-cols-2 gap-3 text-sm">
               {[
-                { i: Star, t: "4.7-Star Rating" },
+                { i: Star, t: "4.7 Rating Across 550+ Reviews" },
                 { i: CheckCircle2, t: "500+ Verified Reviews" },
                 { i: Users, t: "1,500+ Projects Completed" },
                 { i: ShieldCheck, t: "Licensed & Insured" },
