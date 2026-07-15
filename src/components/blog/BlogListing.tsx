@@ -98,19 +98,19 @@ export default function BlogListing() {
               </div>
             )}
 
-            {/* Grid of Articles - 3 Columns Desktop */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {/* Grid of Articles - 2 Columns Desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
               {otherPosts.map((post) => (
                 <article key={post.slug} className="group flex flex-col">
                   <Link
                     to="/blog/$slug"
                     params={{ slug: post.slug }}
-                    className="relative overflow-hidden rounded-xl aspect-[16/9] mb-6 block bg-gray-100 shadow-md"
+                    className="relative overflow-hidden rounded-lg aspect-[16/9] mb-6 block bg-gray-100 shadow-md"
                   >
                     <img
-                      src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 600, height: 338 })}
+                      src={getOptimizedUnsplashUrl(post.heroImage.url, { width: 800, height: 450 })}
                       srcSet={getUnsplashSrcSet(post.heroImage.url)}
-                      sizes="(max-width: 768px) 100vw, 400px"
+                      sizes="(max-width: 768px) 100vw, 560px"
                       alt={post.heroImage.alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       loading="lazy"
@@ -163,19 +163,12 @@ export default function BlogListing() {
 
           {/* Sidebar */}
           <aside className="lg:w-[350px] space-y-12">
-            {/* Lead Form - Agency Style */}
-            <div className="bg-sd-black p-8 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-              <div className="relative z-10 text-white">
-                <h3 className="text-2xl font-bold mb-2">Get a Free Estimate</h3>
-                <p className="text-sm text-white/60 mb-8 leading-relaxed font-medium">
-                  Expert siding advice for Georgia homeowners. No obligation.
-                </p>
-                <div className="space-y-4">
-                  <HeroQuoteForm bare />
-                </div>
-              </div>
-            </div>
+            {/* Lead Form - standard site form (white card + green header) */}
+            <HeroQuoteForm
+              source="blog_index"
+              title="Get a Free Estimate"
+              subtitle="Expert siding advice for Georgia homeowners. No obligation."
+            />
 
             {/* Popular Articles */}
             <div className="space-y-8">
