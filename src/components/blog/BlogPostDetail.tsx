@@ -111,15 +111,13 @@ export default function BlogPostDetail() {
           <span className="text-sd-green">{post.category}</span>
         </nav>
 
-        <div className={`flex flex-col lg:flex-row ${isMariettaCostGuide ? "gap-12 lg:gap-14" : "gap-16"}`}>
+        <div
+          className={`flex flex-col lg:flex-row ${isMariettaCostGuide ? "gap-12 lg:gap-14" : "gap-16"}`}
+        >
           {/* Main Article Content */}
           <article className={isMariettaCostGuide ? "lg:w-[72%]" : "lg:w-[65%]"}>
             <header
-              className={`mb-12 ${
-                isMariettaCostGuide
-                  ? "border-b border-sd-black/10 pb-14"
-                  : ""
-              }`}
+              className={`mb-12 ${isMariettaCostGuide ? "border-b border-sd-black/10 pb-14" : ""}`}
             >
               <span
                 className={`inline-block bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 mb-8 shadow-sm ${
@@ -130,7 +128,9 @@ export default function BlogPostDetail() {
               </span>
               <h1
                 className={`text-4xl md:text-5xl font-bold text-sd-black leading-tight mb-8 ${
-                  isMariettaCostGuide ? "max-w-[920px] lg:text-[58px] lg:leading-[1.02]" : "lg:text-[44px]"
+                  isMariettaCostGuide
+                    ? "max-w-[920px] lg:text-[58px] lg:leading-[1.02]"
+                    : "lg:text-[44px]"
                 }`}
               >
                 {post.title}
@@ -177,9 +177,7 @@ export default function BlogPostDetail() {
               {/* Hero Image with Semantic Caption */}
               <div
                 className={`mb-16 overflow-hidden shadow-2xl bg-gray-100 ring-1 ring-black/5 ${
-                  isMariettaCostGuide
-                    ? "rounded-none"
-                    : "rounded-3xl"
+                  isMariettaCostGuide ? "rounded-none" : "rounded-3xl"
                 }`}
               >
                 <img
@@ -259,10 +257,12 @@ export default function BlogPostDetail() {
 
                 // Converte o texto cru em <p>/<ul> reais para herdar os estilos do prose
                 const renderContent = (content: string) =>
-                  content.split(/\n{2,}/).map((block, i) => {
+                  content
+                    .split(/\n{2,}/)
+                    .filter((block) => block.trim() !== "")
+                    .map((block, i) => {
                     const lines = block.split("\n").filter((l) => l.trim() !== "");
-                    const isList =
-                      lines.length > 0 && lines.every((l) => l.trim().startsWith("•"));
+                    const isList = lines.length > 0 && lines.every((l) => l.trim().startsWith("•"));
                     if (isList) {
                       return (
                         <ul key={i}>
@@ -354,7 +354,9 @@ export default function BlogPostDetail() {
 
                     {/* Inline CTA after 2nd section (roughly the middle) */}
                     {idx === 1 && (
-                      <div className={`my-20 bg-sd-black p-12 text-white text-center shadow-2xl relative overflow-hidden group ${isMariettaCostGuide ? "rounded-none" : "rounded-3xl"}`}>
+                      <div
+                        className={`my-20 bg-sd-black p-12 text-white text-center shadow-2xl relative overflow-hidden group ${isMariettaCostGuide ? "rounded-none" : "rounded-3xl"}`}
+                      >
                         <div className="absolute top-0 left-0 w-full h-1 bg-sd-green"></div>
                         <p className="text-2xl md:text-3xl font-bold mb-4">
                           Getting quotes for your home?
@@ -453,7 +455,9 @@ export default function BlogPostDetail() {
             </nav>
 
             {/* Final Conversion CTA */}
-            <div className={`mt-24 bg-sd-green p-16 text-center shadow-2xl relative overflow-hidden ${isMariettaCostGuide ? "rounded-none" : "rounded-[40px]"}`}>
+            <div
+              className={`mt-24 bg-sd-green p-16 text-center shadow-2xl relative overflow-hidden ${isMariettaCostGuide ? "rounded-none" : "rounded-[40px]"}`}
+            >
               <div className="relative z-10">
                 <p className="text-4xl md:text-5xl font-black text-sd-black mb-6 leading-tight">
                   Ready for Your Free Estimate?
@@ -485,7 +489,9 @@ export default function BlogPostDetail() {
           <aside className={isMariettaCostGuide ? "lg:w-[28%]" : "lg:w-[35%]"}>
             <div className="sticky top-24 space-y-12">
               {/* Quote Form - High Impact */}
-              <div className={`bg-white p-8 shadow-2xl ring-1 ring-black/5 relative overflow-hidden ${isMariettaCostGuide ? "rounded-none border-t-8 border-sd-green" : "rounded-[32px]"}`}>
+              <div
+                className={`bg-white p-8 shadow-2xl ring-1 ring-black/5 relative overflow-hidden ${isMariettaCostGuide ? "rounded-none border-t-8 border-sd-green" : "rounded-[32px]"}`}
+              >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-sd-green/15 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                 <h3 className="text-2xl font-bold text-sd-black mb-2">Get Your Quote</h3>
                 <p className="text-sd-gray-text text-sm mb-6 font-bold uppercase tracking-widest">

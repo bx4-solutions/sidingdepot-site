@@ -403,117 +403,179 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     "slug": "james-hardie-siding-cost-marietta-ga-2026",
-    "title": "How much does James Hardie siding cost in Marietta, GA? (2026)",
-    "excerpt": "Real North Atlanta price ranges by home size and product line — and the factors that move the number on your home.",
+    "title": "How Much Does James Hardie Siding Cost in Marietta, GA? A 2026 Planning Guide for Homeowners",
+    "excerpt": "The purpose of this guide is not to promise a one-size-fits-all price. It is to help a Marietta homeowner understand what belongs in a professional siding estimate — and what to ask before choosing a contractor.",
     "category": "Cost Guides",
-    "readTime": 9,
+    "readTime": 8,
     "publishDate": "2026-07-14",
     "featured": true,
     "status": "published",
     "heroImage": {
       "url": "/blog-images/marietta-siding-installation-cost-hero-2026.webp",
-      "alt": "Two-story Marietta home during a James Hardie siding installation and cost estimate",
-      "caption": "Access, trim, and wall condition all shape a Marietta siding estimate."
+      "alt": "Siding Depot crews installing fiber-cement siding on a two-story Marietta-style home",
+      "caption": "Siding Depot crews installing fiber-cement siding on a two-story Marietta-style home. Height, window trim, brick transitions, and access all influence a project scope."
     },
     "sections": [
       {
-        "h2": "What James Hardie costs per square foot",
-        "content": "Across Marietta and North Atlanta, homeowners are replacing aging wood and builder-grade vinyl with James Hardie fiber cement — and the first question is always the same: what will it cost? This guide gives you honest 2026 ranges by home size and product line, then explains the factors that actually move the number, so you can read any quote with confidence. As always, a real figure comes from an on-site measurement and a written, itemized scope.\n\n[Skip ahead and get a written, itemized estimate in 24 hours →](/contact)\n\nIn the North Atlanta market for 2026, professional James Hardie installation typically ranges between **$8 and $14 per square foot**, depending on the complexity of the project and the product lines selected. That figure includes labor and materials for a proper installation — not a thin layover that skips the details that make siding last. The gap between the cheapest and most expensive bid in Marietta is usually thousands of dollars, and it is almost never about the boards themselves; it is about who is doing the work and what is included."
-      },
-      {
-        "h2": "Estimated cost by home size",
-        "content": "1,500 sq ft home ~1,800 sq ft of siding — roughly $14,400–$25,200 (ranch / single story). \n 2,000 sq ft home ~2,400 sq ft — roughly $19,200–$33,600 (most common in Marietta). \n 2,500 sq ft home ~3,000 sq ft — roughly $24,000–$42,000 (typical East Cobb home). \n 3,000+ sq ft home ~3,600+ sq ft — roughly $28,800–$50,400+ (Milton / Alpharetta range).\n\nHave a quote already? We’ll compare it against a written, itemized scope — free. Compare my quote"
-      },
-      {
-        "h2": "Cost by James Hardie product line",
-        "content": "The style you choose changes both labor and material cost. HardiePlank lap siding is the gold standard for traditional East Cobb architecture, while many homeowners choose HardieShingle or vertical HardiePanel for a modern farmhouse look.\n\nWhatever the profile, the product carries James Hardie’s [HardieZone HZ10](https://www.jameshardie.com/hardie-zone-system/) engineering for the humid South and a 30-year non-prorated product warranty — provided it is installed to specification.\n\nWant your exact number, with the product line and trim spelled out? That’s how we quote. Get my written scope",
+        "h2": "The Short Answer: What Should a Marietta Homeowner Budget?",
+        "content": "For a full siding replacement, begin with a project budget — not a single headline price. A simple one-story wall with easy access can price very differently from a two-story East Cobb home with brick transitions, dormers, several window packages, and damaged trim behind the old cladding.\n\nAs a planning range, professionally installed fiber-cement siding commonly falls in the low-to-mid teens per square foot of siding area before unusual repairs. That is not a quote. A responsible number comes only after the exterior is measured, the existing materials are identified, and the contractor explains what happens if hidden damage is found.",
+        "pullQuote": "The question that protects a homeowner is not, 'What is your price per square foot?' It is, 'What exactly is included around my windows, trim, weather barrier, tear-off, and repairs?'",
         "table": {
           "headers": [
-            "Product",
-            "Installed $/sq ft",
-            "Best for"
+            "Project profile",
+            "Scope to discuss",
+            "Why cost changes"
           ],
           "rows": [
             [
-              "HardiePlank Lap",
-              "$8–$11",
-              "Most homes, traditional look"
+              "Single-story ranch",
+              "Tear-off, weather barrier, and standard trim",
+              "Access is simpler and labor hours are lower."
             ],
             [
-              "HardieShingle",
-              "$10–$14",
-              "Cape Cod, craftsman, accents"
+              "Two-story suburban home",
+              "Scaffolding, window details, trim, and staging",
+              "Height and detail work add labor and planning."
             ],
             [
-              "HardiePanel (vertical)",
-              "$9–$12",
-              "Modern farmhouse, board & batten"
+              "Brick-and-siding exterior",
+              "Flashing and transitions between materials",
+              "Water management must be detailed at every transition."
             ],
             [
-              "HardieTrim",
-              "$4–$7",
-              "Corners, windows, doors — always included"
+              "Older exterior with soft trim",
+              "Repair allowance plus written approval process",
+              "Wall conditions are sometimes visible only after selective removal."
             ]
           ]
         }
       },
       {
-        "h2": "What adds to the final cost in Georgia",
-        "content": "Beyond the siding itself, several regional factors shape the final number — and a good proposal names each one:\n\nRotten wood replacement On many older Georgia homes, rot is found behind the old siding. It should be documented and priced before work proceeds. \n Second-story & access Homes over 1.5 stories need added scaffolding and safety, typically raising labor. \n Tear-off & disposal Removing and hauling the old siding is real scope — a clean tear-off, not a layover. \n Permits & house wrap Cobb and Fulton permits and a proper weather-resistant barrier are part of a warranty-compliant job."
+        "h2": "Four Parts of a Professional Siding Estimate",
+        "content": "A professional estimate separates the work into understandable parts. This lets a homeowner compare scope before comparing total price.",
+        "subsections": [
+          {
+            "h3": "1. Removal and disposal",
+            "content": "The scope should say whether the old siding is removed, where debris goes, and when the wall is inspected. Covering a failing substrate can create a more expensive problem later."
+          },
+          {
+            "h3": "2. The wall system behind the siding",
+            "content": "House wrap, flashing, fasteners, caulk, and transitions around openings are not minor accessories. They manage water in Marietta's humid, rain-heavy climate."
+          },
+          {
+            "h3": "3. Siding, trim, and finish choices",
+            "content": "Lap siding, vertical panels, shingles, trim width, soffit work, and factory-finished versus field-painted products affect both material and labor."
+          },
+          {
+            "h3": "4. Access, protection, and cleanup",
+            "content": "Two-story work, landscaping protection, driveway access, scaffolding, and daily cleanup are real labor items on established Marietta lots with mature trees and tight side yards."
+          }
+        ]
       },
       {
-        "h2": "Does insurance help — and is it worth it?",
-        "content": "Georgia’s hail season frequently causes damage that qualifies for an insurance claim, and many Cobb and Cherokee homeowners have had siding replacement covered by documenting storm damage. Independent of insurance, fiber cement remains one of the highest-return exterior upgrades at resale, which is why so many North Atlanta homeowners treat it as an investment rather than a repair. For the full picture on planning the project, see our [Marietta James Hardie guide](/blog/james-hardie-siding-marietta-ga).\n\nThe cheapest siding bid and the most complete siding bid are rarely the same quote. Read the scope, not just the total."
+        "h2": "Why a Marietta Siding Price Can Change After the Inspection",
+        "content": "The siding itself is only one layer of the exterior. The final price can change when a crew finds a condition that could affect the performance of the new wall system. A good contractor does not hide that possibility; they explain it before work starts and document it if it appears.",
+        "image": {
+          "url": "/blog-images/marietta-window-flashing-cost-driver-2026.webp",
+          "alt": "Window opening detail during a siding replacement showing weather barrier and flashing work",
+          "caption": "Window openings are where an estimate becomes a wall-system plan: weather barrier, flashing, trim, repair scope, and labor all need to be visible in the written proposal."
+        },
+        "subsections": [
+          {
+            "h3": "Hidden rot and damaged sheathing",
+            "content": "Soft wood at a window, a loose panel, or staining beneath a roofline can signal water intrusion. It does not automatically mean a full rebuild, but it does deserve a documented inspection and repair recommendation."
+          },
+          {
+            "h3": "Height and architectural detail",
+            "content": "Gables, second stories, brick transitions, decorative bands, and multi-level rooflines require more measurements, cuts, staging, and safety work. These are familiar features on many East Cobb homes and should be visible in the estimate, not treated as a surprise."
+          },
+          {
+            "h3": "Permit and HOA review",
+            "content": "Requirements vary by property and jurisdiction. If a permit, HOA package, color approval, or engineering review applies, the proposal should say who handles it, what is included, and what is excluded."
+          }
+        ]
       },
       {
-        "h2": "How to compare two James Hardie quotes fairly",
-        "content": "When two Marietta quotes are thousands of dollars apart, resist the urge to assume the lower one is a deal or the higher one is padded. Put them side by side and mark every item named in one but missing from the other. Start with the exterior system itself: siding profile, trim, soffit, fascia, and the flashing and transitions where siding meets roofs, windows and masonry. Then compare the work around the system — tear-off and disposal, house wrap, permits, landscaping protection, cleanup and the final walkthrough. A difference in price may be perfectly legitimate; one home may need more trim work or a bigger repair allowance. But it should be visible in writing, not buried in a single number.\n\nThe same logic applies to the rot conversation. No honest contractor can promise zero hidden damage before the wall is opened, but a good proposal explains how rot is documented, how you see the condition, and how any added work is priced — ideally against a written addendum with predetermined pricing. That is a far more useful form of certainty than a vague promise of “no surprises,” and it is usually the real reason two quotes differ.\n\nGet your exact Marietta number. A written, itemized James Hardie estimate — product line, trim, tear-off and all — within 24 hours. \n Get my free quote Call (678) 400-2012"
+        "h2": "How to Compare Two Siding Estimates Without Guessing",
+        "content": "",
+        "table": {
+          "headers": [
+            "Question to ask",
+            "A useful answer includes"
+          ],
+          "rows": [
+            [
+              "What is removed?",
+              "Old cladding, disposal, and an inspection sequence."
+            ],
+            [
+              "How are windows protected?",
+              "Flashing and weather-barrier details, not only siding boards."
+            ],
+            [
+              "What happens if rot is found?",
+              "Photos, a unit rate or allowance, and written homeowner approval."
+            ],
+            [
+              "Who performs the work?",
+              "A named crew process and supervision plan."
+            ],
+            [
+              "How does the project close?",
+              "Cleanup, walkthrough, warranty handoff, and final accountability."
+            ]
+          ]
+        }
       },
       {
-        "h2": "Financing and spreading the investment",
-        "content": "A full siding replacement is a significant number, but it does not have to arrive all at once. Many North Atlanta homeowners use milestone-based payments — tied to project stages rather than a single large deposit up front — so the cost tracks the work as it happens. Flexible financing options are also available for qualified homeowners, which lets you move forward on the right material and the right installer without stretching your budget in a single month. When you request your written estimate, ask for the payment schedule to be spelled out alongside the scope, so the “how” of paying is as clear as the “what” of the work.\n\nIt is worth separating price from value here. The lowest bid can quietly become the most expensive option if it skips prep, tear-off or proper flashing and the siding fails early. A slightly higher, complete quote from a certified crew that protects your warranty is usually the better financial decision over the decades you will own the home."
+        "h2": "How Product Choices Shape a James Hardie Budget",
+        "content": "",
+        "subsections": [
+          {
+            "h3": "HardiePlank lap siding",
+            "content": "Lap siding is the familiar horizontal profile many homeowners picture first. It can be a straightforward choice on broad wall areas, but the installation still depends on layout, cuts, trim, fasteners, wall preparation, and how the crew handles doors, windows, and roof-to-wall details. The board itself is only one line in a complete exterior scope."
+          },
+          {
+            "h3": "HardiePanel and vertical design areas",
+            "content": "Vertical panels can create a board-and-batten look on gables, entries, or whole elevations. They also change the layout work: battens, reveals, transitions, and trim details must be planned so the façade looks intentional from the street. A lower material line item does not always mean a lower installed scope when more finishing work is involved."
+          },
+          {
+            "h3": "Trim, soffit, and color decisions",
+            "content": "Trim width, corner boards, fascia, soffit repairs, and the finish system shape both the final look and the labor plan. A proposal should identify whether those components are repaired, replaced, wrapped, painted, or excluded. That level of detail makes two bids comparable and avoids treating the visible siding boards as the entire project."
+          }
+        ]
       },
       {
-        "h2": "Sources & Review Notes",
-        "content": "• [James Hardie — Hardie™ Zone System & warranty](https://www.jameshardie.com/hardie-zone-system/) (accessed July 14, 2026)\n• Price ranges are current North Atlanta market ranges for reference, not a Siding Depot quote. Confirm product pricing, permits and warranty against Siding Depot operations before publication."
+        "h2": "A Marietta Example: A Two-Story East Cobb Exterior",
+        "content": "Consider a two-story home with brick across the front, fiber-cement or wood-based cladding on the sides and rear, several windows, a gable, mature landscaping, and limited access along one side yard. The siding area may be less than the interior square footage suggests, yet the scope can be more complex because crews need staging, protection for landscaping, removal of old materials, flashing at every opening, trim coordination, and a clear process if damaged sheathing is uncovered.\n\nThis is why an accurate estimate starts with measurements and a wall-by-wall review. The useful comparison is not between two headline totals. It is between two written scopes that explain the material profile, preparation, water-management details, labor access, cleanup, warranty handoff, and repair-approval process."
+      },
+      {
+        "h2": "A Scope-First Checklist Before You Sign",
+        "content": "Before choosing a contractor, use the same checklist with every proposal:\n\n• Does the scope name the siding profile, trim, finish, and color responsibility?\n• Does it state whether existing siding is removed and where debris is taken?\n• Does it explain house wrap, flashing, and window or door transitions?\n• Does it identify access needs, landscaping protection, and daily cleanup?\n• Does it explain what happens if rot, sheathing damage, or soft trim is found?\n• Does it separate included work from allowances, exclusions, and owner approvals?\n• Does it identify who manages the project and how the final walkthrough and warranty handoff work?\n\nA detailed answer to these questions is more valuable than an attractive price with an unclear scope. It helps a homeowner compare like for like and gives both sides a clear standard before work begins."
+      },
+      {
+        "h2": "Is James Hardie Worth the Higher Upfront Investment?",
+        "content": "That depends on the condition of the existing exterior, how long the homeowner expects to own the home, maintenance expectations, and the desired result. Fiber cement is not the right answer because it is a premium label; it is a strong option when the project is designed and installed as a complete exterior system.\n\nIf storm damage may be part of the decision, document the date, take photographs, and read the policy before assuming coverage. An inspection can identify visible damage; the insurer determines coverage."
       }
     ],
     "faq": [
       {
         "q": "What is the average cost to reside a 2,000 sq ft house in Marietta?",
-        "a": "Most James Hardie replacements on an average Marietta home land around $20,000-$30,000 installed, including tear-off and house wrap. A written, on-site estimate is the only way to price your home."
+        "a": "Interior square footage is not the same as siding area. A reliable price requires a site-specific measurement and a scope covering removal, weather protection, trim, access, and repairs."
       },
       {
-        "q": "How much is James Hardie siding per square foot in North Atlanta?",
-        "a": "Installed pricing typically runs about $8-$14 per square foot depending on product line, home complexity and prep."
-      },
-      {
-        "q": "Does homeowner's insurance cover siding replacement in Georgia?",
-        "a": "Sometimes. Storm and hail damage during Georgia's season frequently qualifies. Document the storm date and have a contractor present for the adjuster visit."
-      },
-      {
-        "q": "How long does James Hardie siding last in Georgia?",
-        "a": "Installed to spec by a certified crew, fiber cement commonly lasts 30-50 years and carries a 30-year non-prorated product warranty."
+        "q": "How long does fiber-cement siding last in Georgia?",
+        "a": "Service life depends on the product, installation, weather management, maintenance, and the condition of the wall behind it. Review the manufacturer warranty and care requirements for the proposed system."
       },
       {
         "q": "Is James Hardie worth it over vinyl?",
-        "a": "For most North Atlanta homes, yes. It resists the moisture, rot and pests that shorten vinyl and wood, and recoups a strong share of its cost at resale."
+        "a": "It can be worth it when a homeowner values appearance, durability, and a properly detailed exterior system. The choice should reflect the home, budget, maintenance expectations, and written scope."
       },
       {
-        "q": "What adds to the final price?",
-        "a": "Rotten-wood replacement, second-story access, complex trim, permits, old-siding tear-off and high-performance house wrap all affect the written scope."
-      },
-      {
-        "q": "Do you offer financing?",
-        "a": "Flexible payment and financing options are available for qualified homeowners; ask for details with your written estimate."
+        "q": "How do I know if I need full replacement or repair?",
+        "a": "The answer depends on the source and extent of damage, material availability, age of the existing siding, and whether the weather barrier or sheathing has been affected. A focused inspection should explain both options."
       }
     ],
-    "cta": {
-      "city": "Marietta",
-      "service": "Siding"
-    },
-    "metaTitle": "How Much Does James Hardie Siding Cost in Marietta, GA? (2026) | Siding Depot",
-    "metaDescription": "Real 2026 North Atlanta James Hardie siding price ranges by home size and product line, plus what adds to the cost.",
     "internalLinks": [
       "james-hardie-siding-marietta-ga"
     ]
