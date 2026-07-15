@@ -261,19 +261,20 @@ export default function BlogPostDetail() {
                     .split(/\n{2,}/)
                     .filter((block) => block.trim() !== "")
                     .map((block, i) => {
-                    const lines = block.split("\n").filter((l) => l.trim() !== "");
-                    const isList = lines.length > 0 && lines.every((l) => l.trim().startsWith("•"));
-                    if (isList) {
-                      return (
-                        <ul key={i}>
-                          {lines.map((l, j) => (
-                            <li key={j}>{renderInline(l.replace(/^\s*•\s*/, ""))}</li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    return <p key={i}>{renderInline(block)}</p>;
-                  });
+                      const lines = block.split("\n").filter((l) => l.trim() !== "");
+                      const isList =
+                        lines.length > 0 && lines.every((l) => l.trim().startsWith("•"));
+                      if (isList) {
+                        return (
+                          <ul key={i}>
+                            {lines.map((l, j) => (
+                              <li key={j}>{renderInline(l.replace(/^\s*•\s*/, ""))}</li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      return <p key={i}>{renderInline(block)}</p>;
+                    });
 
                 return (
                   <div key={idx} className="mb-16">

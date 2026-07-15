@@ -47,7 +47,9 @@ export default function BlogListing() {
             {featuredPost && (
               <div className="relative group overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 flex flex-col md:flex-row min-h-[450px]">
                 <div className="md:w-[55%] relative overflow-hidden bg-gray-100">
-                  <img loading="lazy" decoding="async"
+                  <img
+                    loading="lazy"
+                    decoding="async"
                     src={getOptimizedUnsplashUrl(featuredPost.heroImage.url, {
                       width: 1200,
                       height: 675,
