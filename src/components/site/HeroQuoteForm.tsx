@@ -102,7 +102,7 @@ export function HeroQuoteForm({
           className="px-5 pt-5 pb-4 text-center text-sd-black border-b border-black/10"
           style={{ background: "#B6E214" }}
         >
-          <h2 className="font-display text-xl sm:text-2xl leading-tight">{title}</h2>
+          <p className="font-display text-xl sm:text-2xl leading-tight">{title}</p>
           <p className="mt-1 text-[11px] text-sd-black/70">{subtitle}</p>
         </div>
       )}
