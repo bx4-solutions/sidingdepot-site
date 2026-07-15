@@ -201,7 +201,7 @@ export default function BlogPostDetail() {
             </header>
 
             <div
-              className={`prose prose-lg max-w-none prose-headings:text-sd-black prose-h2:font-bold prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:overflow-hidden prose-th:bg-sd-black prose-th:text-sd-black prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4 ${
+              className={`prose prose-lg max-w-none prose-headings:text-sd-black prose-h2:font-bold prose-h2:mb-8 prose-h2:mt-16 prose-h3:text-[22px] prose-h3:font-bold prose-p:text-sd-gray-text prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8 prose-li:text-sd-gray-text prose-li:text-lg prose-table:overflow-hidden prose-th:bg-sd-black prose-th:text-white prose-th:px-6 prose-th:py-4 prose-td:px-6 prose-td:py-4 ${
                 isMariettaCostGuide
                   ? "prose-h2:text-[34px] prose-h2:border-l-0 prose-h2:pl-0 prose-table:rounded-none"
                   : "prose-h2:text-[28px] prose-h2:border-l-[4px] prose-h2:border-sd-green prose-h2:pl-6 prose-table:rounded-xl"
