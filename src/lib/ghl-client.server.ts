@@ -181,6 +181,37 @@ export async function createOpportunity(
   return result?.opportunity?.id ? { id: result.opportunity.id } : null;
 }
 
+export type GhlConversationResult = { id: string; messageId: string } | null;
+
+/**
+ * Logs the website form as an inbound CRM conversation. This creates a visible
+ * conversation for the sales team without sending an SMS or email to the lead.
+ */
+export async function createWebsiteLeadConversation(
+  contactId: string,
+  message: string,
+): Promise<GhlConversationResult> {
+  const config = getGhlConfig();
+  if (!config || !message.trim()) return null;
+
+  const result = await ghlFetch<{ conversationId?: string; messageId?: string }>(
+    "/conversations/messages/inbound",
+    config.apiKey,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        type: "SMS",
+        contactId,
+        message,
+        providerMessageId: `website-form-${crypto.randomUUID()}`,
+      }),
+    },
+  );
+
+  if (!result?.conversationId || !result.messageId) return null;
+  return { id: result.conversationId, messageId: result.messageId };
+}
+
 // In-memory cache of pipelineStageId -> human-readable stage name.
 let _stageNameCache: Record<string, string> | null = null;
 

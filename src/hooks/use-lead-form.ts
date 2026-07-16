@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { submitLead, LeadPayload } from "@/lib/leads";
+import { trackLeadSubmit } from "@/lib/track";
 import { z } from "zod";
 
 interface UseLeadFormOptions<T extends z.ZodType<any, any>> {
@@ -41,6 +42,9 @@ export function useLeadForm<T extends z.ZodType<any, any>>({
     const result = await submitLead(payload);
 
     if (result.success) {
+      // Fire conversion event into dataLayer (GTM → Google Ads) + Meta Pixel.
+      // `tag` carries the service context (e.g. "james-hardie", "siding-replacement").
+      trackLeadSubmit({ service: tag, source });
       setIsSuccess(true);
       onSuccess?.();
     } else {
