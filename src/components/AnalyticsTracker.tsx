@@ -12,6 +12,7 @@ import { useLocation } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 import { getDeviceType, getBrowser, getOS } from "@/lib/device-detect";
+import { getVisitorId } from "@/lib/track";
 
 // ─── Session helpers ─────────────────────────────────────────────────────────
 
@@ -24,10 +25,45 @@ const generateSessionId = (): string => {
   return id;
 };
 
+/**
+ * Classify the referrer host when no UTM/click-id is present.
+ * Organic search carries no UTM, so without this every organic visit
+ * falls through to "Direct".
+ */
+function deriveFromReferrer(referrer: string): string | null {
+  let host: string;
+  try {
+    host = new URL(referrer).hostname.toLowerCase();
+  } catch {
+    return null;
+  }
+
+  // Same-site navigation is not an acquisition source.
+  if (typeof window !== "undefined" && host === window.location.hostname) return null;
+  if (host === "localhost" || host === "127.0.0.1") return "Local Dev";
+
+  if (host.includes("google.")) return "Google Organic";
+  if (host.includes("bing.com")) return "Bing Organic";
+  if (host.includes("duckduckgo.")) return "DuckDuckGo";
+  if (host.includes("search.yahoo.")) return "Yahoo Organic";
+  if (host.includes("chatgpt.com") || host.includes("openai.com")) return "ChatGPT";
+  if (host.includes("perplexity.ai")) return "Perplexity";
+  if (host.includes("instagram.")) return "Instagram";
+  if (host.includes("facebook.") || host.includes("fb.com")) return "Facebook";
+  if (host.includes("youtube.") || host.includes("youtu.be")) return "YouTube";
+  if (host.includes("linkedin.")) return "LinkedIn";
+  if (host.includes("nextdoor.")) return "Nextdoor";
+  if (host.includes("houzz.")) return "Houzz";
+  if (host.includes("thumbtack.")) return "Thumbtack";
+  if (host.includes("yelp.")) return "Yelp";
+  return "Referral";
+}
+
 function deriveSourcePlatform(
   utm: Record<string, string | null>,
   gclid: string | null,
   fbclid: string | null,
+  referrer: string | null,
 ): string {
   if (gclid) return "Google Ads";
   if (fbclid) return "Meta Paid";
@@ -45,6 +81,10 @@ function deriveSourcePlatform(
   if (med === "email") return "Email";
   if (med === "referral" || med === "affiliate") return "Referral";
   if (src) return src;
+  if (referrer) {
+    const fromRef = deriveFromReferrer(referrer);
+    if (fromRef) return fromRef;
+  }
   return "Direct";
 }
 
@@ -57,7 +97,8 @@ const getUTM = () => {
   };
   const gclid = p.get("gclid");
   const fbclid = p.get("fbclid");
-  const source_platform = deriveSourcePlatform(utm, gclid, fbclid);
+  const referrer = typeof document !== "undefined" ? document.referrer || null : null;
+  const source_platform = deriveSourcePlatform(utm, gclid, fbclid, referrer);
   return { ...utm, gclid, fbclid, source_platform };
 };
 
@@ -117,6 +158,7 @@ async function trackEvent(
   try {
     await supabase.from("analytics_events").insert({
       session_id: sessionId,
+      visitor_id: getVisitorId(),
       event_type: eventType,
       page_path: pathname,
       page_title: document.title,
