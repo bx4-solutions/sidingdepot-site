@@ -57,6 +57,17 @@ export function getCityMeta(slug: string) {
   return CITIES.find((c) => c.slug === slug);
 }
 
+/**
+ * Cities with a live municipal hub page (/locations/{city}).
+ * Per the competitive-research priority: only cities with service breadth and
+ * local proof get a hub now; the rest 404 until they earn one.
+ */
+export const HUB_CITIES = ["marietta", "alpharetta", "milton", "roswell", "johns-creek"] as const;
+
+export function isHubCity(city: string): boolean {
+  return (HUB_CITIES as readonly string[]).includes(city);
+}
+
 /** All static (non-dynamic) routes that should appear in sitemap.xml */
 export const STATIC_ROUTES = [
   "/",
@@ -73,6 +84,7 @@ export const STATIC_ROUTES = [
   "/dumpster-rental",
   "/contact",
   "/guide",
+  "/storm-damage-siding-georgia",
   "/lp/siding-marietta",
   "/lp/siding-alpharetta",
   "/lp/siding-canton",

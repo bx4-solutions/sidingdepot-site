@@ -3,7 +3,7 @@
 ## Publicas
 index, about, contact, finance, gallery, guide(+guide.thank-you), siding, roofing, painting, decks, doors, windows,
 dumpster, dumpster-rental, services.$slug, projects(.index/$slug), blog(.index/$slug), locations.$city.$service,
-lp.siding-marietta, lp.siding-alpharetta, lp.siding-canton, sitemap.xml, blog-sitemap.xml,
+lp.siding-marietta, lp.siding-alpharetta, lp.siding-canton, marietta-ga-siding, sitemap.xml, blog-sitemap.xml,
 privacy-policy, terms-of-use.
 
 ## Admin (auth obrigatoria)
