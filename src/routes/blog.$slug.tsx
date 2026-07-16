@@ -15,6 +15,15 @@ export const Route = createFileRoute("/blog/$slug")({
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
     if (!post) return { title: "Post Not Found | Siding Depot" };
 
+    // Drafts may be viewed through the explicit preview flow, but must never be
+    // eligible for indexing or public article metadata before publication.
+    if (post.status !== "published") {
+      return {
+        title: `${post.title} | Draft | Siding Depot`,
+        meta: [{ name: "robots", content: "noindex, nofollow" }],
+      };
+    }
+
     const canonicalUrl = `https://www.sidingdepot.com/blog/${post.slug}`;
 
     return {
@@ -51,16 +60,16 @@ export const Route = createFileRoute("/blog/$slug")({
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
+            "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
-            image: getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200 }),
+            image: [getOptimizedUnsplashUrl(post.heroImage.url, { width: 1200, height: 675 })],
             wordCount: post.sections.reduce(
               (acc, section) => acc + section.content.split(/\s+/).length,
               0,
             ),
-            datePublished: post.publishDate,
-            dateModified: (post as any).modifiedDate ?? post.publishDate,
+            datePublished: `${post.publishDate}T09:00:00-04:00`,
+            dateModified: `${(post as any).modifiedDate ?? post.publishDate}T09:00:00-04:00`,
             author: {
               "@type": "Person",
               name: "Siding Depot Editorial Team",

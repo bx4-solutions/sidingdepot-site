@@ -244,34 +244,34 @@ function RootComponent() {
         (window as any).beTracker?.t?.({ hash: METRICOOL_HASH });
       });
 
-    // Inject GA4 if configured
-    if (GA4_ID) {
-      w.dataLayer = w.dataLayer || [];
-      function gtag(...args: any[]) {
-        w.dataLayer.push(args);
+      // Inject GA4 if configured
+      if (GA4_ID) {
+        w.dataLayer = w.dataLayer || [];
+        function gtag(...args: any[]) {
+          w.dataLayer.push(args);
+        }
+        w.gtag = w.gtag || gtag;
+        w.gtag("js", new Date());
+        w.gtag("config", GA4_ID);
+        appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`);
       }
-      w.gtag = w.gtag || gtag;
-      w.gtag("js", new Date());
-      w.gtag("config", GA4_ID);
-      appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`);
-    }
 
-    // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
-    if (META_PIXEL_ID) {
-      w.fbq =
-        w.fbq ||
-        function (...args: any[]) {
-          (w.fbq.q = w.fbq.q || []).push(args);
-        };
-      w.fbq.v = "2.0";
-      w.fbq.loaded = true;
-      w._fbq = w._fbq || w.fbq;
+      // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
+      if (META_PIXEL_ID) {
+        w.fbq =
+          w.fbq ||
+          function (...args: any[]) {
+            (w.fbq.q = w.fbq.q || []).push(args);
+          };
+        w.fbq.v = "2.0";
+        w.fbq.loaded = true;
+        w._fbq = w._fbq || w.fbq;
 
-      w.fbq("init", META_PIXEL_ID);
-      w.fbq("track", "PageView");
+        w.fbq("init", META_PIXEL_ID);
+        w.fbq("track", "PageView");
 
-      appendExternalScript("https://connect.facebook.net/en_US/fbevents.js");
-    }
+        appendExternalScript("https://connect.facebook.net/en_US/fbevents.js");
+      }
     };
 
     const idleWindow = window as Window & {

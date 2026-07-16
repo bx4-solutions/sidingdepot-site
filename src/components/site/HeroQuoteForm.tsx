@@ -173,7 +173,7 @@ export function HeroQuoteForm({
           </div>
         </div>
 
-        <div className="grid gap-1.5">
+        <div className="grid gap-1.5 hidden sm:block">
           <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">
             Services
           </Label>
@@ -214,7 +214,7 @@ export function HeroQuoteForm({
           )}
         </div>
 
-        <div className="grid gap-1">
+        <div className="grid gap-1 hidden sm:block">
           <Label
             htmlFor="hero-details"
             className="text-[11px] font-bold text-sd-black uppercase tracking-wider flex items-center gap-1.5"
