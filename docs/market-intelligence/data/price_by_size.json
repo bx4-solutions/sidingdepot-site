@@ -1,0 +1,26 @@
+[
+ {
+  "size_band_squares": "1-10",
+  "n": 23,
+  "ticket_median": 6120,
+  "price_per_square": 1101
+ },
+ {
+  "size_band_squares": "11-20",
+  "n": 31,
+  "ticket_median": 15675,
+  "price_per_square": 1052
+ },
+ {
+  "size_band_squares": "21-30",
+  "n": 30,
+  "ticket_median": 26966,
+  "price_per_square": 1013
+ },
+ {
+  "size_band_squares": "30+",
+  "n": 33,
+  "ticket_median": 36000,
+  "price_per_square": 948
+ }
+]

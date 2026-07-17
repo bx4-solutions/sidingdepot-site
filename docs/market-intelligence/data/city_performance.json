@@ -1,0 +1,236 @@
+[
+ {
+  "city": "Decatur",
+  "deals": 11,
+  "won": 2,
+  "lost": 0,
+  "close_rate": 100,
+  "ticket_median": 20090,
+  "ticket_mean": 20090
+ },
+ {
+  "city": "Douglasville",
+  "deals": 7,
+  "won": 1,
+  "lost": 0,
+  "close_rate": 100,
+  "ticket_median": 22200,
+  "ticket_mean": 22200
+ },
+ {
+  "city": "Canton",
+  "deals": 6,
+  "won": 1,
+  "lost": 0,
+  "close_rate": 100,
+  "ticket_median": 17825,
+  "ticket_mean": 17825
+ },
+ {
+  "city": "Dallas",
+  "deals": 5,
+  "won": 1,
+  "lost": 0,
+  "close_rate": 100,
+  "ticket_median": 23000,
+  "ticket_mean": 23000
+ },
+ {
+  "city": "Mableton",
+  "deals": 5,
+  "won": 1,
+  "lost": 0,
+  "close_rate": 100,
+  "ticket_median": 17335,
+  "ticket_mean": 17335
+ },
+ {
+  "city": "Roswell",
+  "deals": 49,
+  "won": 17,
+  "lost": 5,
+  "close_rate": 77,
+  "ticket_median": 22965,
+  "ticket_mean": 24781
+ },
+ {
+  "city": "Kennesaw",
+  "deals": 37,
+  "won": 10,
+  "lost": 3,
+  "close_rate": 77,
+  "ticket_median": 17665,
+  "ticket_mean": 21003
+ },
+ {
+  "city": "Acworth",
+  "deals": 32,
+  "won": 7,
+  "lost": 3,
+  "close_rate": 70,
+  "ticket_median": 21030,
+  "ticket_mean": 23053
+ },
+ {
+  "city": "Atlanta",
+  "deals": 45,
+  "won": 9,
+  "lost": 4,
+  "close_rate": 69,
+  "ticket_median": 6056,
+  "ticket_mean": 13811
+ },
+ {
+  "city": "Alpharetta",
+  "deals": 29,
+  "won": 6,
+  "lost": 3,
+  "close_rate": 67,
+  "ticket_median": 29430,
+  "ticket_mean": 29232
+ },
+ {
+  "city": "Marietta",
+  "deals": 270,
+  "won": 64,
+  "lost": 37,
+  "close_rate": 63,
+  "ticket_median": 25062,
+  "ticket_mean": 24768
+ },
+ {
+  "city": "Powder Springs",
+  "deals": 16,
+  "won": 2,
+  "lost": 2,
+  "close_rate": 50,
+  "ticket_median": 17100,
+  "ticket_mean": 17100
+ },
+ {
+  "city": "Austell",
+  "deals": 5,
+  "won": 1,
+  "lost": 1,
+  "close_rate": 50,
+  "ticket_median": 36653,
+  "ticket_mean": 36653
+ },
+ {
+  "city": "Duluth",
+  "deals": 4,
+  "won": 1,
+  "lost": 1,
+  "close_rate": 50,
+  "ticket_median": 30478,
+  "ticket_mean": 30478
+ },
+ {
+  "city": "Kennessaw",
+  "deals": 4,
+  "won": 1,
+  "lost": 1,
+  "close_rate": 50,
+  "ticket_median": 24420,
+  "ticket_mean": 24420
+ },
+ {
+  "city": "Woodstock",
+  "deals": 40,
+  "won": 6,
+  "lost": 8,
+  "close_rate": 43,
+  "ticket_median": 13715,
+  "ticket_mean": 43517
+ },
+ {
+  "city": "Smyrna",
+  "deals": 10,
+  "won": 1,
+  "lost": 2,
+  "close_rate": 33,
+  "ticket_median": 19250,
+  "ticket_mean": 19250
+ },
+ {
+  "city": "Lawrenceville",
+  "deals": 7,
+  "won": 1,
+  "lost": 2,
+  "close_rate": 33,
+  "ticket_median": 8700,
+  "ticket_mean": 8700
+ },
+ {
+  "city": "Suwanee",
+  "deals": 4,
+  "won": 0,
+  "lost": 1,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Snellville",
+  "deals": 5,
+  "won": 0,
+  "lost": 1,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Norcross",
+  "deals": 4,
+  "won": 0,
+  "lost": 1,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Cartersville",
+  "deals": 4,
+  "won": 0,
+  "lost": 0,
+  "close_rate": null,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Stone Mountain",
+  "deals": 6,
+  "won": 0,
+  "lost": 1,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Ellenwood",
+  "deals": 4,
+  "won": 0,
+  "lost": 2,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Lilburn",
+  "deals": 5,
+  "won": 0,
+  "lost": 1,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ },
+ {
+  "city": "Johns Creek",
+  "deals": 9,
+  "won": 0,
+  "lost": 5,
+  "close_rate": 0,
+  "ticket_median": null,
+  "ticket_mean": null
+ }
+]

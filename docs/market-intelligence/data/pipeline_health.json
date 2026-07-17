@@ -1,0 +1,45 @@
+{
+ "open_deals": 559,
+ "open_value_declared": 6300764,
+ "open_value_extrapolated": 16381987,
+ "aging": [
+  {
+   "band": "0-30d",
+   "n": 92,
+   "read": "vivos"
+  },
+  {
+   "band": "31-90d",
+   "n": 172,
+   "read": "mornos"
+  },
+  {
+   "band": "91-180d",
+   "n": 182,
+   "read": "quase mortos"
+  },
+  {
+   "band": "180d+",
+   "n": 113,
+   "read": "mortos"
+  }
+ ],
+ "sales_cycle_days": {
+  "median": 12,
+  "mean": 20,
+  "p75": 25,
+  "p90": 49,
+  "n": 143
+ },
+ "monthly_wins_recent": {
+  "2026-03": 25,
+  "2026-04": 21,
+  "2026-05": 19,
+  "2026-06": 17
+ },
+ "run_rate_monthly_usd": [
+  400000,
+  575000
+ ],
+ "note": "casa que fecha, fecha em 12 dias medianos; aberto >90d = estatisticamente morto"
+}
