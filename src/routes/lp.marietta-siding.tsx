@@ -3,7 +3,6 @@ import {
   Phone,
   CheckCircle2,
   Star,
-  Wrench,
   Home,
   Layers,
   Droplets,
@@ -68,11 +67,6 @@ const ERAS = [
 
 const SERVICE_MODES = [
   {
-    Icon: Wrench,
-    title: "Siding Repair",
-    desc: "Rot cut-outs, storm damage, woodpecker holes, failed boards. Fixed to spec, color-matched — not patched over.",
-  },
-  {
     Icon: Home,
     title: "Full Replacement",
     desc: "Old wood, Masonite or vinyl off — James Hardie fiber cement on. The last siding decision this house will need.",
@@ -111,7 +105,7 @@ export const Route = createFileRoute("/lp/marietta-siding")({
     const canonicalUrl = `${SITE_ORIGIN}/locations/marietta/siding`;
     const title = "James Hardie Siding in Marietta, GA | Free Estimate + Financing — Siding Depot";
     const description =
-      "Marietta's James Hardie Elite siding contractor. Fiber cement siding repair, replacement & installation in Cobb County. 550+ 5-star reviews, 0% APR financing, free estimate.";
+      "Marietta's James Hardie Elite siding contractor. Full fiber cement siding replacement & new installation in Cobb County. 550+ 5-star reviews, 0% APR financing, free estimate.";
     const localBusiness = {
       ...LOCAL_BUSINESS_SCHEMA,
       name: "Siding Depot — Marietta",
@@ -295,9 +289,9 @@ function MariettaSidingLP() {
       <section className="bg-sd-gray-bg py-16 lg:py-24">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <h2 className="text-center text-3xl font-extrabold tracking-tight text-sd-black sm:text-4xl">
-            Siding repair, replacement &amp; installation in Marietta
+            Full siding replacement &amp; new installation in Marietta
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {SERVICE_MODES.map(({ Icon, title, desc }) => (
               <div key={title} className="rounded-2xl bg-white p-7 shadow-sm">
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sd-green-pale">

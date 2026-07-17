@@ -37,7 +37,7 @@ const WHY_US_ITEMS = [
   },
   {
     title: "Experienced Local Installers",
-    desc: "With over 20 years of experience in siding, roofing, and trim installation in North Atlanta, homeowners trust Siding Depot to get the job done right.",
+    desc: "With over 20 years installing siding, roofing, and trim across Marietta and Cobb County — and our headquarters on Roswell Rd — homeowners trust Siding Depot to get the job done right.",
   },
   {
     title: "High-Quality Materials",
@@ -114,7 +114,7 @@ export const Route = createFileRoute("/marietta-ga-siding")({
     const url = `${SITE_ORIGIN}/marietta-ga-siding`;
     const title = "Marietta GA Siding Replacements and Installations | Siding Depot";
     const description =
-      "Marietta's James Hardie Elite siding contractor. Fiber cement siding repair, replacement & installation in Cobb County. 550+ 5-star reviews, 0% APR financing, free estimate.";
+      "Marietta's James Hardie Elite siding contractor. Full fiber cement siding replacement & new installation in Cobb County. 550+ 5-star reviews, 0% APR financing, free estimate.";
 
     const localBusiness = {
       ...LOCAL_BUSINESS_SCHEMA,
@@ -180,8 +180,8 @@ function MariettaGASidingPage() {
               Reliable Siding and Roofing Company in <span className="text-sd-green">Marietta</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/85 mx-auto lg:mx-0">
-              The same team trusted by hundreds of homeowners in Atlanta — now serving Marietta with
-              siding, roofing, and exterior painting under one roof.
+              The same team hundreds of Atlanta homeowners have trusted for over 20 years — based
+              right here in Marietta, with siding, roofing, and exterior painting under one roof.
             </p>
             <ul className="mt-6 grid gap-2 sm:grid-cols-2 text-left mx-auto lg:mx-0">
               {[
