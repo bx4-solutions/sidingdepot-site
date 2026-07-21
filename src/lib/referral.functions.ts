@@ -16,8 +16,10 @@ const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
 
 function cfg() {
-  const apiKey = process.env.GHL_API_KEY;
-  const locationId = process.env.GHL_LOCATION_ID;
+  // O referral pode ter conta GHL propria (GHL_REFERRAL_API_KEY / GHL_REFERRAL_LOCATION_ID),
+  // separada do fluxo de lead comum do site — cai de volta na conta padrao se nao definida.
+  const apiKey = process.env.GHL_REFERRAL_API_KEY || process.env.GHL_API_KEY;
+  const locationId = process.env.GHL_REFERRAL_LOCATION_ID || process.env.GHL_LOCATION_ID;
   if (!apiKey || !locationId) return null;
   return {
     apiKey,
