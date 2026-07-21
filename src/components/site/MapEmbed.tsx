@@ -14,18 +14,15 @@ interface MapEmbedProps {
  * Uses the no-key embed URL by default; if VITE_GOOGLE_MAPS_API_KEY is set,
  * uses the official Embed API for nicer rendering.
  */
-export function MapEmbed({
-  className = "h-[300px]",
-  title,
-  query,
-}: MapEmbedProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
+export function MapEmbed({ className = "h-[300px]", title, query }: MapEmbedProps) {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined;
-  const addressQuery = encodeURIComponent(
-    query ?? `${SITE.name}, ${SITE.address.full}`
-  );
+
+  const [isLoading, setIsLoading] = useState(true);
+  // Sem chave da Maps Embed API, o Google faz 301 do embed keyless para um
+  // endpoint com X-Frame-Options: SAMEORIGIN → iframe em branco e o onError
+  // nunca dispara. Nesse caso degradamos direto para o card de localizacao.
+  const [hasError, setHasError] = useState(!apiKey);
+  const addressQuery = encodeURIComponent(query ?? `${SITE.name}, ${SITE.address.full}`);
 
   const mapUrl = apiKey
     ? `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${addressQuery}`
@@ -34,7 +31,9 @@ export function MapEmbed({
   const externalUrl = `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`;
 
   return (
-    <div className={`relative rounded-2xl overflow-hidden bg-sd-gray-bg border border-black/5 ${className}`}>
+    <div
+      className={`relative rounded-2xl overflow-hidden bg-sd-gray-bg border border-black/5 ${className}`}
+    >
       {isLoading && !hasError && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-sd-gray-bg">
           <Loader2 className="h-7 w-7 text-sd-green animate-spin" />

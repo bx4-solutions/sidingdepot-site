@@ -136,11 +136,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/referral" className="text-white/55 hover:text-sd-green">
-                  Refer &amp; Earn
-                </Link>
-              </li>
-              <li>
                 <Link to="/projects" className="text-white/55 hover:text-sd-green">
                   Gallery
                 </Link>

@@ -55,6 +55,8 @@ export const Route = createFileRoute("/referral")({
     return {
       meta: [
         { title: "Refer a Neighbor & Earn up to $150 | Siding Depot" },
+        // Oculto do publico durante os testes: fora do indice e sem seguir links.
+        { name: "robots", content: "noindex, nofollow" },
         {
           name: "description",
           content:
