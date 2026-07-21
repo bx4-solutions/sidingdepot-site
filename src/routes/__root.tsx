@@ -35,8 +35,7 @@ const METRICOOL_HASH = "5650f1d5ea63827a1cce95efe75d00f4";
 // Reunifica 100% da navegacao do site dentro da subconta ClickOne do Siding Depot
 // (o site perdeu essa analitica quando saiu de dentro da ClickOne). Integracao por
 // script hospedado da ClickOne — NAO e copia de codigo (respeita a regra de boundary).
-const CLICKONE_TRACKING_SRC =
-  "https://links.clickonepro.com/js/external-tracking.js";
+const CLICKONE_TRACKING_SRC = "https://links.clickonepro.com/js/external-tracking.js";
 const CLICKONE_TRACKING_ID = "tk_deb18e62998e4e4c91e3469e198db42d";
 
 function NotFoundComponent() {
