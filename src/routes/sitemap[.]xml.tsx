@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { STATIC_ROUTES, getAllLocationCombos, SITE_ORIGIN } from "@/data/locations";
+import { STATIC_ROUTES, getAllLocationCombos, HUB_CITIES, SITE_ORIGIN } from "@/data/locations";
 import { BLOG_POSTS } from "@/data/blog-posts";
 import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
 
@@ -23,6 +23,7 @@ const ROUTE_LASTMOD: Record<string, string> = {
   "/projects": "2025-11-01",
   "/finance": "2025-09-01",
   "/blog": "2025-11-01",
+  "/storm-damage-siding-georgia": "2026-07-15",
 };
 const DEFAULT_LASTMOD = "2025-10-01";
 const LOCATION_LASTMOD = "2025-10-01";
@@ -36,6 +37,15 @@ function buildSitemap(origin: string): string {
       priority: path === "/" ? "1.0" : "0.8",
       changefreq: "weekly",
       lastmod: ROUTE_LASTMOD[path] ?? DEFAULT_LASTMOD,
+    });
+  }
+
+  for (const city of HUB_CITIES) {
+    urls.push({
+      loc: `${origin}/locations/${city}`,
+      priority: "0.9",
+      changefreq: "monthly",
+      lastmod: "2026-07-15",
     });
   }
 

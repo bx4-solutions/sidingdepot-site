@@ -1,4 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
 import { track, getAttribution, getVisitorId } from "@/lib/track";
 import { getDeviceType, getBrowser, getOS } from "@/lib/device-detect";
 import { submitLeadToGhl } from "@/lib/ghl-lead.functions";
@@ -43,46 +42,11 @@ export async function submitLead(payload: LeadPayload) {
   const os = typeof window !== "undefined" ? getOS() : "";
 
   try {
-    // 1. Save to Supabase — full attribution snapshot, not just the basics.
-    const { data: inserted, error: dbError } = await supabase
-      .from("leads")
-      .insert({
-        name,
-        phone,
-        email: email || null,
-        city: city || "",
-        services: services || [],
-        details: details || null,
-        consent: consent || false,
-        source,
-        tag,
-        utm_source: attribution.utm_source ?? null,
-        utm_medium: attribution.utm_medium ?? null,
-        utm_campaign: attribution.utm_campaign ?? null,
-        utm_content: attribution.utm_content ?? null,
-        utm_term: attribution.utm_term ?? null,
-        gclid: attribution.gclid ?? null,
-        fbclid: attribution.fbclid ?? null,
-        source_platform: sourcePlatform,
-        page_url: pageUrl,
-        landing_page: attribution.landing_page ?? null,
-        referrer: attribution.referrer ?? null,
-        visitor_id: visitorId || null,
-        device_type: deviceType || null,
-        browser: browser || null,
-        os: os || null,
-      })
-      .select("id")
-      .single();
-
-    if (dbError) {
-      console.error("Database error:", dbError);
-    }
-
-    // 2. Send to GHL via a server function (API key never touches the browser).
-    //    createServerFn is the pattern this TanStack Start build actually serves;
-    //    the old fetch("/api/submit-lead") route was never mounted (always 404).
-    const result = await submitLeadToGhl({
+    // One server call does it all: Supabase persistence + GHL. It runs
+    // service-role, which is what fixes the silent data loss — the old
+    // browser-side insert here always died with 42501, because its `.select()`
+    // readback needs a SELECT policy and `leads` only grants SELECT to admins.
+    await submitLeadToGhl({
       data: {
         name,
         phone,
@@ -90,6 +54,7 @@ export async function submitLead(payload: LeadPayload) {
         city: city || "",
         services: services || [],
         details: details || "",
+        consent: consent || false,
         source,
         tag,
         utm_source: attribution.utm_source ?? null,
@@ -108,21 +73,7 @@ export async function submitLead(payload: LeadPayload) {
         browser,
         os,
       },
-    }).catch((err) => {
-      console.warn("GHL submit failed:", err);
-      return null;
     });
-
-    if (result?.ghl && inserted?.id) {
-      await supabase
-        .from("leads")
-        .update({
-          ghl_contact_id: result.ghl_contact_id ?? null,
-          ghl_opportunity_id: result.ghl_opportunity_id ?? null,
-          ghl_synced_at: new Date().toISOString(),
-        })
-        .eq("id", inserted.id);
-    }
 
     track("lead_submission_success", { source, tag });
     return { success: true };

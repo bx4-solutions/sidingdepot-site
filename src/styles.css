@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* Auto-hospedagem de fontes — elimina round-trips para Google Fonts → FCP -750ms */
 @font-face {

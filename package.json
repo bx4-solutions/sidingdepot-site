@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots"
+    "test:visual:update": "playwright test --update-snapshots",
+    "typecheck": "tsc --noEmit",
+    "types:gen": "supabase gen types typescript --linked > src/integrations/supabase/types.ts"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
@@ -43,6 +45,7 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@supabase/supabase-js": "^2.105.4",
+    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-query": "^5.100.10",
     "@tanstack/react-router": "^1.168.25",

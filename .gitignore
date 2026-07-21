@@ -49,3 +49,10 @@ public/mascot.png
 
 .env*
 package-lock.json
+
+# Artefatos de trabalho local (nao versionar)
+.tmp/
+docx-qa/
+supabase/.temp/
+docs/blog-drafts/
+docs/competitive-research/

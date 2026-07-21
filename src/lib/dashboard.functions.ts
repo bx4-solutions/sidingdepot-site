@@ -115,6 +115,7 @@ export const getDashboardMetrics = createServerFn({ method: "POST" })
       ]);
 
       if (eventsResult.error) throw eventsResult.error;
+      if (analyticsResult.error) throw analyticsResult.error;
       const events = (eventsResult.data || []) as any[];
       const analyticsRows = (analyticsResult.data || []) as any[];
 

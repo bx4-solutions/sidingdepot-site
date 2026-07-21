@@ -11,14 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
+import { Route as StormDamageSidingGeorgiaRouteImport } from './routes/storm-damage-siding-georgia'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ReferralRouteImport } from './routes/referral'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PaintingRouteImport } from './routes/painting'
+import { Route as MariettaGaSidingRouteImport } from './routes/marietta-ga-siding'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -29,16 +32,28 @@ import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DecksRouteImport } from './routes/decks'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogSitemapDotxmlRouteImport } from './routes/blog-sitemap[.]xml'
+import { Route as AlpharettaGaSidingRouteImport } from './routes/alpharetta-ga-siding'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as WelcomeCodeRouteImport } from './routes/welcome.$code'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as LpWoodstockSidingRouteImport } from './routes/lp.woodstock-siding'
 import { Route as LpSidingMariettaRouteImport } from './routes/lp.siding-marietta'
 import { Route as LpSidingCantonRouteImport } from './routes/lp.siding-canton'
 import { Route as LpSidingAlpharettaRouteImport } from './routes/lp.siding-alpharetta'
+import { Route as LpSandySpringsSidingRouteImport } from './routes/lp.sandy-springs-siding'
+import { Route as LpRoswellSidingRouteImport } from './routes/lp.roswell-siding'
+import { Route as LpMiltonSidingRouteImport } from './routes/lp.milton-siding'
+import { Route as LpMariettaSidingRouteImport } from './routes/lp.marietta-siding'
+import { Route as LpKennesawSidingRouteImport } from './routes/lp.kennesaw-siding'
+import { Route as LpJohnsCreekSidingRouteImport } from './routes/lp.johns-creek-siding'
+import { Route as LpCantonSidingRouteImport } from './routes/lp.canton-siding'
+import { Route as LpAlpharettaSidingRouteImport } from './routes/lp.alpharetta-siding'
+import { Route as LpAcworthSidingRouteImport } from './routes/lp.acworth-siding'
 import { Route as GuideThankYouRouteImport } from './routes/guide.thank-you'
 import { Route as DevHotspotCalibratorRouteImport } from './routes/dev.hotspot-calibrator'
 import { Route as DevDesignPreviewRouteImport } from './routes/dev.design-preview'
@@ -49,6 +64,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminBlogPreviewRouteImport } from './routes/admin.blog-preview'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as LocationsCityIndexRouteImport } from './routes/locations.$city.index'
 import { Route as LocationsCityServiceRouteImport } from './routes/locations.$city.$service'
 import { Route as AdminBlogSlugRouteImport } from './routes/admin.blog.$slug'
 
@@ -62,6 +78,12 @@ const TermsOfUseRoute = TermsOfUseRouteImport.update({
   path: '/terms-of-use',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StormDamageSidingGeorgiaRoute =
+  StormDamageSidingGeorgiaRouteImport.update({
+    id: '/storm-damage-siding-georgia',
+    path: '/storm-damage-siding-georgia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -87,6 +109,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReferralRoute = ReferralRouteImport.update({
+  id: '/referral',
+  path: '/referral',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -100,6 +127,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
 const PaintingRoute = PaintingRouteImport.update({
   id: '/painting',
   path: '/painting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MariettaGaSidingRoute = MariettaGaSidingRouteImport.update({
+  id: '/marietta-ga-siding',
+  path: '/marietta-ga-siding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuttersRoute = GuttersRouteImport.update({
@@ -152,6 +184,11 @@ const BlogSitemapDotxmlRoute = BlogSitemapDotxmlRouteImport.update({
   path: '/blog-sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlpharettaGaSidingRoute = AlpharettaGaSidingRouteImport.update({
+  id: '/alpharetta-ga-siding',
+  path: '/alpharetta-ga-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -177,6 +214,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WelcomeCodeRoute = WelcomeCodeRouteImport.update({
+  id: '/welcome/$code',
+  path: '/welcome/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -186,6 +228,11 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => ProjectsRoute,
+} as any)
+const LpWoodstockSidingRoute = LpWoodstockSidingRouteImport.update({
+  id: '/lp/woodstock-siding',
+  path: '/lp/woodstock-siding',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LpSidingMariettaRoute = LpSidingMariettaRouteImport.update({
   id: '/lp/siding-marietta',
@@ -200,6 +247,51 @@ const LpSidingCantonRoute = LpSidingCantonRouteImport.update({
 const LpSidingAlpharettaRoute = LpSidingAlpharettaRouteImport.update({
   id: '/lp/siding-alpharetta',
   path: '/lp/siding-alpharetta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpSandySpringsSidingRoute = LpSandySpringsSidingRouteImport.update({
+  id: '/lp/sandy-springs-siding',
+  path: '/lp/sandy-springs-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpRoswellSidingRoute = LpRoswellSidingRouteImport.update({
+  id: '/lp/roswell-siding',
+  path: '/lp/roswell-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpMiltonSidingRoute = LpMiltonSidingRouteImport.update({
+  id: '/lp/milton-siding',
+  path: '/lp/milton-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpMariettaSidingRoute = LpMariettaSidingRouteImport.update({
+  id: '/lp/marietta-siding',
+  path: '/lp/marietta-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpKennesawSidingRoute = LpKennesawSidingRouteImport.update({
+  id: '/lp/kennesaw-siding',
+  path: '/lp/kennesaw-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpJohnsCreekSidingRoute = LpJohnsCreekSidingRouteImport.update({
+  id: '/lp/johns-creek-siding',
+  path: '/lp/johns-creek-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpCantonSidingRoute = LpCantonSidingRouteImport.update({
+  id: '/lp/canton-siding',
+  path: '/lp/canton-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpAlpharettaSidingRoute = LpAlpharettaSidingRouteImport.update({
+  id: '/lp/alpharetta-siding',
+  path: '/lp/alpharetta-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LpAcworthSidingRoute = LpAcworthSidingRouteImport.update({
+  id: '/lp/acworth-siding',
+  path: '/lp/acworth-siding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuideThankYouRoute = GuideThankYouRouteImport.update({
@@ -252,6 +344,11 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsCityIndexRoute = LocationsCityIndexRouteImport.update({
+  id: '/locations/$city/',
+  path: '/locations/$city/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocationsCityServiceRoute = LocationsCityServiceRouteImport.update({
   id: '/locations/$city/$service',
   path: '/locations/$city/$service',
@@ -267,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -277,14 +375,17 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/storm-damage-siding-georgia': typeof StormDamageSidingGeorgiaRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -297,20 +398,33 @@ export interface FileRoutesByFullPath {
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
+  '/lp/acworth-siding': typeof LpAcworthSidingRoute
+  '/lp/alpharetta-siding': typeof LpAlpharettaSidingRoute
+  '/lp/canton-siding': typeof LpCantonSidingRoute
+  '/lp/johns-creek-siding': typeof LpJohnsCreekSidingRoute
+  '/lp/kennesaw-siding': typeof LpKennesawSidingRoute
+  '/lp/marietta-siding': typeof LpMariettaSidingRoute
+  '/lp/milton-siding': typeof LpMiltonSidingRoute
+  '/lp/roswell-siding': typeof LpRoswellSidingRoute
+  '/lp/sandy-springs-siding': typeof LpSandySpringsSidingRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
+  '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog/': typeof BlogIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
+  '/locations/$city/': typeof LocationsCityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -321,13 +435,16 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/storm-damage-siding-georgia': typeof StormDamageSidingGeorgiaRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -340,21 +457,34 @@ export interface FileRoutesByTo {
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
+  '/lp/acworth-siding': typeof LpAcworthSidingRoute
+  '/lp/alpharetta-siding': typeof LpAlpharettaSidingRoute
+  '/lp/canton-siding': typeof LpCantonSidingRoute
+  '/lp/johns-creek-siding': typeof LpJohnsCreekSidingRoute
+  '/lp/kennesaw-siding': typeof LpKennesawSidingRoute
+  '/lp/marietta-siding': typeof LpMariettaSidingRoute
+  '/lp/milton-siding': typeof LpMiltonSidingRoute
+  '/lp/roswell-siding': typeof LpRoswellSidingRoute
+  '/lp/sandy-springs-siding': typeof LpSandySpringsSidingRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
+  '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog': typeof BlogIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
+  '/locations/$city': typeof LocationsCityIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -365,14 +495,17 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
   '/siding': typeof SidingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/storm-damage-siding-georgia': typeof StormDamageSidingGeorgiaRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/windows': typeof WindowsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -385,15 +518,27 @@ export interface FileRoutesById {
   '/dev/design-preview': typeof DevDesignPreviewRoute
   '/dev/hotspot-calibrator': typeof DevHotspotCalibratorRoute
   '/guide/thank-you': typeof GuideThankYouRoute
+  '/lp/acworth-siding': typeof LpAcworthSidingRoute
+  '/lp/alpharetta-siding': typeof LpAlpharettaSidingRoute
+  '/lp/canton-siding': typeof LpCantonSidingRoute
+  '/lp/johns-creek-siding': typeof LpJohnsCreekSidingRoute
+  '/lp/kennesaw-siding': typeof LpKennesawSidingRoute
+  '/lp/marietta-siding': typeof LpMariettaSidingRoute
+  '/lp/milton-siding': typeof LpMiltonSidingRoute
+  '/lp/roswell-siding': typeof LpRoswellSidingRoute
+  '/lp/sandy-springs-siding': typeof LpSandySpringsSidingRoute
   '/lp/siding-alpharetta': typeof LpSidingAlpharettaRoute
   '/lp/siding-canton': typeof LpSidingCantonRoute
   '/lp/siding-marietta': typeof LpSidingMariettaRoute
+  '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog/': typeof BlogIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
   '/locations/$city/$service': typeof LocationsCityServiceRoute
+  '/locations/$city/': typeof LocationsCityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -401,6 +546,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -411,14 +557,17 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
     | '/projects'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/storm-damage-siding-georgia'
     | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
@@ -431,20 +580,33 @@ export interface FileRouteTypes {
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
+    | '/lp/acworth-siding'
+    | '/lp/alpharetta-siding'
+    | '/lp/canton-siding'
+    | '/lp/johns-creek-siding'
+    | '/lp/kennesaw-siding'
+    | '/lp/marietta-siding'
+    | '/lp/milton-siding'
+    | '/lp/roswell-siding'
+    | '/lp/sandy-springs-siding'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
+    | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog/'
     | '/projects/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
+    | '/locations/$city/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -455,13 +617,16 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/storm-damage-siding-georgia'
     | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
@@ -474,20 +639,33 @@ export interface FileRouteTypes {
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
+    | '/lp/acworth-siding'
+    | '/lp/alpharetta-siding'
+    | '/lp/canton-siding'
+    | '/lp/johns-creek-siding'
+    | '/lp/kennesaw-siding'
+    | '/lp/marietta-siding'
+    | '/lp/milton-siding'
+    | '/lp/roswell-siding'
+    | '/lp/sandy-springs-siding'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
+    | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog'
     | '/projects'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
+    | '/locations/$city'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -498,14 +676,17 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
     | '/projects'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
     | '/siding'
     | '/sitemap.xml'
+    | '/storm-damage-siding-georgia'
     | '/terms-of-use'
     | '/windows'
     | '/admin/analytics'
@@ -518,21 +699,34 @@ export interface FileRouteTypes {
     | '/dev/design-preview'
     | '/dev/hotspot-calibrator'
     | '/guide/thank-you'
+    | '/lp/acworth-siding'
+    | '/lp/alpharetta-siding'
+    | '/lp/canton-siding'
+    | '/lp/johns-creek-siding'
+    | '/lp/kennesaw-siding'
+    | '/lp/marietta-siding'
+    | '/lp/milton-siding'
+    | '/lp/roswell-siding'
+    | '/lp/sandy-springs-siding'
     | '/lp/siding-alpharetta'
     | '/lp/siding-canton'
     | '/lp/siding-marietta'
+    | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog/'
     | '/projects/'
     | '/admin/blog/$slug'
     | '/locations/$city/$service'
+    | '/locations/$city/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
+  AlpharettaGaSidingRoute: typeof AlpharettaGaSidingRoute
   BlogSitemapDotxmlRoute: typeof BlogSitemapDotxmlRoute
   ContactRoute: typeof ContactRoute
   DecksRoute: typeof DecksRoute
@@ -543,14 +737,17 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
+  MariettaGaSidingRoute: typeof MariettaGaSidingRoute
   PaintingRoute: typeof PaintingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  ReferralRoute: typeof ReferralRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
   SidingRoute: typeof SidingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StormDamageSidingGeorgiaRoute: typeof StormDamageSidingGeorgiaRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
   WindowsRoute: typeof WindowsRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
@@ -562,13 +759,25 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   DevDesignPreviewRoute: typeof DevDesignPreviewRoute
   DevHotspotCalibratorRoute: typeof DevHotspotCalibratorRoute
+  LpAcworthSidingRoute: typeof LpAcworthSidingRoute
+  LpAlpharettaSidingRoute: typeof LpAlpharettaSidingRoute
+  LpCantonSidingRoute: typeof LpCantonSidingRoute
+  LpJohnsCreekSidingRoute: typeof LpJohnsCreekSidingRoute
+  LpKennesawSidingRoute: typeof LpKennesawSidingRoute
+  LpMariettaSidingRoute: typeof LpMariettaSidingRoute
+  LpMiltonSidingRoute: typeof LpMiltonSidingRoute
+  LpRoswellSidingRoute: typeof LpRoswellSidingRoute
+  LpSandySpringsSidingRoute: typeof LpSandySpringsSidingRoute
   LpSidingAlpharettaRoute: typeof LpSidingAlpharettaRoute
   LpSidingCantonRoute: typeof LpSidingCantonRoute
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
+  LpWoodstockSidingRoute: typeof LpWoodstockSidingRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  WelcomeCodeRoute: typeof WelcomeCodeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
+  LocationsCityIndexRoute: typeof LocationsCityIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -585,6 +794,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-of-use'
       fullPath: '/terms-of-use'
       preLoaderRoute: typeof TermsOfUseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/storm-damage-siding-georgia': {
+      id: '/storm-damage-siding-georgia'
+      path: '/storm-damage-siding-georgia'
+      fullPath: '/storm-damage-siding-georgia'
+      preLoaderRoute: typeof StormDamageSidingGeorgiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -622,6 +838,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/referral': {
+      id: '/referral'
+      path: '/referral'
+      fullPath: '/referral'
+      preLoaderRoute: typeof ReferralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -641,6 +864,13 @@ declare module '@tanstack/react-router' {
       path: '/painting'
       fullPath: '/painting'
       preLoaderRoute: typeof PaintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marietta-ga-siding': {
+      id: '/marietta-ga-siding'
+      path: '/marietta-ga-siding'
+      fullPath: '/marietta-ga-siding'
+      preLoaderRoute: typeof MariettaGaSidingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gutters': {
@@ -713,6 +943,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alpharetta-ga-siding': {
+      id: '/alpharetta-ga-siding'
+      path: '/alpharetta-ga-siding'
+      fullPath: '/alpharetta-ga-siding'
+      preLoaderRoute: typeof AlpharettaGaSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -748,6 +985,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/welcome/$code': {
+      id: '/welcome/$code'
+      path: '/welcome/$code'
+      fullPath: '/welcome/$code'
+      preLoaderRoute: typeof WelcomeCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -761,6 +1005,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/projects/$slug'
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof ProjectsRoute
+    }
+    '/lp/woodstock-siding': {
+      id: '/lp/woodstock-siding'
+      path: '/lp/woodstock-siding'
+      fullPath: '/lp/woodstock-siding'
+      preLoaderRoute: typeof LpWoodstockSidingRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/lp/siding-marietta': {
       id: '/lp/siding-marietta'
@@ -781,6 +1032,69 @@ declare module '@tanstack/react-router' {
       path: '/lp/siding-alpharetta'
       fullPath: '/lp/siding-alpharetta'
       preLoaderRoute: typeof LpSidingAlpharettaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/sandy-springs-siding': {
+      id: '/lp/sandy-springs-siding'
+      path: '/lp/sandy-springs-siding'
+      fullPath: '/lp/sandy-springs-siding'
+      preLoaderRoute: typeof LpSandySpringsSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/roswell-siding': {
+      id: '/lp/roswell-siding'
+      path: '/lp/roswell-siding'
+      fullPath: '/lp/roswell-siding'
+      preLoaderRoute: typeof LpRoswellSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/milton-siding': {
+      id: '/lp/milton-siding'
+      path: '/lp/milton-siding'
+      fullPath: '/lp/milton-siding'
+      preLoaderRoute: typeof LpMiltonSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/marietta-siding': {
+      id: '/lp/marietta-siding'
+      path: '/lp/marietta-siding'
+      fullPath: '/lp/marietta-siding'
+      preLoaderRoute: typeof LpMariettaSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/kennesaw-siding': {
+      id: '/lp/kennesaw-siding'
+      path: '/lp/kennesaw-siding'
+      fullPath: '/lp/kennesaw-siding'
+      preLoaderRoute: typeof LpKennesawSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/johns-creek-siding': {
+      id: '/lp/johns-creek-siding'
+      path: '/lp/johns-creek-siding'
+      fullPath: '/lp/johns-creek-siding'
+      preLoaderRoute: typeof LpJohnsCreekSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/canton-siding': {
+      id: '/lp/canton-siding'
+      path: '/lp/canton-siding'
+      fullPath: '/lp/canton-siding'
+      preLoaderRoute: typeof LpCantonSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/alpharetta-siding': {
+      id: '/lp/alpharetta-siding'
+      path: '/lp/alpharetta-siding'
+      fullPath: '/lp/alpharetta-siding'
+      preLoaderRoute: typeof LpAlpharettaSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lp/acworth-siding': {
+      id: '/lp/acworth-siding'
+      path: '/lp/acworth-siding'
+      fullPath: '/lp/acworth-siding'
+      preLoaderRoute: typeof LpAcworthSidingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guide/thank-you': {
@@ -853,6 +1167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/$city/': {
+      id: '/locations/$city/'
+      path: '/locations/$city'
+      fullPath: '/locations/$city/'
+      preLoaderRoute: typeof LocationsCityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations/$city/$service': {
       id: '/locations/$city/$service'
       path: '/locations/$city/$service'
@@ -898,6 +1219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
+  AlpharettaGaSidingRoute: AlpharettaGaSidingRoute,
   BlogSitemapDotxmlRoute: BlogSitemapDotxmlRoute,
   ContactRoute: ContactRoute,
   DecksRoute: DecksRoute,
@@ -908,14 +1230,17 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
+  MariettaGaSidingRoute: MariettaGaSidingRoute,
   PaintingRoute: PaintingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  ReferralRoute: ReferralRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
   SidingRoute: SidingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StormDamageSidingGeorgiaRoute: StormDamageSidingGeorgiaRoute,
   TermsOfUseRoute: TermsOfUseRoute,
   WindowsRoute: WindowsRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
@@ -927,13 +1252,25 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   DevDesignPreviewRoute: DevDesignPreviewRoute,
   DevHotspotCalibratorRoute: DevHotspotCalibratorRoute,
+  LpAcworthSidingRoute: LpAcworthSidingRoute,
+  LpAlpharettaSidingRoute: LpAlpharettaSidingRoute,
+  LpCantonSidingRoute: LpCantonSidingRoute,
+  LpJohnsCreekSidingRoute: LpJohnsCreekSidingRoute,
+  LpKennesawSidingRoute: LpKennesawSidingRoute,
+  LpMariettaSidingRoute: LpMariettaSidingRoute,
+  LpMiltonSidingRoute: LpMiltonSidingRoute,
+  LpRoswellSidingRoute: LpRoswellSidingRoute,
+  LpSandySpringsSidingRoute: LpSandySpringsSidingRoute,
   LpSidingAlpharettaRoute: LpSidingAlpharettaRoute,
   LpSidingCantonRoute: LpSidingCantonRoute,
   LpSidingMariettaRoute: LpSidingMariettaRoute,
+  LpWoodstockSidingRoute: LpWoodstockSidingRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  WelcomeCodeRoute: WelcomeCodeRoute,
   BlogIndexRoute: BlogIndexRoute,
   AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,
+  LocationsCityIndexRoute: LocationsCityIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

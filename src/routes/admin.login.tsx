@@ -9,6 +9,9 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Lock, Mail, Loader2, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/admin/login")({
+  head: () => ({
+    meta: [{ name: "google", content: "notranslate" }],
+  }),
   component: AdminLogin,
 });
 

@@ -22,12 +22,22 @@ import { getGoogleReviews } from "@/lib/google-reviews.functions";
 import { GoogleStatsContext, GoogleReviewsContext } from "@/lib/google-stats-context";
 import { GhlChatWidget } from "@/components/site/GhlChatWidget";
 
-const GTM_ID = "GTM-TFGQWCQN";
+// Container proprio (conta "Siding Depot"). O anterior, GTM-TFGQWCQN, era de
+// terceiro: a tag de conversao dele so disparava em URL contendo
+// "thank-you-page" — pagina que nao existe neste site — entao nunca converteu.
+const GTM_ID = "GTM-KTZCGP8B";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 // Set VITE_META_PIXEL_ID=<pixel_id> in Vercel env vars to activate Meta Pixel
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
-const METRICOOL_TRACKER_SCRIPT =
-  'function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"5650f1d5ea63827a1cce95efe75d00f4"})});';
+const METRICOOL_TRACKER_SRC = "https://tracker.metricool.com/resources/be.js";
+const METRICOOL_HASH = "5650f1d5ea63827a1cce95efe75d00f4";
+// ClickOne (GoHighLevel) External Tracking — conta oficial Siding Depot LLC.
+// Reunifica 100% da navegacao do site dentro da subconta ClickOne do Siding Depot
+// (o site perdeu essa analitica quando saiu de dentro da ClickOne). Integracao por
+// script hospedado da ClickOne — NAO e copia de codigo (respeita a regra de boundary).
+const CLICKONE_TRACKING_SRC =
+  "https://links.clickonepro.com/js/external-tracking.js";
+const CLICKONE_TRACKING_ID = "tk_deb18e62998e4e4c91e3469e198db42d";
 
 function NotFoundComponent() {
   const router = useRouter();
@@ -216,9 +226,8 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const { googleStats, googleReviews } = Route.useLoaderData();
 
-  // ── afterInteractive: inject GTM + GA4 only after React hydration ──────────
-  // Equivalent to Next.js <Script strategy="afterInteractive">
-  // This keeps gtm.js out of the critical path and eliminates its TBT impact.
+  // Cria a fila logo no início, mas só baixa os scripts de terceiros quando o
+  // navegador estiver ocioso. Assim o hero e o formulário recebem prioridade.
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -227,63 +236,77 @@ function RootComponent() {
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 
-    // Inject gtm.js script tag (async — fires after hydration)
-    const gtmScript = document.createElement("script");
-    gtmScript.async = true;
-    gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-    document.head.appendChild(gtmScript);
+    const appendExternalScript = (src: string, onload?: () => void) => {
+      if (document.querySelector(`script[src="${src}"]`)) return;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = src;
+      if (onload) script.addEventListener("load", onload, { once: true });
+      document.head.appendChild(script);
+    };
 
-    // Metricool tracker — deferred to afterInteractive (was render-blocking inline in <head>)
-    const metricoolScript = document.createElement("script");
-    metricoolScript.type = "text/javascript";
-    metricoolScript.text = METRICOOL_TRACKER_SCRIPT;
-    document.head.appendChild(metricoolScript);
+    const loadAnalytics = () => {
+      appendExternalScript(`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`);
+      appendExternalScript(METRICOOL_TRACKER_SRC, () => {
+        (window as any).beTracker?.t?.({ hash: METRICOOL_HASH });
+      });
 
-    // Inject GA4 if configured
-    if (GA4_ID) {
-      w.dataLayer = w.dataLayer || [];
-      function gtag(...args: any[]) {
-        w.dataLayer.push(args);
+      // ClickOne External Tracking — precisa do atributo data-tracking-id, que o
+      // script le via document.currentScript no load; por isso e injetado a mao
+      // (o helper acima nao seta data-attributes) com o atributo ANTES do append.
+      if (!document.querySelector(`script[src="${CLICKONE_TRACKING_SRC}"]`)) {
+        const clickone = document.createElement("script");
+        clickone.async = true;
+        clickone.src = CLICKONE_TRACKING_SRC;
+        clickone.setAttribute("data-tracking-id", CLICKONE_TRACKING_ID);
+        document.head.appendChild(clickone);
       }
-      w.gtag = gtag;
-      gtag("js", new Date());
-      gtag("config", GA4_ID);
 
-      const ga4Script = document.createElement("script");
-      ga4Script.async = true;
-      ga4Script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
-      document.head.appendChild(ga4Script);
-    }
+      // Inject GA4 if configured
+      if (GA4_ID) {
+        w.dataLayer = w.dataLayer || [];
+        function gtag(...args: any[]) {
+          w.dataLayer.push(args);
+        }
+        w.gtag = w.gtag || gtag;
+        w.gtag("js", new Date());
+        w.gtag("config", GA4_ID);
+        appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`);
+      }
 
-    // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
-    if (META_PIXEL_ID) {
-      w.fbq =
-        w.fbq ||
-        function (...args: any[]) {
-          (w.fbq.q = w.fbq.q || []).push(args);
-        };
-      w.fbq.v = "2.0";
-      w.fbq.loaded = true;
-      w._fbq = w._fbq || w.fbq;
+      // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
+      if (META_PIXEL_ID) {
+        w.fbq =
+          w.fbq ||
+          function (...args: any[]) {
+            (w.fbq.q = w.fbq.q || []).push(args);
+          };
+        w.fbq.v = "2.0";
+        w.fbq.loaded = true;
+        w._fbq = w._fbq || w.fbq;
 
-      w.fbq("init", META_PIXEL_ID);
-      w.fbq("track", "PageView");
+        w.fbq("init", META_PIXEL_ID);
+        w.fbq("track", "PageView");
 
-      const pixelScript = document.createElement("script");
-      pixelScript.async = true;
-      pixelScript.src = "https://connect.facebook.net/en_US/fbevents.js";
-      document.head.appendChild(pixelScript);
+        appendExternalScript("https://connect.facebook.net/en_US/fbevents.js");
+      }
+    };
 
-      // noscript fallback
-      const noscript = document.createElement("noscript");
-      const img = document.createElement("img");
-      img.height = 1;
-      img.width = 1;
-      img.style.display = "none";
-      img.src = `https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`;
-      noscript.appendChild(img);
-      document.body.appendChild(noscript);
-    }
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    const idleId = idleWindow.requestIdleCallback
+      ? idleWindow.requestIdleCallback(loadAnalytics, { timeout: 4500 })
+      : window.setTimeout(loadAnalytics, 3000);
+
+    return () => {
+      if (idleWindow.cancelIdleCallback && idleWindow.requestIdleCallback) {
+        idleWindow.cancelIdleCallback(idleId);
+      } else {
+        window.clearTimeout(idleId);
+      }
+    };
   }, []);
 
   return (

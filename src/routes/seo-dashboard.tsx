@@ -61,6 +61,8 @@ import {
   Legend,
 } from "recharts";
 import { getDashboardMetrics } from "@/lib/dashboard.functions";
+import { GoogleAdsView } from "@/components/dashboard/GoogleAdsView";
+import { MetaAdsView } from "@/components/dashboard/MetaAdsView";
 import { cn } from "@/lib/utils";
 import {
   Table,
@@ -129,6 +131,9 @@ const getInitialLanguage = (): Language => {
 
 export const Route = createFileRoute("/seo-dashboard")({
   ssr: false,
+  head: () => ({
+    meta: [{ name: "google", content: "notranslate" }],
+  }),
   beforeLoad: async ({ location }) => {
     const {
       data: { user },
@@ -214,7 +219,7 @@ function SEODashboard() {
     refetch,
     isFetching,
   } = useQuery({
-    queryKey: ["dashboard-metrics", activeView, dateRange.startDate, dateRange.endDate],
+    queryKey: ["dashboard-metrics", dateRange.startDate, dateRange.endDate],
     queryFn: async (): Promise<any> => {
       // Ensure we have a fresh session
       const {
@@ -257,6 +262,8 @@ function SEODashboard() {
     await supabase.auth.signOut();
     navigate({ to: "/admin/login" });
   };
+
+  const usesDashboardMetrics = activeView === "dashboard" || activeView === "blog-analytics";
 
   const handleExport = (format: "csv" | "pdf") => {
     if (format === "csv") {
@@ -304,6 +311,8 @@ function SEODashboard() {
   const menuItems = [
     { id: "dashboard", labelKey: "dashboard", icon: LayoutDashboard },
     { id: "leads-realtime", labelKey: "leadsRealtime", icon: Activity },
+    { id: "google-ads", labelKey: "Google Ads", icon: TrendingUp },
+    { id: "meta-ads", labelKey: "Meta Ads", icon: BarChart3 },
     { id: "seo-audit", labelKey: "seoAudit", icon: FileText },
     { id: "blog-analytics", labelKey: "blogAnalytics", icon: Zap },
     { id: "alertas", labelKey: "alerts", icon: Bell },
@@ -670,6 +679,12 @@ function SEODashboard() {
               </div>
             </div>
 
+            {metrics?.loadError && usesDashboardMetrics && (
+              <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-100">
+                As métricas não foram atualizadas nesta tentativa. Tente novamente pelo botão de atualização.
+              </div>
+            )}
+
             {!sessionExists ? (
               <Card className="bg-[#131921] border-sd-green/20 p-12 text-center animate-in fade-in zoom-in duration-500">
                 <div className="bg-sd-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -688,7 +703,7 @@ function SEODashboard() {
                   <RefreshCcw className="h-4 w-4 mr-2" /> {t("reconnectNow")}
                 </Button>
               </Card>
-            ) : error ? (
+            ) : error && usesDashboardMetrics ? (
               <Card className="bg-[#131921] border-red-500/20 p-12 text-center animate-in fade-in duration-500">
                 <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
                 <h3 className="text-xl font-bold">{t("fetchingError")}</h3>
@@ -705,7 +720,7 @@ function SEODashboard() {
                   {t("tryAgain")}
                 </Button>
               </Card>
-            ) : isLoading ? (
+            ) : isLoading && usesDashboardMetrics ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[1, 2, 3, 4].map((i) => (
                   <Card key={i} className="bg-[#131921] border-white/10 h-32 animate-pulse" />
@@ -716,6 +731,8 @@ function SEODashboard() {
                 {activeView === "gtm-debug" && renderGtmDebugger()}
                 {activeView === "alertas" && renderAlerts()}
                 {activeView === "leads-realtime" && renderLeadsRealtime()}
+                {activeView === "google-ads" && <GoogleAdsView startDate={dateRange.startDate} endDate={dateRange.endDate} />}
+                {activeView === "meta-ads" && <MetaAdsView startDate={dateRange.startDate} endDate={dateRange.endDate} />}
                 {activeView === "seo-audit" && renderSeoAudit()}
 
                 {activeView === "dashboard" && (

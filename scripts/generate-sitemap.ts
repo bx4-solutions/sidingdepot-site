@@ -18,11 +18,14 @@ const staticRoutes: { path: string; priority: string; changefreq: string }[] = [
   { path: "/dumpster-rental", priority: "0.8", changefreq: "monthly" },
   { path: "/finance", priority: "0.8", changefreq: "monthly" },
   { path: "/about", priority: "0.7", changefreq: "monthly" },
+  { path: "/referral", priority: "0.6", changefreq: "monthly" },
   { path: "/projects", priority: "0.7", changefreq: "monthly" },
   { path: "/contact", priority: "0.7", changefreq: "monthly" },
   { path: "/guide", priority: "0.7", changefreq: "monthly" },
   { path: "/blog", priority: "0.8", changefreq: "daily" },
-  { path: "/lp/siding-marietta", priority: "0.9", changefreq: "monthly" },
+  // Marietta's canonical page — the one paid traffic lands on. The /lp/* Marietta
+  // variants stay out of the sitemap so they don't compete with it for the same query.
+  { path: "/marietta-ga-siding", priority: "0.9", changefreq: "monthly" },
   { path: "/lp/siding-alpharetta", priority: "0.9", changefreq: "monthly" },
   { path: "/lp/siding-canton", priority: "0.9", changefreq: "monthly" },
 ];

@@ -27,6 +27,9 @@ export type AttributionData = {
   device_type?: string;
   browser?: string;
   os?: string;
+  services?: string[];
+  details?: string;
+  consent?: boolean;
 };
 
 /**
@@ -51,6 +54,9 @@ export const ATTRIBUTION_FIELD_DEFS = [
   { key: "device_type", name: "Device Type" },
   { key: "browser", name: "Browser" },
   { key: "operating_system", name: "Operating System" },
+  { key: "services", name: "Services" },
+  { key: "service_details", name: "Service Details" },
+  { key: "website_consent", name: "Website Consent" },
 ] as const;
 
 export type AttributionFieldKey = (typeof ATTRIBUTION_FIELD_DEFS)[number]["key"];
@@ -75,5 +81,8 @@ export function toCustomFieldValues(
     device_type: attribution.device_type,
     browser: attribution.browser,
     operating_system: attribution.os,
+    services: attribution.services?.filter(Boolean).join(", "),
+    service_details: attribution.details,
+    website_consent: attribution.consent ? "Granted" : "Not provided",
   };
 }

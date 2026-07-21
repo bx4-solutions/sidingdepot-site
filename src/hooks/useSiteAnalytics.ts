@@ -159,7 +159,7 @@ export function useAcquisitionStats(filters: AnalyticsFilters) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("analytics_events")
-        .select("utm_source, utm_medium, utm_campaign, session_id")
+        .select("source_platform, utm_source, utm_medium, utm_campaign, session_id")
         .eq("event_type", "pageview")
         .gte("created_at", filters.startDate.toISOString())
         .lte("created_at", filters.endDate.toISOString());
@@ -168,7 +168,7 @@ export function useAcquisitionStats(filters: AnalyticsFilters) {
 
       const sourceMap = new Map<string, number>();
       (data || []).forEach((e) => {
-        const src = e.utm_source || "direct";
+        const src = e.source_platform || "Direct";
         sourceMap.set(src, (sourceMap.get(src) || 0) + 1);
       });
       const sources = Array.from(sourceMap.entries())

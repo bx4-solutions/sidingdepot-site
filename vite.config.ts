@@ -39,6 +39,9 @@ export default defineConfig(async ({ command, mode }) => {
           // Once daily at 07:00 UTC — Vercel Hobby plan allows crons at most once/day.
           // (Was */15 min; upgrade to Pro to restore near-real-time /admin/leads sync.)
           "0 7 * * *": ["ghl:status-sync"],
+          "30 7 * * *": ["google-ads:sync"],
+          // Meta uses the same read-model pattern, after Google Ads.
+          "45 7 * * *": ["meta-ads:sync"],
         },
       } as any),
     );

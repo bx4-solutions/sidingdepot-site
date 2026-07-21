@@ -102,7 +102,7 @@ export function HeroQuoteForm({
           className="px-5 pt-5 pb-4 text-center text-sd-black border-b border-black/10"
           style={{ background: "#B6E214" }}
         >
-          <h2 className="font-display text-xl sm:text-2xl leading-tight">{title}</h2>
+          <p className="font-display text-xl sm:text-2xl leading-tight">{title}</p>
           <p className="mt-1 text-[11px] text-sd-black/70">{subtitle}</p>
         </div>
       )}
@@ -173,7 +173,7 @@ export function HeroQuoteForm({
           </div>
         </div>
 
-        <div className="grid gap-1.5">
+        <div className="grid gap-1.5 hidden sm:block">
           <Label className="text-[11px] font-bold text-sd-black uppercase tracking-wider">
             Services
           </Label>
@@ -214,7 +214,7 @@ export function HeroQuoteForm({
           )}
         </div>
 
-        <div className="grid gap-1">
+        <div className="grid gap-1 hidden sm:block">
           <Label
             htmlFor="hero-details"
             className="text-[11px] font-bold text-sd-black uppercase tracking-wider flex items-center gap-1.5"
