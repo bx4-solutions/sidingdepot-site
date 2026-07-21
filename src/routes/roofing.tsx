@@ -33,7 +33,7 @@ const FAQS = [
   },
   {
     q: "What warranty comes with a Siding Depot roof?",
-    a: "We offer GAF's Golden Pledge® Limited Warranty — 50-year non-prorated coverage on materials and 25-year workmanship coverage. This is the strongest residential roofing warranty available, exclusive to GAF Master Elite contractors. Every project also includes our own written workmanship guarantee.",
+    a: "On qualifying GAF roofing systems, we can offer the GAF System Plus® Limited Warranty. Every project also includes our own written workmanship guarantee; your written proposal specifies the warranty available for your selected system.",
   },
   {
     q: "What does a roof replacement cost in Cobb or Cherokee County?",
@@ -146,7 +146,7 @@ const CONFIG: ServicePageConfig = {
   authorityHeadline: "Most Roofers Can't Back",
   authorityHeadlineAccent: "What They Install.",
   authorityBody1:
-    "A roof warranty is only as strong as the contractor behind it. GAF's Golden Pledge® — the strongest residential roofing warranty available — is exclusive to GAF Master Elite contractors. It covers materials and workmanship for 25 years, fully non-prorated.",
+    "A roof warranty is only as strong as the contractor behind it. As a GAF Certified™ contractor, Siding Depot can offer the GAF System Plus® Limited Warranty on qualifying roofing systems. Your proposal identifies the exact product system and warranty coverage before installation.",
   authorityBody2:
     "Standard contractors typically offer a one-year verbal guarantee backed by nothing in writing. Ours is documented, transferable on home sale, and backed by North America's largest roofing manufacturer. That distinction matters the day you need to use it.",
   authorityRows: [
@@ -181,41 +181,41 @@ const CONFIG: ServicePageConfig = {
 
   supplierSection: {
     logoSrc: "/logos/gaf.png",
-    logoAlt: "GAF Master Elite Roofing Manufacturer Logo",
-    logoTagline: "★ MASTER ELITE CERTIFIED",
+    logoAlt: "GAF Certified Roofing Manufacturer Logo",
+    logoTagline: "★ GAF CERTIFIED™ CONTRACTOR",
     sectionEyebrow: "Certified Roofing Supplier",
     sectionHeadline: "The Credentials That Back Your Roof.",
     sectionBody:
-      "GAF's Golden Pledge® is the strongest residential roofing warranty available — and it's only offered by Master Elite contractors. We are one of the top 2% of roofers in the US who qualify.",
-    cardEyebrow: "GAF® — Master Elite Contractor",
-    cardHeadline: "The highest certification GAF awards.",
+      "Siding Depot is listed by GAF as a GAF Certified™ contractor. That credential allows eligible GAF roofing systems to include the System Plus® Limited Warranty.",
+    cardEyebrow: "GAF® — Certified™ Contractor",
+    cardHeadline: "A manufacturer credential you can verify.",
     body1:
-      "Only the top 2% of roofing contractors in the US earn GAF Master Elite status. It requires verified installation quality, active state licensing, insurance, and ongoing factory training. GAF vets every applicant and can revoke the certification if quality drops.",
+      "GAF Certified™ contractors are licensed and insured where required and are authorized by GAF to offer its System Plus® Limited Warranty on qualifying roofing systems.",
     body2:
-      "What it means for you: only Master Elite contractors can offer the Golden Pledge® Limited Warranty — covering your shingles for your lifetime as the original owner, with up to 30-year workmanship coverage. Standard contractors cannot offer this warranty.",
+      "What it means for you: the exact warranty depends on the selected GAF system. We document the available manufacturer warranty and our workmanship coverage in your written proposal before work begins.",
     stats: [
-      { val: "Top 2%", desc: "of US roofers qualify" },
-      { val: "30-Year", desc: "workmanship coverage" },
-      { val: "Lifetime", desc: "shingle warranty" },
+      { val: "GAF", desc: "Certified™ contractor" },
+      { val: "System Plus®", desc: "on qualifying systems" },
+      { val: "Written", desc: "warranty documentation" },
     ],
     cards: [
       {
         name: "Material Warranty",
-        value: "Lifetime",
-        detail: "Original homeowner on single-family residence",
+        value: "System-specific",
+        detail: "Specified in your written proposal",
       },
       {
-        name: "Smart Choice® Period",
-        value: "25 Years",
-        detail: "Non-prorated coverage (Golden Pledge®)",
+        name: "Manufacturer warranty",
+        value: "System Plus®",
+        detail: "For qualifying GAF roofing systems",
       },
-      { name: "Workmanship", value: "Up to 30yr", detail: "Golden Pledge® — Master Elite only" },
+      { name: "Workmanship", value: "Written", detail: "Scope stated in your proposal" },
       {
         name: "Wind Protection",
-        value: "15 Years",
-        detail: "WindProven™ — no max windspeed limit",
+        value: "System-specific",
+        detail: "Review the selected system warranty",
       },
-      { name: "Algae Protection", value: "25 Years", detail: "StainGuard Plus™ limited warranty" },
+      { name: "Algae Protection", value: "Product-specific", detail: "See selected shingle documentation" },
     ],
   },
 };
