@@ -18,7 +18,7 @@ const PATH = "/lp/siding-alpharetta";
 const LOCAL_FAQS = [
   {
     q: "How much does siding replacement cost in Alpharetta?",
-    a: "Cost depends on the home size, material, trim work and repairs found after removal. We provide a written, itemized estimate after inspecting your Alpharetta home so you can compare the scope clearly.",
+    a: "Cost depends on the home size, material, trim work and any underlying wood or sheathing conditions found after removal. We provide a written, itemized estimate after inspecting your Alpharetta home so you can compare the scope clearly.",
   },
   {
     q: "What siding performs best in Alpharetta's climate?",
@@ -30,7 +30,7 @@ const LOCAL_FAQS = [
   },
   {
     q: "How long does a siding replacement take?",
-    a: "Most single-family siding projects take roughly one to two weeks once work begins, depending on home size, weather, scope and any necessary repairs.",
+    a: "Most single-family siding projects take roughly one to two weeks once work begins, depending on home size, weather and the scope of the replacement.",
   },
 ] as const;
 
@@ -134,7 +134,7 @@ export function AlpharettaSidingLP() {
       <section className="border-y-2 border-sd-green bg-sd-black py-4 text-white">
         <div className="mx-auto grid max-w-7xl gap-3 px-4 text-center text-sm font-semibold sm:grid-cols-3 lg:px-8">
           <span>Detailed, itemized written estimates</span>
-          <span>Fiber cement, siding replacement & repair</span>
+          <span>Fiber cement siding replacement & new installation</span>
           <span>Serving Alpharetta & North Fulton County</span>
         </div>
       </section>
@@ -177,7 +177,7 @@ export function AlpharettaSidingLP() {
               Alpharetta homes see long humid summers, heavy rain and seasonal storms. Older wood, hardboard and Masonite siding can trap moisture and lead to swelling, paint failure and rot — especially around trim, gutters, windows and chimneys.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-sd-gray-text">
-              We inspect the full exterior, explain the condition we find and build a practical plan for replacement, repair, trim and finishing details. That means a clear scope before work starts — not surprises after demolition.
+              We inspect the full exterior, explain the condition we find and build a practical plan for full replacement, trim and finishing details. That means a clear scope before work starts — not surprises after demolition.
             </p>
           </div>
           <div className="rounded-2xl bg-sd-gray-bg p-7">
@@ -213,7 +213,7 @@ export function AlpharettaSidingLP() {
           </div>
           <div className="mt-8 grid gap-4 text-sm text-sd-gray-text md:grid-cols-3">
             <p><strong className="text-sd-black">Replacement:</strong> Full removal and replacement of aging wood, hardboard, Masonite or vinyl siding.</p>
-            <p><strong className="text-sd-black">Repair:</strong> Targeted repairs for rot, storm damage and local failures when appropriate.</p>
+            <p><strong className="text-sd-black">Certified installation:</strong> Manufacturer-grade James Hardie installation backed by a long-term workmanship warranty.</p>
             <p><strong className="text-sd-black">Design details:</strong> Lap, board-and-batten, shake, trim and color planning for your home's architecture.</p>
           </div>
         </div>
@@ -276,7 +276,7 @@ export function AlpharettaSidingLP() {
 
 export function alpharettaSidingLpHead() {
   const title = "James Hardie Siding in Alpharetta, GA | Siding Depot";
-  const description = "James Hardie siding installation, replacement and repair in Alpharetta, GA. Get a free written estimate from Siding Depot's North Atlanta team.";
+  const description = "James Hardie siding installation and replacement in Alpharetta, GA. Get a free written estimate from Siding Depot's North Atlanta team.";
   const canonicalUrl = `https://www.sidingdepot.com${PATH}`;
   return {
     meta: [

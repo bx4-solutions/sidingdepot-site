@@ -160,7 +160,7 @@ export function track(event: string, payload: TrackPayload = {}): void {
       "whatsapp_click",
       "quote_request",
       "finance_apply",
-      "call_click",
+      "phone_click",
     ];
 
     if (trackedEvents.includes(event) || event.includes("click") || event.includes("submit")) {
@@ -333,15 +333,21 @@ export function trackCtaClick(ctx: AbCtx & { cta: string; city?: string }): void
   });
 }
 
-/** Phone-call click tagged with variation. */
-export function trackCallClick(ctx: AbCtx & { city?: string }): void {
-  track("call_click", {
-    event_category: "conversion",
+/**
+ * Phone tap is intent only. A browser cannot confirm that a call connected,
+ * so it must never be sent to Meta or the dashboard as a conversion.
+ */
+export function trackPhoneClick(ctx: AbCtx & { city?: string; source?: string }): void {
+  track("phone_click", {
+    event_category: "engagement",
     event_label: `${ctx.serviceKey}_${ctx.variation}`,
+    source: ctx.source ?? "phone_cta",
     ...ctx,
   });
-  trackMeta("Contact");
 }
+
+/** @deprecated Use trackPhoneClick. Kept for existing service pages. */
+export const trackCallClick = trackPhoneClick;
 
 /** Track Finance application click. */
 export function trackFinanceApply(): void {

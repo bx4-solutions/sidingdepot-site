@@ -18,6 +18,7 @@ const staticRoutes: { path: string; priority: string; changefreq: string }[] = [
   { path: "/dumpster-rental", priority: "0.8", changefreq: "monthly" },
   { path: "/finance", priority: "0.8", changefreq: "monthly" },
   { path: "/about", priority: "0.7", changefreq: "monthly" },
+  { path: "/referral", priority: "0.6", changefreq: "monthly" },
   { path: "/projects", priority: "0.7", changefreq: "monthly" },
   { path: "/contact", priority: "0.7", changefreq: "monthly" },
   { path: "/guide", priority: "0.7", changefreq: "monthly" },

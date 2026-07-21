@@ -1155,7 +1155,7 @@ export const BLOG_POSTS: BlogPost[] = [
     "readTime": 8,
     "publishDate": "2026-07-14",
     "featured": false,
-    "status": "published",
+    "status": "draft",
     "heroImage": {
       "url": "/projects/project-7.webp",
       "alt": "North Atlanta home showcasing a James Hardie siding color across the full exterior",
@@ -1332,7 +1332,7 @@ export const BLOG_POSTS: BlogPost[] = [
     "readTime": 8,
     "publishDate": "2026-07-14",
     "featured": false,
-    "status": "published",
+    "status": "draft",
     "heroImage": {
       "url": "/projects/project-8.webp",
       "alt": "Modern North Atlanta exterior with deck and outdoor living illustrating 2026 design trends",

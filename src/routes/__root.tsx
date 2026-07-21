@@ -31,6 +31,13 @@ const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
 const METRICOOL_TRACKER_SRC = "https://tracker.metricool.com/resources/be.js";
 const METRICOOL_HASH = "5650f1d5ea63827a1cce95efe75d00f4";
+// ClickOne (GoHighLevel) External Tracking — conta oficial Siding Depot LLC.
+// Reunifica 100% da navegacao do site dentro da subconta ClickOne do Siding Depot
+// (o site perdeu essa analitica quando saiu de dentro da ClickOne). Integracao por
+// script hospedado da ClickOne — NAO e copia de codigo (respeita a regra de boundary).
+const CLICKONE_TRACKING_SRC =
+  "https://links.clickonepro.com/js/external-tracking.js";
+const CLICKONE_TRACKING_ID = "tk_deb18e62998e4e4c91e3469e198db42d";
 
 function NotFoundComponent() {
   const router = useRouter();
@@ -243,6 +250,17 @@ function RootComponent() {
       appendExternalScript(METRICOOL_TRACKER_SRC, () => {
         (window as any).beTracker?.t?.({ hash: METRICOOL_HASH });
       });
+
+      // ClickOne External Tracking — precisa do atributo data-tracking-id, que o
+      // script le via document.currentScript no load; por isso e injetado a mao
+      // (o helper acima nao seta data-attributes) com o atributo ANTES do append.
+      if (!document.querySelector(`script[src="${CLICKONE_TRACKING_SRC}"]`)) {
+        const clickone = document.createElement("script");
+        clickone.async = true;
+        clickone.src = CLICKONE_TRACKING_SRC;
+        clickone.setAttribute("data-tracking-id", CLICKONE_TRACKING_ID);
+        document.head.appendChild(clickone);
+      }
 
       // Inject GA4 if configured
       if (GA4_ID) {

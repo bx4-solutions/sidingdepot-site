@@ -17,6 +17,7 @@ import { Route as SidingRouteImport } from './routes/siding'
 import { Route as SeoDashboardRouteImport } from './routes/seo-dashboard'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ReferralRouteImport } from './routes/referral'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PaintingRouteImport } from './routes/painting'
@@ -31,11 +32,13 @@ import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DecksRouteImport } from './routes/decks'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogSitemapDotxmlRouteImport } from './routes/blog-sitemap[.]xml'
+import { Route as AlpharettaGaSidingRouteImport } from './routes/alpharetta-ga-siding'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as WelcomeCodeRouteImport } from './routes/welcome.$code'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as LpWoodstockSidingRouteImport } from './routes/lp.woodstock-siding'
@@ -104,6 +107,11 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferralRoute = ReferralRouteImport.update({
+  id: '/referral',
+  path: '/referral',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -176,6 +184,11 @@ const BlogSitemapDotxmlRoute = BlogSitemapDotxmlRouteImport.update({
   path: '/blog-sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlpharettaGaSidingRoute = AlpharettaGaSidingRouteImport.update({
+  id: '/alpharetta-ga-siding',
+  path: '/alpharetta-ga-siding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessDeniedRoute = AccessDeniedRouteImport.update({
   id: '/access-denied',
   path: '/access-denied',
@@ -199,6 +212,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeCodeRoute = WelcomeCodeRouteImport.update({
+  id: '/welcome/$code',
+  path: '/welcome/$code',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
@@ -346,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -360,6 +379,7 @@ export interface FileRoutesByFullPath {
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -393,6 +413,7 @@ export interface FileRoutesByFullPath {
   '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog/': typeof BlogIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
@@ -403,6 +424,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -416,6 +438,7 @@ export interface FileRoutesByTo {
   '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -449,6 +472,7 @@ export interface FileRoutesByTo {
   '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog': typeof BlogIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
@@ -460,6 +484,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
+  '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -474,6 +499,7 @@ export interface FileRoutesById {
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/referral': typeof ReferralRoute
   '/reset-password': typeof ResetPasswordRoute
   '/roofing': typeof RoofingRoute
   '/seo-dashboard': typeof SeoDashboardRoute
@@ -507,6 +533,7 @@ export interface FileRoutesById {
   '/lp/woodstock-siding': typeof LpWoodstockSidingRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/welcome/$code': typeof WelcomeCodeRoute
   '/blog/': typeof BlogIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/admin/blog/$slug': typeof AdminBlogSlugRoute
@@ -519,6 +546,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -533,6 +561,7 @@ export interface FileRouteTypes {
     | '/painting'
     | '/privacy-policy'
     | '/projects'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -566,6 +595,7 @@ export interface FileRouteTypes {
     | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog/'
     | '/projects/'
     | '/admin/blog/$slug'
@@ -576,6 +606,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -589,6 +620,7 @@ export interface FileRouteTypes {
     | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -622,6 +654,7 @@ export interface FileRouteTypes {
     | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog'
     | '/projects'
     | '/admin/blog/$slug'
@@ -632,6 +665,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/access-denied'
+    | '/alpharetta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -646,6 +680,7 @@ export interface FileRouteTypes {
     | '/painting'
     | '/privacy-policy'
     | '/projects'
+    | '/referral'
     | '/reset-password'
     | '/roofing'
     | '/seo-dashboard'
@@ -679,6 +714,7 @@ export interface FileRouteTypes {
     | '/lp/woodstock-siding'
     | '/projects/$slug'
     | '/services/$slug'
+    | '/welcome/$code'
     | '/blog/'
     | '/projects/'
     | '/admin/blog/$slug'
@@ -690,6 +726,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
+  AlpharettaGaSidingRoute: typeof AlpharettaGaSidingRoute
   BlogSitemapDotxmlRoute: typeof BlogSitemapDotxmlRoute
   ContactRoute: typeof ContactRoute
   DecksRoute: typeof DecksRoute
@@ -704,6 +741,7 @@ export interface RootRouteChildren {
   PaintingRoute: typeof PaintingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  ReferralRoute: typeof ReferralRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RoofingRoute: typeof RoofingRoute
   SeoDashboardRoute: typeof SeoDashboardRoute
@@ -735,6 +773,7 @@ export interface RootRouteChildren {
   LpSidingMariettaRoute: typeof LpSidingMariettaRoute
   LpWoodstockSidingRoute: typeof LpWoodstockSidingRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  WelcomeCodeRoute: typeof WelcomeCodeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   AdminBlogSlugRoute: typeof AdminBlogSlugRoute
   LocationsCityServiceRoute: typeof LocationsCityServiceRoute
@@ -797,6 +836,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/referral': {
+      id: '/referral'
+      path: '/referral'
+      fullPath: '/referral'
+      preLoaderRoute: typeof ReferralRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -897,6 +943,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alpharetta-ga-siding': {
+      id: '/alpharetta-ga-siding'
+      path: '/alpharetta-ga-siding'
+      fullPath: '/alpharetta-ga-siding'
+      preLoaderRoute: typeof AlpharettaGaSidingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/access-denied': {
       id: '/access-denied'
       path: '/access-denied'
@@ -930,6 +983,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome/$code': {
+      id: '/welcome/$code'
+      path: '/welcome/$code'
+      fullPath: '/welcome/$code'
+      preLoaderRoute: typeof WelcomeCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
@@ -1159,6 +1219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
+  AlpharettaGaSidingRoute: AlpharettaGaSidingRoute,
   BlogSitemapDotxmlRoute: BlogSitemapDotxmlRoute,
   ContactRoute: ContactRoute,
   DecksRoute: DecksRoute,
@@ -1173,6 +1234,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaintingRoute: PaintingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  ReferralRoute: ReferralRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RoofingRoute: RoofingRoute,
   SeoDashboardRoute: SeoDashboardRoute,
@@ -1204,6 +1266,7 @@ const rootRouteChildren: RootRouteChildren = {
   LpSidingMariettaRoute: LpSidingMariettaRoute,
   LpWoodstockSidingRoute: LpWoodstockSidingRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  WelcomeCodeRoute: WelcomeCodeRoute,
   BlogIndexRoute: BlogIndexRoute,
   AdminBlogSlugRoute: AdminBlogSlugRoute,
   LocationsCityServiceRoute: LocationsCityServiceRoute,

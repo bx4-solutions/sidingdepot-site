@@ -60,7 +60,6 @@ export default function BlogListing() {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     width="1200"
                     height="675"
-                    decoding="async"
                   />
                   <div className="absolute top-6 left-6">
                     <span className="bg-sd-green text-sd-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">

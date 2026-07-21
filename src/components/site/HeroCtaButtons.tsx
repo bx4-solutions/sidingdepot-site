@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { HeroQuoteForm } from "@/components/site/HeroQuoteForm";
 import { SITE } from "@/data/site";
-import { track } from "@/lib/track";
+import { track, trackPhoneClick } from "@/lib/track";
 
 type Props = {
   source?: string;
@@ -33,7 +33,10 @@ export function HeroCtaButtons({ source = "hero_cta" }: Props = {}) {
         variant="outlineWhite"
         className="w-full px-8 py-7 text-lg font-bold rounded-full"
       >
-        <a href={SITE.phoneHref} onClick={() => track("call_click", { source })}>
+        <a
+          href={SITE.phoneHref}
+          onClick={() => trackPhoneClick({ serviceKey: "site", variation: "A", source })}
+        >
           <Phone aria-hidden="true" className="h-5 w-5 mr-2" />
           Call {SITE.phone}
         </a>

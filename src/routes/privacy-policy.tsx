@@ -112,8 +112,12 @@ function PrivacyPolicyPage() {
               6. Cookies and Tracking Technologies
             </h2>
             <p>
-              Our website may use cookies and analytics tools to understand how visitors interact
-              with our content and to improve performance.
+              Our website uses cookies and analytics tools to understand how visitors interact
+              with our content and to improve performance. These include Google Analytics and
+              Google Tag Manager, Meta (Facebook) Pixel, Metricool, and our customer-relationship
+              platform GoHighLevel / ClickOne, which records site-navigation activity and may
+              associate it with your contact record once you submit a form or otherwise identify
+              yourself, so we can follow up on your request.
             </p>
             <p className="mt-3">
               You can disable cookies in your browser settings, but this may affect some site
