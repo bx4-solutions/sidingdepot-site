@@ -18,7 +18,7 @@ const formSchema = z.object({
   homeownerPhone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
   homeownerEmail: z.string().trim().email("Please enter a valid email address").max(254),
   cityOrZip: z.string().trim().min(2, "Please enter a city or ZIP code").max(100),
-  service: z.string().min(1, "Please choose the project they are considering"),
+  services: z.array(z.string()).min(1, "Choose at least one project"),
   permission: z.boolean().refine((v) => v, { message: "Confirmation is required" }),
   terms: z.boolean().refine((v) => v, { message: "You must accept the program terms" }),
 });
@@ -28,6 +28,8 @@ type Step = 1 | 2;
 
 const FIELD_CLASS =
   "h-12 text-base border-sd-navy/10 bg-white text-sd-black placeholder:text-sd-gray-text focus-visible:ring-sd-green";
+
+const SERVICE_OPTIONS = ["Siding", "Roofing", "Windows", "Gutters", "Exterior painting"] as const;
 
 /**
  * The referrer completes step one (about themselves), then step two (about the
@@ -58,7 +60,7 @@ export function ReferralForm() {
       homeownerPhone: "",
       homeownerEmail: "",
       cityOrZip: "",
-      service: "",
+      services: [],
       permission: false,
       terms: false,
     },
@@ -66,6 +68,13 @@ export function ReferralForm() {
 
   const permission = watch("permission");
   const terms = watch("terms");
+  const services = watch("services");
+
+  const toggleService = (name: string, checked: boolean) => {
+    const current = services ?? [];
+    const next = checked ? [...current, name] : current.filter((s) => s !== name);
+    setValue("services", next, { shouldValidate: true });
+  };
 
   const goToNeighbor = async () => {
     const isValid = await trigger(["referrerName", "referrerPhone", "referrerEmail"]);
@@ -84,7 +93,7 @@ export function ReferralForm() {
         homeownerPhone: values.homeownerPhone,
         homeownerEmail: values.homeownerEmail,
         cityOrZip: values.cityOrZip,
-        service: values.service,
+        services: values.services,
         permission: values.permission,
         termsAccepted: values.terms,
       },
@@ -148,7 +157,7 @@ export function ReferralForm() {
             Step {step} of 2
           </p>
           <h3 className="mt-1 font-display text-3xl text-sd-black">
-            {step === 1 ? "About you" : "About your neighbor"}
+            {step === 1 ? "About you" : "About the person you're referring"}
           </h3>
         </div>
         <div className="flex gap-2">
@@ -162,8 +171,8 @@ export function ReferralForm() {
       {step === 1 ? (
         <div className="mt-6 grid gap-5">
           <p className="text-sm leading-relaxed text-sd-gray-text">
-            We start with you so the referral is connected to the right person before we contact
-            anyone.
+            You&apos;re the person making the referral (the referrer). We start with you so the
+            reward stays connected to you.
           </p>
           <Field error={errors.referrerName?.message} label="Your full name" id="referrer-name">
             <Input
@@ -215,7 +224,7 @@ export function ReferralForm() {
       ) : (
         <div className="mt-6 grid gap-5">
           <p className="text-sm leading-relaxed text-sd-gray-text">
-            Share only the details you have. We will make the follow-up easy and respectful.
+            This is the homeowner being referred — a neighbor, friend, or family member.
           </p>
           <div className="grid gap-5 sm:grid-cols-2">
             <Field
@@ -272,25 +281,28 @@ export function ReferralForm() {
             </Field>
           </div>
           <div className="grid gap-1.5">
-            <Label htmlFor="referral-service">Project they may need</Label>
-            <select
-              {...register("service")}
-              id="referral-service"
-              defaultValue=""
-              className={`${FIELD_CLASS} rounded-md px-3 shadow-sm`}
-            >
-              <option value="" disabled>
-                Select one
-              </option>
-              <option value="Siding">Siding</option>
-              <option value="Roofing">Roofing</option>
-              <option value="Windows">Windows</option>
-              <option value="Gutters">Gutters</option>
-              <option value="Exterior painting">Exterior painting</option>
-              <option value="More than one exterior project">More than one exterior project</option>
-            </select>
-            {errors.service && (
-              <p className="text-xs font-medium text-destructive">{errors.service.message}</p>
+            <Label>Which projects might they need? (choose all that apply)</Label>
+            <div className="grid gap-2.5 sm:grid-cols-2">
+              {SERVICE_OPTIONS.map((name) => {
+                const checked = (services ?? []).includes(name);
+                return (
+                  <label
+                    key={name}
+                    htmlFor={`service-${name}`}
+                    className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-sd-navy/10 bg-white px-3.5 py-3 transition-colors hover:border-sd-green/50"
+                  >
+                    <Checkbox
+                      id={`service-${name}`}
+                      checked={checked}
+                      onCheckedChange={(v) => toggleService(name, v === true)}
+                    />
+                    <span className="text-sm text-sd-black">{name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            {errors.services && (
+              <p className="text-xs font-medium text-destructive">{errors.services.message}</p>
             )}
           </div>
 

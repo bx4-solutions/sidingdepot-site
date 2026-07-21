@@ -274,7 +274,7 @@ export type SubmitReferralInput = {
   homeownerPhone: string;
   homeownerEmail: string;
   cityOrZip: string;
-  service: string;
+  services: string[];
   permission: boolean;
   termsAccepted: boolean;
 };
@@ -355,7 +355,7 @@ export const submitReferral = createServerFn({ method: "POST" })
         "Reward 1 Status": "Pending",
         "Reward 2 Status": "Pending",
         "Payment Status": "Not started",
-        Services: data.service,
+        Services: data.services.join(", "),
       },
     });
 

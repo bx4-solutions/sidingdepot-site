@@ -43,10 +43,17 @@ const QUALIFIES = [
 ] as const;
 
 const NOT_ELIGIBLE = [
+  "Self-referrals.",
   "Repair-only, warranty, or service-only work.",
   "Projects below $5,000.",
   "Homes where lead-based paint prevents a qualifying estimate.",
   "Any referral where Siding Depot cannot provide a written estimate.",
+] as const;
+
+const WHO_CAN_PARTICIPATE = [
+  "Anyone can refer a homeowner — a neighbor, friend, family member, or coworker. You don't have to be a Siding Depot customer to refer someone.",
+  "You cannot refer yourself. Self-referrals (your own home/project) do not qualify.",
+  "The homeowner you refer must be a new Siding Depot customer.",
 ] as const;
 
 export const Route = createFileRoute("/referral")({
@@ -278,7 +285,18 @@ function ReferralPage() {
             </p>
             <h2 className="mt-3 font-display text-4xl leading-none">The simple rules</h2>
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <article className="mt-10 rounded-2xl border border-sd-green/30 bg-sd-green-pale/60 p-6">
+            <h3 className="font-display text-3xl text-sd-navy">Who can participate</h3>
+            <ul className="mt-4 grid gap-3 text-sm leading-relaxed text-sd-gray-text sm:grid-cols-3">
+              {WHO_CAN_PARTICIPATE.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sd-green-dark" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
             <article className="rounded-2xl bg-sd-green-pale p-6">
               <h3 className="font-display text-3xl text-sd-navy">This qualifies</h3>
               <ul className="mt-4 grid gap-3 text-sm leading-relaxed text-sd-gray-text">
