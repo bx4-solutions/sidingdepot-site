@@ -269,7 +269,8 @@ function ReferralPage() {
               <div className="rounded-2xl bg-white/10 p-5">
                 <p className="text-sm font-bold text-sd-green">SECOND $75</p>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">
-                  Their qualifying project is completed and paid in full. Your total reward can be $150.
+                  Their qualifying project is completed and paid in full. Your total reward can be
+                  $150.
                 </p>
               </div>
             </div>

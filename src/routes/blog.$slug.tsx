@@ -13,22 +13,26 @@ export const Route = createFileRoute("/blog/$slug")({
   component: BlogPostDetail,
   head: ({ params }) => {
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
-    if (!post) return { title: "Post Not Found | Siding Depot" };
+    if (!post) return { meta: [{ title: "Post Not Found | Siding Depot" }] };
 
     // Drafts may be viewed through the explicit preview flow, but must never be
     // eligible for indexing or public article metadata before publication.
     if (post.status !== "published") {
       return {
-        title: `${post.title} | Draft | Siding Depot`,
-        meta: [{ name: "robots", content: "noindex, nofollow" }],
+        meta: [
+          { title: `${post.title} | Draft | Siding Depot` },
+          { name: "robots", content: "noindex, nofollow" },
+        ],
       };
     }
 
     const canonicalUrl = `https://www.sidingdepot.com/blog/${post.slug}`;
 
     return {
-      title: post.metaTitle,
+      // Titulo como entrada de `meta` para sobrepor o `{ title }` do __root.
+      // (o `title` top-level nao faz dedupe contra o root e acaba ignorado no SSR)
       meta: [
+        { title: post.metaTitle },
         { name: "description", content: post.metaDescription },
         // Open Graph / Facebook
         { property: "og:title", content: post.metaTitle },
