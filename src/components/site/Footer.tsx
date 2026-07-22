@@ -157,7 +157,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="text-white/55 cursor-default">Blog</span>
+                <Link to="/blog" className="text-white/55 hover:text-sd-green">
+                  Blog
+                </Link>
               </li>
               <li>
                 <Link to="/guide" className="text-white/55 hover:text-sd-green">
