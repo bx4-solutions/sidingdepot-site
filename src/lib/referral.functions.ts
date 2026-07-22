@@ -347,7 +347,9 @@ export const submitReferral = createServerFn({ method: "POST" })
       phone: data.homeownerPhone,
       email: data.homeownerEmail,
       city: data.cityOrZip,
-      tags: ["new_lead", "referred-customer"],
+      // Tag "indicado por <indicador>" no proprio lead → quem indicou aparece de
+      // relance na lista de contatos (espelha a tag "indicou <vizinho>" do indicador).
+      tags: ["new_lead", "referred-customer", `indicado por ${data.referrerName}`.toLowerCase()],
       source: "referral-program",
       fields: {
         "Referral ID": code,
