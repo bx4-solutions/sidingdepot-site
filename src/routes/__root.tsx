@@ -26,6 +26,10 @@ import { GhlChatWidget } from "@/components/site/GhlChatWidget";
 // terceiro: a tag de conversao dele so disparava em URL contendo
 // "thank-you-page" — pagina que nao existe neste site — entao nunca converteu.
 const GTM_ID = "GTM-KTZCGP8B";
+// Google Ads (conta 398-485-4749). Carregado por codigo (gtag.js) para que o
+// evento de conversao dispare no envio do form — as campanhas de Search estavam
+// com 0 conversoes porque nada avisava o Google Ads no sucesso do lead.
+const GOOGLE_ADS_ID = "AW-16810687003";
 const GA4_ID = import.meta.env.VITE_GA4_ID as string | undefined;
 // Set VITE_META_PIXEL_ID=<pixel_id> in Vercel env vars to activate Meta Pixel
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
@@ -261,17 +265,18 @@ function RootComponent() {
         document.head.appendChild(clickone);
       }
 
-      // Inject GA4 if configured
-      if (GA4_ID) {
-        w.dataLayer = w.dataLayer || [];
-        function gtag(...args: any[]) {
-          w.dataLayer.push(args);
-        }
-        w.gtag = w.gtag || gtag;
-        w.gtag("js", new Date());
-        w.gtag("config", GA4_ID);
-        appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`);
+      // gtag.js — Google Ads (AW) SEMPRE + GA4 se configurado. Carregar o AW por
+      // codigo garante que gtag('event','conversion',…) funcione no envio do form,
+      // sem depender do GTM UI (a conta logada nao acessa o container GTM-KTZCGP8B).
+      w.dataLayer = w.dataLayer || [];
+      function gtag(...args: any[]) {
+        w.dataLayer.push(args);
       }
+      w.gtag = w.gtag || gtag;
+      w.gtag("js", new Date());
+      if (GA4_ID) w.gtag("config", GA4_ID);
+      w.gtag("config", GOOGLE_ADS_ID);
+      appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID || GOOGLE_ADS_ID}`);
 
       // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
       if (META_PIXEL_ID) {

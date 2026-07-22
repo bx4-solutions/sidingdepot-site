@@ -20,6 +20,10 @@ const UTM_KEYS = [
 // Click IDs — NOT stored in first-touch persistence (they belong to current click only)
 const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid", "ttclid"] as const;
 
+// Google Ads — acao de conversao de lead (Search). send_to = AW-<id>/<label>.
+// Sem este disparo no envio do form as campanhas de Search ficam com 0 conversoes.
+const GOOGLE_ADS_LEAD_CONVERSION = "AW-16810687003/Q9xVCLq_h54cEJv0-s8-";
+
 const STORAGE_KEY = "__lp_attribution_v1";
 const VISITOR_ID_KEY = "__lp_visitor_id_v1";
 
@@ -242,6 +246,13 @@ export function trackLeadSubmit(data: {
     content_category: "Home Services",
     status: "submitted",
   });
+  // Google Ads conversion — dispara UMA vez por lead, so no sucesso. E o que faz
+  // as campanhas de Search registrarem conversao (o site nunca avisava o Google).
+  try {
+    (window as any).gtag?.("event", "conversion", { send_to: GOOGLE_ADS_LEAD_CONVERSION });
+  } catch {
+    // never crash the page
+  }
 }
 
 /**
