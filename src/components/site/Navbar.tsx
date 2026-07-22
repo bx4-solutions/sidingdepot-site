@@ -38,6 +38,7 @@ const NAV_LINKS: NavLink[] = [
     sublinks: [
       { to: "/about", label: "ABOUT" },
       { to: "/blog", label: "BLOG" },
+      { to: "/referral", label: "REFERRALS" },
     ],
   },
 ];
