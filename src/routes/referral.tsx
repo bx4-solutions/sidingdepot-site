@@ -28,7 +28,7 @@ const PROCESS = [
     number: "03",
     eyebrow: "WE SAY THANK YOU",
     title: "Earn up to $150 for the referral.",
-    text: "You earn $75 when a written estimate is completed. If your neighbor signs a qualifying project, you earn another $75. We verify each milestone and send payment within two weeks.",
+    text: "You earn $75 when a written estimate is completed. You earn another $75 once your neighbor's qualifying project is completed and paid in full. We verify each milestone and send payment within two weeks.",
     detail: "There is no limit to the number of neighbors you can refer.",
     image: "/referral/referral-reward.png",
     alt: "Homeowner happily looking at a reward confirmation on her phone",
@@ -67,7 +67,7 @@ export const Route = createFileRoute("/referral")({
         {
           name: "description",
           content:
-            "Refer a North Atlanta homeowner to Siding Depot and earn $75 after a written estimate, plus another $75 when they sign a qualifying exterior project.",
+            "Refer a North Atlanta homeowner to Siding Depot and earn $75 after a written estimate, plus another $75 once their qualifying project is completed and paid in full.",
         },
         { property: "og:title", content: "Refer a Neighbor. Earn up to $150. | Siding Depot" },
         {
@@ -124,7 +124,7 @@ function ReferralPage() {
               </Button>
             </div>
             <p className="mt-5 text-sm font-semibold text-sd-gray-text">
-              $75 after a written estimate · +$75 after a qualifying contract
+              $75 after a written estimate · +$75 after the project is completed & paid in full
             </p>
           </div>
           <div className="relative">
@@ -269,7 +269,7 @@ function ReferralPage() {
               <div className="rounded-2xl bg-white/10 p-5">
                 <p className="text-sm font-bold text-sd-green">SECOND $75</p>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">
-                  They sign a qualifying contract. Your total reward can be $150.
+                  Their qualifying project is completed and paid in full. Your total reward can be $150.
                 </p>
               </div>
             </div>
