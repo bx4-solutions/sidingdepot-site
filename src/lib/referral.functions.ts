@@ -84,6 +84,9 @@ export type ReferralInfo = {
   referredFirst: string;
   contactId: string | null;
   opportunityId: string | null;
+  // Serviços que o INDICADOR marcou na Page A — Page B pré-marca esses e permite
+  // o vizinho acrescentar/alterar (múltipla escolha).
+  services: string[];
 };
 
 /**
@@ -103,6 +106,7 @@ export const getReferralByCode = createServerFn({ method: "GET" })
       referredFirst: "",
       contactId: null,
       opportunityId: null,
+      services: [],
     };
     const c = cfg();
     if (!c || !code) return fallback;
@@ -126,6 +130,7 @@ export const getReferralByCode = createServerFn({ method: "GET" })
     let referrerName = "";
     let referrerPhone = "";
     let referredName = "";
+    let services: string[] = [];
 
     if (contactId) {
       const contactRes = await ghl<{
@@ -145,6 +150,10 @@ export const getReferralByCode = createServerFn({ method: "GET" })
       };
       referrerName = byName("Referred By Name");
       referrerPhone = byName("Referred By Phone");
+      services = byName("Services")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
     }
     // Fall back to parsing the opportunity name if the field was empty.
     if (!referrerName) {
@@ -165,6 +174,7 @@ export const getReferralByCode = createServerFn({ method: "GET" })
       referredFirst: first(referredName),
       contactId,
       opportunityId: opp.id,
+      services,
     };
   });
 
@@ -174,7 +184,7 @@ export type AcceptReferralInput = {
   opportunityId: string | null;
   email: string;
   address: string;
-  service: string;
+  services: string[];
 };
 
 /**
@@ -198,9 +208,9 @@ export const acceptReferral = createServerFn({ method: "POST" })
       if (value) customFields.push({ id, field_value: value });
     };
     push("Referral Status", "Accepted by neighbor");
-    // The service the neighbor picks here (or taps from the 24h SMS link) is the
-    // whole point of the follow-up — record it instead of dropping it.
-    push("Services", data.service);
+    // The services the neighbor confirms here (pre-checked from what the referrer
+    // marked, plus any they add) — record them instead of dropping them.
+    push("Services", data.services.join(", "));
 
     // Update the neighbor's contact with the details they just completed.
     await ghl(`/contacts/${data.contactId}`, c.apiKey, {

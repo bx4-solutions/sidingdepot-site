@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowRight, CheckCircle2, Loader2, ShieldCheck, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ServiceCard } from "@/components/site/ServiceCard";
@@ -20,6 +21,9 @@ const SERVICE_BY_SLUG: Record<string, string> = {
   painting: "Exterior painting",
   other: "More than one project",
 };
+
+/** Multi-select options (mesmo conjunto da Page A / ReferralForm). */
+const SERVICE_OPTIONS = ["Siding", "Roofing", "Windows", "Gutters", "Exterior painting"] as const;
 
 export const Route = createFileRoute("/welcome/$code")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -43,7 +47,7 @@ export const Route = createFileRoute("/welcome/$code")({
 const acceptSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address").max(254),
   address: z.string().trim().min(5, "Please enter your home address").max(160),
-  service: z.string().min(1, "Please choose the project you're considering"),
+  services: z.array(z.string()).min(1, "Please choose at least one project"),
 });
 type AcceptValues = z.infer<typeof acceptSchema>;
 
@@ -55,11 +59,21 @@ function WelcomePage() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<AcceptValues>({
     resolver: zodResolver(acceptSchema),
-    defaultValues: { email: "", address: "", service: "" },
+    // Pré-marca os serviços que o INDICADOR escolheu; o vizinho pode alterar/acrescentar.
+    defaultValues: { email: "", address: "", services: referral.services ?? [] },
   });
+  const services = watch("services");
+  const toggleService = (name: string, checked: boolean) => {
+    const current = services ?? [];
+    setValue("services", checked ? [...current, name] : current.filter((s) => s !== name), {
+      shouldValidate: true,
+    });
+  };
 
   const hasReferrer = referral.found && !!referral.referrerName;
   const referrer = referral.referrerName || "A neighbor";
@@ -86,7 +100,7 @@ function WelcomePage() {
         opportunityId: referral.opportunityId,
         email: "",
         address: "",
-        service: pickedService,
+        services: [pickedService],
       },
     }).catch(() => null);
     setSubmitting(false);
@@ -104,7 +118,7 @@ function WelcomePage() {
         opportunityId: referral.opportunityId,
         email: values.email,
         address: values.address,
-        service: values.service,
+        services: values.services,
       },
     }).catch(() => null);
     setSubmitting(false);
@@ -344,25 +358,33 @@ function WelcomePage() {
                 )}
               </div>
               <div className="grid gap-1.5">
-                <Label htmlFor="w-service">Project you&apos;re considering</Label>
-                <select
-                  {...register("service")}
-                  id="w-service"
-                  defaultValue=""
-                  className="h-12 rounded-md border border-sd-navy/10 bg-white px-3 text-base shadow-sm focus-visible:ring-sd-green"
-                >
-                  <option value="" disabled>
-                    Select one
-                  </option>
-                  <option value="Siding">Siding</option>
-                  <option value="Roofing">Roofing</option>
-                  <option value="Windows">Windows</option>
-                  <option value="Gutters">Gutters</option>
-                  <option value="Exterior painting">Exterior painting</option>
-                  <option value="More than one project">More than one project</option>
-                </select>
-                {errors.service && (
-                  <p className="text-xs font-medium text-destructive">{errors.service.message}</p>
+                <Label>Projects you&apos;re considering (choose all that apply)</Label>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {SERVICE_OPTIONS.map((name) => {
+                    const checked = (services ?? []).includes(name);
+                    return (
+                      <label
+                        key={name}
+                        htmlFor={`w-service-${name}`}
+                        className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-sd-navy/10 bg-white px-3.5 py-3 transition-colors hover:border-sd-green/50"
+                      >
+                        <Checkbox
+                          id={`w-service-${name}`}
+                          checked={checked}
+                          onCheckedChange={(v) => toggleService(name, v === true)}
+                        />
+                        <span className="text-sm text-sd-black">{name}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+                {referral.services.length > 0 && (
+                  <p className="text-xs text-sd-gray-text">
+                    Pre-selected from your referral — add or change anything you like.
+                  </p>
+                )}
+                {errors.services && (
+                  <p className="text-xs font-medium text-destructive">{errors.services.message}</p>
                 )}
               </div>
               {error && <p className="text-sm font-semibold text-destructive">{error}</p>}
