@@ -32,14 +32,8 @@ const NAV_LINKS: NavLink[] = [
   { to: "/roofing", label: "ROOFING" },
   { to: "/dumpster", label: "DUMPSTER" },
   { to: "/projects", label: "GALLERY" },
-  {
-    to: "/about",
-    label: "ABOUT",
-    sublinks: [
-      { to: "/about", label: "ABOUT" },
-      { to: "/blog", label: "BLOG" },
-    ],
-  },
+  { to: "/blog", label: "BLOG" },
+  { to: "/about", label: "ABOUT" },
 ];
 
 export function Navbar() {
