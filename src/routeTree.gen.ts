@@ -22,6 +22,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as MariettaGaSidingRouteImport } from './routes/marietta-ga-siding'
+import { Route as JamesHardieRouteImport } from './routes/james-hardie'
 import { Route as GuttersRouteImport } from './routes/gutters'
 import { Route as GuideRouteImport } from './routes/guide'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -32,6 +33,7 @@ import { Route as DoorsRouteImport } from './routes/doors'
 import { Route as DecksRouteImport } from './routes/decks'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogSitemapDotxmlRouteImport } from './routes/blog-sitemap[.]xml'
+import { Route as AtlantaGaSidingRouteImport } from './routes/atlanta-ga-siding'
 import { Route as AlpharettaGaSidingRouteImport } from './routes/alpharetta-ga-siding'
 import { Route as AccessDeniedRouteImport } from './routes/access-denied'
 import { Route as AboutRouteImport } from './routes/about'
@@ -134,6 +136,11 @@ const MariettaGaSidingRoute = MariettaGaSidingRouteImport.update({
   path: '/marietta-ga-siding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JamesHardieRoute = JamesHardieRouteImport.update({
+  id: '/james-hardie',
+  path: '/james-hardie',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuttersRoute = GuttersRouteImport.update({
   id: '/gutters',
   path: '/gutters',
@@ -182,6 +189,11 @@ const ContactRoute = ContactRouteImport.update({
 const BlogSitemapDotxmlRoute = BlogSitemapDotxmlRouteImport.update({
   id: '/blog-sitemap.xml',
   path: '/blog-sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtlantaGaSidingRoute = AtlantaGaSidingRouteImport.update({
+  id: '/atlanta-ga-siding',
+  path: '/atlanta-ga-siding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlpharettaGaSidingRoute = AlpharettaGaSidingRouteImport.update({
@@ -365,6 +377,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
+  '/atlanta-ga-siding': typeof AtlantaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -375,6 +388,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/james-hardie': typeof JamesHardieRoute
   '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -425,6 +439,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
+  '/atlanta-ga-siding': typeof AtlantaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -435,6 +450,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/james-hardie': typeof JamesHardieRoute
   '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -485,6 +501,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/access-denied': typeof AccessDeniedRoute
   '/alpharetta-ga-siding': typeof AlpharettaGaSidingRoute
+  '/atlanta-ga-siding': typeof AtlantaGaSidingRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/contact': typeof ContactRoute
   '/decks': typeof DecksRoute
@@ -495,6 +512,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/guide': typeof GuideRouteWithChildren
   '/gutters': typeof GuttersRoute
+  '/james-hardie': typeof JamesHardieRoute
   '/marietta-ga-siding': typeof MariettaGaSidingRoute
   '/painting': typeof PaintingRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -547,6 +565,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/alpharetta-ga-siding'
+    | '/atlanta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -557,6 +576,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/james-hardie'
     | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
@@ -607,6 +627,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/alpharetta-ga-siding'
+    | '/atlanta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -617,6 +638,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/james-hardie'
     | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
@@ -666,6 +688,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/access-denied'
     | '/alpharetta-ga-siding'
+    | '/atlanta-ga-siding'
     | '/blog-sitemap.xml'
     | '/contact'
     | '/decks'
@@ -676,6 +699,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/guide'
     | '/gutters'
+    | '/james-hardie'
     | '/marietta-ga-siding'
     | '/painting'
     | '/privacy-policy'
@@ -727,6 +751,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccessDeniedRoute: typeof AccessDeniedRoute
   AlpharettaGaSidingRoute: typeof AlpharettaGaSidingRoute
+  AtlantaGaSidingRoute: typeof AtlantaGaSidingRoute
   BlogSitemapDotxmlRoute: typeof BlogSitemapDotxmlRoute
   ContactRoute: typeof ContactRoute
   DecksRoute: typeof DecksRoute
@@ -737,6 +762,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   GuideRoute: typeof GuideRouteWithChildren
   GuttersRoute: typeof GuttersRoute
+  JamesHardieRoute: typeof JamesHardieRoute
   MariettaGaSidingRoute: typeof MariettaGaSidingRoute
   PaintingRoute: typeof PaintingRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -873,6 +899,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MariettaGaSidingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/james-hardie': {
+      id: '/james-hardie'
+      path: '/james-hardie'
+      fullPath: '/james-hardie'
+      preLoaderRoute: typeof JamesHardieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gutters': {
       id: '/gutters'
       path: '/gutters'
@@ -941,6 +974,13 @@ declare module '@tanstack/react-router' {
       path: '/blog-sitemap.xml'
       fullPath: '/blog-sitemap.xml'
       preLoaderRoute: typeof BlogSitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atlanta-ga-siding': {
+      id: '/atlanta-ga-siding'
+      path: '/atlanta-ga-siding'
+      fullPath: '/atlanta-ga-siding'
+      preLoaderRoute: typeof AtlantaGaSidingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/alpharetta-ga-siding': {
@@ -1220,6 +1260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccessDeniedRoute: AccessDeniedRoute,
   AlpharettaGaSidingRoute: AlpharettaGaSidingRoute,
+  AtlantaGaSidingRoute: AtlantaGaSidingRoute,
   BlogSitemapDotxmlRoute: BlogSitemapDotxmlRoute,
   ContactRoute: ContactRoute,
   DecksRoute: DecksRoute,
@@ -1230,6 +1271,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   GuideRoute: GuideRouteWithChildren,
   GuttersRoute: GuttersRoute,
+  JamesHardieRoute: JamesHardieRoute,
   MariettaGaSidingRoute: MariettaGaSidingRoute,
   PaintingRoute: PaintingRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,

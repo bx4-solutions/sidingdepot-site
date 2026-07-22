@@ -31,6 +31,8 @@ type LeadSubmitInput = {
   utm_content?: string | null;
   utm_term?: string | null;
   gclid?: string | null;
+  gbraid?: string | null;
+  wbraid?: string | null;
   fbclid?: string | null;
   source_platform?: string | null;
   landing_page?: string | null;
@@ -51,6 +53,8 @@ function toAttribution(data: LeadSubmitInput): AttributionData {
     utm_content: data.utm_content ?? undefined,
     utm_term: data.utm_term ?? undefined,
     gclid: data.gclid ?? undefined,
+    gbraid: data.gbraid ?? undefined,
+    wbraid: data.wbraid ?? undefined,
     fbclid: data.fbclid ?? undefined,
     source_platform: data.source_platform ?? undefined,
     landing_page: data.landing_page ?? undefined,
@@ -317,6 +321,8 @@ export const enrichGhlFromWidget = createServerFn({ method: "POST" })
       utm_content: data.utm_content,
       utm_term: data.utm_term,
       gclid: data.gclid,
+      gbraid: data.gbraid,
+      wbraid: data.wbraid,
       fbclid: data.fbclid,
       landing_page: data.landing_page,
       page_url,

@@ -16,6 +16,8 @@ export type AttributionData = {
   utm_term?: string;
   utm_keyword?: string;
   gclid?: string;
+  gbraid?: string;
+  wbraid?: string;
   fbclid?: string;
   msclkid?: string;
   ttclid?: string;
@@ -45,6 +47,8 @@ export const ATTRIBUTION_FIELD_DEFS = [
   { key: "utm_content", name: "UTM Content" },
   { key: "utm_term", name: "UTM Term" },
   { key: "gclid", name: "Google Click ID (GCLID)" },
+  { key: "gbraid", name: "Google Click ID (GBRAID)" },
+  { key: "wbraid", name: "Google Click ID (WBRAID)" },
   { key: "fbclid", name: "Facebook Click ID (FBCLID)" },
   { key: "source_platform", name: "Source Platform" },
   { key: "landing_page", name: "Landing Page" },
@@ -72,6 +76,8 @@ export function toCustomFieldValues(
     utm_content: attribution.utm_content,
     utm_term: attribution.utm_term || attribution.utm_keyword,
     gclid: attribution.gclid,
+    gbraid: attribution.gbraid,
+    wbraid: attribution.wbraid,
     fbclid: attribution.fbclid,
     source_platform: attribution.source_platform,
     landing_page: attribution.landing_page,

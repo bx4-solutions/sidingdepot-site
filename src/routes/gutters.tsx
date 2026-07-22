@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
-import { SERVICE_METADATA } from "@/data/seo-config";
 import {
   LOCAL_BUSINESS_SCHEMA,
   getServiceSchema,
@@ -11,7 +10,9 @@ import {
 const HERO_IMAGE = "/projects/project-6.webp";
 const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/gutters";
-const seo = SERVICE_METADATA["gutters"];
+const META_TITLE = "Seamless Gutter Installation Marietta GA | Siding Depot";
+const META_DESC =
+  "Gutter installation in Marietta & North Atlanta — seamless aluminum gutters, gutter guards & full gutter replacement sized for Georgia rain. Free quote today.";
 
 const FAQS = [
   {
@@ -32,19 +33,19 @@ const FAQS = [
   },
   {
     q: "Do gutter guards actually work?",
-    a: "Quality micro-mesh gutter guards — the type we install — significantly reduce cleaning frequency and prevent 95%+ of debris entry. They work best on homes surrounded by mature trees where seasonal cleaning costs $200–$400 per visit. Cheaper foam or brush inserts we don't install — they create mold and hold debris rather than shedding it.",
+    a: "Quality micro-mesh gutter guards — the type we install — keep leaves, pine needles, and shingle grit out while letting water flow freely. They prevent 95%+ of debris entry and are ideal for homes surrounded by mature trees. Cheaper foam or brush inserts we don't install — they trap moisture and hold debris rather than shedding it. We install gutter guards as part of a new gutter system or as an add-on to compatible existing gutters.",
   },
   {
-    q: "How often should gutters be cleaned in North Atlanta?",
-    a: "Without guards: twice annually — once in late spring after pollen season, once in late fall after leaf drop. With quality micro-mesh guards: typically once every 2–3 years to remove fine debris that accumulates on top. We offer annual maintenance programs for homeowners who prefer not to track the schedule themselves.",
+    q: "Do you install seamless gutters near me in North Atlanta?",
+    a: "Yes. Siding Depot installs seamless gutters across Marietta, Cobb County, Cherokee County, and the greater North Atlanta area — including Kennesaw, Acworth, Woodstock, Roswell, and Alpharetta. Every seamless gutter system is fabricated on-site to your exact rooflines and installed by our own crews, never subcontractors.",
   },
   {
     q: "What materials are gutters made from?",
     a: "We install aluminum (most common — rustproof, lightweight, 20+ year lifespan), galvanized steel (heavier, stronger for high-debris areas), and copper (architectural choice — naturally patinas, 50+ year lifespan, premium cost). For most North Atlanta homes, aluminum is the correct specification.",
   },
   {
-    q: "Can you repair existing gutters, or do they always need full replacement?",
-    a: "Often, repairs extend functional life significantly — especially on aluminum systems under 15 years old. We assess each section individually and recommend repair where it makes sense. If more than 40% of the system needs individual fixes, full replacement is typically the better economic decision. We'll show you the math.",
+    q: "How do I know it's time for gutter replacement?",
+    a: "Common signs you need gutter replacement include seams pulling apart, sagging or pulling-away sections, peeling exterior paint below the gutter line, pooling water at the foundation, and gutters that overflow in heavy rain. When more than a section or two is failing, a full seamless gutter replacement protects your home far better than piecemeal work — and we'll show you the math during your free estimate.",
   },
 ] as const;
 
@@ -53,11 +54,11 @@ const CONFIG: ServicePageConfig = {
   heroImageAlt:
     "Seamless aluminum gutter installation protecting a North Atlanta home by Siding Depot",
   heroBadge: "Seamless Aluminum · Gutter Guards Available",
-  heroLine1: "Protect Your Home",
-  heroLine2: "From Costly Water Damage.",
+  heroLine1: "Seamless Gutter Installation",
+  heroLine2: "Built for Georgia Rain.",
   heroLine3: "",
   heroSubtitle:
-    "Seamless gutter installation and repair across Marietta — fabricated on-site, sized for Georgia's rainfall, and backed by a written warranty. The last gutter system your home should ever need.",
+    "Gutter installation done right across Marietta & North Atlanta — seamless aluminum gutters fabricated on-site, sized for Georgia's rainfall, and backed by a written warranty. Ask about gutter guards and full gutter replacement — the last gutter system your home should ever need.",
   problemHeadline: "Gutters Fail Quietly — Until The Damage Is Expensive.",
   problemPoints: [
     "Foundation settlement caused by years of concentrated roof runoff pooling against the slab",
@@ -91,10 +92,10 @@ const CONFIG: ServicePageConfig = {
     {
       id: "guards",
       title: "Micro-Mesh Gutter Guards",
-      subtitle: "Tree-heavy lots · Reduced cleaning",
+      subtitle: "Tree-heavy lots · Less debris",
       image: "/projects/project-4.webp",
       description:
-        "Stainless steel micro-mesh guards that stop debris while allowing full water flow — unlike foam or brush inserts that trap moisture and grow mold. For homes with mature trees, guards reduce cleaning visits from twice annually to once every 2–3 years.",
+        "Stainless steel micro-mesh gutter guards that stop debris while allowing full water flow — unlike foam or brush inserts that trap moisture and grow mold. For homes with mature trees, guards keep leaves and pine needles out so water keeps flowing through Georgia's storm season.",
     },
     {
       id: "copper",
@@ -123,7 +124,7 @@ const CONFIG: ServicePageConfig = {
     {
       num: "03",
       title: "Written Proposal — Itemized",
-      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia repairs identified during our estimate. Fixed price — no additions after signing.",
+      desc: "Your estimate covers gutter linear footage, downspout count and placement, guards if applicable, hanger type, and any fascia replacement identified during our estimate. Flat price — no additions after signing.",
     },
     {
       num: "04",
@@ -158,7 +159,7 @@ const CONFIG: ServicePageConfig = {
   ctaHeadline: "Find Out Where Your Home",
   ctaHeadlineAccent: "Is Draining Wrong.",
   ctaBody1:
-    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free estimate identifies what's failing — before the repair costs compound.",
+    "Most gutter problems are invisible until they show up as foundation cracks, rotted fascia, or a wet basement. A free estimate identifies what's failing — before the damage and its costs compound.",
   ctaBody2:
     "We respond within 24 hours, walk your full perimeter, and deliver a written findings report at no charge.",
   ctaMainBtn: "Book My Free Gutter Estimate",
@@ -203,10 +204,10 @@ const CONFIG: ServicePageConfig = {
 export const Route = createFileRoute("/gutters")({
   head: () => ({
     meta: [
-      { title: seo.metaTitle("North Atlanta") },
-      { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle("North Atlanta") },
-      { property: "og:description", content: seo.metaDesc },
+      { title: META_TITLE },
+      { name: "description", content: META_DESC },
+      { property: "og:title", content: META_TITLE },
+      { property: "og:description", content: META_DESC },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
     ],
@@ -221,7 +222,7 @@ export const Route = createFileRoute("/gutters")({
         children: JSON.stringify(
           getServiceSchema(
             "Seamless Gutter Installation in North Atlanta",
-            seo.metaDesc,
+            META_DESC,
             "/gutters",
             OG_IMAGE,
           ),

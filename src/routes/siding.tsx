@@ -16,7 +16,6 @@ import {
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { FaqSection } from "@/components/site/FaqSection";
 import { BEFORE_AFTER_PAIRS, PROJECTS_SORTED, SITE } from "@/data/site";
-import { SERVICE_METADATA_AB } from "@/data/seo-config";
 import { getFaqSchema, getBreadcrumbSchema } from "@/lib/schema";
 import { serviceJsonLd } from "@/components/site/ServiceLandingPage";
 import sidingHouseHeroAsset from "@/assets/siding-house-hero-pool.webp";
@@ -33,11 +32,11 @@ const SD_NAVY = "#1e2a3a";
 const SD_LIME = "#B3D133";
 const SD_LIME_TEXT = "#3C4A07";
 
-const SERVICE_KEY = "siding";
-const CITY = "Marietta & North Atlanta";
-const seo = SERVICE_METADATA_AB[SERVICE_KEY].A;
 const HERO_IMAGE = sidingHouseHeroAsset;
 const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg"; // absolute for OG crawlers
+const META_TITLE = "Siding Contractors in Marietta & Atlanta GA | Siding Depot";
+const META_DESC =
+  "Siding contractors near me in Marietta, Atlanta & Alpharetta. James Hardie Elite siding installation for your home by in-house crews. Free quote — call today.";
 
 export const Route = createFileRoute("/siding")({
   loader: async () => {
@@ -51,10 +50,10 @@ export const Route = createFileRoute("/siding")({
   },
   head: () => ({
     meta: [
-      { title: seo.metaTitle(CITY) },
-      { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle(CITY) },
-      { property: "og:description", content: seo.metaDesc },
+      { title: META_TITLE },
+      { name: "description", content: META_DESC },
+      { property: "og:title", content: META_TITLE },
+      { property: "og:description", content: META_DESC },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
     ],
@@ -63,7 +62,7 @@ export const Route = createFileRoute("/siding")({
       { rel: "preload", as: "image", href: HERO_IMAGE, fetchPriority: "high" as any },
     ],
     scripts: [
-      serviceJsonLd("James Hardie Siding Installation", seo.metaDesc, {
+      serviceJsonLd("James Hardie Siding Installation", META_DESC, {
         canonical: "https://www.sidingdepot.com/siding",
         image: HERO_IMAGE,
         serviceType: "James Hardie Siding Installation",
@@ -178,15 +177,16 @@ function SidingHero() {
           </div>
 
           <h1 className="font-display text-white leading-[0.95] text-5xl sm:text-6xl lg:text-8xl xl:text-9xl">
-            James Hardie
+            Siding Contractors
             <br />
-            <span style={{ color: "#B3D133" }}>Siding Done</span> Right.
+            <span style={{ color: "#B3D133" }}>Marietta &amp; Atlanta</span> Trust.
           </h1>
 
           <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
-            As a James Hardie Elite Contractor, we've completed 1,500+ projects across North Atlanta
-            with our in-house installation crews—delivering siding systems backed by an
-            industry-leading 30-year non-prorated, transferable product warranty.
+            Searching for siding contractors near me? Siding Depot is a James Hardie Elite
+            Contractor serving Marietta, Atlanta, and Alpharetta — we've completed 1,500+ siding
+            installation projects for homes across North Atlanta with our own in-house crews, backed
+            by an industry-leading 30-year non-prorated, transferable product warranty.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -320,8 +320,8 @@ function EliteAuthoritySection() {
             <span style={{ color: SD_LIME_TEXT }}>This Warranty.</span>
           </h2>
           <p className="mt-6 text-gray-600 leading-relaxed text-lg">
-            James Hardie's Elite Contractor status is awarded to fewer than 2% of US installers. It's
-            not a marketing badge — it's a quality certification that unlocks the
+            James Hardie's Elite Contractor status is awarded to fewer than 2% of US installers.
+            It's not a marketing badge — it's a quality certification that unlocks the
             <strong> 30-year non-prorated warranty</strong> covering both materials <em>and</em>{" "}
             labor.
           </p>
@@ -509,7 +509,9 @@ function SidingTypesSection() {
               border: "1px solid rgba(179,209,51,0.2)",
             }}
           >
-            <img loading="lazy" decoding="async"
+            <img
+              loading="lazy"
+              decoding="async"
               src={activeType.image}
               alt={activeType.title}
               className="rounded-xl w-full object-cover"
@@ -1316,12 +1318,12 @@ function DesignEstimateSection() {
 /* ---------------------------------------------------------------- */
 const FAQ_ITEMS = [
   {
-    q: "How do I get a quote for James Hardie siding in Marietta or Canton, GA?",
-    a: "Contact us online or call us directly. We come to your home for a free on-site estimate, measure the full exterior, and deliver a written itemized estimate — usually the same day. No obligation, no pressure.",
+    q: "Which siding companies near me install James Hardie in Marietta and Atlanta?",
+    a: "Siding Depot is a James Hardie Elite Contractor serving Marietta, Atlanta, Alpharetta, and the greater North Atlanta area. When you compare siding companies near me, look for Elite certification, in-house crews, and written warranties — all of which we provide. Contact us online or call directly for a free on-site estimate; we measure the full exterior and deliver a written itemized estimate, usually the same day.",
   },
   {
-    q: "What is the best siding for Georgia's climate?",
-    a: "James Hardie fiber cement siding is the top choice for Georgia. Specifically, the HardieZone® HZ10 system is engineered for the heat, humidity, and storm cycles common in Marietta, Canton, and North Atlanta. It resists rot, warping, and pests, ensuring your home stays protected for decades.",
+    q: "What is the best siding for a home in Georgia's climate?",
+    a: "James Hardie fiber cement siding is the best siding for a home in Georgia. Specifically, the HardieZone® HZ10 system is engineered for the heat, humidity, and storm cycles common in Marietta, Alpharetta, Atlanta, and North Atlanta. It resists rot, warping, and pests, keeping your home protected for decades.",
   },
   {
     q: "How long does siding installation take in Marietta or Canton?",

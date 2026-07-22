@@ -85,7 +85,6 @@ export const STATIC_ROUTES = [
   "/contact",
   "/guide",
   "/storm-damage-siding-georgia",
-  "/lp/siding-marietta",
   "/lp/siding-alpharetta",
   "/lp/siding-canton",
 ] as const;

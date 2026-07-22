@@ -240,7 +240,7 @@ function HomePage() {
         badge="James Hardie Elite Contractor · Marietta, GA"
         title={
           <>
-            Marietta & North Atlanta's James Hardie Siding Experts —{" "}
+            Marietta & Atlanta's James Hardie Siding Contractor —{" "}
             <span className="text-sd-green">1,500+ Homes Transformed</span>
           </>
         }
@@ -396,7 +396,7 @@ function HomePage() {
                 James Hardie siding installation in Marietta
               </Link>
               <Link
-                to="/lp/siding-marietta"
+                to="/marietta-ga-siding"
                 className="flex items-center gap-2 text-sd-navy font-semibold underline hover:text-sd-green-dark transition-colors"
               >
                 <Link2 className="h-4 w-4 shrink-0 text-sd-green" />
@@ -594,7 +594,7 @@ function HomePage() {
                   <Sparkles className="h-4 w-4" /> Fiber cement siding installation services
                 </Link>
                 <Link
-                  to="/lp/siding-marietta"
+                  to="/marietta-ga-siding"
                   className="text-sd-black hover:underline flex items-center gap-2 [&>svg]:text-sd-green"
                 >
                   <Sparkles className="h-4 w-4" /> Elite Contractor installation in Marietta &

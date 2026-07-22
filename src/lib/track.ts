@@ -17,8 +17,9 @@ const UTM_KEYS = [
   "utm_content",
 ] as const;
 
-// Click IDs — NOT stored in first-touch persistence (they belong to current click only)
-const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid", "ttclid"] as const;
+// Click IDs — persisted first-touch alongside UTMs. gbraid/wbraid are the iOS/
+// mobile Google click IDs that replace gclid when cookies are restricted.
+const CLICK_ID_KEYS = ["gclid", "fbclid", "msclkid", "ttclid", "gbraid", "wbraid"] as const;
 
 // Google Ads — acao de conversao de lead (Search). send_to = AW-<id>/<label>.
 // Sem este disparo no envio do form as campanhas de Search ficam com 0 conversoes.
@@ -96,27 +97,29 @@ export function getAttribution(): Record<string, string> {
       const v = sp.get(k);
       if (v) current[k] = v;
     }
-    // Click IDs go directly into `out` (not persisted — they are per-click)
+    // Click IDs (gclid/gbraid/wbraid/…) also go through first-touch persistence:
+    // on iOS they often appear only on the landing URL and vanish on navigation.
     for (const k of CLICK_ID_KEYS) {
       const v = sp.get(k);
-      if (v) out[k] = v;
+      if (v) current[k] = v;
     }
   } catch {
     // ignore malformed URL
   }
 
-  // Persist first-touch: only set storage once
-  if (storage && Object.keys(current).length > 0 && !stored.utm_source) {
+  // Persist first-touch (UTMs + click IDs): set storage once, the first time we
+  // see any attribution. The __ft marker records that first-touch was captured.
+  if (storage && Object.keys(current).length > 0 && !stored.__ft) {
     try {
-      storage.setItem(STORAGE_KEY, JSON.stringify(current));
-      stored = current;
+      storage.setItem(STORAGE_KEY, JSON.stringify({ ...current, __ft: "1" }));
+      stored = { ...current, __ft: "1" };
     } catch {
       // quota / private mode — ignore
     }
   }
 
-  // Merge: stored first-touch UTMs as base, current URL UTMs override
-  for (const k of UTM_KEYS) {
+  // Merge: stored first-touch as base, current URL values override.
+  for (const k of [...UTM_KEYS, ...CLICK_ID_KEYS]) {
     if (stored[k]) out[k] = stored[k];
     if (current[k]) out[k] = current[k];
   }

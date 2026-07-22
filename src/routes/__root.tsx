@@ -276,7 +276,9 @@ function RootComponent() {
       w.gtag("js", new Date());
       if (GA4_ID) w.gtag("config", GA4_ID);
       w.gtag("config", GOOGLE_ADS_ID);
-      appendExternalScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID || GOOGLE_ADS_ID}`);
+      appendExternalScript(
+        `https://www.googletagmanager.com/gtag/js?id=${GA4_ID || GOOGLE_ADS_ID}`,
+      );
 
       // Inject Meta Pixel if configured (set VITE_META_PIXEL_ID in Vercel env vars)
       if (META_PIXEL_ID) {

@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePageLayout, type ServicePageConfig } from "@/components/site/ServicePageLayout";
-import { SERVICE_METADATA } from "@/data/seo-config";
 import decksHeroImg from "@/assets/decks-hero.webp";
 import {
   LOCAL_BUSINESS_SCHEMA,
@@ -12,7 +11,9 @@ import {
 const HERO_IMAGE = decksHeroImg;
 const OG_IMAGE = "https://www.sidingdepot.com/og-default.jpg";
 const CANONICAL = "https://www.sidingdepot.com/decks";
-const seo = SERVICE_METADATA["decks"];
+const META_TITLE = "Atlanta Deck Contractor in Marietta GA | Siding Depot";
+const META_DESC =
+  "Atlanta deck contractor & deck builder in Marietta, GA. Custom composite deck installation plus siding and decking by certified crews. Free quote — call today.";
 
 const FAQS = [
   {
@@ -28,8 +29,12 @@ const FAQS = [
     a: "Composite decking is the top performer in Georgia. Trex Transcend and TimberTech AZEK hold color, resist moisture, and don't splinter regardless of summer heat or 50-plus annual inches of rain. Pressure-treated pine is popular for budget projects but requires sealing or staining every 2–3 years.",
   },
   {
-    q: "How long does deck construction take?",
-    a: "A standard 300–400 sq ft deck takes 3–5 build days once permits are approved. Permit approval typically takes 5–15 business days in Cobb, Cherokee, and Fulton. We recommend initiating the permit process 3–4 weeks before your target start date — especially in spring and summer.",
+    q: "How long does deck installation in Marietta take?",
+    a: "A standard 300–400 sq ft deck installation in Marietta takes 3–5 build days once permits are approved. Permit approval typically takes 5–15 business days in Cobb, Cherokee, and Fulton. We recommend initiating the permit process 3–4 weeks before your target start date — especially in spring and summer.",
+  },
+  {
+    q: "Can you handle siding and decking on the same project?",
+    a: "Yes. Siding Depot handles both siding and decking, so a single certified crew can install your new James Hardie siding and build your composite or wood deck on one coordinated timeline. Combining siding and decking keeps your exterior finishes matched and often streamlines scheduling and permitting.",
   },
   {
     q: "Does a new deck add resale value in the Atlanta market?",
@@ -53,11 +58,11 @@ const CONFIG: ServicePageConfig = {
   heroImage: HERO_IMAGE,
   heroImageAlt: "Beautiful composite deck built by Siding Depot for a North Atlanta homeowner",
   heroBadge: "Trex Pro · TimberTech Certified Installer",
-  heroLine1: "Transform Your Backyard",
-  heroLine2: "Into Something Remarkable.",
+  heroLine1: "Atlanta Deck Contractor",
+  heroLine2: "& Marietta Deck Builder.",
   heroLine3: "",
   heroSubtitle:
-    "Custom composite and wood decks across Marietta — engineered for Georgia's heat and humidity, permit-managed from start to finish, and built to increase the value and livability of your outdoor space.",
+    "As your Atlanta deck contractor and deck builder in Marietta, GA, Siding Depot designs and builds custom composite and wood decks — engineered for Georgia's heat and humidity, permit-managed from start to finish, and built to increase the value and livability of your outdoor space.",
   problemHeadline: "Your Backyard Has More Potential Than A Worn-Out Deck Can Offer.",
   problemPoints: [
     "Splintering boards that keep your family off the deck through summer",
@@ -66,7 +71,7 @@ const CONFIG: ServicePageConfig = {
     "Annual maintenance costs for staining, sealing, and board replacement that never end",
   ],
   problemSolution:
-    "Siding Depot designs and builds custom composite and pressure-treated decks across North Atlanta. As a certified Trex Pro installer, we construct outdoor living spaces built to Georgia's specific conditions — with permit-ready engineered plans, stainless hardware, and 25-year material warranties. No annual maintenance, no early replacement.",
+    "Siding Depot designs and builds custom composite and pressure-treated decks across Atlanta, Marietta, and Alpharetta. As a certified Trex Pro installer that handles both siding and decking, we construct outdoor living spaces built to Georgia's specific conditions — with permit-ready engineered plans, stainless hardware, and 25-year material warranties. No annual maintenance, no early replacement.",
   optionsEyebrow: "Deck Systems",
   optionsHeadline: "Four Approaches. One Perfect Outdoor Space.",
   optionsSubheadline:
@@ -219,10 +224,10 @@ const CONFIG: ServicePageConfig = {
 export const Route = createFileRoute("/decks")({
   head: () => ({
     meta: [
-      { title: seo.metaTitle("Marietta") },
-      { name: "description", content: seo.metaDesc },
-      { property: "og:title", content: seo.metaTitle("Marietta") },
-      { property: "og:description", content: seo.metaDesc },
+      { title: META_TITLE },
+      { name: "description", content: META_DESC },
+      { property: "og:title", content: META_TITLE },
+      { property: "og:description", content: META_DESC },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:type", content: "website" },
     ],
@@ -235,12 +240,7 @@ export const Route = createFileRoute("/decks")({
       {
         type: "application/ld+json",
         children: JSON.stringify(
-          getServiceSchema(
-            "Custom Deck Construction in Marietta",
-            seo.metaDesc,
-            "/decks",
-            OG_IMAGE,
-          ),
+          getServiceSchema("Custom Deck Construction in Marietta", META_DESC, "/decks", OG_IMAGE),
         ),
       },
       { type: "application/ld+json", children: JSON.stringify(getFaqSchema([...FAQS])) },

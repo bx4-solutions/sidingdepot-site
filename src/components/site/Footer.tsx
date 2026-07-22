@@ -107,6 +107,22 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/james-hardie"
+                  className="block py-2 text-sm text-white/55 hover:text-sd-green"
+                >
+                  James Hardie Siding
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/atlanta-ga-siding"
+                  className="block py-2 text-sm text-white/55 hover:text-sd-green"
+                >
+                  Siding in Atlanta, GA
+                </Link>
+              </li>
             </ul>
           </div>
 

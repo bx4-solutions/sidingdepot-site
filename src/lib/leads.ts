@@ -16,8 +16,10 @@ export type LeadPayload = {
 
 function deriveSourcePlatform(attribution: Record<string, string>): string {
   const gclid = attribution.gclid;
+  const gbraid = attribution.gbraid;
+  const wbraid = attribution.wbraid;
   const fbclid = attribution.fbclid;
-  if (gclid) return "Google Ads";
+  if (gclid || gbraid || wbraid) return "Google Ads";
   if (fbclid) return "Meta Paid";
   const src = (attribution.utm_source ?? "").toLowerCase();
   const med = (attribution.utm_medium ?? "").toLowerCase();
@@ -63,6 +65,8 @@ export async function submitLead(payload: LeadPayload) {
         utm_content: attribution.utm_content ?? null,
         utm_term: attribution.utm_term ?? null,
         gclid: attribution.gclid ?? null,
+        gbraid: attribution.gbraid ?? null,
+        wbraid: attribution.wbraid ?? null,
         fbclid: attribution.fbclid ?? null,
         source_platform: sourcePlatform,
         page_url: pageUrl,

@@ -12,9 +12,44 @@ import {
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/data/site";
 import { trackFinanceApply, trackFinanceQualified } from "@/lib/track";
-import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA } from "@/lib/schema";
+import { ORG_SCHEMA, LOCAL_BUSINESS_SCHEMA, getFaqSchema } from "@/lib/schema";
 import { useEffect, useState } from "react";
 const greenSkyFinancing = { url: "/finance-hero-illustration.webp" };
+
+const META_TITLE = "Siding Financing in Marietta & Atlanta | Siding Depot";
+const META_DESC =
+  "Siding financing in Marietta & Atlanta. One of the few siding companies with financing, Siding Depot offers vinyl siding financing via GreenSky®. Apply now.";
+
+const FAQS = [
+  {
+    q: "Do you offer vinyl siding financing and financing for other siding types?",
+    a: "Yes. Through our GreenSky® partnership we offer vinyl siding financing as well as financing for James Hardie fiber cement siding, roofing, and exterior painting. As one of the siding companies with financing in North Atlanta, we make it easy to spread the cost of your project over time.",
+  },
+  {
+    q: "How does the credit approval process work?",
+    a: "The application process is quick and secure. You can apply online through the GreenSky® portal and receive a credit decision in seconds. Once approved, you'll receive a loan agreement and can start your project immediately.",
+  },
+  {
+    q: "What are the promotional interest rates?",
+    a: "We offer two main promotional plans: a 12-month deferred interest plan where interest is waived if paid in full within a year, and a long-term plan with a reduced APR of 9.99% for up to 138 months.",
+  },
+  {
+    q: "How does the 12-month deferred interest period work?",
+    a: "With this plan, interest is billed during the promotional period but is completely waived if the entire purchase amount is paid in full within 12 months of the first transaction.",
+  },
+  {
+    q: "Is everyone eligible for the 9.99% APR plan?",
+    a: "Eligibility is subject to credit approval by GreenSky®. This plan offers low fixed monthly payments stretched over 138 months, making large exterior projects affordable for most qualified homeowners.",
+  },
+  {
+    q: "How do I make my loan payments?",
+    a: "Payments are made directly to GreenSky®. You can set up automatic payments, pay online through their portal, or pay by mail. You'll receive all the necessary information once your loan is finalized.",
+  },
+  {
+    q: "Are there any prepayment penalties?",
+    a: "No, GreenSky® loans through Siding Depot do not have prepayment penalties. You can pay off your loan at any time without incurring extra fees, which is especially beneficial for the deferred interest plan.",
+  },
+] as const;
 
 export const Route = createFileRoute("/finance")({
   head: () => {
@@ -26,9 +61,8 @@ export const Route = createFileRoute("/finance")({
           "@type": "WebPage",
           "@id": `${canonical}/#webpage`,
           url: canonical,
-          name: "Financing for Siding & Roofing Projects in North Atlanta",
-          description:
-            "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
+          name: "Siding Financing in Marietta & North Atlanta",
+          description: META_DESC,
           isPartOf: { "@id": "https://www.sidingdepot.com/#website" },
         },
         ORG_SCHEMA,
@@ -38,17 +72,15 @@ export const Route = createFileRoute("/finance")({
 
     return {
       meta: [
-        { title: "Financing for Siding & Roofing Projects | Siding Depot North Atlanta" },
+        { title: META_TITLE },
         {
           name: "description",
-          content:
-            "Flexible financing for siding, roofing, and painting in Marietta and North Atlanta. 12-month deferred interest or 9.99% fixed monthly budget plans via GreenSky®.",
+          content: META_DESC,
         },
-        { property: "og:title", content: "Financing for Siding & Roofing | Siding Depot" },
+        { property: "og:title", content: META_TITLE },
         {
           property: "og:description",
-          content:
-            "Apply for siding or roofing financing in minutes with GreenSky®. Deferred interest and low monthly payment options available.",
+          content: META_DESC,
         },
         { property: "og:image", content: "https://www.sidingdepot.com/projects/project-1.webp" },
         { property: "og:type", content: "website" },
@@ -59,6 +91,10 @@ export const Route = createFileRoute("/finance")({
           type: "application/ld+json",
           children: JSON.stringify(schema),
         },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(getFaqSchema([...FAQS])),
+        },
       ],
     };
   },
@@ -68,32 +104,7 @@ export const Route = createFileRoute("/finance")({
 function FinancePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      q: "How does the credit approval process work?",
-      a: "The application process is quick and secure. You can apply online through the GreenSky® portal and receive a credit decision in seconds. Once approved, you'll receive a loan agreement and can start your project immediately.",
-    },
-    {
-      q: "What are the promotional interest rates?",
-      a: "We offer two main promotional plans: a 12-month deferred interest plan where interest is waived if paid in full within a year, and a long-term plan with a reduced APR of 9.99% for up to 138 months.",
-    },
-    {
-      q: "How does the 12-month deferred interest period work?",
-      a: "With this plan, interest is billed during the promotional period but is completely waived if the entire purchase amount is paid in full within 12 months of the first transaction.",
-    },
-    {
-      q: "Is everyone eligible for the 9.99% APR plan?",
-      a: "Eligibility is subject to credit approval by GreenSky®. This plan offers low fixed monthly payments stretched over 138 months, making large exterior projects affordable for most qualified homeowners.",
-    },
-    {
-      q: "How do I make my loan payments?",
-      a: "Payments are made directly to GreenSky®. You can set up automatic payments, pay online through their portal, or pay by mail. You'll receive all the necessary information once your loan is finalized.",
-    },
-    {
-      q: "Are there any prepayment penalties?",
-      a: "No, GreenSky® loans through Siding Depot do not have prepayment penalties. You can pay off your loan at any time without incurring extra fees, which is especially beneficial for the deferred interest plan.",
-    },
-  ];
+  const faqs = FAQS;
 
   useEffect(() => {
     // Detect if returning from GreenSky or moving to next step
@@ -108,7 +119,9 @@ function FinancePage() {
       {/* Hero Section — illustrated banner */}
       <section className="relative w-full overflow-hidden bg-sd-black">
         <div className="absolute inset-0 z-0">
-          <img loading="lazy" decoding="async"
+          <img
+            loading="lazy"
+            decoding="async"
             src="/finance-hero-bg.webp"
             alt=""
             aria-hidden="true"
@@ -119,8 +132,13 @@ function FinancePage() {
 
         <div className="relative z-10 mx-auto flex min-h-[360px] sm:min-h-[420px] max-w-7xl flex-col justify-end px-6 pb-16 pt-24 sm:pt-32 lg:px-12 lg:pb-20 lg:pt-40">
           <h1 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl">
-            Financing Options
+            Siding Financing Options
           </h1>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/85">
+            Siding financing in Marietta &amp; North Atlanta, made simple. As one of the few siding
+            companies with financing, Siding Depot offers vinyl siding financing and low-payment
+            plans through GreenSky® — so you can start your project now and pay over time.
+          </p>
         </div>
       </section>
 
@@ -137,7 +155,9 @@ function FinancePage() {
           <div className="mx-auto w-full rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 sm:p-12 lg:p-16">
             {/* Big GreenSky logo */}
             <header className="flex flex-col items-center">
-              <img loading="lazy" decoding="async"
+              <img
+                loading="lazy"
+                decoding="async"
                 src={greenSkyFinancing.url}
                 alt="Financing options from GreenSky"
                 className="h-auto w-full max-w-[480px]"
@@ -146,7 +166,9 @@ function FinancePage() {
 
             {/* House photo */}
             <div className="mt-10 overflow-hidden rounded-xl">
-              <img loading="lazy" decoding="async"
+              <img
+                loading="lazy"
+                decoding="async"
                 src="/projects/project-1.webp"
                 alt="Modern renovated home featuring fresh siding and roofing"
                 className="h-64 w-full object-cover sm:h-80 md:h-96"
@@ -249,6 +271,47 @@ function FinancePage() {
               </div>
             </div>
           </section>
+
+          {/* Siding financing explainer — SEO depth */}
+          <section className="mt-20 lg:mt-28">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="font-display text-3xl font-extrabold tracking-tight text-sd-navy sm:text-4xl">
+                Siding Financing for Marietta &amp; Atlanta Homeowners
+              </h2>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-sd-gray-text sm:text-lg">
+                <p>
+                  Siding financing lets you protect and upgrade your home now instead of waiting
+                  until you've saved the full cost of a project. As one of the few siding companies
+                  with financing in the North Atlanta area, Siding Depot partners with GreenSky® to
+                  offer fast, secure loan options for siding, roofing, exterior painting, and deck
+                  projects across Marietta, Atlanta, Alpharetta, and the surrounding communities.
+                </p>
+                <p>
+                  If you're weighing vinyl siding financing against a fiber cement upgrade,
+                  financing makes it easier to choose the material that's right for your home rather
+                  than the one that fits this month's budget. We offer vinyl siding financing as
+                  well as financing for James Hardie fiber cement siding, so you can invest in the
+                  durability and curb appeal that lasts — and spread the payments over a term that
+                  works for you.
+                </p>
+                <p>
+                  Two flexible plans cover most homeowners: a 12-month deferred interest plan, where
+                  interest is waived entirely if the balance is paid in full within the promotional
+                  window, and a reduced 9.99% APR plan with low fixed monthly payments over up to
+                  138 months. Both are subject to credit approval, carry no prepayment penalties,
+                  and can be applied for online in seconds. Once you're approved, your project can
+                  begin right away.
+                </p>
+                <p>
+                  Not sure which option fits your project? Our team will walk you through the
+                  numbers during your free estimate and help you pick the plan that keeps your
+                  monthly payment comfortable. Apply now to see what you qualify for, or call our
+                  office to talk through siding financing with a real person.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* FAQ Section */}
           <section className="mt-20 lg:mt-32">
             <div className="mx-auto max-w-4xl">
@@ -318,7 +381,9 @@ function FinancePage() {
                         key={i}
                         className="h-10 w-10 rounded-full border-2 border-sd-navy bg-sd-gray-bg overflow-hidden"
                       >
-                        <img loading="lazy" decoding="async"
+                        <img
+                          loading="lazy"
+                          decoding="async"
                           src={`/projects/project-${i}.webp`}
                           alt="Happy Customer"
                           className="h-full w-full object-cover"
@@ -335,7 +400,9 @@ function FinancePage() {
             </div>
             <div className="relative">
               <div className="aspect-video overflow-hidden rounded-2xl shadow-2xl">
-                <img loading="lazy" decoding="async"
+                <img
+                  loading="lazy"
+                  decoding="async"
                   src="/projects/project-2.webp"
                   alt="Renovated Home"
                   className="h-full w-full object-cover"
